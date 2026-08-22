@@ -1,32 +1,34 @@
 /* ==========================================================================
    THE CO.LLAB — design system
-   Reference: "crimson void, single silhouette" — austere monochrome UI
-   (black canvas, white/whisper-weight type, hairline rules, pill controls,
-   zero decoration) carrying a neon orange/red "filament" accent instead of
-   crimson photography. Extreme scale jumps: ~12px nav → ~220px display.
+   Hunter green canvas, architectural grid, orange type — austere UI
+   (hairline rules, pill controls, zero decoration) built on a deep hunter
+   green background instead of black, with orange carrying every letter
+   and accent. Extreme scale jumps: ~12px nav → ~220px display.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 
 :root {
-  --black: #060605;
-  --black-soft: #0c0c0b;
-  --white: #f5f4f1;
-  --white-dim: rgba(245, 244, 241, 0.62);
-  --white-faint: rgba(245, 244, 241, 0.34);
-  --hairline: rgba(245, 244, 241, 0.14);
-  --hairline-strong: rgba(245, 244, 241, 0.26);
+  --black: #0f1d13;
+  --black-rgb: 15, 29, 19;
+  --black-soft: #17301d;
+  --text-rgb: 255, 141, 70;
+  --white: rgb(var(--text-rgb));
+  --white-dim: rgba(var(--text-rgb), 0.66);
+  --white-faint: rgba(var(--text-rgb), 0.4);
+  --hairline: rgba(var(--text-rgb), 0.18);
+  --hairline-strong: rgba(var(--text-rgb), 0.34);
 
-  /* hunter green "filament" accent */
-  --filament-1: #234a2c;
-  --filament-2: #7ddc93;
-  --filament-1-rgb: 35, 74, 44;
-  --filament-2-rgb: 125, 220, 147;
+  /* amber/gold "filament" accent, for emphasis against base orange type */
+  --filament-1: #ff8a1f;
+  --filament-2: #ffd873;
+  --filament-1-rgb: 255, 138, 31;
+  --filament-2-rgb: 255, 216, 115;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
 
   --grid-cell: 64px;
-  --grid-line: rgba(var(--filament-2-rgb), 0.14);
-  --grid-line-faint: rgba(245, 244, 241, 0.055);
+  --grid-line: rgba(var(--filament-2-rgb), 0.16);
+  --grid-line-faint: rgba(var(--text-rgb), 0.07);
 
   --font: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
 
@@ -113,7 +115,7 @@ section {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(6, 6, 5, 0.86);
+  background: rgba(var(--black-rgb), 0.86);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
 }
