@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: letsbuildleadership-ship-it/the-collab
   branch: main
 
 media_folder: "assets/img/uploads"
