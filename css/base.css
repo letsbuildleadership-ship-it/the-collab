@@ -17,10 +17,16 @@
   --hairline: rgba(245, 244, 241, 0.14);
   --hairline-strong: rgba(245, 244, 241, 0.26);
 
-  /* neon orange/red "filament" accent */
-  --filament-1: #ff3d1a;
-  --filament-2: #ff8a3d;
+  /* hunter green "filament" accent */
+  --filament-1: #234a2c;
+  --filament-2: #7ddc93;
+  --filament-1-rgb: 35, 74, 44;
+  --filament-2-rgb: 125, 220, 147;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
+
+  --grid-cell: 64px;
+  --grid-line: rgba(var(--filament-2-rgb), 0.14);
+  --grid-line-faint: rgba(245, 244, 241, 0.055);
 
   --font: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
 
@@ -42,8 +48,8 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
-  background: var(--black);
   color: var(--white);
   font-family: var(--font);
   font-weight: 300;
@@ -51,6 +57,26 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* architectural grid, fixed behind all page content — minor + major lines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-faint) 1px, transparent 1px),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:
+    var(--grid-cell) var(--grid-cell),
+    var(--grid-cell) var(--grid-cell),
+    calc(var(--grid-cell) * 4) calc(var(--grid-cell) * 4),
+    calc(var(--grid-cell) * 4) calc(var(--grid-cell) * 4);
+  background-position: center top;
 }
 
 img { max-width: 100%; display: block; }
@@ -130,17 +156,35 @@ section {
 }
 
 .nav-links a {
+  position: relative;
   font-size: var(--nav-size);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--white-dim);
   transition: color 0.25s var(--ease);
+  padding-bottom: 0.3em;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--filament);
+  transition: right 0.3s var(--ease);
 }
 
 .nav-links a:hover,
 .nav-links a[aria-current='page'] {
   color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a[aria-current='page']::after {
+  right: 0;
 }
 
 .nav-cta {
@@ -371,6 +415,16 @@ section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+a.card:hover,
+.card.is-hoverable:hover {
+  background: var(--black-soft);
+  transform: translateY(-3px);
+  box-shadow: inset 0 1px 0 rgba(var(--filament-2-rgb), 0.4), 0 24px 48px -24px rgba(var(--filament-1-rgb), 0.55);
+  z-index: 1;
 }
 
 .card .num {
@@ -413,8 +467,10 @@ section {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 78% 12%, rgba(255, 61, 26, 0.16), transparent 70%),
-    radial-gradient(40% 40% at 8% 90%, rgba(255, 138, 61, 0.08), transparent 70%);
+    radial-gradient(38% 42% at var(--mx, 78%) var(--my, 12%), rgba(var(--filament-2-rgb), 0.22), transparent 68%),
+    radial-gradient(60% 50% at 78% 12%, rgba(var(--filament-1-rgb), 0.2), transparent 70%),
+    radial-gradient(40% 40% at 8% 90%, rgba(var(--filament-2-rgb), 0.09), transparent 70%);
+  transition: background 0.4s var(--ease);
   pointer-events: none;
 }
 
@@ -478,4 +534,43 @@ section {
 .banner strong {
   color: var(--filament-2);
   font-weight: 600;
+}
+
+/* ---------- scroll reveal (progressive enhancement, gated on html.js) ---------- */
+
+html.js section .eyebrow,
+html.js section .headline,
+html.js section .display,
+html.js section .subhead,
+html.js .card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+html.js section .eyebrow.is-visible,
+html.js section .headline.is-visible,
+html.js section .display.is-visible,
+html.js section .subhead.is-visible,
+html.js .card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .grid .card:nth-child(1) { transition-delay: 0ms; }
+html.js .grid .card:nth-child(2) { transition-delay: 70ms; }
+html.js .grid .card:nth-child(3) { transition-delay: 140ms; }
+html.js .grid .card:nth-child(4) { transition-delay: 210ms; }
+html.js .grid .card:nth-child(5) { transition-delay: 280ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js section .eyebrow,
+  html.js section .headline,
+  html.js section .display,
+  html.js section .subhead,
+  html.js .card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
