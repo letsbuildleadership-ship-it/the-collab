@@ -132,7 +132,7 @@ collections:
           - { label: "Closing body", name: "closing_body", widget: "text" }
 
       - name: "founders"
-        label: "Founders Organization"
+        label: "The Co.LLab Founders Organization"
         file: "content/founders.json"
         fields:
           - { label: "Banner text", name: "banner_text", widget: "string" }
@@ -173,7 +173,7 @@ collections:
           - { label: "Apply button link", name: "apply_cta_link", widget: "string" }
 
       - name: "journal"
-        label: "The Journal"
+        label: "The .LLab Journal"
         file: "content/journal.json"
         fields:
           - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
@@ -200,7 +200,6 @@ collections:
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
-              - { label: "Link", name: "link", widget: "string" }
 
           - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
           - { label: "Closing headline", name: "closing_headline", widget: "string" }

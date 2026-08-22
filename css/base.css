@@ -141,7 +141,7 @@ section {
   font-size: var(--nav-size);
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   display: flex;
   align-items: baseline;
   gap: 0.35em;
@@ -426,6 +426,29 @@ section {
   font-size: 0.78rem;
   color: var(--white-faint);
   letter-spacing: 0.04em;
+}
+
+.coming-soon-hero {
+  min-height: min(760px, calc(100vh - 68px));
+  display: flex;
+  align-items: center;
+}
+
+.coming-soon-grid {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  max-width: 900px;
+}
+
+.coming-soon-card {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.coming-soon-card h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin: auto 0 0.75rem;
 }
 
 /* ---------- shared components ---------- */

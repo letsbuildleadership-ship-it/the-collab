@@ -7,15 +7,15 @@
     { "text": "human potential.", "style": "glow", "break_before": false }
   ],
   "hero_subhead": "The Co.LLab™ empowers organizations to transform potential into performance — building leadership infrastructure that drives results, culture, and sustainable growth.",
-  "hero_cta_primary_label": "Explore The Founders Organization",
+  "hero_cta_primary_label": "Explore The Co.LLab Founders Organization",
   "hero_cta_primary_link": "/pages/founders.html",
-  "hero_cta_secondary_label": "Explore The .LLab™ Products",
+  "hero_cta_secondary_label": "Explore The .LLab Products",
   "hero_cta_secondary_link": "/pages/products.html",
 
   "directory_eyebrow": "Where to start",
   "directory_cards": [
-    { "title": "The .LLab™ Products", "description": "The productized side of The Co.LLab™ — tools and offerings that put leadership infrastructure into practice, including The .LLab Membership™.", "link": "/pages/products.html" },
-    { "title": "Founders Organization", "description": "For founders building the leadership and organizational infrastructure required for growth, scale, sustainability, and legacy.", "link": "/pages/founders.html" },
+    { "title": "The .LLab Products", "description": "Downloadable leadership resources and the membership experience are coming soon.", "link": "/pages/products.html" },
+    { "title": "The Co.LLab Founders Organization", "description": "For founders building the leadership and organizational infrastructure required for growth, scale, sustainability, and legacy.", "link": "/pages/founders.html" },
     { "title": "The Co.LLab™ Journal", "description": "Ideas and frameworks on leadership infrastructure — the intellectual foundation behind everything The Co.LLab™ builds.", "link": "/pages/journal.html" },
     { "title": "About Us", "description": "Our philosophy — stewardship, systems architecture, strategic alignment, succession, and sustainable growth.", "link": "/pages/about.html" }
   ],
@@ -55,7 +55,7 @@
     { "text": "Introductory Founder Offer ", "style": "default", "break_before": false },
     { "text": "Ending Soon.", "style": "glow", "break_before": false }
   ],
-  "offer_body": "Join The Co.LLab™ Founders Organization while the introductory offer is still open.",
-  "offer_cta_label": "Explore The Founders Organization",
+  "offer_body": "Join The Co.LLab Founders Organization while the introductory offer is still open.",
+  "offer_cta_label": "Explore The Co.LLab Founders Organization",
   "offer_cta_link": "/pages/founders.html"
 }

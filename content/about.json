@@ -38,7 +38,7 @@
   "model_headline": "One strategic architecture, several directions of enterprise creation.",
   "model_body": "Rather than operating as a single-purpose consulting business, The Co.LLab™ is architected to serve several audiences under one model — each connected back to Leadership Infrastructure™.",
   "audiences": [
-    { "tag": "Founders", "title": "Founders Organization", "description": "Founders building enterprises capable of growth, scale, and legacy." },
+    { "tag": "Founders", "title": "The Co.LLab Founders Organization", "description": "Founders building enterprises capable of growth, scale, and legacy." },
     { "tag": "Organizations", "title": "Corporate / Enterprise", "description": "Organizations building infrastructure behind their leadership." },
     { "tag": "Leaders", "title": ".LLab™ Products & Membership", "description": "Leaders accessing frameworks and tools directly." },
     { "tag": "Artists & Creators", "title": "Creator Infrastructure™", "description": "A future direction connecting artists and creators to the same leadership infrastructure — not yet a public offering. (In development.)" }

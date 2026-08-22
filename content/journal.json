@@ -1,25 +1,25 @@
 {
-  "eyebrow": "The Co.LLab™ Journal",
+  "eyebrow": "The .LLab Journal",
   "hero_headline": [
     { "text": "Ideas,", "style": "white", "break_before": false },
     { "text": " before ", "style": "default", "break_before": false },
     { "text": "infrastructure.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "The Journal is the intellectual-property and thought-leadership foundation of The Co.LLab™ — where frameworks are developed before they become products, memberships, and enterprise relationships.",
+  "hero_subhead": "The .LLab Journal is the intellectual-property and thought-leadership foundation of The Co.LLab™ — where frameworks are developed before they become products, memberships, and enterprise relationships.",
 
   "arc_eyebrow": "How an idea becomes infrastructure",
   "arc_steps": [
     { "title": "Ideas & Frameworks", "description": "Original thinking on stewardship, systems, and leadership infrastructure." },
     { "title": "Authority & Trust", "description": "Frameworks tested in public, building credibility with founders and organizations." },
-    { "title": "Products & Membership", "description": "What holds up becomes part of The .LLab™ Products and The .LLab Membership™." },
+    { "title": "Products & Membership", "description": "What holds up informs future .LLab products and the membership experience." },
     { "title": "Enterprise Relationships", "description": "Proven frameworks extend into founder and organizational partnerships." }
   ],
 
   "entries_eyebrow": "Recent entries",
   "entries": [
-    { "tag": "Framework", "title": "On Stewardship as Infrastructure", "description": "Why leadership built on responsibility outlasts leadership built on charisma.", "link": "#" },
-    { "tag": "Framework", "title": "Systems Before Scale", "description": "The decision pathways an organization needs before it can grow.", "link": "#" },
-    { "tag": "Framework", "title": "Succession Is a Design Problem", "description": "Building organizations that operate beyond any one founder or leader.", "link": "#" }
+    { "tag": "Framework", "title": "On Stewardship as Infrastructure", "description": "Why leadership built on responsibility outlasts leadership built on charisma." },
+    { "tag": "Framework", "title": "Systems Before Scale", "description": "The decision pathways an organization needs before it can grow." },
+    { "tag": "Framework", "title": "Succession Is a Design Problem", "description": "Building organizations that operate beyond any one founder or leader." }
   ],
 
   "closing_eyebrow": "Go deeper",

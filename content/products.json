@@ -1,20 +1,20 @@
 {
-  "eyebrow": "The productized side of The Co.LLab™",
+  "eyebrow": "The .LLab Products",
   "hero_headline": [
     { "text": "The .LLab", "style": "white", "break_before": false },
     { "text": "™ ", "style": "default", "break_before": false },
     { "text": "Products.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "Where Leadership Infrastructure™ becomes practice. The .LLab™ Products are how The Co.LLab™ puts its framework — stewardship, systems architecture, strategic alignment, succession & scale, sustainable growth — into the hands of leaders and organizations.",
+  "hero_subhead": "The product collection is being prepared as downloadable PDFs. The membership experience is also in development.",
 
-  "flagship_eyebrow": "Flagship offering",
+  "flagship_eyebrow": "Membership experience",
   "flagship_headline": [
     { "text": "The .LLab Membership", "style": "glow", "break_before": false },
     { "text": "™", "style": "default", "break_before": false }
   ],
-  "flagship_body": "The .LLab Membership™ is its own offering within the .LLab™ Products ecosystem — not the entirety of The Co.LLab™. It gives leaders ongoing access to the frameworks, systems, and community built around Leadership Infrastructure™.",
-  "flagship_cta_label": "Join The .LLab Membership™",
-  "flagship_cta_link": "#",
+  "flagship_body": "Coming soon.",
+  "flagship_cta_label": "Coming Soon",
+  "flagship_cta_link": "/pages/products.html",
 
   "pillars_eyebrow": "Built on the five pillars",
   "pillars": [
@@ -27,5 +27,5 @@
 
   "closing_eyebrow": "Looking for something specific?",
   "closing_headline": "Not sure which product is right for you?",
-  "closing_body": "If your focus is on founding and scaling an enterprise, start with the Founders Organization instead."
+  "closing_body": "If your focus is on founding and scaling an enterprise, explore The Co.LLab Founders Organization."
 }
