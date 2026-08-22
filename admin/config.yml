@@ -151,8 +151,17 @@ collections:
           - { label: "Apply tag", name: "apply_tag", widget: "string" }
           - { label: "Apply headline", name: "apply_headline", widget: "string" }
           - { label: "Apply body", name: "apply_body", widget: "text" }
-          - { label: "Apply button label", name: "apply_cta_label", widget: "string" }
-          - { label: "Apply button link", name: "apply_cta_link", widget: "string" }
+          - label: "Pricing tiers"
+            name: "tiers"
+            widget: "list"
+            summary: "{{fields.tag}} — {{fields.price}}"
+            fields:
+              - { label: "Tier name", name: "tag", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string" }
+          - { label: "Prototype notice", name: "prototype_notice", widget: "string" }
+          - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
       - name: "think"
         label: "Think (R.A.T.™)"
@@ -231,6 +240,7 @@ collections:
             summary: "{{fields.text}}"
             fields: *headline_segment_fields
           - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+          - { label: "Prototype notice", name: "prototype_notice", widget: "string" }
 
           - { label: "Membership eyebrow", name: "membership_eyebrow", widget: "string" }
           - label: "Membership headline"
@@ -238,8 +248,9 @@ collections:
             widget: "list"
             summary: "{{fields.text}}"
             fields: *headline_segment_fields
+          - { label: "Membership status badge", name: "membership_status", widget: "string" }
           - { label: "Membership body", name: "membership_body", widget: "text" }
-          - label: "Membership pricing tiers"
+          - label: "Membership reference pricing tiers"
             name: "membership_tiers"
             widget: "list"
             summary: "{{fields.tag}} — {{fields.price}}"
@@ -247,41 +258,44 @@ collections:
               - { label: "Tier name", name: "tag", widget: "string" }
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
-          - { label: "Membership button label", name: "membership_cta_label", widget: "string" }
-          - { label: "Membership button link", name: "membership_cta_link", widget: "string" }
 
           - { label: "Library Card eyebrow", name: "library_eyebrow", widget: "string" }
           - { label: "Library Card headline", name: "library_headline", widget: "string" }
           - { label: "Library Card body", name: "library_body", widget: "text" }
-          - label: "Library Card pricing"
-            name: "library_pricing"
-            widget: "list"
-            summary: "{{fields.number}} — {{fields.label}}"
-            fields:
-              - { label: "Number", name: "number", widget: "string" }
-              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Library Card price", name: "library_price", widget: "string" }
           - { label: "Library Card button label", name: "library_cta_label", widget: "string" }
-          - { label: "Library Card button link", name: "library_cta_link", widget: "string" }
+          - { label: "Library Card button link (Stripe)", name: "library_cta_link", widget: "string" }
 
-          - { label: "Roadmap eyebrow", name: "roadmap_eyebrow", widget: "string" }
-          - { label: "Roadmap headline", name: "roadmap_headline", widget: "string" }
-          - { label: "Roadmap body", name: "roadmap_body", widget: "text" }
-          - { label: "Roadmap button label", name: "roadmap_cta_label", widget: "string" }
-          - { label: "Roadmap button link", name: "roadmap_cta_link", widget: "string" }
+          - { label: "IV Phases eyebrow", name: "phases_eyebrow", widget: "string" }
+          - { label: "IV Phases headline", name: "phases_headline", widget: "string" }
+          - { label: "IV Phases body", name: "phases_body", widget: "text" }
 
-          - { label: "Wider ecosystem eyebrow", name: "ecosystem_eyebrow", widget: "string" }
-          - label: "Wider ecosystem products"
-            name: "ecosystem_products"
+          - { label: "Snapshot tag", name: "snapshot_tag", widget: "string" }
+          - { label: "Snapshot title", name: "snapshot_title", widget: "string" }
+          - { label: "Snapshot description", name: "snapshot_description", widget: "text" }
+
+          - label: "IV Phases products"
+            name: "phase_products"
             widget: "list"
-            summary: "{{fields.title}}"
-            fields: *title_description_fields
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Phase tag", name: "phase", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string" }
 
-          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
-          - label: "Pillars"
-            name: "pillars"
+          - { label: "Tax notice", name: "tax_notice", widget: "string" }
+
+          - { label: "Creator Infrastructure eyebrow", name: "creator_eyebrow", widget: "string" }
+          - { label: "Creator Infrastructure headline", name: "creator_headline", widget: "string" }
+          - { label: "Creator Infrastructure body", name: "creator_body", widget: "text" }
+          - label: "Creator Infrastructure teaser tags"
+            name: "creator_teasers"
             widget: "list"
-            summary: "{{fields.title}}"
-            fields: *title_description_fields
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Word", name: "label", widget: "string" }
 
           - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
           - { label: "Closing headline", name: "closing_headline", widget: "string" }

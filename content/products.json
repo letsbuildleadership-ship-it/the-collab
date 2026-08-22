@@ -5,51 +5,57 @@
     { "text": "The .LLab™.", "style": "glow", "break_before": false }
   ],
   "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
+  "prototype_notice": "Every product below is an early prototype and is set to be transformed soon.",
 
   "membership_eyebrow": "Flagship membership",
   "membership_headline": [
     { "text": "The .LLab Membership", "style": "glow", "break_before": false },
     { "text": "™", "style": "default", "break_before": false }
   ],
-  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™.",
+  "membership_status": "Coming Soon",
+  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™. Not open yet — here's what it will cost when it launches.",
   "membership_tiers": [
     { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly." },
-    { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually." },
-    { "tag": "Founding Member", "price": "$1,000/yr", "description": "The introductory founding rate — locked in for as long as you stay a member." }
+    { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually." }
   ],
-  "membership_cta_label": "Join The .LLab Membership™",
-  "membership_cta_link": "#",
 
   "library_eyebrow": "A lower-barrier entry point",
   "library_headline": ".LLab Library Card™",
   "library_body": "Access to the research, resources, reports, frameworks, and workshops of The Co.LLab™ — without the full membership commitment.",
-  "library_pricing": [
-    { "number": "10", "label": "$ / month, founding rate" },
-    { "number": "100", "label": "$ / year, founding rate" }
-  ],
+  "library_price": "$150",
   "library_cta_label": "Get The Library Card™",
-  "library_cta_link": "#",
+  "library_cta_link": "https://buy.stripe.com/cNifZg96S4VTcNZ4KG9ws0a",
 
-  "roadmap_eyebrow": "Not sure where to start?",
-  "roadmap_headline": ".LLab Infrastructure Roadmap™",
-  "roadmap_body": "A productized entry point that helps you understand what infrastructure you actually need — before you commit to membership.",
-  "roadmap_cta_label": "Get The Roadmap™ — $100",
-  "roadmap_cta_link": "#",
+  "phases_eyebrow": "Buy what you need, when you need it",
+  "phases_headline": "The .LLab™ IV Phases Product Infrastructure",
+  "phases_body": "Nine standalone tools, mapped to the four-phase model — no membership required.",
 
-  "ecosystem_eyebrow": "The wider .LLab ecosystem",
-  "ecosystem_products": [
-    { "title": ".LLab WorkWare™", "description": "Co.LLab infrastructure thinking, made physical and digital." },
-    { "title": ".LLab SOUND™", "description": "Another Co.LLab IP concept, expressed as product." },
-    { "title": "The Co.LLab™ Journal", "description": "Leadership reports, research, case studies, and frameworks — read free, deepen with membership." }
+  "snapshot_tag": "Free · Coming Soon",
+  "snapshot_title": ".LLab Leadership Infrastructure Snapshot™",
+  "snapshot_description": "A free first look at your leadership infrastructure — not open yet.",
+
+  "phase_products": [
+    { "phase": "Phase I · Foundations", "title": "Leadership Infrastructure Strength Map™", "price": "$20", "description": "Identify one organizational strength and learn how to build infrastructure around it.", "link": "https://buy.stripe.com/bJeeVcbf01JHaFRelg9ws0k" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": "Leadership Alignment Map™", "price": "$50", "description": "Connect mission, vision, values, strategy, culture, and leadership.", "link": "https://buy.stripe.com/aFa6oG96S0FDaFR7WS9ws0l" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": "Leadership Infrastructure Build Plan™", "price": "$100", "description": "Turn one strength or opportunity into a practical 30-day infrastructure build plan.", "link": "https://buy.stripe.com/00w7sKdn8gEB4htfpk9ws0s" },
+    { "phase": "Phase III · Internal Operating Systems", "title": ".LLab Leadership Legacy Profile™", "price": "$150", "description": "Connect personal leadership strengths to organizational influence, infrastructure, and legacy.", "link": "https://buy.stripe.com/4gM28qcj40FDg0bfpk9ws0m" },
+    { "phase": "Phase III · Internal Operating Systems", "title": ".LLab Leadership Operating System™", "price": "$750", "description": "Translate leadership principles into repeatable organizational practices.", "link": "https://buy.stripe.com/eVq4gyfvgdspeW7cd89ws0n" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Legacy Infrastructure Map™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained.", "link": "https://buy.stripe.com/aFa00ifvgfAxaFRcd89ws0o" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Leadership Infrastructure Diagnostic™", "price": "$300", "description": "A comprehensive assessment of organizational leadership infrastructure across all four phases.", "link": "https://buy.stripe.com/7sYbJ0gzkcol8xJ0uq9ws0p" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Infrastructure Blueprint™", "price": "$500", "description": "Turn Diagnostic insights into an intentional infrastructure-building framework.", "link": "https://buy.stripe.com/8x2bJ0gzkdsp4ht2Cy9ws0q" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Legacy Infrastructure Architecture™", "price": "$1,000", "description": "The comprehensive .LLab framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy.", "link": "https://buy.stripe.com/3cIcN4gzkgEB01d0uq9ws0r" }
   ],
 
-  "pillars_eyebrow": "Built on the five pillars",
-  "pillars": [
-    { "title": "Stewardship", "description": "Responsibility, ethics, people, long-term value." },
-    { "title": "Systems Architecture", "description": "Structures, decision pathways, accountability." },
-    { "title": "Strategic Alignment", "description": "Mission, culture, strategy, performance." },
-    { "title": "Succession & Scale", "description": "Growth, transfer, future leaders." },
-    { "title": "Sustainable Growth", "description": "Infrastructure for long-term growth." }
+  "tax_notice": "These purchases may be tax deductible — please speak with your tax strategist.",
+
+  "creator_eyebrow": "Coming soon",
+  "creator_headline": "Creator Infrastructure™.",
+  "creator_body": "A dedicated line of .LLab™ tools for artists and creators — building the systems, succession plans, and body-of-work architecture that let creative work outlast the creator. In development.",
+  "creator_teasers": [
+    { "label": "The Creator Operating System™" },
+    { "label": "Creator Legacy Planning" },
+    { "label": "Body of Work Architecture" },
+    { "label": "Creative Estate Mapping" }
   ],
 
   "closing_eyebrow": "Looking for something specific?",

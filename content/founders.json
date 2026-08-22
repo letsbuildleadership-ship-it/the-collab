@@ -34,6 +34,10 @@
   "apply_tag": "Introductory Founder Offer · Ending Soon",
   "apply_headline": "Ready to build the infrastructure behind your enterprise?",
   "apply_body": "Apply to The Co.LLab™ Founders Organization before the introductory offer closes.",
-  "apply_cta_label": "Apply Now",
-  "apply_cta_link": "#"
+  "tiers": [
+    { "tag": "Founder", "price": "$350", "description": "The standard Founders Organization rate.", "link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h" },
+    { "tag": "Legacy Founder", "price": "$1,000", "description": "The top-tier founding rate — the deepest level of the introductory offer.", "link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i" }
+  ],
+  "prototype_notice": "This checkout is an early prototype and is set to be transformed soon.",
+  "tax_notice": "This purchase may be tax deductible — please speak with your tax strategist."
 }
