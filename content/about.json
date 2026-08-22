@@ -1,0 +1,54 @@
+{
+  "eyebrow": "About us",
+  "hero_headline": [
+    { "text": "Leadership", "style": "white", "break_before": false },
+    { "text": " needs ", "style": "default", "break_before": false },
+    { "text": "infrastructure.", "style": "glow", "break_before": false }
+  ],
+  "hero_subhead": "Stewardship. Systems architecture. Strategic alignment. Succession and scale. Sustainable growth. These are the concepts The Co.LLab™ is built around — and the philosophy behind everything we make.",
+
+  "mission_eyebrow": "Mission",
+  "mission_quote": [
+    { "text": "“The Co.LLab: ", "style": "default", "break_before": false },
+    { "text": "Building Leadership Infrastructure™", "style": "glow", "break_before": false },
+    { "text": " empowers organizations to transform potential into performance by building leadership infrastructure that drives results, culture, and sustainable growth.”", "style": "default", "break_before": false }
+  ],
+  "vision_eyebrow": "Vision",
+  "vision_body_prefix": "A world where companies thrive through strong, ethical, and people-centered leadership. The Co.LLab™ connects leadership infrastructure to the creation of",
+  "vision_body_glow": "legacy",
+  "vision_body_suffix": "— infrastructure that creates organizations capable of enduring beyond the immediate leader.",
+
+  "methodology_eyebrow": "Our methodology",
+  "methodology": [
+    { "title": "Stewardship-Based Leadership", "description": "Leadership as responsibility for people, culture, organizational health, and long-term value." },
+    { "title": "Transformational Growth Theory", "description": "Connecting leadership and teams to purpose, alignment, and measurable outcomes." },
+    { "title": "Systems Architecture", "description": "Designing systems for decision-making, accountability, structure, scalability, and resilience." }
+  ],
+
+  "pillars_eyebrow": "The five pillars of leadership infrastructure",
+  "pillars": [
+    { "title": "Stewardship", "description": "Leadership based on responsibility, ethics, people, and long-term organizational value." },
+    { "title": "Systems Architecture", "description": "Building organizational structures, systems, decision pathways, and accountability." },
+    { "title": "Strategic Alignment", "description": "Connecting mission, culture, strategy, and measurable performance." },
+    { "title": "Succession & Scale", "description": "Preparing organizations to grow, transfer responsibility, develop future leaders, and operate beyond one individual." },
+    { "title": "Sustainable Growth", "description": "Building infrastructure capable of supporting long-term organizational and enterprise growth." }
+  ],
+
+  "model_eyebrow": "The Omnidirection Enterprise Model™",
+  "model_headline": "One strategic architecture, several directions of enterprise creation.",
+  "model_body": "Rather than operating as a single-purpose consulting business, The Co.LLab™ is architected to serve several audiences under one model — each connected back to Leadership Infrastructure™.",
+  "audiences": [
+    { "tag": "Founders", "title": "Founders Organization", "description": "Founders building enterprises capable of growth, scale, and legacy." },
+    { "tag": "Organizations", "title": "Corporate / Enterprise", "description": "Organizations building infrastructure behind their leadership." },
+    { "tag": "Leaders", "title": ".LLab™ Products & Membership", "description": "Leaders accessing frameworks and tools directly." },
+    { "tag": "Artists & Creators", "title": "Creator Infrastructure™", "description": "A future direction connecting artists and creators to the same leadership infrastructure — not yet a public offering. (In development.)" }
+  ],
+
+  "closing_eyebrow": "The idea behind all of it",
+  "closing_headline": [
+    { "text": "Build the infrastructure ", "style": "default", "break_before": false },
+    { "text": "behind potential.", "style": "glow", "break_before": false }
+  ],
+  "closing_body_prefix": "For people. Leaders. Founders. Organizations. Artists. Creators. Enterprises. And, ultimately:",
+  "closing_body_glow": "legacy."
+}

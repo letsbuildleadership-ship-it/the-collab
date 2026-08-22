@@ -1,0 +1,264 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+site_url: "/"
+display_url: "/"
+
+collections:
+  - name: "site"
+    label: "Site-wide"
+    files:
+      - name: "settings"
+        label: "Global Settings"
+        file: "content/site.json"
+        fields:
+          - { label: "Logo", name: "logo_src", widget: "image" }
+          - { label: "Banner text", name: "banner_text", widget: "string" }
+          - { label: "Banner button label", name: "banner_cta_label", widget: "string" }
+          - { label: "Banner button link", name: "banner_cta_link", widget: "string" }
+          - { label: "Footer tagline", name: "footer_tagline", widget: "string" }
+          - { label: "Contact email", name: "contact_email", widget: "string" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "content/home.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: &headline_segment_fields
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Color", name: "style", widget: "select", options: ["default", "white", "glow"], default: "default" }
+              - { label: "Line break before this", name: "break_before", widget: "boolean", default: false }
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+          - { label: "Primary button label", name: "hero_cta_primary_label", widget: "string" }
+          - { label: "Primary button link", name: "hero_cta_primary_link", widget: "string" }
+          - { label: "Secondary button label", name: "hero_cta_secondary_label", widget: "string" }
+          - { label: "Secondary button link", name: "hero_cta_secondary_link", widget: "string" }
+
+          - { label: "\"Where to start\" eyebrow", name: "directory_eyebrow", widget: "string" }
+          - label: "Directory cards"
+            name: "directory_cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Link", name: "link", widget: "string" }
+
+          - { label: "Mission eyebrow", name: "mission_eyebrow", widget: "string" }
+          - label: "Mission quote"
+            name: "mission_quote"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Mission body", name: "mission_body", widget: "text" }
+          - label: "Mission stats"
+            name: "mission_stats"
+            widget: "list"
+            summary: "{{fields.number}} — {{fields.label}}"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: &title_description_fields
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - { label: "Vision eyebrow", name: "vision_eyebrow", widget: "string" }
+          - label: "Vision headline"
+            name: "vision_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Vision body", name: "vision_body", widget: "text" }
+
+          - { label: "Offer eyebrow", name: "offer_eyebrow", widget: "string" }
+          - label: "Offer headline"
+            name: "offer_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Offer body", name: "offer_body", widget: "text" }
+          - { label: "Offer button label", name: "offer_cta_label", widget: "string" }
+          - { label: "Offer button link", name: "offer_cta_link", widget: "string" }
+
+      - name: "products"
+        label: "The .LLab Products"
+        file: "content/products.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Flagship eyebrow", name: "flagship_eyebrow", widget: "string" }
+          - label: "Flagship headline"
+            name: "flagship_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Flagship body", name: "flagship_body", widget: "text" }
+          - { label: "Flagship button label", name: "flagship_cta_label", widget: "string" }
+          - { label: "Flagship button link", name: "flagship_cta_link", widget: "string" }
+
+          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - { label: "Closing headline", name: "closing_headline", widget: "string" }
+          - { label: "Closing body", name: "closing_body", widget: "text" }
+
+      - name: "founders"
+        label: "Founders Organization"
+        file: "content/founders.json"
+        fields:
+          - { label: "Banner text", name: "banner_text", widget: "string" }
+          - { label: "Banner highlight (glow)", name: "banner_highlight", widget: "string" }
+          - { label: "Banner button label", name: "banner_cta_label", widget: "string" }
+          - { label: "Banner button link", name: "banner_cta_link", widget: "string" }
+
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead (base text)", name: "hero_subhead_prefix", widget: "text" }
+          - { label: "Hero subhead (glow ending)", name: "hero_subhead_glow", widget: "string" }
+          - { label: "Hero button label", name: "hero_cta_label", widget: "string" }
+          - { label: "Hero button link", name: "hero_cta_link", widget: "string" }
+
+          - { label: "\"Distinct offering\" eyebrow", name: "distinct_eyebrow", widget: "string" }
+          - label: "\"Distinct offering\" headline"
+            name: "distinct_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "\"Distinct offering\" body", name: "distinct_body", widget: "text" }
+
+          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Apply tag", name: "apply_tag", widget: "string" }
+          - { label: "Apply headline", name: "apply_headline", widget: "string" }
+          - { label: "Apply body", name: "apply_body", widget: "text" }
+          - { label: "Apply button label", name: "apply_cta_label", widget: "string" }
+          - { label: "Apply button link", name: "apply_cta_link", widget: "string" }
+
+      - name: "journal"
+        label: "The Journal"
+        file: "content/journal.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Arc eyebrow", name: "arc_eyebrow", widget: "string" }
+          - label: "Arc steps"
+            name: "arc_steps"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Entries eyebrow", name: "entries_eyebrow", widget: "string" }
+          - label: "Recent entries"
+            name: "entries"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Link", name: "link", widget: "string" }
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - { label: "Closing headline", name: "closing_headline", widget: "string" }
+
+      - name: "about"
+        label: "About Us"
+        file: "content/about.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Mission eyebrow", name: "mission_eyebrow", widget: "string" }
+          - label: "Mission quote"
+            name: "mission_quote"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+
+          - { label: "Vision eyebrow", name: "vision_eyebrow", widget: "string" }
+          - { label: "Vision body (base text)", name: "vision_body_prefix", widget: "text" }
+          - { label: "Vision body (glow word)", name: "vision_body_glow", widget: "string" }
+          - { label: "Vision body (ending)", name: "vision_body_suffix", widget: "text" }
+
+          - { label: "Methodology eyebrow", name: "methodology_eyebrow", widget: "string" }
+          - label: "Methodology"
+            name: "methodology"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Model eyebrow", name: "model_eyebrow", widget: "string" }
+          - { label: "Model headline", name: "model_headline", widget: "string" }
+          - { label: "Model body", name: "model_body", widget: "text" }
+          - label: "Audiences"
+            name: "audiences"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - label: "Closing headline"
+            name: "closing_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Closing body (base text)", name: "closing_body_prefix", widget: "text" }
+          - { label: "Closing body (glow word)", name: "closing_body_glow", widget: "string" }

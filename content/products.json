@@ -1,0 +1,31 @@
+{
+  "eyebrow": "The productized side of The Co.LLab™",
+  "hero_headline": [
+    { "text": "The .LLab", "style": "white", "break_before": false },
+    { "text": "™ ", "style": "default", "break_before": false },
+    { "text": "Products.", "style": "glow", "break_before": false }
+  ],
+  "hero_subhead": "Where Leadership Infrastructure™ becomes practice. The .LLab™ Products are how The Co.LLab™ puts its framework — stewardship, systems architecture, strategic alignment, succession & scale, sustainable growth — into the hands of leaders and organizations.",
+
+  "flagship_eyebrow": "Flagship offering",
+  "flagship_headline": [
+    { "text": "The .LLab Membership", "style": "glow", "break_before": false },
+    { "text": "™", "style": "default", "break_before": false }
+  ],
+  "flagship_body": "The .LLab Membership™ is its own offering within the .LLab™ Products ecosystem — not the entirety of The Co.LLab™. It gives leaders ongoing access to the frameworks, systems, and community built around Leadership Infrastructure™.",
+  "flagship_cta_label": "Join The .LLab Membership™",
+  "flagship_cta_link": "#",
+
+  "pillars_eyebrow": "Built on the five pillars",
+  "pillars": [
+    { "title": "Stewardship", "description": "Responsibility, ethics, people, long-term value." },
+    { "title": "Systems Architecture", "description": "Structures, decision pathways, accountability." },
+    { "title": "Strategic Alignment", "description": "Mission, culture, strategy, performance." },
+    { "title": "Succession & Scale", "description": "Growth, transfer, future leaders." },
+    { "title": "Sustainable Growth", "description": "Infrastructure for long-term growth." }
+  ],
+
+  "closing_eyebrow": "Looking for something specific?",
+  "closing_headline": "Not sure which product is right for you?",
+  "closing_body": "If your focus is on founding and scaling an enterprise, start with the Founders Organization instead."
+}

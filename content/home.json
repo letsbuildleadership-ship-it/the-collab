@@ -1,0 +1,61 @@
+{
+  "eyebrow": "Building Leadership Infrastructure™",
+  "hero_headline": [
+    { "text": "The ", "style": "default", "break_before": false },
+    { "text": "infrastructure", "style": "white", "break_before": false },
+    { "text": "behind ", "style": "default", "break_before": true },
+    { "text": "human potential.", "style": "glow", "break_before": false }
+  ],
+  "hero_subhead": "The Co.LLab™ empowers organizations to transform potential into performance — building leadership infrastructure that drives results, culture, and sustainable growth.",
+  "hero_cta_primary_label": "Explore The Founders Organization",
+  "hero_cta_primary_link": "/pages/founders.html",
+  "hero_cta_secondary_label": "Explore The .LLab™ Products",
+  "hero_cta_secondary_link": "/pages/products.html",
+
+  "directory_eyebrow": "Where to start",
+  "directory_cards": [
+    { "title": "The .LLab™ Products", "description": "The productized side of The Co.LLab™ — tools and offerings that put leadership infrastructure into practice, including The .LLab Membership™.", "link": "/pages/products.html" },
+    { "title": "Founders Organization", "description": "For founders building the leadership and organizational infrastructure required for growth, scale, sustainability, and legacy.", "link": "/pages/founders.html" },
+    { "title": "The Co.LLab™ Journal", "description": "Ideas and frameworks on leadership infrastructure — the intellectual foundation behind everything The Co.LLab™ builds.", "link": "/pages/journal.html" },
+    { "title": "About Us", "description": "Our philosophy — stewardship, systems architecture, strategic alignment, succession, and sustainable growth.", "link": "/pages/about.html" }
+  ],
+
+  "mission_eyebrow": "Our mission",
+  "mission_quote": [
+    { "text": "“Building ", "style": "default", "break_before": false },
+    { "text": "Leadership Infrastructure™", "style": "glow", "break_before": false },
+    { "text": " empowers organizations to transform potential into performance.”", "style": "default", "break_before": false }
+  ],
+  "mission_body": "Organizations and enterprises require infrastructure behind their leadership in order to produce results, culture, sustainable growth, scale, succession, and legacy. That is the work The Co.LLab™ exists to do.",
+  "mission_stats": [
+    { "number": "05", "label": "Infrastructure Pillars" },
+    { "number": "04", "label": "Core Offerings" },
+    { "number": "01", "label": "Enterprise Model" }
+  ],
+
+  "pillars_eyebrow": "The five pillars of leadership infrastructure",
+  "pillars": [
+    { "title": "Stewardship", "description": "Leadership based on responsibility, ethics, people, and long-term organizational value." },
+    { "title": "Systems Architecture", "description": "Building organizational structures, systems, decision pathways, and accountability." },
+    { "title": "Strategic Alignment", "description": "Connecting mission, culture, strategy, and measurable performance." },
+    { "title": "Succession & Scale", "description": "Preparing organizations to grow, transfer responsibility, and operate beyond one individual." },
+    { "title": "Sustainable Growth", "description": "Building infrastructure capable of supporting long-term organizational and enterprise growth." }
+  ],
+
+  "vision_eyebrow": "Our vision",
+  "vision_headline": [
+    { "text": "Results. Culture. Growth. Scale. Succession.", "style": "default", "break_before": false },
+    { "text": "Ultimately, ", "style": "default", "break_before": true },
+    { "text": "legacy.", "style": "glow", "break_before": false }
+  ],
+  "vision_body": "A world where companies thrive through strong, ethical, people-centered leadership. Leadership infrastructure creates organizations capable of enduring beyond the immediate leader — infrastructure that outlasts any one person, and becomes legacy.",
+
+  "offer_eyebrow": "Limited time",
+  "offer_headline": [
+    { "text": "Introductory Founder Offer ", "style": "default", "break_before": false },
+    { "text": "Ending Soon.", "style": "glow", "break_before": false }
+  ],
+  "offer_body": "Join The Co.LLab™ Founders Organization while the introductory offer is still open.",
+  "offer_cta_label": "Explore The Founders Organization",
+  "offer_cta_link": "/pages/founders.html"
+}

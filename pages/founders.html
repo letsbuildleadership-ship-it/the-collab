@@ -10,16 +10,16 @@
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
 <link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
 </head>
-<body>
+<body data-page="founders">
 
 <div class="banner">
-  <span>Introductory Founder Offer <strong>Ending Soon</strong></span>
-  <a href="#apply" class="pill pill--accent" style="padding:0.4em 1.1em;">Apply Now <span class="arrow">→</span></a>
+  <span><span data-field="banner_text">Introductory Founder Offer</span> <strong data-field="banner_highlight">Ending Soon</strong></span>
+  <a href="#apply" data-field-href="banner_cta_link" class="pill pill--accent" style="padding:0.4em 1.1em;"><span data-field="banner_cta_label">Apply Now</span> <span class="arrow">→</span></a>
 </div>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+    <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
     <nav>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
@@ -38,18 +38,18 @@
   <section class="hero" style="padding-bottom: clamp(2rem, 5vw, 3rem);">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
-      <p class="eyebrow">For founders</p>
-      <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7.5vw, 7rem);">
+      <p class="eyebrow" data-field="eyebrow">For founders</p>
+      <h1 class="display" data-field="hero_headline" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7.5vw, 7rem);">
         <em>The Co.LLab</em><span style="font-weight:500;">™</span><br />
         <strong>Founders Organization.</strong>
       </h1>
       <p class="subhead" style="margin-top:2rem;">
-        Helping founders develop the leadership and organizational infrastructure required to build
-        enterprises capable of growth, scale, sustainability, and
-        <span class="glow-text" style="font-weight:600;">legacy.</span>
+        <span data-field="hero_subhead_prefix">Helping founders develop the leadership and organizational infrastructure required to build
+        enterprises capable of growth, scale, sustainability, and</span>
+        <span class="glow-text" data-field="hero_subhead_glow" style="font-weight:600;">legacy.</span>
       </p>
       <div class="hero-cta-row">
-        <a href="#apply" class="pill pill--solid">Apply — Introductory Offer <span class="arrow">→</span></a>
+        <a href="#apply" data-field-href="hero_cta_link" class="pill pill--solid"><span data-field="hero_cta_label">Apply — Introductory Offer</span> <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -60,13 +60,13 @@
     <div class="wrap">
       <div class="split">
         <div>
-          <p class="eyebrow">A distinct offering</p>
-          <h2 class="headline" style="margin-top:1.5rem;">
+          <p class="eyebrow" data-field="distinct_eyebrow">A distinct offering</p>
+          <h2 class="headline" data-field="distinct_headline" style="margin-top:1.5rem;">
             Built for <strong>founders</strong> — not a generic membership.
           </h2>
         </div>
         <div>
-          <p class="subhead" style="max-width:none;">
+          <p class="subhead" data-field="distinct_body" style="max-width:none;">
             The Founders Organization has its own journey, separate from The .LLab™ Products. It exists
             because founders face a specific problem: significant talent and momentum, without the
             leadership infrastructure required to make it durable.
@@ -78,12 +78,12 @@
 
   <section class="band">
     <div class="wrap">
-      <p class="eyebrow">What founders build here</p>
-      <div class="grid grid-5" style="margin-top:2rem;">
-        <div class="card">
-          <span class="num">01</span>
-          <h3>Stewardship</h3>
-          <p>Leadership rooted in responsibility, ethics, and long-term value.</p>
+      <p class="eyebrow" data-field="pillars_eyebrow">What founders build here</p>
+      <div class="grid grid-5" style="margin-top:2rem;" data-list="pillars">
+        <div class="card" data-list-item>
+          <span class="num" data-item-index>01</span>
+          <h3 data-item-field="title">Stewardship</h3>
+          <p data-item-field="description">Leadership rooted in responsibility, ethics, and long-term value.</p>
         </div>
         <div class="card">
           <span class="num">02</span>
@@ -111,13 +111,13 @@
 
   <section id="apply" style="text-align:center;">
     <div class="wrap">
-      <p class="tag">Introductory Founder Offer · Ending Soon</p>
-      <h2 class="headline" style="margin-top:1.5rem;">Ready to build the infrastructure behind your enterprise?</h2>
-      <p class="subhead" style="margin:1.5rem auto 0;">
+      <p class="tag" data-field="apply_tag">Introductory Founder Offer · Ending Soon</p>
+      <h2 class="headline" data-field="apply_headline" style="margin-top:1.5rem;">Ready to build the infrastructure behind your enterprise?</h2>
+      <p class="subhead" data-field="apply_body" style="margin:1.5rem auto 0;">
         Apply to The Co.LLab™ Founders Organization before the introductory offer closes.
       </p>
       <div class="hero-cta-row" style="justify-content:center;">
-        <a href="#" class="pill pill--solid">Apply Now <span class="arrow">→</span></a>
+        <a href="#" data-field-href="apply_cta_link" class="pill pill--solid"><span data-field="apply_cta_label">Apply Now</span> <span class="arrow">→</span></a>
         <a href="../index.html" class="pill">Back To Home</a>
       </div>
     </div>
@@ -129,8 +129,8 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
-        <p style="margin-top:1.25rem; max-width:32ch;">Building Leadership Infrastructure™.</p>
+        <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+        <p data-field="footer_tagline" style="margin-top:1.25rem; max-width:32ch;">Building Leadership Infrastructure™.</p>
       </div>
       <div class="footer-col">
         <h4>Navigate</h4>
@@ -158,13 +158,13 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><p>hello@thecollab.co</p></li>
+          <li><p data-field="contact_email">hello@thecollab.co</p></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
-      <span>Building Leadership Infrastructure™</span>
+      <span data-field="footer_tagline">Building Leadership Infrastructure™</span>
     </div>
   </div>
 </footer>

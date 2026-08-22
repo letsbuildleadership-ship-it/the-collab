@@ -2,7 +2,112 @@
    main.js load can never leave content permanently hidden. */
 document.documentElement.classList.add('js');
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ------------------------------------------------------------------ *
+ * CMS content loader
+ *
+ * Every page's real copy is already hand-authored in its HTML — that's
+ * the fallback if this never runs. When /content/<page>.json (edited via
+ * the /admin CMS) is reachable, this overwrites matching elements with
+ * the edited copy. Elements opt in via data-field / data-field-href /
+ * data-field-src for single values, or data-list (+ a data-list-item
+ * template inside it) for repeating groups like cards or stats.
+ * ------------------------------------------------------------------ */
+async function loadContent() {
+  const page = document.body.dataset.page;
+  if (!page) return;
+
+  const fetchJson = async (path) => {
+    try {
+      const res = await fetch(path, { cache: 'no-store' });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const [site, pageData] = await Promise.all([
+    fetchJson('/content/site.json'),
+    fetchJson(`/content/${page}.json`),
+  ]);
+
+  const renderRich = (el, segments) => {
+    el.innerHTML = '';
+    segments.forEach((seg, i) => {
+      if (seg.break_before && i > 0) el.appendChild(document.createElement('br'));
+      let node;
+      if (seg.style === 'white') node = document.createElement('em');
+      else if (seg.style === 'glow') node = document.createElement('strong');
+      if (node) {
+        node.textContent = seg.text;
+        el.appendChild(node);
+      } else {
+        el.appendChild(document.createTextNode(seg.text));
+      }
+    });
+  };
+
+  const applyScalars = (data) => {
+    if (!data) return;
+    document.querySelectorAll('[data-field]').forEach((el) => {
+      const value = data[el.dataset.field];
+      if (value === undefined) return;
+      if (Array.isArray(value)) renderRich(el, value);
+      else el.textContent = value;
+    });
+    document.querySelectorAll('[data-field-href]').forEach((el) => {
+      const value = data[el.dataset.fieldHref];
+      if (value !== undefined) el.setAttribute('href', value);
+    });
+    document.querySelectorAll('[data-field-src]').forEach((el) => {
+      const value = data[el.dataset.fieldSrc];
+      if (value !== undefined) el.setAttribute('src', value);
+    });
+  };
+
+  const applyLists = (data) => {
+    if (!data) return;
+    document.querySelectorAll('[data-list]').forEach((container) => {
+      const items = data[container.dataset.list];
+      if (!Array.isArray(items)) return;
+      const template = container.querySelector('[data-list-item]');
+      if (!template) return;
+      const templateClone = template.cloneNode(true);
+      container.innerHTML = '';
+      // a template's own root can carry data-item-* too, not just its
+      // descendants — querySelectorAll alone would miss that.
+      const withinNode = (root, selector) =>
+        (root.matches(selector) ? [root] : []).concat([...root.querySelectorAll(selector)]);
+
+      items.forEach((item, idx) => {
+        const node = templateClone.cloneNode(true);
+        node.removeAttribute('data-list-item');
+        withinNode(node, '[data-item-field]').forEach((fieldEl) => {
+          const value = item[fieldEl.dataset.itemField];
+          if (value !== undefined) fieldEl.textContent = value;
+        });
+        withinNode(node, '[data-item-href]').forEach((hrefEl) => {
+          const value = item[hrefEl.dataset.itemHref];
+          if (value !== undefined) hrefEl.setAttribute('href', value);
+        });
+        withinNode(node, '[data-item-index]').forEach((idxEl) => {
+          idxEl.textContent = String(idx + 1).padStart(2, '0');
+        });
+        container.appendChild(node);
+      });
+    });
+  };
+
+  // site-wide fields first, then page-specific (page wins on key collisions)
+  applyScalars(site);
+  applyLists(site);
+  applyScalars(pageData);
+  applyLists(pageData);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadContent();
+
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
 
