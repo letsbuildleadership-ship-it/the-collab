@@ -1,20 +1,47 @@
 {
   "eyebrow": "The productized side of The Co.LLab™",
   "hero_headline": [
-    { "text": "The .LLab", "style": "white", "break_before": false },
-    { "text": "™ ", "style": "default", "break_before": false },
-    { "text": "Products.", "style": "glow", "break_before": false }
+    { "text": "Enter ", "style": "default", "break_before": false },
+    { "text": "The .LLab™.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "Where Leadership Infrastructure™ becomes practice. The .LLab™ Products are how The Co.LLab™ puts its framework — stewardship, systems architecture, strategic alignment, succession & scale, sustainable growth — into the hands of leaders and organizations.",
+  "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
 
-  "flagship_eyebrow": "Flagship offering",
-  "flagship_headline": [
+  "membership_eyebrow": "Flagship membership",
+  "membership_headline": [
     { "text": "The .LLab Membership", "style": "glow", "break_before": false },
     { "text": "™", "style": "default", "break_before": false }
   ],
-  "flagship_body": "The .LLab Membership™ is its own offering within the .LLab™ Products ecosystem — not the entirety of The Co.LLab™. It gives leaders ongoing access to the frameworks, systems, and community built around Leadership Infrastructure™.",
-  "flagship_cta_label": "Join The .LLab Membership™",
-  "flagship_cta_link": "#",
+  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™.",
+  "membership_tiers": [
+    { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly." },
+    { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually." },
+    { "tag": "Founding Member", "price": "$1,000/yr", "description": "The introductory founding rate — locked in for as long as you stay a member." }
+  ],
+  "membership_cta_label": "Join The .LLab Membership™",
+  "membership_cta_link": "#",
+
+  "library_eyebrow": "A lower-barrier entry point",
+  "library_headline": ".LLab Library Card™",
+  "library_body": "Access to the research, resources, reports, frameworks, and workshops of The Co.LLab™ — without the full membership commitment.",
+  "library_pricing": [
+    { "number": "10", "label": "$ / month, founding rate" },
+    { "number": "100", "label": "$ / year, founding rate" }
+  ],
+  "library_cta_label": "Get The Library Card™",
+  "library_cta_link": "#",
+
+  "roadmap_eyebrow": "Not sure where to start?",
+  "roadmap_headline": ".LLab Infrastructure Roadmap™",
+  "roadmap_body": "A productized entry point that helps you understand what infrastructure you actually need — before you commit to membership.",
+  "roadmap_cta_label": "Get The Roadmap™ — $100",
+  "roadmap_cta_link": "#",
+
+  "ecosystem_eyebrow": "The wider .LLab ecosystem",
+  "ecosystem_products": [
+    { "title": ".LLab WorkWare™", "description": "Co.LLab infrastructure thinking, made physical and digital." },
+    { "title": ".LLab SOUND™", "description": "Another Co.LLab IP concept, expressed as product." },
+    { "title": "The Co.LLab™ Journal", "description": "Leadership reports, research, case studies, and frameworks — read free, deepen with membership." }
+  ],
 
   "pillars_eyebrow": "Built on the five pillars",
   "pillars": [
@@ -27,5 +54,5 @@
 
   "closing_eyebrow": "Looking for something specific?",
   "closing_headline": "Not sure which product is right for you?",
-  "closing_body": "If your focus is on founding and scaling an enterprise, start with the Founders Organization instead."
+  "closing_body": "If your focus is on founding and scaling an enterprise, start with Build instead."
 }

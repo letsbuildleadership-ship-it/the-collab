@@ -1,61 +1,175 @@
 {
-  "eyebrow": "Building Leadership Infrastructure™",
+  "eyebrow": "An infrastructure company built around human potential",
   "hero_headline": [
-    { "text": "The ", "style": "default", "break_before": false },
-    { "text": "infrastructure", "style": "white", "break_before": false },
-    { "text": "behind ", "style": "default", "break_before": true },
-    { "text": "human potential.", "style": "glow", "break_before": false }
+    {
+      "text": "The ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "infrastructure",
+      "style": "white",
+      "break_before": false
+    },
+    {
+      "text": "behind ",
+      "style": "default",
+      "break_before": true
+    },
+    {
+      "text": "human potential.",
+      "style": "glow",
+      "break_before": false
+    }
   ],
-  "hero_subhead": "The Co.LLab™ empowers organizations to transform potential into performance — building leadership infrastructure that drives results, culture, and sustainable growth.",
-  "hero_cta_primary_label": "Explore The Founders Organization",
+  "hero_subhead": "People shouldn't have to conform to infrastructure that was never designed around how they actually think, work, create, lead, and grow. The Co.LLab™ builds the infrastructure around the person, organization, or idea.",
+  "hero_cta_primary_label": "Explore Build",
   "hero_cta_primary_link": "/pages/founders.html",
-  "hero_cta_secondary_label": "Explore The .LLab™ Products",
+  "hero_cta_secondary_label": "Explore The .LLab",
   "hero_cta_secondary_link": "/pages/products.html",
-
-  "directory_eyebrow": "Where to start",
+  "doorway_eyebrow": "What are you building?",
+  "doorway_headline": "CEOs. Founders. Executives. Leadership teams. Organizations. Creators. Artists. Anyone building something that needs infrastructure around it.",
+  "doorway_body": "What are you building — and what infrastructure does it need to survive, perform, grow, and become legacy?",
+  "directory_eyebrow": "The ecosystem",
   "directory_cards": [
-    { "title": "The .LLab™ Products", "description": "The productized side of The Co.LLab™ — tools and offerings that put leadership infrastructure into practice, including The .LLab Membership™.", "link": "/pages/products.html" },
-    { "title": "Founders Organization", "description": "For founders building the leadership and organizational infrastructure required for growth, scale, sustainability, and legacy.", "link": "/pages/founders.html" },
-    { "title": "The Co.LLab™ Journal", "description": "Ideas and frameworks on leadership infrastructure — the intellectual foundation behind everything The Co.LLab™ builds.", "link": "/pages/journal.html" },
-    { "title": "About Us", "description": "Our philosophy — stewardship, systems architecture, strategic alignment, succession, and sustainable growth.", "link": "/pages/about.html" }
+    {
+      "title": "Build",
+      "description": "Leadership and organizational infrastructure — the four-phase model in practice.",
+      "link": "/pages/founders.html"
+    },
+    {
+      "title": "Think",
+      "description": "R.A.T.™, Metacognitive Infrastructure Thinking™, and the theory behind the infrastructure.",
+      "link": "/pages/think.html"
+    },
+    {
+      "title": "The Journal",
+      "description": "Research, case studies, frameworks, and emerging ideas.",
+      "link": "/pages/journal.html"
+    },
+    {
+      "title": ".LLab",
+      "description": "Membership, Library Card, and the products built from Co.LLab IP.",
+      "link": "/pages/products.html"
+    },
+    {
+      "title": "About",
+      "description": "Mission, vision, the four phases, and the Omnidirectional Enterprise™.",
+      "link": "/pages/about.html"
+    }
   ],
-
   "mission_eyebrow": "Our mission",
   "mission_quote": [
-    { "text": "“Building ", "style": "default", "break_before": false },
-    { "text": "Leadership Infrastructure™", "style": "glow", "break_before": false },
-    { "text": " empowers organizations to transform potential into performance.”", "style": "default", "break_before": false }
+    {
+      "text": "To build leadership infrastructure that empowers people and organizations to transform ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "human potential ",
+      "style": "glow",
+      "break_before": false
+    },
+    {
+      "text": "into performance, sustainable enterprise value, and lasting legacy.",
+      "style": "default",
+      "break_before": false
+    }
   ],
-  "mission_body": "Organizations and enterprises require infrastructure behind their leadership in order to produce results, culture, sustainable growth, scale, succession, and legacy. That is the work The Co.LLab™ exists to do.",
+  "mission_body": "A world where infrastructure is built around human potential — rather than people being forced to conform to infrastructure that was never designed for them. That is the work The Co.LLab™ exists to do.",
   "mission_stats": [
-    { "number": "05", "label": "Infrastructure Pillars" },
-    { "number": "04", "label": "Core Offerings" },
-    { "number": "01", "label": "Enterprise Model" }
+    {
+      "number": "04",
+      "label": "Phases"
+    },
+    {
+      "number": "01",
+      "label": "Ecosystem"
+    },
+    {
+      "number": "∞",
+      "label": "Directions"
+    }
   ],
-
-  "pillars_eyebrow": "The five pillars of leadership infrastructure",
-  "pillars": [
-    { "title": "Stewardship", "description": "Leadership based on responsibility, ethics, people, and long-term organizational value." },
-    { "title": "Systems Architecture", "description": "Building organizational structures, systems, decision pathways, and accountability." },
-    { "title": "Strategic Alignment", "description": "Connecting mission, culture, strategy, and measurable performance." },
-    { "title": "Succession & Scale", "description": "Preparing organizations to grow, transfer responsibility, and operate beyond one individual." },
-    { "title": "Sustainable Growth", "description": "Building infrastructure capable of supporting long-term organizational and enterprise growth." }
+  "phases_eyebrow": "How we work — the four-phase model",
+  "phases": [
+    {
+      "title": "Foundations",
+      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure."
+    },
+    {
+      "title": "Infrastructure Planning & Management",
+      "description": "Determining what infrastructure is needed and how the pieces should connect."
+    },
+    {
+      "title": "Internal Operating Systems",
+      "description": "Building the systems, processes, tools, and leadership mechanisms that let the organization function."
+    },
+    {
+      "title": "Preservation",
+      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy."
+    }
   ],
-
+  "omni_eyebrow": "Omnidirectional Enterprise™",
+  "omni_headline": "Value doesn't move in one direction.",
+  "omni_body": "The Co.LLab™ isn't a single linear funnel. Value moves between people, ideas, infrastructure, products, organizations, community, and legacy — in any direction, with multiple entry points and multiple ways to create value.",
+  "omni_flow": [
+    {
+      "label": "People"
+    },
+    {
+      "label": "Ideas"
+    },
+    {
+      "label": "Infrastructure"
+    },
+    {
+      "label": "Products"
+    },
+    {
+      "label": "Organizations"
+    },
+    {
+      "label": "Community"
+    },
+    {
+      "label": "Legacy"
+    }
+  ],
   "vision_eyebrow": "Our vision",
   "vision_headline": [
-    { "text": "Results. Culture. Growth. Scale. Succession.", "style": "default", "break_before": false },
-    { "text": "Ultimately, ", "style": "default", "break_before": true },
-    { "text": "legacy.", "style": "glow", "break_before": false }
+    {
+      "text": "Infrastructure built around ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "human potential.",
+      "style": "glow",
+      "break_before": false
+    },
+    {
+      "text": "Not the other way around.",
+      "style": "default",
+      "break_before": true
+    }
   ],
-  "vision_body": "A world where companies thrive through strong, ethical, people-centered leadership. Leadership infrastructure creates organizations capable of enduring beyond the immediate leader — infrastructure that outlasts any one person, and becomes legacy.",
-
+  "vision_body_prefix": "A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them. That's the doorway — and where it leads:",
+  "vision_body_glow": "legacy.",
   "offer_eyebrow": "Limited time",
   "offer_headline": [
-    { "text": "Introductory Founder Offer ", "style": "default", "break_before": false },
-    { "text": "Ending Soon.", "style": "glow", "break_before": false }
+    {
+      "text": "Introductory Founder Offer ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "Ending Soon.",
+      "style": "glow",
+      "break_before": false
+    }
   ],
   "offer_body": "Join The Co.LLab™ Founders Organization while the introductory offer is still open.",
-  "offer_cta_label": "Explore The Founders Organization",
+  "offer_cta_label": "Explore Build",
   "offer_cta_link": "/pages/founders.html"
 }

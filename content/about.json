@@ -1,53 +1,117 @@
 {
-  "eyebrow": "About us",
+  "eyebrow": "About The Co.LLab™",
   "hero_headline": [
-    { "text": "Leadership", "style": "white", "break_before": false },
-    { "text": " needs ", "style": "default", "break_before": false },
-    { "text": "infrastructure.", "style": "glow", "break_before": false }
+    {
+      "text": "Not a company. ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "An ecosystem.",
+      "style": "glow",
+      "break_before": false
+    }
   ],
-  "hero_subhead": "Stewardship. Systems architecture. Strategic alignment. Succession and scale. Sustainable growth. These are the concepts The Co.LLab™ is built around — and the philosophy behind everything we make.",
-
+  "hero_subhead": "The Co.LLab™ is an intellectual-property and leadership-infrastructure ecosystem — not a conventional consulting practice. This is where ideas live, research happens, theories develop, infrastructure gets built, and people collaborate.",
   "mission_eyebrow": "Mission",
   "mission_quote": [
-    { "text": "“The Co.LLab: ", "style": "default", "break_before": false },
-    { "text": "Building Leadership Infrastructure™", "style": "glow", "break_before": false },
-    { "text": " empowers organizations to transform potential into performance by building leadership infrastructure that drives results, culture, and sustainable growth.”", "style": "default", "break_before": false }
+    {
+      "text": "To build leadership infrastructure that empowers people and organizations to transform ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "human potential ",
+      "style": "glow",
+      "break_before": false
+    },
+    {
+      "text": "into performance, sustainable enterprise value, and lasting legacy.",
+      "style": "default",
+      "break_before": false
+    }
   ],
   "vision_eyebrow": "Vision",
-  "vision_body_prefix": "A world where companies thrive through strong, ethical, and people-centered leadership. The Co.LLab™ connects leadership infrastructure to the creation of",
-  "vision_body_glow": "legacy",
-  "vision_body_suffix": "— infrastructure that creates organizations capable of enduring beyond the immediate leader.",
-
-  "methodology_eyebrow": "Our methodology",
-  "methodology": [
-    { "title": "Stewardship-Based Leadership", "description": "Leadership as responsibility for people, culture, organizational health, and long-term value." },
-    { "title": "Transformational Growth Theory", "description": "Connecting leadership and teams to purpose, alignment, and measurable outcomes." },
-    { "title": "Systems Architecture", "description": "Designing systems for decision-making, accountability, structure, scalability, and resilience." }
+  "vision_body_prefix": "A world where infrastructure is built around human potential — rather than people being forced to conform to infrastructure that was never designed for",
+  "vision_body_glow": "them.",
+  "problem_eyebrow": "The core problem",
+  "problem_headline": "Most infrastructure is built first. Then humans are expected to adapt.",
+  "problem_body": "The Co.LLab™ reverses that model. Traditional: design, deploy, train, expect adoption. Ours: understand the human, design the infrastructure, build the operating system, develop, preserve. Designing around human behavior — rather than forcing human behavior into predetermined systems — is the fundamental idea behind everything here.",
+  "phases_eyebrow": "How we work — the four-phase model",
+  "phases": [
+    {
+      "title": "Foundations",
+      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure."
+    },
+    {
+      "title": "Infrastructure Planning & Management",
+      "description": "Determining what infrastructure is needed and how the pieces should connect."
+    },
+    {
+      "title": "Internal Operating Systems",
+      "description": "Building the systems, processes, structures, tools, and leadership mechanisms that let the organization function."
+    },
+    {
+      "title": "Preservation",
+      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy."
+    }
   ],
-
-  "pillars_eyebrow": "The five pillars of leadership infrastructure",
-  "pillars": [
-    { "title": "Stewardship", "description": "Leadership based on responsibility, ethics, people, and long-term organizational value." },
-    { "title": "Systems Architecture", "description": "Building organizational structures, systems, decision pathways, and accountability." },
-    { "title": "Strategic Alignment", "description": "Connecting mission, culture, strategy, and measurable performance." },
-    { "title": "Succession & Scale", "description": "Preparing organizations to grow, transfer responsibility, develop future leaders, and operate beyond one individual." },
-    { "title": "Sustainable Growth", "description": "Building infrastructure capable of supporting long-term organizational and enterprise growth." }
-  ],
-
-  "model_eyebrow": "The Omnidirection Enterprise Model™",
-  "model_headline": "One strategic architecture, several directions of enterprise creation.",
-  "model_body": "Rather than operating as a single-purpose consulting business, The Co.LLab™ is architected to serve several audiences under one model — each connected back to Leadership Infrastructure™.",
+  "model_eyebrow": "Omnidirectional Enterprise™",
+  "model_headline": "Not a linear funnel. Value moves in every direction.",
+  "model_body": "The Co.LLab™ isn't a single-purpose consulting business. Value moves between people, ideas, infrastructure, products, organizations, community, and legacy — with multiple entry points and multiple ways to create value, each connected back to Leadership Infrastructure™.",
   "audiences": [
-    { "tag": "Founders", "title": "Founders Organization", "description": "Founders building enterprises capable of growth, scale, and legacy." },
-    { "tag": "Organizations", "title": "Corporate / Enterprise", "description": "Organizations building infrastructure behind their leadership." },
-    { "tag": "Leaders", "title": ".LLab™ Products & Membership", "description": "Leaders accessing frameworks and tools directly." },
-    { "tag": "Artists & Creators", "title": "Creator Infrastructure™", "description": "A future direction connecting artists and creators to the same leadership infrastructure — not yet a public offering. (In development.)" }
+    {
+      "tag": "Founders",
+      "title": "Founders Organization",
+      "description": "Founders building enterprises capable of growth, scale, and legacy."
+    },
+    {
+      "tag": "Organizations",
+      "title": "Corporate / Enterprise",
+      "description": "Organizations building infrastructure behind their leadership."
+    },
+    {
+      "tag": "Leaders",
+      "title": ".LLab™ Products & Membership",
+      "description": "Leaders accessing frameworks and tools directly."
+    },
+    {
+      "tag": "Artists & Creators",
+      "title": "Creator Infrastructure™",
+      "description": "A future direction connecting artists and creators to the same leadership infrastructure — not yet a public offering. (In development.)"
+    }
   ],
-
+  "ip_eyebrow": "Intellectual property is an asset",
+  "ip_headline": "Ideas → Research → Theory → Framework → Infrastructure → Product → Licensing → Enterprise.",
+  "ip_body": "The Co.LLab™ has accumulated frameworks, methodologies, terminology, models, research, theories, products, systems, creative IP, and educational assets. The goal isn't to hide these pieces — it's to give them a visible architecture.",
+  "personality_eyebrow": "Brand personality",
+  "personality_headline": [
+    {
+      "text": "Intelligent without being ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "pretentious.",
+      "style": "glow",
+      "break_before": false
+    }
+  ],
+  "personality_body": "Academic without being boring. Corporate without becoming sterile. Creative without becoming chaotic. Experimental without losing credibility. Serious about ideas without taking itself too seriously. There is room for weirdness — \"let's investigate this absolutely ridiculous idea and see where it goes\" is part of the R.A.T.™ spirit.",
+  "community_eyebrow": "Community",
+  "community_body": "The community isn't based on everyone agreeing. We can disagree, question things, explore strange ideas, and still treat each other with respect. No hate. No disrespect. This is for people who want to think, investigate, question, theorize, and build.",
   "closing_eyebrow": "The idea behind all of it",
   "closing_headline": [
-    { "text": "Build the infrastructure ", "style": "default", "break_before": false },
-    { "text": "behind potential.", "style": "glow", "break_before": false }
+    {
+      "text": "Build the infrastructure ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "behind potential.",
+      "style": "glow",
+      "break_before": false
+    }
   ],
   "closing_body_prefix": "For people. Leaders. Founders. Organizations. Artists. Creators. Enterprises. And, ultimately:",
   "closing_body_glow": "legacy."

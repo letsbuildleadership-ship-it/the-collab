@@ -312,10 +312,10 @@ section {
    em = pure paper white, a cooler counter-note to the base orange type.
    Mixing the two within one headline is what creates the alternation. */
 .display strong,
-.headline strong {
+.headline strong,
+.subhead strong {
   font-style: normal;
   font-weight: 600;
-  font-size: 1.08em;
   background: var(--ember);
   -webkit-background-clip: text;
   background-clip: text;
@@ -325,8 +325,14 @@ section {
     drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
 }
 
+.display strong,
+.headline strong {
+  font-size: 1.08em;
+}
+
 .display em,
-.headline em {
+.headline em,
+.subhead em {
   font-style: normal;
   font-weight: 300;
   color: var(--paper);
@@ -493,6 +499,27 @@ a.card:hover,
   border-bottom: 1px solid var(--hairline);
 }
 
+/* generic full-bleed photo background for any section, not just .hero */
+.photo-band {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.photo-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 90% at 50% 40%, rgba(var(--black-rgb), 0.55), rgba(var(--black-rgb), 0.93));
+  z-index: 0;
+}
+
+.photo-band > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
 .tag {
   display: inline-block;
   border: 1px solid var(--hairline-strong);
@@ -520,6 +547,33 @@ a.card:hover,
   overflow: hidden;
   padding-top: clamp(5rem, 14vw, 10rem);
   padding-bottom: clamp(4rem, 10vw, 7rem);
+}
+
+/* full-bleed editorial photography behind a hero — the reference brief's
+   "photography carries the emotion" idea, realized with real industrial
+   infrastructure photography instead of flat color. */
+.hero--photo {
+  background-size: cover;
+  background-position: center;
+}
+
+.hero--photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(100deg, rgba(var(--black-rgb), 0.94) 0%, rgba(var(--black-rgb), 0.75) 38%, rgba(var(--black-rgb), 0.4) 62%, rgba(var(--black-rgb), 0.72) 100%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 40%);
+  z-index: 0;
+}
+
+.hero--photo .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero--photo .glow {
+  z-index: 1;
 }
 
 .hero-cta-row {

@@ -46,8 +46,12 @@ collections:
           - { label: "Secondary button label", name: "hero_cta_secondary_label", widget: "string" }
           - { label: "Secondary button link", name: "hero_cta_secondary_link", widget: "string" }
 
-          - { label: "\"Where to start\" eyebrow", name: "directory_eyebrow", widget: "string" }
-          - label: "Directory cards"
+          - { label: "Doorway eyebrow", name: "doorway_eyebrow", widget: "string" }
+          - { label: "Doorway headline", name: "doorway_headline", widget: "text" }
+          - { label: "Doorway body", name: "doorway_body", widget: "text" }
+
+          - { label: "Ecosystem eyebrow", name: "directory_eyebrow", widget: "string" }
+          - label: "Ecosystem cards"
             name: "directory_cards"
             widget: "list"
             summary: "{{fields.title}}"
@@ -71,14 +75,24 @@ collections:
               - { label: "Number", name: "number", widget: "string" }
               - { label: "Label", name: "label", widget: "string" }
 
-          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
-          - label: "Pillars"
-            name: "pillars"
+          - { label: "Phases eyebrow", name: "phases_eyebrow", widget: "string" }
+          - label: "The four phases"
+            name: "phases"
             widget: "list"
             summary: "{{fields.title}}"
             fields: &title_description_fields
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+
+          - { label: "Omnidirectional Enterprise eyebrow", name: "omni_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise headline", name: "omni_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise body", name: "omni_body", widget: "text" }
+          - label: "Value-flow words"
+            name: "omni_flow"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Word", name: "label", widget: "string" }
 
           - { label: "Vision eyebrow", name: "vision_eyebrow", widget: "string" }
           - label: "Vision headline"
@@ -86,7 +100,8 @@ collections:
             widget: "list"
             summary: "{{fields.text}}"
             fields: *headline_segment_fields
-          - { label: "Vision body", name: "vision_body", widget: "text" }
+          - { label: "Vision body (base text)", name: "vision_body_prefix", widget: "text" }
+          - { label: "Vision body (glow word)", name: "vision_body_glow", widget: "string" }
 
           - { label: "Offer eyebrow", name: "offer_eyebrow", widget: "string" }
           - label: "Offer headline"
@@ -98,41 +113,8 @@ collections:
           - { label: "Offer button label", name: "offer_cta_label", widget: "string" }
           - { label: "Offer button link", name: "offer_cta_link", widget: "string" }
 
-      - name: "products"
-        label: "The .LLab Products"
-        file: "content/products.json"
-        fields:
-          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
-          - label: "Hero headline"
-            name: "hero_headline"
-            widget: "list"
-            summary: "{{fields.text}}"
-            fields: *headline_segment_fields
-          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
-
-          - { label: "Flagship eyebrow", name: "flagship_eyebrow", widget: "string" }
-          - label: "Flagship headline"
-            name: "flagship_headline"
-            widget: "list"
-            summary: "{{fields.text}}"
-            fields: *headline_segment_fields
-          - { label: "Flagship body", name: "flagship_body", widget: "text" }
-          - { label: "Flagship button label", name: "flagship_cta_label", widget: "string" }
-          - { label: "Flagship button link", name: "flagship_cta_link", widget: "string" }
-
-          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
-          - label: "Pillars"
-            name: "pillars"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields: *title_description_fields
-
-          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
-          - { label: "Closing headline", name: "closing_headline", widget: "string" }
-          - { label: "Closing body", name: "closing_body", widget: "text" }
-
       - name: "founders"
-        label: "Founders Organization"
+        label: "Build (Founders)"
         file: "content/founders.json"
         fields:
           - { label: "Banner text", name: "banner_text", widget: "string" }
@@ -159,9 +141,9 @@ collections:
             fields: *headline_segment_fields
           - { label: "\"Distinct offering\" body", name: "distinct_body", widget: "text" }
 
-          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
-          - label: "Pillars"
-            name: "pillars"
+          - { label: "Phases eyebrow", name: "phases_eyebrow", widget: "string" }
+          - label: "The four phases, for founders"
+            name: "phases"
             widget: "list"
             summary: "{{fields.title}}"
             fields: *title_description_fields
@@ -171,6 +153,39 @@ collections:
           - { label: "Apply body", name: "apply_body", widget: "text" }
           - { label: "Apply button label", name: "apply_cta_label", widget: "string" }
           - { label: "Apply button link", name: "apply_cta_link", widget: "string" }
+
+      - name: "think"
+        label: "Think (R.A.T.™)"
+        file: "content/think.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Trilogy eyebrow", name: "trilogy_eyebrow", widget: "string" }
+          - { label: "Trilogy headline", name: "trilogy_headline", widget: "string" }
+          - { label: "Trilogy body", name: "trilogy_body", widget: "text" }
+
+          - { label: "Metacognitive eyebrow", name: "meta_eyebrow", widget: "string" }
+          - { label: "Metacognitive headline", name: "meta_headline", widget: "string" }
+          - { label: "Metacognitive body", name: "meta_body", widget: "text" }
+
+          - { label: "Intelligence Infrastructure eyebrow", name: "intel_eyebrow", widget: "string" }
+          - { label: "Intelligence Infrastructure headline", name: "intel_headline", widget: "string" }
+          - { label: "Intelligence Infrastructure body", name: "intel_body", widget: "text" }
+          - label: "Domains it connects to"
+            name: "intel_domains"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Word", name: "label", widget: "string" }
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - { label: "Closing headline", name: "closing_headline", widget: "string" }
 
       - name: "journal"
         label: "The Journal"
@@ -205,8 +220,75 @@ collections:
           - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
           - { label: "Closing headline", name: "closing_headline", widget: "string" }
 
+      - name: "products"
+        label: "The .LLab"
+        file: "content/products.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Membership eyebrow", name: "membership_eyebrow", widget: "string" }
+          - label: "Membership headline"
+            name: "membership_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Membership body", name: "membership_body", widget: "text" }
+          - label: "Membership pricing tiers"
+            name: "membership_tiers"
+            widget: "list"
+            summary: "{{fields.tag}} — {{fields.price}}"
+            fields:
+              - { label: "Tier name", name: "tag", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Membership button label", name: "membership_cta_label", widget: "string" }
+          - { label: "Membership button link", name: "membership_cta_link", widget: "string" }
+
+          - { label: "Library Card eyebrow", name: "library_eyebrow", widget: "string" }
+          - { label: "Library Card headline", name: "library_headline", widget: "string" }
+          - { label: "Library Card body", name: "library_body", widget: "text" }
+          - label: "Library Card pricing"
+            name: "library_pricing"
+            widget: "list"
+            summary: "{{fields.number}} — {{fields.label}}"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "Library Card button label", name: "library_cta_label", widget: "string" }
+          - { label: "Library Card button link", name: "library_cta_link", widget: "string" }
+
+          - { label: "Roadmap eyebrow", name: "roadmap_eyebrow", widget: "string" }
+          - { label: "Roadmap headline", name: "roadmap_headline", widget: "string" }
+          - { label: "Roadmap body", name: "roadmap_body", widget: "text" }
+          - { label: "Roadmap button label", name: "roadmap_cta_label", widget: "string" }
+          - { label: "Roadmap button link", name: "roadmap_cta_link", widget: "string" }
+
+          - { label: "Wider ecosystem eyebrow", name: "ecosystem_eyebrow", widget: "string" }
+          - label: "Wider ecosystem products"
+            name: "ecosystem_products"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - { label: "Closing headline", name: "closing_headline", widget: "string" }
+          - { label: "Closing body", name: "closing_body", widget: "text" }
+
       - name: "about"
-        label: "About Us"
+        label: "About"
         file: "content/about.json"
         fields:
           - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
@@ -223,29 +305,24 @@ collections:
             widget: "list"
             summary: "{{fields.text}}"
             fields: *headline_segment_fields
-
           - { label: "Vision eyebrow", name: "vision_eyebrow", widget: "string" }
           - { label: "Vision body (base text)", name: "vision_body_prefix", widget: "text" }
           - { label: "Vision body (glow word)", name: "vision_body_glow", widget: "string" }
-          - { label: "Vision body (ending)", name: "vision_body_suffix", widget: "text" }
 
-          - { label: "Methodology eyebrow", name: "methodology_eyebrow", widget: "string" }
-          - label: "Methodology"
-            name: "methodology"
+          - { label: "Core problem eyebrow", name: "problem_eyebrow", widget: "string" }
+          - { label: "Core problem headline", name: "problem_headline", widget: "string" }
+          - { label: "Core problem body", name: "problem_body", widget: "text" }
+
+          - { label: "Phases eyebrow", name: "phases_eyebrow", widget: "string" }
+          - label: "The four phases"
+            name: "phases"
             widget: "list"
             summary: "{{fields.title}}"
             fields: *title_description_fields
 
-          - { label: "Pillars eyebrow", name: "pillars_eyebrow", widget: "string" }
-          - label: "Pillars"
-            name: "pillars"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields: *title_description_fields
-
-          - { label: "Model eyebrow", name: "model_eyebrow", widget: "string" }
-          - { label: "Model headline", name: "model_headline", widget: "string" }
-          - { label: "Model body", name: "model_body", widget: "text" }
+          - { label: "Omnidirectional Enterprise eyebrow", name: "model_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise headline", name: "model_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise body", name: "model_body", widget: "text" }
           - label: "Audiences"
             name: "audiences"
             widget: "list"
@@ -254,6 +331,21 @@ collections:
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+
+          - { label: "IP ecosystem eyebrow", name: "ip_eyebrow", widget: "string" }
+          - { label: "IP ecosystem headline", name: "ip_headline", widget: "string" }
+          - { label: "IP ecosystem body", name: "ip_body", widget: "text" }
+
+          - { label: "Brand personality eyebrow", name: "personality_eyebrow", widget: "string" }
+          - label: "Brand personality headline"
+            name: "personality_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Brand personality body", name: "personality_body", widget: "text" }
+
+          - { label: "Community eyebrow", name: "community_eyebrow", widget: "string" }
+          - { label: "Community body", name: "community_body", widget: "text" }
 
           - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
           - label: "Closing headline"

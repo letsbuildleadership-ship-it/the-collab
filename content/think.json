@@ -1,0 +1,32 @@
+{
+  "eyebrow": "R.A.T.™ — Research And Theory",
+  "hero_headline": [
+    { "text": "Some ideas begin as: ", "style": "default", "break_before": false },
+    { "text": "“Wait… what if?”", "style": "glow", "break_before": false }
+  ],
+  "hero_subhead": "R.A.T.™ is the research and theory side of The Co.LLab™ ecosystem — where unusual questions, observations, experiments, cultural patterns, and ideas can be explored. Curious. Scholarly. Weird. Provocative. Intellectually playful.",
+
+  "trilogy_eyebrow": "The trilogy",
+  "trilogy_headline": "Research → Theory → Infrastructure.",
+  "trilogy_body": "R.A.T.™ is the research and theory laboratory. The larger Co.LLab™ ecosystem turns ideas into usable infrastructure — an intellectual ecosystem, not simply a consulting company's methodology.",
+
+  "meta_eyebrow": "A Co.LLab concept",
+  "meta_headline": "Metacognitive Infrastructure Thinking™",
+  "meta_body": "Thinking about the infrastructure behind thinking itself. Instead of asking “how do we solve this problem,” ask: “what structure is producing the way we're approaching this problem?” Then: “what infrastructure would allow people to think, decide, create, lead, and operate differently?”",
+
+  "intel_eyebrow": "Bridging theory and technology",
+  "intel_headline": ".LLab Intelligence Infrastructure™",
+  "intel_body": "Intelligent systems should understand human behavior rather than simply demand human compliance. This is a proprietary approach to designing intelligent systems around how people actually behave — one of the bridges between The Co.LLab™'s theoretical work and future technology.",
+  "intel_domains": [
+    { "label": "AI" },
+    { "label": "Organizational systems" },
+    { "label": "Leadership" },
+    { "label": "Workflows" },
+    { "label": "Decision-making" },
+    { "label": "Knowledge systems" },
+    { "label": "Automation" }
+  ],
+
+  "closing_eyebrow": "Go deeper",
+  "closing_headline": "See where the theory becomes infrastructure."
+}

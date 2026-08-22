@@ -4,7 +4,7 @@
   "banner_cta_label": "Apply Now",
   "banner_cta_link": "#apply",
 
-  "eyebrow": "For founders",
+  "eyebrow": "Build — for founders",
   "hero_headline": [
     { "text": "The Co.LLab", "style": "white", "break_before": false },
     { "text": "™", "style": "default", "break_before": false },
@@ -23,13 +23,12 @@
   ],
   "distinct_body": "The Founders Organization has its own journey, separate from The .LLab™ Products. It exists because founders face a specific problem: significant talent and momentum, without the leadership infrastructure required to make it durable.",
 
-  "pillars_eyebrow": "What founders build here",
-  "pillars": [
-    { "title": "Stewardship", "description": "Leadership rooted in responsibility, ethics, and long-term value." },
-    { "title": "Systems Architecture", "description": "Structures, decision pathways, and accountability that outlast any one hire." },
-    { "title": "Strategic Alignment", "description": "Mission, culture, strategy, and performance, connected." },
-    { "title": "Succession & Scale", "description": "An organization that can grow, and run, beyond the founder." },
-    { "title": "Sustainable Growth", "description": "Infrastructure built to carry the enterprise forward." }
+  "phases_eyebrow": "The four-phase model, applied to founders",
+  "phases": [
+    { "title": "Foundations", "description": "Understanding the founder — purpose, potential, values, identity — before touching the org chart." },
+    { "title": "Infrastructure Planning & Management", "description": "Determining what infrastructure the enterprise actually needs, and how the pieces connect." },
+    { "title": "Internal Operating Systems", "description": "Structures, decision pathways, and accountability that outlast any one hire." },
+    { "title": "Preservation", "description": "An organization that can grow, transfer, and run — beyond the founder, into legacy." }
   ],
 
   "apply_tag": "Introductory Founder Offer · Ending Soon",
