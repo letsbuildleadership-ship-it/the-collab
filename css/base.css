@@ -26,6 +26,16 @@
   --filament-2-rgb: 255, 216, 115;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
 
+  /* orange-red "ember" accent — a hotter, glowing variant for rare emphasis */
+  --ember-1: #ff3d1f;
+  --ember-2: #ff9a3d;
+  --ember-1-rgb: 255, 61, 31;
+  --ember-2-rgb: 255, 154, 61;
+  --ember: linear-gradient(90deg, var(--ember-1), var(--ember-2));
+
+  /* pure paper white — the third voice in the type palette, used sparingly */
+  --paper: #fdf6ec;
+
   --grid-cell: 64px;
   --grid-line: rgba(var(--filament-2-rgb), 0.16);
   --grid-line-faint: rgba(var(--text-rgb), 0.07);
@@ -298,14 +308,28 @@ section {
   font-size: clamp(2.6rem, 8.5vw, 8.4rem);
 }
 
+/* strong = the glowing ember accent, bumped up a size for drama.
+   em = pure paper white, a cooler counter-note to the base orange type.
+   Mixing the two within one headline is what creates the alternation. */
 .display strong,
-.display em {
+.headline strong {
   font-style: normal;
-  font-weight: 500;
-  background: var(--filament);
+  font-weight: 600;
+  font-size: 1.08em;
+  background: var(--ember);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter:
+    drop-shadow(0 0 22px rgba(var(--ember-1-rgb), 0.5))
+    drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
+}
+
+.display em,
+.headline em {
+  font-style: normal;
+  font-weight: 300;
+  color: var(--paper);
 }
 
 .headline {
@@ -323,6 +347,21 @@ section {
   line-height: 1.55;
   max-width: 46ch;
 }
+
+/* standalone utilities for the same alternation, usable outside headlines */
+.glow-text {
+  background: var(--ember);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 18px rgba(var(--ember-1-rgb), 0.45))
+    drop-shadow(0 0 38px rgba(var(--ember-2-rgb), 0.2));
+}
+
+.text-paper { color: var(--paper); }
+.text-lg { font-size: 1.3em; }
+.text-sm { font-size: 0.68em; }
 
 .kicker-index {
   font-size: var(--nav-size);
