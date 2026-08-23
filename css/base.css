@@ -240,6 +240,10 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
   border: 1px solid var(--hairline-strong);
   border-radius: 999px;
   padding: 0.85em 1.6em;

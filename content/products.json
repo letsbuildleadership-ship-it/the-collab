@@ -1,11 +1,21 @@
 {
-  "eyebrow": "The productized side of The Co.LLab™",
+  "eyebrow": "Support for the infrastructure you're building",
   "hero_headline": [
     { "text": "Enter ", "style": "default", "break_before": false },
     { "text": "The .LLab™.", "style": "glow", "break_before": false }
   ],
   "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
   "prototype_notice": "Every product below is an early prototype and is set to be transformed soon.",
+
+  "creator_eyebrow": "Coming soon",
+  "creator_headline": "Creator Infrastructure™.",
+  "creator_body": "A dedicated line of .LLab™ tools for artists and creators — building the systems, succession plans, and body-of-work architecture that let creative work outlast the creator. In development.",
+  "creator_teasers": [
+    { "label": "The Creator Operating System™" },
+    { "label": "Creator Legacy Planning" },
+    { "label": "Body of Work Architecture" },
+    { "label": "Creative Estate Mapping" }
+  ],
 
   "membership_eyebrow": "Flagship membership",
   "membership_headline": [
@@ -19,16 +29,8 @@
     { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually." }
   ],
 
-  "library_eyebrow": "A lower-barrier entry point",
-  "library_headline": ".LLab Library Card™",
-  "library_body": "Access to the research, resources, reports, frameworks, and workshops of The Co.LLab™ — without the full membership commitment.",
-  "library_price": "$150",
-  "library_cta_label": "Get The Library Card™",
-  "library_cta_link": "https://buy.stripe.com/cNifZg96S4VTcNZ4KG9ws0a",
-
   "phases_eyebrow": "Buy what you need, when you need it",
   "phases_headline": "The .LLab™ IV Phases Product Infrastructure",
-  "phases_body": "Nine standalone tools, mapped to the four-phase model — no membership required.",
 
   "snapshot_tag": "Free · Coming Soon",
   "snapshot_title": ".LLab Leadership Infrastructure Snapshot™",
@@ -46,19 +48,5 @@
     { "phase": "Phase IV · Preservation", "title": ".LLab Legacy Infrastructure Architecture™", "price": "$1,000", "description": "The comprehensive .LLab framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy.", "link": "https://buy.stripe.com/3cIcN4gzkgEB01d0uq9ws0r" }
   ],
 
-  "tax_notice": "These purchases may be tax deductible — please speak with your tax strategist.",
-
-  "creator_eyebrow": "Coming soon",
-  "creator_headline": "Creator Infrastructure™.",
-  "creator_body": "A dedicated line of .LLab™ tools for artists and creators — building the systems, succession plans, and body-of-work architecture that let creative work outlast the creator. In development.",
-  "creator_teasers": [
-    { "label": "The Creator Operating System™" },
-    { "label": "Creator Legacy Planning" },
-    { "label": "Body of Work Architecture" },
-    { "label": "Creative Estate Mapping" }
-  ],
-
-  "closing_eyebrow": "Looking for something specific?",
-  "closing_headline": "Not sure which product is right for you?",
-  "closing_body": "If your focus is on founding and scaling an enterprise, start with Build instead."
+  "tax_notice": "These purchases may be tax deductible — please speak with your tax strategist."
 }

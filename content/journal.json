@@ -1,11 +1,15 @@
 {
-  "eyebrow": "The Co.LLab™ Journal",
+  "eyebrow": "The .LLab Journal™",
   "hero_headline": [
     { "text": "Ideas,", "style": "white", "break_before": false },
     { "text": " before ", "style": "default", "break_before": false },
     { "text": "infrastructure.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "The Journal is the intellectual-property and thought-leadership layer of The Co.LLab™ ecosystem — where R.A.T.™ research becomes frameworks, and frameworks become .LLab™ products, membership, and enterprise relationships.",
+  "hero_subhead": "The .LLab Journal™ is the intellectual-property and thought-leadership layer of The Co.LLab™ ecosystem — where R.A.T.™ research becomes frameworks, and frameworks become .LLab™ products, membership, and enterprise relationships.",
+
+  "teaser_tag": "Coming this Fall",
+  "teaser_headline": "The .LLab Journal™.",
+  "teaser_body": "An invitation-curated collection — the people who do the work. Craftspeople, tradespeople, makers: those who have mastered what they do and thought carefully about what it means to leave it behind. Access will be limited. This is not for everyone.",
 
   "arc_eyebrow": "How an idea becomes infrastructure",
   "arc_steps": [

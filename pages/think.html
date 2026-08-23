@@ -38,7 +38,7 @@
         <li><a href="../index.html">Home</a></li>
         <li><a href="founders.html">Build</a></li>
         <li><a href="think.html" aria-current="page">Think</a></li>
-        <li><a href="journal.html">The Journal</a></li>
+        <li><a href="journal.html">The .LLab Journal™</a></li>
         <li><a href="products.html">.LLab</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
@@ -125,6 +125,25 @@
 
   <section class="band" style="text-align:center;">
     <div class="wrap">
+      <p class="eyebrow" data-field="paradox_eyebrow" style="justify-content:center;">Coming Soon</p>
+      <h2 class="headline" data-field="paradox_headline" style="margin-top:1.5rem;">The Intelligence Paradox Trilogy<span style="font-weight:500;">™</span>.</h2>
+      <p class="subhead" data-field="paradox_body" style="margin:1.5rem auto 0;">
+        Three ideas. One paradox. Dropping soon.
+      </p>
+      <p hidden data-field="paradox_drop_date" id="paradox-drop-date">2026-08-30T00:00:00Z</p>
+      <div style="display:flex; gap:2.5rem; margin-top:2.5rem; flex-wrap:wrap; justify-content:center;">
+        <div class="stat"><span class="n" id="cd-days">00</span><span class="l">Days</span></div>
+        <div class="stat"><span class="n" id="cd-hours">00</span><span class="l">Hours</span></div>
+        <div class="stat"><span class="n" id="cd-mins">00</span><span class="l">Minutes</span></div>
+        <div class="stat"><span class="n" id="cd-secs">00</span><span class="l">Seconds</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <section class="band" style="text-align:center;">
+    <div class="wrap">
       <p class="eyebrow" data-field="closing_eyebrow" style="justify-content:center;">Go deeper</p>
       <h2 class="headline" data-field="closing_headline" style="margin-top:1.5rem;">See where the theory becomes infrastructure.</h2>
       <div class="hero-cta-row" style="justify-content:center;">
@@ -141,7 +160,7 @@
     <div class="footer-grid">
       <div class="footer-col">
         <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
-        <p data-field="footer_tagline" style="margin-top:1.25rem; max-width:32ch;">Building Leadership Infrastructure™.</p>
+        <p data-field="footer_tagline" style="margin-top:1.25rem; max-width:32ch;">The Co.LLab: Building Leadership Infrastructure™.</p>
       </div>
       <div class="footer-col">
         <h4>Navigate</h4>
@@ -154,17 +173,16 @@
       <div class="footer-col">
         <h4>More</h4>
         <ul>
-          <li><a href="journal.html">The Journal</a></li>
+          <li><a href="journal.html">The .LLab Journal™</a></li>
           <li><a href="products.html">.LLab</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>The Phases</h4>
+        <h4>Coming Soon</h4>
         <ul>
-          <li><p>Foundations</p></li>
-          <li><p>Infrastructure Planning</p></li>
-          <li><p>Operating Systems</p></li>
+          <li><a href="atelier.html">.LLab Atelier™</a></li>
+          <li><a href="community.html">Co.LLab+™</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -176,12 +194,28 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
-      <span data-field="footer_tagline">Building Leadership Infrastructure™</span>
+      <span data-field="footer_tagline">The Co.LLab: Building Leadership Infrastructure™</span>
     </div>
   </div>
 </footer>
 
 <script src="../js/main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var el = document.getElementById('paradox-drop-date');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var target = new Date((el.textContent || '2026-08-30T00:00:00Z').trim()).getTime();
+    var diff = Math.max(0, target - Date.now());
+    document.getElementById('cd-days').textContent = pad(Math.floor(diff / 86400000));
+    document.getElementById('cd-hours').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    document.getElementById('cd-mins').textContent = pad(Math.floor((diff % 3600000) / 60000));
+    document.getElementById('cd-secs').textContent = pad(Math.floor((diff % 60000) / 1000));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>

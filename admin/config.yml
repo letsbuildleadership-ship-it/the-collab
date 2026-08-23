@@ -160,7 +160,6 @@ collections:
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Stripe checkout link", name: "link", widget: "string" }
-          - { label: "Prototype notice", name: "prototype_notice", widget: "string" }
           - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
       - name: "think"
@@ -193,6 +192,11 @@ collections:
             fields:
               - { label: "Word", name: "label", widget: "string" }
 
+          - { label: "Intelligence Paradox Trilogy eyebrow", name: "paradox_eyebrow", widget: "string" }
+          - { label: "Intelligence Paradox Trilogy headline", name: "paradox_headline", widget: "string" }
+          - { label: "Intelligence Paradox Trilogy body", name: "paradox_body", widget: "string" }
+          - { label: "Intelligence Paradox Trilogy drop date/time (ISO, e.g. 2026-08-30T00:00:00Z)", name: "paradox_drop_date", widget: "string" }
+
           - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
           - { label: "Closing headline", name: "closing_headline", widget: "string" }
 
@@ -207,6 +211,10 @@ collections:
             summary: "{{fields.text}}"
             fields: *headline_segment_fields
           - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "Fall teaser tag", name: "teaser_tag", widget: "string" }
+          - { label: "Fall teaser headline", name: "teaser_headline", widget: "string" }
+          - { label: "Fall teaser body", name: "teaser_body", widget: "text" }
 
           - { label: "Arc eyebrow", name: "arc_eyebrow", widget: "string" }
           - label: "Arc steps"
@@ -259,16 +267,8 @@ collections:
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
-          - { label: "Library Card eyebrow", name: "library_eyebrow", widget: "string" }
-          - { label: "Library Card headline", name: "library_headline", widget: "string" }
-          - { label: "Library Card body", name: "library_body", widget: "text" }
-          - { label: "Library Card price", name: "library_price", widget: "string" }
-          - { label: "Library Card button label", name: "library_cta_label", widget: "string" }
-          - { label: "Library Card button link (Stripe)", name: "library_cta_link", widget: "string" }
-
           - { label: "IV Phases eyebrow", name: "phases_eyebrow", widget: "string" }
           - { label: "IV Phases headline", name: "phases_headline", widget: "string" }
-          - { label: "IV Phases body", name: "phases_body", widget: "text" }
 
           - { label: "Snapshot tag", name: "snapshot_tag", widget: "string" }
           - { label: "Snapshot title", name: "snapshot_title", widget: "string" }
@@ -296,10 +296,6 @@ collections:
             summary: "{{fields.label}}"
             fields:
               - { label: "Word", name: "label", widget: "string" }
-
-          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
-          - { label: "Closing headline", name: "closing_headline", widget: "string" }
-          - { label: "Closing body", name: "closing_body", widget: "text" }
 
       - name: "about"
         label: "About"
@@ -337,6 +333,7 @@ collections:
           - { label: "Omnidirectional Enterprise eyebrow", name: "model_eyebrow", widget: "string" }
           - { label: "Omnidirectional Enterprise headline", name: "model_headline", widget: "string" }
           - { label: "Omnidirectional Enterprise body", name: "model_body", widget: "text" }
+          - { label: "Ethical business body", name: "ethics_body", widget: "text" }
           - label: "Audiences"
             name: "audiences"
             widget: "list"
@@ -369,3 +366,19 @@ collections:
             fields: *headline_segment_fields
           - { label: "Closing body (base text)", name: "closing_body_prefix", widget: "text" }
           - { label: "Closing body (glow word)", name: "closing_body_glow", widget: "string" }
+
+      - name: "atelier"
+        label: ".LLab Atelier (Coming Soon)"
+        file: "content/atelier.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+
+      - name: "community"
+        label: "Co.LLab+ (Coming Soon)"
+        file: "content/community.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
