@@ -23,22 +23,23 @@ kept here in git so it's reviewable and versioned.
 5. Every step (sent, no-match, rejected, error) is logged to the `EVENT_LOG`
    tab via the existing `logEvent()` in `Code.gs`.
 
-## Price ID → PDF map (live Stripe account, already confirmed)
+## Price ID → PDF map → Payment Link (live Stripe account)
 
-| Product | Price ID | Drive file |
-|---|---|---|
-| Welcome (Issue 00) | `price_1U7aSuAK6n3ctuR9l90HwyP5` | `13svjVaXqycmgYvnmWycNAssHFzid6yDE` |
-| Phase One: Foundations (Issue 01) | `price_1U7aTAAK6n3ctuR99S4YmR56` | `1QZiOH2bdV2iUSsBYycDp9496NpxAuCjg` |
-| Phase Two: Infrastructure Planning (Issue 02) | `price_1U7aTPAK6n3ctuR97GWx9dmW` | `1So0FU_7PJVieoCTEmgyAo58rYFClKLue` |
-| Phase Three: Internal Operating Systems (Issue 03) | `price_1U7aTdAK6n3ctuR9TlxJ4Mzf` | `13s-RKX2R2aNhpAEa72NYI7c4E-O3hewW` |
-| Phase Four: Preservation (Issue 04) | `price_1U7aTsAK6n3ctuR90SycsLmg` | `1hFznYubGFbZPMxNt6hb9Wg_z92BNEOCY` |
-| Complete Edition (all 5 issues) | `price_1U7aU7AK6n3ctuR9rxOzHC0A` | `1tHCZGOSlyXrepAyjqDjtW8WOQPCZeaO0` |
+| Product | Price ID | Drive file | Payment Link |
+|---|---|---|---|
+| Welcome (Issue 00) — $300 | `price_1U7aSuAK6n3ctuR9l90HwyP5` | `13svjVaXqycmgYvnmWycNAssHFzid6yDE` | https://buy.stripe.com/3cI4gy2Iu1JH15h4KG9ws0O |
+| Phase One: Foundations (Issue 01) — $300 | `price_1U7aTAAK6n3ctuR99S4YmR56` | `1QZiOH2bdV2iUSsBYycDp9496NpxAuCjg` | https://buy.stripe.com/eVqdR86YK4VT5lx3GC9ws0P |
+| Phase Two: Infrastructure Planning (Issue 02) — $300 | `price_1U7aTPAK6n3ctuR97GWx9dmW` | `1So0FU_7PJVieoCTEmgyAo58rYFClKLue` | https://buy.stripe.com/4gMbJ05UGbkh6pBa509ws0Q |
+| Phase Three: Internal Operating Systems (Issue 03) — $300 | `price_1U7aTdAK6n3ctuR9TlxJ4Mzf` | `13s-RKX2R2aNhpAEa72NYI7c4E-O3hewW` | https://buy.stripe.com/bJe00ibf00FD4htgto9ws0R |
+| Phase Four: Preservation (Issue 04) — $300 | `price_1U7aTsAK6n3ctuR90SycsLmg` | `1hFznYubGFbZPMxNt6hb9Wg_z92BNEOCY` | https://buy.stripe.com/14AcN4dn8fAxcNZ90W9ws0S |
+| Complete Edition (all 5 issues) — $900 | `price_1U7aU7AK6n3ctuR9rxOzHC0A` | `1tHCZGOSlyXrepAyjqDjtW8WOQPCZeaO0` | https://buy.stripe.com/dRm3cucj45ZX9BN5OK9ws0T |
 
-There is no Stripe Payment Link wired up for these six products in
-`content/products.json` yet — only the Founders and Phase-product tiers have
-`buy.stripe.com` links today. Add Payment Links (or a Checkout Session
-integration) for the six Blueprint prices above before this webhook has
-anything to react to.
+These six live Payment Links were created directly against the Stripe
+account and are wired into `content/products.json` / `pages/products.html`
+(new "Blueprint™ Magazine Series" section). They are **live** — a real
+purchase through any of them charges a real card. Each redirects to
+Stripe's default hosted confirmation page after payment; the webhook below
+is what actually delivers the PDF.
 
 ## One-time setup
 

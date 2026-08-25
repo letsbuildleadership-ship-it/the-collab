@@ -36,6 +36,18 @@
   "snapshot_title": ".LLab Leadership Infrastructure Snapshot™",
   "snapshot_description": "A free first look at your leadership infrastructure — not open yet.",
 
+  "blueprint_eyebrow": "The .LLab™ Product Line",
+  "blueprint_headline": "The Blueprint™ Magazine Series",
+  "blueprint_body": "Five issues plus the Complete Edition — the full leadership infrastructure system in magazine form, delivered as a PDF the moment you purchase.",
+  "blueprint_products": [
+    { "issue": "Issue 00", "title": "The Blueprint™ — Welcome", "price": "$300", "description": "The foundation of The Co.LLab — mission, vision, Guiding Principles™, and the architecture of leadership.", "link": "https://buy.stripe.com/3cI4gy2Iu1JH15h4KG9ws0O" },
+    { "issue": "Issue 01", "title": "The Blueprint™ — Phase One: Foundations", "price": "$300", "description": "Structural grounding & leadership identity — Mission Anchoring, Vision Integrity, Leadership Standards, Distributed Leadership.", "link": "https://buy.stripe.com/eVqdR86YK4VT5lx3GC9ws0P" },
+    { "issue": "Issue 02", "title": "The Blueprint™ — Phase Two: Infrastructure Planning", "price": "$300", "description": "Load Mapping, Accountability Mapping, Capacity Planning, Integrated Action Plan.", "link": "https://buy.stripe.com/4gMbJ05UGbkh6pBa509ws0Q" },
+    { "issue": "Issue 03", "title": "The Blueprint™ — Phase Three: Internal Operating Systems", "price": "$300", "description": "Communication Infrastructure, Decision-Making Infrastructure, Culture Operating System, Governance.", "link": "https://buy.stripe.com/bJe00ibf00FD4htgto9ws0R" },
+    { "issue": "Issue 04", "title": "The Blueprint™ — Phase Four: Preservation", "price": "$300", "description": "Structural Stress Testing, Succession Infrastructure, Preservation of Mission Integrity, Legacy & Ethical Stewardship.", "link": "https://buy.stripe.com/14AcN4dn8fAxcNZ90W9ws0S" },
+    { "issue": "Complete Edition", "title": "The Blueprint™ — Complete Edition (All 5 Issues)", "price": "$900", "description": "The full Blueprint™ magazine series: Welcome + Phase 1 (Foundations) + Phase 2 (Infrastructure Planning) + Phase 3 (Internal Operating Systems) + Phase 4 (Preservation). The complete leadership infrastructure system.", "link": "https://buy.stripe.com/dRm3cucj45ZX9BN5OK9ws0T" }
+  ],
+
   "phase_products": [
     { "phase": "Phase I · Foundations", "title": "Leadership Infrastructure Strength Map™", "price": "$20", "description": "Identify one organizational strength and learn how to build infrastructure around it.", "link": "https://buy.stripe.com/bJeeVcbf01JHaFRelg9ws0k" },
     { "phase": "Phase II · Infrastructure Planning & Management", "title": "Leadership Alignment Map™", "price": "$50", "description": "Connect mission, vision, values, strategy, culture, and leadership.", "link": "https://buy.stripe.com/aFa6oG96S0FDaFR7WS9ws0l" },

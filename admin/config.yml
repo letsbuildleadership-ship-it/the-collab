@@ -267,6 +267,20 @@ collections:
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
+          - { label: "Blueprint eyebrow", name: "blueprint_eyebrow", widget: "string" }
+          - { label: "Blueprint headline", name: "blueprint_headline", widget: "string" }
+          - { label: "Blueprint body", name: "blueprint_body", widget: "text" }
+          - label: "Blueprint magazine issues"
+            name: "blueprint_products"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Issue tag", name: "issue", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string" }
+
           - { label: "IV Phases eyebrow", name: "phases_eyebrow", widget: "string" }
           - { label: "IV Phases headline", name: "phases_headline", widget: "string" }
 
