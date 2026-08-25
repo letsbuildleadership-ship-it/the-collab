@@ -61,6 +61,25 @@ is what actually delivers the PDF.
 7. Send a test purchase (Stripe test mode or a $0.50 live test) and confirm
    a row appears in `EVENT_LOG` and the buyer receives the email.
 
+## Status: live
+
+- Apps Script deployed as a Web App (`StripeWebhook.gs` alongside the
+  existing `Code.gs`), `STRIPE_SECRET_KEY` (restricted, read-only) and
+  `WEBHOOK_SHARED_SECRET` set as Script Properties.
+- Stripe webhook endpoint `we_1U8ACIAK6n3ctuR9XcWRHfsu` registered against
+  the deployment URL (with `?key=...` appended), subscribed to
+  `checkout.session.completed`, status `enabled`.
+- End-to-end flow is live: Payment Link → Stripe Checkout → webhook →
+  event re-verified against Stripe's API → PDF shared with buyer + email
+  sent → row logged to `EVENT_LOG`.
+- Stripe generates a `whsec_...` signing secret for every endpoint by
+  default; it's unused here by design (see the header-access limitation
+  above) and doesn't need to be stored anywhere.
+
+Recommended before the first real sale: send one test purchase through
+each of the 6 Payment Links (or at least one) and confirm the PDF email
+arrives and `EVENT_LOG` shows a `BLUEPRINT_SENT` row.
+
 ## Known limitation
 
 Because Apps Script can't read the `Stripe-Signature` header, this cannot
