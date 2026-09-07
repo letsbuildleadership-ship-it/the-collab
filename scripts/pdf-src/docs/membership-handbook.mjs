@@ -27,7 +27,7 @@ export const contentHtml = `
   <p style="font-size:10.5px; color:var(--ink-dim);">— Our mission, and the standard everything in your membership is built to.</p>
 
   <h2 class="doc-h2">How to access everything</h2>
-  <p>Sign in at <strong>thecollab.netlify.app/pages/account.html</strong> using the access link from your confirmation, or the email you purchased with. Every product you're entitled to appears there, organized by phase, with a direct download for each one.</p>
+  <p>Sign in at <strong>wearethellab.netlify.app/pages/account.html</strong> using the access link from your confirmation, or the email you purchased with. Every product you're entitled to appears there, organized by phase, with a direct download for each one.</p>
 </section>
 
 <section class="page">
