@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   /* scroll reveal */
   const revealTargets = document.querySelectorAll(
-    'section .eyebrow, section .headline, section .display, section .subhead, .card'
+    'section .eyebrow, section .headline, section .display, section .subhead, .card, .phase-node'
   );
 
   if ('IntersectionObserver' in window && !reduceMotion) {
