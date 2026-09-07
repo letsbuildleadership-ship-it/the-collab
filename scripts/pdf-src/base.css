@@ -7,10 +7,10 @@
   --paper-soft: #f3ead8;
   --hunter: #0f1d13;
   --hunter-soft: #17301d;
-  --orange: #ff8a1f;
-  --orange-deep: #e05f10;
-  --gold: #ffd873;
-  --ember: #ff3d1f;
+  --orange: #ff5a1f;
+  --orange-deep: #cc2a0a;
+  --gold: #ff7a1f;
+  --ember: #ff1a1a;
   --hairline: rgba(22, 36, 26, 0.16);
   --hairline-strong: rgba(22, 36, 26, 0.3);
 }
@@ -43,7 +43,7 @@ html, body {
   width: 8.5in;
   height: 11in;
   background: var(--hunter);
-  color: rgb(255, 141, 70);
+  color: rgb(255, 96, 46);
   position: relative;
   padding: 0.9in 0.9in;
   page-break-after: always;
@@ -55,8 +55,8 @@ html, body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 216, 115, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 216, 115, 0.09) 1px, transparent 1px);
+    linear-gradient(rgba(255, 90, 31, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 90, 31, 0.10) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -71,7 +71,7 @@ html, body {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 216, 115, 0.85);
+  color: rgba(255, 150, 90, 0.85);
   display: flex;
   align-items: center;
   gap: 0.7em;
@@ -105,17 +105,17 @@ html, body {
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 216, 115, 0.75);
+  color: rgba(255, 150, 90, 0.75);
 }
 .cover-meta strong { display: block; color: #fdf6ec; font-size: 13px; letter-spacing: 0; text-transform: none; margin-top: 0.2em; font-weight: 400; }
 
 .cover-footer {
   margin-top: auto;
   padding-top: 0.4in;
-  border-top: 1px solid rgba(255, 141, 70, 0.25);
+  border-top: 1px solid rgba(255, 96, 46, 0.25);
   font-size: 9.5px;
   letter-spacing: 0.06em;
-  color: rgba(255, 141, 70, 0.6);
+  color: rgba(255, 96, 46, 0.6);
   display: flex;
   justify-content: space-between;
 }
@@ -196,7 +196,7 @@ ul.doc-list li, ol.doc-list li { margin-bottom: 6px; }
 }
 
 table.doc-table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 11px; }
-table.doc-table th { text-align: left; background: var(--hunter); color: rgb(255, 216, 115); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 10px; }
+table.doc-table th { text-align: left; background: var(--hunter); color: rgb(255, 150, 90); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 10px; }
 table.doc-table td { padding: 8px 10px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
 table.doc-table tr:nth-child(even) td { background: rgba(22, 36, 26, 0.03); }
 
@@ -224,7 +224,7 @@ table.doc-table tr:nth-child(even) td { background: rgba(22, 36, 26, 0.03); }
   height: 24px;
   border-radius: 50%;
   background: var(--hunter);
-  color: rgb(255, 216, 115);
+  color: rgb(255, 150, 90);
   font-size: 11px;
   font-weight: 700;
   margin-right: 10px;

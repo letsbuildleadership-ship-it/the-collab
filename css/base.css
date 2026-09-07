@@ -1,9 +1,9 @@
 /* ==========================================================================
    THE CO.LLAB — design system
-   Hunter green canvas, architectural grid, orange type — austere UI
+   Hunter green canvas, architectural grid, fire red/orange type — austere UI
    (hairline rules, pill controls, zero decoration) built on a deep hunter
-   green background instead of black, with orange carrying every letter
-   and accent. Extreme scale jumps: ~12px nav → ~220px display.
+   green background instead of black, with a glowing red-to-orange flame
+   carrying every letter and accent. Extreme scale jumps: ~12px nav → ~220px display.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
@@ -12,25 +12,25 @@
   --black: #0f1d13;
   --black-rgb: 15, 29, 19;
   --black-soft: #17301d;
-  --text-rgb: 255, 141, 70;
+  --text-rgb: 255, 96, 46;
   --white: rgb(var(--text-rgb));
   --white-dim: rgba(var(--text-rgb), 0.66);
   --white-faint: rgba(var(--text-rgb), 0.4);
   --hairline: rgba(var(--text-rgb), 0.18);
   --hairline-strong: rgba(var(--text-rgb), 0.34);
 
-  /* amber/gold "filament" accent, for emphasis against base orange type */
-  --filament-1: #ff8a1f;
-  --filament-2: #ffd873;
-  --filament-1-rgb: 255, 138, 31;
-  --filament-2-rgb: 255, 216, 115;
+  /* fire "filament" accent — red to orange, for emphasis against base type */
+  --filament-1: #ff2e12;
+  --filament-2: #ff8a1f;
+  --filament-1-rgb: 255, 46, 18;
+  --filament-2-rgb: 255, 138, 31;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
 
-  /* orange-red "ember" accent — a hotter, glowing variant for rare emphasis */
-  --ember-1: #ff3d1f;
-  --ember-2: #ff9a3d;
-  --ember-1-rgb: 255, 61, 31;
-  --ember-2-rgb: 255, 154, 61;
+  /* hot "ember" accent — deep glowing red to orange, for rare emphasis */
+  --ember-1: #ff1a1a;
+  --ember-2: #ff7a1f;
+  --ember-1-rgb: 255, 26, 26;
+  --ember-2-rgb: 255, 122, 31;
   --ember: linear-gradient(90deg, var(--ember-1), var(--ember-2));
 
   /* pure paper white — the third voice in the type palette, used sparingly */
@@ -325,8 +325,9 @@ section {
   background-clip: text;
   color: transparent;
   filter:
-    drop-shadow(0 0 22px rgba(var(--ember-1-rgb), 0.5))
-    drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
+    drop-shadow(0 0 14px rgba(var(--ember-1-rgb), 0.75))
+    drop-shadow(0 0 30px rgba(var(--ember-1-rgb), 0.45))
+    drop-shadow(0 0 60px rgba(var(--ember-2-rgb), 0.3));
 }
 
 .display strong,
@@ -365,8 +366,9 @@ section {
   background-clip: text;
   color: transparent;
   filter:
-    drop-shadow(0 0 18px rgba(var(--ember-1-rgb), 0.45))
-    drop-shadow(0 0 38px rgba(var(--ember-2-rgb), 0.2));
+    drop-shadow(0 0 12px rgba(var(--ember-1-rgb), 0.65))
+    drop-shadow(0 0 26px rgba(var(--ember-1-rgb), 0.4))
+    drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
 }
 
 .text-paper { color: var(--paper); }
