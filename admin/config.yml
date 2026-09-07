@@ -84,6 +84,19 @@ collections:
                 name: "granted_by"
                 widget: "list"
                 field: { label: "Membership key", name: "key", widget: "string" }
+          - label: "The Blueprint™ series (separate product line, own webhook history)"
+            name: "blueprint_series"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price_display}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Phase label (leave blank for Welcome/Complete Edition)", name: "phase", widget: "string", required: false }
+              - { label: "Price (display)", name: "price_display", widget: "string" }
+              - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
+              - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
+              - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
 
   - name: "pages"
     label: "Pages"

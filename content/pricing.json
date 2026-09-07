@@ -120,8 +120,72 @@
       "price_display": "$1,000",
       "stripe_price_id": "price_1TjpktAK6n3ctuR9GTGot6Be",
       "payment_link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
-      "pdf_file": "founders-organization.pdf",
+      "pdf_file": "founders-legacy-member.pdf",
       "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available."
+    }
+  ],
+
+  "_blueprint_readme": "The Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
+  "blueprint_series": [
+    {
+      "key": "blueprint-welcome",
+      "name": "The Blueprint™ — Welcome",
+      "phase": null,
+      "price_display": "$300",
+      "stripe_price_id": "price_1U7aSuAK6n3ctuR9l90HwyP5",
+      "payment_link": "https://buy.stripe.com/3cI3cu96S4VT15ha509ws0I",
+      "pdf_file": "blueprint-welcome.pdf",
+      "description": "Issue 00 of The Blueprint™ magazine series — the foundation of The Co.LLab, mission, vision, and the architecture of leadership."
+    },
+    {
+      "key": "blueprint-phase1",
+      "name": "The Blueprint™ — Phase One: Foundations",
+      "phase": "Phase I · Foundations",
+      "price_display": "$300",
+      "stripe_price_id": "price_1U7aTAAK6n3ctuR99S4YmR56",
+      "payment_link": "https://buy.stripe.com/aFaeVc2Iu4VTeW7elg9ws0J",
+      "pdf_file": "blueprint-phase1.pdf",
+      "description": "Issue 01 of The Blueprint™ magazine series — structural grounding and leadership identity."
+    },
+    {
+      "key": "blueprint-phase2",
+      "name": "The Blueprint™ — Phase Two: Infrastructure Planning",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "price_display": "$300",
+      "stripe_price_id": "price_1U7aTPAK6n3ctuR97GWx9dmW",
+      "payment_link": "https://buy.stripe.com/bJeeVc0Am3RP9BN4KG9ws0K",
+      "pdf_file": "blueprint-phase2.pdf",
+      "description": "Issue 02 of The Blueprint™ magazine series — load mapping, accountability, and capacity planning."
+    },
+    {
+      "key": "blueprint-phase3",
+      "name": "The Blueprint™ — Phase Three: Internal Operating Systems",
+      "phase": "Phase III · Internal Operating Systems",
+      "price_display": "$300",
+      "stripe_price_id": "price_1U7aTdAK6n3ctuR9TlxJ4Mzf",
+      "payment_link": "https://buy.stripe.com/5kQ9ASercfAxaFR7WS9ws0L",
+      "pdf_file": "blueprint-phase3.pdf",
+      "description": "Issue 03 of The Blueprint™ magazine series — communication infrastructure, decision architecture, and culture."
+    },
+    {
+      "key": "blueprint-phase4",
+      "name": "The Blueprint™ — Phase Four: Preservation",
+      "phase": "Phase IV · Preservation",
+      "price_display": "$300",
+      "stripe_price_id": "price_1U7aTsAK6n3ctuR90SycsLmg",
+      "payment_link": "https://buy.stripe.com/28E00i1Eq8857tFgto9ws0M",
+      "pdf_file": "blueprint-phase4.pdf",
+      "description": "Issue 04 of The Blueprint™ magazine series — succession, resilience, and sustaining what's built."
+    },
+    {
+      "key": "blueprint-complete",
+      "name": "The Blueprint™ — Complete Edition (All 5 Issues)",
+      "phase": null,
+      "price_display": "$900",
+      "stripe_price_id": "price_1U7aU7AK6n3ctuR9rxOzHC0A",
+      "payment_link": "https://buy.stripe.com/3cI14m3Mybkh5lxcd89ws0N",
+      "pdf_file": "blueprint-complete.pdf",
+      "description": "The full Blueprint™ magazine series: Welcome + all four phases, in one edition."
     }
   ],
 

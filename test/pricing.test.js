@@ -58,3 +58,15 @@ test('bonus product infrastructure-roadmap resolves via entryForKey', () => {
   assert.equal(entry.kind, 'bonus');
   assert.equal(entry.pdf_file, 'infrastructure-roadmap.pdf');
 });
+
+test('Blueprint series resolves for webhook/download but is excluded from the IV Phases catalog', () => {
+  for (const p of pricing.registry.blueprint_series) {
+    assert.equal(pricing.keyForPriceId(p.stripe_price_id), p.key);
+    assert.equal(pricing.entryForKey(p.key).kind, 'blueprint');
+  }
+  const catalogKeys = pricing.allCatalogProductKeys();
+  for (const p of pricing.registry.blueprint_series) {
+    assert.ok(!catalogKeys.includes(p.key), `${p.key} should not appear in the upsell catalog`);
+  }
+  assert.equal(pricing.registry.blueprint_series.length, 6);
+});
