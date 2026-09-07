@@ -5,7 +5,7 @@
     { "text": "The .LLab™.", "style": "glow", "break_before": false }
   ],
   "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
-  "prototype_notice": "Every product below is an early prototype and is set to be transformed soon.",
+  "prototype_notice": "Every product below is delivered digitally to your .LLab™ account immediately after purchase.",
 
   "creator_eyebrow": "Coming soon",
   "creator_headline": "Creator Infrastructure™.",
@@ -22,11 +22,23 @@
     { "text": "The .LLab Membership", "style": "glow", "break_before": false },
     { "text": "™", "style": "default", "break_before": false }
   ],
-  "membership_status": "Coming Soon",
-  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™. Not open yet — here's what it will cost when it launches.",
+  "membership_status": "Open Now",
+  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™ — including the full .LLab™ IV Phases catalog below, unlocked.",
   "membership_tiers": [
-    { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly." },
-    { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually." }
+    { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly.", "link": "https://buy.stripe.com/eVqfZg1EqewtaFRfpk9ws0U" },
+    { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually. Two months free.", "link": "https://buy.stripe.com/8x24gy2Iuagd6pB0uq9ws0V" }
+  ],
+
+  "library_eyebrow": "The digital library",
+  "library_headline": [
+    { "text": "The .LLab Library Card", "style": "glow", "break_before": false },
+    { "text": "™", "style": "default", "break_before": false }
+  ],
+  "library_status": "Founding Rate — Open Now",
+  "library_body": "Founding access to the .LLab digital library — the curated resource stream, welcome guide, and infrastructure roadmap that sit underneath every .LLab™ product. The on-ramp for anyone not ready for full Membership.",
+  "library_tiers": [
+    { "tag": "Monthly", "price": "$10/mo", "description": "Founding-rate monthly access to the digital library.", "link": "https://buy.stripe.com/aFa3cu82O88529l1yu9ws0W" },
+    { "tag": "Annual", "price": "$100/yr", "description": "Founding-rate annual access to the digital library. Two months free.", "link": "https://buy.stripe.com/9B600i3My1JH8xJ4KG9ws0X" }
   ],
 
   "phases_eyebrow": "Buy what you need, when you need it",

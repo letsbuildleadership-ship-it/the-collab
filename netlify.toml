@@ -1,7 +1,34 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  included_files = ["content/library/**"]
+
+# Required environment variables (set in Netlify: Site configuration ->
+# Environment variables — never commit real values):
+#   STRIPE_SECRET_KEY     live secret key for the Co.LLab Stripe account
+#   STRIPE_WEBHOOK_SECRET signing secret for the "The Co.LLab website" webhook
+#                         endpoint (Stripe dashboard -> Developers -> Webhooks)
+#   ADMIN_TOKEN           bearer token the owner uses to sign in at /admin/customers.html
+
 [[headers]]
   for = "/content/*.json"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[redirects]]
+  from = "/account"
+  to = "/pages/account.html"
+  status = 200
+
+[[redirects]]
+  from = "/library-card"
+  to = "/pages/products.html#library-card"
+  status = 301
+
+[[redirects]]
+  from = "/membership"
+  to = "/pages/products.html#membership"
+  status = 301

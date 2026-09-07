@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Account — The Co.LLab™</title>
+<meta name="description" content="Access your .LLab™ library, entitlements, and the four-phase infrastructure you've built." />
+<link rel="canonical" href="https://thecollab.netlify.app/pages/account.html" />
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
+<link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
+<style>
+  .phase-group { margin-top: 3rem; }
+  .phase-group h3 { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-1); font-weight: 600; margin: 0 0 1rem; }
+  .item-card { display: flex; flex-direction: column; gap: 0.75rem; }
+  .item-card .item-name { font-size: 1.1rem; font-weight: 400; margin: 0; }
+  .item-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: auto; }
+  .save-link-box { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; background: var(--black-soft); border: 1px solid var(--hairline-strong); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+  .save-link-box input { flex: 1; min-width: 220px; background: transparent; border: 1px solid var(--hairline); border-radius: 999px; padding: 0.6em 1em; color: var(--white); font-family: var(--font); font-size: 0.82rem; }
+  .badge-active { color: var(--filament-2); }
+  .badge-canceled { color: var(--white-faint); }
+  #account-loading { text-align: center; padding: 4rem 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="founders.html">Build</a></li>
+        <li><a href="think.html">Think</a></li>
+        <li><a href="journal.html">The .LLab Journal™</a></li>
+        <li><a href="products.html">.LLab</a></li>
+        <li><a href="account.html" aria-current="page">Account</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom: clamp(2rem, 5vw, 3rem);">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;">
+      <p class="eyebrow">Your infrastructure, in one place</p>
+      <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>.LLab™</strong> Account.</h1>
+      <p class="subhead" style="margin-top:2rem;">Every product, membership, and download you've unlocked — organized across all four phases.</p>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <div id="account-loading" class="wrap">
+    <p class="subhead">Loading your account…</p>
+  </div>
+
+  <section id="account-confirming" hidden>
+    <div class="wrap" style="text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">One moment</p>
+      <h2 class="headline" style="margin-top:1.5rem;">Confirming your purchase…</h2>
+      <p class="subhead" style="margin:1.5rem auto 0;">This usually takes a few seconds. Don't close this tab.</p>
+    </div>
+  </section>
+
+  <section id="account-signed-out" hidden>
+    <div class="wrap">
+      <div class="grid grid-2">
+        <div class="card">
+          <span class="num">Already purchased something?</span>
+          <h3>Your access link signed you in automatically</h3>
+          <p>After checkout, Stripe sends you back here and your account unlocks on its own. If you're seeing this instead, your link may have expired on this device.</p>
+        </div>
+        <div class="card">
+          <span class="num">Restore access</span>
+          <h3>Paste your access link or token</h3>
+          <p style="margin-bottom:0.5rem;">We emailed and displayed a personal access link the first time you purchased. Paste it — or just the token at the end of it — below.</p>
+          <form id="restore-form" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <input id="restore-input" type="text" placeholder="Access link or token" style="flex:1; min-width:200px; background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
+            <button type="submit" class="pill pill--solid">Restore <span class="arrow">→</span></button>
+          </form>
+          <p id="restore-error" class="subhead" style="margin-top:0.75rem; font-size:0.85rem; display:none;">We couldn't find an account for that link. Contact <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">letsbuildleadership@gmail.com</a> for help.</p>
+        </div>
+      </div>
+      <p class="subhead" style="margin-top:2.5rem;">Haven't purchased yet? <a href="products.html" style="text-decoration:underline;">Explore The .LLab™</a>.</p>
+    </div>
+  </section>
+
+  <section id="account-dashboard" hidden>
+    <div class="wrap">
+
+      <div id="save-link-callout" class="save-link-box" hidden>
+        <div style="flex:1; min-width:240px;">
+          <strong style="display:block; color: var(--filament-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.35rem;">Save this link — it's how you get back in</strong>
+          <span style="font-size:0.85rem; color: var(--white-dim);">This device is signed in now, but bookmark or save your link for any other device.</span>
+        </div>
+        <input id="save-link-input" type="text" readonly />
+        <button type="button" id="save-link-copy" class="pill">Copy</button>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:2rem;">
+        <div class="card">
+          <span class="num">Signed in as</span>
+          <h3 id="account-email" style="font-size:1.1rem;">—</h3>
+        </div>
+        <div class="card" id="membership-status-card">
+          <span class="num">.LLab Membership™</span>
+          <h3 id="membership-status">Not active</h3>
+          <p><a href="products.html#membership" style="text-decoration:underline;">View membership</a></p>
+        </div>
+        <div class="card" id="library-status-card">
+          <span class="num">.LLab Library Card™</span>
+          <h3 id="library-status">Not active</h3>
+          <p><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
+        </div>
+      </div>
+
+      <div id="benefits-group" class="phase-group" hidden>
+        <h3>Membership, Library &amp; Journal</h3>
+        <div class="grid grid-3" id="benefits-list"></div>
+      </div>
+
+      <div id="phase-groups"></div>
+
+      <div id="locked-group" class="phase-group" hidden>
+        <h3>Explore what's next</h3>
+        <div class="grid grid-3" id="locked-list"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="account-error" hidden>
+    <div class="wrap" style="text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">Something went wrong</p>
+      <h2 class="headline" style="margin-top:1.5rem;">We couldn't load your account.</h2>
+      <p class="subhead" style="margin:1.5rem auto 0;" id="account-error-message">Please try again in a moment, or contact <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">support</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+        <p style="margin-top:1.25rem; max-width:32ch;">The Co.LLab: Building Leadership Infrastructure™.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="founders.html">Build</a></li>
+          <li><a href="think.html">Think</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="journal.html">The .LLab Journal™</a></li>
+          <li><a href="products.html">.LLab</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Coming Soon</h4>
+        <ul>
+          <li><a href="atelier.html">.LLab Atelier™</a></li>
+          <li><a href="community.html">Co.LLab+™</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><p>letsbuildleadership@gmail.com</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
+      <span>The Co.LLab: Building Leadership Infrastructure™</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/account.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

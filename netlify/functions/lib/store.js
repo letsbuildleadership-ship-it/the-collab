@@ -1,0 +1,102 @@
+// Customer / entitlement storage on Netlify Blobs. No external database or
+// credentials required — Netlify auto-configures Blobs inside Functions.
+//
+// Layout (all JSON documents in the "collab-customers" store):
+//   customers/{token}.json        -> full customer record (see newCustomer)
+//   by-email/{emailHash}.json     -> { token }               (find existing account on repeat purchase)
+//   by-subscription/{subId}.json  -> { token, membershipKey } (resolve subscription webhook events)
+//   by-stripe-customer/{custId}.json -> { token }             (resolve customer-level webhook events)
+const crypto = require('crypto');
+const { getStore } = require('@netlify/blobs');
+
+function store() {
+  return getStore('collab-customers');
+}
+
+function randomToken() {
+  return crypto.randomBytes(24).toString('base64url');
+}
+
+function hashEmail(email) {
+  return crypto.createHash('sha256').update(String(email).trim().toLowerCase()).digest('hex');
+}
+
+function newCustomer(email, token) {
+  const now = new Date().toISOString();
+  return {
+    token,
+    email: String(email).trim().toLowerCase(),
+    createdAt: now,
+    updatedAt: now,
+    stripeCustomerId: null,
+    entitlements: [],
+    memberships: {}, // { [membershipKey]: { status, interval, subscriptionId, currentPeriodEnd } }
+    purchases: [], // [{ key, priceId, sessionId, amount, currency, purchasedAt }]
+  };
+}
+
+async function getCustomerByToken(token) {
+  if (!token) return null;
+  return (await store().get(`customers/${token}.json`, { type: 'json' })) || null;
+}
+
+async function saveCustomer(record) {
+  record.updatedAt = new Date().toISOString();
+  await store().setJSON(`customers/${record.token}.json`, record);
+  return record;
+}
+
+async function getTokenByEmail(email) {
+  const doc = await store().get(`by-email/${hashEmail(email)}.json`, { type: 'json' });
+  return doc ? doc.token : null;
+}
+
+async function setTokenForEmail(email, token) {
+  await store().setJSON(`by-email/${hashEmail(email)}.json`, { token });
+}
+
+/** Find the existing account for this email, or create a fresh one. */
+async function getOrCreateCustomerByEmail(email) {
+  const existingToken = await getTokenByEmail(email);
+  if (existingToken) {
+    const record = await getCustomerByToken(existingToken);
+    if (record) return { token: existingToken, record, isNew: false };
+  }
+  const token = randomToken();
+  const record = newCustomer(email, token);
+  await saveCustomer(record);
+  await setTokenForEmail(email, token);
+  return { token, record, isNew: true };
+}
+
+async function linkStripeCustomer(stripeCustomerId, token) {
+  if (!stripeCustomerId) return;
+  await store().setJSON(`by-stripe-customer/${stripeCustomerId}.json`, { token });
+}
+
+async function getTokenByStripeCustomer(stripeCustomerId) {
+  const doc = await store().get(`by-stripe-customer/${stripeCustomerId}.json`, { type: 'json' });
+  return doc ? doc.token : null;
+}
+
+async function linkSubscription(subscriptionId, token, membershipKey) {
+  await store().setJSON(`by-subscription/${subscriptionId}.json`, { token, membershipKey });
+}
+
+async function getSubscriptionLink(subscriptionId) {
+  return store().get(`by-subscription/${subscriptionId}.json`, { type: 'json' });
+}
+
+module.exports = {
+  randomToken,
+  hashEmail,
+  getCustomerByToken,
+  saveCustomer,
+  getTokenByEmail,
+  setTokenForEmail,
+  getOrCreateCustomerByEmail,
+  linkStripeCustomer,
+  getTokenByStripeCustomer,
+  linkSubscription,
+  getSubscriptionLink,
+};

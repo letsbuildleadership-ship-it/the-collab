@@ -11,6 +11,13 @@
   "teaser_headline": "The .LLab Journal™.",
   "teaser_body": "An invitation-curated collection — the people who do the work. Craftspeople, tradespeople, makers: those who have mastered what they do and thought carefully about what it means to leave it behind. Access will be limited. This is not for everyone.",
 
+  "subscribe_eyebrow": "Read Volume One now",
+  "subscribe_headline": "Subscribe to The .LLab Journal™.",
+  "subscribe_body": "Volume One is available now to subscribers — three essays on stewardship, systems, and succession, with new entries added as the curated collection grows.",
+  "subscribe_tag": "Annual",
+  "subscribe_price": "$150/yr",
+  "subscribe_link": "https://buy.stripe.com/7sY9AS96S88515h6SO9ws0Y",
+
   "arc_eyebrow": "How an idea becomes infrastructure",
   "arc_steps": [
     { "title": "Ideas & Frameworks", "description": "Original thinking on stewardship, systems, and leadership infrastructure." },
@@ -21,9 +28,9 @@
 
   "entries_eyebrow": "Recent entries",
   "entries": [
-    { "tag": "Framework", "title": "On Stewardship as Infrastructure", "description": "Why leadership built on responsibility outlasts leadership built on charisma.", "link": "#" },
-    { "tag": "Framework", "title": "Systems Before Scale", "description": "The decision pathways an organization needs before it can grow.", "link": "#" },
-    { "tag": "Framework", "title": "Succession Is a Design Problem", "description": "Building organizations that operate beyond any one founder or leader.", "link": "#" }
+    { "tag": "Framework", "title": "On Stewardship as Infrastructure", "description": "Why leadership built on responsibility outlasts leadership built on charisma.", "link": "#journal-subscribe" },
+    { "tag": "Framework", "title": "Systems Before Scale", "description": "The decision pathways an organization needs before it can grow.", "link": "#journal-subscribe" },
+    { "tag": "Framework", "title": "Succession Is a Design Problem", "description": "Building organizations that operate beyond any one founder or leader.", "link": "#journal-subscribe" }
   ],
 
   "closing_eyebrow": "Go deeper",

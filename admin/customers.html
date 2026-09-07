@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customers — The Co.LLab™ Admin</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<style>
+  body { padding: 2.5rem clamp(1.25rem, 4vw, 3rem); }
+  table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.85rem; }
+  th, td { text-align: left; padding: 0.7em 0.9em; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  th { color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+  .tag-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+  .mini { font-size: 0.7rem; padding: 0.25em 0.7em; }
+  input, select { background: transparent; border: 1px solid var(--hairline-strong); border-radius: 8px; padding: 0.5em 0.8em; color: var(--white); font-family: var(--font); }
+  #gate { max-width: 420px; margin: 8rem auto; text-align: center; }
+  #app { display: none; max-width: 1200px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <p class="eyebrow" style="justify-content:center;">Owner access only</p>
+  <h1 class="headline" style="margin-top:1.25rem;">Admin sign-in</h1>
+  <p class="subhead" style="margin:1rem auto 1.5rem;">Enter the ADMIN_TOKEN configured in Netlify's environment variables.</p>
+  <form id="gate-form" style="display:flex; gap:0.6rem;">
+    <input id="gate-input" type="password" placeholder="Admin token" style="flex:1;" />
+    <button type="submit" class="pill pill--solid">Enter</button>
+  </form>
+  <p id="gate-error" style="display:none; margin-top:1rem; color: var(--ember-2); font-size:0.85rem;">Invalid token.</p>
+</div>
+
+<div id="app">
+  <p class="eyebrow">The Co.LLab™ Admin</p>
+  <h1 class="headline" style="margin-top:1rem;">Customers &amp; Entitlements</h1>
+  <p class="subhead" style="margin-top:0.75rem;">Manually grant or revoke access — e.g. comps, refunds, support fixes. Real purchases are granted automatically by the Stripe webhook; this is only for exceptions.</p>
+
+  <div style="display:flex; gap:0.75rem; margin-top:2rem; align-items:center;">
+    <input id="search-input" type="text" placeholder="Find by email" style="min-width:260px;" />
+    <button id="search-btn" class="pill mini">Find</button>
+    <button id="refresh-btn" class="pill mini">Refresh list</button>
+    <span id="status-text" style="font-size:0.8rem; color: var(--white-faint);"></span>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Email</th><th>Since</th><th>Entitlements</th><th>Memberships</th><th>Grant</th></tr>
+    </thead>
+    <tbody id="customers-body"></tbody>
+  </table>
+</div>
+
+<script>
+(function () {
+  const ADMIN_KEY = 'collab_admin_token';
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  let catalog = [];
+
+  function token() { return sessionStorage.getItem(ADMIN_KEY); }
+
+  async function api(path, opts) {
+    const res = await fetch(`/.netlify/functions/admin-customers${path}`, {
+      ...opts,
+      headers: { ...(opts && opts.headers), 'X-Admin-Token': token(), 'Content-Type': 'application/json' },
+    });
+    if (res.status === 401) {
+      sessionStorage.removeItem(ADMIN_KEY);
+      gate.style.display = 'block';
+      app.style.display = 'none';
+      throw new Error('Unauthorized');
+    }
+    return res.json();
+  }
+
+  function renderRow(c) {
+    const tr = document.createElement('tr');
+    const memberships = Object.entries(c.memberships || {})
+      .map(([k, m]) => `${k}: ${m.status}`)
+      .join(', ') || '—';
+    const entitlements = (c.entitlements || []).join(', ') || '—';
+
+    const select = document.createElement('select');
+    catalog.forEach((key) => {
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = key;
+      select.appendChild(opt);
+    });
+
+    tr.innerHTML = `
+      <td>${c.email}</td>
+      <td>${new Date(c.createdAt).toLocaleDateString()}</td>
+      <td>${entitlements}</td>
+      <td>${memberships}</td>
+      <td></td>
+    `;
+    const actionCell = tr.querySelector('td:last-child');
+    actionCell.appendChild(select);
+    const grantBtn = document.createElement('button');
+    grantBtn.className = 'pill mini';
+    grantBtn.style.marginLeft = '0.4rem';
+    grantBtn.textContent = 'Grant';
+    grantBtn.onclick = async () => {
+      await api('', { method: 'POST', body: JSON.stringify({ action: 'grant', token: c.token, key: select.value }) });
+      loadList();
+    };
+    const revokeBtn = document.createElement('button');
+    revokeBtn.className = 'pill mini';
+    revokeBtn.style.marginLeft = '0.4rem';
+    revokeBtn.textContent = 'Revoke';
+    revokeBtn.onclick = async () => {
+      await api('', { method: 'POST', body: JSON.stringify({ action: 'revoke', token: c.token, key: select.value }) });
+      loadList();
+    };
+    actionCell.appendChild(grantBtn);
+    actionCell.appendChild(revokeBtn);
+    return tr;
+  }
+
+  async function loadList() {
+    document.getElementById('status-text').textContent = 'Loading…';
+    const data = await api('?action=list');
+    catalog = data.catalog || [];
+    const body = document.getElementById('customers-body');
+    body.innerHTML = '';
+    (data.customers || []).forEach((c) => body.appendChild(renderRow(c)));
+    document.getElementById('status-text').textContent = `${(data.customers || []).length} customer(s)`;
+  }
+
+  async function search() {
+    const email = document.getElementById('search-input').value.trim();
+    if (!email) return loadList();
+    const data = await api(`?action=find&email=${encodeURIComponent(email)}`);
+    catalog = catalog.length ? catalog : [];
+    const body = document.getElementById('customers-body');
+    body.innerHTML = '';
+    if (data.customer) body.appendChild(renderRow(data.customer));
+    document.getElementById('status-text').textContent = data.customer ? '1 customer' : 'Not found';
+  }
+
+  document.getElementById('gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const value = document.getElementById('gate-input').value.trim();
+    if (!value) return;
+    sessionStorage.setItem(ADMIN_KEY, value);
+    try {
+      await loadList();
+      gate.style.display = 'none';
+      app.style.display = 'block';
+    } catch (err) {
+      document.getElementById('gate-error').style.display = 'block';
+    }
+  });
+
+  document.getElementById('search-btn').addEventListener('click', search);
+  document.getElementById('refresh-btn').addEventListener('click', loadList);
+
+  if (token()) {
+    loadList()
+      .then(() => {
+        gate.style.display = 'none';
+        app.style.display = 'block';
+      })
+      .catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
