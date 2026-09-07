@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thecollab.netlify.app/sitemap.xml
+Sitemap: https://wearethellab.netlify.app/sitemap.xml

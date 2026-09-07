@@ -24,7 +24,7 @@ export const contentHtml = `
   </div>
 
   <h2 class="doc-h2">How to access it</h2>
-  <p>Sign in at <strong>thecollab.netlify.app/pages/account.html</strong> with the access link from your confirmation, or the email you purchased with. Your library items appear there, ready to download.</p>
+  <p>Sign in at <strong>wearethellab.netlify.app/pages/account.html</strong> with the access link from your confirmation, or the email you purchased with. Your library items appear there, ready to download.</p>
 </section>
 
 <section class="page">
