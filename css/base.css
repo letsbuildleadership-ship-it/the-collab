@@ -1,9 +1,9 @@
 /* ==========================================================================
    THE CO.LLAB — design system
-   Hunter green canvas, architectural grid, orange type — austere UI
+   Hunter green canvas, architectural grid, fire red/orange type — austere UI
    (hairline rules, pill controls, zero decoration) built on a deep hunter
-   green background instead of black, with orange carrying every letter
-   and accent. Extreme scale jumps: ~12px nav → ~220px display.
+   green background instead of black, with a glowing red-to-orange flame
+   carrying every letter and accent. Extreme scale jumps: ~12px nav → ~220px display.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
@@ -12,25 +12,25 @@
   --black: #0f1d13;
   --black-rgb: 15, 29, 19;
   --black-soft: #17301d;
-  --text-rgb: 255, 141, 70;
+  --text-rgb: 255, 96, 46;
   --white: rgb(var(--text-rgb));
   --white-dim: rgba(var(--text-rgb), 0.66);
   --white-faint: rgba(var(--text-rgb), 0.4);
   --hairline: rgba(var(--text-rgb), 0.18);
   --hairline-strong: rgba(var(--text-rgb), 0.34);
 
-  /* amber/gold "filament" accent, for emphasis against base orange type */
-  --filament-1: #ff8a1f;
-  --filament-2: #ffd873;
-  --filament-1-rgb: 255, 138, 31;
-  --filament-2-rgb: 255, 216, 115;
+  /* fire "filament" accent — red to orange, for emphasis against base type */
+  --filament-1: #ff2e12;
+  --filament-2: #ff8a1f;
+  --filament-1-rgb: 255, 46, 18;
+  --filament-2-rgb: 255, 138, 31;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
 
-  /* orange-red "ember" accent — a hotter, glowing variant for rare emphasis */
-  --ember-1: #ff3d1f;
-  --ember-2: #ff9a3d;
-  --ember-1-rgb: 255, 61, 31;
-  --ember-2-rgb: 255, 154, 61;
+  /* hot "ember" accent — deep glowing red to orange, for rare emphasis */
+  --ember-1: #ff1a1a;
+  --ember-2: #ff7a1f;
+  --ember-1-rgb: 255, 26, 26;
+  --ember-2-rgb: 255, 122, 31;
   --ember: linear-gradient(90deg, var(--ember-1), var(--ember-2));
 
   /* pure paper white — the third voice in the type palette, used sparingly */
@@ -325,8 +325,9 @@ section {
   background-clip: text;
   color: transparent;
   filter:
-    drop-shadow(0 0 22px rgba(var(--ember-1-rgb), 0.5))
-    drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
+    drop-shadow(0 0 14px rgba(var(--ember-1-rgb), 0.75))
+    drop-shadow(0 0 30px rgba(var(--ember-1-rgb), 0.45))
+    drop-shadow(0 0 60px rgba(var(--ember-2-rgb), 0.3));
 }
 
 .display strong,
@@ -365,8 +366,9 @@ section {
   background-clip: text;
   color: transparent;
   filter:
-    drop-shadow(0 0 18px rgba(var(--ember-1-rgb), 0.45))
-    drop-shadow(0 0 38px rgba(var(--ember-2-rgb), 0.2));
+    drop-shadow(0 0 12px rgba(var(--ember-1-rgb), 0.65))
+    drop-shadow(0 0 26px rgba(var(--ember-1-rgb), 0.4))
+    drop-shadow(0 0 48px rgba(var(--ember-2-rgb), 0.25));
 }
 
 .text-paper { color: var(--paper); }
@@ -672,4 +674,108 @@ html.js .grid .card:nth-child(5) { transition-delay: 280ms; }
     transform: none;
     transition: none;
   }
+}
+
+/* ---------- phase rail — the four-phase model, as a connected sequence ---------- */
+
+.phase-rail {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+.phase-rail::before {
+  content: '';
+  position: absolute;
+  top: 27px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--filament-1) 12%, var(--filament-2) 50%, var(--filament-1) 88%, transparent);
+  opacity: 0.5;
+}
+
+@media (max-width: 860px) {
+  .phase-rail { grid-template-columns: 1fr; gap: 2.25rem; }
+  .phase-rail::before { top: 0; bottom: 0; left: 27px; right: auto; width: 1px; height: auto; background: linear-gradient(180deg, transparent, var(--filament-1) 8%, var(--filament-2) 50%, var(--filament-1) 92%, transparent); }
+  .phase-node { display: flex; align-items: flex-start; gap: 1.25rem; }
+  .phase-node .phase-badge { margin-bottom: 0; flex-shrink: 0; }
+}
+
+.phase-node {
+  position: relative;
+  z-index: 1;
+}
+
+.phase-node .phase-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.phase-node .phase-badge span {
+  background: var(--ember);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.phase-node:hover .phase-badge {
+  border-color: rgba(var(--ember-1-rgb), 0.7);
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px rgba(var(--ember-1-rgb), 0.5),
+    0 0 20px rgba(var(--ember-1-rgb), 0.5),
+    0 0 46px rgba(var(--ember-2-rgb), 0.3);
+}
+
+.phase-node .phase-tagline {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin: 0 0 0.5rem;
+}
+
+.phase-node h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6rem;
+}
+
+.phase-node p {
+  color: var(--white-dim);
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.55;
+}
+
+html.js .phase-node {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
+
+.phase-rail .phase-node:nth-child(1) { transition-delay: 0ms; }
+.phase-rail .phase-node:nth-child(2) { transition-delay: 90ms; }
+.phase-rail .phase-node:nth-child(3) { transition-delay: 180ms; }
+.phase-rail .phase-node:nth-child(4) { transition-delay: 270ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .phase-node { opacity: 1; transform: none; transition: none; }
 }

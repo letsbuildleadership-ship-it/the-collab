@@ -24,6 +24,80 @@ collections:
           - { label: "Footer tagline", name: "footer_tagline", widget: "string" }
           - { label: "Contact email", name: "contact_email", widget: "string" }
 
+  - name: "commerce"
+    label: "Products & Pricing"
+    files:
+      - name: "pricing"
+        label: "Pricing Registry (Stripe)"
+        file: "content/pricing.json"
+        fields:
+          - { label: "Internal note (not shown to customers)", name: "_readme", widget: "text", required: false }
+          - label: "One-time .LLab products (IV Phases + Founders)"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price_display}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Product name", name: "name", widget: "string" }
+              - { label: "Phase label", name: "phase", widget: "string" }
+              - { label: "Phase key", name: "phase_key", widget: "select", options: ["foundations", "infrastructure-planning", "operating-systems", "preservation", "founders"] }
+              - { label: "Price (display)", name: "price_display", widget: "string" }
+              - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
+              - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
+              - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Recurring memberships (Membership, Library Card, Journal)"
+            name: "memberships"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
+              - label: "Bonus product keys granted on purchase"
+                name: "grants"
+                widget: "list"
+                field: { label: "Bonus key", name: "key", widget: "string" }
+                required: false
+              - { label: "Unlocks full .LLab product catalog?", name: "unlocks_catalog", widget: "boolean", default: false }
+              - label: "Billing plans"
+                name: "plans"
+                widget: "list"
+                summary: "{{fields.interval}} — {{fields.price_display}}"
+                fields:
+                  - { label: "Interval", name: "interval", widget: "select", options: ["month", "year"] }
+                  - { label: "Price (display)", name: "price_display", widget: "string" }
+                  - { label: "Founding-rate plan?", name: "founding", widget: "boolean", default: false, required: false }
+                  - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
+                  - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
+          - label: "Bonus / bundled products (no direct Stripe price)"
+            name: "bonus_products"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
+              - label: "Granted by membership/library-card keys"
+                name: "granted_by"
+                widget: "list"
+                field: { label: "Membership key", name: "key", widget: "string" }
+          - label: "The Blueprint™ series (separate product line, own webhook history)"
+            name: "blueprint_series"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price_display}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Phase label (leave blank for Welcome/Complete Edition)", name: "phase", widget: "string", required: false }
+              - { label: "Price (display)", name: "price_display", widget: "string" }
+              - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
+              - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
+              - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
   - name: "pages"
     label: "Pages"
     files:
@@ -216,6 +290,13 @@ collections:
           - { label: "Fall teaser headline", name: "teaser_headline", widget: "string" }
           - { label: "Fall teaser body", name: "teaser_body", widget: "text" }
 
+          - { label: "Subscribe eyebrow", name: "subscribe_eyebrow", widget: "string" }
+          - { label: "Subscribe headline", name: "subscribe_headline", widget: "string" }
+          - { label: "Subscribe body", name: "subscribe_body", widget: "text" }
+          - { label: "Subscribe tag", name: "subscribe_tag", widget: "string" }
+          - { label: "Subscribe price", name: "subscribe_price", widget: "string" }
+          - { label: "Subscribe Stripe link", name: "subscribe_link", widget: "string" }
+
           - { label: "Arc eyebrow", name: "arc_eyebrow", widget: "string" }
           - label: "Arc steps"
             name: "arc_steps"
@@ -258,7 +339,7 @@ collections:
             fields: *headline_segment_fields
           - { label: "Membership status badge", name: "membership_status", widget: "string" }
           - { label: "Membership body", name: "membership_body", widget: "text" }
-          - label: "Membership reference pricing tiers"
+          - label: "Membership pricing tiers"
             name: "membership_tiers"
             widget: "list"
             summary: "{{fields.tag}} — {{fields.price}}"
@@ -266,6 +347,25 @@ collections:
               - { label: "Tier name", name: "tag", widget: "string" }
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string" }
+
+          - { label: "Library Card eyebrow", name: "library_eyebrow", widget: "string" }
+          - label: "Library Card headline"
+            name: "library_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Library Card status badge", name: "library_status", widget: "string" }
+          - { label: "Library Card body", name: "library_body", widget: "text" }
+          - label: "Library Card pricing tiers"
+            name: "library_tiers"
+            widget: "list"
+            summary: "{{fields.tag}} — {{fields.price}}"
+            fields:
+              - { label: "Tier name", name: "tag", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string" }
 
           - { label: "IV Phases eyebrow", name: "phases_eyebrow", widget: "string" }
           - { label: "IV Phases headline", name: "phases_headline", widget: "string" }

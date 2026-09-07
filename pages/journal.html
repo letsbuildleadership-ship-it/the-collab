@@ -40,6 +40,7 @@
         <li><a href="think.html">Think</a></li>
         <li><a href="journal.html" aria-current="page">The .LLab Journal™</a></li>
         <li><a href="products.html">.LLab</a></li>
+        <li><a href="account.html">Account</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -49,7 +50,7 @@
 
 <main>
 
-  <section class="hero" style="padding-bottom: clamp(2rem, 5vw, 3rem);">
+  <section class="hero hero--photo" style="padding-bottom: clamp(2rem, 5vw, 3rem); background-image: url('../assets/img/photography/the-path.jpg'); background-position: center 60%;">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
       <p class="eyebrow" data-field="eyebrow">The .LLab Journal™</p>
@@ -75,6 +76,25 @@
         makers: those who have mastered what they do and thought carefully about what it means to
         leave it behind. Access will be limited. This is not for everyone.
       </p>
+    </div>
+  </section>
+
+  <hr class="hairline" />
+
+  <section id="journal-subscribe" style="text-align:center;">
+    <div class="wrap">
+      <p class="eyebrow" data-field="subscribe_eyebrow" style="justify-content:center;">Read Volume One now</p>
+      <h2 class="headline" data-field="subscribe_headline" style="margin-top:1.5rem;">Subscribe to The .LLab Journal<span style="font-weight:500;">™</span>.</h2>
+      <p class="subhead" data-field="subscribe_body" style="margin:1.5rem auto 0;">
+        Volume One is available now to subscribers — three essays on stewardship, systems, and
+        succession, with new entries added as the curated collection grows.
+      </p>
+      <div class="card" style="max-width:340px; margin:2rem auto 0; text-align:left;">
+        <span class="num" data-field="subscribe_tag">Annual</span>
+        <h3 data-field="subscribe_price">$150/yr</h3>
+        <p>Full access to every Journal volume, delivered to your .LLab™ account.</p>
+        <a href="https://buy.stripe.com/7sY9AS96S88515h6SO9ws0Y" data-field-href="subscribe_link" class="pill pill--solid" style="margin-top:0.5rem; align-self:flex-start;">Subscribe <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -112,17 +132,17 @@
     <div class="wrap">
       <p class="eyebrow" data-field="entries_eyebrow">Recent entries</p>
       <div class="grid grid-3" style="margin-top:2rem;" data-list="entries">
-        <a class="card" href="#" data-list-item data-item-href="link">
+        <a class="card" href="#journal-subscribe" data-list-item data-item-href="link">
           <span class="num" data-item-field="tag">Framework</span>
           <h3 data-item-field="title">On Stewardship as Infrastructure</h3>
           <p data-item-field="description">Why leadership built on responsibility outlasts leadership built on charisma.</p>
         </a>
-        <a class="card" href="#">
+        <a class="card" href="#journal-subscribe">
           <span class="num">Framework</span>
           <h3>Systems Before Scale</h3>
           <p>The decision pathways an organization needs before it can grow.</p>
         </a>
-        <a class="card" href="#">
+        <a class="card" href="#journal-subscribe">
           <span class="num">Framework</span>
           <h3>Succession Is a Design Problem</h3>
           <p>Building organizations that operate beyond any one founder or leader.</p>
