@@ -20,4 +20,16 @@
     <loc>https://wearethellab.netlify.app/pages/about.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/think.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/atelier.html</loc>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/community.html</loc>
+    <priority>0.4</priority>
+  </url>
 </urlset>
