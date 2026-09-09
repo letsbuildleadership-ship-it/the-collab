@@ -36,6 +36,27 @@
     return res.json();
   }
 
+  async function loginWithMemberId(memberId, password) {
+    const res = await fetch('/.netlify/functions/login', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ memberId, password }),
+    });
+    if (!res.ok) return null;
+    return res.json();
+  }
+
+  async function savePassword(password) {
+    const res = await fetch('/.netlify/functions/set-password', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    return res.ok;
+  }
+
   function extractToken(raw) {
     const trimmed = raw.trim();
     try {
@@ -63,6 +84,14 @@
 
   function renderDashboard(data) {
     $('account-email').textContent = data.email;
+    $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
+
+    if (!data.hasPassword && data.memberId) {
+      $('create-password-member-id').textContent = data.memberId;
+      $('create-password-callout').hidden = false;
+    } else {
+      $('create-password-callout').hidden = true;
+    }
 
     const membership = data.memberships && data.memberships.membership;
     const libraryCard = data.memberships && data.memberships['library-card'];
@@ -200,6 +229,38 @@
         }
         history.replaceState({}, '', location.pathname);
         renderDashboard(data);
+      });
+    }
+
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const memberId = document.getElementById('login-member-id').value.trim();
+        const password = document.getElementById('login-password').value;
+        if (!memberId || !password) return;
+        const data = await loginWithMemberId(memberId, password);
+        if (!data) {
+          document.getElementById('login-error').style.display = 'block';
+          return;
+        }
+        document.getElementById('login-error').style.display = 'none';
+        renderDashboard(data);
+      });
+    }
+
+    const createPasswordForm = document.getElementById('create-password-form');
+    if (createPasswordForm) {
+      createPasswordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('create-password-input');
+        const password = input.value;
+        if (password.length < 8) return;
+        const ok = await savePassword(password);
+        if (ok) {
+          input.value = '';
+          document.getElementById('create-password-callout').hidden = true;
+        }
       });
     }
 
