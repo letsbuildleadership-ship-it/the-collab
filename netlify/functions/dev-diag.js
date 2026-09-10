@@ -11,13 +11,27 @@ exports.handler = async (event, context) => {
 
   const contextKeys = context ? Object.keys(context) : null;
   const clientContextKeys = context && context.clientContext ? Object.keys(context.clientContext) : null;
-  const customKeys =
-    context && context.clientContext && context.clientContext.custom ? Object.keys(context.clientContext.custom) : null;
+  const custom = context && context.clientContext ? context.clientContext.custom : null;
+  const customKeys = custom ? Object.keys(custom) : null;
+
+  let decodedNetlifyCustom = null;
+  let decodeError = null;
+  if (custom && custom.netlify) {
+    try {
+      decodedNetlifyCustom = JSON.parse(Buffer.from(custom.netlify, 'base64').toString('utf8'));
+    } catch (e) {
+      decodeError = e.message;
+    }
+  }
 
   const info = {
     contextKeys,
     clientContextKeys,
     customKeys,
+    decodedNetlifyCustom,
+    decodeError,
+    purgeApiTokenPresent: !!(custom && custom.purge_api_token),
+    purgeApiTokenLength: custom && custom.purge_api_token ? String(custom.purge_api_token).length : 0,
     hasNetlifyBlobsContext: typeof process.env.NETLIFY_BLOBS_CONTEXT === 'string',
     netlifyBlobsContextLength: (process.env.NETLIFY_BLOBS_CONTEXT || '').length,
     SITE_ID: process.env.SITE_ID || null,
