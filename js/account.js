@@ -41,6 +41,14 @@
     'Phase IV · Preservation': 'Preservation',
   };
 
+  // Generic 3-step "mission" checklist shown under every owned item — a
+  // lightweight engagement layer on top of the PDF download, not a gate
+  // on it (download access is unchanged). Progress persists server-side
+  // via progress.js so it follows the member across devices.
+  const ACTIVITY_STEPS = ['Review the material', 'Apply it to your work', 'Log your takeaway'];
+
+  const state = { data: null };
+
   const $ = (id) => document.getElementById(id);
 
   function show(id) {
@@ -75,6 +83,17 @@
     return res.json();
   }
 
+  async function postProgress(itemKey, stepIndex, done) {
+    const res = await fetch('/.netlify/functions/progress', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ itemKey, stepIndex, done }),
+    });
+    if (!res.ok) return null;
+    return res.json();
+  }
+
   async function savePassword(password) {
     const res = await fetch('/.netlify/functions/set-password', {
       method: 'POST',
@@ -103,11 +122,37 @@
     return 'Canceled';
   }
 
-  function itemCard({ name, actionsHtml }) {
+  function missionChecklistHtml(key) {
+    const done = new Set(((state.data && state.data.activityProgress) || {})[key] || []);
+    const allDone = ACTIVITY_STEPS.every((_, i) => done.has(i));
+    const rows = ACTIVITY_STEPS.map(
+      (label, i) => `
+      <label class="mission-step-row">
+        <input type="checkbox" class="mission-step" data-item-key="${key}" data-step-index="${i}" ${done.has(i) ? 'checked' : ''} />
+        <span>${label}</span>
+      </label>`
+    ).join('');
+    return `<div class="mission-checklist${allDone ? ' is-complete' : ''}">
+      <p class="mission-label">${allDone ? 'Mission complete' : 'Mission'}</p>
+      ${rows}
+    </div>`;
+  }
+
+  function itemCard({ name, actionsHtml, key }) {
     const div = document.createElement('div');
     div.className = 'card item-card';
-    div.innerHTML = `<h3 class="item-name">${name}</h3><div class="item-actions">${actionsHtml}</div>`;
+    div.innerHTML = `<h3 class="item-name">${name}</h3><div class="item-actions">${actionsHtml}</div>${key ? missionChecklistHtml(key) : ''}`;
     return div;
+  }
+
+  function phaseIsCertified(phase, data) {
+    const items = data.owned.filter((i) => i.phase === phase);
+    if (!items.length) return false;
+    const progress = data.activityProgress || {};
+    return items.every((item) => {
+      const done = new Set(progress[item.key] || []);
+      return ACTIVITY_STEPS.every((_, i) => done.has(i));
+    });
   }
 
   function statusDotHtml(isActive) {
@@ -134,8 +179,13 @@
     rail.innerHTML = '';
     track.hidden = false;
 
-    const nodes = [{ key: '__welcome', label: 'Welcome', unlocked: true }].concat(
-      TRACK_PHASES.map((phase) => ({ key: phase, label: TRACK_LABEL[phase], unlocked: data.hasFullCatalog || unlockedPhases.has(phase) }))
+    const nodes = [{ key: '__welcome', label: 'Welcome', unlocked: true, certified: false }].concat(
+      TRACK_PHASES.map((phase) => ({
+        key: phase,
+        label: TRACK_LABEL[phase],
+        unlocked: data.hasFullCatalog || unlockedPhases.has(phase),
+        certified: phaseIsCertified(phase, data),
+      }))
     );
 
     let currentAssigned = false;
@@ -143,22 +193,37 @@
       const el = document.createElement('div');
       const isCurrent = !node.unlocked && !currentAssigned;
       if (isCurrent) currentAssigned = true;
-      el.className = 'phase-node' + (node.unlocked ? ' is-unlocked' : isCurrent ? ' is-current' : ' is-locked');
-      el.innerHTML = `<span class="node-connector"></span><span class="node-dot"></span><span class="node-label">${node.label}</span>`;
+      el.className =
+        'phase-node' +
+        (node.unlocked ? ' is-unlocked' : isCurrent ? ' is-current' : ' is-locked') +
+        (node.certified ? ' is-certified' : '');
+      el.innerHTML = `<span class="node-connector"></span><span class="node-dot">${node.certified ? '✓' : ''}</span><span class="node-label">${node.label}</span>`;
       rail.appendChild(el);
     });
   }
 
   const PILOT_DISMISS_KEY = 'collab_pilot_dismissed';
 
+  function openMissionCount(data) {
+    const progress = data.activityProgress || {};
+    return data.owned.filter((item) => item.pdf_file || item.kind === 'product').filter((item) => {
+      const done = new Set(progress[item.key] || []);
+      return !ACTIVITY_STEPS.every((_, i) => done.has(i));
+    }).length;
+  }
+
   function pilotMessage(data) {
     const ownedCount = data.owned.length;
     const lockedCount = (data.locked || []).length;
-    if (data.hasFullCatalog && lockedCount === 0) {
-      return `All four phases are charted, <strong>${(data.memberId || 'Commander')}</strong>. Preservation Vault is fully stocked — welcome to the full infrastructure.`;
+    const openMissions = openMissionCount(data);
+    if (data.hasFullCatalog && lockedCount === 0 && openMissions === 0 && ownedCount > 0) {
+      return `All four phases are charted and every mission logged, <strong>${(data.memberId || 'Commander')}</strong>. Welcome to the full infrastructure.`;
     }
     if (ownedCount === 0) {
       return `Welcome aboard, <strong>${data.memberId || 'Commander'}</strong>. Foundations Bay is your first stop — everything else charts from there.`;
+    }
+    if (openMissions > 0) {
+      return `${openMissions} open mission${openMissions === 1 ? '' : 's'} on your console. Check off a mission's steps under any module to bring its bay online.`;
     }
     if (lockedCount > 0) {
       return `Good progress. ${lockedCount} more module${lockedCount === 1 ? '' : 's'} left to bring online across the flight path.`;
@@ -177,6 +242,9 @@
   }
 
   function renderDashboard(data) {
+    data.activityProgress = data.activityProgress || {};
+    state.data = data;
+
     $('account-email').textContent = data.email;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
 
@@ -223,7 +291,7 @@
         const actions = item.pdf_file
           ? `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`
           : `<span class="tag">Access included</span>`;
-        benefitsList.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
+        benefitsList.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.pdf_file ? item.key : null }));
       });
     }
 
@@ -240,7 +308,7 @@
       grid.className = 'grid grid-3';
       items.forEach((item) => {
         const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
-        grid.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
+        grid.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.key }));
       });
       section.appendChild(heading);
       section.appendChild(grid);
@@ -389,6 +457,44 @@
         sessionStorage.setItem(PILOT_DISMISS_KEY, '1');
       });
     }
+
+    document.addEventListener('change', async (e) => {
+      const box = e.target.closest && e.target.closest('.mission-step');
+      if (!box || !state.data) return;
+
+      const itemKey = box.dataset.itemKey;
+      const stepIndex = Number(box.dataset.stepIndex);
+      const done = box.checked;
+
+      const progress = state.data.activityProgress;
+      const set = new Set(progress[itemKey] || []);
+      if (done) set.add(stepIndex);
+      else set.delete(stepIndex);
+      progress[itemKey] = Array.from(set);
+
+      const checklist = box.closest('.mission-checklist');
+      const allDone = ACTIVITY_STEPS.every((_, i) => set.has(i));
+      if (checklist) {
+        checklist.classList.toggle('is-complete', allDone);
+        const label = checklist.querySelector('.mission-label');
+        if (label) label.textContent = allDone ? 'Mission complete' : 'Mission';
+      }
+
+      renderPhaseTrack(state.data);
+      renderPilot(state.data);
+
+      const result = await postProgress(itemKey, stepIndex, done);
+      if (!result) {
+        // Save failed — revert the optimistic UI update.
+        box.checked = !done;
+        if (done) set.delete(stepIndex);
+        else set.add(stepIndex);
+        progress[itemKey] = Array.from(set);
+        if (checklist) checklist.classList.toggle('is-complete', ACTIVITY_STEPS.every((_, i) => set.has(i)));
+        renderPhaseTrack(state.data);
+        renderPilot(state.data);
+      }
+    });
 
     const copyBtn = document.getElementById('save-link-copy');
     if (copyBtn) {

@@ -10,7 +10,19 @@ const store = require('./lib/store');
 const { hashPassword } = require('./lib/password');
 const { setTokenCookie } = require('./lib/http');
 
-const SAMPLE_ENTITLEMENTS = ['strength-map', 'alignment-map', 'build-plan'];
+// Product entitlements plus the same benefit keys a real Membership,
+// Library Card, and Journal purchase would grant (membership-handbook.pdf,
+// library-card-welcome.pdf, journal-vol-1.pdf, infrastructure-roadmap.pdf),
+// so the test account's dashboard matches what a real member sees.
+const SAMPLE_ENTITLEMENTS = [
+  'strength-map',
+  'alignment-map',
+  'build-plan',
+  'membership',
+  'library-card',
+  'journal',
+  'infrastructure-roadmap',
+];
 
 exports.handler = async (event) => {
   const params = event.queryStringParameters || {};

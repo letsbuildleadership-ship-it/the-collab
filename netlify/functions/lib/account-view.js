@@ -9,8 +9,14 @@ function buildAccountView(record) {
     ([key, m]) => m.status === 'active' && pricing.unlocksCatalog(key)
   );
 
+  // Full-catalog members (active Membership) see and can open every IV
+  // Phases product, not just whatever happens to be in their explicit
+  // entitlements list — download.js already grants access on this same
+  // basis, so the dashboard now matches what's actually downloadable.
+  const ownedKeys = hasFullCatalog ? new Set([...entitlementSet, ...pricing.allCatalogProductKeys()]) : entitlementSet;
+
   const owned = [];
-  for (const key of entitlementSet) {
+  for (const key of ownedKeys) {
     const entry = pricing.entryForKey(key);
     if (!entry) continue;
     owned.push({ key, kind: entry.kind, name: entry.name, phase: entry.phase || null, pdf_file: entry.pdf_file || null });
@@ -35,6 +41,7 @@ function buildAccountView(record) {
     hasFullCatalog,
     owned,
     locked,
+    activityProgress: record.activityProgress || {},
   };
 }
 

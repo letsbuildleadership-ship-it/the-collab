@@ -196,7 +196,7 @@
       "description": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™ — across all four phases.",
       "pdf_file": "membership-handbook.pdf",
       "grants": ["infrastructure-roadmap"],
-      "unlocks_catalog": false,
+      "unlocks_catalog": true,
       "plans": [
         {
           "interval": "month",
