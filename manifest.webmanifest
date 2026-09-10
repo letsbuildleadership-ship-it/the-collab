@@ -1,0 +1,16 @@
+{
+  "name": "The Co.LLab™ — Member Environment",
+  "short_name": "Co.LLab",
+  "description": "Your .LLab™ account, entitlements, and infrastructure — installable as an app.",
+  "start_url": "/pages/account.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f1d13",
+  "theme_color": "#0f1d13",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/favicon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

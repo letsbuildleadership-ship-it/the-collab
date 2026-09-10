@@ -2,6 +2,18 @@
    main.js load can never leave content permanently hidden. */
 document.documentElement.classList.add('js');
 
+/* PWA: register the service worker so the member environment is
+   installable and has an offline shell. Safe to no-op (older browsers,
+   file:// previews) — everything else on the site works unchanged either
+   way. */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      /* registration failure is non-fatal — the site just runs without the offline shell */
+    });
+  });
+}
+
 /* ------------------------------------------------------------------ *
  * CMS content loader
  *
