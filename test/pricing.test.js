@@ -39,8 +39,8 @@ test('membership grants the infrastructure roadmap bonus; library-card too', () 
   assert.deepEqual(pricing.grantsForKey('journal'), []);
 });
 
-test('only membership unlocks the full catalog', () => {
-  assert.equal(pricing.unlocksCatalog('membership'), true);
+test('no membership tier unlocks the full catalog for free — membership grants the four phases + a 10% discount instead', () => {
+  assert.equal(pricing.unlocksCatalog('membership'), false);
   assert.equal(pricing.unlocksCatalog('library-card'), false);
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
