@@ -13,7 +13,7 @@ const SHELL_ASSETS = [
   '/manifest.webmanifest',
   '/assets/img/logo-mark.png',
   '/assets/img/icon-192.png',
-  '/assets/img/icon-512.png',
+  '/assets/img/icon-512.svg',
 ];
 
 const BYPASS_PATTERNS = [/^\/\.netlify\/functions\//, /^\/content\//, /^\/admin/];
