@@ -11,7 +11,21 @@
 const crypto = require('crypto');
 const { getStore } = require('@netlify/blobs');
 
+// Netlify normally auto-configures Blobs for Functions with zero setup. In
+// this site's runtime that automatic context is missing (a Netlify-side
+// gap, not something under our control), so we fall back to manual
+// configuration with a Personal Access Token whenever the automatic
+// context isn't there. Harmless no-op if Netlify ever starts auto-injecting
+// it again — the manual branch is only used when NETLIFY_BLOBS_CONTEXT is
+// absent.
 function store() {
+  if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
+    return getStore({
+      name: 'collab-customers',
+      siteID: process.env.SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN,
+    });
+  }
   return getStore('collab-customers');
 }
 

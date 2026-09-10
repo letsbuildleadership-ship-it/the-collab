@@ -38,6 +38,16 @@ exports.handler = async (event) => {
   record.entitlements = Array.from(new Set([...(record.entitlements || []), ...SAMPLE_ENTITLEMENTS]));
   await store.saveCustomer(record);
 
+  // ?json=1 returns the Member ID instead of redirecting — used to confirm
+  // account creation succeeded and read back the assigned Member ID.
+  if (params.json === '1') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ memberId: record.memberId, email: record.email }),
+    };
+  }
+
   return {
     statusCode: 302,
     headers: {
