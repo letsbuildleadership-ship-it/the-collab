@@ -2,14 +2,22 @@
 // context is actually present in this function's environment, without
 // leaking secret values. Gated by DEV_SETUP_SECRET. Safe to delete once the
 // MissingBlobsEnvironmentError investigation is done.
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
   const params = event.queryStringParameters || {};
   const expected = process.env.DEV_SETUP_SECRET;
   if (!expected || params.secret !== expected) {
     return { statusCode: 401, body: 'Unauthorized.' };
   }
 
+  const contextKeys = context ? Object.keys(context) : null;
+  const clientContextKeys = context && context.clientContext ? Object.keys(context.clientContext) : null;
+  const customKeys =
+    context && context.clientContext && context.clientContext.custom ? Object.keys(context.clientContext.custom) : null;
+
   const info = {
+    contextKeys,
+    clientContextKeys,
+    customKeys,
     hasNetlifyBlobsContext: typeof process.env.NETLIFY_BLOBS_CONTEXT === 'string',
     netlifyBlobsContextLength: (process.env.NETLIFY_BLOBS_CONTEXT || '').length,
     SITE_ID: process.env.SITE_ID || null,
