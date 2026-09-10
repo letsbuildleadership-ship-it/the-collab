@@ -13,6 +13,34 @@
     'Build · Founders Organization',
   ];
 
+  // Console-facing "bay" names for the same phase keys used everywhere
+  // else (pricing.json, buildAccountView). Display-only — never sent
+  // anywhere, so the underlying phase strings stay the source of truth.
+  const BAY_NAME = {
+    'Phase I · Foundations': 'Foundations Bay',
+    'Phase II · Infrastructure Planning & Management': 'Planning Deck',
+    'Phase III · Internal Operating Systems': 'Operating Core',
+    'Phase IV · Preservation': 'Preservation Vault',
+    'Build · Founders Organization': 'Founders Bay',
+  };
+
+  // The flight-path track shown above the dashboard: Welcome, the four
+  // numbered phases, then Preservation as the final leg. Founders
+  // Organization is a parallel track (not a phase), so it isn't a node
+  // here — it still renders as its own phase-group below the track.
+  const TRACK_PHASES = [
+    'Phase I · Foundations',
+    'Phase II · Infrastructure Planning & Management',
+    'Phase III · Internal Operating Systems',
+    'Phase IV · Preservation',
+  ];
+  const TRACK_LABEL = {
+    'Phase I · Foundations': 'Foundations',
+    'Phase II · Infrastructure Planning & Management': 'Planning',
+    'Phase III · Internal Operating Systems': 'Operating',
+    'Phase IV · Preservation': 'Preservation',
+  };
+
   const $ = (id) => document.getElementById(id);
 
   function show(id) {
@@ -82,6 +110,72 @@
     return div;
   }
 
+  function statusDotHtml(isActive) {
+    return `<span class="system-status-dot${isActive ? ' is-online' : ''}"></span>`;
+  }
+
+  /**
+   * The flight-path track above the dashboard: one node per phase, plus
+   * a leading "Welcome" node that's always lit (membership/library/
+   * journal benefits live there). A phase is "unlocked" once the member
+   * owns anything in it (or holds full-catalog membership), "current"
+   * if it's the first not-yet-unlocked phase, else "locked".
+   */
+  function renderPhaseTrack(data) {
+    const rail = $('phase-track-rail');
+    const track = $('phase-track');
+    if (!rail || !track) return;
+
+    const unlockedPhases = new Set();
+    data.owned.forEach((item) => {
+      if (item.phase) unlockedPhases.add(item.phase);
+    });
+
+    rail.innerHTML = '';
+    track.hidden = false;
+
+    const nodes = [{ key: '__welcome', label: 'Welcome', unlocked: true }].concat(
+      TRACK_PHASES.map((phase) => ({ key: phase, label: TRACK_LABEL[phase], unlocked: data.hasFullCatalog || unlockedPhases.has(phase) }))
+    );
+
+    let currentAssigned = false;
+    nodes.forEach((node) => {
+      const el = document.createElement('div');
+      const isCurrent = !node.unlocked && !currentAssigned;
+      if (isCurrent) currentAssigned = true;
+      el.className = 'phase-node' + (node.unlocked ? ' is-unlocked' : isCurrent ? ' is-current' : ' is-locked');
+      el.innerHTML = `<span class="node-connector"></span><span class="node-dot"></span><span class="node-label">${node.label}</span>`;
+      rail.appendChild(el);
+    });
+  }
+
+  const PILOT_DISMISS_KEY = 'collab_pilot_dismissed';
+
+  function pilotMessage(data) {
+    const ownedCount = data.owned.length;
+    const lockedCount = (data.locked || []).length;
+    if (data.hasFullCatalog && lockedCount === 0) {
+      return `All four phases are charted, <strong>${(data.memberId || 'Commander')}</strong>. Preservation Vault is fully stocked — welcome to the full infrastructure.`;
+    }
+    if (ownedCount === 0) {
+      return `Welcome aboard, <strong>${data.memberId || 'Commander'}</strong>. Foundations Bay is your first stop — everything else charts from there.`;
+    }
+    if (lockedCount > 0) {
+      return `Good progress. ${lockedCount} more module${lockedCount === 1 ? '' : 's'} left to bring online across the flight path.`;
+    }
+    return `Systems nominal, <strong>${data.memberId || 'Commander'}</strong>. Your console is up to date.`;
+  }
+
+  function renderPilot(data) {
+    const wrap = $('pilot-companion');
+    if (!wrap) return;
+    $('pilot-message').innerHTML = pilotMessage(data);
+    wrap.hidden = false;
+    if (sessionStorage.getItem(PILOT_DISMISS_KEY)) {
+      wrap.classList.add('pilot--dismissed');
+    }
+  }
+
   function renderDashboard(data) {
     $('account-email').textContent = data.email;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
@@ -95,10 +189,15 @@
 
     const membership = data.memberships && data.memberships.membership;
     const libraryCard = data.memberships && data.memberships['library-card'];
-    $('membership-status').textContent = membershipLabel(membership);
-    $('membership-status').className = membership && membership.status === 'active' ? 'badge-active' : 'badge-canceled';
-    $('library-status').textContent = membershipLabel(libraryCard);
-    $('library-status').className = libraryCard && libraryCard.status === 'active' ? 'badge-active' : 'badge-canceled';
+    const membershipActive = !!(membership && membership.status === 'active');
+    const libraryActive = !!(libraryCard && libraryCard.status === 'active');
+    $('membership-status').innerHTML = statusDotHtml(membershipActive) + membershipLabel(membership);
+    $('membership-status').className = membershipActive ? 'badge-active' : 'badge-canceled';
+    $('library-status').innerHTML = statusDotHtml(libraryActive) + membershipLabel(libraryCard);
+    $('library-status').className = libraryActive ? 'badge-active' : 'badge-canceled';
+
+    renderPhaseTrack(data);
+    renderPilot(data);
 
     // Group owned items by phase; anything without a phase (memberships,
     // the Journal, bonus items like the Infrastructure Roadmap) goes into
@@ -136,7 +235,7 @@
       const section = document.createElement('div');
       section.className = 'phase-group';
       const heading = document.createElement('h3');
-      heading.textContent = phase;
+      heading.textContent = BAY_NAME[phase] || phase;
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       items.forEach((item) => {
@@ -261,6 +360,33 @@
           input.value = '';
           document.getElementById('create-password-callout').hidden = true;
         }
+      });
+    }
+
+    const pilotAvatar = document.getElementById('pilot-avatar');
+    const pilotClose = document.getElementById('pilot-close');
+    const pilotWrap = document.getElementById('pilot-companion');
+    if (pilotAvatar && pilotWrap) {
+      const toggle = () => {
+        pilotWrap.classList.toggle('pilot--dismissed');
+        if (pilotWrap.classList.contains('pilot--dismissed')) {
+          sessionStorage.setItem(PILOT_DISMISS_KEY, '1');
+        } else {
+          sessionStorage.removeItem(PILOT_DISMISS_KEY);
+        }
+      };
+      pilotAvatar.addEventListener('click', toggle);
+      pilotAvatar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    }
+    if (pilotClose && pilotWrap) {
+      pilotClose.addEventListener('click', () => {
+        pilotWrap.classList.add('pilot--dismissed');
+        sessionStorage.setItem(PILOT_DISMISS_KEY, '1');
       });
     }
 

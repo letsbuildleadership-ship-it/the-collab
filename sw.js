@@ -8,6 +8,7 @@ const CACHE_VERSION = 'collab-shell-v1';
 const SHELL_ASSETS = [
   '/pages/account.html',
   '/css/base.css',
+  '/css/member-console.css',
   '/js/main.js',
   '/js/account.js',
   '/manifest.webmanifest',

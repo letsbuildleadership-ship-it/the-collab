@@ -1,0 +1,263 @@
+/* ------------------------------------------------------------------ *
+ * Member console — the sci-fi ship-deck presentation layer for the
+ * signed-in account dashboard. Purely visual/behavioral on top of the
+ * existing #account-* markup and the same buildAccountView() data shape;
+ * it does not change what data is fetched or how auth works.
+ * ------------------------------------------------------------------ */
+
+#account-dashboard,
+#account-signed-out {
+  position: relative;
+}
+
+/* Starfield: a handful of small dots on a couple of radial layers,
+   drifting almost imperceptibly. Pure CSS, no images. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(var(--filament-2-rgb), 0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 68%, rgba(var(--filament-2-rgb), 0.4) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 38% 24%, rgba(var(--filament-1-rgb), 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 54% 82%, rgba(var(--filament-2-rgb), 0.35) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 68% 14%, rgba(var(--filament-1-rgb), 0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 79% 58%, rgba(var(--filament-2-rgb), 0.4) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 91% 32%, rgba(var(--filament-1-rgb), 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 12% 90%, rgba(var(--filament-2-rgb), 0.3) 50%, transparent 51%),
+    radial-gradient(1px 1px at 46% 46%, rgba(var(--filament-2-rgb), 0.3) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 85% 78%, rgba(var(--filament-1-rgb), 0.4) 50%, transparent 51%);
+  background-repeat: no-repeat;
+  animation: starfield-drift 90s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes starfield-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: -60px 90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield { animation: none; }
+}
+
+/* ---------------------------------------------------------------- *
+ * Pilot companion
+ * ---------------------------------------------------------------- */
+.pilot-companion {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.5rem);
+  bottom: clamp(1rem, 3vw, 2.5rem);
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  max-width: min(340px, calc(100vw - 2rem));
+}
+
+.pilot-companion.pilot--dismissed .pilot-bubble { display: none; }
+
+.pilot-avatar {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  box-shadow: 0 0 0 1px rgba(var(--filament-1-rgb), 0.15), 0 8px 24px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: pilot-bob 4.5s var(--ease) infinite;
+}
+
+.pilot-avatar svg { width: 34px; height: 34px; display: block; }
+
+@keyframes pilot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pilot-avatar { animation: none; }
+}
+
+.pilot-bubble {
+  position: relative;
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 14px;
+  padding: 0.9em 1.1em;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--white-dim);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.pilot-bubble strong { color: var(--filament-2); font-weight: 600; }
+
+.pilot-bubble .pilot-close {
+  position: absolute;
+  top: 0.35em;
+  right: 0.5em;
+  background: none;
+  border: none;
+  color: var(--white-faint);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2em;
+  line-height: 1;
+}
+
+.pilot-bubble .pilot-close:hover { color: var(--white); }
+
+@media (max-width: 640px) {
+  .pilot-companion { right: 1rem; bottom: 1rem; max-width: calc(100vw - 1.5rem); }
+  .pilot-avatar { width: 46px; height: 46px; }
+  .pilot-avatar svg { width: 28px; height: 28px; }
+}
+
+/* ---------------------------------------------------------------- *
+ * Phase track — the flight path across the four phases
+ * ---------------------------------------------------------------- */
+.phase-track {
+  margin-top: 2.5rem;
+  padding: 1.75rem clamp(1rem, 3vw, 2rem);
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  overflow-x: auto;
+}
+
+.phase-track-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin: 0 0 1.25rem;
+}
+
+.phase-track-rail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 560px;
+}
+
+.phase-node {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
+}
+
+.phase-node .node-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 2px solid var(--hairline-strong);
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 2;
+  flex: none;
+}
+
+.phase-node .node-connector {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--hairline-strong);
+  z-index: 1;
+}
+
+.phase-node:last-child .node-connector { display: none; }
+
+.phase-node .node-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  max-width: 12ch;
+  line-height: 1.4;
+}
+
+.phase-node.is-unlocked .node-dot {
+  background: var(--filament);
+  border-color: transparent;
+  box-shadow: 0 0 0 4px rgba(var(--filament-1-rgb), 0.18);
+}
+
+.phase-node.is-unlocked .node-connector { background: var(--filament); opacity: 0.55; }
+.phase-node.is-unlocked .node-label { color: var(--white); }
+
+.phase-node.is-current .node-dot {
+  animation: node-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(var(--filament-1-rgb), 0.18); }
+  50% { box-shadow: 0 0 0 8px rgba(var(--filament-1-rgb), 0.28); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phase-node.is-current .node-dot { animation: none; }
+}
+
+.phase-node.is-locked .node-label { color: var(--white-faint); }
+
+/* ---------------------------------------------------------------- *
+ * System status panels (membership / library / journal)
+ * ---------------------------------------------------------------- */
+.system-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  background: var(--white-faint);
+  vertical-align: middle;
+}
+
+.system-status-dot.is-online {
+  background: var(--filament-2);
+  box-shadow: 0 0 0 3px rgba(var(--filament-2-rgb), 0.22);
+  animation: dot-blink 2.6s ease-in-out infinite;
+}
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .system-status-dot.is-online { animation: none; }
+}
+
+/* ---------------------------------------------------------------- *
+ * Bay headings (phase-group / benefits-group titles) get a small
+ * console-style rule instead of the plain uppercase label.
+ * ---------------------------------------------------------------- */
+.phase-group h3::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.6em;
+  background: var(--filament);
+  border-radius: 1px;
+  vertical-align: middle;
+}
+
+.locked-bay-note {
+  font-size: 0.78rem;
+  color: var(--white-faint);
+  margin: 0 0 1rem;
+}
