@@ -41,6 +41,7 @@ collections:
               - { label: "Product name", name: "name", widget: "string" }
               - { label: "Phase label", name: "phase", widget: "string" }
               - { label: "Phase key", name: "phase_key", widget: "select", options: ["foundations", "infrastructure-planning", "operating-systems", "preservation", "founders"] }
+              - { label: "Product line", name: "line", widget: "select", options: ["leadership", "creator"], default: "leadership", required: false }
               - { label: "Price (display)", name: "price_display", widget: "string" }
               - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
               - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
@@ -390,12 +391,101 @@ collections:
           - { label: "Creator Infrastructure eyebrow", name: "creator_eyebrow", widget: "string" }
           - { label: "Creator Infrastructure headline", name: "creator_headline", widget: "string" }
           - { label: "Creator Infrastructure body", name: "creator_body", widget: "text" }
+          - { label: "Creator Infrastructure button label", name: "creator_cta_label", widget: "string" }
+          - { label: "Creator Infrastructure button link", name: "creator_cta_link", widget: "string" }
           - label: "Creator Infrastructure teaser tags"
             name: "creator_teasers"
             widget: "list"
             summary: "{{fields.label}}"
             fields:
               - { label: "Word", name: "label", widget: "string" }
+
+      - name: "creator"
+        label: "Creator Infrastructure"
+        file: "content/creator.json"
+        fields:
+          - { label: "Banner text", name: "banner_text", widget: "string" }
+          - { label: "Banner highlight (glow)", name: "banner_highlight", widget: "string" }
+          - { label: "Banner button label", name: "banner_cta_label", widget: "string" }
+          - { label: "Banner button link", name: "banner_cta_link", widget: "string" }
+
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+          - { label: "Hero button label", name: "hero_cta_label", widget: "string" }
+          - { label: "Hero button link", name: "hero_cta_link", widget: "string" }
+
+          - { label: "Journey eyebrow", name: "journey_eyebrow", widget: "string" }
+          - { label: "Journey headline", name: "journey_headline", widget: "string" }
+          - { label: "Journey body", name: "journey_body", widget: "text" }
+          - label: "Journey steps"
+            name: "journey_steps"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - { label: "Phases eyebrow", name: "phases_eyebrow", widget: "string" }
+          - label: "The four phases, for creators"
+            name: "phases"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "TRIARCH eyebrow", name: "triarch_eyebrow", widget: "string" }
+          - { label: "TRIARCH headline", name: "triarch_headline", widget: "string" }
+          - { label: "TRIARCH body", name: "triarch_body", widget: "text" }
+
+          - { label: "Omnidirectional Enterprise eyebrow", name: "omni_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise headline", name: "omni_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise body", name: "omni_body", widget: "text" }
+
+          - { label: "Pathway eyebrow", name: "pathway_eyebrow", widget: "string" }
+          - { label: "Pathway headline", name: "pathway_headline", widget: "string" }
+          - label: "Pathway steps"
+            name: "pathway_steps"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+
+          - { label: "Free resources eyebrow", name: "free_eyebrow", widget: "string" }
+          - { label: "Free resources headline", name: "free_headline", widget: "string" }
+          - { label: "Free resources body", name: "free_body", widget: "text" }
+          - label: "Five free resources"
+            name: "free_resources"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Link (public file path)", name: "link", widget: "string" }
+
+          - { label: "Product ladder eyebrow", name: "products_eyebrow", widget: "string" }
+          - { label: "Product ladder headline", name: "products_headline", widget: "string" }
+          - { label: "Product ladder body", name: "products_body", widget: "text" }
+          - label: "Creator product ladder"
+            name: "creator_products"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Phase tag", name: "phase", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Stripe checkout link", name: "link", widget: "string", required: false }
+
+          - { label: "Membership note", name: "membership_note", widget: "text" }
+          - { label: "Membership button label", name: "membership_cta_label", widget: "string" }
+          - { label: "Membership button link", name: "membership_cta_link", widget: "string" }
+
+          - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
       - name: "about"
         label: "About"
