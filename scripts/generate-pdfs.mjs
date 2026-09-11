@@ -24,6 +24,17 @@ const ALL_DOCS = [
   'library-card-welcome',
   'journal-vol-1',
   'infrastructure-roadmap',
+  'creator-quick-start',
+  'creator-diagnostic',
+  'creator-practical-tool',
+  'creator-product-preview',
+  'creator-pathway-guide',
+  'creator-identity-map',
+  'creator-alignment-map',
+  'creator-venture-build-plan',
+  'creator-operating-system',
+  'creative-estate-mapping',
+  'creator-legacy-architecture',
 ];
 
 async function main() {

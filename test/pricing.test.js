@@ -15,7 +15,7 @@ test('every one-time product has a unique stripe_price_id, payment_link, and pdf
     seenPrices.add(p.stripe_price_id);
     seenLinks.add(p.payment_link);
   }
-  assert.equal(pricing.registry.products.length, 11, 'expected 9 phase products + 2 founders tiers');
+  assert.equal(pricing.registry.products.length, 17, 'expected 9 leadership phase products + 6 creator infrastructure products + 2 founders tiers');
 });
 
 test('keyForPriceId resolves every registered price back to its product/membership key', () => {
@@ -45,12 +45,14 @@ test('no membership tier unlocks the full catalog for free — membership grants
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
 
-test('allCatalogProductKeys returns all one-time products (9 IV-phase + 2 Founders tiers)', () => {
+test('allCatalogProductKeys returns all one-time products (9 leadership IV-phase + 6 creator infrastructure + 2 Founders tiers)', () => {
   const keys = pricing.allCatalogProductKeys();
-  assert.equal(keys.length, 11);
+  assert.equal(keys.length, 17);
   assert.ok(keys.includes('strength-map'));
   assert.ok(keys.includes('legacy-architecture'));
   assert.ok(keys.includes('founder'));
+  assert.ok(keys.includes('creator-identity-map'));
+  assert.ok(keys.includes('creator-legacy-architecture'));
 });
 
 test('bonus product infrastructure-roadmap resolves via entryForKey', () => {
