@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Legacy Library™ — The Co.LLab™</title>
+<meta name="description" content="The .LLab Library Card™ member environment — a 12-month perpetual cycle of reading, research, practice, and reflection inside the TRIARCH™." />
+<link rel="canonical" href="https://wearethellab.netlify.app/pages/library.html" />
+<meta name="robots" content="noindex" />
+<link rel="manifest" href="../manifest.webmanifest" />
+<meta name="theme-color" content="#0f1d13" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Co.LLab" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="../css/library.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
+<link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
+</head>
+<body class="triarch-body">
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="founders.html">Build</a></li>
+        <li><a href="think.html">Think</a></li>
+        <li><a href="journal.html">The .LLab Journal™</a></li>
+        <li><a href="products.html">.LLab</a></li>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="library.html" aria-current="page">Legacy Library</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <div id="library-loading" class="wrap" style="padding: 4rem 0; text-align:center;">
+    <p class="subhead">Opening The Legacy Library…</p>
+  </div>
+
+  <section id="library-signed-out" hidden>
+    <div class="wrap library-locked">
+      <p class="eyebrow" style="justify-content:center;">The Legacy Library™</p>
+      <h2 style="margin-top:1.25rem;">Sign in to enter.</h2>
+      <p class="subhead" style="margin:1.25rem auto 2rem;">Sign in with your Member ID, or restore your access link, from your account page.</p>
+      <a href="account.html" class="pill pill--solid">Go to your account <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <section id="library-not-enrolled" hidden>
+    <div class="wrap library-locked">
+      <p class="eyebrow" style="justify-content:center;">The Legacy Library™</p>
+      <h2 style="margin-top:1.25rem;">Reserved for Library Card holders.</h2>
+      <p class="subhead" style="margin:1.25rem auto 2rem; max-width:56ch;">The Legacy Library — the twelve-month TRIARCH™ cycle, its reading, and its Orders of Distinction — opens with an active .LLab Library Card™.</p>
+      <a href="products.html#library-card" class="pill pill--accent">View the Library Card <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- Onboarding: shown once, before a first-time member ever sees the dashboard -->
+  <div id="onboarding-overlay" class="onboarding-overlay" hidden>
+    <div class="onboarding-inner">
+      <p class="onboarding-crest triarch-mark">👑 ⚜️ 💍 🏛️</p>
+      <h1 class="triarch-mark">Welcome to the TRIARCH™</h1>
+      <p class="lede">The Legacy Library™ moves through four phases, three months each, forever. Nothing here is a score — every Mark you earn is proof of something you actually did.</p>
+
+      <div class="onboarding-phases" id="onboarding-phases"></div>
+
+      <p class="lede" style="margin-bottom:1rem;">Each month carries the cycle forward, one word at a time:</p>
+      <div class="onboarding-cycle" id="onboarding-cycle"></div>
+
+      <button type="button" id="onboarding-begin" class="onboarding-begin">Begin Your Stewardship</button>
+    </div>
+  </div>
+
+  <section id="library-dashboard" hidden>
+    <div class="wrap">
+
+      <div class="library-header">
+        <div>
+          <p class="eyebrow-gold">The Legacy Library™ · Cycle <span id="cycle-number">1</span></p>
+          <h1>The <span id="current-theme-word">—</span> Wing</h1>
+        </div>
+        <div class="order-badge">
+          <div class="order-name" id="order-name">INITIATE</div>
+          <div class="order-sub" id="order-sub">—</div>
+        </div>
+      </div>
+
+      <!-- TRIARCH progression rail -->
+      <div class="triarch-section" style="margin-top:0;">
+        <div class="triarch-rail" id="triarch-rail"></div>
+      </div>
+
+      <!-- .LLab Treasury™ -->
+      <div class="triarch-section">
+        <div class="triarch-section-head">
+          <h2>.LLab Treasury™</h2>
+          <span class="section-note">What you hold, at a glance</span>
+        </div>
+        <div class="triarch-card" style="margin-bottom:1.25rem;">
+          <div class="membership-line"><span>.LLab Library Card™</span><span id="treasury-library-status" class="status-on">Active</span></div>
+          <div class="membership-line"><span>.LLab Membership™</span><span id="treasury-membership-status" class="status-off">Not active</span></div>
+        </div>
+        <div class="treasury-grid" id="treasury-grid"></div>
+      </div>
+
+      <!-- THE FORGE -->
+      <div class="triarch-section">
+        <div class="triarch-section-head">
+          <h2>THE FORGE™</h2>
+          <span class="section-note">This month's active work</span>
+        </div>
+        <div class="triarch-card" id="forge-card"></div>
+      </div>
+
+      <!-- THE LEGACY VAULT -->
+      <div class="triarch-section">
+        <div class="triarch-section-head">
+          <h2>THE LEGACY VAULT™</h2>
+          <span class="section-note">Regalia and the Orders of Distinction</span>
+        </div>
+        <div class="triarch-card">
+          <div class="vault-crests" id="vault-crests"></div>
+          <div class="orders-ladder" id="orders-ladder"></div>
+        </div>
+      </div>
+
+      <!-- THE ROYAL ARCHIVE -->
+      <div class="triarch-section">
+        <div class="triarch-section-head">
+          <h2>THE ROYAL ARCHIVE™</h2>
+          <span class="section-note">The full twelve-month syllabus</span>
+        </div>
+        <div id="royal-archive"></div>
+      </div>
+
+      <!-- THE LEGACY ARCHIVE -->
+      <div class="triarch-section">
+        <div class="triarch-section-head">
+          <h2>THE LEGACY ARCHIVE™</h2>
+          <span class="section-note">Your own research, practice, and reflection — kept</span>
+        </div>
+        <div class="triarch-card" id="legacy-archive"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="library-error" hidden>
+    <div class="wrap" style="text-align:center; padding: 4rem 0;">
+      <h2 class="headline">We couldn't open The Legacy Library.</h2>
+      <p class="subhead" style="margin-top:1rem;">Please try again in a moment, or contact <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">support</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
+        <p style="margin-top:1.25rem; max-width:32ch;">The Co.LLab: Building Leadership Infrastructure™.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="founders.html">Build</a></li>
+          <li><a href="think.html">Think</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="journal.html">The .LLab Journal™</a></li>
+          <li><a href="products.html">.LLab</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Coming Soon</h4>
+        <ul>
+          <li><a href="atelier.html">.LLab Atelier™</a></li>
+          <li><a href="community.html">Co.LLab+™</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><p>letsbuildleadership@gmail.com</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
+      <span>The Co.LLab: Building Leadership Infrastructure™</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/library.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

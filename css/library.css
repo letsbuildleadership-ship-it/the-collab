@@ -1,0 +1,386 @@
+/* ------------------------------------------------------------------ *
+ * The Legacy Library™ — TRIARCH member environment. A luxurious,
+ * scholarly presentation layer: the same dark Co.LLab base, a gold
+ * regalia accent in place of the filament gradient, and a serif display
+ * face for headings. Purely visual/behavioral on top of the
+ * /.netlify/functions/library + library-action data shape.
+ * ------------------------------------------------------------------ */
+
+:root {
+  --gold: #c9a227;
+  --gold-rgb: 201, 162, 39;
+  --gold-soft: rgba(201, 162, 39, 0.14);
+  --gold-line: rgba(201, 162, 39, 0.4);
+  --serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+}
+
+.triarch-body { background: var(--black); }
+
+.triarch-mark { font-family: var(--serif); }
+
+/* ---------------------------------------------------------------- *
+ * Onboarding overlay
+ * ---------------------------------------------------------------- */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--gold-rgb), 0.08), var(--black) 70%);
+  overflow-y: auto;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+}
+
+.onboarding-inner { max-width: 880px; margin: 0 auto; text-align: center; }
+
+.onboarding-crest {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
+}
+
+.onboarding-inner h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  letter-spacing: 0.01em;
+  margin: 0 0 1rem;
+}
+
+.onboarding-inner .lede {
+  color: var(--white-dim);
+  max-width: 56ch;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.onboarding-phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .onboarding-phases { grid-template-columns: 1fr; }
+}
+
+.onboarding-phase-card {
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+}
+
+.onboarding-phase-card .phase-glyph { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+.onboarding-phase-card h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.3rem;
+  color: var(--gold);
+}
+.onboarding-phase-card .phase-arc { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white-faint); margin: 0 0 0.6rem; }
+.onboarding-phase-card p { font-size: 0.85rem; color: var(--white-dim); line-height: 1.55; margin: 0; }
+
+.onboarding-cycle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 0 3rem;
+}
+
+.cycle-word {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  padding: 0.4em 0.9em;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  color: var(--gold);
+}
+
+.cycle-word::after { content: '→'; margin-left: 0.6em; color: var(--white-faint); }
+.cycle-word:last-child::after { content: '↻'; }
+
+.onboarding-begin {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, var(--gold), #e8c95a);
+  color: var(--black);
+  border: none;
+  border-radius: 999px;
+  padding: 0.85em 2.4em;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.onboarding-begin:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(var(--gold-rgb), 0.28); }
+
+/* ---------------------------------------------------------------- *
+ * Header strip
+ * ---------------------------------------------------------------- */
+.library-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 2.5rem;
+}
+
+.library-header h1 { font-family: var(--serif); font-weight: 600; margin: 0.2rem 0 0; font-size: clamp(2rem, 5vw, 3.2rem); }
+.library-header .eyebrow-gold { color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.76rem; }
+
+.order-badge {
+  text-align: right;
+}
+.order-badge .order-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.03em;
+}
+.order-badge .order-sub { font-size: 0.78rem; color: var(--white-faint); margin-top: 0.2rem; }
+
+/* ---------------------------------------------------------------- *
+ * Section shells — used by Treasury / Forge / Royal Archive /
+ * Legacy Vault / Legacy Archive
+ * ---------------------------------------------------------------- */
+.triarch-section { margin-top: 3.5rem; }
+.triarch-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.triarch-section-head h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+}
+.triarch-section-head .section-note { font-size: 0.82rem; color: var(--white-faint); }
+
+.triarch-card {
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+}
+
+/* Treasury */
+.treasury-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.treasury-cell {
+  background: var(--black-soft);
+  padding: 1.4rem 1.2rem;
+  text-align: center;
+}
+.treasury-cell .treasury-count { font-family: var(--serif); font-size: 2.1rem; color: var(--gold); display: block; }
+.treasury-cell .treasury-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-faint); margin-top: 0.3rem; display: block; }
+
+.membership-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.9rem;
+}
+.membership-line:last-child { border-bottom: none; }
+.membership-line .status-on { color: var(--gold); }
+.membership-line .status-off { color: var(--white-faint); }
+
+/* TRIARCH progression rail */
+.triarch-rail {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 800px) { .triarch-rail { grid-template-columns: 1fr; } }
+
+.rail-phase {
+  background: var(--black-soft);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  padding: 1.4rem;
+  position: relative;
+}
+.rail-phase.is-crowned { border-color: var(--gold-line); box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.15) inset; }
+.rail-phase .rail-glyph { font-size: 1.5rem; }
+.rail-phase h3 { font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.05em; margin: 0.4rem 0 0.15rem; color: var(--white); }
+.rail-phase .rail-arc { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white-faint); margin-bottom: 0.8rem; }
+.rail-months { display: flex; gap: 0.5rem; }
+.rail-month-dot {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--hairline-strong);
+}
+.rail-month-dot.is-current { background: var(--gold); box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.5); }
+.rail-month-dot.is-stewarded { background: var(--white-dim); }
+.rail-crown-tag { position: absolute; top: 1rem; right: 1.2rem; font-size: 1.1rem; }
+
+/* The Forge */
+.forge-theme { margin-bottom: 1.75rem; }
+.forge-theme h3 { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); margin: 0 0 0.4rem; letter-spacing: 0.04em; }
+.forge-theme p { color: var(--white-dim); max-width: 64ch; line-height: 1.6; margin: 0; }
+
+.forge-block { margin-bottom: 2rem; }
+.forge-block h4 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--white);
+  margin: 0 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.forge-block h4 .mark-pill {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  color: var(--gold);
+}
+.forge-block h4 .mark-pill.is-earned { background: var(--gold-soft); }
+
+.book-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.92rem;
+}
+.book-row:last-child { border-bottom: none; }
+.book-row input[type="checkbox"] { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; flex: none; }
+.book-row .book-title { font-weight: 500; }
+.book-row .book-author { color: var(--white-faint); font-size: 0.82rem; }
+.book-row.is-done .book-title { color: var(--gold); }
+
+.forge-prompt { font-size: 0.85rem; color: var(--white-dim); margin: 0 0 0.75rem; line-height: 1.55; }
+.forge-textarea {
+  width: 100%;
+  min-height: 90px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 0.88rem;
+  padding: 0.8em 1em;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.forge-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.6rem; flex-wrap: wrap; }
+
+.pill-gold {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  border-radius: 999px;
+  padding: 0.55em 1.4em;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease);
+}
+.pill-gold:hover { transform: translateY(-1px); }
+.pill-ghost-gold {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  padding: 0.5em 1.3em;
+  cursor: pointer;
+}
+.save-hint { font-size: 0.76rem; color: var(--white-faint); }
+
+.community-wall { margin-top: 1rem; border-top: 1px solid var(--hairline); padding-top: 1rem; }
+.community-entry { padding: 0.7rem 0; border-bottom: 1px solid var(--hairline); font-size: 0.85rem; }
+.community-entry:last-child { border-bottom: none; }
+.community-entry .community-author { color: var(--gold); font-weight: 600; margin-right: 0.5em; }
+.community-entry .community-date { color: var(--white-faint); font-size: 0.72rem; }
+.community-empty { font-size: 0.85rem; color: var(--white-faint); }
+
+/* Royal Archive */
+.archive-month {
+  border: 1px solid var(--hairline-strong);
+  border-radius: 14px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.archive-month summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--black-soft);
+}
+.archive-month summary::-webkit-details-marker { display: none; }
+.archive-month summary .archive-month-title { font-family: var(--serif); font-size: 1.05rem; color: var(--white); }
+.archive-month summary .archive-month-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+}
+.archive-month summary .archive-month-tag.is-stewarded { color: var(--gold); }
+.archive-month .archive-body { padding: 1.2rem 1.4rem 1.4rem; font-size: 0.86rem; color: var(--white-dim); line-height: 1.6; }
+.archive-body .archive-books { margin: 0.5rem 0 0; padding-left: 1.1em; }
+
+/* Legacy Vault — Orders ladder + regalia */
+.vault-crests { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.vault-crest { text-align: center; width: 84px; }
+.vault-crest .crest-glyph { font-size: 2rem; opacity: 0.25; }
+.vault-crest.is-earned .crest-glyph { opacity: 1; filter: drop-shadow(0 0 8px rgba(var(--gold-rgb), 0.5)); }
+.vault-crest .crest-name { display: block; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-faint); margin-top: 0.4rem; }
+
+.orders-ladder { display: flex; flex-direction: column; gap: 0.6rem; }
+.order-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--hairline);
+}
+.order-row.is-current { border-color: var(--gold-line); background: var(--gold-soft); }
+.order-row .order-row-name { font-family: var(--serif); min-width: 11ch; color: var(--white); }
+.order-row.is-current .order-row-name { color: var(--gold); }
+.order-row .order-row-req { font-size: 0.8rem; color: var(--white-faint); }
+
+/* Legacy Archive — the member's own written record */
+.legacy-entry { border-bottom: 1px solid var(--hairline); padding: 1rem 0; }
+.legacy-entry:last-child { border-bottom: none; }
+.legacy-entry .legacy-entry-head { display: flex; gap: 0.6rem; align-items: baseline; margin-bottom: 0.35rem; }
+.legacy-entry .legacy-entry-month { font-family: var(--serif); color: var(--gold); font-size: 0.95rem; }
+.legacy-entry .legacy-entry-kind { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-faint); }
+.legacy-entry p { font-size: 0.86rem; color: var(--white-dim); line-height: 1.6; margin: 0; }
+.legacy-empty { color: var(--white-faint); font-size: 0.88rem; }
+
+.library-locked { text-align: center; padding: 5rem 0; }
+.library-locked h2 { font-family: var(--serif); font-size: 2rem; }
