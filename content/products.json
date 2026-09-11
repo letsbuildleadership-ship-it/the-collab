@@ -7,14 +7,16 @@
   "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
   "prototype_notice": "Every product below is delivered digitally to your .LLab™ account immediately after purchase.",
 
-  "creator_eyebrow": "Coming soon",
+  "creator_eyebrow": "Now open",
   "creator_headline": "Creator Infrastructure™.",
-  "creator_body": "A dedicated line of .LLab™ tools for artists and creators — building the systems, succession plans, and body-of-work architecture that let creative work outlast the creator. In development.",
+  "creator_body": "The Co.LLab™'s Leadership Infrastructure methodology, applied to every kind of creative venture — for artists, designers, writers, musicians, filmmakers, educators, makers, researchers, cultural practitioners, and community builders. Five free resources, a beginner-first product ladder, and full inclusion in .LLab Membership™.",
+  "creator_cta_label": "Explore Creator Infrastructure™",
+  "creator_cta_link": "creator.html",
   "creator_teasers": [
     { "label": "The Creator Operating System™" },
-    { "label": "Creator Legacy Planning" },
-    { "label": "Body of Work Architecture" },
-    { "label": "Creative Estate Mapping" }
+    { "label": "Creator Legacy Infrastructure Architecture™" },
+    { "label": "Creative Estate Mapping™" },
+    { "label": "Creator Identity Map™" }
   ],
 
   "membership_eyebrow": "Flagship membership",
