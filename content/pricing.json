@@ -102,6 +102,78 @@
       "description": "The comprehensive .LLab framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy."
     },
     {
+      "key": "creator-identity-map",
+      "name": "Creator Identity Map™",
+      "phase": "Phase I · Foundations",
+      "phase_key": "foundations",
+      "line": "creator",
+      "price_display": "$20",
+      "stripe_price_id": "price_1UELbWAK6n3ctuR9RIgjeUgc",
+      "payment_link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z",
+      "pdf_file": "creator-identity-map.pdf",
+      "description": "Turn what you're already creating into a clear creative identity you can build infrastructure around."
+    },
+    {
+      "key": "creator-alignment-map",
+      "name": "Creator Alignment Map™",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "phase_key": "infrastructure-planning",
+      "line": "creator",
+      "price_display": "$50",
+      "stripe_price_id": "price_1UELbcAK6n3ctuR9RssoUh1X",
+      "payment_link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10",
+      "pdf_file": "creator-alignment-map.pdf",
+      "description": "Connect your creative practice, your audience, and your offer into one coherent picture."
+    },
+    {
+      "key": "creator-venture-build-plan",
+      "name": "Creator Venture Build Plan™",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "phase_key": "infrastructure-planning",
+      "line": "creator",
+      "price_display": "$100",
+      "stripe_price_id": "price_1UELbeAK6n3ctuR9cy2beQV9",
+      "payment_link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11",
+      "pdf_file": "creator-venture-build-plan.pdf",
+      "description": "A practical 30-day plan for turning your creative practice into a venture."
+    },
+    {
+      "key": "creator-operating-system",
+      "name": "The Creator Operating System™",
+      "phase": "Phase III · Internal Operating Systems",
+      "phase_key": "operating-systems",
+      "line": "creator",
+      "price_display": "$300",
+      "stripe_price_id": "price_1UELbgAK6n3ctuR9Lj3TvDRt",
+      "payment_link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12",
+      "pdf_file": "creator-operating-system.pdf",
+      "description": "Repeatable systems for running the creative venture day-to-day — without every decision depending on you."
+    },
+    {
+      "key": "creative-estate-mapping",
+      "name": "Creative Estate Mapping™",
+      "phase": "Phase IV · Preservation",
+      "phase_key": "preservation",
+      "line": "creator",
+      "price_display": "$200",
+      "stripe_price_id": "price_1UELbiAK6n3ctuR9sBeIKFPS",
+      "payment_link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13",
+      "pdf_file": "creative-estate-mapping.pdf",
+      "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate."
+    },
+    {
+      "key": "creator-legacy-architecture",
+      "name": "Creator Legacy Infrastructure Architecture™",
+      "phase": "Phase IV · Preservation",
+      "phase_key": "preservation",
+      "line": "creator",
+      "price_display": "$750",
+      "stripe_price_id": "price_1UELbkAK6n3ctuR9Ko2fJtE4",
+      "payment_link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14",
+      "pdf_file": "creator-legacy-architecture.pdf",
+      "description": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy."
+    },
+    {
       "key": "founder",
       "name": "The Co.LLab™ Founders Organization — Founder",
       "phase": "Build · Founders Organization",
