@@ -1,0 +1,362 @@
+{
+  "_readme": "Content registry for The .LLab Library Card™ / The Legacy Library™ — the 12-month perpetual cycle (SEE → KNOW → CHOOSE → POSITION → DESIGN → BUILD → MULTIPLY → CREATE → DISCERN → STEWARD → COMPOUND → LEAVE → repeat). Consumed by netlify/functions/lib/library-content.js and rendered by pages/library.html. Edit the reading list, scholarly readings, reflective practices, and community prompts here — no code changes needed. Each month belongs to one of the four TRIARCH phases (three months per phase).",
+
+  "triarch": {
+    "name": "TRIARCH™",
+    "tagline": "The Keystone of The Co.LLab™",
+    "phases": [
+      {
+        "key": "crown",
+        "phase_key": "foundations",
+        "mark": "👑",
+        "name": "CROWN",
+        "arc": "Foundations → Authority",
+        "description": "The right to lead begins with clear sight of who you are and what you stand for. CROWN is the seat of authority — earned, not assumed."
+      },
+      {
+        "key": "scepter",
+        "phase_key": "infrastructure-planning",
+        "mark": "⚜️",
+        "name": "SCEPTER",
+        "arc": "Infrastructure Planning & Management → Structure",
+        "description": "Authority without structure dissipates. SCEPTER is the instrument of governance — the deliberate design of how things will run."
+      },
+      {
+        "key": "signet",
+        "phase_key": "operating-systems",
+        "mark": "💍",
+        "name": "SIGNET",
+        "arc": "Internal Operating Systems → Capability",
+        "description": "SIGNET is the seal of authenticity — the capability that proves the structure works, stamped into daily practice."
+      },
+      {
+        "key": "heirloom",
+        "phase_key": "preservation",
+        "mark": "🏛️",
+        "name": "HEIRLOOM",
+        "arc": "Preservation → Legacy",
+        "description": "What is built must be able to outlive its builder. HEIRLOOM is what you hand down — preserved on purpose."
+      }
+    ],
+    "orders": [
+      { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The Legacy Library™.", "description": "You have taken up the Library Card. The cycle is yours to steward." },
+      { "key": "curator", "name": "CURATOR", "requires": "CROWN fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
+      { "key": "architect", "name": "ARCHITECT", "requires": "CROWN and SCEPTER fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
+      { "key": "steward", "name": "STEWARD", "requires": "CROWN, SCEPTER, and SIGNET fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },
+      { "key": "sovereign", "name": "SOVEREIGN", "requires": "All four phases of a cycle fully stewarded.", "description": "You have carried a complete cycle from sight to legacy. Authority, structure, capability, and preservation are all demonstrated." },
+      { "key": "legacy-bearer", "name": "LEGACY BEARER", "requires": "A full cycle completed and the next cycle begun.", "description": "You have proven the cycle repeats. What you built does not end with one turn of the wheel — it compounds." }
+    ],
+    "marks": [
+      { "key": "book", "name": "Book Mark™", "earned_by": "Marking a book in the month's reading as read and reflected upon.", "max_per_month": 4 },
+      { "key": "research", "name": "Research Mark™", "earned_by": "Submitting a research note on the month's Scholarly Reading.", "max_per_month": 1 },
+      { "key": "practice", "name": "Practice Mark™", "earned_by": "Completing the month's Reflective Practice™.", "max_per_month": 1 },
+      { "key": "reflection", "name": "Reflection Mark™", "earned_by": "Submitting a personal reflection for the month.", "max_per_month": 1 },
+      { "key": "community", "name": "Community Mark™", "earned_by": "Contributing a reflection to the community.", "max_per_month": 1 },
+      { "key": "phase-crown", "name": "Phase Crown™", "earned_by": "Fully stewarding every month inside one TRIARCH phase.", "max_per_month": null },
+      { "key": "cycle-ring", "name": "Cycle Ring™", "earned_by": "Fully stewarding all twelve months of a cycle, end to end.", "max_per_month": null }
+    ]
+  },
+
+  "months": [
+    {
+      "order": 1,
+      "theme": "SEE",
+      "phase": "crown",
+      "title": "SEE — Clear Sight",
+      "intent": "Before anything is built, it must be seen clearly — the terrain, the self, the stakes.",
+      "books": [
+        { "title": "The 7 Habits of Highly Effective People", "author": "Stephen R. Covey" },
+        { "title": "Start with Why", "author": "Simon Sinek" },
+        { "title": "Man's Search for Meaning", "author": "Viktor Frankl" },
+        { "title": "The Obstacle Is the Way", "author": "Ryan Holiday" }
+      ],
+      "scholarly_reading": {
+        "title": "On Seeing Before Leading",
+        "focus": "Clear sight is the first act of authority — most leadership failures trace back to something that was never clearly seen in the first place.",
+        "prompt": "Where in your leadership have you been acting on an assumption you never actually examined? Write a short research note on what you now see there."
+      },
+      "reflective_practice": {
+        "title": "The Unclouded Inventory",
+        "prompt": "List the three things about your current role, team, or organization you have been avoiding a clear look at. Describe, plainly, what you actually see when you look."
+      },
+      "community_reflection": {
+        "prompt": "What is one thing you finally saw clearly this month — about yourself, your team, or your work — that you had been avoiding?"
+      }
+    },
+    {
+      "order": 2,
+      "theme": "KNOW",
+      "phase": "crown",
+      "title": "KNOW — Earned Understanding",
+      "intent": "Sight becomes authority only once it is tested into knowledge — understanding you have actually earned.",
+      "books": [
+        { "title": "Mindset", "author": "Carol S. Dweck" },
+        { "title": "Thinking, Fast and Slow", "author": "Daniel Kahneman" },
+        { "title": "Meditations", "author": "Marcus Aurelius" },
+        { "title": "The Almanack of Naval Ravikant", "author": "Eric Jorgenson" }
+      ],
+      "scholarly_reading": {
+        "title": "The Difference Between Knowing and Believing",
+        "focus": "A leader's real knowledge is whatever survives contact with a hard question — everything else is just belief wearing knowledge's clothes.",
+        "prompt": "Pick one belief you hold about your work. Research note: what would it take to actually know it, rather than simply believe it?"
+      },
+      "reflective_practice": {
+        "title": "The Tested Claim",
+        "prompt": "Choose one thing you 'know' about your team or organization. Describe the evidence behind it — and what you'd need to see to be proven wrong."
+      },
+      "community_reflection": {
+        "prompt": "What is something you once believed about leadership that you now actually know — because you tested it?"
+      }
+    },
+    {
+      "order": 3,
+      "theme": "CHOOSE",
+      "phase": "crown",
+      "title": "CHOOSE — The Authority of Commitment",
+      "intent": "CROWN closes with a decision. Authority is claimed the moment you choose — and stand behind the choice.",
+      "books": [
+        { "title": "Essentialism", "author": "Greg McKeown" },
+        { "title": "Principles", "author": "Ray Dalio" },
+        { "title": "Discipline Is Destiny", "author": "Ryan Holiday" },
+        { "title": "Decisive", "author": "Chip Heath & Dan Heath" }
+      ],
+      "scholarly_reading": {
+        "title": "Choice as the First Act of Leadership",
+        "focus": "Every phase after CROWN depends on a choice made cleanly here — indecision is itself a choice, and rarely a good one.",
+        "prompt": "What decision have you been deferring? Write a research note on what the deferral itself has already cost."
+      },
+      "reflective_practice": {
+        "title": "The Standing Decision",
+        "prompt": "Name one choice you are ready to make and stand behind fully. Write it down as a commitment, not a preference."
+      },
+      "community_reflection": {
+        "prompt": "What is a decision you made this month that you are proud to stand fully behind?"
+      }
+    },
+    {
+      "order": 4,
+      "theme": "POSITION",
+      "phase": "scepter",
+      "title": "POSITION — Where You Stand",
+      "intent": "Structure begins with position — knowing precisely where you and your organization stand before you design anything.",
+      "books": [
+        { "title": "Good Strategy Bad Strategy", "author": "Richard P. Rumelt" },
+        { "title": "Playing to Win", "author": "A.G. Lafley & Roger L. Martin" },
+        { "title": "Blue Ocean Strategy", "author": "W. Chan Kim & Renée Mauborgne" },
+        { "title": "The Innovator's Dilemma", "author": "Clayton M. Christensen" }
+      ],
+      "scholarly_reading": {
+        "title": "Structure Follows Position",
+        "focus": "No infrastructure survives being built on the wrong position — SCEPTER's first task is an honest map of where things actually stand.",
+        "prompt": "Where does your organization actually stand today, versus where its plans assume it stands? Write a research note on the gap."
+      },
+      "reflective_practice": {
+        "title": "The Honest Map",
+        "prompt": "Sketch, in a few sentences, your organization's true position today — market, team, capacity. No aspirational language."
+      },
+      "community_reflection": {
+        "prompt": "What is one place you've had to get more honest about where you or your organization actually stands?"
+      }
+    },
+    {
+      "order": 5,
+      "theme": "DESIGN",
+      "phase": "scepter",
+      "title": "DESIGN — Deliberate Structure",
+      "intent": "SCEPTER is wielded through design — the deliberate shaping of systems, not the hope that things will simply work out.",
+      "books": [
+        { "title": "Thinking in Systems", "author": "Donella H. Meadows" },
+        { "title": "The Design of Everyday Things", "author": "Don Norman" },
+        { "title": "Antifragile", "author": "Nassim Nicholas Taleb" },
+        { "title": "Built to Last", "author": "Jim Collins & Jerry I. Porras" }
+      ],
+      "scholarly_reading": {
+        "title": "Systems Are Never Neutral",
+        "focus": "Every organization already runs on a designed system — the only question is whether anyone designed it on purpose.",
+        "prompt": "Pick one recurring problem in your organization. Research note: what part of the current system is actually producing it?"
+      },
+      "reflective_practice": {
+        "title": "The Deliberate Redesign",
+        "prompt": "Take one system you inherited rather than designed. Write the one change you would make on purpose."
+      },
+      "community_reflection": {
+        "prompt": "What is one system in your work you finally designed on purpose this month, instead of leaving to chance?"
+      }
+    },
+    {
+      "order": 6,
+      "theme": "BUILD",
+      "phase": "scepter",
+      "title": "BUILD — Structure Made Real",
+      "intent": "SCEPTER closes with construction — turning design into something that actually stands and holds weight.",
+      "books": [
+        { "title": "The Hard Thing About Hard Things", "author": "Ben Horowitz" },
+        { "title": "Execution", "author": "Larry Bossidy & Ram Charan" },
+        { "title": "Traction", "author": "Gino Wickman" },
+        { "title": "The E-Myth Revisited", "author": "Michael E. Gerber" }
+      ],
+      "scholarly_reading": {
+        "title": "Building Is Where Design Gets Tested",
+        "focus": "A design is only a hypothesis until it is built — building is where structure earns (or loses) its right to exist.",
+        "prompt": "What have you designed but not yet actually built? Research note: what has the delay between the two been costing you?"
+      },
+      "reflective_practice": {
+        "title": "The First Brick",
+        "prompt": "Name one piece of structure you will build this week, not someday. Describe the very first concrete step."
+      },
+      "community_reflection": {
+        "prompt": "What is something you actually built this month, rather than just planned?"
+      }
+    },
+    {
+      "order": 7,
+      "theme": "MULTIPLY",
+      "phase": "signet",
+      "title": "MULTIPLY — Capability Beyond Yourself",
+      "intent": "SIGNET opens with multiplication — proving that capability lives in the system and the people, not only in you.",
+      "books": [
+        { "title": "Multipliers", "author": "Liz Wiseman" },
+        { "title": "The Effective Executive", "author": "Peter F. Drucker" },
+        { "title": "Scaling Up", "author": "Verne Harnish" },
+        { "title": "Turn the Ship Around!", "author": "L. David Marquet" }
+      ],
+      "scholarly_reading": {
+        "title": "The Leader as Multiplier, Not Bottleneck",
+        "focus": "Capability that only exists when you are personally present is not capability — it is dependency wearing capability's title.",
+        "prompt": "Where does your team's capability still depend on your personal presence? Write a research note on what that's costing your capacity."
+      },
+      "reflective_practice": {
+        "title": "The Handoff",
+        "prompt": "Choose one responsibility only you currently carry well. Describe exactly what someone else would need to carry it too."
+      },
+      "community_reflection": {
+        "prompt": "What capability did you successfully hand off or multiply into your team or organization this month?"
+      }
+    },
+    {
+      "order": 8,
+      "theme": "CREATE",
+      "phase": "signet",
+      "title": "CREATE — Original Capability",
+      "intent": "SIGNET is stamped through creation — the original work that proves capability rather than merely maintaining what exists.",
+      "books": [
+        { "title": "Steal Like an Artist", "author": "Austin Kleon" },
+        { "title": "Where Good Ideas Come From", "author": "Steven Johnson" },
+        { "title": "The War of Art", "author": "Steven Pressfield" },
+        { "title": "Creative Confidence", "author": "Tom Kelley & David Kelley" }
+      ],
+      "scholarly_reading": {
+        "title": "Creation as a Discipline, Not a Mood",
+        "focus": "Original capability is rarely a flash of inspiration — it is a discipline of making something new on a schedule, whether inspired or not.",
+        "prompt": "What original work have you been waiting to feel ready for? Research note: what would it look like to make it on a schedule instead?"
+      },
+      "reflective_practice": {
+        "title": "The Made Thing",
+        "prompt": "Create one small original artifact this month — a framework, a process, a piece of writing. Describe what you made and why it mattered."
+      },
+      "community_reflection": {
+        "prompt": "What is something original you created this month, rather than borrowed or repeated?"
+      }
+    },
+    {
+      "order": 9,
+      "theme": "DISCERN",
+      "phase": "signet",
+      "title": "DISCERN — Proven Judgment",
+      "intent": "SIGNET closes with discernment — judgment sharp enough to tell what actually works from what merely looks like it does.",
+      "books": [
+        { "title": "Thinking in Bets", "author": "Annie Duke" },
+        { "title": "The Great Mental Models", "author": "Shane Parrish" },
+        { "title": "Sources of Power", "author": "Gary Klein" },
+        { "title": "Range", "author": "David Epstein" }
+      ],
+      "scholarly_reading": {
+        "title": "Judgment Under Uncertainty",
+        "focus": "Discernment is not certainty — it is the disciplined ability to make a good call while still admitting what you don't know.",
+        "prompt": "Recall a recent judgment call. Research note: what did you actually know at the time, versus what you assumed?"
+      },
+      "reflective_practice": {
+        "title": "The Second Look",
+        "prompt": "Take one decision you made quickly this month. Give it a second, slower look — does your judgment still hold?"
+      },
+      "community_reflection": {
+        "prompt": "What is a moment this month when your judgment was tested — and what did you learn about how you discern?"
+      }
+    },
+    {
+      "order": 10,
+      "theme": "STEWARD",
+      "phase": "heirloom",
+      "title": "STEWARD — Care for What Is Built",
+      "intent": "HEIRLOOM opens with stewardship — the shift from building for yourself to caring for what now belongs to more than you.",
+      "books": [
+        { "title": "Good to Great", "author": "Jim Collins" },
+        { "title": "The Servant as Leader", "author": "Robert K. Greenleaf" },
+        { "title": "Dare to Lead", "author": "Brené Brown" },
+        { "title": "The Culture Code", "author": "Daniel Coyle" }
+      ],
+      "scholarly_reading": {
+        "title": "Ownership Versus Stewardship",
+        "focus": "An owner asks what something can do for them; a steward asks what it will need to keep working after they're no longer the one carrying it.",
+        "prompt": "What in your organization do you still treat as yours alone? Research note: what would stewarding it, instead of owning it, change?"
+      },
+      "reflective_practice": {
+        "title": "The Caretaker's Question",
+        "prompt": "Choose one part of your work you are responsible for. Write what caring for it well — for its own sake — would actually require."
+      },
+      "community_reflection": {
+        "prompt": "What is something you have shifted from owning to genuinely stewarding this month?"
+      }
+    },
+    {
+      "order": 11,
+      "theme": "COMPOUND",
+      "phase": "heirloom",
+      "title": "COMPOUND — What Endures Grows",
+      "intent": "HEIRLOOM is carried through compounding — small, consistent stewardship that accumulates into something far larger than any single act.",
+      "books": [
+        { "title": "The Compound Effect", "author": "Darren Hardy" },
+        { "title": "Atomic Habits", "author": "James Clear" },
+        { "title": "The Lessons of History", "author": "Will Durant & Ariel Durant" },
+        { "title": "Same as Ever", "author": "Morgan Housel" }
+      ],
+      "scholarly_reading": {
+        "title": "The Arithmetic of Legacy",
+        "focus": "Legacy is rarely one grand act — it is the compounding of small, repeated stewardship, long enough that the returns become undeniable.",
+        "prompt": "What small practice have you repeated consistently that is now compounding? Write a research note on the return you're starting to see."
+      },
+      "reflective_practice": {
+        "title": "The Long Repetition",
+        "prompt": "Name one small, unglamorous practice you are willing to repeat for a year without needing credit for it right away."
+      },
+      "community_reflection": {
+        "prompt": "What small, consistent practice do you believe is quietly compounding into something bigger?"
+      }
+    },
+    {
+      "order": 12,
+      "theme": "LEAVE",
+      "phase": "heirloom",
+      "title": "LEAVE — What You Hand Down",
+      "intent": "The cycle closes where it will begin again — with what you are willing to leave behind, on purpose, for whoever comes next.",
+      "books": [
+        { "title": "Legacy", "author": "James Kerr" },
+        { "title": "The Founder's Mentality", "author": "Chris Zook & James Allen" },
+        { "title": "The Founder's Dilemmas", "author": "Noam Wasserman" },
+        { "title": "How Will You Measure Your Life?", "author": "Clayton M. Christensen" }
+      ],
+      "scholarly_reading": {
+        "title": "Designing What Outlives You",
+        "focus": "A true HEIRLOOM is designed to be handed down cleanly — the cycle you just completed is only proof that it's ready to repeat without you at its center.",
+        "prompt": "If you stepped away today, what would still run cleanly without you? Write a research note on the gap between that and the whole."
+      },
+      "reflective_practice": {
+        "title": "The Handed-Down Thing",
+        "prompt": "Name the one thing from this cycle you most want to hand down intact. Describe how you'll leave it ready for whoever carries it next."
+      },
+      "community_reflection": {
+        "prompt": "As this cycle closes and the next begins: what is the one thing you are most proud to be leaving behind, on purpose?"
+      }
+    }
+  ]
+}
