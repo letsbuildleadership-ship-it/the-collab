@@ -13,21 +13,21 @@
     'Build · Founders Organization',
   ];
 
-  // Console-facing "bay" names for the same phase keys used everywhere
+  // Console-facing TRIARCH™ names for the same phase keys used everywhere
   // else (pricing.json, buildAccountView). Display-only — never sent
   // anywhere, so the underlying phase strings stay the source of truth.
   const BAY_NAME = {
-    'Phase I · Foundations': 'Foundations Bay',
-    'Phase II · Infrastructure Planning & Management': 'Planning Deck',
-    'Phase III · Internal Operating Systems': 'Operating Core',
-    'Phase IV · Preservation': 'Preservation Vault',
-    'Build · Founders Organization': 'Founders Bay',
+    'Phase I · Foundations': '👑 CROWN — Foundations',
+    'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER — Infrastructure Planning & Management',
+    'Phase III · Internal Operating Systems': '💍 SIGNET — Internal Operating Systems',
+    'Phase IV · Preservation': '🏛️ HEIRLOOM — Preservation',
+    'Build · Founders Organization': 'Founders Organization',
   };
 
-  // The flight-path track shown above the dashboard: Welcome, the four
-  // numbered phases, then Preservation as the final leg. Founders
-  // Organization is a parallel track (not a phase), so it isn't a node
-  // here — it still renders as its own phase-group below the track.
+  // The progression track shown above the dashboard: Welcome, then the
+  // four TRIARCH phases. Founders Organization is a parallel track (not
+  // a phase), so it isn't a node here — it still renders as its own
+  // phase-group below the track.
   const TRACK_PHASES = [
     'Phase I · Foundations',
     'Phase II · Infrastructure Planning & Management',
@@ -35,13 +35,13 @@
     'Phase IV · Preservation',
   ];
   const TRACK_LABEL = {
-    'Phase I · Foundations': 'Foundations',
-    'Phase II · Infrastructure Planning & Management': 'Planning',
-    'Phase III · Internal Operating Systems': 'Operating',
-    'Phase IV · Preservation': 'Preservation',
+    'Phase I · Foundations': 'CROWN',
+    'Phase II · Infrastructure Planning & Management': 'SCEPTER',
+    'Phase III · Internal Operating Systems': 'SIGNET',
+    'Phase IV · Preservation': 'HEIRLOOM',
   };
 
-  // Generic 3-step "mission" checklist shown under every owned item — a
+  // Generic 3-step refinement checklist shown under every owned item — a
   // lightweight engagement layer on top of the PDF download, not a gate
   // on it (download access is unchanged). Progress persists server-side
   // via progress.js so it follows the member across devices.
@@ -133,7 +133,7 @@
       </label>`
     ).join('');
     return `<div class="mission-checklist${allDone ? ' is-complete' : ''}">
-      <p class="mission-label">${allDone ? 'Mission complete' : 'Mission'}</p>
+      <p class="mission-label">${allDone ? 'Refined' : 'Refinement'}</p>
       ${rows}
     </div>`;
   }
@@ -197,14 +197,14 @@
         'phase-node' +
         (node.unlocked ? ' is-unlocked' : isCurrent ? ' is-current' : ' is-locked') +
         (node.certified ? ' is-certified' : '');
-      el.innerHTML = `<span class="node-connector"></span><span class="node-dot">${node.certified ? '✓' : ''}</span><span class="node-label">${node.label}</span>`;
+      el.innerHTML = `<span class="node-connector"></span><span class="node-dot">${node.certified ? '👑' : ''}</span><span class="node-label">${node.label}</span>`;
       rail.appendChild(el);
     });
   }
 
-  const PILOT_DISMISS_KEY = 'collab_pilot_dismissed';
+  const STEWARD_NOTE_DISMISS_KEY = 'collab_steward_note_dismissed';
 
-  function openMissionCount(data) {
+  function openRefinementCount(data) {
     const progress = data.activityProgress || {};
     return data.owned.filter((item) => item.pdf_file || item.kind === 'product').filter((item) => {
       const done = new Set(progress[item.key] || []);
@@ -212,33 +212,41 @@
     }).length;
   }
 
-  function pilotMessage(data) {
+  function stewardMessage(data) {
     const ownedCount = data.owned.length;
     const lockedCount = (data.locked || []).length;
-    const openMissions = openMissionCount(data);
-    if (data.hasFullCatalog && lockedCount === 0 && openMissions === 0 && ownedCount > 0) {
-      return `All four phases are charted and every mission logged, <strong>${(data.memberId || 'Commander')}</strong>. Welcome to the full infrastructure.`;
+    const openRefinements = openRefinementCount(data);
+    const memberId = data.memberId || 'Member';
+    if (data.hasFullCatalog && lockedCount === 0 && openRefinements === 0 && ownedCount > 0) {
+      return `All four phases of the TRIARCH™ are charted and refined, <strong>${memberId}</strong>. Your infrastructure stands complete.`;
     }
     if (ownedCount === 0) {
-      return `Welcome aboard, <strong>${data.memberId || 'Commander'}</strong>. Foundations Bay is your first stop — everything else charts from there.`;
+      return `Welcome, <strong>${memberId}</strong>. CROWN is your first phase — everything else is built on it.`;
     }
-    if (openMissions > 0) {
-      return `${openMissions} open mission${openMissions === 1 ? '' : 's'} on your console. Check off a mission's steps under any module to bring its bay online.`;
+    if (openRefinements > 0) {
+      return `${openRefinements} refinement${openRefinements === 1 ? '' : 's'} still open. Complete a module's three steps to bring its phase fully online.`;
     }
     if (lockedCount > 0) {
-      return `Good progress. ${lockedCount} more module${lockedCount === 1 ? '' : 's'} left to bring online across the flight path.`;
+      return `Good progress. ${lockedCount} more module${lockedCount === 1 ? '' : 's'} left to bring into the TRIARCH™.`;
     }
-    return `Systems nominal, <strong>${data.memberId || 'Commander'}</strong>. Your console is up to date.`;
+    return `Your console is current, <strong>${memberId}</strong>.`;
   }
 
-  function renderPilot(data) {
-    const wrap = $('pilot-companion');
+  function renderStewardNote(data) {
+    const wrap = $('steward-note-wrap');
     if (!wrap) return;
-    $('pilot-message').innerHTML = pilotMessage(data);
-    wrap.hidden = false;
-    if (sessionStorage.getItem(PILOT_DISMISS_KEY)) {
-      wrap.classList.add('pilot--dismissed');
+    const dismissed = sessionStorage.getItem(STEWARD_NOTE_DISMISS_KEY);
+    if (dismissed) {
+      wrap.innerHTML = '';
+      return;
     }
+    wrap.innerHTML = `<div class="steward-note" id="steward-note">
+      <div>
+        <span class="steward-note-label">Steward's Note</span>
+        <span>${stewardMessage(data)}</span>
+      </div>
+      <button type="button" class="steward-close" id="steward-note-close" aria-label="Dismiss">×</button>
+    </div>`;
   }
 
   function renderDashboard(data) {
@@ -263,9 +271,15 @@
     $('membership-status').className = membershipActive ? 'badge-active' : 'badge-canceled';
     $('library-status').innerHTML = statusDotHtml(libraryActive) + membershipLabel(libraryCard);
     $('library-status').className = libraryActive ? 'badge-active' : 'badge-canceled';
+    const libraryLink = $('library-status-link');
+    if (libraryLink) {
+      libraryLink.innerHTML = libraryActive
+        ? '<a href="library.html" style="text-decoration:underline;">Enter the Legacy Library →</a>'
+        : '<a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a>';
+    }
 
     renderPhaseTrack(data);
-    renderPilot(data);
+    renderStewardNote(data);
 
     // Group owned items by phase; anything without a phase (memberships,
     // the Journal, bonus items like the Infrastructure Roadmap) goes into
@@ -431,32 +445,13 @@
       });
     }
 
-    const pilotAvatar = document.getElementById('pilot-avatar');
-    const pilotClose = document.getElementById('pilot-close');
-    const pilotWrap = document.getElementById('pilot-companion');
-    if (pilotAvatar && pilotWrap) {
-      const toggle = () => {
-        pilotWrap.classList.toggle('pilot--dismissed');
-        if (pilotWrap.classList.contains('pilot--dismissed')) {
-          sessionStorage.setItem(PILOT_DISMISS_KEY, '1');
-        } else {
-          sessionStorage.removeItem(PILOT_DISMISS_KEY);
-        }
-      };
-      pilotAvatar.addEventListener('click', toggle);
-      pilotAvatar.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggle();
-        }
-      });
-    }
-    if (pilotClose && pilotWrap) {
-      pilotClose.addEventListener('click', () => {
-        pilotWrap.classList.add('pilot--dismissed');
-        sessionStorage.setItem(PILOT_DISMISS_KEY, '1');
-      });
-    }
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'steward-note-close') {
+        sessionStorage.setItem(STEWARD_NOTE_DISMISS_KEY, '1');
+        const note = document.getElementById('steward-note-wrap');
+        if (note) note.innerHTML = '';
+      }
+    });
 
     document.addEventListener('change', async (e) => {
       const box = e.target.closest && e.target.closest('.mission-step');
@@ -477,11 +472,11 @@
       if (checklist) {
         checklist.classList.toggle('is-complete', allDone);
         const label = checklist.querySelector('.mission-label');
-        if (label) label.textContent = allDone ? 'Mission complete' : 'Mission';
+        if (label) label.textContent = allDone ? 'Refined' : 'Refinement';
       }
 
       renderPhaseTrack(state.data);
-      renderPilot(state.data);
+      renderStewardNote(state.data);
 
       const result = await postProgress(itemKey, stepIndex, done);
       if (!result) {
@@ -492,7 +487,7 @@
         progress[itemKey] = Array.from(set);
         if (checklist) checklist.classList.toggle('is-complete', ACTIVITY_STEPS.every((_, i) => set.has(i)));
         renderPhaseTrack(state.data);
-        renderPilot(state.data);
+        renderStewardNote(state.data);
       }
     });
 

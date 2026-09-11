@@ -33,26 +33,6 @@
 </head>
 <body>
 
-<div class="starfield" aria-hidden="true"></div>
-
-<div id="pilot-companion" class="pilot-companion" hidden>
-  <div class="pilot-bubble" id="pilot-bubble">
-    <button type="button" class="pilot-close" id="pilot-close" aria-label="Dismiss">×</button>
-    <span id="pilot-message">Welcome aboard.</span>
-  </div>
-  <div class="pilot-avatar" id="pilot-avatar" role="button" tabindex="0" aria-label="Show guidance">
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="32" cy="36" rx="19" ry="17" fill="var(--black)" stroke="var(--filament-2)" stroke-width="2"/>
-      <ellipse cx="32" cy="27" rx="12" ry="10" fill="var(--black)" stroke="var(--filament-2)" stroke-width="2"/>
-      <circle cx="27" cy="27" r="2.6" fill="var(--filament-2)"/>
-      <circle cx="37" cy="27" r="2.6" fill="var(--filament-2)"/>
-      <path d="M24 38 Q32 44 40 38" fill="none" stroke="var(--filament-1)" stroke-width="2" stroke-linecap="round"/>
-      <path d="M32 8 L32 3" stroke="var(--filament-2)" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="32" cy="3" r="2" fill="var(--filament-1)"/>
-    </svg>
-  </div>
-</div>
-
 <header class="site-header">
   <div class="wrap">
     <a href="../index.html" class="wordmark"><img src="../assets/img/logo-mark.png" alt="The Co.LLab" class="logo-mark" /><span>CO<span class="dot">.</span>LLAB™</span></a>
@@ -64,6 +44,7 @@
         <li><a href="journal.html">The .LLab Journal™</a></li>
         <li><a href="products.html">.LLab</a></li>
         <li><a href="account.html" aria-current="page">Account</a></li>
+        <li><a href="library.html">Legacy Library</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -78,7 +59,7 @@
     <div class="wrap" style="position:relative;">
       <p class="eyebrow">Your infrastructure, in one place</p>
       <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>.LLab™</strong> Console.</h1>
-      <p class="subhead" style="margin-top:2rem;">Every product, membership, and download you've unlocked — charted across all four phases.</p>
+      <p class="subhead" style="margin-top:2rem;">Every product, membership, and download you've unlocked — charted across CROWN, SCEPTER, SIGNET &amp; HEIRLOOM, the four phases of the TRIARCH™.</p>
     </div>
   </section>
 
@@ -162,9 +143,11 @@
         <div class="card" id="library-status-card">
           <span class="num">.LLab Library Card™</span>
           <h3 id="library-status">Not active</h3>
-          <p><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
+          <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
         </div>
       </div>
+
+      <div id="steward-note-wrap"></div>
 
       <div id="phase-track" class="phase-track" hidden>
         <p class="phase-track-label">Infrastructure flight path</p>
@@ -217,6 +200,7 @@
           <li><a href="journal.html">The .LLab Journal™</a></li>
           <li><a href="products.html">.LLab</a></li>
           <li><a href="account.html">Account</a></li>
+          <li><a href="library.html">Legacy Library</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
       </div>

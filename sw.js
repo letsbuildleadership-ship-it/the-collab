@@ -3,14 +3,17 @@
 // static assets (HTML/CSS/JS/images) and never touches anything that must
 // always be fresh: Netlify Functions (auth, entitlements, downloads),
 // /content/*.json (CMS-edited copy and pricing), or /admin.
-const CACHE_VERSION = 'collab-shell-v1';
+const CACHE_VERSION = 'collab-shell-v2';
 
 const SHELL_ASSETS = [
   '/pages/account.html',
+  '/pages/library.html',
   '/css/base.css',
   '/css/member-console.css',
+  '/css/library.css',
   '/js/main.js',
   '/js/account.js',
+  '/js/library.js',
   '/manifest.webmanifest',
   '/assets/img/logo-mark.png',
   '/assets/img/icon-192.png',

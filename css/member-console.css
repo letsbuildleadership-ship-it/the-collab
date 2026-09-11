@@ -10,114 +10,49 @@
   position: relative;
 }
 
-/* Starfield: a handful of small dots on a couple of radial layers,
-   drifting almost imperceptibly. Pure CSS, no images. */
-.starfield {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    radial-gradient(1px 1px at 8% 12%, rgba(var(--filament-2-rgb), 0.55) 50%, transparent 51%),
-    radial-gradient(1px 1px at 22% 68%, rgba(var(--filament-2-rgb), 0.4) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 38% 24%, rgba(var(--filament-1-rgb), 0.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 54% 82%, rgba(var(--filament-2-rgb), 0.35) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 68% 14%, rgba(var(--filament-1-rgb), 0.45) 50%, transparent 51%),
-    radial-gradient(1px 1px at 79% 58%, rgba(var(--filament-2-rgb), 0.4) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 91% 32%, rgba(var(--filament-1-rgb), 0.5) 50%, transparent 51%),
-    radial-gradient(1px 1px at 12% 90%, rgba(var(--filament-2-rgb), 0.3) 50%, transparent 51%),
-    radial-gradient(1px 1px at 46% 46%, rgba(var(--filament-2-rgb), 0.3) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 85% 78%, rgba(var(--filament-1-rgb), 0.4) 50%, transparent 51%);
-  background-repeat: no-repeat;
-  animation: starfield-drift 90s linear infinite;
-  opacity: 0.9;
-}
-
-@keyframes starfield-drift {
-  0% { background-position: 0 0; }
-  100% { background-position: -60px 90px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .starfield { animation: none; }
-}
-
 /* ---------------------------------------------------------------- *
- * Pilot companion
+ * Steward's Note — a plain, dismissible text banner surfacing the same
+ * contextual guidance the console used to speak through an animated
+ * companion. No avatar, no motion: a note, not a character.
  * ---------------------------------------------------------------- */
-.pilot-companion {
-  position: fixed;
-  right: clamp(1rem, 3vw, 2.5rem);
-  bottom: clamp(1rem, 3vw, 2.5rem);
-  z-index: 40;
+.steward-note {
   display: flex;
-  align-items: flex-end;
-  gap: 0.75rem;
-  max-width: min(340px, calc(100vw - 2rem));
-}
-
-.pilot-companion.pilot--dismissed .pilot-bubble { display: none; }
-
-.pilot-avatar {
-  flex: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: space-between;
   background: var(--black-soft);
   border: 1px solid var(--hairline-strong);
-  box-shadow: 0 0 0 1px rgba(var(--filament-1-rgb), 0.15), 0 8px 24px rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  animation: pilot-bob 4.5s var(--ease) infinite;
-}
-
-.pilot-avatar svg { width: 34px; height: 34px; display: block; }
-
-@keyframes pilot-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pilot-avatar { animation: none; }
-}
-
-.pilot-bubble {
-  position: relative;
-  background: var(--black-soft);
-  border: 1px solid var(--hairline-strong);
-  border-radius: 14px;
-  padding: 0.9em 1.1em;
-  font-size: 0.82rem;
-  line-height: 1.5;
+  border-left: 3px solid var(--filament-1);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-top: 2rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
   color: var(--white-dim);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-.pilot-bubble strong { color: var(--filament-2); font-weight: 600; }
+.steward-note strong { color: var(--filament-2); font-weight: 600; }
 
-.pilot-bubble .pilot-close {
-  position: absolute;
-  top: 0.35em;
-  right: 0.5em;
+.steward-note .steward-note-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--filament-2);
+  margin-bottom: 0.35rem;
+}
+
+.steward-note .steward-close {
   background: none;
   border: none;
   color: var(--white-faint);
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
-  padding: 0.2em;
+  flex: none;
   line-height: 1;
+  padding: 0.1em;
 }
-
-.pilot-bubble .pilot-close:hover { color: var(--white); }
-
-@media (max-width: 640px) {
-  .pilot-companion { right: 1rem; bottom: 1rem; max-width: calc(100vw - 1.5rem); }
-  .pilot-avatar { width: 46px; height: 46px; }
-  .pilot-avatar svg { width: 28px; height: 28px; }
-}
+.steward-note .steward-close:hover { color: var(--white); }
 
 /* ---------------------------------------------------------------- *
  * Phase track — the flight path across the four phases

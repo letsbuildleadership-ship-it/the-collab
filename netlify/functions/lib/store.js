@@ -29,6 +29,36 @@ function store() {
   return getStore('collab-customers');
 }
 
+// A second, separate Blobs store for member-authored Community Reflections
+// on The Legacy Library™ — deliberately not mixed into collab-customers,
+// since this data is shown to other members (by Member ID), not just to
+// its author. Layout: community/{monthOrder}.json -> { entries: [{ memberId, text, submittedAt }] }
+function communityStore() {
+  if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
+    return getStore({
+      name: 'collab-library-community',
+      siteID: process.env.SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN,
+    });
+  }
+  return getStore('collab-library-community');
+}
+
+async function getCommunityReflections(monthOrder) {
+  const doc = await communityStore().get(`community/${monthOrder}.json`, { type: 'json' });
+  return (doc && doc.entries) || [];
+}
+
+/** Appends one entry (or replaces this member's existing entry for the month). */
+async function upsertCommunityReflection(monthOrder, memberId, text) {
+  const key = `community/${monthOrder}.json`;
+  const doc = (await communityStore().get(key, { type: 'json' })) || { entries: [] };
+  const entries = doc.entries.filter((e) => e.memberId !== memberId);
+  entries.push({ memberId, text, submittedAt: new Date().toISOString() });
+  await communityStore().setJSON(key, { entries });
+  return entries;
+}
+
 function randomToken() {
   return crypto.randomBytes(24).toString('base64url');
 }
@@ -147,4 +177,6 @@ module.exports = {
   getSubscriptionLink,
   linkMemberId,
   getTokenByMemberId,
+  getCommunityReflections,
+  upsertCommunityReflection,
 };
