@@ -307,7 +307,7 @@
     {
       "key": "library-card",
       "name": ".LLab Library Card™",
-      "description": "Founding access to The .LLab Library Card — the digital library and curated resource stream inside The Co.LLab™ ecosystem.",
+      "description": "Founding access to The .LLab Library Card™ — the digital library and curated resource stream inside The Co.LLab™ ecosystem.",
       "pdf_file": "library-card-welcome.pdf",
       "grants": ["infrastructure-roadmap"],
       "unlocks_catalog": false,

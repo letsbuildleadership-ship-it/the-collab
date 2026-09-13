@@ -3,7 +3,7 @@
 // completing the Reflective Practice™, submitting a personal reflection,
 // or contributing a Community Reflection. Each of these is a Mark; when
 // every Mark in a month is earned the month is "fully stewarded," and when
-// every month in a TRIARCH phase is stewarded that phase earns its Phase
+// every month in a TRIARCH™ phase is stewarded that phase earns its Phase
 // Crown™ — none of this ever touches downloads or Stripe entitlements.
 const store = require('./lib/store');
 const { tokenFromEvent, json } = require('./lib/http');
@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
   const libraryCard = record.memberships && record.memberships['library-card'];
   if (!libraryCard || libraryCard.status !== 'active') {
-    return json(403, { error: 'The Legacy Library is available with an active .LLab Library Card™.' });
+    return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 
   let body;

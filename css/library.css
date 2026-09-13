@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ *
- * The Legacy Library™ — TRIARCH member environment. A luxurious,
+ * The Legacy Library™ — TRIARCH™ member environment. A luxurious,
  * scholarly presentation layer: the same dark Co.LLab base, a gold
  * regalia accent in place of the filament gradient, and a serif display
  * face for headings. Purely visual/behavioral on top of the
@@ -148,8 +148,8 @@
 .order-badge .order-sub { font-size: 0.78rem; color: var(--white-faint); margin-top: 0.2rem; }
 
 /* ---------------------------------------------------------------- *
- * Section shells — used by Treasury / Forge / Royal Archive /
- * Legacy Vault / Legacy Archive
+ * Section shells — used by Treasury / Forge / Royal Archive™ /
+ * Legacy Vault™ / Legacy Archive
  * ---------------------------------------------------------------- */
 .triarch-section { margin-top: 3.5rem; }
 .triarch-section-head {
@@ -206,7 +206,7 @@
 .membership-line .status-on { color: var(--gold); }
 .membership-line .status-off { color: var(--white-faint); }
 
-/* TRIARCH progression rail */
+/* TRIARCH™ progression rail */
 .triarch-rail {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -236,7 +236,7 @@
 .rail-month-dot.is-stewarded { background: var(--white-dim); }
 .rail-crown-tag { position: absolute; top: 1rem; right: 1.2rem; font-size: 1.1rem; }
 
-/* The Forge */
+/* The Forge™ */
 .forge-theme { margin-bottom: 1.75rem; }
 .forge-theme h3 { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); margin: 0 0 0.4rem; letter-spacing: 0.04em; }
 .forge-theme p { color: var(--white-dim); max-width: 64ch; line-height: 1.6; margin: 0; }
@@ -323,7 +323,7 @@
 .community-entry .community-date { color: var(--white-faint); font-size: 0.72rem; }
 .community-empty { font-size: 0.85rem; color: var(--white-faint); }
 
-/* Royal Archive */
+/* Royal Archive™ */
 .archive-month {
   border: 1px solid var(--hairline-strong);
   border-radius: 14px;
@@ -352,7 +352,7 @@
 .archive-month .archive-body { padding: 1.2rem 1.4rem 1.4rem; font-size: 0.86rem; color: var(--white-dim); line-height: 1.6; }
 .archive-body .archive-books { margin: 0.5rem 0 0; padding-left: 1.1em; }
 
-/* Legacy Vault — Orders ladder + regalia */
+/* Legacy Vault™ — Orders ladder + regalia */
 .vault-crests { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .vault-crest { text-align: center; width: 84px; }
 .vault-crest .crest-glyph { font-size: 2rem; opacity: 0.25; }

@@ -11,7 +11,7 @@
     { "text": "We help you build what your creation can ", "style": "default", "break_before": true },
     { "text": "become.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "Creator Infrastructure™ applies The Co.LLab™'s Leadership Infrastructure methodology to every kind of creative venture — the systems, succession plans, and body-of-work architecture that let creative work outlast the creator.",
+  "hero_subhead": "Creator Infrastructure™ applies The Co.LLab™'s Leadership Infrastructure™ methodology to every kind of creative venture — the systems, succession plans, and body-of-work architecture that let creative work outlast the creator.",
   "hero_cta_label": "Start With A Free Resource",
   "hero_cta_link": "#free",
 
@@ -102,7 +102,7 @@
     { "phase": "Phase IV · Preservation", "title": "Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
   ],
 
-  "membership_note": "Every product on this page is already included in .LLab Membership™ — the same membership that unlocks the full Leadership Infrastructure catalog.",
+  "membership_note": "Every product on this page is already included in .LLab Membership™ — the same membership that unlocks the full Leadership Infrastructure™ catalog.",
   "membership_cta_label": "See .LLab Membership™",
   "membership_cta_link": "products.html#membership",
 

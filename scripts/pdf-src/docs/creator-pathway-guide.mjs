@@ -48,7 +48,7 @@ ${licenseHtml}
 <p>CROWN (authority/identity), SCEPTER (structure), SIGNET (proven capability), HEIRLOOM (legacy) — the same keystone behind The .LLab Membership™ and Legacy Library™, applied here to creative infrastructure instead of organizational leadership.</p>
 
 <p><strong>WHEN TO GO TO MEMBERSHIP</strong></p>
-<p>If you find yourself wanting more than one product on this ladder, <strong>.LLab Membership™</strong> unlocks the entire Creator Infrastructure™ catalog — plus the full Leadership Infrastructure catalog, the Legacy Library™, and the community — for one ongoing price.</p>
+<p>If you find yourself wanting more than one product on this ladder, <strong>.LLab Membership™</strong> unlocks the entire Creator Infrastructure™ catalog — plus the full Leadership Infrastructure™ catalog, the Legacy Library™, and the community — for one ongoing price.</p>
 
 <p><strong>NOT SURE WHERE TO START?</strong></p>
 <p>Take the free .LLab Creator Infrastructure Diagnostic™ — it scores you across all four phases and points to the exact product to start with.</p>

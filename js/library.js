@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------ *
- * The Legacy Library™ — client for the TRIARCH member environment.
+ * The Legacy Library™ — client for the TRIARCH™ member environment.
  * Fetches /.netlify/functions/library (cookie-authed), renders the
  * onboarding sequence on first visit, then the Treasury / Forge / Legacy
- * Vault / Royal Archive / Legacy Archive. Every write goes through
+ * Vault™ / Royal Archive™ / Legacy Archive. Every write goes through
  * library-action.js; nothing here touches downloads or Stripe.
  * ------------------------------------------------------------------ */
 (function () {
@@ -68,7 +68,7 @@
   }
 
   /* ---------------------------------------------------------------- *
-   * TRIARCH progression rail
+   * TRIARCH™ progression rail
    * ---------------------------------------------------------------- */
   function renderRail(data) {
     const rail = $('triarch-rail');

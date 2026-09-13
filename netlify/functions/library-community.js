@@ -16,7 +16,7 @@ exports.handler = async (event) => {
 
   const libraryCard = record.memberships && record.memberships['library-card'];
   if (!libraryCard || libraryCard.status !== 'active') {
-    return json(403, { error: 'The Legacy Library is available with an active .LLab Library Card™.' });
+    return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 
   const params = event.queryStringParameters || {};

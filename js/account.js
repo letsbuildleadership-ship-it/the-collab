@@ -25,7 +25,7 @@
   };
 
   // The progression track shown above the dashboard: Welcome, then the
-  // four TRIARCH phases. Founders Organization is a parallel track (not
+  // four TRIARCH™ phases. Founders Organization is a parallel track (not
   // a phase), so it isn't a node here — it still renders as its own
   // phase-group below the track.
   const TRACK_PHASES = [
@@ -274,7 +274,7 @@
     const libraryLink = $('library-status-link');
     if (libraryLink) {
       libraryLink.innerHTML = libraryActive
-        ? '<a href="library.html" style="text-decoration:underline;">Enter the Legacy Library →</a>'
+        ? '<a href="library.html" style="text-decoration:underline;">Enter the Legacy Library™ →</a>'
         : '<a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a>';
     }
 

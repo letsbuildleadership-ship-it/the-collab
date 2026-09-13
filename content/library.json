@@ -1,5 +1,5 @@
 {
-  "_readme": "Content registry for The .LLab Library Card™ / The Legacy Library™ — the 12-month perpetual cycle (SEE → KNOW → CHOOSE → POSITION → DESIGN → BUILD → MULTIPLY → CREATE → DISCERN → STEWARD → COMPOUND → LEAVE → repeat). Consumed by netlify/functions/lib/library-content.js and rendered by pages/library.html. Edit the reading list, scholarly readings, reflective practices, and community prompts here — no code changes needed. Each month belongs to one of the four TRIARCH phases (three months per phase).",
+  "_readme": "Content registry for The .LLab Library Card™ / The Legacy Library™ — the 12-month perpetual cycle (SEE → KNOW → CHOOSE → POSITION → DESIGN → BUILD → MULTIPLY → CREATE → DISCERN → STEWARD → COMPOUND → LEAVE → repeat). Consumed by netlify/functions/lib/library-content.js and rendered by pages/library.html. Edit the reading list, scholarly readings, reflective practices, and community prompts here — no code changes needed. Each month belongs to one of the four TRIARCH™ phases (three months per phase).",
 
   "triarch": {
     "name": "TRIARCH™",
@@ -52,7 +52,7 @@
       { "key": "practice", "name": "Practice Mark™", "earned_by": "Completing the month's Reflective Practice™.", "max_per_month": 1 },
       { "key": "reflection", "name": "Reflection Mark™", "earned_by": "Submitting a personal reflection for the month.", "max_per_month": 1 },
       { "key": "community", "name": "Community Mark™", "earned_by": "Contributing a reflection to the community.", "max_per_month": 1 },
-      { "key": "phase-crown", "name": "Phase Crown™", "earned_by": "Fully stewarding every month inside one TRIARCH phase.", "max_per_month": null },
+      { "key": "phase-crown", "name": "Phase Crown™", "earned_by": "Fully stewarding every month inside one TRIARCH™ phase.", "max_per_month": null },
       { "key": "cycle-ring", "name": "Cycle Ring™", "earned_by": "Fully stewarding all twelve months of a cycle, end to end.", "max_per_month": null }
     ]
   },

@@ -186,9 +186,9 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
-          - { label: "Omnidirectional Enterprise eyebrow", name: "omni_eyebrow", widget: "string" }
-          - { label: "Omnidirectional Enterprise headline", name: "omni_headline", widget: "string" }
-          - { label: "Omnidirectional Enterprise body", name: "omni_body", widget: "text" }
+          - { label: "Omnidirectional Enterprise™ eyebrow", name: "omni_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ headline", name: "omni_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ body", name: "omni_body", widget: "text" }
           - label: "Value-flow words"
             name: "omni_flow"
             widget: "list"
@@ -468,13 +468,13 @@ collections:
             summary: "{{fields.title}}"
             fields: *title_description_fields
 
-          - { label: "TRIARCH eyebrow", name: "triarch_eyebrow", widget: "string" }
-          - { label: "TRIARCH headline", name: "triarch_headline", widget: "string" }
-          - { label: "TRIARCH body", name: "triarch_body", widget: "text" }
+          - { label: "TRIARCH™ eyebrow", name: "triarch_eyebrow", widget: "string" }
+          - { label: "TRIARCH™ headline", name: "triarch_headline", widget: "string" }
+          - { label: "TRIARCH™ body", name: "triarch_body", widget: "text" }
 
-          - { label: "Omnidirectional Enterprise eyebrow", name: "omni_eyebrow", widget: "string" }
-          - { label: "Omnidirectional Enterprise headline", name: "omni_headline", widget: "string" }
-          - { label: "Omnidirectional Enterprise body", name: "omni_body", widget: "text" }
+          - { label: "Omnidirectional Enterprise™ eyebrow", name: "omni_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ headline", name: "omni_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ body", name: "omni_body", widget: "text" }
 
           - { label: "Pathway eyebrow", name: "pathway_eyebrow", widget: "string" }
           - { label: "Pathway headline", name: "pathway_headline", widget: "string" }
@@ -596,9 +596,9 @@ collections:
             summary: "{{fields.title}}"
             fields: *title_description_fields
 
-          - { label: "Omnidirectional Enterprise eyebrow", name: "model_eyebrow", widget: "string" }
-          - { label: "Omnidirectional Enterprise headline", name: "model_headline", widget: "string" }
-          - { label: "Omnidirectional Enterprise body", name: "model_body", widget: "text" }
+          - { label: "Omnidirectional Enterprise™ eyebrow", name: "model_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ headline", name: "model_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ body", name: "model_body", widget: "text" }
           - { label: "Ethical business body", name: "ethics_body", widget: "text" }
           - label: "Audiences"
             name: "audiences"

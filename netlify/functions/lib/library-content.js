@@ -55,7 +55,7 @@ function emptyCycle() {
   };
 }
 
-/** Lazily initializes record.library on first contact with the Legacy Library. */
+/** Lazily initializes record.library on first contact with the Legacy Library™. */
 function ensureLibrary(record) {
   if (!record.library) {
     record.library = {
