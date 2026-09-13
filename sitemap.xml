@@ -21,6 +21,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://wearethellab.netlify.app/pages/journal-preview.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/impact.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://wearethellab.netlify.app/pages/about.html</loc>
     <priority>0.7</priority>
   </url>

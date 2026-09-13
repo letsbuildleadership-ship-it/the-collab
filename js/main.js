@@ -96,7 +96,16 @@ async function loadContent() {
         node.removeAttribute('data-list-item');
         withinNode(node, '[data-item-field]').forEach((fieldEl) => {
           const value = item[fieldEl.dataset.itemField];
-          if (value !== undefined) fieldEl.textContent = value;
+          if (value === undefined) return;
+          // An optional field (e.g. an Impact badge not every item has) with
+          // no value for this item hides its element rather than rendering
+          // empty — lets a shared template carry fields only some items use.
+          if (!value) {
+            fieldEl.hidden = true;
+            return;
+          }
+          fieldEl.hidden = false;
+          fieldEl.textContent = value;
         });
         withinNode(node, '[data-item-href]').forEach((hrefEl) => {
           const value = item[hrefEl.dataset.itemHref];

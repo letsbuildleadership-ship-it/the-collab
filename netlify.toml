@@ -32,3 +32,8 @@
   from = "/membership"
   to = "/pages/products.html#membership"
   status = 301
+
+[[redirects]]
+  from = "/impact"
+  to = "/pages/impact.html"
+  status = 200

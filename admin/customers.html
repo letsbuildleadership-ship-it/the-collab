@@ -50,6 +50,19 @@
     </thead>
     <tbody id="customers-body"></tbody>
   </table>
+
+  <h2 class="headline" style="margin-top:3.5rem; font-size:1.4rem;">Impact Product Ledger</h2>
+  <p class="subhead" style="margin-top:0.5rem;">Every 10% allocation recorded from an Impact Product sale. Mark an entry remitted once you've actually sent that money to the nonprofit — Stripe does not transfer it automatically unless the partner has its own Connect account.</p>
+  <div style="display:flex; gap:0.75rem; margin-top:1.25rem; align-items:center;">
+    <button id="impact-refresh-btn" class="pill mini">Refresh ledger</button>
+    <span id="impact-status-text" style="font-size:0.8rem; color: var(--white-faint);"></span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Date</th><th>Product</th><th>Partner</th><th>Gross</th><th>Impact (10%)</th><th>Remitted?</th></tr>
+    </thead>
+    <tbody id="impact-body"></tbody>
+  </table>
 </div>
 
 <script>
@@ -150,6 +163,7 @@
       await loadList();
       gate.style.display = 'none';
       app.style.display = 'block';
+      loadImpactLedger();
     } catch (err) {
       document.getElementById('gate-error').style.display = 'block';
     }
@@ -158,11 +172,66 @@
   document.getElementById('search-btn').addEventListener('click', search);
   document.getElementById('refresh-btn').addEventListener('click', loadList);
 
+  function money(cents, currency) {
+    return `$${(cents / 100).toFixed(2)} ${(currency || 'usd').toUpperCase()}`;
+  }
+
+  async function apiImpact(opts) {
+    const res = await fetch('/.netlify/functions/admin-impact', {
+      ...opts,
+      headers: { ...(opts && opts.headers), 'X-Admin-Token': token(), 'Content-Type': 'application/json' },
+    });
+    if (res.status === 401) throw new Error('Unauthorized');
+    return res.json();
+  }
+
+  function renderImpactRow(entry, partnersByKey) {
+    const tr = document.createElement('tr');
+    const partner = partnersByKey.get(entry.partnerKey);
+    tr.innerHTML = `
+      <td>${new Date(entry.createdAt).toLocaleDateString()}</td>
+      <td>${entry.priceKey}</td>
+      <td>${partner ? partner.name : entry.partnerKey}</td>
+      <td>${money(entry.grossAmount, entry.currency)}</td>
+      <td>${money(entry.impactAmount, entry.currency)}</td>
+      <td></td>
+    `;
+    const cell = tr.querySelector('td:last-child');
+    const btn = document.createElement('button');
+    btn.className = 'pill mini';
+    btn.textContent = entry.remitted ? 'Remitted ✓' : 'Mark remitted';
+    if (entry.remitted) btn.disabled = true;
+    btn.onclick = async () => {
+      await apiImpact({ method: 'POST', body: JSON.stringify({ id: entry.id, remitted: true }) });
+      loadImpactLedger();
+    };
+    cell.appendChild(btn);
+    return tr;
+  }
+
+  async function loadImpactLedger() {
+    document.getElementById('impact-status-text').textContent = 'Loading…';
+    try {
+      const data = await apiImpact();
+      const partnersByKey = new Map((data.partners || []).map((p) => [p.key, p]));
+      const body = document.getElementById('impact-body');
+      body.innerHTML = '';
+      (data.ledger || []).forEach((entry) => body.appendChild(renderImpactRow(entry, partnersByKey)));
+      const totalCents = (data.ledger || []).reduce((sum, e) => sum + (e.impactAmount || 0), 0);
+      document.getElementById('impact-status-text').textContent = `${(data.ledger || []).length} allocation(s) · ${money(totalCents, 'usd')} total pledged`;
+    } catch (err) {
+      document.getElementById('impact-status-text').textContent = 'Could not load ledger.';
+    }
+  }
+
+  document.getElementById('impact-refresh-btn').addEventListener('click', loadImpactLedger);
+
   if (token()) {
     loadList()
       .then(() => {
         gate.style.display = 'none';
         app.style.display = 'block';
+        loadImpactLedger();
       })
       .catch(() => {});
   }

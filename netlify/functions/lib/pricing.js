@@ -71,6 +71,22 @@ function allCatalogProductKeys() {
   return (registry.products || []).map((p) => p.key);
 }
 
+/** All registered Impact nonprofit partners. */
+function impactPartners() {
+  return registry.impact_partners || [];
+}
+
+/** Look up one Impact partner by key. */
+function impactPartnerForKey(partnerKey) {
+  return impactPartners().find((p) => p.key === partnerKey) || null;
+}
+
+/** { partner_key, percent } if this product/membership key is a designated Impact Product, else null. */
+function impactForKey(key) {
+  const entry = entryForKey(key);
+  return (entry && entry.impact) || null;
+}
+
 module.exports = {
   registry,
   CATALOG_KEY,
@@ -79,4 +95,7 @@ module.exports = {
   grantsForKey,
   unlocksCatalog,
   allCatalogProductKeys,
+  impactPartners,
+  impactPartnerForKey,
+  impactForKey,
 };

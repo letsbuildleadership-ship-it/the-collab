@@ -1,6 +1,24 @@
 {
   "_readme": "Canonical product/pricing registry consumed by Netlify Functions (webhook fulfillment, entitlement grants, PDF delivery) and by the account dashboard. Edit prices, links, and PDF filenames here via /admin (Decap CMS) — no code changes needed for price updates. Each `stripe_price_id` MUST match a live Stripe Price on The Co.LLab's Stripe account, since the webhook maps incoming Stripe price IDs back to a product key by scanning this file.",
 
+  "_impact_readme": "Impact Products designate a percentage of the purchase price to a partner nonprofit. Allocations are computed and recorded in an internal Netlify Blobs ledger at fulfillment time (netlify/functions/lib/fulfill.js) for later remittance/reconciliation. Money is NOT automatically transferred to the nonprofit via Stripe unless that partner's `stripe_connect_account_id` is set below and Stripe Connect is actually configured for that account — until then this is bookkeeping only, not a live payment split.",
+  "impact_partners": [
+    {
+      "key": "blazing-smiles",
+      "name": "Blazing Smiles",
+      "description": "A nonprofit supported by 10% of every Founders Organization — Founder purchase.",
+      "website": null,
+      "stripe_connect_account_id": null
+    },
+    {
+      "key": "wavecraft-oceans",
+      "name": "Wavecraft Oceans Project",
+      "description": "A nonprofit supported by 10% of every Founders Organization — Legacy Founder purchase.",
+      "website": null,
+      "stripe_connect_account_id": null
+    }
+  ],
+
   "products": [
     {
       "key": "strength-map",
@@ -182,7 +200,8 @@
       "stripe_price_id": "price_1TjpMwAK6n3ctuR9UEPmFzwk",
       "payment_link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "pdf_file": "founders-organization.pdf",
-      "description": "Full access to the Founders Organization: the four-phase infrastructure model, the founder community, and every resource in the introductory cohort."
+      "description": "Full access to the Founders Organization: the four-phase infrastructure model, the founder community, and every resource in the introductory cohort.",
+      "impact": { "partner_key": "blazing-smiles", "percent": 10 }
     },
     {
       "key": "legacy-founder",
@@ -193,7 +212,8 @@
       "stripe_price_id": "price_1TjpktAK6n3ctuR9GTGot6Be",
       "payment_link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
       "pdf_file": "founders-legacy-member.pdf",
-      "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available."
+      "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available.",
+      "impact": { "partner_key": "wavecraft-oceans", "percent": 10 }
     }
   ],
 

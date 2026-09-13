@@ -32,6 +32,17 @@ collections:
         file: "content/pricing.json"
         fields:
           - { label: "Internal note (not shown to customers)", name: "_readme", widget: "text", required: false }
+          - { label: "Internal note — Impact model (not shown to customers)", name: "_impact_readme", widget: "text", required: false }
+          - label: "Impact nonprofit partners"
+            name: "impact_partners"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Key (unique, no spaces — used to link products to this partner)", name: "key", widget: "string" }
+              - { label: "Organization name", name: "name", widget: "string" }
+              - { label: "Description (shown on /impact)", name: "description", widget: "text" }
+              - { label: "Website", name: "website", widget: "string", required: false }
+              - { label: "Stripe Connect account ID (leave blank until the org has one — funds are tracked internally, not auto-transferred, until this is set)", name: "stripe_connect_account_id", widget: "string", required: false }
           - label: "One-time .LLab products (IV Phases + Founders)"
             name: "products"
             widget: "list"
@@ -47,6 +58,14 @@ collections:
               - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
               - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+              - label: "Impact Product (10% to a nonprofit partner)"
+                name: "impact"
+                widget: "object"
+                required: false
+                collapsed: true
+                fields:
+                  - { label: "Nonprofit partner key (must match an Impact nonprofit partner key above)", name: "partner_key", widget: "string" }
+                  - { label: "Percent of sale allocated", name: "percent", widget: "number", default: 10, value_type: "int" }
           - label: "Recurring memberships (Membership, Library Card, Journal)"
             name: "memberships"
             widget: "list"
@@ -62,6 +81,14 @@ collections:
                 field: { label: "Bonus key", name: "key", widget: "string" }
                 required: false
               - { label: "Unlocks full .LLab product catalog?", name: "unlocks_catalog", widget: "boolean", default: false }
+              - label: "Impact Product (10% to a nonprofit partner)"
+                name: "impact"
+                widget: "object"
+                required: false
+                collapsed: true
+                fields:
+                  - { label: "Nonprofit partner key (must match an Impact nonprofit partner key above)", name: "partner_key", widget: "string" }
+                  - { label: "Percent of sale allocated", name: "percent", widget: "number", default: 10, value_type: "int" }
               - label: "Billing plans"
                 name: "plans"
                 widget: "list"
@@ -235,6 +262,7 @@ collections:
               - { label: "Price", name: "price", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Stripe checkout link", name: "link", widget: "string" }
+              - { label: "Impact badge text (leave blank if not an Impact Product)", name: "impact_label", widget: "string", required: false }
           - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
       - name: "think"
@@ -290,6 +318,8 @@ collections:
           - { label: "Fall teaser tag", name: "teaser_tag", widget: "string" }
           - { label: "Fall teaser headline", name: "teaser_headline", widget: "string" }
           - { label: "Fall teaser body", name: "teaser_body", widget: "text" }
+          - { label: "Free preview button label", name: "preview_cta_label", widget: "string" }
+          - { label: "Free preview button link", name: "preview_cta_link", widget: "string" }
 
           - { label: "Subscribe eyebrow", name: "subscribe_eyebrow", widget: "string" }
           - { label: "Subscribe headline", name: "subscribe_headline", widget: "string" }
@@ -486,6 +516,52 @@ collections:
           - { label: "Membership button link", name: "membership_cta_link", widget: "string" }
 
           - { label: "Tax notice", name: "tax_notice", widget: "string" }
+
+      - name: "impact"
+        label: "Impact"
+        file: "content/impact.json"
+        fields:
+          - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "list"
+            summary: "{{fields.text}}"
+            fields: *headline_segment_fields
+          - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
+
+          - { label: "\"How it works\" eyebrow", name: "how_eyebrow", widget: "string" }
+          - label: "How it works — steps"
+            name: "how_steps"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields: *title_description_fields
+          - { label: "Honesty notice about Stripe Connect", name: "how_notice", widget: "text" }
+
+          - { label: "Partners eyebrow", name: "partners_eyebrow", widget: "string" }
+          - label: "Partners (for reference — live totals come from the ledger; keep in sync with the nonprofit partner keys in Pricing Registry)"
+            name: "partners_static"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Partner key", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+
+          - { label: "Products eyebrow", name: "products_eyebrow", widget: "string" }
+          - label: "Current Impact Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { label: "Impact badge text", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+          - { label: "Products note", name: "products_note", widget: "text" }
+
+          - { label: "Closing eyebrow", name: "closing_eyebrow", widget: "string" }
+          - { label: "Closing headline", name: "closing_headline", widget: "string" }
+          - { label: "Closing button label", name: "closing_cta_label", widget: "string" }
+          - { label: "Closing button link", name: "closing_cta_link", widget: "string" }
 
       - name: "about"
         label: "About"

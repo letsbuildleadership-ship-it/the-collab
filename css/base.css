@@ -538,6 +538,11 @@ a.card:hover,
   color: var(--white-faint);
 }
 
+.tag--impact {
+  border-color: rgba(120, 200, 160, 0.45);
+  color: rgba(170, 230, 195, 0.95);
+}
+
 .glow {
   position: absolute;
   inset: 0;

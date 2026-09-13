@@ -44,6 +44,69 @@ function communityStore() {
   return getStore('collab-library-community');
 }
 
+// A third, separate Blobs store for the Impact Product ledger — the
+// auditable record of "10% of this sale benefits this nonprofit" allocations
+// computed by lib/fulfill.js. Kept out of collab-customers because this data
+// is aggregated and shown on the public /pages/impact.html page (via the
+// impact-summary function), never keyed to a customer identity.
+// Layout: ledger/{sessionId}-{priceKey}.json -> allocation record (see recordImpactAllocation)
+function impactStore() {
+  if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
+    return getStore({
+      name: 'collab-impact',
+      siteID: process.env.SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN,
+    });
+  }
+  return getStore('collab-impact');
+}
+
+/**
+ * Records one Impact allocation from a completed sale. Idempotent on
+ * {sessionId, priceKey} — safe to call again if the webhook retries or if
+ * verify-session.js's fallback fulfillment races the webhook, since both
+ * would otherwise try to record the same sale twice.
+ */
+async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency }) {
+  const id = `${sessionId}-${priceKey}`;
+  const key = `ledger/${id}.json`;
+  const existing = await impactStore().get(key, { type: 'json' });
+  if (existing) return existing;
+  const entry = {
+    id,
+    sessionId,
+    priceKey,
+    partnerKey,
+    percent,
+    grossAmount,
+    impactAmount,
+    currency: currency || 'usd',
+    createdAt: new Date().toISOString(),
+    remitted: false,
+    remittedAt: null,
+  };
+  await impactStore().setJSON(key, entry);
+  return entry;
+}
+
+/** Every recorded Impact allocation — small volume expected, so a full list is fine. */
+async function listImpactLedger() {
+  const page = await impactStore().list({ prefix: 'ledger/' });
+  const entries = await Promise.all(page.blobs.map((b) => impactStore().get(b.key, { type: 'json' })));
+  return entries.filter(Boolean);
+}
+
+/** Owner marks an allocation as manually remitted to the nonprofit (or reverses that). */
+async function markImpactRemitted(id, remitted = true) {
+  const key = `ledger/${id}.json`;
+  const entry = await impactStore().get(key, { type: 'json' });
+  if (!entry) return null;
+  entry.remitted = remitted;
+  entry.remittedAt = remitted ? new Date().toISOString() : null;
+  await impactStore().setJSON(key, entry);
+  return entry;
+}
+
 async function getCommunityReflections(monthOrder) {
   const doc = await communityStore().get(`community/${monthOrder}.json`, { type: 'json' });
   return (doc && doc.entries) || [];
@@ -179,4 +242,7 @@ module.exports = {
   getTokenByMemberId,
   getCommunityReflections,
   upsertCommunityReflection,
+  recordImpactAllocation,
+  listImpactLedger,
+  markImpactRemitted,
 };

@@ -48,6 +48,25 @@ async function fulfillCheckoutSession(session, priceIds) {
       for (const bonusKey of pricing.grantsForKey(key)) grantedKeys.push(bonusKey);
     }
 
+    // Impact Products: if this key is flagged with a nonprofit partner,
+    // record the 10% (or whatever percent is configured) allocation in the
+    // auditable ledger. Assumes one line item per checkout session, which
+    // holds for every Payment Link on this site today (same assumption the
+    // purchases.push amount below already makes).
+    const impact = pricing.impactForKey(key);
+    if (impact && impact.partner_key && session.amount_total != null) {
+      const impactAmount = Math.round((session.amount_total * (impact.percent || 10)) / 100);
+      await store.recordImpactAllocation({
+        sessionId: session.id,
+        priceKey: key,
+        partnerKey: impact.partner_key,
+        percent: impact.percent || 10,
+        grossAmount: session.amount_total,
+        impactAmount,
+        currency: session.currency || 'usd',
+      });
+    }
+
     record.purchases.push({
       key,
       priceId,

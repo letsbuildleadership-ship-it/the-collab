@@ -1,0 +1,34 @@
+{
+  "eyebrow": "Impact™",
+  "hero_headline": [
+    { "text": "Building leadership,", "style": "white", "break_before": false },
+    { "text": " ", "style": "default", "break_before": false },
+    { "text": "building good.", "style": "glow", "break_before": true }
+  ],
+  "hero_subhead": "Select Founders Organization products are designated Impact Products™ — a fixed 10% of the purchase price supports a partner nonprofit, tracked openly and reconciled by hand.",
+
+  "how_eyebrow": "How Impact Products work",
+  "how_steps": [
+    { "title": "A product is designated", "description": "The Co.LLab marks a specific product as an Impact Product and sets a fixed percentage — currently 10%." },
+    { "title": "The allocation is recorded", "description": "At the moment of purchase, that percentage of the sale is logged to an internal ledger, tied to the nonprofit partner." },
+    { "title": "Totals are public", "description": "Aggregate totals per partner are shown below — no purchase details, no customer information, just the running total." },
+    { "title": "Funds are remitted", "description": "The Co.LLab reconciles and sends the allocated amount to each partner directly, on a regular cadence." }
+  ],
+  "how_notice": "Honesty matters here: Stripe is not automatically splitting or transferring these funds to the nonprofit partners in real time. Unless a partner has its own Stripe Connect account on file, the 10% obligation is tracked internally and remitted by The Co.LLab directly to the organization. The ledger and totals below reflect what has been allocated and what has been sent.",
+
+  "partners_eyebrow": "Current partners",
+  "partners_static": [
+    { "key": "blazing-smiles", "name": "Blazing Smiles" },
+    { "key": "wavecraft-oceans", "name": "Wavecraft Oceans Project" }
+  ],
+
+  "products_eyebrow": "Current Impact Products",
+  "products": [
+    { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Founder", "price": "$350", "link": "founders.html" },
+    { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Legacy Founder", "price": "$1,000", "link": "founders.html" }
+  ],
+  "products_note": "Additional products may be designated as Impact Products over time. Each one is marked clearly, both here and on its own page.",
+
+  "closing_eyebrow": "Go deeper",
+  "closing_headline": "Build your own infrastructure, and support good work along the way."
+}

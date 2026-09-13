@@ -39,8 +39,12 @@ test('membership grants the infrastructure roadmap bonus; library-card too', () 
   assert.deepEqual(pricing.grantsForKey('journal'), []);
 });
 
-test('no membership tier unlocks the full catalog for free — membership grants the four phases + a 10% discount instead', () => {
-  assert.equal(pricing.unlocksCatalog('membership'), false);
+test('Membership unlocks the full one-time catalog; Library Card and Journal do not', () => {
+  // c281057 ("fix Membership to unlock full catalog on the dashboard") is the
+  // latest deliberate decision on this — Membership is the flagship, central
+  // ecosystem and grants every IV Phases + Creator Infrastructure product.
+  // Library Card and Journal are narrower add-ons and stay locked-catalog.
+  assert.equal(pricing.unlocksCatalog('membership'), true);
   assert.equal(pricing.unlocksCatalog('library-card'), false);
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });

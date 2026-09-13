@@ -7,12 +7,14 @@ let customers = new Map(); // token -> record
 let byEmail = new Map(); // emailHash -> token
 let byStripeCustomer = new Map();
 let bySubscription = new Map();
+let impactLedger = new Map(); // id -> allocation record
 
 function reset() {
   customers = new Map();
   byEmail = new Map();
   byStripeCustomer = new Map();
   bySubscription = new Map();
+  impactLedger = new Map();
 }
 
 function randomToken() {
@@ -84,6 +86,38 @@ async function getSubscriptionLink(subscriptionId) {
   return bySubscription.get(subscriptionId) || null;
 }
 
+async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency }) {
+  const id = `${sessionId}-${priceKey}`;
+  if (impactLedger.has(id)) return impactLedger.get(id);
+  const entry = {
+    id,
+    sessionId,
+    priceKey,
+    partnerKey,
+    percent,
+    grossAmount,
+    impactAmount,
+    currency: currency || 'usd',
+    createdAt: new Date().toISOString(),
+    remitted: false,
+    remittedAt: null,
+  };
+  impactLedger.set(id, entry);
+  return entry;
+}
+
+async function listImpactLedger() {
+  return Array.from(impactLedger.values());
+}
+
+async function markImpactRemitted(id, remitted = true) {
+  const entry = impactLedger.get(id);
+  if (!entry) return null;
+  entry.remitted = remitted;
+  entry.remittedAt = remitted ? new Date().toISOString() : null;
+  return entry;
+}
+
 module.exports = {
   reset,
   randomToken,
@@ -97,4 +131,7 @@ module.exports = {
   getTokenByStripeCustomer,
   linkSubscription,
   getSubscriptionLink,
+  recordImpactAllocation,
+  listImpactLedger,
+  markImpactRemitted,
 };
