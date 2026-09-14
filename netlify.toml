@@ -12,6 +12,15 @@
 #   STRIPE_WEBHOOK_SECRET signing secret for the "The Co.LLab website" webhook
 #                         endpoint (Stripe dashboard -> Developers -> Webhooks)
 #   ADMIN_TOKEN           bearer token the owner uses to sign in at /admin/customers.html
+#                         (also gates admin-test-checkout.js's $1 test purchases)
+#
+# Optional environment variables:
+#   DEV_SETUP_SECRET      gates dev-setup-test-account.js's one-tap sample account
+#   STRIPE_SECRET_KEY_TEST + STRIPE_TEST_PRICE_MAP  enable true Stripe TEST MODE
+#                         (zero real charges) for admin-test-checkout.js once the
+#                         owner has mirrored a price in Stripe test mode; until
+#                         set, test purchases use a real $1 charge via a hidden,
+#                         single-use coupon on the live price instead.
 
 [[headers]]
   for = "/content/*.json"

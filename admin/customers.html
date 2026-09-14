@@ -25,6 +25,7 @@
   <p class="eyebrow" style="justify-content:center;">Owner access only</p>
   <h1 class="headline" style="margin-top:1.25rem;">Admin sign-in</h1>
   <p class="subhead" style="margin:1rem auto 1.5rem;">Enter the ADMIN_TOKEN configured in Netlify's environment variables.</p>
+  <div id="config-status" style="text-align:left; font-size:0.78rem; color:var(--white-faint); border:1px solid var(--hairline); border-radius:10px; padding:0.9rem 1rem; margin-bottom:1.5rem;">Checking configuration…</div>
   <form id="gate-form" style="display:flex; gap:0.6rem;">
     <input id="gate-input" type="password" placeholder="Admin token" style="flex:1;" />
     <button type="submit" class="pill pill--solid">Enter</button>
@@ -63,6 +64,20 @@
     </thead>
     <tbody id="impact-body"></tbody>
   </table>
+
+  <h2 class="headline" style="margin-top:3.5rem; font-size:1.4rem;">Owner Test Purchases</h2>
+  <p class="subhead" style="margin-top:0.5rem;">Run the real checkout → webhook → fulfillment flow for any product, phase, or membership. Uses Stripe TEST MODE when configured (nothing charged); otherwise a hidden, single-use $1 coupon is applied to the live price — never shown or offered to customers. Opens Stripe Checkout in a new tab; complete the payment there to finish the test.</p>
+  <div style="display:flex; gap:0.75rem; margin-top:1.25rem; align-items:center; flex-wrap:wrap;">
+    <input id="test-email-input" type="email" placeholder="Test buyer email" value="owner-test@wearethellab.test" style="min-width:260px;" />
+    <button id="test-refresh-btn" class="pill mini">Refresh catalog</button>
+    <span id="test-status-text" style="font-size:0.8rem; color: var(--white-faint);"></span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Name</th><th>Type</th><th>Price</th><th>Plan</th><th>Test purchase</th></tr>
+    </thead>
+    <tbody id="test-catalog-body"></tbody>
+  </table>
 </div>
 
 <script>
@@ -73,6 +88,27 @@
   let catalog = [];
 
   function token() { return sessionStorage.getItem(ADMIN_KEY); }
+
+  async function checkConfigStatus() {
+    const el = document.getElementById('config-status');
+    try {
+      const res = await fetch('/.netlify/functions/admin-status');
+      const s = await res.json();
+      const row = (label, ok) => `<div>${ok ? '✅' : '❌'} ${label}</div>`;
+      el.innerHTML =
+        row('ADMIN_TOKEN (owner/admin access)', s.adminTokenConfigured) +
+        row('STRIPE_SECRET_KEY (live)', s.stripeLiveKeyConfigured) +
+        row('STRIPE_WEBHOOK_SECRET', s.stripeWebhookSecretConfigured) +
+        row('DEV_SETUP_SECRET (optional)', s.devSetupSecretConfigured) +
+        row('STRIPE_SECRET_KEY_TEST (optional, enables true test mode)', s.stripeTestKeyConfigured);
+      if (!s.adminTokenConfigured) {
+        el.innerHTML += '<div style="margin-top:0.5rem; color:var(--ember-2);">Set ADMIN_TOKEN in Netlify → Site configuration → Environment variables, then redeploy, before signing in below.</div>';
+      }
+    } catch (err) {
+      el.textContent = 'Could not reach admin-status endpoint.';
+    }
+  }
+  checkConfigStatus();
 
   async function api(path, opts) {
     const res = await fetch(`/.netlify/functions/admin-customers${path}`, {
@@ -154,6 +190,83 @@
     document.getElementById('status-text').textContent = data.customer ? '1 customer' : 'Not found';
   }
 
+  async function apiTestCheckout(key, interval) {
+    const email = encodeURIComponent(document.getElementById('test-email-input').value.trim() || 'owner-test@wearethellab.test');
+    const qs = `?key=${encodeURIComponent(key)}&interval=${encodeURIComponent(interval || 'month')}&email=${email}`;
+    const res = await fetch(`/.netlify/functions/admin-test-checkout${qs}`, {
+      headers: { 'X-Admin-Token': token() },
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Could not create test checkout session.');
+    return data;
+  }
+
+  function renderTestRow(item) {
+    const tr = document.createElement('tr');
+    const isMembership = item.kind === 'membership';
+    tr.innerHTML = `
+      <td>${item.key}</td>
+      <td>${item.name}</td>
+      <td>${item.kind}</td>
+      <td>${item.price_display}</td>
+      <td></td>
+      <td></td>
+    `;
+    const planCell = tr.children[4];
+    let intervalSelect = null;
+    if (isMembership) {
+      intervalSelect = document.createElement('select');
+      (item.plans || []).forEach((p) => {
+        const opt = document.createElement('option');
+        opt.value = p.interval;
+        opt.textContent = `${p.interval} — ${p.price_display}`;
+        intervalSelect.appendChild(opt);
+      });
+      planCell.appendChild(intervalSelect);
+    } else {
+      planCell.textContent = '—';
+    }
+
+    const actionCell = tr.children[5];
+    const btn = document.createElement('button');
+    btn.className = 'pill mini';
+    btn.textContent = 'Test purchase';
+    btn.onclick = async () => {
+      btn.disabled = true;
+      btn.textContent = 'Creating…';
+      try {
+        const data = await apiTestCheckout(item.key, intervalSelect ? intervalSelect.value : null);
+        window.open(data.checkout_url, '_blank');
+        document.getElementById('test-status-text').textContent =
+          `Opened checkout for ${item.key} (${data.mode}, charging $${(data.charged / 100).toFixed(2)})`;
+      } catch (err) {
+        document.getElementById('test-status-text').textContent = err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Test purchase';
+      }
+    };
+    actionCell.appendChild(btn);
+    return tr;
+  }
+
+  async function loadTestCatalog() {
+    document.getElementById('test-status-text').textContent = 'Loading catalog…';
+    const res = await fetch('/content/pricing.json');
+    const registry = await res.json();
+    const items = [
+      ...(registry.products || []).map((p) => ({ ...p, kind: 'product' })),
+      ...(registry.memberships || []).map((m) => ({ ...m, kind: 'membership' })),
+      ...(registry.blueprint_series || []).map((p) => ({ ...p, kind: 'blueprint' })),
+    ];
+    const body = document.getElementById('test-catalog-body');
+    body.innerHTML = '';
+    items.forEach((item) => body.appendChild(renderTestRow(item)));
+    document.getElementById('test-status-text').textContent = `${items.length} purchasable item(s)`;
+  }
+
+  document.getElementById('test-refresh-btn').addEventListener('click', loadTestCatalog);
+
   document.getElementById('gate-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const value = document.getElementById('gate-input').value.trim();
@@ -164,6 +277,7 @@
       gate.style.display = 'none';
       app.style.display = 'block';
       loadImpactLedger();
+      loadTestCatalog();
     } catch (err) {
       document.getElementById('gate-error').style.display = 'block';
     }
@@ -232,6 +346,7 @@
         gate.style.display = 'none';
         app.style.display = 'block';
         loadImpactLedger();
+        loadTestCatalog();
       })
       .catch(() => {});
   }

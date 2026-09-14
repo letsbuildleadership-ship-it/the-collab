@@ -71,6 +71,33 @@ function allCatalogProductKeys() {
   return (registry.products || []).map((p) => p.key);
 }
 
+/**
+ * Resolve any purchasable catalog key (one-time product, blueprint issue, or
+ * membership) to a Stripe price id + Checkout mode. Bonus products aren't
+ * sold directly (they're granted automatically alongside a membership or
+ * Library Card), so they resolve to null here. Used by the owner-only
+ * test-checkout endpoint (admin-test-checkout.js) to build a real Checkout
+ * Session for any catalog item without hardcoding price ids twice.
+ */
+function resolvePurchasable(key, interval) {
+  const entry = entryForKey(key);
+  if (!entry) return null;
+
+  if (entry.kind === 'membership') {
+    const plans = entry.plans || [];
+    const plan = plans.find((p) => p.interval === interval) || plans[0];
+    if (!plan || !plan.stripe_price_id) return null;
+    return { priceId: plan.stripe_price_id, mode: 'subscription', interval: plan.interval, name: entry.name };
+  }
+
+  if (entry.kind === 'product' || entry.kind === 'blueprint') {
+    if (!entry.stripe_price_id) return null;
+    return { priceId: entry.stripe_price_id, mode: 'payment', interval: null, name: entry.name };
+  }
+
+  return null; // bonus products: granted automatically, not directly purchasable
+}
+
 /** All registered Impact nonprofit partners. */
 function impactPartners() {
   return registry.impact_partners || [];
@@ -98,4 +125,5 @@ module.exports = {
   impactPartners,
   impactPartnerForKey,
   impactForKey,
+  resolvePurchasable,
 };
