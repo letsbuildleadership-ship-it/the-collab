@@ -1,23 +1,32 @@
 // Owner-only, idempotent (safe to call more than once) setup for the private
 // discount codes:
-//   OGCOLLABORATOR  -> .LLab Membership (annual) discounted to $100/yr
-//   COLLABFRIEND    -> 90% off any product, site-wide
-//   FRIENDSFOUNDER  -> Founders Organization (Founder tier) discounted to $20
+//   LLABORIGINAL  -> OG Co.LLab Collaborator: .LLab Membership (annual) at $100/yr
+//   LLABFRIEND    -> 90% off any product, site-wide
+//   LLABINITIATE  -> Friends & Family: Founders Organization (Founder tier) at $20
+//   LLABFOUNDING  -> .LLab Founding Circle: .LLab Membership (annual) at $100/yr
+//   LLABSOVEREIGN -> .LLab Membership (annual) at $500/yr
 //
-// Stripe promotion codes only allow letters, digits, and dashes -- no
-// periods -- so "OGCO.LLABORATOR" is created as "OGCOLLABORATOR".
+// LLABORIGINAL and LLABFOUNDING both discount the same annual Membership
+// price to the same $100/yr -- they're two different codes for two different
+// audiences (OG collaborators vs. the Founding Circle), not two different
+// products, since pricing.json has one annual Membership price.
 //
-// COLLABTEST is intentionally NOT created here. Stripe has no single coupon
+// LLABTEST is intentionally NOT created here. Stripe has no single coupon
 // that can discount many differently-priced products down to the same flat
 // $1 (a coupon's amount_off is one fixed number). That exact capability --
 // buy any product for $1, through the real checkout/webhook/fulfillment
 // path -- already exists as the owner-only dynamic test-checkout tool
 // (admin-test-checkout.js / the "Owner Test Purchases" table in
 // admin/customers.html), which computes the correct per-product discount at
-// the moment of purchase instead of relying on a static code.
+// the moment of purchase instead of relying on a static code. That tool
+// already creates a real Stripe Checkout Session against the real price, so
+// completion fires the exact same checkout.session.completed webhook ->
+// fulfillCheckoutSession() path as any paying customer: same account
+// lookup/creation, same entitlement grant, same PDF/access unlock, same
+// membership bookkeeping.
 //
 // Also flips `allow_promotion_codes: true` on every existing Stripe Payment
-// Link that this catalog uses, since real customers check out through those
+// Link this catalog uses, since real customers check out through those
 // static links today and a promotion code can't be redeemed on a Payment
 // Link that doesn't have that switched on.
 //
@@ -173,7 +182,7 @@ exports.handler = async (event) => {
 
     codeResults.push(
       await ensureFixedPriceCode(stripe, {
-        code: 'OGCOLLABORATOR',
+        code: 'LLABORIGINAL',
         priceId: membership && membership.priceId,
         targetCents: 10000, // $100
         duration: 'forever',
@@ -181,15 +190,33 @@ exports.handler = async (event) => {
     );
 
     codeResults.push(
-      await ensurePercentOffCode(stripe, { code: 'COLLABFRIEND', percentOff: 90, duration: 'once' })
+      await ensurePercentOffCode(stripe, { code: 'LLABFRIEND', percentOff: 90, duration: 'once' })
     );
 
     codeResults.push(
       await ensureFixedPriceCode(stripe, {
-        code: 'FRIENDSFOUNDER',
+        code: 'LLABINITIATE',
         priceId: founder && founder.priceId,
         targetCents: 2000, // $20
         duration: 'once',
+      })
+    );
+
+    codeResults.push(
+      await ensureFixedPriceCode(stripe, {
+        code: 'LLABFOUNDING',
+        priceId: membership && membership.priceId,
+        targetCents: 10000, // $100
+        duration: 'forever',
+      })
+    );
+
+    codeResults.push(
+      await ensureFixedPriceCode(stripe, {
+        code: 'LLABSOVEREIGN',
+        priceId: membership && membership.priceId,
+        targetCents: 50000, // $500
+        duration: 'forever',
       })
     );
 
@@ -199,8 +226,8 @@ exports.handler = async (event) => {
       mode: liveKey ? 'live' : 'test',
       codes: codeResults,
       payment_links: paymentLinks,
-      collabtest_note:
-        'COLLABTEST is not created as a Stripe code here -- Stripe cannot discount many differently-priced products to the same flat $1 with one static code. That exact capability already exists as the owner-only $1 test-checkout tool built previously.',
+      llabtest_note:
+        'LLABTEST is not created as a Stripe code here -- Stripe cannot discount many differently-priced products to the same flat $1 with one static code. That exact capability already exists as the owner-only $1 test-checkout tool built previously, which runs a real Checkout Session through the real webhook/fulfillment path.',
     });
   } catch (err) {
     console.error('admin-setup-promo-codes error', err);
