@@ -145,6 +145,39 @@ async function nextMemberId() {
   return `CL-${String(seq).padStart(5, '0')}`;
 }
 
+/**
+ * Sequential, permanent Founder Number (F-00001, F-00002, ...), assigned
+ * once per member the first time they complete any Founder-tier purchase.
+ * Same read-then-write pattern (and same acceptable race) as nextMemberId.
+ */
+async function nextFounderNumber() {
+  const doc = (await store().get('meta/founder-number-seq.json', { type: 'json' })) || { seq: 0 };
+  const seq = doc.seq + 1;
+  await store().setJSON('meta/founder-number-seq.json', { seq });
+  return `F-${String(seq).padStart(5, '0')}`;
+}
+
+/**
+ * Every recognized Founder, for the public Founder Recognition list —
+ * small volume expected (same assumption listImpactLedger makes), so a
+ * full scan of the customers/ prefix is fine. Returns only public-safe
+ * fields: never email, password, Stripe ids, or raw purchase history.
+ */
+async function listFounders() {
+  const page = await store().list({ prefix: 'customers/' });
+  const records = await Promise.all(page.blobs.map((b) => store().get(b.key, { type: 'json' })));
+  return records
+    .filter((r) => r && r.founder)
+    .map((r) => ({
+      founderNumber: r.founder.founderNumber,
+      level: r.founder.level,
+      levelLabel: r.founder.levelLabel,
+      name: r.founder.name || null,
+      memberId: r.memberId || null,
+      recognizedAt: r.founder.recognizedAt,
+    }));
+}
+
 function newCustomer(email, token, memberId) {
   const now = new Date().toISOString();
   return {
@@ -155,9 +188,11 @@ function newCustomer(email, token, memberId) {
     createdAt: now,
     updatedAt: now,
     stripeCustomerId: null,
+    name: null,
     entitlements: [],
     memberships: {}, // { [membershipKey]: { status, interval, subscriptionId, currentPeriodEnd } }
     purchases: [], // [{ key, priceId, sessionId, amount, currency, purchasedAt }]
+    founder: null, // { founderNumber, level, levelLabel, rank, recognizedAt, name, levels: [key,...] }
   };
 }
 
@@ -229,6 +264,8 @@ module.exports = {
   randomToken,
   hashEmail,
   nextMemberId,
+  nextFounderNumber,
+  listFounders,
   getCustomerByToken,
   saveCustomer,
   getTokenByEmail,

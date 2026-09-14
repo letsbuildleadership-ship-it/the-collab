@@ -201,7 +201,10 @@
       "payment_link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "pdf_file": "founders-organization.pdf",
       "description": "Full access to the Founders Organization: the four-phase infrastructure model, the founder community, and every resource in the introductory cohort.",
-      "impact": { "partner_key": "blazing-smiles", "percent": 10 }
+      "impact": { "partner_key": "blazing-smiles", "percent": 10 },
+      "founder_rank": 1,
+      "founder_level_label": "Founder",
+      "founder_discount_exempt": true
     },
     {
       "key": "legacy-founder",
@@ -213,7 +216,10 @@
       "payment_link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available.",
-      "impact": { "partner_key": "wavecraft-oceans", "percent": 10 }
+      "impact": { "partner_key": "wavecraft-oceans", "percent": 10 },
+      "founder_rank": 2,
+      "founder_level_label": "Legacy Founder",
+      "founder_discount_exempt": true
     }
   ],
 

@@ -8,6 +8,7 @@ let byEmail = new Map(); // emailHash -> token
 let byStripeCustomer = new Map();
 let bySubscription = new Map();
 let impactLedger = new Map(); // id -> allocation record
+let founderSeq = 0;
 
 function reset() {
   customers = new Map();
@@ -15,6 +16,25 @@ function reset() {
   byStripeCustomer = new Map();
   bySubscription = new Map();
   impactLedger = new Map();
+  founderSeq = 0;
+}
+
+async function nextFounderNumber() {
+  founderSeq += 1;
+  return `F-${String(founderSeq).padStart(5, '0')}`;
+}
+
+async function listFounders() {
+  return Array.from(customers.values())
+    .filter((r) => r.founder)
+    .map((r) => ({
+      founderNumber: r.founder.founderNumber,
+      level: r.founder.level,
+      levelLabel: r.founder.levelLabel,
+      name: r.founder.name || null,
+      memberId: r.memberId || null,
+      recognizedAt: r.founder.recognizedAt,
+    }));
 }
 
 function randomToken() {
@@ -33,9 +53,11 @@ function newCustomer(email, token) {
     createdAt: now,
     updatedAt: now,
     stripeCustomerId: null,
+    name: null,
     entitlements: [],
     memberships: {},
     purchases: [],
+    founder: null,
   };
 }
 
@@ -122,6 +144,8 @@ module.exports = {
   reset,
   randomToken,
   hashEmail,
+  nextFounderNumber,
+  listFounders,
   getCustomerByToken,
   saveCustomer,
   getTokenByEmail,

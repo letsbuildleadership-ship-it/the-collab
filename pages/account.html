@@ -29,6 +29,13 @@
   .badge-active { color: var(--filament-2); }
   .badge-canceled { color: var(--white-faint); }
   #account-loading { text-align: center; padding: 4rem 0; }
+  .founder-card { border: 1px solid var(--hairline-strong); border-radius: 16px; padding: 1.75rem 2rem; margin-top: 2rem; background: linear-gradient(160deg, var(--black-soft), transparent); }
+  .founder-card-badge { display: inline-block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-1); font-weight: 600; margin-bottom: 1.25rem; }
+  .founder-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.25rem 2rem; }
+  .founder-card-label { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-faint); margin-bottom: 0.35rem; }
+  .founder-card-value { font-size: 1.05rem; font-weight: 500; color: var(--white); }
+  .founder-card-benefit { margin-top: 1.5rem; font-size: 0.9rem; color: var(--white-dim); }
+  .founder-card-copy { margin-top: 0.75rem; font-size: 0.82rem; line-height: 1.6; color: var(--white-faint); max-width: 68ch; }
 </style>
 </head>
 <body>
@@ -146,6 +153,8 @@
           <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
         </div>
       </div>
+
+      <div id="founder-card-group" hidden></div>
 
       <div id="steward-note-wrap"></div>
 

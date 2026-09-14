@@ -119,6 +119,33 @@ async function ensurePercentOffCode(stripe, { code, percentOff, duration }) {
   return { code, status: 'created', coupon_id: coupon.id, promotion_code_id: promo.id, percent_off: percentOff, duration };
 }
 
+const FOUNDER_COUPON_ID = 'collab-founder-20';
+
+/**
+ * The permanent 20% Founder thank-you discount, applied automatically
+ * (server-side, not as a typed promo code) to a signed-in Founder's future
+ * checkouts by checkout-create.js. Idempotent on the fixed coupon id.
+ * checkout-create.js also self-heals and creates this on first use if the
+ * owner hasn't called this setup endpoint yet, so this call is optional
+ * but keeps creation on the same "run once" pattern as the codes above.
+ */
+async function ensureFounderCoupon(stripe) {
+  try {
+    const existing = await stripe.coupons.retrieve(FOUNDER_COUPON_ID);
+    return { id: FOUNDER_COUPON_ID, status: 'already_exists', percent_off: existing.percent_off };
+  } catch (err) {
+    if (err && err.code !== 'resource_missing') throw err;
+  }
+  const coupon = await stripe.coupons.create({
+    id: FOUNDER_COUPON_ID,
+    percent_off: 20,
+    duration: 'forever',
+    name: 'Founder — 20% off (permanent thank-you)',
+    metadata: { purpose: 'founder_permanent_discount' },
+  });
+  return { id: coupon.id, status: 'created', percent_off: coupon.percent_off };
+}
+
 function collectPaymentLinkUrls() {
   const reg = pricing.registry || {};
   const urls = new Set();
@@ -221,11 +248,13 @@ exports.handler = async (event) => {
     );
 
     const paymentLinks = await enablePromoCodesOnAllPaymentLinks(stripe);
+    const founderCoupon = await ensureFounderCoupon(stripe);
 
     return json(200, {
       mode: liveKey ? 'live' : 'test',
       codes: codeResults,
       payment_links: paymentLinks,
+      founder_discount_coupon: founderCoupon,
       llabtest_note:
         'LLABTEST is not created as a Stripe code here -- Stripe cannot discount many differently-priced products to the same flat $1 with one static code. That exact capability already exists as the owner-only $1 test-checkout tool built previously, which runs a real Checkout Session through the real webhook/fulfillment path.',
     });

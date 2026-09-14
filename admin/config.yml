@@ -265,6 +265,11 @@ collections:
               - { label: "Impact badge text (leave blank if not an Impact Product)", name: "impact_label", widget: "string", required: false }
           - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
+          - { label: "Founder Recognition eyebrow", name: "recognition_eyebrow", widget: "string" }
+          - { label: "Founder Recognition headline", name: "recognition_headline", widget: "string" }
+          - { label: "Founder Recognition body (Omnidirectional Enterprise™ copy)", name: "recognition_body", widget: "text" }
+          - { label: "Founder Recognition empty-state text", name: "recognition_empty", widget: "string" }
+
       - name: "think"
         label: "Think (R.A.T.™)"
         file: "content/think.json"

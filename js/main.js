@@ -126,8 +126,46 @@ async function loadContent() {
   applyLists(pageData);
 }
 
+/* ------------------------------------------------------------------ *
+ * Founder discount routing
+ *
+ * A signed-in Founder gets their permanent 20% off applied automatically,
+ * server-side, on future purchases. Everyone else's "Buy" links are left
+ * completely untouched (still the static Stripe Payment Links they always
+ * were). Quietly checks /me (existing cookie session, if any) and, only
+ * when that visitor is a recognized Founder, swaps recognized Payment
+ * Link hrefs for the dynamic, discount-aware checkout-create.js endpoint.
+ * Fails silently on any error — the static links already work fine.
+ * ------------------------------------------------------------------ */
+async function applyFounderCheckoutLinks() {
+  try {
+    const meRes = await fetch('/.netlify/functions/me', { credentials: 'include' });
+    if (!meRes.ok) return;
+    const me = await meRes.json();
+    if (!me || !me.founder) return;
+
+    const mapRes = await fetch('/.netlify/functions/catalog-map', { credentials: 'include' });
+    if (!mapRes.ok) return;
+    const map = await mapRes.json();
+
+    const from = location.pathname;
+    document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach((el) => {
+      const entry = map[el.getAttribute('href')];
+      if (!entry) return;
+      const params = new URLSearchParams({ key: entry.key });
+      if (entry.interval) params.set('interval', entry.interval);
+      params.set('from', from);
+      el.setAttribute('href', `/.netlify/functions/checkout-create?${params.toString()}`);
+      el.dataset.founderDiscount = 'applied';
+    });
+  } catch (err) {
+    /* non-fatal: static Payment Links already work without this */
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadContent();
+  applyFounderCheckoutLinks();
 
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');

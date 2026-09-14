@@ -249,12 +249,58 @@
     </div>`;
   }
 
+  function formatRecognizedDate(iso) {
+    if (!iso) return '—';
+    try {
+      return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderFounderCard(data) {
+    const wrap = $('founder-card-group');
+    if (!wrap) return;
+    const founder = data.founder;
+    if (!founder) {
+      wrap.hidden = true;
+      wrap.innerHTML = '';
+      return;
+    }
+    wrap.hidden = false;
+    wrap.innerHTML = `
+      <div class="founder-card">
+        <div class="founder-card-badge">Founder Recognition</div>
+        <div class="founder-card-grid">
+          <div>
+            <span class="founder-card-label">Founder Level</span>
+            <strong class="founder-card-value">${founder.levelLabel}</strong>
+          </div>
+          <div>
+            <span class="founder-card-label">Founder Number</span>
+            <strong class="founder-card-value">${founder.founderNumber}</strong>
+          </div>
+          <div>
+            <span class="founder-card-label">Member</span>
+            <strong class="founder-card-value">${data.name || data.memberId || '—'}</strong>
+          </div>
+          <div>
+            <span class="founder-card-label">Recognized</span>
+            <strong class="founder-card-value">${formatRecognizedDate(founder.recognizedAt)}</strong>
+          </div>
+        </div>
+        <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future Co.LLab™ products, applied automatically at checkout whenever you're signed in.</p>
+        <p class="founder-card-copy">Founder participation supports The Co.LLab™'s Omnidirectional Enterprise™ model — value, authority, intelligence, IP, and opportunity moving in multiple directions rather than purely top-down. As a Founder, you help strengthen Leadership Infrastructure™ and the ecosystem connecting creators, businesses, nonprofits, organizations, and enterprise — turning human potential into performance, sustainable enterprise value, and lasting legacy.</p>
+      </div>`;
+  }
+
   function renderDashboard(data) {
     data.activityProgress = data.activityProgress || {};
     state.data = data;
 
     $('account-email').textContent = data.email;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
+    renderFounderCard(data);
 
     if (!data.hasPassword && data.memberId) {
       $('create-password-member-id').textContent = data.memberId;

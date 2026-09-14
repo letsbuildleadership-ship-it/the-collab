@@ -34,6 +34,7 @@ function buildAccountView(record) {
 
   return {
     email: record.email,
+    name: record.name || null,
     memberId: record.memberId || null,
     hasPassword: !!record.passwordHash,
     memberOfCollab: true,
@@ -42,6 +43,7 @@ function buildAccountView(record) {
     owned,
     locked,
     activityProgress: record.activityProgress || {},
+    founder: record.founder || null,
   };
 }
 

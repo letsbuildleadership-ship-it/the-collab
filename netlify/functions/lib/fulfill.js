@@ -26,6 +26,14 @@ async function fulfillCheckoutSession(session, priceIds) {
     await store.linkStripeCustomer(session.customer, token);
   }
 
+  // Capture the purchaser's name for the Founder Card / account dashboard,
+  // if Stripe collected one on this session. Never overwrites a name we
+  // already have with a blank one.
+  const sessionName = session.customer_details && session.customer_details.name;
+  if (sessionName && !record.name) {
+    record.name = sessionName;
+  }
+
   const grantedKeys = [];
 
   for (const priceId of priceIds) {
@@ -75,6 +83,45 @@ async function fulfillCheckoutSession(session, priceIds) {
       currency: session.currency || 'usd',
       purchasedAt: new Date().toISOString(),
     });
+  }
+
+  // Founder Recognition: any Founder-tier product in this purchase
+  // automatically recognizes the purchaser under that Founder level. The
+  // Founder Number is assigned once, the first time, and is permanent —
+  // buying a higher Founder tier later upgrades the recognized level (and
+  // keeps a history of every tier held) without ever reassigning the
+  // number or the original recognition date. This never touches pricing —
+  // it only records recognition after payment has already completed.
+  let highestNewRank = 0;
+  let highestNewKey = null;
+  for (const key of grantedKeys) {
+    const rank = pricing.founderRankForKey(key);
+    if (rank && rank > highestNewRank) {
+      highestNewRank = rank;
+      highestNewKey = key;
+    }
+  }
+  if (highestNewKey) {
+    if (!record.founder) {
+      record.founder = {
+        founderNumber: await store.nextFounderNumber(),
+        level: highestNewKey,
+        levelLabel: pricing.founderLevelLabelForKey(highestNewKey),
+        rank: highestNewRank,
+        recognizedAt: new Date().toISOString(),
+        name: record.name || null,
+        levels: [highestNewKey],
+      };
+    } else {
+      if (!record.founder.levels) record.founder.levels = [record.founder.level];
+      if (!record.founder.levels.includes(highestNewKey)) record.founder.levels.push(highestNewKey);
+      if (highestNewRank > (record.founder.rank || 0)) {
+        record.founder.level = highestNewKey;
+        record.founder.levelLabel = pricing.founderLevelLabelForKey(highestNewKey);
+        record.founder.rank = highestNewRank;
+      }
+      if (record.name && !record.founder.name) record.founder.name = record.name;
+    }
   }
 
   record.entitlements = uniq([...(record.entitlements || []), ...grantedKeys]);

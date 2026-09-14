@@ -114,6 +114,55 @@ function impactForKey(key) {
   return (entry && entry.impact) || null;
 }
 
+/** Numeric Founder tier rank (higher = higher tier) if this key is a Founder-level product, else null. */
+function founderRankForKey(key) {
+  const entry = entryForKey(key);
+  return (entry && entry.founder_rank) || null;
+}
+
+/** Short display label for a Founder tier ("Founder", "Legacy Founder"), falling back to the product name. */
+function founderLevelLabelForKey(key) {
+  const entry = entryForKey(key);
+  if (!entry) return key;
+  return entry.founder_level_label || entry.name;
+}
+
+/** All catalog keys that are Founder-tier products, ordered by rank ascending. */
+function founderTierKeys() {
+  return (registry.products || [])
+    .filter((p) => p.founder_rank)
+    .sort((a, b) => a.founder_rank - b.founder_rank)
+    .map((p) => p.key);
+}
+
+/** Is this key exempt from the automatic Founder 20% discount (e.g. the Founder tiers themselves)? */
+function isFounderDiscountExempt(key) {
+  const entry = entryForKey(key);
+  return !!(entry && entry.founder_discount_exempt);
+}
+
+/**
+ * Public map of every live Stripe Payment Link on the site to its catalog
+ * key (+ interval, for subscriptions) — lets client-side code recognize a
+ * "Buy" link it's looking at without hardcoding URLs. Nothing sensitive:
+ * payment_link URLs are already public on every page.
+ */
+function paymentLinkMap() {
+  const map = {};
+  for (const p of registry.products || []) {
+    if (p.payment_link) map[p.payment_link] = { key: p.key, interval: null };
+  }
+  for (const p of registry.blueprint_series || []) {
+    if (p.payment_link) map[p.payment_link] = { key: p.key, interval: null };
+  }
+  for (const m of registry.memberships || []) {
+    for (const plan of m.plans || []) {
+      if (plan.payment_link) map[plan.payment_link] = { key: m.key, interval: plan.interval };
+    }
+  }
+  return map;
+}
+
 module.exports = {
   registry,
   CATALOG_KEY,
@@ -126,4 +175,9 @@ module.exports = {
   impactPartnerForKey,
   impactForKey,
   resolvePurchasable,
+  founderRankForKey,
+  founderLevelLabelForKey,
+  founderTierKeys,
+  isFounderDiscountExempt,
+  paymentLinkMap,
 };
