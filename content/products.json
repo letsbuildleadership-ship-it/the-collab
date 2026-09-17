@@ -46,9 +46,24 @@
   "phases_eyebrow": "Buy what you need, when you need it",
   "phases_headline": "The .LLab™ IV Phases Product Infrastructure",
 
-  "snapshot_tag": "Free · Coming Soon",
-  "snapshot_title": ".LLab Leadership Infrastructure Snapshot™",
-  "snapshot_description": "A free first look at your leadership infrastructure — not open yet.",
+  "free_phase_products": [
+    {"phase": "Phase I · Foundations", "title": "Leadership Foundations Checklist™", "description": "A self-audit of what's already in place — before you build anything new on top of it.", "link": "/content/library/free-tools/leadership-foundations-checklist.pdf"},
+    {"phase": "Phase I · Foundations", "title": "Clarity & Direction Worksheet™", "description": "Four short prompts to name your direction in plain language before you build anything on top of it.", "link": "/content/library/free-tools/clarity-direction-worksheet.pdf"},
+    {"phase": "Phase I · Foundations", "title": "Foundation Strength Snapshot™", "description": "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.", "link": "/content/library/free-tools/foundation-strength-snapshot.pdf"},
+    {"phase": "Phase I · Foundations", "title": "One Strength Starter™", "description": "A single-page starter for naming and building from one leadership strength.", "link": "/content/library/free-tools/one-strength-starter.pdf"},
+    {"phase": "Phase II · Infrastructure Planning & Management", "title": "Mission-to-Action Worksheet™", "description": "Translate your mission into three concrete actions you can take this month.", "link": "/content/library/free-tools/mission-to-action-worksheet.pdf"},
+    {"phase": "Phase II · Infrastructure Planning & Management", "title": "Accountability Gaps Checklist™", "description": "Spot where accountability quietly breaks down across your team or organization.", "link": "/content/library/free-tools/accountability-gaps-checklist.pdf"},
+    {"phase": "Phase II · Infrastructure Planning & Management", "title": "Alignment Quick-Check™", "description": "A five-minute check on whether your day-to-day work still matches your stated priorities.", "link": "/content/library/free-tools/alignment-quick-check.pdf"},
+    {"phase": "Phase II · Infrastructure Planning & Management", "title": "30-Day Infrastructure Starter™", "description": "A simple 30-day plan for putting your first piece of infrastructure in place.", "link": "/content/library/free-tools/30-day-infrastructure-starter.pdf"},
+    {"phase": "Phase III · Internal Operating Systems", "title": "Culture & Practice Audit™", "description": "A candid audit of the everyday practices actually shaping your culture — not just the ones on paper.", "link": "/content/library/free-tools/culture-practice-audit.pdf"},
+    {"phase": "Phase III · Internal Operating Systems", "title": "Leadership Influence Worksheet™", "description": "Map where your influence is strongest inside your organization — and where it isn't reaching yet.", "link": "/content/library/free-tools/leadership-influence-worksheet.pdf"},
+    {"phase": "Phase III · Internal Operating Systems", "title": "Operating Rhythm Checklist™", "description": "Check your meeting, communication, and decision rhythms against what healthy systems actually need.", "link": "/content/library/free-tools/operating-rhythm-checklist.pdf"},
+    {"phase": "Phase III · Internal Operating Systems", "title": "Systems Health Snapshot™", "description": "A fast diagnostic snapshot of how well your internal systems are actually operating.", "link": "/content/library/free-tools/systems-health-snapshot.pdf"},
+    {"phase": "Phase IV · Preservation", "title": "Legacy Starter Worksheet™", "description": "Begin naming what you want to leave behind — and who needs to carry it forward.", "link": "/content/library/free-tools/legacy-starter-worksheet.pdf"},
+    {"phase": "Phase IV · Preservation", "title": "Knowledge Transfer Checklist™", "description": "Make sure what's in your head is actually documented somewhere else too.", "link": "/content/library/free-tools/knowledge-transfer-checklist.pdf"},
+    {"phase": "Phase IV · Preservation", "title": "Continuity Quick-Check™", "description": "Check whether your organization could keep running smoothly if you stepped away for a month.", "link": "/content/library/free-tools/continuity-quick-check.pdf"},
+    {"phase": "Phase IV · Preservation", "title": "Legacy Infrastructure Snapshot™", "description": "A first look at how prepared your leadership infrastructure is to outlast you.", "link": "/content/library/free-tools/legacy-infrastructure-snapshot.pdf"}
+  ],
 
   "phase_products": [
     { "phase": "Phase I · Foundations", "title": "Leadership Infrastructure Strength Map™", "price": "$20", "description": "Identify one organizational strength and learn how to build infrastructure around it.", "link": "https://buy.stripe.com/bJeeVcbf01JHaFRelg9ws0k" },
