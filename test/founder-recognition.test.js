@@ -15,12 +15,18 @@ const STRENGTH_MAP_PRICE = 'price_1U31dIAK6n3ctuR9P3oaWUqY'; // ordinary one-tim
 
 test.beforeEach(() => fakeStore.reset());
 
-test('pricing.js exposes the two existing Founder levels, unchanged names/hierarchy', () => {
+test('pricing.js exposes all four Founder levels, ordered bottom to top', () => {
   const keys = pricing.founderTierKeys();
-  assert.deepEqual(keys, ['founder', 'legacy-founder']);
+  assert.deepEqual(keys, ['friends-family', 'premium-friends-family', 'founder', 'legacy-founder']);
+  assert.equal(pricing.founderLevelLabelForKey('friends-family'), 'Friends & Family');
+  assert.equal(pricing.founderLevelLabelForKey('premium-friends-family'), 'Premium Friends & Family');
   assert.equal(pricing.founderLevelLabelForKey('founder'), 'Founder');
   assert.equal(pricing.founderLevelLabelForKey('legacy-founder'), 'Legacy Founder');
+  assert.ok(pricing.founderRankForKey('premium-friends-family') > pricing.founderRankForKey('friends-family'));
+  assert.ok(pricing.founderRankForKey('founder') > pricing.founderRankForKey('premium-friends-family'));
   assert.ok(pricing.founderRankForKey('legacy-founder') > pricing.founderRankForKey('founder'));
+  assert.equal(pricing.isFounderDiscountExempt('friends-family'), true);
+  assert.equal(pricing.isFounderDiscountExempt('premium-friends-family'), true);
   assert.equal(pricing.isFounderDiscountExempt('founder'), true);
   assert.equal(pricing.isFounderDiscountExempt('legacy-founder'), true);
   assert.equal(pricing.isFounderDiscountExempt('strength-map'), false);
@@ -118,6 +124,21 @@ test('re-fulfilling the same Founder session twice (webhook + verify-session rac
 
 test('paymentLinkMap resolves the real Founders Organization payment links to the correct keys', () => {
   const map = pricing.paymentLinkMap();
+  assert.equal(map['https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15'].key, 'friends-family');
+  assert.equal(map['https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16'].key, 'premium-friends-family');
   assert.equal(map['https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h'].key, 'founder');
   assert.equal(map['https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i'].key, 'legacy-founder');
+});
+
+test('a Friends & Family purchase recognizes the purchaser at the bottom Founder tier', async () => {
+  const session = {
+    id: 'cs_ff_1',
+    customer_details: { email: 'ff1@example.com', name: 'Fran Friend' },
+    amount_total: 2000,
+    currency: 'usd',
+  };
+  const result = await fulfillCheckoutSession(session, ['price_1UFiCZAK6n3ctuR9t5qojYuv']);
+  assert.ok(result.record.founder);
+  assert.equal(result.record.founder.level, 'friends-family');
+  assert.equal(result.record.founder.levelLabel, 'Friends & Family');
 });

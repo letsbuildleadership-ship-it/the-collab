@@ -192,6 +192,34 @@
       "description": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy."
     },
     {
+      "key": "friends-family",
+      "name": "The Co.LLab™ Founders Organization — Friends & Family",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$20",
+      "stripe_price_id": "price_1UFiCZAK6n3ctuR9t5qojYuv",
+      "payment_link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15",
+      "pdf_file": "founders-organization.pdf",
+      "description": "An entry point into the Founders Organization for the people closest to a Founder — the four-phase infrastructure model and founder community, at the friends-and-family rate.",
+      "founder_rank": 1,
+      "founder_level_label": "Friends & Family",
+      "founder_discount_exempt": true
+    },
+    {
+      "key": "premium-friends-family",
+      "name": "The Co.LLab™ Founders Organization — Premium Friends & Family",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$50",
+      "stripe_price_id": "price_1UFiCZAK6n3ctuR9naGNNhBw",
+      "payment_link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16",
+      "pdf_file": "founders-organization.pdf",
+      "description": "Everything in Friends & Family, at a deeper level of access into the Founders Organization's introductory cohort.",
+      "founder_rank": 2,
+      "founder_level_label": "Premium Friends & Family",
+      "founder_discount_exempt": true
+    },
+    {
       "key": "founder",
       "name": "The Co.LLab™ Founders Organization — Founder",
       "phase": "Build · Founders Organization",
@@ -202,7 +230,7 @@
       "pdf_file": "founders-organization.pdf",
       "description": "Full access to the Founders Organization: the four-phase infrastructure model, the founder community, and every resource in the introductory cohort.",
       "impact": { "partner_key": "blazing-smiles", "percent": 10 },
-      "founder_rank": 1,
+      "founder_rank": 3,
       "founder_level_label": "Founder",
       "founder_discount_exempt": true
     },
@@ -217,7 +245,7 @@
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available.",
       "impact": { "partner_key": "wavecraft-oceans", "percent": 10 },
-      "founder_rank": 2,
+      "founder_rank": 4,
       "founder_level_label": "Legacy Founder",
       "founder_discount_exempt": true
     }
