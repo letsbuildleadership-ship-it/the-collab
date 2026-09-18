@@ -1,4 +1,50 @@
-// Shared Co.LLab IP license block, prepended to every .LLab™ workbook PDF.
-// Kept as its own module so new docs (e.g. the Creator Infrastructure™ line)
-// don't have to re-type the ~2,500 characters every existing doc inlines.
+// Shared Co.LLab IP license block.
+//
+// `licenseHtml` is the original single-column block, kept for the existing
+// paid-product docs that already inline it inside their own `.page` section.
+// `licensePageHtml` is the same legal text restructured as its own compact
+// two-column `.ip-page` (see base.css) so it reliably fits on exactly one
+// Letter page instead of spilling across two or three — used by every free
+// resource (Creator Infrastructure™ free tools + the 4 Phases free content).
 export const licenseHtml = `<h2 class="doc-h2">THE CO.LLAB™️ BUILDING LEADERSHIP INFRASTRUCTURE™️</h2><h2 class="doc-h2">THE CO.LLAB IP™️</h2><h3 class="doc-h3">INTELLECTUAL PROPERTY LICENSE &amp; TERMS OF USE</h3><p><strong>© 2026 The Co.LLab™️ Building Leadership Infrastructure™️. All Rights Reserved.</strong></p><h3 class="doc-h3">1. THE CO.LLAB IP™️</h3><p><strong>The Co.LLab IP™️</strong> refers collectively to the original intellectual property created and developed for <strong>The Co.LLab™️ Building Leadership Infrastructure™️</strong>, including <strong>The .LLab™️</strong> product line (including .LLab Creator Infrastructure™️) and all associated frameworks, methodologies, models, systems, tools, templates, assessments, content, terminology, designs, processes, and materials (collectively, "The Co.LLab IP™️").</p><p>The Co.LLab IP™️ is proprietary intellectual property created and controlled by <strong>The Co.LLab™️ Building Leadership Infrastructure™️ and its owner.</strong></p><h3 class="doc-h3">2. LICENSE TO USE</h3><p>Access to, receipt of, or purchase of The Co.LLab IP™️ grants the user a <strong>limited, non-exclusive, non-transferable, non-sublicensable license</strong> to use the applicable IP as a tool to <strong>build, develop, strengthen, and sustain infrastructure within the user's own creative practice, venture, or organization.</strong></p><p><strong>This license grants a right of use only. It does not transfer ownership, authorship, copyright, trademark, or other intellectual-property rights to the user.</strong></p><h3 class="doc-h3">3. WORKING COPIES</h3><p>Where a product requires a working copy, the user is expressly authorized to create and maintain copies, including <strong>digital copies, printed copies, and reasonable internal working copies</strong>, solely for authorized personal or organizational use.</p><p>Users may complete, annotate, customize, and adapt their working copies for their own needs. <strong>Creating, modifying, or using a working copy does not transfer ownership of The Co.LLab IP™️.</strong></p><h3 class="doc-h3">4. AUTHORIZED USE</h3><p>The Co.LLab IP™️ may be applied internally to creative, leadership, and organizational planning, strategy, implementation, performance, decision-making, facilitation, training, and related activities.</p><p>Users retain ownership of their <strong>own original work</strong> created through use of The Co.LLab IP™️. The underlying Co.LLab IP™️ remains proprietary to The Co.LLab™️ and its owner.</p><h3 class="doc-h3">5. RESTRICTIONS</h3><p>Without prior written authorization from The Co.LLab™️, the user may not:</p><ul class="doc-list"><li>Claim ownership or authorship of The Co.LLab IP™️;</li><li>Sell, license, sublicense, distribute, transfer, or provide The Co.LLab IP™️ to an unauthorized third party;</li><li>Repackage or present The Co.LLab IP™️ as the user's own proprietary framework, methodology, system, or product;</li><li>Commercialize The Co.LLab IP™️ or create a competing product substantially based upon it;</li><li>Publish or publicly distribute The Co.LLab IP™️ outside authorized personal or organizational use; or</li><li>Remove or alter proprietary, copyright, trademark, or attribution notices.</li></ul><h3 class="doc-h3">6. EXPANDED USE &amp; COLLABORATION</h3><p>The Co.LLab™️ encourages creators and organizations to use The Co.LLab IP™️ to advance their own development, growth, collaboration, and infrastructure.</p><p>External, public, commercial, consulting, training, co-branded, licensing, resale, publication, or third-party use of The Co.LLab IP™️ requires <strong>prior written authorization from The Co.LLab™️ Building Leadership Infrastructure™️.</strong></p><h3 class="doc-h3">7. RESERVATION OF RIGHTS</h3><p><strong>All rights in The Co.LLab IP™️ not expressly granted under these Terms are reserved by the intellectual-property owner.</strong></p><h3 class="doc-h3">8. ACCEPTANCE</h3><p><strong>By accessing, receiving, downloading, copying, purchasing, or using The Co.LLab IP™️, the user acknowledges and agrees to these Terms.</strong></p><p><strong>THE CO.LLAB IP™️ REMAINS PROPRIETARY TO THE CO.LLAB™️ AND ITS OWNER. THE USER RECEIVES A LICENSE TO USE IT — NOT OWNERSHIP OF IT.</strong></p><p><strong>THE CO.LLAB™️ BUILDING LEADERSHIP INFRASTRUCTURE™️<br/></strong> <strong>The .LLab™️ | The Co.LLab IP™️</strong></p><p><strong>© 2026 The Co.LLab™️ Building Leadership Infrastructure™️. All Rights Reserved.</strong></p><p><em>These Terms apply to The Co.LLab IP™️ provided free of charge, for purchase, through membership, subscription, collaboration, licensing, download, access, or any other means, unless superseded by a separate written agreement.</em></p><p></p>`;
+
+export const licensePageHtml = `<section class="page ip-page">
+<div class="ip-header">
+  <span class="ip-eyebrow">The Co.LLab™️ IP License</span>
+  <h2 class="ip-title">Intellectual Property License &amp; Terms of Use</h2>
+  <p class="ip-copyright"><strong>© 2026 The Co.LLab™️ Building Leadership Infrastructure™️. All Rights Reserved.</strong></p>
+</div>
+<div class="ip-columns">
+<h3 class="doc-h3">1. The Co.LLab IP™️</h3>
+<p><strong>The Co.LLab IP™️</strong> refers collectively to the original intellectual property created and developed for <strong>The Co.LLab™️ Building Leadership Infrastructure™️</strong>, including <strong>The .LLab™️</strong> product line (including .LLab Creator Infrastructure™️) and all associated frameworks, methodologies, models, systems, tools, templates, assessments, content, terminology, designs, processes, and materials (collectively, "The Co.LLab IP™️").</p>
+<p>The Co.LLab IP™️ is proprietary intellectual property created and controlled by <strong>The Co.LLab™️ Building Leadership Infrastructure™️ and its owner.</strong></p>
+<h3 class="doc-h3">2. License to Use</h3>
+<p>Access to, receipt of, or purchase of The Co.LLab IP™️ grants the user a <strong>limited, non-exclusive, non-transferable, non-sublicensable license</strong> to use the applicable IP as a tool to <strong>build, develop, strengthen, and sustain infrastructure within the user's own creative practice, venture, or organization.</strong></p>
+<p><strong>This license grants a right of use only. It does not transfer ownership, authorship, copyright, trademark, or other intellectual-property rights to the user.</strong></p>
+<h3 class="doc-h3">3. Working Copies</h3>
+<p>Where a product requires a working copy, the user is expressly authorized to create and maintain copies, including <strong>digital copies, printed copies, and reasonable internal working copies</strong>, solely for authorized personal or organizational use.</p>
+<p>Users may complete, annotate, customize, and adapt their working copies for their own needs. <strong>Creating, modifying, or using a working copy does not transfer ownership of The Co.LLab IP™️.</strong></p>
+<h3 class="doc-h3">4. Authorized Use</h3>
+<p>The Co.LLab IP™️ may be applied internally to creative, leadership, and organizational planning, strategy, implementation, performance, decision-making, facilitation, training, and related activities.</p>
+<p>Users retain ownership of their <strong>own original work</strong> created through use of The Co.LLab IP™️. The underlying Co.LLab IP™️ remains proprietary to The Co.LLab™️ and its owner.</p>
+<h3 class="doc-h3">5. Restrictions</h3>
+<p>Without prior written authorization from The Co.LLab™️, the user may not:</p>
+<ul class="doc-list">
+<li>Claim ownership or authorship of The Co.LLab IP™️;</li>
+<li>Sell, license, sublicense, distribute, transfer, or provide The Co.LLab IP™️ to an unauthorized third party;</li>
+<li>Repackage or present The Co.LLab IP™️ as the user's own proprietary framework, methodology, system, or product;</li>
+<li>Commercialize The Co.LLab IP™️ or create a competing product substantially based upon it;</li>
+<li>Publish or publicly distribute The Co.LLab IP™️ outside authorized personal or organizational use; or</li>
+<li>Remove or alter proprietary, copyright, trademark, or attribution notices.</li>
+</ul>
+<h3 class="doc-h3">6. Expanded Use &amp; Collaboration</h3>
+<p>The Co.LLab™️ encourages creators and organizations to use The Co.LLab IP™️ to advance their own development, growth, collaboration, and infrastructure.</p>
+<p>External, public, commercial, consulting, training, co-branded, licensing, resale, publication, or third-party use of The Co.LLab IP™️ requires <strong>prior written authorization from The Co.LLab™️ Building Leadership Infrastructure™️.</strong></p>
+<h3 class="doc-h3">7. Reservation of Rights</h3>
+<p><strong>All rights in The Co.LLab IP™️ not expressly granted under these Terms are reserved by the intellectual-property owner.</strong></p>
+<h3 class="doc-h3">8. Acceptance</h3>
+<p><strong>By accessing, receiving, downloading, copying, purchasing, or using The Co.LLab IP™️, the user acknowledges and agrees to these Terms.</strong></p>
+<p><strong>THE CO.LLAB IP™️ REMAINS PROPRIETARY TO THE CO.LLAB™️ AND ITS OWNER. THE USER RECEIVES A LICENSE TO USE IT — NOT OWNERSHIP OF IT.</strong></p>
+<p class="ip-footer-note"><strong>THE CO.LLAB™️ BUILDING LEADERSHIP INFRASTRUCTURE™️ &middot; The .LLab™️ | The Co.LLab IP™️</strong><br/><em>These Terms apply to The Co.LLab IP™️ provided free of charge, for purchase, through membership, subscription, collaboration, licensing, download, access, or any other means, unless superseded by a separate written agreement.</em></p>
+</div>
+</section>`;
