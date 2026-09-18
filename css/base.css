@@ -255,6 +255,15 @@ section {
   white-space: nowrap;
 }
 
+/* Long question text (unlike short nav/CTA pill labels) must be allowed to
+   wrap — otherwise its unbreakable width forces the picker's single-column
+   grid track wider than the viewport on mobile. */
+.picker-option {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
+}
+
 .pill:hover {
   border-color: var(--white);
 }
