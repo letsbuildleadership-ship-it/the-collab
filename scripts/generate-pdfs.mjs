@@ -35,6 +35,22 @@ const ALL_DOCS = [
   'creator-operating-system',
   'creative-estate-mapping',
   'creator-legacy-architecture',
+  'leadership-foundations-checklist',
+  'clarity-direction-worksheet',
+  'foundation-strength-snapshot',
+  'one-strength-starter',
+  'mission-to-action-worksheet',
+  'accountability-gaps-checklist',
+  'alignment-quick-check',
+  '30-day-infrastructure-starter',
+  'culture-practice-audit',
+  'leadership-influence-worksheet',
+  'operating-rhythm-checklist',
+  'systems-health-snapshot',
+  'legacy-starter-worksheet',
+  'knowledge-transfer-checklist',
+  'continuity-quick-check',
+  'legacy-infrastructure-snapshot',
 ];
 
 async function main() {
