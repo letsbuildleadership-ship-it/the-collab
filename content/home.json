@@ -28,8 +28,8 @@
   "hero_cta_secondary_label": "Explore The .LLab",
   "hero_cta_secondary_link": "/pages/products.html",
   "doorway_eyebrow": "What are you building?",
-  "doorway_headline": "CEOs. Founders. Executives. Leadership teams. Organizations. Creators. Artists. Anyone building something that needs infrastructure around it.",
-  "doorway_body": "What are you building — and what infrastructure does it need to survive, perform, grow, and become legacy?",
+  "doorway_headline": "Four doorways into The Co.LLab™.",
+  "doorway_body": "Wherever you start, the same infrastructure model applies. Pick the doorway closest to what you're building.",
   "directory_eyebrow": "The ecosystem",
   "directory_cards": [
     {
@@ -100,19 +100,23 @@
   "phases": [
     {
       "title": "Foundations",
-      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure."
+      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure.",
+      "photo": "assets/img/photography/the-path.jpg"
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Determining what infrastructure is needed and how the pieces should connect."
+      "description": "Determining what infrastructure is needed and how the pieces should connect.",
+      "photo": "assets/img/photography/infrastructure.jpg"
     },
     {
       "title": "Internal Operating Systems",
-      "description": "Building the systems, processes, tools, and leadership mechanisms that let the organization function."
+      "description": "Building the systems, processes, tools, and leadership mechanisms that let the organization function.",
+      "photo": "assets/img/photography/reliable-systems.jpg"
     },
     {
       "title": "Preservation",
-      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy."
+      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy.",
+      "photo": "assets/img/photography/resilience.jpg"
     }
   ],
   "omni_eyebrow": "Omnidirectional Enterprise™",

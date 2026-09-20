@@ -111,6 +111,10 @@ async function loadContent() {
           const value = item[hrefEl.dataset.itemHref];
           if (value !== undefined) hrefEl.setAttribute('href', value);
         });
+        withinNode(node, '[data-item-src]').forEach((srcEl) => {
+          const value = item[srcEl.dataset.itemSrc];
+          if (value !== undefined) srcEl.setAttribute('src', value);
+        });
         withinNode(node, '[data-item-index]').forEach((idxEl) => {
           idxEl.textContent = String(idx + 1).padStart(2, '0');
         });

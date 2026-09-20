@@ -182,9 +182,10 @@ collections:
             name: "phases"
             widget: "list"
             summary: "{{fields.title}}"
-            fields: &title_description_fields
+            fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+              - { label: "Photo (path under assets/img/photography/)", name: "photo", widget: "string" }
 
           - { label: "Omnidirectional Enterprise™ eyebrow", name: "omni_eyebrow", widget: "string" }
           - { label: "Omnidirectional Enterprise™ headline", name: "omni_headline", widget: "string" }
@@ -248,7 +249,9 @@ collections:
             name: "phases"
             widget: "list"
             summary: "{{fields.title}}"
-            fields: *title_description_fields
+            fields: &title_description_fields
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
 
           - { label: "Apply tag", name: "apply_tag", widget: "string" }
           - { label: "Apply headline", name: "apply_headline", widget: "string" }
