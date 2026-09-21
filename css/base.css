@@ -824,7 +824,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 
 .storefront-band__inner {
   display: grid;
-  grid-template-columns: minmax(240px, 420px) 1fr;
+  grid-template-columns: minmax(320px, 620px) 1fr;
   gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
@@ -1099,4 +1099,32 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 @media (max-width: 700px) {
   .network-flow .tag { margin-bottom: 0.4rem; }
   .network-flow .tag:not(:last-child)::after { display: none; }
+}
+
+
+/* ---------- six-doors grid (products.html consolidated entry points) ---------- */
+
+@media (min-width: 981px) {
+  .doorway-grid--six { grid-template-columns: repeat(3, 1fr); }
+}
+
+.doorway-card .mark--sm {
+  width: 44px;
+  height: 44px;
+  opacity: 0.08;
+  top: -8px;
+  right: -8px;
+}
+
+.doorway-card:nth-child(5) .mark { transform: rotate(45deg); }
+.doorway-card:nth-child(6) .mark { transform: rotate(135deg); }
+
+/* ---------- free tool + paid product pairing (phase groups) ---------- */
+
+.phase-product-group .card--free {
+  border-style: dashed;
+}
+
+.phase-product-group .card--free .tag {
+  align-self: flex-start;
 }
