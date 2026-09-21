@@ -150,13 +150,13 @@ section {
 .wordmark .dot { color: var(--filament-1); }
 
 .logo-mark {
-  height: 22px;
+  height: 38px;
   width: auto;
   display: block;
 }
 
 .footer-col .wordmark .logo-mark {
-  height: 26px;
+  height: 48px;
 }
 
 .nav-links {
