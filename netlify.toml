@@ -27,6 +27,28 @@
   [headers.values]
     Cache-Control = "no-cache"
 
+# Search indexing: keep member, admin, and raw CMS/library files out of Google.
+# Public pages rank instead; the free-tool PDFs stay downloadable from them.
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/pages/account.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/pages/library.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 [[redirects]]
   from = "/account"
   to = "/pages/account.html"
