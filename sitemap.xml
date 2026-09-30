@@ -2,34 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wearethellab.netlify.app/</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://wearethellab.netlify.app/pages/founders.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://wearethellab.netlify.app/pages/products.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://wearethellab.netlify.app/pages/creator.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://wearethellab.netlify.app/pages/about.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/think.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://wearethellab.netlify.app/pages/journal.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://wearethellab.netlify.app/pages/journal-preview.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://wearethellab.netlify.app/pages/impact.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wearethellab.netlify.app/pages/about.html</loc>
-    <priority>0.7</priority>
+    <loc>https://wearethellab.netlify.app/pages/atelier.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://wearethellab.netlify.app/pages/community.html</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.3</priority>
   </url>
 </urlset>
