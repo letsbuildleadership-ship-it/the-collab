@@ -2,10 +2,10 @@
   "eyebrow": "Support for the infrastructure you're building",
   "hero_headline": [
     { "text": "Enter ", "style": "default", "break_before": false },
-    { "text": "The .LLab™.", "style": "glow", "break_before": false }
+    { "text": "The .LLab.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "Not \"pay us and receive content.\" The .LLab™ is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — access to an ongoing intellectual and infrastructure ecosystem.",
-  "prototype_notice": "Every product below is delivered digitally to your .LLab™ account immediately after purchase.",
+  "hero_subhead": "The .LLab is where you explore ideas, access research, develop infrastructure, interact with frameworks, and build alongside a community — an ongoing intellectual and infrastructure ecosystem.",
+  "prototype_notice": "Every product below is delivered digitally to your .LLab account immediately after purchase.",
 
   "creator_eyebrow": "Now open",
   "creator_headline": "Creator Infrastructure™.",
