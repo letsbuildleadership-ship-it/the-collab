@@ -63,15 +63,15 @@
   "apply_body": "Each founding option provides capital and support to build The Co.LLab™ and its Leadership Infrastructure™ — value that moves back through the Omnidirectional Enterprise™ ecosystem.",
   "tiers": [
     {
-      "tag": "Friends & Family",
+      "tag": "Community Founder",
       "price": "$20",
-      "description": "For friends and family who want to show their support with a small contribution — founding participation in building The Co.LLab™ and its Leadership Infrastructure™.",
+      "description": "For anyone who wants to show their support with a small contribution — founding participation in building The Co.LLab™ and its Leadership Infrastructure™.",
       "link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15"
     },
     {
-      "tag": "Premium Friends & Family",
+      "tag": "Premium Community Founder",
       "price": "$50",
-      "description": "For friends and family who want to offer a larger contribution of support to the founding of The Co.LLab™.",
+      "description": "For anyone who wants to offer a larger contribution of support to the founding of The Co.LLab™.",
       "link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16"
     },
     {
