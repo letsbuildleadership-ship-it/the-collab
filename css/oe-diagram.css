@@ -1,0 +1,146 @@
+/* Omnidirectional Enterprise™ graphic (About page, #model).
+   Scoped to .oe — uses the site's existing tokens from base.css. */
+
+.oe { position: relative; }
+
+.oe-top {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+
+.oe-title {
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin: 1.5rem 0 0;
+  font-size: clamp(2.6rem, 6.5vw, 6.5rem);
+}
+
+.oe-title strong {
+  display: block;
+  font-weight: 600;
+  font-size: 1.06em;
+  background: var(--ember);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 0 14px rgba(var(--ember-1-rgb), 0.75))
+    drop-shadow(0 0 30px rgba(var(--ember-1-rgb), 0.45))
+    drop-shadow(0 0 60px rgba(var(--ember-2-rgb), 0.3));
+}
+
+.oe-tagline {
+  margin: 1.75rem 0 0;
+  font-size: var(--label-size);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+.oe-what p:not(.eyebrow) {
+  color: var(--white-dim);
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.55;
+  margin: 1.1rem 0 0;
+}
+.oe-what strong { font-weight: 600; color: var(--white); }
+.oe-what em { font-style: normal; font-weight: 400; color: var(--paper); }
+
+.oe-rule { margin: clamp(2.25rem, 5vw, 3.5rem) 0; }
+
+.oe-mid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+/* ---- ecosystem diagram ---- */
+.oe-diagram { width: 100%; height: auto; display: block; }
+.oe-c-name { font: 200 58px var(--font); letter-spacing: -0.02em; fill: var(--paper); }
+.oe-c-tm   { font: 300 18px var(--font); fill: var(--paper); }
+.oe-c-sub  { font: 600 12.5px var(--font); letter-spacing: 0.24em; fill: var(--filament-2); }
+.oe-n-title { font: 600 14.5px var(--font); letter-spacing: 0.14em; fill: var(--white); }
+.oe-n-line  { font: 400 13.5px var(--font); fill: rgba(var(--text-rgb), 0.7); }
+
+/* text list of the same nodes — shown on small screens where the diagram text is too small */
+.oe-nodes { display: none; list-style: none; margin: 0; padding: 0; }
+
+/* ---- four phases ---- */
+.oe-phases-title {
+  font-weight: 200;
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 1.25rem 0 2rem;
+}
+.oe-phases-title em { font-style: normal; font-weight: 300; color: var(--paper); }
+
+.oe-rail { list-style: none; margin: 0; padding: 0; position: relative; }
+.oe-rail::before {
+  content: '';
+  position: absolute;
+  left: 27px; top: 10px; bottom: 10px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--filament-1) 8%, var(--filament-2) 50%, var(--filament-1) 92%, transparent);
+  opacity: 0.5;
+}
+.oe-phase { display: flex; gap: 1.5rem; align-items: flex-start; position: relative; margin-bottom: 1.9rem; }
+.oe-phase:last-child { margin-bottom: 0; }
+.oe-badge {
+  width: 54px; height: 54px; flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+}
+.oe-badge span {
+  background: var(--ember);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.oe-phase h3 { margin: 0.7rem 0 0.6rem; font-size: clamp(1.1rem, 1.6vw, 1.4rem); font-weight: 500; letter-spacing: -0.01em; }
+.oe-phase ul { list-style: none; margin: 0; padding: 0; }
+.oe-phase li { color: var(--white-dim); font-size: 1rem; line-height: 1.7; display: flex; gap: 0.75rem; align-items: center; }
+.oe-phase li::before { content: ''; width: 12px; height: 1px; background: var(--white-faint); flex-shrink: 0; }
+
+/* ---- result + footer ---- */
+.oe-result { display: flex; align-items: center; gap: 2.5rem; }
+.oe-result .eyebrow { flex-shrink: 0; margin: 0; }
+.oe-flow { margin-top: 0; }
+
+.oe-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.oe-brand { display: flex; align-items: center; gap: 1.25rem; font-size: var(--label-size); font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; }
+.oe-brand small { display: block; margin-top: 0.6rem; font-size: 0.7rem; letter-spacing: 0.32em; color: var(--white-faint); font-weight: 500; }
+.oe-mark { height: 42px; width: auto; }
+.oe-close { margin: 0; text-align: right; color: var(--white-dim); font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.5; }
+.oe-close em { font-style: normal; color: var(--paper); font-weight: 400; }
+
+/* ---- tablet / phone ---- */
+@media (max-width: 960px) {
+  .oe-top, .oe-mid { grid-template-columns: 1fr; }
+  .oe-result { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .oe-diagram { display: none; }
+  .oe-nodes { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+  .oe-nodes li { background: var(--black); padding: 1.1rem 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .oe-node-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  .oe-node-desc { font-size: 0.85rem; color: var(--white-dim); line-height: 1.45; }
+  .oe-node-centre {
+    grid-column: 1 / -1;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--filament-2);
+  }
+  .oe-foot { flex-direction: column; align-items: flex-start; }
+  .oe-close { text-align: left; }
+}
