@@ -266,7 +266,7 @@ collections:
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Stripe checkout link", name: "link", widget: "string" }
               - { label: "Impact badge text (leave blank if not an Impact Product)", name: "impact_label", widget: "string", required: false }
-          - { label: "Tax notice", name: "tax_notice", widget: "string" }
+          - { label: "Founder benefits", name: "founder_benefits", widget: "string" }
 
           - { label: "Founder Recognition eyebrow", name: "recognition_eyebrow", widget: "string" }
           - { label: "Founder Recognition headline", name: "recognition_headline", widget: "string" }
