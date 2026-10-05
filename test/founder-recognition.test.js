@@ -18,8 +18,8 @@ test.beforeEach(() => fakeStore.reset());
 test('pricing.js exposes all four Founder levels, ordered bottom to top', () => {
   const keys = pricing.founderTierKeys();
   assert.deepEqual(keys, ['friends-family', 'premium-friends-family', 'founder', 'legacy-founder']);
-  assert.equal(pricing.founderLevelLabelForKey('friends-family'), 'Friends & Family');
-  assert.equal(pricing.founderLevelLabelForKey('premium-friends-family'), 'Premium Friends & Family');
+  assert.equal(pricing.founderLevelLabelForKey('friends-family'), 'Community Founder');
+  assert.equal(pricing.founderLevelLabelForKey('premium-friends-family'), 'Premium Community Founder');
   assert.equal(pricing.founderLevelLabelForKey('founder'), 'Founder');
   assert.equal(pricing.founderLevelLabelForKey('legacy-founder'), 'Legacy Founder');
   assert.ok(pricing.founderRankForKey('premium-friends-family') > pricing.founderRankForKey('friends-family'));
@@ -130,7 +130,7 @@ test('paymentLinkMap resolves the real Founders Organization payment links to th
   assert.equal(map['https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i'].key, 'legacy-founder');
 });
 
-test('a Friends & Family purchase recognizes the purchaser at the bottom Founder tier', async () => {
+test('a Community Founder purchase recognizes the purchaser at the bottom Founder tier', async () => {
   const session = {
     id: 'cs_ff_1',
     customer_details: { email: 'ff1@example.com', name: 'Fran Friend' },
@@ -140,5 +140,5 @@ test('a Friends & Family purchase recognizes the purchaser at the bottom Founder
   const result = await fulfillCheckoutSession(session, ['price_1UFiCZAK6n3ctuR9t5qojYuv']);
   assert.ok(result.record.founder);
   assert.equal(result.record.founder.level, 'friends-family');
-  assert.equal(result.record.founder.levelLabel, 'Friends & Family');
+  assert.equal(result.record.founder.levelLabel, 'Community Founder');
 });
