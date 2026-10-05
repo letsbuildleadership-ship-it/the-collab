@@ -163,17 +163,12 @@
   "offer_eyebrow": "Limited time",
   "offer_headline": [
     {
-      "text": "Introductory Founder Offer ",
+      "text": "Build what you're building with the right infrastructure.",
       "style": "default",
-      "break_before": false
-    },
-    {
-      "text": "Ending Soon.",
-      "style": "glow",
       "break_before": false
     }
   ],
-  "offer_body": "Join The Co.LLab™ Founders Organization while the introductory offer is still open.",
+  "offer_body": "The Co.LLab™ Founders Organization helps founders develop the leadership and organizational infrastructure required to build enterprises capable of growth, scale, sustainability, and legacy.",
   "offer_cta_label": "Explore Build",
   "offer_cta_link": "/pages/founders.html"
 }
