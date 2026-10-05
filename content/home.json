@@ -23,7 +23,7 @@
     }
   ],
   "hero_subhead": "People shouldn't have to conform to infrastructure that was never designed around how they actually think, work, create, lead, and grow. The Co.LLab™ builds the infrastructure around the person, organization, or idea.",
-  "hero_cta_primary_label": "Explore Build",
+  "hero_cta_primary_label": "Explore the Founders Organization",
   "hero_cta_primary_link": "/pages/founders.html",
   "hero_cta_secondary_label": "Explore The .LLab",
   "hero_cta_secondary_link": "/pages/products.html",
@@ -169,6 +169,6 @@
     }
   ],
   "offer_body": "The Co.LLab™ Founders Organization helps founders develop the leadership and organizational infrastructure required to build enterprises capable of growth, scale, sustainability, and legacy.",
-  "offer_cta_label": "Explore Build",
+  "offer_cta_label": "Explore the Founders Organization",
   "offer_cta_link": "/pages/founders.html"
 }
