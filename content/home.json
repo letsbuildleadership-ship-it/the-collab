@@ -33,13 +33,13 @@
   "directory_eyebrow": "The ecosystem",
   "directory_cards": [
     {
-      "title": "Build",
+      "title": "Founders Organization",
       "description": "Leadership and organizational infrastructure — the four-phase model in practice.",
       "link": "/pages/founders.html"
     },
     {
       "title": "Think",
-      "description": "R.A.T.™, Metacognitive Infrastructure Thinking™, and the theory behind the infrastructure.",
+      "description": "The .LLab R.A.T.™, Metacognitive Infrastructure Thinking™, and the theory behind the infrastructure.",
       "link": "/pages/think.html"
     },
     {
@@ -48,8 +48,8 @@
       "link": "/pages/journal.html"
     },
     {
-      "title": ".LLab",
-      "description": "Membership, Library Card, and the products built from Co.LLab IP.",
+      "title": "The .LLab",
+      "description": "Membership, Library Card, and the products built from The Co.LLab™ IP.",
       "link": "/pages/products.html"
     },
     {
