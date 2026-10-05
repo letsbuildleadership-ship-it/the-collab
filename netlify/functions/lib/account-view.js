@@ -43,7 +43,12 @@ function buildAccountView(record) {
     owned,
     locked,
     activityProgress: record.activityProgress || {},
-    founder: record.founder || null,
+    // Level name always reflects the current catalog label, so Founders keep
+    // the up-to-date name (e.g. after a level is renamed) without rewriting
+    // their stored record. Founder Number and recognition date are untouched.
+    founder: record.founder
+      ? { ...record.founder, levelLabel: pricing.founderLevelLabelForKey(record.founder.level) || record.founder.levelLabel }
+      : null,
   };
 }
 
