@@ -588,6 +588,13 @@ a.card:hover,
   z-index: 0;
 }
 
+/* heavier overlay where the photo sits directly behind the text (About hero) */
+.hero--photo.hero--dim::before {
+  background:
+    linear-gradient(rgba(var(--black-rgb), 0.9), rgba(var(--black-rgb), 0.9)),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 40%);
+}
+
 .hero--photo .wrap {
   position: relative;
   z-index: 1;

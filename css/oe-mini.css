@@ -1,0 +1,24 @@
+/* "Where this fits" — compact Omnidirectional Enterprise™ model shown on each page,
+   with the part of the ecosystem that page belongs to highlighted. Uses base.css tokens. */
+
+.oe-mini {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.oe-mini-svg { width: 100%; max-width: 560px; height: auto; display: block; margin: 0 auto; }
+
+.oem-c { font: 300 40px var(--font); letter-spacing: -0.01em; fill: var(--paper); }
+.oem-n { font: 500 27px var(--font); fill: rgba(var(--text-rgb), 0.75); }
+.oem-n.on { font-weight: 700; fill: var(--paper); }
+
+.oe-mini-text .headline { margin-top: 1.25rem; }
+.oe-mini-text .subhead { margin-top: 1.25rem; }
+.oe-mini-text .pill { margin-top: 2rem; }
+
+@media (max-width: 860px) {
+  .oe-mini { grid-template-columns: 1fr; }
+  .oe-mini-text { order: -1; }
+}

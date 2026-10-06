@@ -24,6 +24,8 @@
 
   "products_eyebrow": "Current Impact Products",
   "products": [
+    { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Community Founder", "price": "$20", "link": "founders.html" },
+    { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Premium Community Founder", "price": "$50", "link": "founders.html" },
     { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Founder", "price": "$350", "link": "founders.html" },
     { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Legacy Founder", "price": "$1,000", "link": "founders.html" }
   ],

@@ -65,14 +65,16 @@
     {
       "tag": "Community Founder",
       "price": "$20",
-      "description": "For anyone who wants to show their support with a small contribution — founding participation in building The Co.LLab™ and its Leadership Infrastructure™.",
-      "link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15"
+      "description": "Your entry into the Omnidirectional Enterprise™. Your purchase becomes revenue that builds The Co.LLab™'s Leadership Infrastructure™ — and flows back out to creators, organizations, nonprofits, and communities.",
+      "link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15",
+      "impact_label": "10% supports Blazing Smiles"
     },
     {
       "tag": "Premium Community Founder",
       "price": "$50",
-      "description": "For anyone who wants to offer a larger contribution of support to the founding of The Co.LLab™.",
-      "link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16"
+      "description": "A larger contribution to the flow. Your purchase builds The Co.LLab™'s Leadership Infrastructure™ and moves further through the Omnidirectional Enterprise™ — connecting companies, creators, nonprofits, and communities.",
+      "link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16",
+      "impact_label": "10% supports Wavecraft Oceans Project"
     },
     {
       "tag": "Founder",

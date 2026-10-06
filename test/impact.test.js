@@ -50,6 +50,24 @@ test('Legacy Founder purchase ($1,000) allocates 10% to Wavecraft Oceans Project
   assert.equal(ledger[0].impactAmount, 10000); // $100.00
 });
 
+test('Community Founder purchase ($20) allocates 10% to Blazing Smiles', async () => {
+  const session = { id: 'cs_impact_cf', customer_details: { email: 'cf@example.com' }, customer: 'cus_cf', amount_total: 2000, currency: 'usd' };
+  await fulfillCheckoutSession(session, ['price_1UFiCZAK6n3ctuR9t5qojYuv']); // friends-family key (Community Founder)
+  const ledger = await fakeStore.listImpactLedger();
+  assert.equal(ledger.length, 1);
+  assert.equal(ledger[0].partnerKey, 'blazing-smiles');
+  assert.equal(ledger[0].impactAmount, 200); // $2.00
+});
+
+test('Premium Community Founder purchase ($50) allocates 10% to Wavecraft Oceans Project', async () => {
+  const session = { id: 'cs_impact_pcf', customer_details: { email: 'pcf@example.com' }, customer: 'cus_pcf', amount_total: 5000, currency: 'usd' };
+  await fulfillCheckoutSession(session, ['price_1UFiCZAK6n3ctuR9naGNNhBw']); // premium-friends-family key
+  const ledger = await fakeStore.listImpactLedger();
+  assert.equal(ledger.length, 1);
+  assert.equal(ledger[0].partnerKey, 'wavecraft-oceans');
+  assert.equal(ledger[0].impactAmount, 500); // $5.00
+});
+
 test('a non-Impact product purchase records nothing in the ledger', async () => {
   const session = {
     id: 'cs_impact_none',
