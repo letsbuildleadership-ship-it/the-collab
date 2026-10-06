@@ -289,7 +289,7 @@
             <strong class="founder-card-value">${formatRecognizedDate(founder.recognizedAt)}</strong>
           </div>
         </div>
-        <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future Co.LLab™ products, applied automatically at checkout whenever you're signed in.</p>
+        <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future products from The Co.LLab™, applied automatically at checkout whenever you're signed in.</p>
         <p class="founder-card-copy">Founder participation supports The Co.LLab™'s Omnidirectional Enterprise™ model — value, authority, intelligence, IP, and opportunity moving in multiple directions rather than purely top-down. As a Founder, you help strengthen Leadership Infrastructure™ and the ecosystem connecting creators, businesses, nonprofits, organizations, and enterprise — turning human potential into performance, sustainable enterprise value, and lasting legacy.</p>
       </div>`;
   }

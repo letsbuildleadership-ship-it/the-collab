@@ -9,12 +9,12 @@
 
   "how_eyebrow": "How Impact Products work",
   "how_steps": [
-    { "title": "A product is designated", "description": "The Co.LLab marks a specific product as an Impact Product and sets a fixed percentage — currently 10%." },
+    { "title": "A product is designated", "description": "The Co.LLab™ marks a specific product as an Impact Product and sets a fixed percentage — currently 10%." },
     { "title": "The allocation is recorded", "description": "At the moment of purchase, that percentage of the sale is logged to an internal ledger, tied to the nonprofit partner." },
     { "title": "Totals are public", "description": "Aggregate totals per partner are shown below — no purchase details, no customer information, just the running total." },
-    { "title": "Funds are remitted", "description": "The Co.LLab reconciles and sends the allocated amount to each partner directly, on a regular cadence." }
+    { "title": "Funds are remitted", "description": "The Co.LLab™ reconciles and sends the allocated amount to each partner directly, on a regular cadence." }
   ],
-  "how_notice": "Honesty matters here: Stripe is not automatically splitting or transferring these funds to the nonprofit partners in real time. Unless a partner has its own Stripe Connect account on file, the 10% obligation is tracked internally and remitted by The Co.LLab directly to the organization. The ledger and totals below reflect what has been allocated and what has been sent.",
+  "how_notice": "Honesty matters here: Stripe is not automatically splitting or transferring these funds to the nonprofit partners in real time. Unless a partner has its own Stripe Connect account on file, the 10% obligation is tracked internally and remitted by The Co.LLab™ directly to the organization. The ledger and totals below reflect what has been allocated and what has been sent.",
 
   "partners_eyebrow": "Current partners",
   "partners_static": [

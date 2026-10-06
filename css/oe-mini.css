@@ -10,7 +10,7 @@
 
 .oe-mini-svg { width: 100%; max-width: 560px; height: auto; display: block; margin: 0 auto; }
 
-.oem-c { font: 300 40px var(--font); letter-spacing: -0.01em; fill: var(--paper); }
+.oem-c { font: 300 31px var(--font); letter-spacing: -0.01em; fill: var(--paper); }
 .oem-n { font: 500 27px var(--font); fill: rgba(var(--text-rgb), 0.75); }
 .oem-n.on { font-weight: 700; fill: var(--paper); }
 

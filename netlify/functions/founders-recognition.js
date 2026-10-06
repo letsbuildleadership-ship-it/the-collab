@@ -27,7 +27,7 @@ exports.handler = async (event) => {
         .sort(founderNumberSort)
         .map((f) => ({
           founderNumber: f.founderNumber,
-          displayName: f.name || f.memberId || 'A Co.LLab™ Founder',
+          displayName: f.name || f.memberId || 'A Founder of The Co.LLab™',
           recognizedAt: f.recognizedAt,
         })),
     }));

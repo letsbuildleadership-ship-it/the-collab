@@ -1,6 +1,6 @@
 {
   "name": "The Co.LLab™ — Member Environment",
-  "short_name": "Co.LLab",
+  "short_name": "The Co.LLab™",
   "description": "Your .LLab™ account, entitlements, and infrastructure — installable as an app.",
   "start_url": "/pages/account.html",
   "scope": "/",
