@@ -172,3 +172,12 @@
 .oe-proof-label { font-size: var(--label-size); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--white-dim); }
 @media (max-width: 960px) { .oe-path-steps { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .oe-path-steps { grid-template-columns: 1fr; } .oe-proof { flex-direction: column; gap: 1.25rem; } }
+
+/* phones: the circles, sized for a small screen (labels only) */
+.oe-diagram-sm { display: none; width: 100%; height: auto; }
+.oes-c { font: 300 31px var(--font); letter-spacing: -0.01em; fill: var(--paper); }
+.oes-n { font: 600 29px var(--font); fill: rgba(var(--text-rgb), 0.95); }
+@media (max-width: 640px) {
+  .oe-diagram-sm { display: block; }
+  .oe-nodes { display: none !important; }
+}

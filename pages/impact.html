@@ -148,7 +148,18 @@
     <div class="wrap">
       <p class="eyebrow" data-field="partners_eyebrow">Current partners</p>
       <div class="grid grid-2" id="partners-grid" style="margin-top:2rem;">
-        <p style="opacity:0.6;">Loading partner totals…</p>
+        <div class="card" data-partner="blazing-smiles">
+          <span class="tag tag--impact" style="align-self:flex-start;">Partner nonprofit</span>
+          <h3>Blazing Smiles</h3>
+          <p>Supported by 10% of every Community Founder ($20) and Founder ($350) purchase.</p>
+          <a href="founders.html" class="pill" style="margin-top:1.25rem;">Support Blazing Smiles <span class="arrow">→</span></a>
+        </div>
+        <div class="card" data-partner="wavecraft-oceans">
+          <span class="tag tag--impact" style="align-self:flex-start;">Partner nonprofit</span>
+          <h3>Wavecraft Oceans Project</h3>
+          <p>Supported by 10% of every Premium Community Founder ($50) and Legacy Founder ($1,000) purchase.</p>
+          <a href="founders.html" class="pill" style="margin-top:1.25rem;">Support Wavecraft <span class="arrow">→</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -321,36 +332,22 @@ function money(cents) {
   return '$' + ((cents || 0) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function renderPartnerCard(p) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML =
-    '<h3>' + p.name + '</h3>' +
-    '<p class="num" style="margin-top:0.5rem;">' + money(p.allocatedCents) + ' allocated</p>' +
-    '<p style="opacity:0.7; margin-top:0.25rem;">' + (p.purchaseCount || 0) + ' Impact ' + (p.purchaseCount === 1 ? 'purchase' : 'purchases') + '</p>' +
-    (p.hasStripeConnect
-      ? '<p style="margin-top:0.5rem; opacity:0.6;">Remitted automatically via Stripe Connect.</p>'
-      : '<p style="margin-top:0.5rem; opacity:0.6;">Remitted directly by The Co.LLab™ — not an automatic Stripe transfer.</p>');
-  return card;
-}
-
 async function loadPartnerTotals() {
-  const grid = document.getElementById('partners-grid');
-  if (!grid) return;
   try {
     const res = await fetch('/.netlify/functions/impact-summary');
-    if (!res.ok) throw new Error('bad response');
+    if (!res.ok) return;
     const data = await res.json();
-    const partners = data.partners || [];
-    if (!partners.length) {
-      grid.innerHTML = '<p style="opacity:0.6;">No Impact allocations recorded yet.</p>';
-      return;
-    }
-    grid.innerHTML = '';
-    partners.forEach((p) => grid.appendChild(renderPartnerCard(p)));
-  } catch (err) {
-    grid.innerHTML = '<p style="opacity:0.6;">Partner totals are temporarily unavailable — please check back soon.</p>';
-  }
+    (data.partners || []).forEach((p) => {
+      if (!p.allocatedCents) return;
+      const card = document.querySelector('[data-partner="' + p.key + '"]');
+      if (!card) return;
+      const line = document.createElement('p');
+      line.className = 'num';
+      line.style.marginTop = '0.75rem';
+      line.textContent = money(p.allocatedCents) + ' directed so far';
+      card.querySelector('h3').after(line);
+    });
+  } catch (err) { /* cards stand on their own without totals */ }
 }
 
 loadPartnerTotals();
