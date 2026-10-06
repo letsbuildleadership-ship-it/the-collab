@@ -163,12 +163,12 @@
   "offer_eyebrow": "Limited time",
   "offer_headline": [
     {
-      "text": "Build what you're building with the right infrastructure.",
+      "text": "Choose your level of impact.",
       "style": "default",
       "break_before": false
     }
   ],
-  "offer_body": "The Co.LLab™ Founders Organization helps founders develop the leadership and organizational infrastructure required to build enterprises capable of growth, scale, sustainability, and legacy.",
+  "offer_body": "The company partnership pathway within The Co.LLab™'s Omnidirectional Enterprise™ model — providing the capital and support that build The Co.LLab™ and its Leadership Infrastructure™.",
   "offer_cta_label": "Explore the Founders Organization",
   "offer_cta_link": "/pages/founders.html"
 }

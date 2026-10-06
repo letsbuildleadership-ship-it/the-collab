@@ -25,7 +25,7 @@
     { "text": "™", "style": "default", "break_before": false }
   ],
   "membership_status": "Open Now",
-  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™ — including the full .LLab™ IV Phases catalog below, unlocked.",
+  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™ — including the full .LLab™ Four Phases catalog below, unlocked.",
   "membership_tiers": [
     { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly.", "link": "https://buy.stripe.com/eVqfZg1EqewtaFRfpk9ws0U" },
     { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually. Two months free.", "link": "https://buy.stripe.com/8x24gy2Iuagd6pB0uq9ws0V" }
@@ -44,7 +44,7 @@
   ],
 
   "phases_eyebrow": "Buy what you need, when you need it",
-  "phases_headline": "The .LLab™ IV Phases Product Infrastructure",
+  "phases_headline": "The .LLab™ Four Phases Product Infrastructure",
 
   "free_phase_products": [
     {"phase": "Phase I · Foundations", "title": "Leadership Foundations Checklist™", "description": "A self-audit of what's already in place — before you build anything new on top of it.", "link": "/content/library/free-tools/leadership-foundations-checklist.pdf"},

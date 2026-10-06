@@ -5,7 +5,7 @@
     { "text": " ", "style": "default", "break_before": false },
     { "text": "building good.", "style": "glow", "break_before": true }
   ],
-  "hero_subhead": "Select Founders Organization products are designated Impact Products™ — a fixed 10% of the purchase price supports a partner nonprofit, tracked openly and reconciled by hand.",
+  "hero_subhead": "Select Founders Organization products are designated Impact Products™ — a fixed 10% of the purchase price supports a partner nonprofit, tracked openly.",
 
   "how_eyebrow": "How Impact Products work",
   "how_steps": [
@@ -32,5 +32,5 @@
   "products_note": "Additional products may be designated as Impact Products over time. Each one is marked clearly, both here and on its own page.",
 
   "closing_eyebrow": "Go deeper",
-  "closing_headline": "Build your own infrastructure, and support good work along the way."
+  "closing_headline": "Every founding option directs 10% to a partner nonprofit."
 }
