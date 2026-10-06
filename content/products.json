@@ -44,7 +44,7 @@
   ],
 
   "phases_eyebrow": "Buy what you need, when you need it",
-  "phases_headline": "The .LLab™ Four Phases Product Infrastructure",
+  "phases_headline": "The .LLab Four Phases Product Infrastructure",
 
   "free_phase_products": [
     {"phase": "Phase I · Foundations", "title": "Leadership Foundations Checklist™", "description": "A self-audit of what's already in place — before you build anything new on top of it.", "link": "/content/library/free-tools/leadership-foundations-checklist.pdf"},
@@ -77,5 +77,5 @@
     { "phase": "Phase IV · Preservation", "title": ".LLab Legacy Infrastructure Architecture™", "price": "$1,000", "description": "The comprehensive .LLab framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy.", "link": "https://buy.stripe.com/3cIcN4gzkgEB01d0uq9ws0r" }
   ],
 
-  "tax_notice": "These purchases may be tax deductible — please speak with your tax strategist."
+  "tax_notice": "Tax treatment varies by individual circumstance. Consult your tax professional before claiming any deduction."
 }

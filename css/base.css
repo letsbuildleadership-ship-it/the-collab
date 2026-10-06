@@ -1136,3 +1136,128 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 .phase-product-group .card--free .tag {
   align-self: flex-start;
 }
+
+/* ==========================================================================
+   Navigation + readability alignment pass
+   ========================================================================== */
+
+/* nine header items: switch to the menu button before they crowd */
+@media (max-width: 1180px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border-bottom: 1px solid var(--hairline);
+    padding: 1.5rem var(--gutter) 2rem;
+    gap: 1.25rem;
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
+  }
+  .nav-links.is-open a { display: inline-block; padding: 0.35rem 0; }
+}
+
+/* Sign in — set apart from the content links */
+.nav-signin a {
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 0.45em 1.1em;
+  color: var(--white);
+}
+.nav-signin a::after { display: none; }
+.nav-signin a:hover { border-color: var(--filament-2); }
+@media (max-width: 1180px) {
+  .nav-links.is-open .nav-signin { margin-top: 0.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
+  .nav-links.is-open .nav-signin a { padding: 0.6em 1.4em; }
+}
+
+/* phase rail on phones: badge in its own column, title stacked over description */
+@media (max-width: 860px) {
+  .phase-node {
+    display: grid;
+    grid-template-columns: 54px 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: 0.4rem;
+    align-items: start;
+  }
+  .phase-node > .phase-badge,
+  .phase-node > .phase-head { grid-column: 1; grid-row: 1 / span 2; }
+  .phase-node > :not(.phase-badge):not(.phase-head) { grid-column: 2; }
+  .phase-node h3 { margin: 0.85rem 0 0; }
+  .phase-node p { margin: 0; }
+}
+
+/* hero copy over photography: deeper scrim on phones so body text stays legible */
+@media (max-width: 860px) {
+  .hero--photo::before {
+    background:
+      linear-gradient(180deg, rgba(var(--black-rgb), 0.72) 0%, rgba(var(--black-rgb), 0.9) 45%, rgba(var(--black-rgb), 0.96) 100%);
+  }
+}
+.hero--photo .subhead { color: rgba(var(--text-rgb), 0.86); }
+.photo-band::before {
+  background: radial-gradient(70% 100% at 50% 45%, rgba(var(--black-rgb), 0.78), rgba(var(--black-rgb), 0.95));
+}
+
+/* .LLab catalog: phase jump bar + swipeable free tools on phones */
+.phase-jump {
+  position: sticky;
+  top: 68px;
+  z-index: 20;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.75rem 0;
+  margin-top: 1.5rem;
+  background: rgba(var(--black-rgb), 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hairline);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.phase-jump::-webkit-scrollbar { display: none; }
+.phase-jump a {
+  flex: 0 0 auto;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 0.5em 1em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.phase-jump a:hover { color: var(--white); border-color: var(--filament-2); }
+.phase-product-group { scroll-margin-top: 140px; }
+
+@media (max-width: 620px) {
+  .phase-product-group > .grid-4 {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.75rem;
+    background: none;
+    border: none;
+    padding-bottom: 0.75rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .phase-product-group > .grid-4 > .card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+  .phase-product-group .swipe-hint { display: block; }
+}
+.swipe-hint {
+  display: none;
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+}

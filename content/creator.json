@@ -44,7 +44,7 @@
   "pathway_eyebrow": "How people move through it",
   "pathway_headline": "Discover. Try something free. Buy what solves the real problem.",
   "pathway_steps": [
-    { "title": "Discover", "description": "Find Creator Infrastructure™ through The .LLab™, a free resource, or a search." },
+    { "title": "Discover", "description": "Find Creator Infrastructure™ through The .LLab, a free resource, or a search." },
     { "title": "Free Resource", "description": "Get real, usable value first — a guide, a diagnostic, a tool, a preview, a map of the whole pathway." },
     { "title": "Identify Need", "description": "See exactly which phase of your creative infrastructure is thin." },
     { "title": "Individual Product", "description": "Buy the one product that solves that specific problem — no bundle required." },
@@ -106,5 +106,5 @@
   "membership_cta_label": "See .LLab Membership™",
   "membership_cta_link": "products.html#membership",
 
-  "tax_notice": "These purchases may be tax deductible — please speak with your tax strategist."
+  "tax_notice": "Tax treatment varies by individual circumstance. Consult your tax professional before claiming any deduction."
 }
