@@ -144,3 +144,7 @@
   .oe-foot { flex-direction: column; align-items: flex-start; }
   .oe-close { text-align: left; }
 }
+
+/* homepage: the same diagram beside the Omnidirectional Enterprise™ intro */
+.oe-home { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+@media (max-width: 960px) { .oe-home { grid-template-columns: 1fr; } }

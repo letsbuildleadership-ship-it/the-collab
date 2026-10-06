@@ -147,7 +147,9 @@ section {
   gap: 0.35em;
 }
 
-.wordmark .dot { color: var(--filament-1); }
+.wordmark { color: var(--paper); text-transform: none; letter-spacing: 0.06em; font-size: 1rem; }
+.wordmark .dot { color: var(--paper); }
+.wordmark .logo-mark { filter: brightness(0) invert(1); }
 
 .logo-mark {
   height: 38px;
