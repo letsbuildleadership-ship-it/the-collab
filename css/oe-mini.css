@@ -22,3 +22,7 @@
   .oe-mini { grid-template-columns: 1fr; }
   .oe-mini-text { order: -1; }
 }
+
+.oe-link { cursor: pointer; }
+.oe-link circle { transition: stroke .2s ease; }
+.oe-link:hover circle { stroke: #ff8a1f; stroke-opacity: 1; }

@@ -148,3 +148,26 @@
 /* homepage: the same diagram beside the Omnidirectional Enterprise™ intro */
 .oe-home { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 @media (max-width: 960px) { .oe-home { grid-template-columns: 1fr; } }
+
+/* clickable nodes */
+.oe-link { cursor: pointer; }
+.oe-link circle { transition: stroke .2s ease, fill .2s ease; }
+.oe-link:hover circle, .oe-link:focus-visible circle { stroke: #ff8a1f; stroke-opacity: 1; }
+.oe-link:focus-visible { outline: none; }
+.oe-nodes li a { display: flex; flex-direction: column; gap: 0.4rem; color: inherit; text-decoration: none; }
+
+/* follow one path + live proof */
+.oe-path { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.oe-path-steps { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.oe-path-steps li { background: var(--black); padding: 1.4rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.oe-path-num { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; color: var(--filament-2); }
+.oe-path-steps strong { font-weight: 500; color: var(--paper); font-size: 1.05rem; line-height: 1.35; }
+.oe-path-steps span:not(.oe-path-num) { color: var(--white-dim); font-size: 0.95rem; line-height: 1.5; }
+.oe-path-steps a { color: var(--paper); }
+.oe-proof { display: flex; gap: clamp(2rem, 6vw, 5rem); margin-top: 1.75rem; }
+.oe-proof[hidden] { display: none; }
+.oe-proof > div { display: flex; flex-direction: column; gap: 0.35rem; }
+.oe-proof-num { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 300; color: var(--paper); font-variant-numeric: tabular-nums; }
+.oe-proof-label { font-size: var(--label-size); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--white-dim); }
+@media (max-width: 960px) { .oe-path-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .oe-path-steps { grid-template-columns: 1fr; } .oe-proof { flex-direction: column; gap: 1.25rem; } }
