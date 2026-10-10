@@ -195,7 +195,8 @@ test('partnership page lists every tier link, states purchase-not-investment, an
   const html = read('pages/partnership.html');
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
-  assert.match(html, /purchase, not an investment/i);
+  assert.match(html, /strategic purchase/i);
+  assert.match(html, /not an investment or a security/i);
   assert.ok(!/founders\.html/.test(html), 'partnership page must not link to the Founders page');
 });
 
