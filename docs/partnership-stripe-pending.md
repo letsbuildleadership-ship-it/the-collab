@@ -1,0 +1,43 @@
+# Partnership: Stripe changes pending deployment
+
+Prepared on branch `claude/collab-partnership-tier-3hwn6j`. **Not applied.**
+Apply only with explicit deployment authorization, at the same time the
+website change goes live, so checkout and the site never disagree.
+
+Verified read-only (live account `acct_1SwN2WAK6n3ctuR9`):
+
+| Tier | Product | Price (one-time) | Payment Link | Status |
+|---|---|---|---|---|
+| Partner | prod_VPrhOJ3AsPNXtm | price_1UP1xlAK6n3ctuR9EFyv5jVx · $5,000 | https://buy.stripe.com/3cIfZg6YKcol4ht2Cy9ws19 | active, promo codes off |
+| Strategic | prod_VPrhU4TMQY0MPX | price_1UP1yAAK6n3ctuR9GsBjRFro · $10,000 | https://buy.stripe.com/dRm7sK5UG9c9dS3cd89ws1a | active, promo codes off |
+| Enterprise | prod_VPrpLF8ueIK6F0 | price_1UP269AK6n3ctuR9kYElHc6N · $25,000 | https://buy.stripe.com/28EfZg0AmfAx9BNfpk9ws1b | active, promo codes off |
+| Omnidirectional | prod_VPri7WDL6E1f4E | price_1UP1ycAK6n3ctuR9tseEPqVf · $50,000 | https://buy.stripe.com/9B6dR896SagddS36SO9ws1c | active, promo codes off |
+
+All four prices are `type: one_time` with `recurring: null`. No new products,
+prices, or links are needed; the existing Payment Links stay.
+
+## 1. Product descriptions (shown on the Stripe checkout page)
+
+**Partner**
+> One-time purchase. Access the infrastructure: keep Leadership Infrastructure™ Phase I–II products and Blueprint™ Welcome–Phase Two; 12 months of .LLab Membership™, Library Card™ and Journal™. 1 seat. Standard Co.LLab™ IP license (internal use only). All sales final once access is unlocked, subject to applicable law. A purchase, not an investment.
+
+**Strategic**
+> One-time purchase. Integrate the infrastructure: everything in Partner, plus keep Phase III Internal Operating Systems products and Blueprint™ Phase Three; 12 months of every membership. 2 seats. One annual group orientation or recorded briefing. Standard Co.LLab™ IP license (internal use only). All sales final once access is unlocked, subject to applicable law. A purchase, not an investment.
+
+**Enterprise**
+> One-time purchase. Keep the complete designated Co.LLab™ IP portfolio plus designated eligible releases during your 12-month term; 12 months of every membership. 5 seats. One annual enterprise orientation. Standard Co.LLab™ IP license (internal use only; no ownership or commercial rights). All sales final once access is unlocked, subject to applicable law. A purchase, not an investment.
+
+**Omnidirectional**
+> One-time purchase. Everything in Enterprise, plus defined Omnidirectional Enterprise™ ecosystem participation (eligibility only, not guaranteed); 12 months of every membership. 10 seats. One annual strategic briefing. Standard Co.LLab™ IP license (internal use only; no ownership or commercial rights). All sales final once access is unlocked, subject to applicable law. A purchase, not an investment.
+
+## 2. Checkout disclosure on all four Payment Links
+
+`custom_text.submit.message` (shown above the Pay button):
+
+> One-time purchase, not an investment. All sales are final once access is unlocked, subject to applicable law. Use is governed by the Co.LLab™ IP license: wearethellab.netlify.app/pages/ip-license.html. Full terms: wearethellab.netlify.app/pages/partnership.html#terms
+
+## 3. Test link cleanup (optional)
+
+The owner $0 test link `plink_1UP3TMAK6n3ctuR9uqiiuvXU` and code
+`PARTNER-TEST-94A796` (single use, expires ~2026-10-17) can be deactivated
+after the test purchase.
