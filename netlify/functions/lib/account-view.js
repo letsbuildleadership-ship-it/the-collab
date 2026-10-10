@@ -13,7 +13,7 @@ function buildAccountView(record, now) {
   // Phases product, not just whatever happens to be in their explicit
   // entitlements list — download.js already grants access on this same
   // basis, so the dashboard now matches what's actually downloadable.
-  const ownedKeys = hasFullCatalog ? new Set([...entitlementSet, ...pricing.allCatalogProductKeys()]) : entitlementSet;
+  const ownedKeys = new Set([...entitlementSet, ...membershipStatus.catalogUnlockKeys(record, now)]);
 
   const owned = [];
   for (const key of ownedKeys) {

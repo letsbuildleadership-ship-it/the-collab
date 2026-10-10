@@ -256,3 +256,20 @@ test('non-partners get no partnership panel data', () => {
   const view = buildAccountView({ email: 'x@example.com', entitlements: [], memberships: {} });
   assert.equal(view.partnership, null);
 });
+
+test('a partner cannot download Founders tier materials; a paid Membership still can', async () => {
+  const download = require('../netlify/functions/download');
+  const ev = (token, product) => ({ httpMethod: 'GET', headers: {}, queryStringParameters: { token, product } });
+
+  const partner = await fulfillCheckoutSession(partnerSession('cs_f1', 500000, 'p1@example.com', Date.now()), [PARTNER_PRICE]);
+  for (const f of pricing.founderTierKeys()) {
+    assert.equal((await download.handler(ev(partner.token, f))).statusCode, 403, f);
+    assert.ok(!buildAccountView(partner.record).owned.some((o) => o.key === f), f);
+  }
+  for (const k of pricing.partnershipGrantKeys()) {
+    assert.equal((await download.handler(ev(partner.token, k))).statusCode, 200, k);
+  }
+
+  const member = await fulfillCheckoutSession({ id: 'cs_f2', customer_details: { email: 'm1@example.com' }, subscription: 'sub_f2' }, [MEMBERSHIP_MONTHLY]);
+  assert.equal((await download.handler(ev(member.token, 'founder'))).statusCode, 200);
+});

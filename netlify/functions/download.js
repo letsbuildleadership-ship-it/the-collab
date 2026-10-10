@@ -22,10 +22,9 @@ exports.handler = async (event) => {
 
   // Expiry-aware: a lapsed Partnership membership term no longer counts.
   const entitlementSet = new Set(membershipStatus.effectiveEntitlements(record));
-  const hasFullCatalog = membershipStatus.hasFullCatalog(record);
-  const isCatalogProduct = pricing.allCatalogProductKeys().includes(productKey);
+  const unlockedByMembership = membershipStatus.catalogUnlockKeys(record).includes(productKey);
 
-  const entitled = entitlementSet.has(productKey) || (hasFullCatalog && isCatalogProduct);
+  const entitled = entitlementSet.has(productKey) || unlockedByMembership;
   if (!entitled) return json(403, { error: 'You do not have access to this product.' });
 
   const entry = pricing.entryForKey(productKey);
