@@ -89,6 +89,47 @@ function effectiveEntitlements(record, now) {
   });
 }
 
+const RENEWAL_NOTICE_DAYS = 30;
+
+/**
+ * End-of-term offer for a Partnership holder. A Partnership is a one-time
+ * purchase; when its membership term is within RENEWAL_NOTICE_DAYS of
+ * ending (or has ended), the customer is offered every membership we sell
+ * at its regular market price — the same Payment Links everyone else uses.
+ * Memberships they already pay for by subscription are left out.
+ *
+ * @returns {{ status: 'active'|'ending-soon'|'ended', expiresAt: string, daysLeft: number,
+ *   options: Array<{ key, name, description, plans }> } | null}
+ */
+function partnershipRenewal(record, now) {
+  const p = record && record.partnership;
+  if (!p || !p.expiresAt) return null;
+  const end = Date.parse(p.expiresAt);
+  if (!Number.isFinite(end)) return null;
+
+  const msLeft = end - nowMs(now);
+  const daysLeft = Math.max(0, Math.ceil(msLeft / 86400000));
+  let status = 'active';
+  if (msLeft <= 0) status = 'ended';
+  else if (daysLeft <= RENEWAL_NOTICE_DAYS) status = 'ending-soon';
+
+  const memberships = record.memberships || {};
+  const options =
+    status === 'active'
+      ? []
+      : pricing.membershipKeys()
+          .filter((key) => {
+            const m = memberships[key];
+            return !(m && m.subscriptionId && isMembershipActive(m, now));
+          })
+          .map((key) => {
+            const entry = pricing.entryForKey(key);
+            return { key, name: entry.name, description: entry.description, plans: renewalFor(key) };
+          });
+
+  return { status, expiresAt: p.expiresAt, daysLeft, options };
+}
+
 /** Does an active (non-expired) membership unlock the full one-time catalog? */
 function hasFullCatalog(record, now) {
   return activeMembershipKeys(record, now).some((key) => pricing.unlocksCatalog(key));
@@ -102,4 +143,6 @@ module.exports = {
   activeMembershipKeys,
   hasFullCatalog,
   renewalFor,
+  partnershipRenewal,
+  RENEWAL_NOTICE_DAYS,
 };

@@ -215,3 +215,44 @@ test('partnership page includes the clickable Omnidirectional Enterprise™ circ
   assert.ok(!links.some((h) => /founders/.test(h)));
   assert.match(html, /human potential/);
 });
+
+// ---- end-of-term offer ----------------------------------------------------
+
+test('end of term: every membership is offered at its regular price, nothing before the notice window', async () => {
+  const { record } = await fulfillCheckoutSession(partnerSession('cs_r1', 500000), [PARTNER_PRICE]);
+  const end = Date.parse(EXPECTED_END);
+  const day = 86400000;
+
+  const early = membershipStatus.partnershipRenewal(record, end - 60 * day);
+  assert.equal(early.status, 'active');
+  assert.deepEqual(early.options, []);
+
+  const soon = membershipStatus.partnershipRenewal(record, end - 10 * day);
+  assert.equal(soon.status, 'ending-soon');
+  assert.equal(soon.daysLeft, 10);
+
+  const ended = buildAccountView(record, end + day).partnership.renewal;
+  assert.equal(ended.status, 'ended');
+  assert.deepEqual(ended.options.map((o) => o.key), pricing.membershipKeys());
+  for (const o of ended.options) {
+    const regular = pricing.entryForKey(o.key).plans.map((p) => [p.price_display, p.payment_link]);
+    assert.deepEqual(o.plans.map((p) => [p.price_display, p.payment_link]), regular, o.key);
+  }
+});
+
+test('end-of-term offer skips a membership the customer already renewed by subscription', async () => {
+  const email = 'renewed@example.com';
+  await fulfillCheckoutSession(partnerSession('cs_r2', 500000, email, Date.UTC(2024, 0, 1)), [PARTNER_PRICE]);
+  const { record } = await fulfillCheckoutSession(
+    { id: 'cs_r2_sub', customer_details: { email }, subscription: 'sub_r2' },
+    [MEMBERSHIP_MONTHLY]
+  );
+  const offer = membershipStatus.partnershipRenewal(record);
+  assert.equal(offer.status, 'ended');
+  assert.deepEqual(offer.options.map((o) => o.key), ['library-card', 'journal']);
+});
+
+test('non-partners get no partnership panel data', () => {
+  const view = buildAccountView({ email: 'x@example.com', entitlements: [], memberships: {} });
+  assert.equal(view.partnership, null);
+});

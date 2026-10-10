@@ -306,6 +306,55 @@
       </div>`;
   }
 
+  /* Omnidirectional Enterprise™ Partnership: term status, and at the end
+   * of the term, every membership offered at its regular price. */
+  function renderPartnership(data) {
+    const wrap = $('partnership-group');
+    if (!wrap) return;
+    const p = data.partnership;
+    if (!p) {
+      wrap.hidden = true;
+      wrap.innerHTML = '';
+      return;
+    }
+    const r = p.renewal || { status: 'active', options: [] };
+    const end = formatShortDate(p.expiresAt);
+    let heading;
+    let copy;
+    if (r.status === 'ended') {
+      heading = 'Your Partnership membership term has ended';
+      copy = `Thank you for partnering with The Co.LLab™. Every product and Blueprint™ issue from your Partnership is still yours. Continue any or all of our memberships at their regular prices:`;
+    } else if (r.status === 'ending-soon') {
+      heading = `Your memberships are included through ${end}`;
+      copy = `${r.daysLeft} day${r.daysLeft === 1 ? '' : 's'} left in your Partnership term. To keep going without a gap, continue any or all of our memberships at their regular prices:`;
+    } else {
+      heading = `Memberships included through ${end}`;
+      copy = 'Your one-time Partnership includes every membership for 12 months. Nothing renews automatically. Near the end of your term, you can continue any or all memberships at their regular prices.';
+    }
+
+    const options = (r.options || [])
+      .map((o) => {
+        const plans = (o.plans || [])
+          .filter((pl) => pl.payment_link)
+          .map((pl) => `<a class="pill" href="${pl.payment_link}">${pl.price_display} <span class="arrow">→</span></a>`)
+          .join(' ');
+        return `<div class="card is-visible" style="text-align:left;">
+          <span class="num">${o.name}</span>
+          <p>${o.description || ''}</p>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:auto;">${plans}</div>
+        </div>`;
+      })
+      .join('');
+
+    wrap.innerHTML = `<div class="founder-card" style="margin-top:2rem;">
+        <div class="founder-card-badge">Omnidirectional Enterprise™ Partnership · ${p.tierLabel || ''}</div>
+        <h3 style="margin:0.75rem 0 0;">${heading}</h3>
+        <p class="founder-card-copy">${copy}</p>
+        ${options ? `<div class="grid grid-3" style="margin-top:1.25rem;">${options}</div>` : ''}
+      </div>`;
+    wrap.hidden = false;
+  }
+
   function renderDashboard(data) {
     data.activityProgress = data.activityProgress || {};
     state.data = data;
@@ -313,6 +362,7 @@
     $('account-email').textContent = data.email;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
     renderFounderCard(data);
+    renderPartnership(data);
 
     if (!data.hasPassword && data.memberId) {
       $('create-password-member-id').textContent = data.memberId;

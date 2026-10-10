@@ -46,6 +46,7 @@ function buildAccountView(record, now) {
           purchasedAt: record.partnership.purchasedAt,
           expiresAt: record.partnership.expiresAt,
           seats: record.partnership.seats || 1,
+          renewal: membershipStatus.partnershipRenewal(record, now),
         }
       : null,
     hasFullCatalog,
