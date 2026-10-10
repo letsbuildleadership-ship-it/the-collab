@@ -24,7 +24,8 @@ function card(t) {
           <p class="tier-line">${esc(t.headline)}</p>
           <h3>${esc(t.price_display)}</h3>
           <p class="term">One-time purchase · 12 months of memberships</p>
-          <p>${esc(t.positioning)}</p>
+          <p class="tier-tagline">${esc(t.tagline || '')}</p>
+          <p class="tier-best"><strong>Best for:</strong> ${esc(t.best_for || t.positioning)}</p>
           <ul class="access-list">
 ${t.benefits.map((b) => `            <li>${esc(b)}</li>`).join('\n')}
           </ul>

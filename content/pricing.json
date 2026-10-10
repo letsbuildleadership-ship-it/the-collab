@@ -332,6 +332,8 @@
       "description": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
       "rank": 1,
       "headline": "Access the infrastructure.",
+      "tagline": "Your foundation for leading on purpose.",
+      "best_for": "Independent leaders, creators, and founders ready to build on solid ground.",
       "positioning": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
       "access_level": "Foundational",
       "grant_scope": "designated",
@@ -347,11 +349,10 @@
       "includes_eligible_releases": false,
       "engagement": null,
       "benefits": [
-        "Permanent access to Leadership Infrastructure™ Phase I–II products and Blueprint™ Welcome, Phase One, and Phase Two",
-        "12 months of .LLab Membership™, .LLab Library Card™, and The .LLab Journal™ — including the full .LLab product catalog during your term",
-        "12 months of research, publications, and resources through The Legacy Library™ and The .LLab Journal™",
-        "Digital partnership recognition in your account",
-        "Eligibility to participate in designated ecosystem opportunities"
+        "Keep the foundations: Leadership Infrastructure™ Phase I–II tools and Blueprint™ Welcome, Phase One, and Phase Two, yours for good",
+        "A full year inside The Co.LLab™: .LLab Membership™ with the complete .LLab catalog, the Library Card™ and Legacy Library™, and The .LLab Journal™",
+        "Recognized as a Co.LLab™ Partner in your account",
+        "Eligible for designated ecosystem opportunities"
       ]
     },
     {
@@ -367,6 +368,8 @@
       "description": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
       "rank": 2,
       "headline": "Integrate the infrastructure.",
+      "tagline": "Turn strategy into systems your team actually runs on.",
+      "best_for": "Established businesses and leadership teams integrating infrastructure into daily operations.",
       "positioning": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
       "access_level": "Strategic",
       "grant_scope": "designated",
@@ -389,11 +392,10 @@
       },
       "benefits": [
         "Everything in Partner",
-        "Permanent access adds Phase III Internal Operating Systems products and Blueprint™ Phase Three",
-        "Strategic planning and organizational development materials across Phases I–III",
-        "2 individual access seats",
-        "Priority consideration for applicable ecosystem collaboration opportunities",
-        "One annual group orientation or recorded strategic briefing"
+        "Keep Phase III Internal Operating Systems tools and Blueprint™ Phase Three: decision rhythms, accountability, and culture systems",
+        "Bring a second leader in: 2 individual seats",
+        "An annual group orientation (or recorded strategic briefing) to put it to work",
+        "Priority consideration for ecosystem collaboration opportunities"
       ]
     },
     {
@@ -409,6 +411,8 @@
       "description": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
       "rank": 3,
       "headline": "Access the complete designated IP portfolio.",
+      "tagline": "Every framework, every phase, built into your organization.",
+      "best_for": "Organizations building Leadership Infrastructure™ across teams and departments.",
       "positioning": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
       "access_level": "Comprehensive",
       "grant_scope": "complete",
@@ -420,11 +424,11 @@
       },
       "benefits": [
         "Everything in Strategic",
-        "Permanent access to the complete designated Co.LLab™ IP portfolio: all Four Phases of Leadership Infrastructure™, Creator Infrastructure™, Preservation resources, the complete Blueprint™ series, and the Infrastructure Roadmap™",
-        "Designated eligible product releases during your 12-month term, yours to keep",
-        "5 individual access seats",
-        "Eligibility for designated enterprise collaboration opportunities",
-        "One annual enterprise orientation"
+        "Keep the complete designated Co.LLab™ IP portfolio: all Four Phases, Creator Infrastructure™, Preservation resources, and the full Blueprint™ series",
+        "New designated releases during your 12-month term, yours to keep",
+        "Equip your leadership team: 5 individual seats",
+        "An annual enterprise orientation for your seat holders",
+        "Eligible for designated enterprise collaboration opportunities"
       ]
     },
     {
@@ -440,6 +444,8 @@
       "description": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
       "rank": 4,
       "headline": "Access the portfolio and participate in the broader enterprise ecosystem.",
+      "tagline": "Lead in every direction.",
+      "best_for": "Organizations that want the full portfolio and a defined path into the broader Co.LLab™ ecosystem.",
       "positioning": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
       "access_level": "Ecosystem-wide",
       "grant_scope": "complete",
@@ -451,12 +457,11 @@
       },
       "benefits": [
         "Everything in Enterprise",
-        "10 individual access seats",
-        "Priority consideration for designated ecosystem collaboration opportunities",
+        "Scale across your organization: 10 individual seats",
         "Participation opportunities in designated cross-organizational research and collaboration initiatives",
-        "Recognition as an Omnidirectional Enterprise™ partner in your account",
-        "Eligibility for mutually agreed strategic initiatives involving shared intelligence, resources, and infrastructure",
-        "One annual Omnidirectional Enterprise™ strategic briefing"
+        "Priority consideration for ecosystem collaborations and eligibility for mutually agreed strategic initiatives",
+        "Recognized as an Omnidirectional Enterprise™ partner",
+        "An annual Omnidirectional Enterprise™ strategic briefing"
       ]
     }
   ],
