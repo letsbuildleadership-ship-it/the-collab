@@ -43,11 +43,18 @@ function applyPartnership(record, entry, session) {
   const termMonths = entry.term_months || 12;
   const periodEnd = addMonths(purchasedAt, termMonths).toISOString();
   const productKeys = pricing.partnershipGrantKeys();
+  const prior = record.partnership || {};
+  const pendingCancels = [...(prior.pendingSubscriptionCancels || [])];
 
   for (const membershipKey of pricing.membershipKeys()) {
     const existing = record.memberships[membershipKey];
     // Never cut short a longer term from an earlier Partnership purchase.
     if (existing && existing.source === 'partnership' && existing.currentPeriodEnd > periodEnd) continue;
+    // The Partnership replaces any paid subscription for this membership:
+    // queue it so cancelReplacedSubscriptions stops future billing.
+    if (existing && existing.subscriptionId && existing.status === 'active') {
+      pendingCancels.push({ subscriptionId: existing.subscriptionId, membershipKey });
+    }
     record.memberships[membershipKey] = {
       status: 'active',
       interval: null,
@@ -58,7 +65,6 @@ function applyPartnership(record, entry, session) {
     };
   }
 
-  const prior = record.partnership || {};
   const keepPrior = prior.expiresAt && prior.expiresAt > periodEnd;
   record.partnership = {
     key: keepPrior ? prior.key : entry.key,
@@ -68,6 +74,8 @@ function applyPartnership(record, entry, session) {
     expiresAt: keepPrior ? prior.expiresAt : periodEnd,
     seats: 1, // TODO(multi-seat): honor entry.seats once seat assignment exists.
     grantedKeys: uniq([...(prior.grantedKeys || []), ...productKeys]),
+    pendingSubscriptionCancels: pendingCancels,
+    canceledSubscriptions: prior.canceledSubscriptions || [],
   };
 
   return [...productKeys, ...pricing.membershipKeys()];
@@ -196,6 +204,51 @@ async function fulfillCheckoutSession(session, priceIds) {
   return { token, record, grantedKeys };
 }
 
+/**
+ * Stop billing on membership subscriptions a Partnership replaced. Each is
+ * set to cancel at the end of its current period: the customer keeps what
+ * they already paid for and is never charged again (no refund). The
+ * eventual customer.subscription.deleted is ignored by revokeMembership
+ * while the Partnership term is live. Anything Stripe rejects stays queued
+ * and is retried the next time this session is fulfilled.
+ *
+ * @param {object} result - return value of fulfillCheckoutSession.
+ * @param {object} stripe - a Stripe client.
+ */
+async function cancelReplacedSubscriptions(result, stripe) {
+  const record = result && result.record;
+  const pending = (record && record.partnership && record.partnership.pendingSubscriptionCancels) || [];
+  if (!pending.length) return { canceled: [], failed: [] };
+
+  const canceled = [];
+  const failed = [];
+  for (const item of pending) {
+    try {
+      await stripe.subscriptions.update(item.subscriptionId, {
+        cancel_at_period_end: true,
+        metadata: { canceled_reason: 'replaced_by_partnership', partnership_key: record.partnership.key },
+      });
+      canceled.push(item);
+    } catch (err) {
+      // Already canceled or gone in Stripe: nothing left to stop.
+      if (err && (err.code === 'resource_missing' || /canceled subscription/i.test(err.message || ''))) {
+        canceled.push(item);
+      } else {
+        console.error(`Could not cancel replaced subscription ${item.subscriptionId}`, err);
+        failed.push(item);
+      }
+    }
+  }
+
+  record.partnership.pendingSubscriptionCancels = failed;
+  record.partnership.canceledSubscriptions = uniq([
+    ...(record.partnership.canceledSubscriptions || []),
+    ...canceled.map((c) => c.subscriptionId),
+  ]);
+  await store.saveCustomer(record);
+  return { canceled, failed };
+}
+
 /** Recompute entitlements after a membership is revoked (cancellation). */
 async function revokeMembership(token, membershipKey) {
   const record = await store.getCustomerByToken(token);
@@ -253,4 +306,10 @@ async function reactivateMembership(token, membershipKey) {
   return record;
 }
 
-module.exports = { fulfillCheckoutSession, revokeMembership, reactivateMembership, _addMonths: addMonths };
+module.exports = {
+  fulfillCheckoutSession,
+  revokeMembership,
+  reactivateMembership,
+  cancelReplacedSubscriptions,
+  _addMonths: addMonths,
+};

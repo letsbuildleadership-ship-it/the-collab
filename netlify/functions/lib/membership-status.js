@@ -136,20 +136,15 @@ function hasFullCatalog(record, now) {
 }
 
 /**
- * One-time catalog keys an active membership unlocks for this customer.
- * A Membership held through an Omnidirectional Enterprise™ Partnership
- * never unlocks the Founders tiers — the Partnership is fully separate from
- * the Founders Organization. A paid Membership keeps its existing unlock.
+ * One-time catalog keys an active membership unlocks for this customer:
+ * every catalog product except the Founders tiers. Founders Organization
+ * materials come only with a Founders purchase — never with Membership,
+ * whether paid by subscription or included in a Partnership.
  */
 function catalogUnlockKeys(record, now) {
-  const unlocking = activeMembershipKeys(record, now).filter((key) => pricing.unlocksCatalog(key));
-  if (!unlocking.length) return [];
-  const all = pricing.allCatalogProductKeys();
-  const memberships = (record && record.memberships) || {};
-  const viaPaidMembership = unlocking.some((key) => memberships[key].source !== 'partnership');
-  if (viaPaidMembership) return all;
+  if (!hasFullCatalog(record, now)) return [];
   const founders = new Set(pricing.founderTierKeys());
-  return all.filter((key) => !founders.has(key));
+  return pricing.allCatalogProductKeys().filter((key) => !founders.has(key));
 }
 
 module.exports = {

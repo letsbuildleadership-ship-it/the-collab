@@ -6,7 +6,10 @@
 // Script) webhook on the same Stripe account — both fire on the same
 // events without interfering with each other.
 const { getStripe } = require('./lib/stripe-client');
-const { fulfillCheckoutSession, revokeMembership, reactivateMembership } = require('./lib/fulfill');
+const { fulfillCheckoutSession, revokeMembership, reactivateMembership, cancelReplacedSubscriptions } = require('./lib/fulfill');
+
+// 'no_payment_required' is a fully discounted ($0) checkout — still a completed purchase.
+const COMPLETED = new Set(['paid', 'no_payment_required']);
 const store = require('./lib/store');
 
 exports.handler = async (event) => {
@@ -37,11 +40,12 @@ exports.handler = async (event) => {
     switch (stripeEvent.type) {
       case 'checkout.session.completed': {
         const session = stripeEvent.data.object;
-        if (session.payment_status !== 'paid' && session.mode !== 'subscription') break;
+        if (!COMPLETED.has(session.payment_status) && session.mode !== 'subscription') break;
         const stripe = getStripe();
         const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
         const priceIds = lineItems.data.map((li) => li.price && li.price.id).filter(Boolean);
-        await fulfillCheckoutSession(session, priceIds);
+        const result = await fulfillCheckoutSession(session, priceIds);
+        await cancelReplacedSubscriptions(result, stripe);
         break;
       }
 

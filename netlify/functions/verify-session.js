@@ -7,7 +7,7 @@
 // spinner. Calling fulfillCheckoutSession twice for the same session is
 // safe: it's idempotent.
 const { getStripe } = require('./lib/stripe-client');
-const { fulfillCheckoutSession } = require('./lib/fulfill');
+const { fulfillCheckoutSession, cancelReplacedSubscriptions } = require('./lib/fulfill');
 const { json, setTokenCookie } = require('./lib/http');
 
 exports.handler = async (event) => {
@@ -24,7 +24,8 @@ exports.handler = async (event) => {
       expand: ['line_items.data.price'],
     });
 
-    if (session.payment_status !== 'paid') {
+    // 'no_payment_required' is a fully discounted ($0) checkout — still a completed purchase.
+    if (session.payment_status !== 'paid' && session.payment_status !== 'no_payment_required') {
       return json(202, { ok: false, status: session.payment_status, message: 'Payment not yet confirmed.' });
     }
 
@@ -34,6 +35,8 @@ exports.handler = async (event) => {
     if (!result) {
       return json(400, { error: 'No customer email on this checkout session.' });
     }
+
+    await cancelReplacedSubscriptions(result, stripe);
 
     return json(
       200,

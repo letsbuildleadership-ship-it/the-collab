@@ -257,7 +257,7 @@ test('non-partners get no partnership panel data', () => {
   assert.equal(view.partnership, null);
 });
 
-test('a partner cannot download Founders tier materials; a paid Membership still can', async () => {
+test('neither a partner nor a paid Membership can download Founders tier materials', async () => {
   const download = require('../netlify/functions/download');
   const ev = (token, product) => ({ httpMethod: 'GET', headers: {}, queryStringParameters: { token, product } });
 
@@ -271,5 +271,77 @@ test('a partner cannot download Founders tier materials; a paid Membership still
   }
 
   const member = await fulfillCheckoutSession({ id: 'cs_f2', customer_details: { email: 'm1@example.com' }, subscription: 'sub_f2' }, [MEMBERSHIP_MONTHLY]);
-  assert.equal((await download.handler(ev(member.token, 'founder'))).statusCode, 200);
+  for (const f of pricing.founderTierKeys()) {
+    assert.equal((await download.handler(ev(member.token, f))).statusCode, 403, f);
+  }
+  assert.equal((await download.handler(ev(member.token, 'strength-map'))).statusCode, 200);
+});
+
+test('a Founder still downloads their own Founders tier with or without Membership', async () => {
+  const download = require('../netlify/functions/download');
+  const email = 'founder-member@example.com';
+  const founderPrice = pricing.entryForKey('founder').stripe_price_id;
+  await fulfillCheckoutSession({ id: 'cs_f3', customer_details: { email }, amount_total: 35000 }, [founderPrice]);
+  const { token } = await fulfillCheckoutSession({ id: 'cs_f4', customer_details: { email }, subscription: 'sub_f4' }, [MEMBERSHIP_MONTHLY]);
+  const r = await download.handler({ httpMethod: 'GET', headers: {}, queryStringParameters: { token, product: 'founder' } });
+  assert.equal(r.statusCode, 200);
+});
+
+// ---- overlapping subscriptions -------------------------------------------
+
+const { cancelReplacedSubscriptions } = require('../netlify/functions/lib/fulfill');
+
+function fakeStripe(failIds = []) {
+  const calls = [];
+  return {
+    calls,
+    subscriptions: {
+      async update(id, params) {
+        calls.push({ id, params });
+        if (failIds.includes(id)) throw Object.assign(new Error('boom'), { code: 'api_error' });
+        return { id };
+      },
+    },
+  };
+}
+
+test('buying a partnership stops billing on existing membership subscriptions at period end', async () => {
+  const email = 'subscriber@example.com';
+  await fulfillCheckoutSession({ id: 'cs_s1', customer_details: { email }, subscription: 'sub_mem' }, [MEMBERSHIP_MONTHLY]);
+  await fulfillCheckoutSession({ id: 'cs_s2', customer_details: { email }, subscription: 'sub_lib' }, ['price_1UD4FWAK6n3ctuR9qqTP6ONI']);
+  const result = await fulfillCheckoutSession(partnerSession('cs_s3', 500000, email, Date.now()), [PARTNER_PRICE]);
+
+  const stripe = fakeStripe();
+  const out = await cancelReplacedSubscriptions(result, stripe);
+  assert.deepEqual(stripe.calls.map((c) => c.id).sort(), ['sub_lib', 'sub_mem']);
+  for (const c of stripe.calls) assert.equal(c.params.cancel_at_period_end, true);
+  assert.equal(out.failed.length, 0);
+  assert.deepEqual(result.record.partnership.pendingSubscriptionCancels, []);
+
+  // Fulfilling the same session again (webhook + verify-session) cancels nothing twice.
+  const again = await fulfillCheckoutSession(partnerSession('cs_s3', 500000, email, Date.now()), [PARTNER_PRICE]);
+  const stripe2 = fakeStripe();
+  await cancelReplacedSubscriptions(again, stripe2);
+  assert.equal(stripe2.calls.length, 0);
+});
+
+test('a failed subscription cancel stays queued and is retried', async () => {
+  const email = 'retry@example.com';
+  await fulfillCheckoutSession({ id: 'cs_t1', customer_details: { email }, subscription: 'sub_retry' }, [MEMBERSHIP_MONTHLY]);
+  const result = await fulfillCheckoutSession(partnerSession('cs_t2', 500000, email, Date.now()), [PARTNER_PRICE]);
+
+  const out = await cancelReplacedSubscriptions(result, fakeStripe(['sub_retry']));
+  assert.equal(out.failed.length, 1);
+
+  const again = await fulfillCheckoutSession(partnerSession('cs_t2', 500000, email, Date.now()), [PARTNER_PRICE]);
+  const stripe = fakeStripe();
+  await cancelReplacedSubscriptions(again, stripe);
+  assert.deepEqual(stripe.calls.map((c) => c.id), ['sub_retry']);
+});
+
+test('a partnership buyer with no subscriptions triggers no Stripe calls', async () => {
+  const result = await fulfillCheckoutSession(partnerSession('cs_u1', 500000, 'nosub@example.com', Date.now()), [PARTNER_PRICE]);
+  const stripe = fakeStripe();
+  await cancelReplacedSubscriptions(result, stripe);
+  assert.equal(stripe.calls.length, 0);
 });
