@@ -459,7 +459,7 @@
       })
       .join('');
 
-    const recognition = `<p class="founder-card-copy" style="margin-top:0.5rem;"><strong>Recognized ${esc(p.tierLabel === 'Omnidirectional' ? 'Omnidirectional Enterprise™' : `${p.tierLabel} Partnership`)} partner</strong> since ${formatShortDate(p.purchasedAt)}.</p>`;
+    const recognition = `<p class="founder-card-copy" style="margin-top:0.5rem;"><strong>Recognized ${esc(p.tierLabel === 'Omnidirectional' ? 'Omnidirectional Enterprise™' : p.tierLabel)} partner</strong> since ${formatShortDate(p.purchasedAt)}.</p>`;
     const engagement = p.engagement
       ? `<div style="margin-top:1.25rem;"><span class="founder-card-label">Included session</span>
            <strong class="founder-card-value" style="display:block;">${esc(p.engagement.label)}</strong>
