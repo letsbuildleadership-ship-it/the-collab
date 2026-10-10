@@ -117,7 +117,9 @@ exports.handler = async (event) => {
 
     if (applyFounderDiscount) {
       sessionParams.discounts = [{ coupon: FOUNDER_COUPON_ID }];
-    } else {
+    } else if (pricing.entryForKey(key).kind !== 'partnership') {
+      // Partnerships are sold at their stated price only — no promo codes,
+      // no Founder discount (they're separate from the Founders Organization).
       sessionParams.allow_promotion_codes = true;
     }
 

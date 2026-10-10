@@ -35,6 +35,15 @@ function buildIndex() {
     if (p.stripe_price_id) byPriceId.set(p.stripe_price_id, p.key);
   }
 
+  // Omnidirectional Enterprise™ Partnerships: one-time purchases, fully
+  // separate from the Founders Organization (no founder_rank, no impact,
+  // founder_discount_exempt). Left out of paymentLinkMap() so the Founder
+  // checkout rewrite never touches these links.
+  for (const p of registry.partnerships || []) {
+    byKey.set(p.key, { ...p, kind: 'partnership' });
+    if (p.stripe_price_id) byPriceId.set(p.stripe_price_id, p.key);
+  }
+
   return { byKey, byPriceId };
 }
 
@@ -90,12 +99,35 @@ function resolvePurchasable(key, interval) {
     return { priceId: plan.stripe_price_id, mode: 'subscription', interval: plan.interval, name: entry.name };
   }
 
-  if (entry.kind === 'product' || entry.kind === 'blueprint') {
+  if (entry.kind === 'product' || entry.kind === 'blueprint' || entry.kind === 'partnership') {
     if (!entry.stripe_price_id) return null;
     return { priceId: entry.stripe_price_id, mode: 'payment', interval: null, name: entry.name };
   }
 
   return null; // bonus products: granted automatically, not directly purchasable
+}
+
+/** All Partnership tier keys, in registry order (lowest tier first). */
+function partnershipKeys() {
+  return (registry.partnerships || []).map((p) => p.key);
+}
+
+/**
+ * Every key a Partnership purchase grants permanently: all one-time
+ * products except the Founders tiers, every Blueprint™ issue, and every
+ * bonus product. Memberships are granted separately, on a fixed term.
+ */
+function partnershipGrantKeys() {
+  return [
+    ...(registry.products || []).filter((p) => !p.founder_rank).map((p) => p.key),
+    ...(registry.blueprint_series || []).map((p) => p.key),
+    ...(registry.bonus_products || []).map((p) => p.key),
+  ];
+}
+
+/** Every membership key (membership, library-card, journal). */
+function membershipKeys() {
+  return (registry.memberships || []).map((m) => m.key);
 }
 
 /** All registered Impact nonprofit partners. */
@@ -180,4 +212,7 @@ module.exports = {
   founderTierKeys,
   isFounderDiscountExempt,
   paymentLinkMap,
+  partnershipKeys,
+  partnershipGrantKeys,
+  membershipKeys,
 };

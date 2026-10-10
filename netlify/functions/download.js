@@ -4,6 +4,7 @@
 // anywhere on the site — only reachable through this function.
 const store = require('./lib/store');
 const pricing = require('./lib/pricing');
+const membershipStatus = require('./lib/membership-status');
 const { tokenFromEvent, json } = require('./lib/http');
 const { resolvePdfFile } = require('./lib/pdf-path');
 
@@ -19,10 +20,9 @@ exports.handler = async (event) => {
   const record = await store.getCustomerByToken(token);
   if (!record) return json(401, { error: 'Invalid or expired access link.' });
 
-  const entitlementSet = new Set(record.entitlements || []);
-  const hasFullCatalog = Object.entries(record.memberships || {}).some(
-    ([key, m]) => m.status === 'active' && pricing.unlocksCatalog(key)
-  );
+  // Expiry-aware: a lapsed Partnership membership term no longer counts.
+  const entitlementSet = new Set(membershipStatus.effectiveEntitlements(record));
+  const hasFullCatalog = membershipStatus.hasFullCatalog(record);
   const isCatalogProduct = pricing.allCatalogProductKeys().includes(productKey);
 
   const entitled = entitlementSet.has(productKey) || (hasFullCatalog && isCatalogProduct);

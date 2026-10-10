@@ -4,6 +4,7 @@
 // Mark™ contributions, keyed by Member ID rather than email.
 const store = require('./lib/store');
 const { tokenFromEvent, json } = require('./lib/http');
+const membershipStatus = require('./lib/membership-status');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'GET') return json(405, { error: 'Method Not Allowed' });
@@ -15,7 +16,7 @@ exports.handler = async (event) => {
   if (!record) return json(401, { error: 'Invalid or expired access link.' });
 
   const libraryCard = record.memberships && record.memberships['library-card'];
-  if (!libraryCard || libraryCard.status !== 'active') {
+  if (!membershipStatus.isMembershipActive(libraryCard)) {
     return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 

@@ -125,6 +125,22 @@ collections:
               - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
               - { label: "PDF filename (in content/library/)", name: "pdf_file", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
+          - { label: "Internal note — Partnerships (not shown to customers)", name: "_partnerships_readme", widget: "text", required: false }
+          - label: "Omnidirectional Enterprise™ Partnerships (one-time purchase, separate from Founders)"
+            name: "partnerships"
+            widget: "list"
+            summary: "{{fields.tier_label}} — {{fields.price_display}}"
+            fields:
+              - { label: "Key (unique, no spaces)", name: "key", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Tier label", name: "tier_label", widget: "string" }
+              - { label: "Price (display)", name: "price_display", widget: "string" }
+              - { label: "Stripe Price ID", name: "stripe_price_id", widget: "string" }
+              - { label: "Stripe Payment Link", name: "payment_link", widget: "string" }
+              - { label: "Membership term (months)", name: "term_months", widget: "number", default: 12, value_type: "int" }
+              - { label: "Seats (purchaser only for now)", name: "seats", widget: "number", default: 1, value_type: "int" }
+              - { label: "Exempt from Founder discount (keep on)", name: "founder_discount_exempt", widget: "boolean", default: true }
+              - { label: "Description", name: "description", widget: "text" }
 
   - name: "pages"
     label: "Pages"

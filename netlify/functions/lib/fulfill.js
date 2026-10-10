@@ -5,9 +5,72 @@
 // running it twice for the same session just re-confirms the same grants.
 const store = require('./store');
 const pricing = require('./pricing');
+const membershipStatus = require('./membership-status');
 
 function uniq(arr) {
   return Array.from(new Set(arr));
+}
+
+/** Calendar-month add in UTC (Jan 31 + 1 month clamps to the last day of Feb). */
+function addMonths(date, months) {
+  const d = new Date(date.getTime());
+  const day = d.getUTCDate();
+  d.setUTCDate(1);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  const lastDay = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+  d.setUTCDate(Math.min(day, lastDay));
+  return d;
+}
+
+/**
+ * Omnidirectional Enterprise™ Partnership grant. Fully separate from the
+ * Founders Organization: no Founder recognition, no Founder discount, no
+ * impact allocation. Grants every one-time product except the Founders
+ * tiers, every Blueprint™ issue, and every bonus product permanently, and
+ * sets every membership active for term_months (12) from purchase with no
+ * subscription — membership-status.js enforces the expiry at read time.
+ *
+ * Idempotent per Checkout Session: the webhook and verify-session both
+ * call this, and the term is anchored to the session's own creation time,
+ * so a second run re-confirms the same end date rather than extending it.
+ *
+ * TODO(multi-seat): purchaser-only for now (seats: 1). Multi-seat will need
+ * a seat roster on record.partnership (invited emails -> customer tokens)
+ * and the same grants applied to each seat holder's record.
+ */
+function applyPartnership(record, entry, session) {
+  const purchasedAt = session.created ? new Date(session.created * 1000) : new Date();
+  const termMonths = entry.term_months || 12;
+  const periodEnd = addMonths(purchasedAt, termMonths).toISOString();
+  const productKeys = pricing.partnershipGrantKeys();
+
+  for (const membershipKey of pricing.membershipKeys()) {
+    const existing = record.memberships[membershipKey];
+    // Never cut short a longer term from an earlier Partnership purchase.
+    if (existing && existing.source === 'partnership' && existing.currentPeriodEnd > periodEnd) continue;
+    record.memberships[membershipKey] = {
+      status: 'active',
+      interval: null,
+      subscriptionId: null,
+      currentPeriodEnd: periodEnd,
+      source: 'partnership',
+      partnershipKey: entry.key,
+    };
+  }
+
+  const prior = record.partnership || {};
+  const keepPrior = prior.expiresAt && prior.expiresAt > periodEnd;
+  record.partnership = {
+    key: keepPrior ? prior.key : entry.key,
+    tierLabel: keepPrior ? prior.tierLabel : entry.tier_label || entry.name,
+    sessionId: keepPrior ? prior.sessionId : session.id,
+    purchasedAt: keepPrior ? prior.purchasedAt : purchasedAt.toISOString(),
+    expiresAt: keepPrior ? prior.expiresAt : periodEnd,
+    seats: 1, // TODO(multi-seat): honor entry.seats once seat assignment exists.
+    grantedKeys: uniq([...(prior.grantedKeys || []), ...productKeys]),
+  };
+
+  return [...productKeys, ...pricing.membershipKeys()];
 }
 
 /**
@@ -54,6 +117,10 @@ async function fulfillCheckoutSession(session, priceIds) {
         await store.linkSubscription(session.subscription, token, key);
       }
       for (const bonusKey of pricing.grantsForKey(key)) grantedKeys.push(bonusKey);
+    }
+
+    if (entry.kind === 'partnership') {
+      for (const k of applyPartnership(record, entry, session)) grantedKeys.push(k);
     }
 
     // Impact Products: if this key is flagged with a nonprofit partner,
@@ -134,8 +201,15 @@ async function revokeMembership(token, membershipKey) {
   const record = await store.getCustomerByToken(token);
   if (!record) return null;
 
-  if (record.memberships[membershipKey]) {
-    record.memberships[membershipKey].status = 'canceled';
+  const current = record.memberships[membershipKey];
+  // A Partnership term replaced this membership's old subscription; a late
+  // cancellation of that subscription must not cut the paid term short.
+  if (current && current.source === 'partnership' && !membershipStatus.isExpired(current)) {
+    return record;
+  }
+
+  if (current) {
+    current.status = 'canceled';
   }
 
   // Drop the membership key itself; keep bonus grants only if another
@@ -161,8 +235,16 @@ async function revokeMembership(token, membershipKey) {
 async function reactivateMembership(token, membershipKey) {
   const record = await store.getCustomerByToken(token);
   if (!record) return null;
-  if (record.memberships[membershipKey]) {
-    record.memberships[membershipKey].status = 'active';
+  const current = record.memberships[membershipKey];
+  if (current) {
+    current.status = 'active';
+    // A subscription is active again: it, not a lapsed Partnership term,
+    // now governs this membership.
+    if (current.source === 'partnership' && membershipStatus.isExpired(current)) {
+      current.currentPeriodEnd = null;
+      delete current.source;
+      delete current.partnershipKey;
+    }
   }
   record.entitlements = Array.from(
     new Set([...(record.entitlements || []), membershipKey, ...pricing.grantsForKey(membershipKey)])
@@ -171,4 +253,4 @@ async function reactivateMembership(token, membershipKey) {
   return record;
 }
 
-module.exports = { fulfillCheckoutSession, revokeMembership, reactivateMembership };
+module.exports = { fulfillCheckoutSession, revokeMembership, reactivateMembership, _addMonths: addMonths };

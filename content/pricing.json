@@ -317,6 +317,58 @@
     }
   ],
 
+  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return) that is fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation. Each tier grants every one-time product (except the Founders tiers), every Blueprint™ issue, and every bonus product permanently, plus Membership, Library Card, and Journal for 12 months from purchase with no subscription (fulfilled in netlify/functions/lib/fulfill.js). After the 12 months, partners renew memberships at the regular membership prices. Seats: purchaser only for now.",
+  "partnerships": [
+    {
+      "key": "partnership-partner",
+      "name": "Omnidirectional Enterprise™ Partnership — Partner",
+      "tier_label": "Partner",
+      "price_display": "$5,000",
+      "stripe_price_id": "price_1UP1xlAK6n3ctuR9EFyv5jVx",
+      "payment_link": "https://buy.stripe.com/3cIfZg6YKcol4ht2Cy9ws19",
+      "term_months": 12,
+      "seats": 1,
+      "founder_discount_exempt": true,
+      "description": "Partner-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+    },
+    {
+      "key": "partnership-strategic",
+      "name": "Omnidirectional Enterprise™ Partnership — Strategic",
+      "tier_label": "Strategic",
+      "price_display": "$10,000",
+      "stripe_price_id": "price_1UP1yAAK6n3ctuR9GsBjRFro",
+      "payment_link": "https://buy.stripe.com/dRm7sK5UG9c9dS3cd89ws1a",
+      "term_months": 12,
+      "seats": 1,
+      "founder_discount_exempt": true,
+      "description": "Strategic-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+    },
+    {
+      "key": "partnership-enterprise",
+      "name": "Omnidirectional Enterprise™ Partnership — Enterprise",
+      "tier_label": "Enterprise",
+      "price_display": "$25,000",
+      "stripe_price_id": "price_1UP269AK6n3ctuR9kYElHc6N",
+      "payment_link": "https://buy.stripe.com/28EfZg0AmfAx9BNfpk9ws1b",
+      "term_months": 12,
+      "seats": 1,
+      "founder_discount_exempt": true,
+      "description": "Enterprise-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+    },
+    {
+      "key": "partnership-omnidirectional",
+      "name": "Omnidirectional Enterprise™ Partnership — Omnidirectional",
+      "tier_label": "Omnidirectional",
+      "price_display": "$50,000",
+      "stripe_price_id": "price_1UP1ycAK6n3ctuR9tseEPqVf",
+      "payment_link": "https://buy.stripe.com/9B6dR896SagddS36SO9ws1c",
+      "term_months": 12,
+      "seats": 1,
+      "founder_discount_exempt": true,
+      "description": "The highest level of participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+    }
+  ],
+
   "memberships": [
     {
       "key": "membership",

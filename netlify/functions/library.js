@@ -5,6 +5,7 @@
 // the Library Card is what enrolls a member in the Legacy Library™.
 const store = require('./lib/store');
 const { tokenFromEvent, json } = require('./lib/http');
+const membershipStatus = require('./lib/membership-status');
 const lib = require('./lib/library-content');
 
 exports.handler = async (event) => {
@@ -17,7 +18,7 @@ exports.handler = async (event) => {
   if (!record) return json(401, { error: 'Invalid or expired access link.' });
 
   const libraryCard = record.memberships && record.memberships['library-card'];
-  if (!libraryCard || libraryCard.status !== 'active') {
+  if (!membershipStatus.isMembershipActive(libraryCard)) {
     return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 
@@ -78,7 +79,7 @@ exports.handler = async (event) => {
     months,
     phaseCrowns: cycle.phaseCrowns,
     phaseCrownsEverEarned: totals.phaseCrownsEverEarned,
-    memberships: record.memberships || {},
+    memberships: membershipStatus.effectiveMemberships(record),
     marksSummary: {
       book: totals.book,
       research: totals.research,

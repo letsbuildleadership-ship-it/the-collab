@@ -2,12 +2,12 @@
 // record. Shared by me.js (cookie/token sign-in) and login.js (Member ID +
 // password sign-in) so both return the exact same data.
 const pricing = require('./pricing');
+const membershipStatus = require('./membership-status');
 
-function buildAccountView(record) {
-  const entitlementSet = new Set(record.entitlements || []);
-  const hasFullCatalog = Object.entries(record.memberships || {}).some(
-    ([key, m]) => m.status === 'active' && pricing.unlocksCatalog(key)
-  );
+function buildAccountView(record, now) {
+  // Expiry-aware: a lapsed Partnership membership term drops out here.
+  const entitlementSet = new Set(membershipStatus.effectiveEntitlements(record, now));
+  const hasFullCatalog = membershipStatus.hasFullCatalog(record, now);
 
   // Full-catalog members (active Membership) see and can open every IV
   // Phases product, not just whatever happens to be in their explicit
@@ -38,7 +38,16 @@ function buildAccountView(record) {
     memberId: record.memberId || null,
     hasPassword: !!record.passwordHash,
     memberOfCollab: true,
-    memberships: record.memberships || {},
+    memberships: membershipStatus.effectiveMemberships(record, now),
+    partnership: record.partnership
+      ? {
+          key: record.partnership.key,
+          tierLabel: record.partnership.tierLabel,
+          purchasedAt: record.partnership.purchasedAt,
+          expiresAt: record.partnership.expiresAt,
+          seats: record.partnership.seats || 1,
+        }
+      : null,
     hasFullCatalog,
     owned,
     locked,

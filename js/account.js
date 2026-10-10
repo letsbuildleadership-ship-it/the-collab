@@ -116,9 +116,21 @@
     return trimmed;
   }
 
+  function formatShortDate(iso) {
+    const d = new Date(iso);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
   function membershipLabel(m) {
     if (!m) return 'Not active';
+    if (m.status === 'active' && m.source === 'partnership') return `Active · Partnership through ${formatShortDate(m.currentPeriodEnd)}`;
     if (m.status === 'active') return `Active · billed ${m.interval === 'year' ? 'annually' : 'monthly'}`;
+    if (m.status === 'expired') {
+      const plan = (m.renewal || [])[0];
+      return plan && plan.payment_link
+        ? `Partnership term ended · <a href="${plan.payment_link}" style="text-decoration:underline;">Renew at ${plan.price_display}</a>`
+        : 'Partnership term ended';
+    }
     return 'Canceled';
   }
 
