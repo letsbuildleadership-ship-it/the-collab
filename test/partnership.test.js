@@ -205,3 +205,12 @@ test('Founders page never links to the partnership page; sitemap and nav include
   assert.match(read('index.html'), /href="pages\/partnership\.html"/);
   assert.match(read('pages/products.html'), /href="partnership\.html"/);
 });
+
+test('partnership page includes the clickable Omnidirectional Enterprise™ circle model and the mission', () => {
+  const html = read('pages/partnership.html');
+  assert.match(html, /class="oe-mini-svg"/);
+  const links = [...html.matchAll(/<a href="([^"]+)" class="oe-link"/g)].map((m) => m[1]);
+  assert.ok(links.length >= 7, 'circle model nodes should be clickable');
+  assert.ok(!links.some((h) => /founders/.test(h)));
+  assert.match(html, /human potential/);
+});
