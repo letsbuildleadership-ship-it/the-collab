@@ -1,8 +1,8 @@
-# Partnership: Stripe changes pending deployment
+# Partnership: Stripe changes (applied 2026-10-10)
 
-Prepared on branch `claude/collab-partnership-tier-3hwn6j`. **Not applied.**
-Apply only with explicit deployment authorization, at the same time the
-website change goes live, so checkout and the site never disagree.
+**Applied** on 2026-10-10 with deployment authorization, right after the
+website went live (Netlify deploy of commit 5055ee2). Sections 1 and 2 below
+are now live on Stripe; section 3 is still optional.
 
 Verified read-only (live account `acct_1SwN2WAK6n3ctuR9`):
 
