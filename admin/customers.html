@@ -47,7 +47,7 @@
 
   <table>
     <thead>
-      <tr><th>Email</th><th>Since</th><th>Entitlements</th><th>Memberships</th><th>Grant</th></tr>
+      <tr><th>Email</th><th>Since</th><th>Partner</th><th>Entitlements</th><th>Memberships</th><th>Grant</th></tr>
     </thead>
     <tbody id="customers-body"></tbody>
   </table>
@@ -126,22 +126,35 @@
 
   function renderRow(c) {
     const tr = document.createElement('tr');
+    const fmtDate = (iso) => (iso ? new Date(iso).toLocaleDateString() : '');
+    const membershipText = (m) => {
+      if (m.source === 'partnership') return `${m.status} (partnership, to ${fmtDate(m.currentPeriodEnd)})`;
+      if (m.source === 'admin') return `${m.status} (comp)`;
+      return m.interval ? `${m.status} (${m.interval}ly)` : m.status;
+    };
     const memberships = Object.entries(c.memberships || {})
-      .map(([k, m]) => `${k}: ${m.status}`)
+      .map(([k, m]) => `${k}: ${membershipText(m)}`)
       .join(', ') || '—';
     const entitlements = (c.entitlements || []).join(', ') || '—';
 
+    const p = c.partnership;
+    const partnerLabel = { active: 'Active', 'ending-soon': 'Ending soon', ended: 'Ended' };
+    const partner = p
+      ? `<strong>${p.tierLabel}</strong><br><span style="font-size:0.8em;">${partnerLabel[p.status] || p.status} · ${fmtDate(p.purchasedAt)} → ${fmtDate(p.expiresAt)}</span>`
+      : '—';
+
     const select = document.createElement('select');
-    catalog.forEach((key) => {
+    catalog.forEach((item) => {
       const opt = document.createElement('option');
-      opt.value = key;
-      opt.textContent = key;
+      opt.value = item.key;
+      opt.textContent = item.kind === 'membership' ? `${item.name} (membership)` : item.name;
       select.appendChild(opt);
     });
 
     tr.innerHTML = `
       <td>${c.email}</td>
       <td>${new Date(c.createdAt).toLocaleDateString()}</td>
+      <td>${partner}</td>
       <td>${entitlements}</td>
       <td>${memberships}</td>
       <td></td>
@@ -161,7 +174,8 @@
     revokeBtn.style.marginLeft = '0.4rem';
     revokeBtn.textContent = 'Revoke';
     revokeBtn.onclick = async () => {
-      await api('', { method: 'POST', body: JSON.stringify({ action: 'revoke', token: c.token, key: select.value }) });
+      const res = await api('', { method: 'POST', body: JSON.stringify({ action: 'revoke', token: c.token, key: select.value }) });
+      if (res && res.warning) alert(res.warning);
       loadList();
     };
     actionCell.appendChild(grantBtn);
@@ -182,8 +196,8 @@
   async function search() {
     const email = document.getElementById('search-input').value.trim();
     if (!email) return loadList();
+    if (!catalog.length) catalog = (await api('?action=list')).catalog || [];
     const data = await api(`?action=find&email=${encodeURIComponent(email)}`);
-    catalog = catalog.length ? catalog : [];
     const body = document.getElementById('customers-body');
     body.innerHTML = '';
     if (data.customer) body.appendChild(renderRow(data.customer));

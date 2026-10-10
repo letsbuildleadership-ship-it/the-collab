@@ -178,6 +178,13 @@ async function listFounders() {
     }));
 }
 
+/** Every customer record (admin console). Uses the same configured store as everything else. */
+async function listCustomers() {
+  const page = await store().list({ prefix: 'customers/' });
+  const records = await Promise.all(page.blobs.map((b) => store().get(b.key, { type: 'json' })));
+  return records.filter(Boolean);
+}
+
 function newCustomer(email, token, memberId) {
   const now = new Date().toISOString();
   return {
@@ -266,6 +273,7 @@ module.exports = {
   nextMemberId,
   nextFounderNumber,
   listFounders,
+  listCustomers,
   getCustomerByToken,
   saveCustomer,
   getTokenByEmail,

@@ -37,6 +37,10 @@ async function listFounders() {
     }));
 }
 
+async function listCustomers() {
+  return Array.from(customers.values());
+}
+
 function randomToken() {
   return crypto.randomBytes(12).toString('base64url');
 }
@@ -146,6 +150,7 @@ module.exports = {
   hashEmail,
   nextFounderNumber,
   listFounders,
+  listCustomers,
   getCustomerByToken,
   saveCustomer,
   getTokenByEmail,

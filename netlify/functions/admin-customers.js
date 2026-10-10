@@ -3,9 +3,9 @@
 // without touching code. Gated by an ADMIN_TOKEN environment variable set
 // in the Netlify dashboard — never checked into git. Paired with
 // admin/customers.html on the frontend.
-const { getStore } = require('@netlify/blobs');
 const store = require('./lib/store');
-const pricing = require('./lib/pricing');
+const { grantableKeys, grantKey, revokeKey, partnershipSummary } = require('./lib/admin-grants');
+const { effectiveMemberships } = require('./lib/membership-status');
 const { json } = require('./lib/http');
 
 function isAuthorized(event) {
@@ -13,18 +13,6 @@ function isAuthorized(event) {
   if (!expected) return false; // fail closed if the owner hasn't set one yet
   const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
   return header === expected;
-}
-
-async function listCustomers(cursor) {
-  const blobStore = getStore('collab-customers');
-  const page = await blobStore.list({ prefix: 'customers/', cursor: cursor || undefined, paginate: false });
-  const records = await Promise.all(
-    page.blobs.map(async (b) => {
-      const key = b.key.replace(/^customers\//, '').replace(/\.json$/, '');
-      return store.getCustomerByToken(key);
-    })
-  );
-  return { customers: records.filter(Boolean), cursor: page.cursor || null };
 }
 
 exports.handler = async (event) => {
@@ -41,20 +29,22 @@ exports.handler = async (event) => {
       const token = await store.getTokenByEmail(params.email);
       if (!token) return json(404, { error: 'No account for that email.' });
       const record = await store.getCustomerByToken(token);
-      return json(200, { customer: record });
+      return json(200, { customer: { ...record, partnership: partnershipSummary(record) } });
     }
-    // default: list
-    const { customers, cursor } = await listCustomers(params.cursor);
+    // default: list (newest first). Goes through lib/store so it uses the
+    // same Blobs configuration as the rest of the site.
+    const customers = (await store.listCustomers()).sort((x, y) => String(y.createdAt).localeCompare(String(x.createdAt)));
     return json(200, {
       customers: customers.map((c) => ({
         token: c.token,
         email: c.email,
         createdAt: c.createdAt,
         entitlements: c.entitlements,
-        memberships: c.memberships,
+        // Expiry-aware, so a lapsed Partnership term reads "expired" here too.
+        memberships: effectiveMemberships(c),
+        partnership: partnershipSummary(c),
       })),
-      cursor,
-      catalog: pricing.allCatalogProductKeys(),
+      catalog: grantableKeys(),
     });
   }
 
@@ -72,17 +62,20 @@ exports.handler = async (event) => {
     if (!record) return json(404, { error: 'Customer not found.' });
 
     if (action === 'grant') {
-      if (!key || !pricing.entryForKey(key)) return json(400, { error: 'Unknown product key.' });
-      record.entitlements = Array.from(new Set([...(record.entitlements || []), key]));
+      try {
+        grantKey(record, key);
+      } catch (err) {
+        return json(400, { error: err.message });
+      }
       await store.saveCustomer(record);
       return json(200, { customer: record });
     }
 
     if (action === 'revoke') {
-      record.entitlements = (record.entitlements || []).filter((k) => k !== key);
-      if (record.memberships[key]) delete record.memberships[key];
+      if (!key) return json(400, { error: 'Missing key.' });
+      const { warning } = revokeKey(record, key);
       await store.saveCustomer(record);
-      return json(200, { customer: record });
+      return json(200, { customer: record, warning });
     }
 
     return json(400, { error: 'Unknown action. Use "grant" or "revoke".' });
