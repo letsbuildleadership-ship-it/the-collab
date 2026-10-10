@@ -82,6 +82,8 @@ function partnershipSummary(record, now) {
     expiresAt: p.expiresAt,
     status: renewal ? renewal.status : 'active',
     seats: p.seats || 1,
+    seatsUsed: 1 + (p.seatHolders || []).length,
+    seatHolders: (p.seatHolders || []).map((h) => h.email),
   };
 }
 

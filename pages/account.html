@@ -86,6 +86,20 @@
     </div>
   </section>
 
+  <section id="account-seat-invite" hidden>
+    <div class="wrap" style="max-width:720px;">
+      <p class="eyebrow">Partnership seat</p>
+      <h2 class="headline" style="margin-top:1.5rem;">You've been invited to a partnership seat.</h2>
+      <p class="subhead" id="seat-invite-copy" style="margin-top:1.25rem;">Accept to get access through your organization's Omnidirectional Enterprise™ Partnership.</p>
+      <form id="seat-invite-form" style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1.75rem;">
+        <input id="seat-invite-email" type="email" placeholder="Your email" autocomplete="email" style="flex:1; min-width:220px; background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
+        <button type="submit" class="pill pill--solid" id="seat-invite-submit">Accept seat <span class="arrow">→</span></button>
+      </form>
+      <p class="subhead" id="seat-invite-error" style="margin-top:1rem; font-size:0.9rem;" hidden></p>
+      <p class="subhead" id="seat-invite-signin" style="margin-top:1rem; font-size:0.9rem;">Already have a Co.LLab™ account? <a href="#" id="seat-invite-signin-link" style="text-decoration:underline;">Sign in first</a>, and the invite will be waiting for you.</p>
+    </div>
+  </section>
+
   <section id="account-signed-out" hidden>
     <div class="wrap">
       <div class="grid grid-2">

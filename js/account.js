@@ -52,7 +52,7 @@
   const $ = (id) => document.getElementById(id);
 
   function show(id) {
-    ['account-loading', 'account-confirming', 'account-signed-out', 'account-dashboard', 'account-error'].forEach((sec) => {
+    ['account-loading', 'account-confirming', 'account-seat-invite', 'account-signed-out', 'account-dashboard', 'account-error'].forEach((sec) => {
       const el = $(sec);
       if (el) el.hidden = sec !== id;
     });
@@ -306,12 +306,125 @@
       </div>`;
   }
 
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  /* ---------------------------------------------------------------- *
+   * Partnership seats: the purchaser's roster and invite links, and the
+   * invite-claim screen a teammate lands on (?seat_invite=CODE).
+   * ---------------------------------------------------------------- */
+  const SEAT_INVITE_KEY = 'collab_seat_invite';
+
+  async function seatsApi(body) {
+    const res = await fetch('/.netlify/functions/partnership-seats', body
+      ? { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+      : { credentials: 'include' });
+    let data = {};
+    try { data = await res.json(); } catch (e) { /* empty */ }
+    return { ok: res.ok, status: res.status, data };
+  }
+
+  function seatRosterHtml(v) {
+    const holders = (v.holders || []).map((h) => `<li style="display:flex; justify-content:space-between; gap:1rem; align-items:center; padding:0.5rem 0; border-top:1px solid var(--hairline);">
+        <span>${esc(h.email)} <span style="opacity:0.7;">· ${esc(h.memberId || '')}</span></span>
+        <button type="button" class="pill mini" data-seat-remove="${esc(h.memberId || '')}" data-seat-email="${esc(h.email)}">Remove</button>
+      </li>`).join('');
+    const invites = (v.invites || []).map((i) => `<li style="display:flex; justify-content:space-between; gap:1rem; align-items:center; padding:0.5rem 0; border-top:1px solid var(--hairline); flex-wrap:wrap;">
+        <input type="text" readonly value="${esc(i.link)}" style="flex:1; min-width:200px; background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.45em 0.9em; color:var(--white); font-family:var(--font); font-size:0.8rem;" />
+        <span style="display:flex; gap:0.4rem;"><button type="button" class="pill mini" data-seat-copy="${esc(i.link)}">Copy</button><button type="button" class="pill mini" data-seat-revoke="${esc(i.code)}">Revoke</button></span>
+      </li>`).join('');
+    const add = v.free > 0
+      ? `<button type="button" class="pill pill--solid" id="seat-invite-create" style="margin-top:1rem;">Create invite link <span class="arrow">→</span></button>
+         <p class="founder-card-copy" style="font-size:0.8rem;">Each link works once and expires in 14 days. Share it only with the person taking the seat.</p>`
+      : '';
+    return `<div style="margin-top:1.5rem;">
+      <span class="founder-card-label">Seats</span>
+      <strong class="founder-card-value" style="display:block;">${v.used} of ${v.seats} in use</strong>
+      <ul style="list-style:none; padding:0; margin:0.75rem 0 0;">
+        <li style="padding:0.5rem 0;">You (purchaser)</li>${holders}${invites}
+      </ul>
+      ${add}
+      <p class="subhead" id="seat-error" style="font-size:0.85rem;" hidden></p>
+    </div>`;
+  }
+
+  async function loadSeatRoster() {
+    const el = $('seat-roster');
+    if (!el) return;
+    const r = await seatsApi();
+    if (r.ok && r.data.role === 'purchaser' && r.data.seats > 1) el.innerHTML = seatRosterHtml(r.data);
+  }
+
+  async function seatAction(body) {
+    const r = await seatsApi(body);
+    const el = $('seat-roster');
+    if (r.ok && el) el.innerHTML = seatRosterHtml(r.data);
+    else if ($('seat-error')) { $('seat-error').textContent = r.data.error || 'Something went wrong.'; $('seat-error').hidden = false; }
+  }
+
+  function showSeatInvite(signedInData) {
+    show('account-seat-invite');
+    const emailInput = $('seat-invite-email');
+    if (signedInData) {
+      emailInput.hidden = true;
+      $('seat-invite-copy').textContent = `Accept to add this partnership seat to your account (${signedInData.email}).`;
+      $('seat-invite-signin').hidden = true;
+    } else {
+      emailInput.hidden = false;
+      emailInput.required = true;
+      $('seat-invite-copy').textContent = 'Enter your email to create your Co.LLab™ account and accept the seat.';
+      $('seat-invite-signin').hidden = false;
+    }
+  }
+
+  async function claimSeat(code, email) {
+    const r = await seatsApi({ action: 'claim', code, email: email || undefined });
+    if (r.ok) {
+      try { sessionStorage.removeItem(SEAT_INVITE_KEY); } catch (e) { /* storage unavailable */ }
+      const data = await fetchMe(null);
+      if (data) renderDashboard(data);
+      else show('account-signed-out');
+      return;
+    }
+    if (r.data.needsSignIn) {
+      $('seat-invite-error').textContent = r.data.error;
+      $('seat-invite-error').hidden = false;
+      return;
+    }
+    $('seat-invite-error').textContent = r.data.error || 'This invite could not be accepted.';
+    $('seat-invite-error').hidden = false;
+  }
+
+  function pendingInvite() {
+    try { return sessionStorage.getItem(SEAT_INVITE_KEY); } catch (e) { return null; }
+  }
+
+  /** After any sign-in: if a seat invite is waiting, offer it; else the dashboard. */
+  function afterSignIn(data) {
+    if (pendingInvite()) showSeatInvite(data);
+    else renderDashboard(data);
+  }
+
+  function seatPanelHtml(seat) {
+    return `<div class="founder-card" style="margin-top:2rem;">
+        <div class="founder-card-badge">Omnidirectional Enterprise™ Partnership · ${esc(seat.tierLabel || '')} seat</div>
+        <h3 style="margin:0.75rem 0 0;">Access through your organization's partnership</h3>
+        <p class="founder-card-copy">You hold a seat on a ${esc(seat.tierLabel || '')} partnership${seat.sponsorName ? ` purchased by ${esc(seat.sponsorName)}` : ''}. Memberships included through ${formatShortDate(seat.expiresAt)}. Your access continues while you hold the seat. Use is personal to you under the standard <a href="ip-license.html" style="text-decoration:underline;">Co.LLab™ IP license</a>.</p>
+      </div>`;
+  }
+
   /* Omnidirectional Enterprise™ Partnership: term status, and at the end
    * of the term, every membership offered at its regular price. */
   function renderPartnership(data) {
     const wrap = $('partnership-group');
     if (!wrap) return;
     const p = data.partnership;
+    if (!p && data.seat) {
+      wrap.innerHTML = seatPanelHtml(data.seat);
+      wrap.hidden = false;
+      return;
+    }
     if (!p) {
       wrap.hidden = true;
       wrap.innerHTML = '';
@@ -346,13 +459,24 @@
       })
       .join('');
 
+    const recognition = `<p class="founder-card-copy" style="margin-top:0.5rem;"><strong>Recognized ${esc(p.tierLabel === 'Omnidirectional' ? 'Omnidirectional Enterprise™' : `${p.tierLabel} Partnership`)} partner</strong> since ${formatShortDate(p.purchasedAt)}.</p>`;
+    const engagement = p.engagement
+      ? `<div style="margin-top:1.25rem;"><span class="founder-card-label">Included session</span>
+           <strong class="founder-card-value" style="display:block;">${esc(p.engagement.label)}</strong>
+           <p class="founder-card-copy" style="font-size:0.85rem;">${esc(p.engagement.format)} To schedule, email <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">letsbuildleadership@gmail.com</a>.</p></div>`
+      : '';
+
     wrap.innerHTML = `<div class="founder-card" style="margin-top:2rem;">
-        <div class="founder-card-badge">Omnidirectional Enterprise™ Partnership · ${p.tierLabel || ''}</div>
+        <div class="founder-card-badge">Omnidirectional Enterprise™ Partnership · ${esc(p.tierLabel || '')}</div>
         <h3 style="margin:0.75rem 0 0;">${heading}</h3>
+        ${recognition}
         <p class="founder-card-copy">${copy}</p>
         ${options ? `<div class="grid grid-3" style="margin-top:1.25rem;">${options}</div>` : ''}
+        ${engagement}
+        <div id="seat-roster"></div>
       </div>`;
     wrap.hidden = false;
+    if ((p.seats || 1) > 1) loadSeatRoster();
   }
 
   function renderDashboard(data) {
@@ -467,6 +591,11 @@
     const params = new URLSearchParams(location.search);
     const sessionId = params.get('session_id');
     const tokenParam = params.get('token');
+    const seatInvite = params.get('seat_invite');
+    if (seatInvite) {
+      try { sessionStorage.setItem(SEAT_INVITE_KEY, seatInvite); } catch (e) { /* storage unavailable */ }
+      history.replaceState({}, '', location.pathname);
+    }
 
     if (sessionId) {
       show('account-confirming');
@@ -495,10 +624,11 @@
     if (tokenParam) history.replaceState({}, '', location.pathname);
 
     if (!data) {
-      show('account-signed-out');
+      if (pendingInvite()) showSeatInvite(null);
+      else show('account-signed-out');
       return;
     }
-    renderDashboard(data);
+    afterSignIn(data);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -517,7 +647,7 @@
           return;
         }
         history.replaceState({}, '', location.pathname);
-        renderDashboard(data);
+        afterSignIn(data);
       });
     }
 
@@ -534,7 +664,7 @@
           return;
         }
         document.getElementById('login-error').style.display = 'none';
-        renderDashboard(data);
+        afterSignIn(data);
       });
     }
 
@@ -553,7 +683,32 @@
       });
     }
 
-    document.addEventListener('click', (e) => {
+    const seatForm = document.getElementById('seat-invite-form');
+    if (seatForm) {
+      seatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const code = pendingInvite();
+        if (!code) return;
+        const emailInput = document.getElementById('seat-invite-email');
+        await claimSeat(code, emailInput.hidden ? null : emailInput.value.trim());
+      });
+    }
+
+    document.addEventListener('click', async (e) => {
+      const t = e.target && e.target.closest ? e.target.closest('button, a') : null;
+      if (t && t.id === 'seat-invite-signin-link') { e.preventDefault(); show('account-signed-out'); return; }
+      if (t && t.id === 'seat-invite-create') { await seatAction({ action: 'invite' }); return; }
+      if (t && t.dataset && t.dataset.seatRevoke) { await seatAction({ action: 'revoke-invite', code: t.dataset.seatRevoke }); return; }
+      if (t && t.dataset && (t.dataset.seatRemove !== undefined) && t.dataset.seatEmail) {
+        if (!confirm(`Remove ${t.dataset.seatEmail} from this partnership? Their access ends immediately.`)) return;
+        await seatAction(t.dataset.seatRemove ? { action: 'remove', memberId: t.dataset.seatRemove } : { action: 'remove', email: t.dataset.seatEmail });
+        return;
+      }
+      if (t && t.dataset && t.dataset.seatCopy) {
+        try { await navigator.clipboard.writeText(t.dataset.seatCopy); t.textContent = 'Copied'; } catch (err) { /* select manually */ }
+        return;
+      }
+
       if (e.target && e.target.id === 'steward-note-close') {
         sessionStorage.setItem(STEWARD_NOTE_DISMISS_KEY, '1');
         const note = document.getElementById('steward-note-wrap');

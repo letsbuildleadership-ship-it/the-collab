@@ -140,7 +140,7 @@
     const p = c.partnership;
     const partnerLabel = { active: 'Active', 'ending-soon': 'Ending soon', ended: 'Ended' };
     const partner = p
-      ? `<strong>${p.tierLabel}</strong><br><span style="font-size:0.8em;">${partnerLabel[p.status] || p.status} · ${fmtDate(p.purchasedAt)} → ${fmtDate(p.expiresAt)}</span>`
+      ? `<strong>${p.tierLabel}</strong><br><span style="font-size:0.8em;">${partnerLabel[p.status] || p.status} · ${fmtDate(p.purchasedAt)} → ${fmtDate(p.expiresAt)}<br>Seats ${p.seatsUsed || 1}/${p.seats || 1}${(p.seatHolders || []).length ? ': ' + p.seatHolders.map((e) => String(e).replace(/[<>&"]/g, '')).join(', ') : ''}</span>`
       : '—';
 
     const select = document.createElement('select');

@@ -221,3 +221,51 @@ test("seat memberships end with the purchaser's term", async () => {
   assert.equal((await dl(mateToken, 'operating-system')).statusCode, 200, 'tier products remain');
   assert.equal((await dl(mateToken, 'legacy-architecture')).statusCode, 403, 'catalog-via-Membership ended');
 });
+
+// ---- website consistency --------------------------------------------------
+
+const fs = require('fs');
+const path = require('path');
+const page = fs.readFileSync(path.join(__dirname, '..', 'pages', 'partnership.html'), 'utf8');
+
+test('partnership page: one card per tier with the right price, payment link, seats, and session', () => {
+  for (const t of pricing.registry.partnerships) {
+    assert.ok(page.includes(`href="${t.payment_link}"`), `${t.key} payment link`);
+    assert.ok(page.includes(`Purchase ${t.tier_label} · ${t.price_display}`), `${t.key} purchase button`);
+    assert.ok(page.includes(`${t.seats} individual${t.seats === 1 ? '' : 's'}`), `${t.key} seats`);
+    assert.ok(page.includes(t.headline), `${t.key} progression line`);
+    if (t.engagement) assert.ok(page.includes(t.engagement.label), `${t.key} session`);
+  }
+  assert.equal((page.match(/<h3>\$[0-9,]+<\/h3>/g) || []).length, 4, 'exactly four price headings');
+});
+
+test("What's included table marks exactly each tier's permanent grants as Keep", () => {
+  const table = page.slice(page.indexOf('<table class="included">'), page.indexOf('</table>'));
+  const rows = [...table.matchAll(/<tr><th scope="row">([^<]+)<\/th>((?:<td[^>]*>[^<]*<\/td>)+)<\/tr>/g)];
+  const byName = new Map(rows.map((r) => [r[1], [...r[2].matchAll(/<td[^>]*>([^<]*)<\/td>/g)].map((c) => c[1])]));
+  const tiers = pricing.registry.partnerships;
+  for (const key of pricing.partnershipGrantKeys()) {
+    const entry = pricing.entryForKey(key);
+    const cells = byName.get(entry.name.replace(/&/g, '&amp;'));
+    assert.ok(cells, `row for ${key}`);
+    tiers.forEach((t, i) => {
+      const keep = pricing.partnershipGrantKeysFor(t.key).includes(key);
+      assert.equal(cells[i] === 'Keep', keep, `${t.key} / ${key}`);
+    });
+  }
+});
+
+test('partnership page: refund policy, license link, Founders separation, and no fabricated claims', () => {
+  assert.match(page, /All sales are final once access is unlocked, subject to applicable law/);
+  assert.ok(page.includes('href="ip-license.html"'));
+  assert.ok(!/founders\.html/.test(page));
+  assert.match(page, /no Founders product is included in any partnership/);
+  assert.ok(!/testimonial|limited spots|only \d+ (left|available)|guaranteed (results|return)/i.test(page));
+  assert.ok(!/Each partnership currently covers the purchaser/.test(page), 'old one-seat copy removed');
+});
+
+test('IP license page carries the license text verbatim from the product license source', async () => {
+  const lic = fs.readFileSync(path.join(__dirname, '..', 'pages', 'ip-license.html'), 'utf8');
+  const { licenseHtml } = await import('../scripts/pdf-src/docs/_license.mjs');
+  assert.ok(lic.includes(licenseHtml.trim()), 'license copied exactly');
+});
