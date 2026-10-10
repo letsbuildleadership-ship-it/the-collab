@@ -5,6 +5,7 @@
 // set the cookie so the browser stays signed in from then on.
 const store = require('./lib/store');
 const { buildAccountView } = require('./lib/account-view');
+const { resolveAccess } = require('./lib/access');
 const { json, tokenFromEvent, setTokenCookie } = require('./lib/http');
 
 exports.handler = async (event) => {
@@ -20,7 +21,7 @@ exports.handler = async (event) => {
 
   return json(
     200,
-    { ...buildAccountView(record), restoreToken: token },
+    { ...buildAccountView(await resolveAccess(record)), restoreToken: token },
     wasQueryToken ? { 'Set-Cookie': setTokenCookie(token) } : undefined
   );
 };

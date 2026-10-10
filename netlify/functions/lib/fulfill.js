@@ -25,31 +25,35 @@ function addMonths(date, months) {
 /**
  * Omnidirectional Enterprise™ Partnership grant. Fully separate from the
  * Founders Organization: no Founder recognition, no Founder discount, no
- * impact allocation. Grants every one-time product except the Founders
- * tiers, every Blueprint™ issue, and every bonus product permanently, and
- * sets every membership active for term_months (12) from purchase with no
+ * impact allocation. Grants the tier's products permanently
+ * (pricing.partnershipGrantKeysFor — never the Founders tiers), and sets
+ * every membership active for term_months (12) from purchase with no
  * subscription — membership-status.js enforces the expiry at read time.
  *
  * Idempotent per Checkout Session: the webhook and verify-session both
  * call this, and the term is anchored to the session's own creation time,
  * so a second run re-confirms the same end date rather than extending it.
  *
- * TODO(multi-seat): purchaser-only for now (seats: 1). Multi-seat will need
- * a seat roster on record.partnership (invited emails -> customer tokens)
- * and the same grants applied to each seat holder's record.
+ * Seats: `seats` counts the purchaser. Additional seat holders are added
+ * through single-use invite links (partnership-seats.js) and get access
+ * derived from this record at read time (lib/access.js), so removing a
+ * seat holder takes effect immediately.
  */
 function applyPartnership(record, entry, session) {
   const purchasedAt = session.created ? new Date(session.created * 1000) : new Date();
   const termMonths = entry.term_months || 12;
   const periodEnd = addMonths(purchasedAt, termMonths).toISOString();
-  const productKeys = pricing.partnershipGrantKeys();
+  const productKeys = pricing.partnershipGrantKeysFor(entry.key);
   const prior = record.partnership || {};
   const pendingCancels = [...(prior.pendingSubscriptionCancels || [])];
 
   for (const membershipKey of pricing.membershipKeys()) {
     const existing = record.memberships[membershipKey];
     // Never cut short a longer term from an earlier Partnership purchase.
-    if (existing && existing.source === 'partnership' && existing.currentPeriodEnd > periodEnd) continue;
+    if (existing && existing.source === 'partnership' && existing.currentPeriodEnd > periodEnd) {
+      existing.partnershipKey = pricing.partnershipRank(existing.partnershipKey) >= pricing.partnershipRank(entry.key) ? existing.partnershipKey : entry.key;
+      continue;
+    }
     // The Partnership replaces any paid subscription for this membership:
     // queue it so cancelReplacedSubscriptions stops future billing.
     if (existing && existing.subscriptionId && existing.status === 'active') {
@@ -65,14 +69,22 @@ function applyPartnership(record, entry, session) {
     };
   }
 
-  const keepPrior = prior.expiresAt && prior.expiresAt > periodEnd;
+  // Two Partnership purchases never downgrade: the higher tier (while its
+  // term is live) keeps its label and seats, and the term runs to whichever
+  // end date is later. A repeat of the same session changes nothing.
+  const priorLive = !!(prior.expiresAt && prior.expiresAt > purchasedAt.toISOString());
+  const keepPriorTier = priorLive && pricing.partnershipRank(prior.key) > pricing.partnershipRank(entry.key);
+  const keepPriorTerm = !!(prior.expiresAt && prior.expiresAt > periodEnd);
+  const tier = keepPriorTier ? pricing.entryForKey(prior.key) : entry;
   record.partnership = {
-    key: keepPrior ? prior.key : entry.key,
-    tierLabel: keepPrior ? prior.tierLabel : entry.tier_label || entry.name,
-    sessionId: keepPrior ? prior.sessionId : session.id,
-    purchasedAt: keepPrior ? prior.purchasedAt : purchasedAt.toISOString(),
-    expiresAt: keepPrior ? prior.expiresAt : periodEnd,
-    seats: 1, // TODO(multi-seat): honor entry.seats once seat assignment exists.
+    key: tier.key,
+    tierLabel: tier.tier_label || tier.name,
+    sessionId: keepPriorTerm ? prior.sessionId : session.id,
+    purchasedAt: keepPriorTerm ? prior.purchasedAt : purchasedAt.toISOString(),
+    expiresAt: keepPriorTerm ? prior.expiresAt : periodEnd,
+    seats: Math.max(tier.seats || 1, keepPriorTier ? prior.seats || 1 : 0),
+    seatHolders: prior.seatHolders || [],
+    invites: prior.invites || [],
     grantedKeys: uniq([...(prior.grantedKeys || []), ...productKeys]),
     pendingSubscriptionCancels: pendingCancels,
     canceledSubscriptions: prior.canceledSubscriptions || [],

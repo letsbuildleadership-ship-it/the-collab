@@ -81,10 +81,13 @@ test('partnershipGrantKeys = every product except Founders tiers + every Bluepri
 
 // ---- fulfillment ----------------------------------------------------------
 
-test('partnership purchase grants all products/blueprints/bonuses and 12-month memberships with no subscription', async () => {
+test('Partner purchase grants its designated products (not the complete portfolio) and 12-month memberships with no subscription', async () => {
   const { record } = await fulfillCheckoutSession(partnerSession('cs_p1', 500000), [PARTNER_PRICE]);
 
-  for (const key of pricing.partnershipGrantKeys()) assert.ok(record.entitlements.includes(key), key);
+  for (const key of pricing.partnershipGrantKeysFor('partnership-partner')) assert.ok(record.entitlements.includes(key), key);
+  for (const key of ['legacy-architecture', 'operating-system', 'creator-identity-map', 'blueprint-phase3', 'blueprint-complete']) {
+    assert.ok(!record.entitlements.includes(key), `Partner must not keep ${key}`);
+  }
   for (const f of pricing.founderTierKeys()) assert.ok(!record.entitlements.includes(f));
 
   for (const key of ['membership', 'library-card', 'journal']) {
@@ -146,10 +149,12 @@ test('before expiry the partner has full catalog + Library access; after expiry 
   assert.equal(membershipStatus.isMembershipActive(record.memberships['library-card'], after), false);
   const ent = membershipStatus.effectiveEntitlements(record, after);
   for (const key of ['membership', 'library-card', 'journal']) assert.ok(!ent.includes(key), key);
-  // One-time grants (products, Blueprint™, bonus) remain.
+  // The tier's permanent grants remain; catalog access that came only from Membership ends.
   assert.ok(ent.includes('strength-map'));
-  assert.ok(ent.includes('blueprint-complete'));
+  assert.ok(ent.includes('blueprint-phase2'));
   assert.ok(ent.includes('infrastructure-roadmap'));
+  assert.ok(!membershipStatus.catalogUnlockKeys(record, after).includes('legacy-architecture'));
+  assert.ok(!ent.includes('legacy-architecture'));
 });
 
 test('expired memberships read as "expired" with regular-price renewal plans', async () => {
@@ -266,9 +271,13 @@ test('neither a partner nor a paid Membership can download Founders tier materia
     assert.equal((await download.handler(ev(partner.token, f))).statusCode, 403, f);
     assert.ok(!buildAccountView(partner.record).owned.some((o) => o.key === f), f);
   }
-  for (const k of pricing.partnershipGrantKeys()) {
+  for (const k of pricing.partnershipGrantKeysFor('partnership-partner')) {
     assert.equal((await download.handler(ev(partner.token, k))).statusCode, 200, k);
   }
+  // During the term, the included Membership opens the full .LLab catalog…
+  assert.equal((await download.handler(ev(partner.token, 'legacy-architecture'))).statusCode, 200);
+  // …but Blueprint™ issues outside the tier are not included.
+  assert.equal((await download.handler(ev(partner.token, 'blueprint-complete'))).statusCode, 403);
 
   const member = await fulfillCheckoutSession({ id: 'cs_f2', customer_details: { email: 'm1@example.com' }, subscription: 'sub_f2' }, [MEMBERSHIP_MONTHLY]);
   for (const f of pricing.founderTierKeys()) {

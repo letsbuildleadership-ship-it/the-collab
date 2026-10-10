@@ -239,6 +239,21 @@ async function getOrCreateCustomerByEmail(email) {
   return { token, record, isNew: true };
 }
 
+// Partnership seat invites: seat-invites/{code}.json -> { ownerToken, partnershipKey, createdAt, expiresAt }
+async function saveSeatInvite(code, invite) {
+  await store().setJSON(`seat-invites/${code}.json`, invite);
+}
+
+async function getSeatInvite(code) {
+  if (!/^[A-Za-z0-9_-]{16,64}$/.test(String(code || ''))) return null;
+  return (await store().get(`seat-invites/${code}.json`, { type: 'json' })) || null;
+}
+
+async function deleteSeatInvite(code) {
+  if (!/^[A-Za-z0-9_-]{16,64}$/.test(String(code || ''))) return;
+  await store().delete(`seat-invites/${code}.json`);
+}
+
 async function linkMemberId(memberId, token) {
   if (!memberId) return;
   await store().setJSON(`by-member-id/${memberId}.json`, { token });
@@ -285,6 +300,9 @@ module.exports = {
   getSubscriptionLink,
   linkMemberId,
   getTokenByMemberId,
+  saveSeatInvite,
+  getSeatInvite,
+  deleteSeatInvite,
   getCommunityReflections,
   upsertCommunityReflection,
   recordImpactAllocation,

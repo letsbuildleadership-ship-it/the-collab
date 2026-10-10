@@ -47,8 +47,12 @@ function buildAccountView(record, now) {
           expiresAt: record.partnership.expiresAt,
           seats: record.partnership.seats || 1,
           renewal: membershipStatus.partnershipRenewal(record, now),
+          engagement: (pricing.entryForKey(record.partnership.key) || {}).engagement || null,
+          seatsUsed: 1 + (record.partnership.seatHolders || []).length,
         }
       : null,
+    // A seat on someone else's Partnership (lib/access.js), if any.
+    seat: record.seat || null,
     hasFullCatalog,
     owned,
     locked,

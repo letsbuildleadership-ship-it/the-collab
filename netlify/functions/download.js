@@ -7,6 +7,7 @@ const pricing = require('./lib/pricing');
 const membershipStatus = require('./lib/membership-status');
 const { tokenFromEvent, json } = require('./lib/http');
 const { resolvePdfFile } = require('./lib/pdf-path');
+const { resolveAccess } = require('./lib/access');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'GET') return json(405, { error: 'Method Not Allowed' });
@@ -17,8 +18,10 @@ exports.handler = async (event) => {
   const token = tokenFromEvent(event);
   if (!token) return json(401, { error: 'Not signed in.' });
 
-  const record = await store.getCustomerByToken(token);
-  if (!record) return json(401, { error: 'Invalid or expired access link.' });
+  const stored = await store.getCustomerByToken(token);
+  if (!stored) return json(401, { error: 'Invalid or expired access link.' });
+  // Server-side view including any Partnership seat this customer holds.
+  const record = await resolveAccess(stored);
 
   // Expiry-aware: a lapsed Partnership membership term no longer counts.
   const entitlementSet = new Set(membershipStatus.effectiveEntitlements(record));

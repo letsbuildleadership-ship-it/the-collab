@@ -317,7 +317,7 @@
     }
   ],
 
-  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return) that is fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation. Each tier grants every one-time product (except the Founders tiers), every Blueprint™ issue, and every bonus product permanently, plus Membership, Library Card, and Journal for 12 months from purchase with no subscription (fulfilled in netlify/functions/lib/fulfill.js). After the 12 months, partners renew memberships at the regular membership prices. Seats: purchaser only for now.",
+  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier.",
   "partnerships": [
     {
       "key": "partnership-partner",
@@ -329,7 +329,30 @@
       "term_months": 12,
       "seats": 1,
       "founder_discount_exempt": true,
-      "description": "Partner-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+      "description": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
+      "rank": 1,
+      "headline": "Access the infrastructure.",
+      "positioning": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
+      "access_level": "Foundational",
+      "grant_scope": "designated",
+      "grants": [
+        "strength-map",
+        "alignment-map",
+        "build-plan",
+        "infrastructure-roadmap",
+        "blueprint-welcome",
+        "blueprint-phase1",
+        "blueprint-phase2"
+      ],
+      "includes_eligible_releases": false,
+      "engagement": null,
+      "benefits": [
+        "Permanent access to Leadership Infrastructure™ Phase I–II products and Blueprint™ Welcome, Phase One, and Phase Two",
+        "12 months of .LLab Membership™, .LLab Library Card™, and The .LLab Journal™ — including the full .LLab product catalog during your term",
+        "12 months of research, publications, and resources through The Legacy Library™ and The .LLab Journal™",
+        "Digital partnership recognition in your account",
+        "Eligibility to participate in designated ecosystem opportunities"
+      ]
     },
     {
       "key": "partnership-strategic",
@@ -339,9 +362,39 @@
       "stripe_price_id": "price_1UP1yAAK6n3ctuR9GsBjRFro",
       "payment_link": "https://buy.stripe.com/dRm7sK5UG9c9dS3cd89ws1a",
       "term_months": 12,
-      "seats": 1,
+      "seats": 2,
       "founder_discount_exempt": true,
-      "description": "Strategic-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+      "description": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
+      "rank": 2,
+      "headline": "Integrate the infrastructure.",
+      "positioning": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
+      "access_level": "Strategic",
+      "grant_scope": "designated",
+      "grants": [
+        "strength-map",
+        "alignment-map",
+        "build-plan",
+        "legacy-profile",
+        "operating-system",
+        "infrastructure-roadmap",
+        "blueprint-welcome",
+        "blueprint-phase1",
+        "blueprint-phase2",
+        "blueprint-phase3"
+      ],
+      "includes_eligible_releases": false,
+      "engagement": {
+        "label": "One annual group orientation or recorded strategic briefing",
+        "format": "One group orientation per 12-month term, held live by video (up to 60 minutes) on a date set by The Co.LLab™. If you cannot attend, you receive a recorded strategic briefing instead. Must be used within the term; it does not carry over."
+      },
+      "benefits": [
+        "Everything in Partner",
+        "Permanent access adds Phase III Internal Operating Systems products and Blueprint™ Phase Three",
+        "Strategic planning and organizational development materials across Phases I–III",
+        "2 individual access seats",
+        "Priority consideration for applicable ecosystem collaboration opportunities",
+        "One annual group orientation or recorded strategic briefing"
+      ]
     },
     {
       "key": "partnership-enterprise",
@@ -351,9 +404,28 @@
       "stripe_price_id": "price_1UP269AK6n3ctuR9kYElHc6N",
       "payment_link": "https://buy.stripe.com/28EfZg0AmfAx9BNfpk9ws1b",
       "term_months": 12,
-      "seats": 1,
+      "seats": 5,
       "founder_discount_exempt": true,
-      "description": "Enterprise-level participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+      "description": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
+      "rank": 3,
+      "headline": "Access the complete designated IP portfolio.",
+      "positioning": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
+      "access_level": "Comprehensive",
+      "grant_scope": "complete",
+      "grants": [],
+      "includes_eligible_releases": true,
+      "engagement": {
+        "label": "One annual enterprise orientation",
+        "format": "One enterprise orientation per 12-month term, held live by video for your seat holders (up to 90 minutes), scheduled by mutual agreement within the term. It does not carry over."
+      },
+      "benefits": [
+        "Everything in Strategic",
+        "Permanent access to the complete designated Co.LLab™ IP portfolio: all Four Phases of Leadership Infrastructure™, Creator Infrastructure™, Preservation resources, the complete Blueprint™ series, and the Infrastructure Roadmap™",
+        "Designated eligible product releases during your 12-month term, yours to keep",
+        "5 individual access seats",
+        "Eligibility for designated enterprise collaboration opportunities",
+        "One annual enterprise orientation"
+      ]
     },
     {
       "key": "partnership-omnidirectional",
@@ -363,9 +435,29 @@
       "stripe_price_id": "price_1UP1ycAK6n3ctuR9tseEPqVf",
       "payment_link": "https://buy.stripe.com/9B6dR896SagddS36SO9ws1c",
       "term_months": 12,
-      "seats": 1,
+      "seats": 10,
       "founder_discount_exempt": true,
-      "description": "The highest level of participation in The Co.LLab™ Omnidirectional Enterprise™ with full all-access."
+      "description": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
+      "rank": 4,
+      "headline": "Access the portfolio and participate in the broader enterprise ecosystem.",
+      "positioning": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
+      "access_level": "Ecosystem-wide",
+      "grant_scope": "complete",
+      "grants": [],
+      "includes_eligible_releases": true,
+      "engagement": {
+        "label": "One annual Omnidirectional Enterprise™ strategic briefing",
+        "format": "One strategic briefing per 12-month term, held live by video for your seat holders (up to 90 minutes), scheduled by mutual agreement within the term. It does not carry over."
+      },
+      "benefits": [
+        "Everything in Enterprise",
+        "10 individual access seats",
+        "Priority consideration for designated ecosystem collaboration opportunities",
+        "Participation opportunities in designated cross-organizational research and collaboration initiatives",
+        "Recognition as an Omnidirectional Enterprise™ partner in your account",
+        "Eligibility for mutually agreed strategic initiatives involving shared intelligence, resources, and infrastructure",
+        "One annual Omnidirectional Enterprise™ strategic briefing"
+      ]
     }
   ],
 

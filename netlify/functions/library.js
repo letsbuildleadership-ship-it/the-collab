@@ -6,6 +6,7 @@
 const store = require('./lib/store');
 const { tokenFromEvent, json } = require('./lib/http');
 const membershipStatus = require('./lib/membership-status');
+const { resolveAccess } = require('./lib/access');
 const lib = require('./lib/library-content');
 
 exports.handler = async (event) => {
@@ -17,7 +18,9 @@ exports.handler = async (event) => {
   const record = await store.getCustomerByToken(token);
   if (!record) return json(401, { error: 'Invalid or expired access link.' });
 
-  const libraryCard = record.memberships && record.memberships['library-card'];
+  // Access view includes a Partnership seat; progress is still saved on `record`.
+  const access = await resolveAccess(record);
+  const libraryCard = access.memberships && access.memberships['library-card'];
   if (!membershipStatus.isMembershipActive(libraryCard)) {
     return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
   }
@@ -79,7 +82,7 @@ exports.handler = async (event) => {
     months,
     phaseCrowns: cycle.phaseCrowns,
     phaseCrownsEverEarned: totals.phaseCrownsEverEarned,
-    memberships: membershipStatus.effectiveMemberships(record),
+    memberships: membershipStatus.effectiveMemberships(access),
     marksSummary: {
       book: totals.book,
       research: totals.research,

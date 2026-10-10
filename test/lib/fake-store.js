@@ -9,6 +9,8 @@ let byStripeCustomer = new Map();
 let bySubscription = new Map();
 let impactLedger = new Map(); // id -> allocation record
 let founderSeq = 0;
+let seatInvites = new Map();
+let memberSeq = 0;
 
 function reset() {
   customers = new Map();
@@ -17,6 +19,20 @@ function reset() {
   bySubscription = new Map();
   impactLedger = new Map();
   founderSeq = 0;
+  seatInvites = new Map();
+  memberSeq = 0;
+}
+
+async function saveSeatInvite(code, invite) {
+  seatInvites.set(code, invite);
+}
+
+async function getSeatInvite(code) {
+  return seatInvites.get(code) || null;
+}
+
+async function deleteSeatInvite(code) {
+  seatInvites.delete(code);
 }
 
 async function nextFounderNumber() {
@@ -91,6 +107,8 @@ async function getOrCreateCustomerByEmail(email) {
   }
   const token = randomToken();
   const record = newCustomer(email, token);
+  memberSeq += 1;
+  record.memberId = `M-${String(memberSeq).padStart(5, '0')}`;
   await saveCustomer(record);
   await setTokenForEmail(email, token);
   return { token, record, isNew: true };
@@ -151,6 +169,9 @@ module.exports = {
   nextFounderNumber,
   listFounders,
   listCustomers,
+  saveSeatInvite,
+  getSeatInvite,
+  deleteSeatInvite,
   getCustomerByToken,
   saveCustomer,
   getTokenByEmail,

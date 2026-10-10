@@ -5,6 +5,7 @@
 const store = require('./lib/store');
 const { verifyPassword } = require('./lib/password');
 const { buildAccountView } = require('./lib/account-view');
+const { resolveAccess } = require('./lib/access');
 const { json, setTokenCookie } = require('./lib/http');
 
 exports.handler = async (event) => {
@@ -31,5 +32,5 @@ exports.handler = async (event) => {
     return json(401, { error: 'Incorrect Member ID or password.' });
   }
 
-  return json(200, { ...buildAccountView(record), restoreToken: record.token }, { 'Set-Cookie': setTokenCookie(record.token) });
+  return json(200, { ...buildAccountView(await resolveAccess(record)), restoreToken: record.token }, { 'Set-Cookie': setTokenCookie(record.token) });
 };

@@ -118,11 +118,50 @@ function partnershipKeys() {
  * bonus product. Memberships are granted separately, on a fixed term.
  */
 function partnershipGrantKeys() {
+  // A product with a future released_at isn't out yet: it reaches qualifying
+  // partners only through eligibleReleaseKeys once it's released.
+  const released = (p) => !p.released_at || !(Date.parse(p.released_at) > Date.now());
   return [
-    ...(registry.products || []).filter((p) => !p.founder_rank).map((p) => p.key),
-    ...(registry.blueprint_series || []).map((p) => p.key),
+    ...(registry.products || []).filter((p) => !p.founder_rank && released(p)).map((p) => p.key),
+    ...(registry.blueprint_series || []).filter(released).map((p) => p.key),
     ...(registry.bonus_products || []).map((p) => p.key),
   ];
+}
+
+/**
+ * Keys a specific Partnership tier grants permanently. 'designated' tiers
+ * list theirs in `grants`; 'complete' tiers get the full set
+ * (partnershipGrantKeys). Founders tiers are never included either way.
+ */
+function partnershipGrantKeysFor(key) {
+  const entry = entryForKey(key);
+  if (!entry || entry.kind !== 'partnership') return [];
+  if (entry.grant_scope === 'complete') return partnershipGrantKeys();
+  const allowed = new Set(partnershipGrantKeys());
+  return (entry.grants || []).filter((k) => allowed.has(k));
+}
+
+/** Tier rank (1 = Partner … 4 = Omnidirectional); 0 if not a Partnership. */
+function partnershipRank(key) {
+  const entry = entryForKey(key);
+  return (entry && entry.kind === 'partnership' && entry.rank) || 0;
+}
+
+/**
+ * Designated eligible releases: products or Blueprint™ issues marked
+ * "partnership_release": true whose "released_at" falls inside [startIso, endIso).
+ */
+function eligibleReleaseKeys(startIso, endIso) {
+  const start = Date.parse(startIso);
+  const end = Date.parse(endIso);
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return [];
+  return [...(registry.products || []), ...(registry.blueprint_series || [])]
+    .filter((p) => p.partnership_release && !p.founder_rank)
+    .filter((p) => {
+      const at = Date.parse(p.released_at);
+      return Number.isFinite(at) && at >= start && at < end;
+    })
+    .map((p) => p.key);
 }
 
 /** Every membership key (membership, library-card, journal). */
@@ -214,5 +253,8 @@ module.exports = {
   paymentLinkMap,
   partnershipKeys,
   partnershipGrantKeys,
+  partnershipGrantKeysFor,
+  partnershipRank,
+  eligibleReleaseKeys,
   membershipKeys,
 };

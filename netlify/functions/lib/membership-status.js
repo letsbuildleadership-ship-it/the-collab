@@ -60,8 +60,22 @@ function activeMembershipKeys(record, now) {
  * (and bonus grants that came only from a membership) drop out once that
  * membership has lapsed. One-time purchases are never affected.
  */
+/**
+ * Designated eligible releases a Partnership keeps: products marked
+ * partnership_release whose released_at falls inside the term, for tiers
+ * with includes_eligible_releases. Computed at read time so a product added
+ * to the registry later reaches qualifying partners without a migration.
+ */
+function partnershipReleaseKeys(record) {
+  const p = record && record.partnership;
+  if (!p || !p.purchasedAt || !p.expiresAt) return [];
+  const tier = pricing.entryForKey(p.key);
+  if (!tier || !tier.includes_eligible_releases) return [];
+  return pricing.eligibleReleaseKeys(p.purchasedAt, p.expiresAt);
+}
+
 function effectiveEntitlements(record, now) {
-  const stored = (record && record.entitlements) || [];
+  const stored = [...((record && record.entitlements) || []), ...partnershipReleaseKeys(record), ...((record && record.seatGrantedKeys) || [])];
   const memberships = (record && record.memberships) || {};
   const active = new Set(activeMembershipKeys(record, now));
 
@@ -70,7 +84,7 @@ function effectiveEntitlements(record, now) {
       .filter(([key, m]) => m && m.status === 'active' && !active.has(key))
       .map(([key]) => key)
   );
-  if (!expiredKeys.size) return stored.slice();
+  if (!expiredKeys.size) return Array.from(new Set(stored));
 
   // A bonus key stays if a still-active membership grants it, or if it was
   // granted outright (e.g. by a Partnership purchase, recorded in
@@ -78,11 +92,12 @@ function effectiveEntitlements(record, now) {
   const keep = new Set();
   for (const key of active) for (const g of pricing.grantsForKey(key)) keep.add(g);
   for (const g of (record.partnership && record.partnership.grantedKeys) || []) keep.add(g);
+  for (const g of record.seatGrantedKeys || []) keep.add(g);
 
   const bonusFromExpired = new Set();
   for (const key of expiredKeys) for (const g of pricing.grantsForKey(key)) bonusFromExpired.add(g);
 
-  return stored.filter((key) => {
+  return Array.from(new Set(stored)).filter((key) => {
     if (expiredKeys.has(key)) return false;
     if (bonusFromExpired.has(key) && !keep.has(key)) return false;
     return true;
@@ -149,6 +164,7 @@ function catalogUnlockKeys(record, now) {
 
 module.exports = {
   catalogUnlockKeys,
+  partnershipReleaseKeys,
   isExpired,
   isMembershipActive,
   effectiveMemberships,
