@@ -52,6 +52,11 @@
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
 <link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
 <style>
+  /* Readability: body copy on this page is cream (white) instead of dim
+     orange; orange stays for headlines, accents, and buttons. */
+  main { --white: #fdf6ec; --white-dim: rgba(253, 246, 236, 0.86); --white-faint: rgba(253, 246, 236, 0.68); }
+  main .pill { --white: rgb(255, 96, 46); }
+  main .hero .subhead { color: #fdf6ec; }
   .partner-card h3 { font-size: clamp(1.9rem, 3vw, 2.4rem); }
   .partner-card .term { color: var(--white-faint); font-size: 0.8rem; letter-spacing: 0.04em; margin: 0; }
   .partner-card--top { box-shadow: inset 0 1px 0 rgba(var(--filament-2-rgb), 0.55); }
