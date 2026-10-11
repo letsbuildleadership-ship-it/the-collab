@@ -11,6 +11,7 @@ let impactLedger = new Map(); // id -> allocation record
 let founderSeq = 0;
 let seatInvites = new Map();
 let memberSeq = 0;
+let purchaseEmails = new Map();
 
 function reset() {
   customers = new Map();
@@ -21,6 +22,7 @@ function reset() {
   founderSeq = 0;
   seatInvites = new Map();
   memberSeq = 0;
+  purchaseEmails = new Map();
 }
 
 async function saveSeatInvite(code, invite) {
@@ -162,6 +164,14 @@ async function markImpactRemitted(id, remitted = true) {
   return entry;
 }
 
+async function hasSentPurchaseEmail(sessionId) {
+  return purchaseEmails.has(sessionId);
+}
+
+async function markPurchaseEmailSent(sessionId, info) {
+  purchaseEmails.set(sessionId, { ...info, sentAt: new Date().toISOString() });
+}
+
 module.exports = {
   reset,
   randomToken,
@@ -184,4 +194,6 @@ module.exports = {
   recordImpactAllocation,
   listImpactLedger,
   markImpactRemitted,
+  hasSentPurchaseEmail,
+  markPurchaseEmailSent,
 };

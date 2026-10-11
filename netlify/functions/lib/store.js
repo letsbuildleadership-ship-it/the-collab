@@ -282,6 +282,16 @@ async function getSubscriptionLink(subscriptionId) {
   return store().get(`by-subscription/${subscriptionId}.json`, { type: 'json' });
 }
 
+// Purchase confirmation emails: one marker per Checkout Session, written
+// after a successful send so webhook retries never email twice.
+async function hasSentPurchaseEmail(sessionId) {
+  return Boolean(await store().get(`emails/purchase/${sessionId}.json`, { type: 'json' }));
+}
+
+async function markPurchaseEmailSent(sessionId, info) {
+  await store().setJSON(`emails/purchase/${sessionId}.json`, { ...info, sentAt: new Date().toISOString() });
+}
+
 module.exports = {
   randomToken,
   hashEmail,
@@ -308,4 +318,6 @@ module.exports = {
   recordImpactAllocation,
   listImpactLedger,
   markImpactRemitted,
+  hasSentPurchaseEmail,
+  markPurchaseEmailSent,
 };

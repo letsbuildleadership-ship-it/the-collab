@@ -11,6 +11,7 @@ const { fulfillCheckoutSession, revokeMembership, reactivateMembership, cancelRe
 // 'no_payment_required' is a fully discounted ($0) checkout — still a completed purchase.
 const COMPLETED = new Set(['paid', 'no_payment_required']);
 const store = require('./lib/store');
+const { sendPurchaseConfirmation } = require('./lib/purchase-email');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -46,6 +47,8 @@ exports.handler = async (event) => {
         const priceIds = lineItems.data.map((li) => li.price && li.price.id).filter(Boolean);
         const result = await fulfillCheckoutSession(session, priceIds);
         await cancelReplacedSubscriptions(result, stripe);
+        // Confirmation email is sent only here (not in verify-session), once per session.
+        await sendPurchaseConfirmation(result, session);
         break;
       }
 
