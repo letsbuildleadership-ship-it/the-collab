@@ -145,7 +145,7 @@
       </label>`
     ).join('');
     return `<div class="mission-checklist${allDone ? ' is-complete' : ''}">
-      <p class="mission-label">${allDone ? 'Refined' : 'Refinement'}</p>
+      <p class="mission-label">${allDone ? 'Quest complete ✓' : 'Quest steps'}</p>
       ${rows}
     </div>`;
   }
@@ -517,7 +517,83 @@
     $('partnership-join').hidden = !!(data.partnership || data.seat);
   }
 
-  /* TRIARCH™ tier rewards for .LLab Membership™. */
+  /* The portal as a game: Four Phases products are quests, TRIARCH™ tiers
+   * are levels, and each level cleared unlocks free loot (a product to keep). */
+  const LEVEL_ICON = { CROWN: '👑', SCEPTER: '⚜️', SIGNET: '💍', HEIRLOOM: '🏛️' };
+  const XP_PER_STEP = 10;
+
+  function shortName(name) {
+    return String(name || '').replace(/^\.LLab\s+/, '').replace(/^Leadership Infrastructure\s+/, '');
+  }
+
+  function renderJourney(data) {
+    const panel = $('journey-panel');
+    if (!panel) return;
+    const rw = data.membershipRewards;
+    const active = !!(rw && rw.active);
+    const tiers = (rw && rw.tiers) || [];
+    const steps = tiers.reduce((n, t) => n + t.products.reduce((m, p) => m + p.stepsDone, 0), 0);
+    const totalSteps = tiers.reduce((n, t) => n + t.products.reduce((m, p) => m + p.stepsTotal, 0), 0);
+    const cleared = tiers.filter((t) => t.completed);
+    const top = cleared[cleared.length - 1];
+
+    // Player card
+    $('game-rank').textContent = top ? `Level ${top.tier} · ${LEVEL_ICON[top.name] || ''} ${top.name}` : 'Level 0 · Initiate';
+    const pct = totalSteps ? Math.round((steps / totalSteps) * 100) : 0;
+    $('xp-fill').style.width = `${pct}%`;
+    $('xp-text').textContent = `${steps * XP_PER_STEP} / ${totalSteps * XP_PER_STEP} XP`;
+    const badge = (on, icon, label) => `<span class="game-badge${on ? ' is-on' : ''}" title="${esc(label)}">${icon}<small>${esc(label)}</small></span>`;
+    $('game-badges').innerHTML = [
+      badge(active, '★', 'Member'),
+      badge(!!data.founder, '◆', 'Founder'),
+      badge(!!(data.partnership || data.seat), '⬢', 'Partner'),
+      ...tiers.map((t) => badge(t.completed, LEVEL_ICON[t.name] || '•', t.name)),
+    ].join('');
+
+    // Current quest
+    let q;
+    const loot = tiers.find((t) => t.options && t.options.length);
+    if (loot) {
+      q = { label: 'Loot unlocked', title: `🎁 ${loot.name} loot`, body: `Pick 1 free product (up to $${loot.maxPrice.toLocaleString()}). Yours to keep.`, cta: `<a class="pill pill--solid" href="#rewards-group">Claim loot <span class="arrow">→</span></a>` };
+    } else if (active) {
+      const level = tiers.find((t) => !t.completed);
+      const quest = level && level.products.find((p) => p.stepsDone < p.stepsTotal);
+      if (level && quest) {
+        q = {
+          label: `Current quest · Level ${level.tier} ${level.name}`,
+          title: shortName(quest.name),
+          body: `${quest.stepsDone}/${quest.stepsTotal} steps done. Clear every ${level.name} quest to unlock free loot (up to $${level.maxPrice.toLocaleString()}).`,
+          cta: `<a class="pill pill--solid" href="#item-${esc(quest.key)}" data-jump="${esc(quest.key)}">Play quest <span class="arrow">→</span></a>`,
+        };
+      } else {
+        q = { label: 'Game complete', title: '🏆 All 4 levels cleared', body: 'Every quest done. Check the shop below for what to add next.', cta: '' };
+      }
+    } else {
+      const plan = data.membershipOffer && (data.membershipOffer.plans || []).find((p) => p.payment_link);
+      q = {
+        label: 'Start the game',
+        title: 'Unlock 9 quests',
+        body: '.LLab Membership™ opens 9 quests across 4 levels. Clear a level, win free loot. Free tools are ready now.',
+        cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">Free tools <span class="arrow">→</span></a>` : '',
+      };
+    }
+    $('quest-label').textContent = q.label;
+    $('journey-next-title').textContent = q.title;
+    $('journey-next-body').textContent = q.body;
+    $('journey-next-cta').innerHTML = q.cta;
+    panel.hidden = false;
+  }
+
+  function jumpTo(key) {
+    const el = $(`item-${key}`);
+    if (!el) return false;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('is-target');
+    setTimeout(() => el.classList.remove('is-target'), 2400);
+    return true;
+  }
+
+  /* Levels & Loot: one card per TRIARCH™ level. */
   function renderRewards(data) {
     const group = $('rewards-group');
     const list = $('rewards-list');
@@ -526,32 +602,35 @@
     if (!rw) { group.hidden = true; return; }
     group.hidden = false;
     rw.tiers.forEach((t) => {
-      const card = document.createElement('div');
-      card.className = 'card reward-card';
-      const productsHtml = (t.products || []).length
-        ? `<ul class="reward-products">${t.products.map((p) => `<li class="${p.stepsDone >= p.stepsTotal ? 'done' : ''}"><a href="#item-${esc(p.key)}" data-jump="${esc(p.key)}" style="color:inherit;">${esc(p.name)}</a><span>${p.stepsDone}/${p.stepsTotal}</span></li>`).join('')}</ul>`
-        : '';
-      let body;
-      if (!rw.active && !t.pick) {
-        body = t.completed
-          ? `<p class="reward-state">Tier complete. Renew your .LLab Membership™ to choose your reward.</p>`
-          : `<p class="reward-state">With an active .LLab Membership™, finish these to choose one product up to $${t.maxPrice.toLocaleString()}, free.</p>`;
-      } else if (t.pick) {
-        body = `<p class="reward-state">Your reward</p><h4 style="margin:0.25rem 0 0;">${esc(t.pick.name)}</h4><p class="reward-state" style="margin-top:0.4rem;">Yours to keep. Find it in your products above.</p>`;
+      const done = t.products.reduce((n, p) => n + p.stepsDone, 0);
+      const total = t.products.reduce((n, p) => n + p.stepsTotal, 0) || 1;
+      const quests = t.products
+        .map((p) => {
+          const ok = p.stepsDone >= p.stepsTotal;
+          return `<li class="${ok ? 'done' : ''}"><a href="#item-${esc(p.key)}" data-jump="${esc(p.key)}">${ok ? '✓' : '○'} ${esc(shortName(p.name))}</a><span>${p.stepsDone}/${p.stepsTotal}</span></li>`;
+        })
+        .join('');
+      let lootHtml;
+      if (t.pick) {
+        lootHtml = `<p class="loot-state is-won">🎁 Won: ${esc(shortName(t.pick.name))}</p>`;
       } else if (t.options && t.options.length) {
         const opts = t.options.map((o) => `<option value="${esc(o.key)}">${esc(o.name)} (${esc(o.price_display)})</option>`).join('');
-        body = `<p class="reward-state">Tier complete. Choose one product, free:</p>
-          <select data-reward-select="${t.tier}" aria-label="${esc(t.name)} reward">${opts}</select>
-          <button type="button" class="pill pill--solid" data-reward-claim="${t.tier}">Claim reward <span class="arrow">→</span></button>
+        lootHtml = `<p class="loot-state is-ready">🎁 Loot ready: pick 1</p>
+          <select data-reward-select="${t.tier}" aria-label="${esc(t.name)} loot">${opts}</select>
+          <button type="button" class="pill pill--solid" data-reward-claim="${t.tier}">Claim <span class="arrow">→</span></button>
           <p class="login-error" data-reward-error="${t.tier}" hidden></p>`;
       } else if (t.completed && !rw.active) {
-        body = `<p class="reward-state">Tier complete. Renew your .LLab Membership™ to choose your reward.</p>`;
+        lootHtml = '<p class="loot-state">🔒 Renew Membership to claim</p>';
       } else if (t.completed) {
-        body = `<p class="reward-state">Tier complete. You already own every product in this tier's range.</p>`;
+        lootHtml = '<p class="loot-state">You own everything in this loot range</p>';
       } else {
-        body = `<p class="reward-state">Complete all three steps on every ${esc(t.name)} product to choose one product up to $${t.maxPrice.toLocaleString()}, free.</p>`;
+        lootHtml = `<p class="loot-state">🔒 Loot: free pick up to $${t.maxPrice.toLocaleString()}</p>`;
       }
-      card.innerHTML = `<span class="num">Tier ${t.tier} · ${esc(t.name)}${t.completed ? ' · Complete' : ''}</span><p class="reward-state" style="margin:0.2rem 0 0.4rem;">Reward choices up to $${t.maxPrice.toLocaleString()}</p>${productsHtml}${body}`;
+      const card = document.createElement('div');
+      card.className = `card reward-card${t.completed ? ' is-cleared' : ''}`;
+      card.innerHTML = `<div class="level-head"><span class="level-icon">${LEVEL_ICON[t.name] || ''}</span><div><span class="num">Level ${t.tier}</span><h4>${esc(t.name)}${t.completed ? ' · Cleared' : ''}</h4></div></div>
+        <div class="xp-bar xp-bar--sm"><span style="width:${Math.round((done / total) * 100)}%"></span></div>
+        <ul class="reward-products">${quests}</ul>${lootHtml}`;
       list.appendChild(card);
     });
   }
@@ -569,73 +648,6 @@
     renderDashboard(data);
   }
 
-
-  /* "What to do next / What you've done" panel at the top of the portal. */
-  function renderJourney(data) {
-    const panel = $('journey-panel');
-    if (!panel) return;
-    const rw = data.membershipRewards;
-    const membershipActive = !!(rw && rw.active);
-    const done = [];
-    const todo = [];
-    let next = null;
-
-    if (data.founder) done.push(`Founders Organization: ${esc(data.founder.levelLabel || 'Founder')}${data.founder.founderNumber ? ` · Founder Number ${esc(data.founder.founderNumber)}` : ''}`);
-    if (data.partnership) done.push(`Partnership: ${esc(data.partnership.tierLabel)}${data.partnership.expiresAt ? ` · through ${formatShortDate(data.partnership.expiresAt)}` : ''}`);
-    if (data.seat) done.push(`Partnership seat: ${esc(data.seat.tierLabel || '')}`);
-    if (membershipActive) done.push('.LLab Membership™ is active: all Four Phases products are open');
-    else todo.push('.LLab Membership™ not active yet');
-
-    if (rw) {
-      (rw.productsCompleted ? done : todo).push(`${rw.productsCompleted} of ${rw.productsTotal} Four Phases products completed`);
-      (rw.tiersCompleted ? done : todo).push(`${rw.tiersCompleted} of ${rw.tiers.length} TRIARCH™ tiers complete`);
-      if (rw.picksClaimed) done.push(`${rw.picksClaimed} tier reward${rw.picksClaimed === 1 ? '' : 's'} claimed`);
-      const claimable = rw.tiers.find((t) => t.options && t.options.length);
-      if (claimable) {
-        next = {
-          title: `Claim your ${claimable.name} reward`,
-          body: `You completed the ${claimable.name} tier. Choose one product up to $${claimable.maxPrice.toLocaleString()}, free and yours to keep.`,
-          cta: `<a class="pill pill--solid" href="#rewards-group">Choose my reward <span class="arrow">→</span></a>`,
-        };
-      } else if (membershipActive) {
-        const tier = rw.tiers.find((t) => !t.completed);
-        const product = tier && tier.products.find((p) => p.stepsDone < p.stepsTotal);
-        if (tier && product) {
-          next = {
-            title: `Work through ${product.name}`,
-            body: `It's part of the ${tier.name} tier. Open it, then check off its three steps (review the material, apply it to your work, log your takeaway): ${product.stepsDone} of ${product.stepsTotal} done. Finish every ${tier.name} product to earn a free reward up to $${tier.maxPrice.toLocaleString()}.`,
-            cta: `<a class="pill pill--solid" href="#item-${esc(product.key)}" data-jump="${esc(product.key)}">Go to ${esc(product.name)} <span class="arrow">→</span></a>`,
-          };
-        } else if (!tier) {
-          next = { title: 'Every TRIARCH™ tier is complete', body: 'You have finished all four tiers. Keep using your products, and explore the snapshots for what to add next.', cta: '' };
-        }
-      }
-    }
-    if (!next && !membershipActive) {
-      const offer = data.membershipOffer;
-      const plan = offer && (offer.plans || []).find((p) => p.payment_link);
-      next = {
-        title: 'Start your .LLab Membership™',
-        body: 'Membership opens all nine Four Phases products and lets you earn a free product each time you complete a TRIARCH™ tier. Until then, your free tools are ready below.',
-        cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join Membership · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">See free tools <span class="arrow">→</span></a>` : '',
-      };
-    }
-
-    $('journey-next-title').textContent = next ? next.title : '';
-    $('journey-next-body').textContent = next ? next.body : '';
-    $('journey-next-cta').innerHTML = next ? next.cta : '';
-    $('journey-done').innerHTML = [...done.map((d) => `<li>${d}</li>`), ...todo.map((d) => `<li class="todo">${esc(d)}</li>`)].join('');
-    panel.hidden = false;
-  }
-
-  function jumpTo(key) {
-    const el = $(`item-${key}`);
-    if (!el) return false;
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    el.classList.add('is-target');
-    setTimeout(() => el.classList.remove('is-target'), 2400);
-    return true;
-  }
 
   function renderDashboard(data) {
     data.activityProgress = data.activityProgress || {};
@@ -1017,7 +1029,7 @@
       if (checklist) {
         checklist.classList.toggle('is-complete', allDone);
         const label = checklist.querySelector('.mission-label');
-        if (label) label.textContent = allDone ? 'Refined' : 'Refinement';
+        if (label) label.textContent = allDone ? 'Quest complete ✓' : 'Quest steps';
       }
 
       renderPhaseTrack(state.data);

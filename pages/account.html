@@ -42,22 +42,37 @@
   main { --white: #fdf6ec; --white-dim: rgba(253, 246, 236, 0.86); --white-faint: rgba(253, 246, 236, 0.68); }
   main .pill { --white: rgb(255, 96, 46); }
   main .hero .subhead { color: #fdf6ec; }
-  .journey-panel .item-desc { color: rgba(253, 246, 236, 0.86); }
-  .journey-panel { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1px; background: var(--hairline); border: 1px solid rgba(var(--filament-2-rgb), 0.55); margin-top: 1.5rem; border-radius: 12px; overflow: hidden; }
-  .journey-panel[hidden] { display: none !important; }
-  .journey-panel .pill { white-space: normal; text-align: left; line-height: 1.35; }
-  .journey-col { min-width: 0; background: var(--black-soft); padding: clamp(1.25rem, 3vw, 2rem); }
-  .journey-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-2); margin: 0 0 0.6rem; font-weight: 600; }
-  .journey-next { font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 400; color: #fdf6ec; margin: 0 0 0.5rem; line-height: 1.3; }
-  .journey-done { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
-  .journey-done li { color: rgba(253, 246, 236, 0.86); font-size: 0.95rem; padding-left: 1.5em; position: relative; }
-  .journey-done li::before { content: '✓'; position: absolute; left: 0; color: var(--filament-2); }
-  .journey-done li.todo::before { content: '○'; color: rgba(253, 246, 236, 0.45); }
-  .reward-products { list-style: none; padding: 0; margin: 0.4rem 0 0.8rem; display: grid; gap: 0.35rem; }
-  .reward-products li { font-size: 0.82rem; color: rgba(253, 246, 236, 0.8); display: flex; justify-content: space-between; gap: 0.5rem; }
-  .reward-products li.done { color: var(--filament-2); }
+  .game-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1px; background: var(--hairline); border: 1px solid rgba(var(--filament-2-rgb), 0.6); margin-top: 1.5rem; border-radius: 14px; overflow: hidden; box-shadow: 0 0 40px -18px rgba(var(--filament-1-rgb), 0.7); }
+  .game-panel[hidden] { display: none !important; }
+  .game-col { min-width: 0; background: var(--black-soft); padding: clamp(1.25rem, 3vw, 2rem); }
+  .game-label { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--filament-2); margin: 0 0 0.5rem; font-weight: 700; }
+  .game-rank { font-size: clamp(1.3rem, 2.6vw, 1.8rem); font-weight: 600; color: #fdf6ec; margin: 0 0 0.9rem; }
+  .game-quest { font-size: clamp(1.25rem, 2.4vw, 1.7rem); font-weight: 500; color: #fdf6ec; margin: 0 0 0.4rem; line-height: 1.25; }
+  .game-body { color: rgba(253, 246, 236, 0.86); font-size: 0.95rem; line-height: 1.5; margin: 0; }
+  .game-panel .pill { white-space: normal; text-align: left; line-height: 1.35; }
+  .xp-bar { height: 12px; border-radius: 999px; background: rgba(253, 246, 236, 0.1); border: 1px solid var(--hairline-strong); overflow: hidden; }
+  .xp-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--filament-1), var(--filament-2)); border-radius: 999px; transition: width 0.6s var(--ease); }
+  .xp-bar--sm { height: 8px; margin: 0.75rem 0 0.25rem; }
+  .xp-text { font-size: 0.8rem; color: rgba(253, 246, 236, 0.7); margin: 0.4rem 0 1rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+  .game-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .game-badge { display: inline-flex; flex-direction: column; align-items: center; gap: 0.15rem; min-width: 56px; padding: 0.45rem 0.4rem; border-radius: 10px; border: 1px solid var(--hairline); font-size: 1.15rem; opacity: 0.35; filter: grayscale(1); }
+  .game-badge small { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fdf6ec; }
+  .game-badge.is-on { opacity: 1; filter: none; border-color: rgba(var(--filament-2-rgb), 0.7); background: rgba(var(--filament-1-rgb), 0.12); }
+  .level-head { display: flex; align-items: center; gap: 0.75rem; }
+  .level-icon { font-size: 1.8rem; line-height: 1; }
+  .level-head h4 { margin: 0.1rem 0 0; color: #fdf6ec; font-size: 1.05rem; letter-spacing: 0.06em; }
+  .reward-card.is-cleared { background: rgba(var(--filament-1-rgb), 0.08); }
+  .reward-products { list-style: none; padding: 0; margin: 0.6rem 0 0.8rem; display: grid; gap: 0.35rem; }
+  .reward-products li { font-size: 0.85rem; display: flex; justify-content: space-between; gap: 0.5rem; }
+  .reward-products li a { color: rgba(253, 246, 236, 0.86); text-decoration: none; }
+  .reward-products li span { color: rgba(253, 246, 236, 0.55); font-variant-numeric: tabular-nums; }
+  .reward-products li.done a, .reward-products li.done span { color: var(--filament-2); }
+  .loot-state { font-size: 0.85rem; color: rgba(253, 246, 236, 0.7); margin: 0; }
+  .loot-state.is-ready, .loot-state.is-won { color: var(--filament-2); font-weight: 600; }
+  /* The game panel replaces these older progress widgets. */
+  #steward-note-wrap, #phase-track { display: none !important; }
   .item-card.is-target { outline: 2px solid var(--filament-2) !important; }
-  @media (max-width: 760px) { .journey-panel { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 760px) { .game-panel { grid-template-columns: minmax(0, 1fr); } }
   .portal-section { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 2.75rem); border-top: 1px solid var(--hairline-strong); scroll-margin-top: 90px; }
   .portal-title { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 300; margin: 0.9rem 0 0; color: #fdf6ec; }
   .portal-title strong { font-weight: 600; color: var(--filament-1); }
@@ -183,16 +198,19 @@
         </div>
       </div>
 
-      <div id="journey-panel" class="journey-panel" hidden>
-        <div class="journey-col">
-          <p class="journey-label">What to do next</p>
-          <h3 id="journey-next-title" class="journey-next">—</h3>
-          <p id="journey-next-body" class="item-desc"></p>
-          <p id="journey-next-cta" style="margin-top:1rem;"></p>
+      <div id="journey-panel" class="game-panel" hidden>
+        <div class="game-col">
+          <p class="game-label">Player</p>
+          <h3 id="game-rank" class="game-rank">Level 0 · Initiate</h3>
+          <div class="xp-bar"><span id="xp-fill"></span></div>
+          <p id="xp-text" class="xp-text">0 XP</p>
+          <div id="game-badges" class="game-badges"></div>
         </div>
-        <div class="journey-col">
-          <p class="journey-label">What you've done</p>
-          <ul id="journey-done" class="journey-done"></ul>
+        <div class="game-col">
+          <p class="game-label" id="quest-label">Current quest</p>
+          <h3 id="journey-next-title" class="game-quest">—</h3>
+          <p id="journey-next-body" class="game-body"></p>
+          <p id="journey-next-cta" style="margin-top:1rem;"></p>
         </div>
       </div>
 
@@ -248,8 +266,8 @@
         </div>
 
         <div id="rewards-group" class="phase-group" hidden>
-          <h3>TRIARCH™ tier rewards</h3>
-          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Complete all three steps on every Four Phases product in a tier to choose your reward. Higher tiers open higher-priced products, and each tier includes the choices below it.</p>
+          <h3>TRIARCH™ levels &amp; loot</h3>
+          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Clear every quest in a level to win free loot. Higher levels, bigger loot.</p>
           <div class="grid grid-4" id="rewards-list"></div>
         </div>
 
@@ -343,7 +361,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/account.js?v=20261012c"></script>
+<script src="../js/account.js?v=20261012d"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
