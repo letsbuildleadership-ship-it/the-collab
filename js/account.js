@@ -709,7 +709,7 @@
         const actions = item.pdf_file
           ? `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`
           : `<span class="tag">Access included</span>`;
-        benefitsList.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.pdf_file ? item.key : null }));
+        benefitsList.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
       });
     }
 
@@ -729,8 +729,7 @@
     PHASE_ORDER.forEach((phase) => {
       if (phase === FOUNDERS_PHASE) return;
       const items = byPhase.get(phase) || [];
-      const tools = freeByPhase.get(phase) || [];
-      if (!items.length && !tools.length) return;
+      if (!items.length) return;
       const section = document.createElement('div');
       section.className = 'phase-group';
       const heading = document.createElement('h3');
@@ -741,8 +740,28 @@
         const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
         grid.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.key }));
       });
+      section.appendChild(heading);
+      section.appendChild(grid);
+      phaseGroups.appendChild(section);
+    });
+
+    $('quests-heading').hidden = !phaseGroups.children.length;
+
+    // Free tools drawer, grouped by phase (open by default for free members).
+    const toolsGroup = $('free-tools-group');
+    const toolsList = $('free-tools-list');
+    toolsList.innerHTML = '';
+    const toolCount = (data.freeTools || []).length;
+    PHASE_ORDER.forEach((phase) => {
+      const tools = freeByPhase.get(phase) || [];
+      if (!tools.length) return;
+      const h = document.createElement('h4');
+      h.className = 'tool-phase';
+      h.textContent = BAY_NAME[phase] || phase;
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-3';
       tools.forEach((tool) => {
-        const actions = `<span class="tag">Free tool</span> <a class="pill" href="${tool.file}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>`;
+        const actions = `<a class="pill" href="${tool.file}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>`;
         const card = itemCard({ name: esc(tool.name), actionsHtml: actions });
         const desc = document.createElement('p');
         desc.className = 'item-desc';
@@ -750,10 +769,12 @@
         card.insertBefore(desc, card.querySelector('.item-actions'));
         grid.appendChild(card);
       });
-      section.appendChild(heading);
-      section.appendChild(grid);
-      phaseGroups.appendChild(section);
+      toolsList.appendChild(h);
+      toolsList.appendChild(grid);
     });
+    toolsGroup.hidden = !toolCount;
+    $('free-tools-count').textContent = toolCount ? `${toolCount}` : '';
+    if (data.memberType === 'free') toolsGroup.open = true;
 
     const lockedGroup = $('locked-group');
     const lockedList = $('locked-list');
@@ -761,6 +782,7 @@
     const offer = data.membershipOffer;
     if ((data.locked && data.locked.length) || offer) {
       lockedGroup.hidden = false;
+      $('locked-count').textContent = `${(data.locked || []).length + (offer ? 1 : 0)}`;
       if (offer) {
         const plans = (offer.plans || [])
           .filter((p) => p.payment_link)

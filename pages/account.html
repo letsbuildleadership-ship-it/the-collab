@@ -69,6 +69,22 @@
   .reward-products li.done a, .reward-products li.done span { color: var(--filament-2); }
   .loot-state { font-size: 0.85rem; color: rgba(253, 246, 236, 0.7); margin: 0; }
   .loot-state.is-ready, .loot-state.is-won { color: var(--filament-2); font-weight: 600; }
+  /* Portal content is added after sign-in, so the site's scroll fade-in
+     never runs on it: show it immediately. */
+  html.js #account-dashboard .card, html.js #account-dashboard .eyebrow,
+  html.js #account-dashboard .headline, html.js #account-dashboard .subhead { opacity: 1 !important; transform: none !important; }
+  .drawer { border: 1px solid var(--hairline-strong); border-radius: 12px; padding: 0 1.25rem; margin-top: 1.5rem; }
+  .drawer > summary { cursor: pointer; list-style: none; padding: 1.1rem 0; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--filament-2); display: flex; justify-content: space-between; align-items: center; }
+  .drawer > summary::-webkit-details-marker { display: none; }
+  .drawer > summary::after { content: '+'; font-size: 1.3rem; color: var(--filament-2); }
+  .drawer[open] > summary::after { content: '−'; }
+  .drawer[open] { padding-bottom: 1.25rem; }
+  .drawer-count { margin-left: auto; margin-right: 0.75rem; font-size: 0.75rem; color: rgba(253, 246, 236, 0.6); letter-spacing: 0.08em; }
+  .drawer h4.tool-phase { margin: 1.25rem 0 0.75rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--filament-1); }
+  #free-tools-list .grid, #founders-join-list { background: transparent; }
+  #free-tools-list .grid > .card { outline: 1px solid var(--hairline); }
+  .quests-heading { margin-top: 2.5rem; }
+  .quests-heading[hidden] { display: none !important; }
   /* The game panel replaces these older progress widgets. */
   #steward-note-wrap, #phase-track { display: none !important; }
   .item-card.is-target { outline: 2px solid var(--filament-2) !important; }
@@ -120,7 +136,7 @@
     <div class="wrap" style="position:relative;">
       <p class="eyebrow" id="portal-eyebrow">Omnidirectional Enterprise™ Membership</p>
       <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>Member Portal™.</strong></h1>
-      <p class="subhead" id="portal-intro" style="margin-top:2rem;">Omnidirectional Enterprise™ Membership houses every part of The Co.LLab™: the Founders Organization, Partnerships, and .LLab Membership™. The TRIARCH™ (CROWN, SCEPTER, SIGNET &amp; HEIRLOOM) is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.</p>
+      <p class="subhead" id="portal-intro" style="margin-top:2rem;">Founders Organization, Partnerships, and .LLab Membership™, in one place. The TRIARCH™ is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.</p>
     </div>
   </section>
 
@@ -181,6 +197,30 @@
         <button type="button" id="save-link-copy" class="pill">Copy</button>
       </div>
 
+      <div id="journey-panel" class="game-panel" hidden>
+        <div class="game-col">
+          <p class="game-label">Player</p>
+          <h3 id="game-rank" class="game-rank">Level 0 · Initiate</h3>
+          <div class="xp-bar"><span id="xp-fill"></span></div>
+          <p id="xp-text" class="xp-text">0 XP</p>
+          <div id="game-badges" class="game-badges"></div>
+        </div>
+        <div class="game-col">
+          <p class="game-label" id="quest-label">Current quest</p>
+          <h3 id="journey-next-title" class="game-quest">—</h3>
+          <p id="journey-next-body" class="game-body"></p>
+          <p id="journey-next-cta" style="margin-top:1rem;"></p>
+        </div>
+      </div>
+
+
+      <div id="rewards-group" class="phase-group" hidden>
+          <h3>TRIARCH™ levels &amp; loot</h3>
+          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Clear every quest in a level to win free loot. Higher levels, bigger loot.</p>
+          <div class="grid grid-4" id="rewards-list"></div>
+        </div>
+
+
       <div class="grid grid-2 portal-top" style="margin-top:2rem;">
         <div class="card">
           <span class="num">Signed in as</span>
@@ -198,26 +238,10 @@
         </div>
       </div>
 
-      <div id="journey-panel" class="game-panel" hidden>
-        <div class="game-col">
-          <p class="game-label">Player</p>
-          <h3 id="game-rank" class="game-rank">Level 0 · Initiate</h3>
-          <div class="xp-bar"><span id="xp-fill"></span></div>
-          <p id="xp-text" class="xp-text">0 XP</p>
-          <div id="game-badges" class="game-badges"></div>
-        </div>
-        <div class="game-col">
-          <p class="game-label" id="quest-label">Current quest</p>
-          <h3 id="journey-next-title" class="game-quest">—</h3>
-          <p id="journey-next-body" class="game-body"></p>
-          <p id="journey-next-cta" style="margin-top:1rem;"></p>
-        </div>
-      </div>
-
       <div id="free-member-note" class="save-link-box" hidden>
         <div style="display:flex; flex-direction:column; gap:0.35rem;">
           <strong style="font-size:0.95rem;">Welcome, free member.</strong>
-          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are in the .LLab Membership™ section, organized by phase. Every product has a snapshot there too: buy one on its own, or unlock the Four Phases with Membership.</span>
+          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are in the .LLab Membership™ section, organized by phase. Everything else is in the Shop: buy one product, or unlock the Four Phases with Membership.</span>
         </div>
       </div>
 
@@ -233,7 +257,10 @@
         </div>
         <div id="founders-join" hidden>
           <p class="item-desc portal-lead" data-portal-lead>Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number. <a href="founders.html">Learn about the Founders Organization</a>.</p>
-          <div class="grid grid-3" id="founders-join-list"></div>
+          <details class="drawer">
+            <summary>See Founder tiers</summary>
+            <div class="grid grid-3" id="founders-join-list" style="margin-top:1rem;"></div>
+          </details>
         </div>
       </div>
 
@@ -265,12 +292,6 @@
           </div>
         </div>
 
-        <div id="rewards-group" class="phase-group" hidden>
-          <h3>TRIARCH™ levels &amp; loot</h3>
-          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Clear every quest in a level to win free loot. Higher levels, bigger loot.</p>
-          <div class="grid grid-4" id="rewards-list"></div>
-        </div>
-
         <div id="steward-note-wrap"></div>
 
         <div id="phase-track" class="phase-track" hidden>
@@ -283,13 +304,19 @@
           <div class="grid grid-3" id="benefits-list"></div>
         </div>
 
+        <h3 id="quests-heading" class="quests-heading" hidden>Your quests</h3>
         <div id="phase-groups"></div>
 
-        <div id="locked-group" class="phase-group" hidden>
-          <h3>Snapshots: more to explore</h3>
-          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Buy any product on its own. Four Phases products are included with Membership, and the rest can be earned as TRIARCH™ tier rewards.</p>
+        <details id="free-tools-group" class="phase-group drawer" hidden>
+          <summary>Free tools <span class="drawer-count" id="free-tools-count"></span></summary>
+          <div id="free-tools-list"></div>
+        </details>
+
+        <details id="locked-group" class="phase-group drawer" hidden>
+          <summary>Shop <span class="drawer-count" id="locked-count"></span></summary>
+          <p class="item-desc" style="margin:0.75rem 0 1.25rem;">Buy any product on its own. Four Phases products come with Membership; the rest can also be won as level loot.</p>
           <div class="grid grid-3" id="locked-list"></div>
-        </div>
+        </details>
       </div>
 
       </div><!-- /portal-sections -->
@@ -361,7 +388,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/account.js?v=20261012d"></script>
+<script src="../js/account.js?v=20261012f"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
