@@ -11,6 +11,7 @@ let impactLedger = new Map(); // id -> allocation record
 let founderSeq = 0;
 let seatInvites = new Map();
 let memberSeq = 0;
+let byMemberId = new Map();
 let purchaseEmails = new Map();
 
 function reset() {
@@ -22,6 +23,7 @@ function reset() {
   founderSeq = 0;
   seatInvites = new Map();
   memberSeq = 0;
+  byMemberId = new Map();
   purchaseEmails = new Map();
 }
 
@@ -111,6 +113,7 @@ async function getOrCreateCustomerByEmail(email) {
   const record = newCustomer(email, token);
   memberSeq += 1;
   record.memberId = `M-${String(memberSeq).padStart(5, '0')}`;
+  byMemberId.set(record.memberId, token);
   await saveCustomer(record);
   await setTokenForEmail(email, token);
   return { token, record, isNew: true };
@@ -172,6 +175,10 @@ async function markPurchaseEmailSent(sessionId, info) {
   purchaseEmails.set(sessionId, { ...info, sentAt: new Date().toISOString() });
 }
 
+async function getTokenByMemberId(memberId) {
+  return byMemberId.get(String(memberId).trim().toUpperCase()) || null;
+}
+
 module.exports = {
   reset,
   randomToken,
@@ -194,6 +201,7 @@ module.exports = {
   recordImpactAllocation,
   listImpactLedger,
   markImpactRemitted,
+  getTokenByMemberId,
   hasSentPurchaseEmail,
   markPurchaseEmailSent,
 };

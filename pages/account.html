@@ -54,7 +54,7 @@
         <li><a href="think.html">Think</a></li>
         <li><a href="journal.html">Journal</a></li>
         <li><a href="about.html">About</a></li>
-        <li class="nav-signin"><a href="account.html" aria-current="page">Sign in</a></li>
+        <li class="nav-signin"><a href="login.html">Sign in</a></li>
       </ul>
     </nav>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
@@ -105,14 +105,14 @@
       <div class="grid grid-2">
         <div class="card">
           <span class="num">Sign in</span>
-          <h3>Member ID and password</h3>
-          <p style="margin-bottom:0.5rem;">Your Member ID was assigned the first time you purchased — it's on your account page, and in your welcome email.</p>
+          <h3>Email or Member ID, and password</h3>
+          <p style="margin-bottom:0.5rem;">Use the email you checked out with, or your Member ID (it starts with CL- and is shown on your account page).</p>
           <form id="login-form" style="display:flex; flex-direction:column; gap:0.6rem;">
-            <input id="login-member-id" type="text" placeholder="Member ID (e.g. CL-00001)" autocomplete="username" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
+            <input id="login-member-id" type="text" placeholder="Email or Member ID" autocomplete="username" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
             <input id="login-password" type="password" placeholder="Password" autocomplete="current-password" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
             <button type="submit" class="pill pill--solid" style="align-self:flex-start;">Sign in <span class="arrow">→</span></button>
           </form>
-          <p id="login-error" class="subhead" style="margin-top:0.75rem; font-size:0.85rem; display:none;">Incorrect Member ID or password.</p>
+          <p id="login-error" class="subhead" style="margin-top:0.75rem; font-size:0.85rem; display:none;">Incorrect email, Member ID, or password.</p>
         </div>
         <div class="card">
           <span class="num">Haven't set a password yet?</span>
@@ -247,7 +247,8 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="account.html">Sign in / Your account</a></li>
+          <li><a href="login.html">Member Login</a></li>
+          <li><a href="account.html">Your account</a></li>
           <li><p>letsbuildleadership@gmail.com</p></li>
         </ul>
       </div>

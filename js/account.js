@@ -77,7 +77,7 @@
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ memberId, password }),
+      body: JSON.stringify({ identifier: memberId, password }),
     });
     if (!res.ok) return null;
     return res.json();

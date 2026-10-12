@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Member Login | The Co.LLab™</title>
+<meta name="description" content="Sign in to your Co.LLab™ account to access your products, memberships, and Partnership." />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://wearethellab.netlify.app/pages/login.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Co.LLab™" />
+<meta property="og:title" content="Member Login | The Co.LLab™" />
+<meta property="og:description" content="Sign in to your Co.LLab™ account to access your products, memberships, and Partnership." />
+<meta property="og:url" content="https://wearethellab.netlify.app/pages/login.html" />
+<meta property="og:image" content="https://wearethellab.netlify.app/assets/img/og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Member Login | The Co.LLab™" />
+<meta name="twitter:description" content="Sign in to your Co.LLab™ account to access your products, memberships, and Partnership." />
+<meta name="twitter:image" content="https://wearethellab.netlify.app/assets/img/og-cover.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://wearethellab.netlify.app/pages/login.html#webpage",
+      "url": "https://wearethellab.netlify.app/pages/login.html",
+      "name": "Member Login | The Co.LLab™",
+      "description": "Sign in to your Co.LLab™ account to access your products, memberships, and Partnership.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://wearethellab.netlify.app/#website"
+      },
+      "about": {
+        "@id": "https://wearethellab.netlify.app/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://wearethellab.netlify.app/assets/img/og-cover.png"
+      },
+      "breadcrumb": {
+        "@id": "https://wearethellab.netlify.app/pages/login.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://wearethellab.netlify.app/pages/login.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "The Co.LLab™",
+          "item": "https://wearethellab.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Member Login",
+          "item": "https://wearethellab.netlify.app/pages/login.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="../css/oe-mini.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
+<link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
+<style>
+  main { --white: #fdf6ec; --white-dim: rgba(253, 246, 236, 0.86); --white-faint: rgba(253, 246, 236, 0.68); }
+  main .pill { --white: rgb(255, 96, 46); }
+  .login-wrap { max-width: 980px; margin: 0 auto; }
+  .login-field { width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.85em 1.2em; color: #fdf6ec; font-family: var(--font); font-size: 1rem; }
+  .login-field::placeholder { color: rgba(253, 246, 236, 0.55); }
+  .login-label { display: block; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-faint); margin: 0 0 0.4rem 0.3rem; }
+  .login-error { color: #ff8a5c; font-size: 0.9rem; margin: 0.25rem 0 0; }
+  .login-help li { color: var(--white-dim); font-size: 0.95rem; margin-bottom: 0.6rem; }
+  @media (max-width: 760px) { .login-grid.grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="login">
+
+<div class="banner">
+  <span data-field="banner_text">Introductory Founder Offer — Now Open</span>
+  <a href="founders.html" data-field-href="banner_cta_link" class="pill pill--accent" style="padding:0.4em 1.1em;"><span data-field="banner_cta_label">Explore the Founders Organization</span> <span class="arrow">→</span></a>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab™" class="logo-mark" /><span>The Co<span class="dot">.</span>LLab™</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="founders.html">Founders Organization</a></li>
+        <li><a href="partnership.html">Partnership</a></li>
+        <li><a href="products.html">.LLab</a></li>
+        <li><a href="creator.html">Creator</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="think.html">Think</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-signin"><a href="login.html" aria-current="page">Sign in</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom: clamp(1.5rem, 4vw, 2.5rem);">
+    <div class="glow"></div>
+    <div class="wrap login-wrap" style="position:relative;">
+      <p class="eyebrow">Members</p>
+      <h1 class="display" style="margin-top:1.25rem; font-size:clamp(2.4rem, 6vw, 5rem);"><em>Member</em> <strong>Login.</strong></h1>
+      <p class="subhead" style="margin-top:1.25rem;">Sign in to your products, memberships, and Partnership.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap login-wrap">
+      <div class="grid grid-2 login-grid">
+        <div class="card">
+          <span class="num">Sign in</span>
+          <h3>Email or Member ID, and password</h3>
+          <form id="login-page-form" style="display:flex; flex-direction:column; gap:0.9rem; margin-top:0.5rem;" novalidate>
+            <div>
+              <label class="login-label" for="login-page-id">Email or Member ID</label>
+              <input id="login-page-id" class="login-field" type="text" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="you@example.com or CL-00001" />
+            </div>
+            <div>
+              <label class="login-label" for="login-page-password">Password</label>
+              <input id="login-page-password" class="login-field" type="password" autocomplete="current-password" placeholder="Your password" />
+            </div>
+            <button type="submit" class="pill pill--solid" id="login-page-submit" style="align-self:flex-start;">Sign in <span class="arrow">→</span></button>
+            <p id="login-page-error" class="login-error" role="alert" hidden>That email, Member ID, or password didn't match. Please try again.</p>
+          </form>
+        </div>
+        <div class="card">
+          <span class="num">No password yet?</span>
+          <h3>Use your access link</h3>
+          <p>Right after checkout you're signed in automatically, and your account page shows a private access link to save. Paste that link here to get back in, then create a password.</p>
+          <form id="login-page-restore" style="display:flex; flex-direction:column; gap:0.9rem; margin-top:0.5rem;">
+            <div>
+              <label class="login-label" for="login-page-link">Access link</label>
+              <input id="login-page-link" class="login-field" type="text" autocapitalize="none" spellcheck="false" placeholder="Paste your access link" />
+            </div>
+            <button type="submit" class="pill" style="align-self:flex-start;">Restore access <span class="arrow">→</span></button>
+            <p id="login-page-restore-error" class="login-error" role="alert" hidden>We couldn't find an account for that link.</p>
+          </form>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <p class="eyebrow">Need help?</p>
+        <ul class="login-help" style="list-style:none; padding:0; margin:1.25rem 0 0;">
+          <li><strong>Forgot your password, or never set one?</strong> Email <a href="mailto:letsbuildleadership@gmail.com?subject=Account%20access" style="color:var(--filament-2);">letsbuildleadership@gmail.com</a> from the address you purchased with, and we'll get you back in.</li>
+          <li><strong>Invited to a Partnership seat?</strong> Open the invite link you were sent; it brings you straight in.</li>
+          <li><strong>Haven't purchased yet?</strong> <a href="products.html" style="color:var(--filament-2);">Explore The .LLab</a> or <a href="partnership.html" style="color:var(--filament-2);">see Partnerships</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab™" class="logo-mark" /><span>The Co<span class="dot">.</span>LLab™</span></a>
+        <p data-field="footer_tagline" style="margin-top:1.25rem; max-width:32ch;">The Co.LLab™: Building Leadership Infrastructure™.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="founders.html">Founders Organization</a></li>
+          <li><a href="products.html">.LLab</a></li>
+          <li><a href="think.html">Think</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="creator.html">Creator™</a></li>
+          <li><a href="impact.html">Impact™</a></li>
+          <li><a href="about.html#four-phases">The Four Phases</a></li>
+          <li><a href="about.html#model">Omnidirectional Enterprise™</a></li>
+          <li><a href="products.html#phases">Free Tools</a></li>
+          <li><a href="journal-preview.html">Free Journal Preview</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Coming Soon</h4>
+        <ul>
+          <li><a href="atelier.html">.LLab Atelier™</a></li>
+          <li><a href="community.html">Co.LLab+™</a></li>
+          <li><a href="technology.html">Technology · Legacy Ventures™</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="login.html">Member Login</a></li>
+          <li><a href="account.html">Your account</a></li>
+          <li><p data-field="contact_email">letsbuildleadership@gmail.com</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
+      <span data-field="footer_tagline">The Co.LLab™: Building Leadership Infrastructure™</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var ACCOUNT = 'account.html';
+  function extractToken(raw) {
+    var t = raw.trim();
+    try { var u = new URL(t); return u.searchParams.get('token') || t; } catch (e) { return t; }
+  }
+  // Already signed in on this device? Go straight to the account.
+  fetch('/.netlify/functions/me', { credentials: 'include' }).then(function (r) { if (r.ok) location.replace(ACCOUNT); }).catch(function () {});
+
+  document.getElementById('login-page-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = document.getElementById('login-page-id').value.trim();
+    var pw = document.getElementById('login-page-password').value;
+    var err = document.getElementById('login-page-error');
+    var btn = document.getElementById('login-page-submit');
+    if (!id || !pw) { err.textContent = 'Enter your email or Member ID, and your password.'; err.hidden = false; return; }
+    btn.disabled = true;
+    fetch('/.netlify/functions/login', {
+      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier: id, password: pw })
+    }).then(function (r) {
+      if (r.ok) { location.href = ACCOUNT; return; }
+      err.textContent = "That email, Member ID, or password didn't match. Please try again.";
+      err.hidden = false; btn.disabled = false;
+    }).catch(function () {
+      err.textContent = 'Something went wrong. Please try again.'; err.hidden = false; btn.disabled = false;
+    });
+  });
+
+  document.getElementById('login-page-restore').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var raw = document.getElementById('login-page-link').value;
+    var err = document.getElementById('login-page-restore-error');
+    if (!raw.trim()) return;
+    var token = extractToken(raw);
+    fetch('/.netlify/functions/me?token=' + encodeURIComponent(token), { credentials: 'include' }).then(function (r) {
+      if (r.ok) { location.href = ACCOUNT; return; }
+      err.hidden = false;
+    }).catch(function () { err.hidden = false; });
+  });
+})();
+</script>
+</body>
+</html>

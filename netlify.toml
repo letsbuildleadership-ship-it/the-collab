@@ -50,9 +50,19 @@
     X-Robots-Tag = "noindex"
 
 [[headers]]
+  for = "/pages/login.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
   for = "/pages/library.html"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+[[redirects]]
+  from = "/login"
+  to = "/pages/login.html"
+  status = 200
 
 [[redirects]]
   from = "/account"
