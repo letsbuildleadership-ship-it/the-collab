@@ -38,6 +38,7 @@ function buildAccountView(record, now) {
       price_display: entry.price_display,
       payment_link: entry.payment_link,
       includedWithMembership: fourPhases.has(key),
+      line: entry.kind === 'blueprint' ? 'blueprint' : entry.line || (fourPhases.has(key) ? 'four-phases' : founderTiers.has(key) ? 'founders' : 'other'),
     };
   };
   const purchasable = [...pricing.allCatalogProductKeys(), ...(pricing.registry.blueprint_series || []).map((b) => b.key)];
@@ -45,6 +46,19 @@ function buildAccountView(record, now) {
     .filter((key) => !ownedKeys.has(key) && !founderTiers.has(key))
     .filter((key) => { const e = pricing.entryForKey(key); return e && e.payment_link; })
     .map(snapshot);
+  // Partnership tiers to offer anyone without a Partnership or seat.
+  const partnershipOffers =
+    record.partnership || record.seat
+      ? []
+      : (pricing.registry.partnerships || []).map((t) => ({
+          key: t.key,
+          tier: t.tier_label,
+          price_display: t.price_display,
+          tagline: t.tagline || null,
+          best_for: t.best_for || null,
+          seats: t.seats || 1,
+          payment_link: t.payment_link || null,
+        }));
   const founderSnapshots = record.founder ? [] : [...founderTiers].filter((key) => (pricing.entryForKey(key) || {}).payment_link).map(snapshot);
 
   const memberships = membershipStatus.effectiveMemberships(record, now);
@@ -90,6 +104,7 @@ function buildAccountView(record, now) {
     owned,
     locked,
     founderSnapshots,
+    partnershipOffers,
     // TRIARCH™ progress and tier rewards (always present; picks need Membership).
     membershipRewards: rewardsStatus(record, now),
     activityProgress: record.activityProgress || {},

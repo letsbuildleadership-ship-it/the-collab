@@ -85,6 +85,48 @@
   #free-tools-list .grid > .card { outline: 1px solid var(--hairline); }
   .quests-heading { margin-top: 2.5rem; }
   .quests-heading[hidden] { display: none !important; }
+  /* ---- Portal layout: programs, then Yours, then Explore ---- */
+  .account-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; margin-top: 1.5rem; font-size: 0.9rem; color: rgba(253, 246, 236, 0.75); }
+  .account-strip strong { color: #fdf6ec; font-weight: 500; }
+  .account-strip .pill { margin-left: auto; padding: 0.4em 1em; }
+  .program-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline-strong); border-radius: 14px; overflow: hidden; margin-top: 1.25rem; }
+  .program-tile { background: var(--black-soft); padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; gap: 0.35rem; text-decoration: none; }
+  .program-tile.is-active { background: rgba(var(--filament-1-rgb), 0.1); }
+  .program-tile .pt-name { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-2); font-weight: 700; }
+  .program-tile .pt-status { font-size: 1.15rem; color: #fdf6ec; font-weight: 500; }
+  .program-tile .pt-sub { font-size: 0.85rem; color: rgba(253, 246, 236, 0.7); }
+  .program-tile .pt-cta { margin-top: auto; padding-top: 0.6rem; font-size: 0.85rem; color: var(--filament-2); text-decoration: underline; }
+  .zone { margin-top: clamp(2.5rem, 6vw, 4rem); }
+  .zone-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--filament-2); font-weight: 700; margin: 0; }
+  .zone-title { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 300; color: #fdf6ec; margin: 0.5rem 0 0; }
+  .zone-title strong { color: var(--filament-1); font-weight: 600; }
+  .zone-explore { padding-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--hairline-strong); }
+  .yours-block { margin-top: 2.5rem; }
+  .yours-block[hidden], .offer-block[hidden] { display: none !important; }
+  .yours-heading { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-1); margin: 0 0 1rem; font-weight: 700; }
+  .offer-block { margin-top: 2rem; padding: clamp(1.5rem, 4vw, 2.25rem); border: 1px solid var(--hairline-strong); border-radius: 16px; background: linear-gradient(160deg, rgba(var(--filament-1-rgb), 0.1), rgba(15, 29, 19, 0) 55%); }
+  .offer-eyebrow { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--filament-2); font-weight: 700; margin: 0; }
+  .offer-title { font-size: clamp(1.4rem, 3vw, 2rem); color: #fdf6ec; font-weight: 500; margin: 0.4rem 0 0.6rem; }
+  .offer-body { color: rgba(253, 246, 236, 0.86); max-width: 68ch; margin: 0; line-height: 1.55; }
+  .offer-points { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.45rem; }
+  .offer-points li { color: rgba(253, 246, 236, 0.9); padding-left: 1.5em; position: relative; }
+  .offer-points li::before { content: '✓'; position: absolute; left: 0; color: var(--filament-2); }
+  .offer-plans { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+  .offer-grid { margin-top: 1.5rem; background: transparent; }
+  .offer-grid > .card, #locked-list .grid > .card { outline: 1px solid var(--hairline); }
+  .offer-grid .card .tier-price { font-size: 1.5rem; color: #fdf6ec; font-weight: 600; margin: 0.25rem 0; }
+  .offer-more { margin: 1.25rem 0 0; }
+  .offer-more a { color: var(--filament-2); text-decoration: underline; }
+  .shop-group { margin-top: 1.75rem; }
+  .shop-group:not(.show-all) .is-extra { display: none; }
+  .shop-more { margin-top: 1rem; }
+  .level-drawer .grid { margin-top: 0.5rem; background: transparent; }
+  .level-drawer .grid > .card { outline: 1px solid var(--hairline); }
+  .shop-group h4 { margin: 0 0 0.35rem; color: #fdf6ec; font-size: 1.05rem; }
+  .shop-group > p { margin: 0 0 1rem; color: rgba(253, 246, 236, 0.75); font-size: 0.92rem; }
+  #locked-list .grid { background: transparent; }
+  @media (max-width: 860px) { .program-tiles { grid-template-columns: minmax(0, 1fr); } .offer-grid.grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .offer-grid.grid-4 { grid-template-columns: minmax(0, 1fr); } }
   /* The game panel replaces these older progress widgets. */
   #steward-note-wrap, #phase-track { display: none !important; }
   .item-card.is-target { outline: 2px solid var(--filament-2) !important; }
@@ -180,7 +222,7 @@
       <div id="create-password-callout" class="save-link-box" hidden>
         <div style="flex:1; min-width:240px;">
           <strong style="display:block; color: var(--filament-2); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.35rem;">Set up your password</strong>
-          <span style="font-size:0.85rem; color: var(--white-dim);">Your Member ID is <strong id="create-password-member-id">—</strong>. Choose a password (8+ characters) so you can sign in with just those two, without needing your access link.</span>
+          <span style="font-size:0.85rem; color: var(--white-dim);">Your Member ID is <strong id="create-password-member-id">—</strong>. Choose a password (8+ characters) so you can sign in from any device.</span>
         </div>
         <form id="create-password-form" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
           <input id="create-password-input" type="password" placeholder="New password" autocomplete="new-password" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.6em 1.1em; color:var(--white); font-family:var(--font); min-width:200px;" />
@@ -197,129 +239,136 @@
         <button type="button" id="save-link-copy" class="pill">Copy</button>
       </div>
 
-      <div id="journey-panel" class="game-panel" hidden>
-        <div class="game-col">
-          <p class="game-label">Player</p>
-          <h3 id="game-rank" class="game-rank">Level 0 · Initiate</h3>
-          <div class="xp-bar"><span id="xp-fill"></span></div>
-          <p id="xp-text" class="xp-text">0 XP</p>
-          <div id="game-badges" class="game-badges"></div>
-        </div>
-        <div class="game-col">
-          <p class="game-label" id="quest-label">Current quest</p>
-          <h3 id="journey-next-title" class="game-quest">—</h3>
-          <p id="journey-next-body" class="game-body"></p>
-          <p id="journey-next-cta" style="margin-top:1rem;"></p>
+      <div class="account-strip">
+        <span>Signed in as <strong id="account-email">—</strong></span>
+        <span id="account-member-id">Member ID: —</span>
+        <a href="#" id="account-sign-out" class="pill mini">Sign out</a>
+      </div>
+
+      <!-- 1. The three programs, at a glance -->
+      <div class="program-tiles" id="program-tiles"></div>
+
+      <div id="free-member-note" class="save-link-box" hidden>
+        <div style="display:flex; flex-direction:column; gap:0.35rem;">
+          <strong style="font-size:0.95rem;">Welcome, free member.</strong>
+          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are below. Scroll on to see everything you can add.</span>
         </div>
       </div>
 
+      <!-- 2. YOURS: what this member has, purchased and free -->
+      <div class="zone" id="zone-yours">
+        <p class="zone-label">Yours</p>
+        <h2 class="zone-title">Everything you <strong>have</strong></h2>
 
-      <div id="rewards-group" class="phase-group" hidden>
+        <div id="journey-panel" class="game-panel" hidden>
+          <div class="game-col">
+            <p class="game-label">Player</p>
+            <h3 id="game-rank" class="game-rank">Level 0 · Initiate</h3>
+            <div class="xp-bar"><span id="xp-fill"></span></div>
+            <p id="xp-text" class="xp-text">0 XP</p>
+            <div id="game-badges" class="game-badges"></div>
+          </div>
+          <div class="game-col">
+            <p class="game-label" id="quest-label">Current quest</p>
+            <h3 id="journey-next-title" class="game-quest">—</h3>
+            <p id="journey-next-body" class="game-body"></p>
+            <p id="journey-next-cta" style="margin-top:1rem;"></p>
+          </div>
+        </div>
+
+        <div id="rewards-group" class="phase-group" hidden>
           <h3>TRIARCH™ levels &amp; loot</h3>
           <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Clear every quest in a level to win free loot. Higher levels, bigger loot.</p>
           <div class="grid grid-4" id="rewards-list"></div>
         </div>
 
+        <div class="yours-block" id="portal-founders" hidden>
+          <h3 class="yours-heading">Founders Organization</h3>
+          <div id="founder-card-group" hidden></div>
+          <div id="founders-owned" class="phase-group" hidden>
+            <div class="grid grid-3" id="founders-owned-list"></div>
+          </div>
+        </div>
 
-      <div class="grid grid-2 portal-top" style="margin-top:2rem;">
-        <div class="card">
-          <span class="num">Signed in as</span>
-          <h3 id="account-email" style="font-size:1.1rem;">—</h3>
-          <p id="account-member-id" style="margin-top:0.5rem; font-size:0.85rem; color: var(--white-dim);">Member ID: —</p>
-          <p style="margin-top:0.75rem;"><a href="#" id="account-sign-out" class="pill mini" style="padding:0.45em 1.1em;">Sign out</a></p>
+        <div class="yours-block" id="portal-partnerships" hidden>
+          <h3 class="yours-heading">Partnership</h3>
+          <div id="partnership-group" hidden></div>
         </div>
-        <div class="card">
-          <span class="num">Inside your membership</span>
-          <ul class="portal-jump" id="portal-jump">
-            <li><a href="#portal-founders">Founders Organization</a></li>
-            <li><a href="#portal-partnerships">Partnerships</a></li>
-            <li><a href="#portal-llab">.LLab Membership™</a></li>
-          </ul>
-        </div>
-      </div>
 
-      <div id="free-member-note" class="save-link-box" hidden>
-        <div style="display:flex; flex-direction:column; gap:0.35rem;">
-          <strong style="font-size:0.95rem;">Welcome, free member.</strong>
-          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are in the .LLab Membership™ section, organized by phase. Everything else is in the Shop: buy one product, or unlock the Four Phases with Membership.</span>
-        </div>
-      </div>
+        <div class="yours-block" id="portal-llab">
+          <h3 class="yours-heading">.LLab Membership™</h3>
+          <div class="grid grid-2">
+            <div class="card" id="membership-status-card">
+              <span class="num">.LLab Membership™</span>
+              <h3 id="membership-status">Not active</h3>
+              <p><a href="#offer-membership" style="text-decoration:underline;">What's included</a></p>
+            </div>
+            <div class="card" id="library-status-card">
+              <span class="num">.LLab Library Card™</span>
+              <h3 id="library-status">Not active</h3>
+              <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
+            </div>
+          </div>
 
-      <div id="portal-sections">
-      <!-- Founders Organization -->
-      <div class="portal-section" id="portal-founders">
-        <p class="eyebrow">Founders Organization</p>
-        <h2 class="portal-title">The Co.LLab™ <strong>Founders Organization</strong></h2>
-        <div id="founder-card-group" hidden></div>
-        <div id="founders-owned" class="phase-group" hidden>
-          <h3>Your Founders materials</h3>
-          <div class="grid grid-3" id="founders-owned-list"></div>
-        </div>
-        <div id="founders-join" hidden>
-          <p class="item-desc portal-lead" data-portal-lead>Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number. <a href="founders.html">Learn about the Founders Organization</a>.</p>
-          <details class="drawer">
-            <summary>See Founder tiers</summary>
-            <div class="grid grid-3" id="founders-join-list" style="margin-top:1rem;"></div>
+          <div id="steward-note-wrap"></div>
+          <div id="phase-track" class="phase-track" hidden>
+            <p class="phase-track-label">Infrastructure flight path</p>
+            <div class="phase-track-rail" id="phase-track-rail"></div>
+          </div>
+
+          <div id="benefits-group" class="phase-group" hidden>
+            <h3>Included with your memberships</h3>
+            <div class="grid grid-3" id="benefits-list"></div>
+          </div>
+
+          <h3 id="quests-heading" class="quests-heading" hidden>Your quests &amp; products</h3>
+          <div id="phase-groups"></div>
+
+          <details id="free-tools-group" class="phase-group drawer" hidden>
+            <summary>Your free tools <span class="drawer-count" id="free-tools-count"></span></summary>
+            <div id="free-tools-list"></div>
           </details>
         </div>
       </div>
 
-      <!-- Partnerships -->
-      <div class="portal-section" id="portal-partnerships">
-        <p class="eyebrow">Partnerships</p>
-        <h2 class="portal-title">Omnidirectional Enterprise™ <strong>Partnership</strong></h2>
-        <div id="partnership-group" hidden></div>
-        <div id="partnership-join" hidden>
-          <p class="item-desc portal-lead" data-portal-lead>Bring Leadership Infrastructure™ into your organization with a one-time Partnership: Partner, Strategic, Enterprise, or Omnidirectional, each with 12 months of every membership and seats for your team. <a href="partnership.html">Compare Partnership tiers</a>.</p>
+      <!-- 3. EXPLORE: everything they haven't bought yet -->
+      <div class="zone zone-explore" id="zone-explore">
+        <p class="zone-label">Explore more</p>
+        <h2 class="zone-title">Take the <strong>next step</strong></h2>
+
+        <div class="offer-block" id="offer-membership" hidden></div>
+
+        <div class="offer-block" id="founders-join" hidden>
+          <p class="offer-eyebrow" data-offer="founders-eyebrow">Founders Organization</p>
+          <h3 class="offer-title" data-offer="founders-title">Become a Founder</h3>
+          <p class="offer-body" data-offer="founders-body">Help build The Co.LLab™'s Leadership Infrastructure™ and be recognized permanently with a Founder Number.</p>
+          <ul class="offer-points">
+            <li>A permanent Founder Number and recognition</li>
+            <li>20% off eligible future Co.LLab™ products</li>
+            <li>Four founding options, from $20</li>
+          </ul>
+          <div class="grid grid-4 offer-grid" id="founders-join-list"></div>
+          <p class="offer-more"><a href="founders.html" data-offer="founders-link">Learn about the Founders Organization →</a></p>
         </div>
+
+        <div class="offer-block" id="partnership-join" hidden>
+          <p class="offer-eyebrow" data-offer="partnerships-eyebrow">Partnerships</p>
+          <h3 class="offer-title" data-offer="partnerships-title">Bring it to your organization</h3>
+          <p class="offer-body" data-offer="partnerships-body">A one-time Omnidirectional Enterprise™ Partnership brings Leadership Infrastructure™ into your organization: 12 months of every membership, products to keep, and seats for your team.</p>
+          <div class="grid grid-4 offer-grid" id="partnership-join-list"></div>
+          <p class="offer-more"><a href="partnership.html" data-offer="partnerships-link">Compare Partnership tiers →</a></p>
+        </div>
+
+        <div class="offer-block" id="locked-group" hidden>
+          <p class="offer-eyebrow">Shop</p>
+          <h3 class="offer-title">Add to your library</h3>
+          <p class="offer-body">Buy any product on its own, yours to keep. <span id="locked-count"></span></p>
+          <div id="locked-list"></div>
+        </div>
+
+        <div id="portal-programs"></div>
       </div>
 
-      <!-- .LLab Membership -->
-      <div class="portal-section" id="portal-llab">
-        <p class="eyebrow">.LLab Membership™</p>
-        <h2 class="portal-title">The <strong>.LLab Membership™</strong></h2>
-        <p class="item-desc portal-lead" data-portal-lead>Membership opens every Four Phases product while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.</p>
-        <div class="grid grid-2" style="margin-top:1.5rem;">
-          <div class="card" id="membership-status-card">
-            <span class="num">.LLab Membership™</span>
-            <h3 id="membership-status">Not active</h3>
-            <p><a href="products.html#membership" style="text-decoration:underline;">View membership</a></p>
-          </div>
-          <div class="card" id="library-status-card">
-            <span class="num">.LLab Library Card™</span>
-            <h3 id="library-status">Not active</h3>
-            <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
-          </div>
-        </div>
-
-        <div id="steward-note-wrap"></div>
-
-        <div id="phase-track" class="phase-track" hidden>
-          <p class="phase-track-label">Infrastructure flight path</p>
-          <div class="phase-track-rail" id="phase-track-rail"></div>
-        </div>
-
-        <div id="benefits-group" class="phase-group" hidden>
-          <h3>Membership, Library &amp; Journal</h3>
-          <div class="grid grid-3" id="benefits-list"></div>
-        </div>
-
-        <h3 id="quests-heading" class="quests-heading" hidden>Your quests</h3>
-        <div id="phase-groups"></div>
-
-        <details id="free-tools-group" class="phase-group drawer" hidden>
-          <summary>Free tools <span class="drawer-count" id="free-tools-count"></span></summary>
-          <div id="free-tools-list"></div>
-        </details>
-
-        <details id="locked-group" class="phase-group drawer" hidden>
-          <summary>Shop <span class="drawer-count" id="locked-count"></span></summary>
-          <p class="item-desc" style="margin:0.75rem 0 1.25rem;">Buy any product on its own. Four Phases products come with Membership; the rest can also be won as level loot.</p>
-          <div class="grid grid-3" id="locked-list"></div>
-        </details>
-      </div>
-
-      </div><!-- /portal-sections -->
     </div>
   </section>
 
@@ -388,7 +437,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/account.js?v=20261012f"></script>
+<script src="../js/account.js?v=20261012h"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

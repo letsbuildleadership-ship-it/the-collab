@@ -493,28 +493,133 @@
     return card;
   }
 
-  /* Founders Organization section: recognition card (rendered by
-   * renderFounderCard), Founders downloads, or, for non-Founders, the tiers. */
+  /* Founders Organization: what they have (Yours) or the offer (Explore). */
   function renderFoundersSection(data, ownedFounders) {
-    const owned = $('founders-owned');
     const ownedList = $('founders-owned-list');
     ownedList.innerHTML = '';
     ownedFounders.forEach((item) => {
       const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
       ownedList.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
     });
-    owned.hidden = !ownedFounders.length;
+    $('founders-owned').hidden = !ownedFounders.length;
+    $('portal-founders').hidden = !(data.founder || ownedFounders.length);
 
-    const join = $('founders-join');
     const joinList = $('founders-join-list');
     joinList.innerHTML = '';
     const tiers = data.founderSnapshots || [];
-    tiers.forEach((item) => joinList.appendChild(snapshotCard(item, 'Become a Founder')));
-    join.hidden = !!data.founder || !tiers.length;
+    tiers.forEach((item) => joinList.appendChild(snapshotCard({ ...item, name: item.name.replace(/^The Co\.LLab™ Founders Organization — /, '') }, 'Join')));
+    $('founders-join').hidden = !!data.founder || !tiers.length;
   }
 
+  /* Partnership: their panel (Yours) or the four tiers (Explore). */
   function renderPartnershipJoin(data) {
-    $('partnership-join').hidden = !!(data.partnership || data.seat);
+    const has = !!(data.partnership || data.seat);
+    $('portal-partnerships').hidden = !has;
+    const list = $('partnership-join-list');
+    list.innerHTML = '';
+    (data.partnershipOffers || []).forEach((t) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<span class="num">${esc(t.tier)}</span>
+        <p class="tier-price">${esc(t.price_display)}</p>
+        <p class="item-desc" style="color:#fdf6ec;">${esc(t.tagline || '')}</p>
+        <p class="item-desc">${t.seats} seat${t.seats === 1 ? '' : 's'} · 12 months of every membership</p>
+        ${t.payment_link ? `<div class="item-actions"><a class="pill pill--accent" href="${t.payment_link}" target="_blank" rel="noopener">Choose ${esc(t.tier)} <span class="arrow">→</span></a></div>` : ''}`;
+      list.appendChild(card);
+    });
+    $('partnership-join').hidden = has || !(data.partnershipOffers || []).length;
+  }
+
+  /* .LLab Membership offer, for anyone without an active Membership. */
+  function renderMembershipOffer(data) {
+    const el = $('offer-membership');
+    const offer = data.membershipOffer;
+    if (!offer) { el.hidden = true; el.innerHTML = ''; return; }
+    const plans = (offer.plans || [])
+      .filter((p) => p.payment_link)
+      .map((p, i) => `<a class="pill ${i === 0 ? 'pill--solid' : 'pill--accent'}" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
+      .join('');
+    el.innerHTML = `<p class="offer-eyebrow">.LLab Membership™</p>
+      <h3 class="offer-title">Unlock all 9 quests</h3>
+      <p class="offer-body">${esc(offer.description)}</p>
+      <ul class="offer-points">
+        <li>All 9 Four Phases products, open while you're a member</li>
+        <li>Clear a TRIARCH™ level, win free loot: one product to keep, per level</li>
+        <li>Your progress, XP, and levels tracked right here</li>
+      </ul>
+      <div class="offer-plans">${plans}</div>`;
+    el.hidden = false;
+  }
+
+  const SHOP_GROUPS = [
+    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. All nine come with .LLab Membership™, or buy one to keep.' },
+    { line: 'creator', title: 'Creator Infrastructure™', lead: 'For creators turning a body of work into a lasting venture. Buy one, or win it as level loot.' },
+    { line: 'blueprint', title: 'The Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
+    { line: 'other', title: 'More from The Co.LLab™', lead: '' },
+  ];
+
+  /* Shop: every product they don't own yet, grouped, with a short pitch. */
+  function renderShop(data) {
+    const group = $('locked-group');
+    const list = $('locked-list');
+    list.innerHTML = '';
+    const items = data.locked || [];
+    SHOP_GROUPS.forEach((g) => {
+      const inGroup = items.filter((i) => (i.line || 'other') === g.line);
+      if (!inGroup.length) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'shop-group';
+      wrap.innerHTML = `<h4>${esc(g.title)}</h4>${g.lead ? `<p>${esc(g.lead)}</p>` : ''}`;
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-3';
+      inGroup.forEach((item, i) => {
+        const card = snapshotCard(item);
+        if (i >= 3) card.classList.add('is-extra');
+        grid.appendChild(card);
+      });
+      wrap.appendChild(grid);
+      if (inGroup.length > 3) {
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'pill shop-more';
+        more.textContent = `See all ${inGroup.length}`;
+        more.addEventListener('click', () => { wrap.classList.add('show-all'); more.remove(); });
+        wrap.appendChild(more);
+      }
+      list.appendChild(wrap);
+    });
+    $('locked-count').textContent = items.length ? `${items.length} available.` : '';
+    group.hidden = !items.length;
+  }
+
+  /* The three programs at a glance, at the top of the portal. */
+  function renderProgramTiles(data) {
+    const el = $('program-tiles');
+    if (!el) return;
+    const cfg = (state.cfg && state.cfg.sections) || [];
+    const name = (type, fallback) => ((cfg.find((s) => s.type === type) || {}).eyebrow) || fallback;
+    const rw = data.membershipRewards;
+    const tiles = [];
+    const f = data.founder;
+    tiles.push(f
+      ? { type: 'founders', on: true, status: esc(f.levelLabel || 'Founder'), sub: f.founderNumber ? `Founder Number ${esc(f.founderNumber)}` : 'Recognized Founder', cta: 'Your Founder card', href: '#portal-founders' }
+      : { type: 'founders', on: false, status: 'Not a Founder yet', sub: 'Founding options from $20', cta: 'See Founder options', href: '#founders-join' });
+    const p = data.partnership;
+    tiles.push(p
+      ? { type: 'partnerships', on: true, status: esc(p.tierLabel), sub: `${p.seats || 1} seat${(p.seats || 1) === 1 ? '' : 's'}${p.expiresAt ? ` · through ${formatShortDate(p.expiresAt)}` : ''}`, cta: 'Your Partnership', href: '#portal-partnerships' }
+      : data.seat
+        ? { type: 'partnerships', on: true, status: `${esc(data.seat.tierLabel || '')} seat`, sub: 'Through your organization', cta: 'Your seat', href: '#portal-partnerships' }
+        : { type: 'partnerships', on: false, status: 'No Partnership yet', sub: 'For organizations and teams', cta: 'See Partnership tiers', href: '#partnership-join' });
+    const active = !!(rw && rw.active);
+    const cleared = rw ? rw.tiers.filter((t) => t.completed) : [];
+    const top = cleared[cleared.length - 1];
+    tiles.push(active
+      ? { type: 'llab', on: true, status: 'Active', sub: top ? `Level ${top.tier} · ${top.name}` : 'Level 0 · start your first quest', cta: 'Play your quests', href: '#journey-panel' }
+      : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools included', cta: 'Unlock all 9 quests', href: '#offer-membership' });
+    const label = { founders: name('founders', 'Founders Organization'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
+    el.innerHTML = tiles
+      .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)
+      .join('');
   }
 
   /* The portal as a game: Four Phases products are quests, TRIARCH™ tiers
@@ -587,6 +692,8 @@
   function jumpTo(key) {
     const el = $(`item-${key}`);
     if (!el) return false;
+    const drawer = el.closest('details');
+    if (drawer) drawer.open = true;
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     el.classList.add('is-target');
     setTimeout(() => el.classList.remove('is-target'), 2400);
@@ -726,14 +833,19 @@
     renderPartnershipJoin(data);
     renderRewards(data);
 
+    let openedLevel = false;
     PHASE_ORDER.forEach((phase) => {
       if (phase === FOUNDERS_PHASE) return;
       const items = byPhase.get(phase) || [];
       if (!items.length) return;
-      const section = document.createElement('div');
-      section.className = 'phase-group';
-      const heading = document.createElement('h3');
-      heading.textContent = BAY_NAME[phase] || phase;
+      // One drawer per level; the level with the first unfinished quest opens.
+      const progress = data.activityProgress || {};
+      const doneCount = items.filter((i) => new Set(progress[i.key] || []).size >= ACTIVITY_STEPS.length).length;
+      const section = document.createElement('details');
+      section.className = 'phase-group drawer level-drawer';
+      if (!openedLevel && doneCount < items.length) { section.open = true; openedLevel = true; }
+      const heading = document.createElement('summary');
+      heading.innerHTML = `${esc(BAY_NAME[phase] || phase)} <span class="drawer-count">${doneCount}/${items.length} done</span>`;
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       items.forEach((item) => {
@@ -774,50 +886,10 @@
     });
     toolsGroup.hidden = !toolCount;
     $('free-tools-count').textContent = toolCount ? `${toolCount}` : '';
-    if (data.memberType === 'free') toolsGroup.open = true;
 
-    const lockedGroup = $('locked-group');
-    const lockedList = $('locked-list');
-    lockedList.innerHTML = '';
-    const offer = data.membershipOffer;
-    if ((data.locked && data.locked.length) || offer) {
-      lockedGroup.hidden = false;
-      $('locked-count').textContent = `${(data.locked || []).length + (offer ? 1 : 0)}`;
-      if (offer) {
-        const plans = (offer.plans || [])
-          .filter((p) => p.payment_link)
-          .map((p) => `<a class="pill pill--solid" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
-          .join(' ');
-        const card = itemCard({ name: esc(offer.name), actionsHtml: plans });
-        card.classList.add('offer-card');
-        const desc = document.createElement('p');
-        desc.className = 'item-desc';
-        desc.textContent = `${offer.description} Membership opens every Four Phases product while it's active, and each TRIARCH™ tier you complete earns one more product of your choice, free and yours to keep.`;
-        card.insertBefore(desc, card.querySelector('.item-actions'));
-        const tag = document.createElement('span');
-        tag.className = 'num';
-        tag.textContent = 'Unlock everything';
-        card.insertBefore(tag, card.firstChild);
-        lockedList.appendChild(card);
-      }
-      (data.locked || []).forEach((item) => {
-        const actions = `<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">Buy · ${esc(item.price_display)} <span class="arrow">→</span></a>`;
-        const card = itemCard({ name: esc(item.name), actionsHtml: actions });
-        if (item.phase) {
-          const tag = document.createElement('span');
-          tag.className = 'num';
-          tag.textContent = BAY_NAME[item.phase] || item.phase;
-          card.insertBefore(tag, card.firstChild);
-        }
-        const desc = document.createElement('p');
-        desc.className = 'item-desc';
-        desc.textContent = (item.description || '') + (item.includedWithMembership ? ' Included with Membership.' : ' Can also be earned as a TRIARCH™ tier reward.');
-        card.insertBefore(desc, card.querySelector('.item-actions'));
-        lockedList.appendChild(card);
-      });
-    } else {
-      lockedGroup.hidden = true;
-    }
+    renderMembershipOffer(data);
+    renderShop(data);
+    renderProgramTiles(data);
 
     // Show the "save your access link" callout once per fresh sign-in
     // (tracked in sessionStorage so it doesn't nag on every visit).
@@ -836,16 +908,9 @@
   /* Member Portal™ sections come from content/portal.json, so new parts of
    * The Co.LLab™ can be added (type "program"), reordered, renamed, or
    * hidden without code changes. The static page is the fallback. */
-  function setTitle(el, title, highlight) {
-    if (!el) return;
-    el.innerHTML = `${esc(title || '')}${highlight ? ` <strong>${esc(highlight)}</strong>` : ''}`;
-  }
-
-  function leadHtml(sec) {
-    const link = sec.link ? ` <a href="${esc(sec.link)}">${esc(sec.link_label || 'Learn more')}</a>.` : '';
-    return `${esc(sec.description || '')}${link}`;
-  }
-
+  /* Member Portal™ settings (content/portal.json): hero text, program
+   * names, offer wording, and extra programs added later (type "program"),
+   * which appear under Explore more. */
   async function applyPortalConfig() {
     let cfg;
     try {
@@ -855,42 +920,27 @@
     } catch (e) {
       return;
     }
+    state.cfg = cfg;
     if (cfg.eyebrow && $('portal-eyebrow')) $('portal-eyebrow').textContent = cfg.eyebrow;
     if (cfg.intro && $('portal-intro')) $('portal-intro').textContent = cfg.intro;
-
-    const container = $('portal-sections');
-    const jump = $('portal-jump');
-    if (!container || !Array.isArray(cfg.sections)) return;
-    const builtIn = { founders: 'portal-founders', partnerships: 'portal-partnerships', llab: 'portal-llab' };
-    const seen = new Set();
-    if (jump) jump.innerHTML = '';
-
-    cfg.sections.forEach((sec) => {
-      if (!sec || !sec.id) return;
-      let el = builtIn[sec.type] ? $(builtIn[sec.type]) : $(`portal-${sec.id}`);
-      if (!el && sec.type === 'program') {
-        el = document.createElement('div');
-        el.className = 'portal-section';
-        el.id = `portal-${sec.id}`;
-        el.innerHTML = '<p class="eyebrow"></p><h2 class="portal-title"></h2><p class="item-desc portal-lead" data-portal-lead></p>';
-      }
-      if (!el) return;
-      seen.add(el.id);
-      const eyebrow = el.querySelector('.eyebrow');
-      if (eyebrow && sec.eyebrow) eyebrow.textContent = sec.eyebrow;
-      if (sec.title || sec.title_highlight) setTitle(el.querySelector('.portal-title'), sec.title, sec.title_highlight);
-      const lead = el.querySelector('[data-portal-lead]');
-      if (lead && sec.description) lead.innerHTML = leadHtml(sec);
-      el.hidden = sec.enabled === false;
-      container.appendChild(el); // keeps the configured order
-      if (jump && sec.enabled !== false) {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="#${el.id}">${esc(sec.eyebrow || sec.title_highlight || sec.id)}</a>`;
-        jump.appendChild(li);
-      }
+    const sections = Array.isArray(cfg.sections) ? cfg.sections : [];
+    ['founders', 'partnerships'].forEach((type) => {
+      const sec = sections.find((x) => x.type === type);
+      if (!sec) return;
+      const set = (k, v) => { const el = document.querySelector(`[data-offer="${type}-${k}"]`); if (el && v) el.textContent = v; };
+      set('eyebrow', sec.eyebrow);
+      set('body', sec.description);
+      const link = document.querySelector(`[data-offer="${type}-link"]`);
+      if (link && sec.link) { link.href = sec.link; link.textContent = `${sec.link_label || 'Learn more'} →`; }
     });
-    // Built-in sections left out of the config stay hidden.
-    Object.values(builtIn).forEach((id) => { if (!seen.has(id) && $(id)) $(id).hidden = true; });
+    const programs = $('portal-programs');
+    if (programs) {
+      programs.innerHTML = sections
+        .filter((x) => x.type === 'program' && x.enabled !== false)
+        .map((x) => `<div class="offer-block" id="portal-${esc(x.id)}"><p class="offer-eyebrow">${esc(x.eyebrow || '')}</p><h3 class="offer-title">${esc([x.title, x.title_highlight].filter(Boolean).join(' '))}</h3><p class="offer-body">${esc(x.description || '')}</p>${x.link ? `<p class="offer-more"><a href="${esc(x.link)}">${esc(x.link_label || 'Learn more')} →</a></p>` : ''}</div>`)
+        .join('');
+    }
+    if (state.data) renderProgramTiles(state.data);
   }
 
   async function boot() {
