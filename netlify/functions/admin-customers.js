@@ -35,11 +35,23 @@ exports.handler = async (event) => {
     // default: list (newest first). Goes through lib/store so it uses the
     // same Blobs configuration as the rest of the site.
     const customers = (await store.listCustomers()).sort((x, y) => String(y.createdAt).localeCompare(String(x.createdAt)));
+    // Free members: an account with nothing purchased, granted, or held.
+    const isFree = (c) =>
+      !(c.entitlements || []).length && !c.partnership && !c.founder && !c.seat && !Object.keys(c.memberships || {}).length;
+    const freeCount = customers.filter(isFree).length;
     return json(200, {
+      stats: {
+        total: customers.length,
+        free: freeCount,
+        paying: customers.length - freeCount,
+        joinedFree: customers.filter((c) => c.signupSource === 'free').length,
+      },
       customers: customers.map((c) => ({
         token: c.token,
         email: c.email,
         createdAt: c.createdAt,
+        free: isFree(c),
+        signupSource: c.signupSource || null,
         entitlements: c.entitlements,
         // Expiry-aware, so a lapsed Partnership term reads "expired" here too.
         memberships: effectiveMemberships(c),

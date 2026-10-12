@@ -152,7 +152,7 @@
     });
 
     tr.innerHTML = `
-      <td>${c.email}</td>
+      <td>${c.email}${c.free ? ' <span style="font-size:0.75em;opacity:0.75;">· Free member</span>' : ''}</td>
       <td>${new Date(c.createdAt).toLocaleDateString()}</td>
       <td>${partner}</td>
       <td>${entitlements}</td>
@@ -202,7 +202,8 @@
     const body = document.getElementById('customers-body');
     body.innerHTML = '';
     (data.customers || []).forEach((c) => body.appendChild(renderRow(c)));
-    document.getElementById('status-text').textContent = `${(data.customers || []).length} customer(s)`;
+    const st = data.stats || {};
+    document.getElementById('status-text').textContent = `${st.total ?? (data.customers || []).length} member(s) · ${st.free ?? 0} free · ${st.paying ?? 0} paying · ${st.joinedFree ?? 0} joined through free sign-up`;
   }
 
   async function search() {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Your Account — The Co.LLab™</title>
+<title>Member Portal · Omnidirectional Enterprise™ Membership — The Co.LLab™</title>
 <meta name="description" content="Access your .LLab™ library, entitlements, and the four-phase infrastructure you've built." />
 <link rel="canonical" href="https://wearethellab.netlify.app/pages/account.html" />
 <meta name="robots" content="noindex" />
@@ -36,6 +36,11 @@
   .founder-card-value { font-size: 1.05rem; font-weight: 500; color: var(--white); }
   .founder-card-benefit { margin-top: 1.5rem; font-size: 0.9rem; color: var(--white-dim); }
   .founder-card-copy { margin-top: 0.75rem; font-size: 0.82rem; line-height: 1.6; color: var(--white-faint); max-width: 68ch; }
+  .item-desc { color: var(--white-dim); font-size: 0.92rem; line-height: 1.55; margin: 0; }
+  .offer-card { border: 1px solid rgba(var(--filament-2-rgb), 0.55); }
+  .save-link-box[hidden], .phase-group[hidden] { display: none !important; }
+  #phase-groups .grid, #locked-list { background: transparent; }
+  #phase-groups .grid > .card, #locked-list > .card { outline: 1px solid var(--hairline); }
 </style>
 </head>
 <body>
@@ -66,9 +71,9 @@
   <section class="hero" style="padding-bottom: clamp(2rem, 5vw, 3rem);">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
-      <p class="eyebrow">Your infrastructure, in one place</p>
-      <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>.LLab™</strong> Console.</h1>
-      <p class="subhead" style="margin-top:2rem;">Every product, membership, and download you've unlocked — charted across CROWN, SCEPTER, SIGNET &amp; HEIRLOOM, the four phases of the TRIARCH™.</p>
+      <p class="eyebrow">Omnidirectional Enterprise™ Membership</p>
+      <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>Member Portal.</strong></h1>
+      <p class="subhead" style="margin-top:2rem;">The portal for Co.LLab™ products: your free tools, everything you own, and your Founder or Partner status, charted across CROWN, SCEPTER, SIGNET &amp; HEIRLOOM, the four phases of the TRIARCH™.</p>
     </div>
   </section>
 
@@ -148,6 +153,13 @@
         </div>
       </div>
 
+      <div id="free-member-note" class="save-link-box" hidden>
+        <div style="display:flex; flex-direction:column; gap:0.35rem;">
+          <strong style="font-size:0.95rem;">Welcome, free member.</strong>
+          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are below, organized by phase. When you're ready to go deeper, every product has a snapshot further down: buy one on its own, or unlock them all with Membership.</span>
+        </div>
+      </div>
+
       <div id="founder-card-group" hidden></div>
 
       <div id="partnership-group" hidden></div>
@@ -167,7 +179,8 @@
       <div id="phase-groups"></div>
 
       <div id="locked-group" class="phase-group" hidden>
-        <h3>Explore what's next</h3>
+        <h3>Snapshots: more to explore</h3>
+        <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Buy any product on its own, or unlock all of them with Membership.</p>
         <div class="grid grid-3" id="locked-list"></div>
       </div>
 

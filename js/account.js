@@ -484,6 +484,8 @@
     state.data = data;
 
     $('account-email').textContent = data.email;
+    const freeNote = $('free-member-note');
+    if (freeNote) freeNote.hidden = data.memberType !== 'free';
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
     renderFounderCard(data);
     renderPartnership(data);
@@ -541,11 +543,18 @@
       });
     }
 
+    const freeByPhase = new Map();
+    (data.freeTools || []).forEach((tool) => {
+      if (!freeByPhase.has(tool.phase)) freeByPhase.set(tool.phase, []);
+      freeByPhase.get(tool.phase).push(tool);
+    });
+
     const phaseGroups = $('phase-groups');
     phaseGroups.innerHTML = '';
     PHASE_ORDER.forEach((phase) => {
-      const items = byPhase.get(phase);
-      if (!items || !items.length) return;
+      const items = byPhase.get(phase) || [];
+      const tools = freeByPhase.get(phase) || [];
+      if (!items.length && !tools.length) return;
       const section = document.createElement('div');
       section.className = 'phase-group';
       const heading = document.createElement('h3');
@@ -556,6 +565,15 @@
         const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
         grid.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.key }));
       });
+      tools.forEach((tool) => {
+        const actions = `<span class="tag">Free tool</span> <a class="pill" href="${tool.file}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>`;
+        const card = itemCard({ name: esc(tool.name), actionsHtml: actions });
+        const desc = document.createElement('p');
+        desc.className = 'item-desc';
+        desc.textContent = tool.description;
+        card.insertBefore(desc, card.querySelector('.item-actions'));
+        grid.appendChild(card);
+      });
       section.appendChild(heading);
       section.appendChild(grid);
       phaseGroups.appendChild(section);
@@ -564,11 +582,40 @@
     const lockedGroup = $('locked-group');
     const lockedList = $('locked-list');
     lockedList.innerHTML = '';
-    if (data.locked && data.locked.length) {
+    const offer = data.membershipOffer;
+    if ((data.locked && data.locked.length) || offer) {
       lockedGroup.hidden = false;
-      data.locked.forEach((item) => {
-        const actions = `<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">${item.price_display} <span class="arrow">→</span></a>`;
-        lockedList.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
+      if (offer) {
+        const plans = (offer.plans || [])
+          .filter((p) => p.payment_link)
+          .map((p) => `<a class="pill pill--solid" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
+          .join(' ');
+        const card = itemCard({ name: esc(offer.name), actionsHtml: plans });
+        card.classList.add('offer-card');
+        const desc = document.createElement('p');
+        desc.className = 'item-desc';
+        desc.textContent = `${offer.description} Membership opens every Four Phases product in the catalog while it's active.`;
+        card.insertBefore(desc, card.querySelector('.item-actions'));
+        const tag = document.createElement('span');
+        tag.className = 'num';
+        tag.textContent = 'Unlock everything';
+        card.insertBefore(tag, card.firstChild);
+        lockedList.appendChild(card);
+      }
+      (data.locked || []).forEach((item) => {
+        const actions = `<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">Buy · ${esc(item.price_display)} <span class="arrow">→</span></a>`;
+        const card = itemCard({ name: esc(item.name), actionsHtml: actions });
+        if (item.phase) {
+          const tag = document.createElement('span');
+          tag.className = 'num';
+          tag.textContent = BAY_NAME[item.phase] || item.phase;
+          card.insertBefore(tag, card.firstChild);
+        }
+        const desc = document.createElement('p');
+        desc.className = 'item-desc';
+        desc.textContent = (item.description || '') + (offer && item.includedWithMembership ? ' Also included with Membership.' : '');
+        card.insertBefore(desc, card.querySelector('.item-actions'));
+        lockedList.appendChild(card);
       });
     } else {
       lockedGroup.hidden = true;

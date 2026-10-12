@@ -1,0 +1,117 @@
+{
+  "_readme": "Free tools every member (including free members) can open in the member portal. Files are public PDFs under /content/library/free-tools/. Order and phase match the free tools on pages/products.html.",
+  "tools": [
+    {
+      "key": "free-leadership-foundations-checklist",
+      "name": "Leadership Foundations Checklist™",
+      "description": "A self-audit of what's already in place — before you build anything new on top of it.",
+      "phase": "Phase I · Foundations",
+      "file": "/content/library/free-tools/leadership-foundations-checklist.pdf"
+    },
+    {
+      "key": "free-clarity-direction-worksheet",
+      "name": "Clarity & Direction Worksheet™",
+      "description": "Four short prompts to name your direction in plain language before you build anything on top of it.",
+      "phase": "Phase I · Foundations",
+      "file": "/content/library/free-tools/clarity-direction-worksheet.pdf"
+    },
+    {
+      "key": "free-foundation-strength-snapshot",
+      "name": "Foundation Strength Snapshot™",
+      "description": "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.",
+      "phase": "Phase I · Foundations",
+      "file": "/content/library/free-tools/foundation-strength-snapshot.pdf"
+    },
+    {
+      "key": "free-one-strength-starter",
+      "name": "One Strength Starter™",
+      "description": "A single-page starter for naming and building from one leadership strength.",
+      "phase": "Phase I · Foundations",
+      "file": "/content/library/free-tools/one-strength-starter.pdf"
+    },
+    {
+      "key": "free-mission-to-action-worksheet",
+      "name": "Mission-to-Action Worksheet™",
+      "description": "Translate your mission into three concrete actions you can take this month.",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "file": "/content/library/free-tools/mission-to-action-worksheet.pdf"
+    },
+    {
+      "key": "free-accountability-gaps-checklist",
+      "name": "Accountability Gaps Checklist™",
+      "description": "Spot where accountability quietly breaks down across your team or organization.",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "file": "/content/library/free-tools/accountability-gaps-checklist.pdf"
+    },
+    {
+      "key": "free-alignment-quick-check",
+      "name": "Alignment Quick-Check™",
+      "description": "A five-minute check on whether your day-to-day work still matches your stated priorities.",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "file": "/content/library/free-tools/alignment-quick-check.pdf"
+    },
+    {
+      "key": "free-30-day-infrastructure-starter",
+      "name": "30-Day Infrastructure Starter™",
+      "description": "A simple 30-day plan for putting your first piece of infrastructure in place.",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "file": "/content/library/free-tools/30-day-infrastructure-starter.pdf"
+    },
+    {
+      "key": "free-culture-practice-audit",
+      "name": "Culture & Practice Audit™",
+      "description": "A candid audit of the everyday practices actually shaping your culture — not just the ones on paper.",
+      "phase": "Phase III · Internal Operating Systems",
+      "file": "/content/library/free-tools/culture-practice-audit.pdf"
+    },
+    {
+      "key": "free-leadership-influence-worksheet",
+      "name": "Leadership Influence Worksheet™",
+      "description": "Map where your influence is strongest inside your organization — and where it isn't reaching yet.",
+      "phase": "Phase III · Internal Operating Systems",
+      "file": "/content/library/free-tools/leadership-influence-worksheet.pdf"
+    },
+    {
+      "key": "free-operating-rhythm-checklist",
+      "name": "Operating Rhythm Checklist™",
+      "description": "Check your meeting, communication, and decision rhythms against what healthy systems actually need.",
+      "phase": "Phase III · Internal Operating Systems",
+      "file": "/content/library/free-tools/operating-rhythm-checklist.pdf"
+    },
+    {
+      "key": "free-systems-health-snapshot",
+      "name": "Systems Health Snapshot™",
+      "description": "A fast diagnostic snapshot of how well your internal systems are actually operating.",
+      "phase": "Phase III · Internal Operating Systems",
+      "file": "/content/library/free-tools/systems-health-snapshot.pdf"
+    },
+    {
+      "key": "free-legacy-starter-worksheet",
+      "name": "Legacy Starter Worksheet™",
+      "description": "Begin naming what you want to leave behind — and who needs to carry it forward.",
+      "phase": "Phase IV · Preservation",
+      "file": "/content/library/free-tools/legacy-starter-worksheet.pdf"
+    },
+    {
+      "key": "free-knowledge-transfer-checklist",
+      "name": "Knowledge Transfer Checklist™",
+      "description": "Make sure what's in your head is actually documented somewhere else too.",
+      "phase": "Phase IV · Preservation",
+      "file": "/content/library/free-tools/knowledge-transfer-checklist.pdf"
+    },
+    {
+      "key": "free-continuity-quick-check",
+      "name": "Continuity Quick-Check™",
+      "description": "Check whether your organization could keep running smoothly if you stepped away for a month.",
+      "phase": "Phase IV · Preservation",
+      "file": "/content/library/free-tools/continuity-quick-check.pdf"
+    },
+    {
+      "key": "free-legacy-infrastructure-snapshot",
+      "name": "Legacy Infrastructure Snapshot™",
+      "description": "A first look at how prepared your leadership infrastructure is to outlast you.",
+      "phase": "Phase IV · Preservation",
+      "file": "/content/library/free-tools/legacy-infrastructure-snapshot.pdf"
+    }
+  ]
+}

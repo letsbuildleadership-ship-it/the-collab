@@ -3,6 +3,7 @@
 // password sign-in) so both return the exact same data.
 const pricing = require('./pricing');
 const membershipStatus = require('./membership-status');
+const freeTools = require('../../../content/free-tools.json').tools;
 
 function buildAccountView(record, now) {
   // Expiry-aware: a lapsed Partnership membership term drops out here.
@@ -27,18 +28,45 @@ function buildAccountView(record, now) {
     for (const key of pricing.allCatalogProductKeys()) {
       if (!entitlementSet.has(key)) {
         const entry = pricing.entryForKey(key);
-        locked.push({ key, name: entry.name, phase: entry.phase, price_display: entry.price_display, payment_link: entry.payment_link });
+        locked.push({
+          key,
+          name: entry.name,
+          phase: entry.phase,
+          description: entry.description || null,
+          price_display: entry.price_display,
+          payment_link: entry.payment_link,
+          // Membership opens the catalog except the Founders tiers.
+          includedWithMembership: !pricing.founderRankForKey(key),
+        });
       }
     }
   }
 
+  const memberships = membershipStatus.effectiveMemberships(record, now);
+  const membershipEntry = pricing.entryForKey('membership');
+  const membershipActive = !!(memberships.membership && memberships.membership.status === 'active');
+
+  // A free member has an account but nothing purchased, granted, or held.
+  const memberType =
+    entitlementSet.size || record.partnership || record.founder || record.seat || Object.keys(record.memberships || {}).length
+      ? 'member'
+      : 'free';
+
   return {
     email: record.email,
+    memberType,
+    // Free tools: open to every member, free or paid.
+    freeTools,
+    // Shown while Membership isn't active: what it includes and how to join.
+    membershipOffer:
+      !membershipActive && membershipEntry
+        ? { name: membershipEntry.name, description: membershipEntry.description, plans: membershipEntry.plans || [] }
+        : null,
     name: record.name || null,
     memberId: record.memberId || null,
     hasPassword: !!record.passwordHash,
     memberOfCollab: true,
-    memberships: membershipStatus.effectiveMemberships(record, now),
+    memberships,
     partnership: record.partnership
       ? {
           key: record.partnership.key,
