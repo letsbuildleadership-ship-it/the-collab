@@ -41,9 +41,16 @@ function buildAccountView(record, now) {
       line: entry.kind === 'blueprint' ? 'blueprint' : entry.line || (fourPhases.has(key) ? 'four-phases' : founderTiers.has(key) ? 'founders' : 'other'),
     };
   };
+  // Blueprint™ bundle: the Complete Edition covers every issue, and owning
+  // every issue covers the Complete Edition, so neither is offered again.
+  const covered = new Set(ownedKeys);
+  const issueKeys = (pricing.registry.blueprint_series || []).map((b) => b.key).filter((k) => k !== 'blueprint-complete');
+  if (covered.has('blueprint-complete')) issueKeys.forEach((k) => covered.add(k));
+  if (issueKeys.length && issueKeys.every((k) => covered.has(k))) covered.add('blueprint-complete');
+
   const purchasable = [...pricing.allCatalogProductKeys(), ...(pricing.registry.blueprint_series || []).map((b) => b.key)];
   const locked = purchasable
-    .filter((key) => !ownedKeys.has(key) && !founderTiers.has(key))
+    .filter((key) => !covered.has(key) && !founderTiers.has(key))
     .filter((key) => { const e = pricing.entryForKey(key); return e && e.payment_link; })
     .map(snapshot);
   // Partnership tiers to offer anyone without a Partnership or seat.
@@ -71,8 +78,32 @@ function buildAccountView(record, now) {
       ? 'member'
       : 'free';
 
+  // Buy links (Stripe Payment Links) for things this member already has, so
+  // store pages can show "In your library" instead of a Buy button.
+  const ownedLinks = [];
+  const addLink = (href, label) => { if (href) ownedLinks.push({ href, label }); };
+  for (const key of covered) {
+    const e = pricing.entryForKey(key);
+    if (e && (e.kind === 'product' || e.kind === 'blueprint') && !founderTiers.has(key)) addLink(e.payment_link, 'In your library');
+  }
+  for (const [key, m] of Object.entries(memberships)) {
+    if (m && m.status === 'active') for (const plan of (pricing.entryForKey(key) || {}).plans || []) addLink(plan.payment_link, 'Active');
+  }
+  if (record.founder) {
+    for (const key of founderTiers) {
+      if ((pricing.founderRankForKey(key) || 0) <= (record.founder.rank || 0)) addLink((pricing.entryForKey(key) || {}).payment_link, 'Your Founder level');
+    }
+  }
+  const p = record.partnership;
+  if (p && p.expiresAt && Date.parse(p.expiresAt) > Date.now()) {
+    for (const t of pricing.registry.partnerships || []) {
+      if (pricing.partnershipRank(t.key) <= pricing.partnershipRank(p.key)) addLink(t.payment_link, t.key === p.key ? 'Your Partnership' : 'Included in yours');
+    }
+  }
+
   return {
     email: record.email,
+    ownedLinks,
     memberType,
     // Free tools: open to every member, free or paid.
     freeTools,

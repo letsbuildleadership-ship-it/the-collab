@@ -141,12 +141,42 @@ async function loadContent() {
  * Link hrefs for the dynamic, discount-aware checkout-create.js endpoint.
  * Fails silently on any error — the static links already work fine.
  * ------------------------------------------------------------------ */
+/* Signed-in members never see a Buy button for something they already
+ * have: those Payment Links become "In your library" / "Active" / "Your
+ * Partnership" links to the Member Portal™. Card-style links keep their
+ * content and get a small badge instead. */
+function markOwnedLinks(me) {
+  const owned = new Map((me.ownedLinks || []).map((l) => [l.href, l.label]));
+  if (!owned.size) return;
+  const portal = location.pathname.startsWith('/pages/') ? 'account.html' : '/pages/account.html';
+  document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach((el) => {
+    const label = owned.get(el.getAttribute('href'));
+    if (!label) return;
+    el.setAttribute('href', portal);
+    el.removeAttribute('target');
+    el.classList.add('is-owned');
+    el.dataset.owned = label;
+    if (el.classList.contains('card')) {
+      if (!el.querySelector('.owned-badge')) {
+        const badge = document.createElement('span');
+        badge.className = 'tag owned-badge';
+        badge.textContent = `✓ ${label}`;
+        el.appendChild(badge);
+      }
+    } else {
+      el.textContent = `✓ ${label}`;
+    }
+  });
+}
+
 async function applyFounderCheckoutLinks() {
   try {
     const meRes = await fetch('/.netlify/functions/me', { credentials: 'include' });
     if (!meRes.ok) return;
     const me = await meRes.json();
-    if (!me || !me.founder) return;
+    if (!me) return;
+    markOwnedLinks(me);
+    if (!me.founder) return;
 
     const mapRes = await fetch('/.netlify/functions/catalog-map', { credentials: 'include' });
     if (!mapRes.ok) return;

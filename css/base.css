@@ -1261,3 +1261,16 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
   text-transform: uppercase;
   color: var(--white-faint);
 }
+
+/* Store buttons for things a signed-in member already has (js/main.js). */
+a.pill.is-owned {
+  background: transparent;
+  border-color: rgba(var(--filament-2-rgb), 0.6);
+  color: var(--filament-2);
+}
+.owned-badge {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--filament-2);
+  border-color: rgba(var(--filament-2-rgb), 0.6);
+}
