@@ -528,6 +528,11 @@
       list.appendChild(card);
     });
     $('partnership-join').hidden = has || !(data.partnershipOffers || []).length;
+    // Overlap: a Partnership includes every membership, so a paying member
+    // is told it replaces their subscription rather than doubling it.
+    const mem = (data.memberships || {}).membership;
+    const note = $('partnership-member-note');
+    if (note) note.hidden = !(mem && mem.status === 'active' && mem.subscriptionId);
   }
 
   /* .LLab Membership offer, for anyone without an active Membership. */
@@ -611,10 +616,12 @@
         ? { type: 'partnerships', on: true, status: `${esc(data.seat.tierLabel || '')} seat`, sub: 'Through your organization', cta: 'Your seat', href: '#portal-partnerships' }
         : { type: 'partnerships', on: false, status: 'No Partnership yet', sub: 'For organizations and teams', cta: 'See Partnership tiers', href: '#partnership-join' });
     const active = !!(rw && rw.active);
+    const mem = (data.memberships || {}).membership;
+    const viaPartnership = !!(mem && /^partnership/.test(mem.source || ''));
     const cleared = rw ? rw.tiers.filter((t) => t.completed) : [];
     const top = cleared[cleared.length - 1];
     tiles.push(active
-      ? { type: 'llab', on: true, status: 'Active', sub: top ? `Level ${top.tier} · ${top.name}` : 'Level 0 · start your first quest', cta: 'Play your quests', href: '#journey-panel' }
+      ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${top.name}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
       : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools included', cta: 'Unlock all 9 quests', href: '#offer-membership' });
     const label = { founders: name('founders', 'Founders Organization'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
     el.innerHTML = tiles

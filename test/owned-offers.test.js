@@ -51,3 +51,14 @@ test('active memberships, Founder levels at or below theirs, and their Partnersh
   assert.ok(byHref.has(tiers.find((t) => t.tier_label === 'Partner').payment_link));
   assert.ok(!byHref.has(tiers.find((t) => t.tier_label === 'Enterprise').payment_link));
 });
+
+test('overlaps: a Partnership counts as Membership and its products are never offered again', async () => {
+  const t = pricing.registry.partnerships.find((x) => x.tier_label === 'Strategic');
+  const r = (await fulfillCheckoutSession({ id: 'ov1', customer_details: { email: 'e@example.com' }, created: Math.floor(Date.now() / 1000), amount_total: 1 }, [t.stripe_price_id])).record;
+  const v = buildAccountView(r);
+  assert.equal(v.membershipOffer, null);
+  assert.equal(v.partnershipOffers.length, 0);
+  const offered = new Set(v.locked.map((l) => l.key));
+  for (const k of pricing.partnershipGrantKeysFor(t.key)) assert.ok(!offered.has(k), `granted ${k} offered`);
+  for (const k of pricing.fourPhasesKeys()) assert.ok(!offered.has(k), `Four Phases ${k} offered`);
+});

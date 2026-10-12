@@ -116,6 +116,8 @@
   .offer-grid > .card, #locked-list .grid > .card { outline: 1px solid var(--hairline); }
   .offer-grid .card .tier-price { font-size: 1.5rem; color: #fdf6ec; font-weight: 600; margin: 0.25rem 0; }
   .offer-more { margin: 1.25rem 0 0; }
+  .offer-note { margin: 1rem 0 0; padding: 0.75rem 1rem; border-left: 3px solid var(--filament-2); background: rgba(var(--filament-2-rgb), 0.08); color: rgba(253, 246, 236, 0.9); font-size: 0.92rem; }
+  .offer-note[hidden] { display: none !important; }
   .offer-more a { color: var(--filament-2); text-decoration: underline; }
   .shop-group { margin-top: 1.75rem; }
   .shop-group:not(.show-all) .is-extra { display: none; }
@@ -355,6 +357,7 @@
           <p class="offer-eyebrow" data-offer="partnerships-eyebrow">Partnerships</p>
           <h3 class="offer-title" data-offer="partnerships-title">Bring it to your organization</h3>
           <p class="offer-body" data-offer="partnerships-body">A one-time Omnidirectional Enterprise™ Partnership brings Leadership Infrastructure™ into your organization: 12 months of every membership, products to keep, and seats for your team.</p>
+          <p class="offer-note" id="partnership-member-note" hidden>Already a member? A Partnership includes every membership, so your Membership subscription stops at the end of its current period. You're never billed twice.</p>
           <div class="grid grid-4 offer-grid" id="partnership-join-list"></div>
           <p class="offer-more"><a href="partnership.html" data-offer="partnerships-link">Compare Partnership tiers →</a></p>
         </div>
@@ -437,7 +440,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/account.js?v=20261012h"></script>
+<script src="../js/account.js?v=20261012i"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
