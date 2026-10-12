@@ -151,15 +151,15 @@ function hasFullCatalog(record, now) {
 }
 
 /**
- * One-time catalog keys an active membership unlocks for this customer:
- * every catalog product except the Founders tiers. Founders Organization
- * materials come only with a Founders purchase — never with Membership,
- * whether paid by subscription or included in a Partnership.
+ * One-time products an active membership opens for this customer: the Four
+ * Phases products (Leadership Infrastructure™ Phases I–IV). The Creator line
+ * and Blueprint™ issues are bought separately or chosen as TRIARCH™ tier
+ * rewards (lib/membership-rewards.js); Founders Organization materials come
+ * only with a Founders purchase.
  */
 function catalogUnlockKeys(record, now) {
   if (!hasFullCatalog(record, now)) return [];
-  const founders = new Set(pricing.founderTierKeys());
-  return pricing.allCatalogProductKeys().filter((key) => !founders.has(key));
+  return pricing.fourPhasesKeys();
 }
 
 module.exports = {

@@ -479,6 +479,88 @@
     if ((p.seats || 1) > 1) loadSeatRoster();
   }
 
+
+  function snapshotCard(item, buyLabel) {
+    const actions = `<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">${buyLabel || 'Buy'} · ${esc(item.price_display)} <span class="arrow">→</span></a>`;
+    const card = itemCard({ name: esc(item.name), actionsHtml: actions });
+    if (item.description) {
+      const desc = document.createElement('p');
+      desc.className = 'item-desc';
+      desc.textContent = item.description;
+      card.insertBefore(desc, card.querySelector('.item-actions'));
+    }
+    return card;
+  }
+
+  /* Founders Organization section: recognition card (rendered by
+   * renderFounderCard), Founders downloads, or, for non-Founders, the tiers. */
+  function renderFoundersSection(data, ownedFounders) {
+    const owned = $('founders-owned');
+    const ownedList = $('founders-owned-list');
+    ownedList.innerHTML = '';
+    ownedFounders.forEach((item) => {
+      const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
+      ownedList.appendChild(itemCard({ name: item.name, actionsHtml: actions }));
+    });
+    owned.hidden = !ownedFounders.length;
+
+    const join = $('founders-join');
+    const joinList = $('founders-join-list');
+    joinList.innerHTML = '';
+    const tiers = data.founderSnapshots || [];
+    tiers.forEach((item) => joinList.appendChild(snapshotCard(item, 'Become a Founder')));
+    join.hidden = !!data.founder || !tiers.length;
+  }
+
+  function renderPartnershipJoin(data) {
+    $('partnership-join').hidden = !!(data.partnership || data.seat);
+  }
+
+  /* TRIARCH™ tier rewards for .LLab Membership™. */
+  function renderRewards(data) {
+    const group = $('rewards-group');
+    const list = $('rewards-list');
+    const rw = data.membershipRewards;
+    list.innerHTML = '';
+    if (!rw) { group.hidden = true; return; }
+    group.hidden = false;
+    rw.tiers.forEach((t) => {
+      const card = document.createElement('div');
+      card.className = 'card reward-card';
+      let body;
+      if (t.pick) {
+        body = `<p class="reward-state">Your reward</p><h4 style="margin:0.25rem 0 0;">${esc(t.pick.name)}</h4><p class="reward-state" style="margin-top:0.4rem;">Yours to keep. Find it in your products above.</p>`;
+      } else if (t.options && t.options.length) {
+        const opts = t.options.map((o) => `<option value="${esc(o.key)}">${esc(o.name)} (${esc(o.price_display)})</option>`).join('');
+        body = `<p class="reward-state">Tier complete. Choose one product, free:</p>
+          <select data-reward-select="${t.tier}" aria-label="${esc(t.name)} reward">${opts}</select>
+          <button type="button" class="pill pill--solid" data-reward-claim="${t.tier}">Claim reward <span class="arrow">→</span></button>
+          <p class="login-error" data-reward-error="${t.tier}" hidden></p>`;
+      } else if (t.completed && !rw.active) {
+        body = `<p class="reward-state">Tier complete. Renew your .LLab Membership™ to choose your reward.</p>`;
+      } else if (t.completed) {
+        body = `<p class="reward-state">Tier complete. You already own every product in this tier's range.</p>`;
+      } else {
+        body = `<p class="reward-state">Complete all three steps on every ${esc(t.name)} product to choose one product up to $${t.maxPrice.toLocaleString()}, free.</p>`;
+      }
+      card.innerHTML = `<span class="num">Tier ${t.tier} · ${esc(t.name)}</span><p class="reward-state" style="margin:0.2rem 0 0.6rem;">Choices up to $${t.maxPrice.toLocaleString()}</p>${body}`;
+      list.appendChild(card);
+    });
+  }
+
+  async function claimReward(tier) {
+    const select = document.querySelector(`[data-reward-select="${tier}"]`);
+    const err = document.querySelector(`[data-reward-error="${tier}"]`);
+    if (!select) return;
+    const res = await fetch('/.netlify/functions/membership-pick', {
+      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier: Number(tier), key: select.value }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) { if (err) { err.textContent = data.error || 'Could not claim that reward.'; err.hidden = false; } return; }
+    renderDashboard(data);
+  }
+
   function renderDashboard(data) {
     data.activityProgress = data.activityProgress || {};
     state.data = data;
@@ -551,7 +633,13 @@
 
     const phaseGroups = $('phase-groups');
     phaseGroups.innerHTML = '';
+    const FOUNDERS_PHASE = 'Build · Founders Organization';
+    renderFoundersSection(data, byPhase.get(FOUNDERS_PHASE) || []);
+    renderPartnershipJoin(data);
+    renderRewards(data);
+
     PHASE_ORDER.forEach((phase) => {
+      if (phase === FOUNDERS_PHASE) return;
       const items = byPhase.get(phase) || [];
       const tools = freeByPhase.get(phase) || [];
       if (!items.length && !tools.length) return;
@@ -594,7 +682,7 @@
         card.classList.add('offer-card');
         const desc = document.createElement('p');
         desc.className = 'item-desc';
-        desc.textContent = `${offer.description} Membership opens every Four Phases product in the catalog while it's active.`;
+        desc.textContent = `${offer.description} Membership opens every Four Phases product while it's active, and each TRIARCH™ tier you complete earns one more product of your choice, free and yours to keep.`;
         card.insertBefore(desc, card.querySelector('.item-actions'));
         const tag = document.createElement('span');
         tag.className = 'num';
@@ -613,7 +701,7 @@
         }
         const desc = document.createElement('p');
         desc.className = 'item-desc';
-        desc.textContent = (item.description || '') + (offer && item.includedWithMembership ? ' Also included with Membership.' : '');
+        desc.textContent = (item.description || '') + (item.includedWithMembership ? ' Included with Membership.' : ' Can also be earned as a TRIARCH™ tier reward.');
         card.insertBefore(desc, card.querySelector('.item-actions'));
         lockedList.appendChild(card);
       });
@@ -743,6 +831,7 @@
 
     document.addEventListener('click', async (e) => {
       const t = e.target && e.target.closest ? e.target.closest('button, a') : null;
+      if (t && t.dataset && t.dataset.rewardClaim) { e.preventDefault(); await claimReward(t.dataset.rewardClaim); return; }
       if (t && t.id === 'seat-invite-signin-link') { e.preventDefault(); location.href = 'login.html'; return; }
       if (t && t.id === 'account-sign-out') {
         e.preventDefault();
@@ -795,6 +884,10 @@
       renderStewardNote(state.data);
 
       const result = await postProgress(itemKey, stepIndex, done);
+      if (result && state.data && state.data.membershipRewards) {
+        const fresh = await fetchMe(null);
+        if (fresh) { state.data.membershipRewards = fresh.membershipRewards; renderRewards(state.data); }
+      }
       if (!result) {
         // Save failed — revert the optimistic UI update.
         box.checked = !done;

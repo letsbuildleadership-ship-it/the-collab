@@ -38,9 +38,22 @@
   .founder-card-copy { margin-top: 0.75rem; font-size: 0.82rem; line-height: 1.6; color: var(--white-faint); max-width: 68ch; }
   .item-desc { color: var(--white-dim); font-size: 0.92rem; line-height: 1.55; margin: 0; }
   .offer-card { border: 1px solid rgba(var(--filament-2-rgb), 0.55); }
-  .save-link-box[hidden], .phase-group[hidden] { display: none !important; }
-  #phase-groups .grid, #locked-list { background: transparent; }
-  #phase-groups .grid > .card, #locked-list > .card { outline: 1px solid var(--hairline); }
+  .save-link-box[hidden], .phase-group[hidden], #founders-join[hidden], #partnership-join[hidden] { display: none !important; }
+  .portal-section { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 2.75rem); border-top: 1px solid var(--hairline-strong); scroll-margin-top: 90px; }
+  .portal-title { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 300; margin: 0.9rem 0 0; color: #fdf6ec; }
+  .portal-title strong { font-weight: 600; color: var(--filament-1); }
+  .portal-lead { margin-top: 1rem; max-width: 72ch; }
+  .portal-lead a, .portal-jump a { color: var(--filament-2); text-decoration: underline; }
+  .portal-jump { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; font-size: 1rem; }
+  .reward-card select { width: 100%; background: transparent; color: #fdf6ec; border: 1px solid var(--hairline-strong); border-radius: 12px; padding: 0.6em 0.8em; font-family: var(--font); margin: 0.5rem 0; }
+  .reward-card select option { color: #111; }
+  .reward-state { font-size: 0.85rem; color: var(--white-faint); margin: 0; }
+  #rewards-list.grid-4 > .card, #founders-join-list > .card, #founders-owned-list > .card { outline: 1px solid var(--hairline); }
+  #rewards-list, #founders-join-list, #founders-owned-list { background: transparent; }
+  @media (max-width: 980px) { #rewards-list.grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { #rewards-list.grid-4, .portal-top.grid-2 { grid-template-columns: 1fr; } }
+  #phase-groups .grid, #locked-list, #benefits-list { background: transparent; }
+  #phase-groups .grid > .card, #locked-list > .card, #benefits-list > .card { outline: 1px solid var(--hairline); }
 </style>
 </head>
 <body>
@@ -73,7 +86,7 @@
     <div class="wrap" style="position:relative;">
       <p class="eyebrow">Omnidirectional Enterprise™ Membership</p>
       <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>Member Portal™.</strong></h1>
-      <p class="subhead" style="margin-top:2rem;">The portal for Co.LLab™ products: your free tools, everything you own, and your Founder or Partner status, charted across CROWN, SCEPTER, SIGNET &amp; HEIRLOOM, the four phases of the TRIARCH™.</p>
+      <p class="subhead" style="margin-top:2rem;">Omnidirectional Enterprise™ Membership houses every part of The Co.LLab™: the Founders Organization, Partnerships, and .LLab Membership™. The TRIARCH™ (CROWN, SCEPTER, SIGNET &amp; HEIRLOOM) is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.</p>
     </div>
   </section>
 
@@ -134,54 +147,98 @@
         <button type="button" id="save-link-copy" class="pill">Copy</button>
       </div>
 
-      <div class="grid grid-3" style="margin-top:2rem;">
+      <div class="grid grid-2 portal-top" style="margin-top:2rem;">
         <div class="card">
           <span class="num">Signed in as</span>
           <h3 id="account-email" style="font-size:1.1rem;">—</h3>
           <p id="account-member-id" style="margin-top:0.5rem; font-size:0.85rem; color: var(--white-dim);">Member ID: —</p>
           <p style="margin-top:0.75rem;"><a href="#" id="account-sign-out" class="pill mini" style="padding:0.45em 1.1em;">Sign out</a></p>
         </div>
-        <div class="card" id="membership-status-card">
-          <span class="num">.LLab Membership™</span>
-          <h3 id="membership-status">Not active</h3>
-          <p><a href="products.html#membership" style="text-decoration:underline;">View membership</a></p>
-        </div>
-        <div class="card" id="library-status-card">
-          <span class="num">.LLab Library Card™</span>
-          <h3 id="library-status">Not active</h3>
-          <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
+        <div class="card">
+          <span class="num">Inside your membership</span>
+          <ul class="portal-jump">
+            <li><a href="#portal-founders">Founders Organization</a></li>
+            <li><a href="#portal-partnerships">Partnerships</a></li>
+            <li><a href="#portal-llab">.LLab Membership™</a></li>
+          </ul>
         </div>
       </div>
 
       <div id="free-member-note" class="save-link-box" hidden>
         <div style="display:flex; flex-direction:column; gap:0.35rem;">
           <strong style="font-size:0.95rem;">Welcome, free member.</strong>
-          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are below, organized by phase. When you're ready to go deeper, every product has a snapshot further down: buy one on its own, or unlock them all with Membership.</span>
+          <span style="font-size:0.9rem; color: var(--white-dim);">Your free tools are in the .LLab Membership™ section, organized by phase. Every product has a snapshot there too: buy one on its own, or unlock the Four Phases with Membership.</span>
         </div>
       </div>
 
-      <div id="founder-card-group" hidden></div>
-
-      <div id="partnership-group" hidden></div>
-
-      <div id="steward-note-wrap"></div>
-
-      <div id="phase-track" class="phase-track" hidden>
-        <p class="phase-track-label">Infrastructure flight path</p>
-        <div class="phase-track-rail" id="phase-track-rail"></div>
+      <!-- Founders Organization -->
+      <div class="portal-section" id="portal-founders">
+        <p class="eyebrow">Founders Organization</p>
+        <h2 class="portal-title">The Co.LLab™ <strong>Founders Organization</strong></h2>
+        <div id="founder-card-group" hidden></div>
+        <div id="founders-owned" class="phase-group" hidden>
+          <h3>Your Founders materials</h3>
+          <div class="grid grid-3" id="founders-owned-list"></div>
+        </div>
+        <div id="founders-join" hidden>
+          <p class="item-desc portal-lead">Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number. <a href="founders.html">Learn about the Founders Organization</a>.</p>
+          <div class="grid grid-3" id="founders-join-list"></div>
+        </div>
       </div>
 
-      <div id="benefits-group" class="phase-group" hidden>
-        <h3>Membership, Library &amp; Journal</h3>
-        <div class="grid grid-3" id="benefits-list"></div>
+      <!-- Partnerships -->
+      <div class="portal-section" id="portal-partnerships">
+        <p class="eyebrow">Partnerships</p>
+        <h2 class="portal-title">Omnidirectional Enterprise™ <strong>Partnership</strong></h2>
+        <div id="partnership-group" hidden></div>
+        <div id="partnership-join" hidden>
+          <p class="item-desc portal-lead">Bring Leadership Infrastructure™ into your organization with a one-time Partnership: Partner, Strategic, Enterprise, or Omnidirectional, each with 12 months of every membership and seats for your team. <a href="partnership.html">Compare Partnership tiers</a>.</p>
+        </div>
       </div>
 
-      <div id="phase-groups"></div>
+      <!-- .LLab Membership -->
+      <div class="portal-section" id="portal-llab">
+        <p class="eyebrow">.LLab Membership™</p>
+        <h2 class="portal-title">The <strong>.LLab Membership™</strong></h2>
+        <p class="item-desc portal-lead">Membership opens every Four Phases product while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.</p>
+        <div class="grid grid-2" style="margin-top:1.5rem;">
+          <div class="card" id="membership-status-card">
+            <span class="num">.LLab Membership™</span>
+            <h3 id="membership-status">Not active</h3>
+            <p><a href="products.html#membership" style="text-decoration:underline;">View membership</a></p>
+          </div>
+          <div class="card" id="library-status-card">
+            <span class="num">.LLab Library Card™</span>
+            <h3 id="library-status">Not active</h3>
+            <p id="library-status-link"><a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a></p>
+          </div>
+        </div>
 
-      <div id="locked-group" class="phase-group" hidden>
-        <h3>Snapshots: more to explore</h3>
-        <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Buy any product on its own, or unlock all of them with Membership.</p>
-        <div class="grid grid-3" id="locked-list"></div>
+        <div id="rewards-group" class="phase-group" hidden>
+          <h3>TRIARCH™ tier rewards</h3>
+          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Complete all three steps on every Four Phases product in a tier to choose your reward. Higher tiers open higher-priced products, and each tier includes the choices below it.</p>
+          <div class="grid grid-4" id="rewards-list"></div>
+        </div>
+
+        <div id="steward-note-wrap"></div>
+
+        <div id="phase-track" class="phase-track" hidden>
+          <p class="phase-track-label">Infrastructure flight path</p>
+          <div class="phase-track-rail" id="phase-track-rail"></div>
+        </div>
+
+        <div id="benefits-group" class="phase-group" hidden>
+          <h3>Membership, Library &amp; Journal</h3>
+          <div class="grid grid-3" id="benefits-list"></div>
+        </div>
+
+        <div id="phase-groups"></div>
+
+        <div id="locked-group" class="phase-group" hidden>
+          <h3>Snapshots: more to explore</h3>
+          <p class="item-desc" style="margin:-0.25rem 0 1.25rem;">Buy any product on its own. Four Phases products are included with Membership, and the rest can be earned as TRIARCH™ tier rewards.</p>
+          <div class="grid grid-3" id="locked-list"></div>
+        </div>
       </div>
 
     </div>

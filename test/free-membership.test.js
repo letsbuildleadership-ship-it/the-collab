@@ -56,8 +56,12 @@ test('a free member who buys becomes a member; Membership hides the offer and sn
   r = await fulfillCheckoutSession({ id: 'cs_b', customer_details: { email: 'grow@example.com' }, subscription: 'sub_x', amount_total: 1 }, [plan.stripe_price_id]);
   view = buildAccountView(r.record);
   assert.equal(view.membershipOffer, null);
-  assert.equal(view.locked.length, 0);
+  // Membership opens the Four Phases products; the rest stay as snapshots.
+  const four = new Set(pricing.fourPhasesKeys());
+  assert.ok([...four].every((k) => view.owned.some((o) => o.key === k)));
+  assert.ok(view.locked.length > 0 && view.locked.every((l) => !four.has(l.key)));
   assert.equal(view.freeTools.length, 16);
+  assert.ok(view.membershipRewards && view.membershipRewards.tiers.length === 4);
 });
 
 test('admin list counts free and paying members', async () => {
@@ -73,11 +77,12 @@ test('admin list counts free and paying members', async () => {
   delete process.env.ADMIN_TOKEN;
 });
 
-test('Founders snapshots are never marked as included with Membership', async () => {
+test('Founders tiers appear only as Founders snapshots, never as included with Membership', async () => {
   const res = await post({ email: 'look@example.com', password: 'free-pass-1' });
   const view = JSON.parse(res.body);
-  const founders = view.locked.filter((l) => pricing.founderRankForKey(l.key));
-  assert.ok(founders.length > 0);
-  assert.ok(founders.every((l) => l.includedWithMembership === false));
-  assert.ok(view.locked.filter((l) => !pricing.founderRankForKey(l.key)).every((l) => l.includedWithMembership));
+  assert.ok(view.founderSnapshots.length > 0);
+  assert.ok(view.founderSnapshots.every((l) => l.includedWithMembership === false));
+  assert.ok(!view.locked.some((l) => pricing.founderRankForKey(l.key)));
+  const four = new Set(pricing.fourPhasesKeys());
+  assert.ok(view.locked.every((l) => l.includedWithMembership === four.has(l.key)));
 });

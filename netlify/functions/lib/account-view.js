@@ -4,6 +4,7 @@
 const pricing = require('./pricing');
 const membershipStatus = require('./membership-status');
 const freeTools = require('../../../content/free-tools.json').tools;
+const { rewardsStatus } = require('./membership-rewards');
 
 function buildAccountView(record, now) {
   // Expiry-aware: a lapsed Partnership membership term drops out here.
@@ -23,24 +24,28 @@ function buildAccountView(record, now) {
     owned.push({ key, kind: entry.kind, name: entry.name, phase: entry.phase || null, pdf_file: entry.pdf_file || null });
   }
 
-  const locked = [];
-  if (!hasFullCatalog) {
-    for (const key of pricing.allCatalogProductKeys()) {
-      if (!entitlementSet.has(key)) {
-        const entry = pricing.entryForKey(key);
-        locked.push({
-          key,
-          name: entry.name,
-          phase: entry.phase,
-          description: entry.description || null,
-          price_display: entry.price_display,
-          payment_link: entry.payment_link,
-          // Membership opens the catalog except the Founders tiers.
-          includedWithMembership: !pricing.founderRankForKey(key),
-        });
-      }
-    }
-  }
+  // Snapshots: every one-time product the member doesn't own yet, with its
+  // price and Buy link. Founders tiers are shown in their own section.
+  const fourPhases = new Set(pricing.fourPhasesKeys());
+  const founderTiers = new Set(pricing.founderTierKeys());
+  const snapshot = (key) => {
+    const entry = pricing.entryForKey(key);
+    return {
+      key,
+      name: entry.name,
+      phase: entry.phase || null,
+      description: entry.description || null,
+      price_display: entry.price_display,
+      payment_link: entry.payment_link,
+      includedWithMembership: fourPhases.has(key),
+    };
+  };
+  const purchasable = [...pricing.allCatalogProductKeys(), ...(pricing.registry.blueprint_series || []).map((b) => b.key)];
+  const locked = purchasable
+    .filter((key) => !ownedKeys.has(key) && !founderTiers.has(key))
+    .filter((key) => { const e = pricing.entryForKey(key); return e && e.payment_link; })
+    .map(snapshot);
+  const founderSnapshots = record.founder ? [] : [...founderTiers].filter((key) => (pricing.entryForKey(key) || {}).payment_link).map(snapshot);
 
   const memberships = membershipStatus.effectiveMemberships(record, now);
   const membershipEntry = pricing.entryForKey('membership');
@@ -84,6 +89,9 @@ function buildAccountView(record, now) {
     hasFullCatalog,
     owned,
     locked,
+    founderSnapshots,
+    // TRIARCH™ tier rewards (null if they've never had Membership).
+    membershipRewards: rewardsStatus(record, now),
     activityProgress: record.activityProgress || {},
     // Level name always reflects the current catalog label, so Founders keep
     // the up-to-date name (e.g. after a level is renamed) without rewriting

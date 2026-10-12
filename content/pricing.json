@@ -121,6 +121,7 @@
     },
     {
       "key": "creator-identity-map",
+      "line": "creator",
       "name": "Creator Identity Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
@@ -133,6 +134,7 @@
     },
     {
       "key": "creator-alignment-map",
+      "line": "creator",
       "name": "Creator Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
@@ -145,6 +147,7 @@
     },
     {
       "key": "creator-venture-build-plan",
+      "line": "creator",
       "name": "Creator Venture Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
@@ -157,6 +160,7 @@
     },
     {
       "key": "creator-operating-system",
+      "line": "creator",
       "name": "The Creator Operating System™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
@@ -169,6 +173,7 @@
     },
     {
       "key": "creative-estate-mapping",
+      "line": "creator",
       "name": "Creative Estate Mapping™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
@@ -181,6 +186,7 @@
     },
     {
       "key": "creator-legacy-architecture",
+      "line": "creator",
       "name": "Creator Legacy Infrastructure Architecture™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
@@ -350,7 +356,7 @@
       "engagement": null,
       "benefits": [
         "Keep the foundations: Leadership Infrastructure™ Phase I–II tools and Blueprint™ Welcome, Phase One, and Phase Two, yours for good",
-        "A full year inside The Co.LLab™: .LLab Membership™ with the complete .LLab catalog, the Library Card™ and Legacy Library™, and The .LLab Journal™",
+        "A full year inside The Co.LLab™: .LLab Membership™ with every Four Phases product, the Library Card™ and Legacy Library™, and The .LLab Journal™",
         "Recognized as a Co.LLab™ Partner in your account",
         "Eligible for designated ecosystem opportunities"
       ]

@@ -45,7 +45,8 @@ ${tiers.map(card).join('\n')}
       </div>`;
 
 const grants = Object.fromEntries(tiers.map((t) => [t.key, new Set(pricing.partnershipGrantKeysFor(t.key))]));
-const catalog = new Set(pricing.allCatalogProductKeys());
+// .LLab Membership™ opens the Four Phases products during the term.
+const catalog = new Set(pricing.fourPhasesKeys());
 
 function cell(key, t) {
   if (grants[t.key].has(key)) return '<td class="keep">Keep</td>';

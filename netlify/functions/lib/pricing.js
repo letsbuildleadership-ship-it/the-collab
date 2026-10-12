@@ -80,6 +80,41 @@ function allCatalogProductKeys() {
   return (registry.products || []).map((p) => p.key);
 }
 
+const FOUR_PHASES = [
+  'Phase I · Foundations',
+  'Phase II · Infrastructure Planning & Management',
+  'Phase III · Internal Operating Systems',
+  'Phase IV · Preservation',
+];
+
+/**
+ * The Four Phases products: the Leadership Infrastructure™ products in
+ * Phases I–IV (not the Creator line, not the Founders tiers). This is what
+ * .LLab Membership™ opens while it's active.
+ */
+function fourPhasesKeys() {
+  return (registry.products || []).filter((p) => FOUR_PHASES.includes(p.phase) && p.line !== 'creator').map((p) => p.key);
+}
+
+/** "$1,000" -> 1000; null when there's no dollar price. */
+function priceDollars(entry) {
+  const m = entry && typeof entry.price_display === 'string' && entry.price_display.replace(/,/g, '').match(/\$(\d+(?:\.\d+)?)/);
+  return m ? Number(m[1]) : null;
+}
+
+/**
+ * Products a member can choose as a TRIARCH™ tier reward: every one-time
+ * product we sell (catalog + Blueprint™ issues) except the Four Phases
+ * products (already in Membership) and the Founders tiers.
+ */
+function supplementalKeys() {
+  const four = new Set(fourPhasesKeys());
+  const founders = new Set(founderTierKeys());
+  return [...(registry.products || []), ...(registry.blueprint_series || [])]
+    .map((p) => p.key)
+    .filter((k) => !four.has(k) && !founders.has(k) && priceDollars(entryForKey(k)) != null);
+}
+
 /**
  * Resolve any purchasable catalog key (one-time product, blueprint issue, or
  * membership) to a Stripe price id + Checkout mode. Bonus products aren't
@@ -242,6 +277,10 @@ module.exports = {
   grantsForKey,
   unlocksCatalog,
   allCatalogProductKeys,
+  FOUR_PHASES,
+  fourPhasesKeys,
+  priceDollars,
+  supplementalKeys,
   impactPartners,
   impactPartnerForKey,
   impactForKey,
