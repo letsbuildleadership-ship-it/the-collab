@@ -282,6 +282,19 @@ async function getSubscriptionLink(subscriptionId) {
   return store().get(`by-subscription/${subscriptionId}.json`, { type: 'json' });
 }
 
+// Password reset codes: resets/{code}.json -> { token, expiresAt }. Single use.
+async function saveResetCode(code, info) {
+  await store().setJSON(`resets/${code}.json`, info);
+}
+
+async function getResetCode(code) {
+  return (await store().get(`resets/${code}.json`, { type: 'json' })) || null;
+}
+
+async function deleteResetCode(code) {
+  await store().delete(`resets/${code}.json`);
+}
+
 // Purchase confirmation emails: one marker per Checkout Session, written
 // after a successful send so webhook retries never email twice.
 async function hasSentPurchaseEmail(sessionId) {
@@ -318,6 +331,9 @@ module.exports = {
   recordImpactAllocation,
   listImpactLedger,
   markImpactRemitted,
+  saveResetCode,
+  getResetCode,
+  deleteResetCode,
   hasSentPurchaseEmail,
   markPurchaseEmailSent,
 };

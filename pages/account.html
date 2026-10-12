@@ -102,30 +102,7 @@
 
   <section id="account-signed-out" hidden>
     <div class="wrap">
-      <div class="grid grid-2">
-        <div class="card">
-          <span class="num">Sign in</span>
-          <h3>Email or Member ID, and password</h3>
-          <p style="margin-bottom:0.5rem;">Use the email you checked out with, or your Member ID (it starts with CL- and is shown on your account page).</p>
-          <form id="login-form" style="display:flex; flex-direction:column; gap:0.6rem;">
-            <input id="login-member-id" type="text" placeholder="Email or Member ID" autocomplete="username" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
-            <input id="login-password" type="password" placeholder="Password" autocomplete="current-password" style="background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
-            <button type="submit" class="pill pill--solid" style="align-self:flex-start;">Sign in <span class="arrow">→</span></button>
-          </form>
-          <p id="login-error" class="subhead" style="margin-top:0.75rem; font-size:0.85rem; display:none;">Incorrect email, Member ID, or password.</p>
-        </div>
-        <div class="card">
-          <span class="num">Haven't set a password yet?</span>
-          <h3>Restore with your access link</h3>
-          <p style="margin-bottom:0.5rem;">After checkout, Stripe sends you back here and your account unlocks on its own. If your link expired on this device, paste it — or just the token at the end of it — below.</p>
-          <form id="restore-form" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
-            <input id="restore-input" type="text" placeholder="Access link or token" style="flex:1; min-width:200px; background:transparent; border:1px solid var(--hairline-strong); border-radius:999px; padding:0.7em 1.1em; color:var(--white); font-family:var(--font);" />
-            <button type="submit" class="pill pill--solid">Restore <span class="arrow">→</span></button>
-          </form>
-          <p id="restore-error" class="subhead" style="margin-top:0.75rem; font-size:0.85rem; display:none;">We couldn't find an account for that link. Contact <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">letsbuildleadership@gmail.com</a> for help.</p>
-        </div>
-      </div>
-      <p class="subhead" style="margin-top:2.5rem;">Haven't purchased yet? <a href="products.html" style="text-decoration:underline;">Explore The .LLab</a>.</p>
+      <p class="subhead">Please <a href="login.html" style="text-decoration:underline;">sign in</a> to see your account.</p>
     </div>
   </section>
 
@@ -157,6 +134,7 @@
           <span class="num">Signed in as</span>
           <h3 id="account-email" style="font-size:1.1rem;">—</h3>
           <p id="account-member-id" style="margin-top:0.5rem; font-size:0.85rem; color: var(--white-dim);">Member ID: —</p>
+          <p style="margin-top:0.75rem;"><a href="#" id="account-sign-out" class="pill mini" style="padding:0.45em 1.1em;">Sign out</a></p>
         </div>
         <div class="card" id="membership-status-card">
           <span class="num">.LLab Membership™</span>

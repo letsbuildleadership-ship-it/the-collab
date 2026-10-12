@@ -7,6 +7,7 @@ const store = require('./lib/store');
 const { grantableKeys, grantKey, revokeKey, partnershipSummary } = require('./lib/admin-grants');
 const { effectiveMemberships } = require('./lib/membership-status');
 const { json } = require('./lib/http');
+const { createResetLink } = require('./lib/password-reset');
 
 function isAuthorized(event) {
   const expected = process.env.ADMIN_TOKEN;
@@ -71,6 +72,12 @@ exports.handler = async (event) => {
       return json(200, { customer: record });
     }
 
+    if (action === 'reset-link') {
+      // A password reset link the owner sends the customer directly (valid 72 hours).
+      const { url } = await createResetLink(record.token, 72);
+      return json(200, { url, email: record.email, memberId: record.memberId });
+    }
+
     if (action === 'revoke') {
       if (!key) return json(400, { error: 'Missing key.' });
       const { warning } = revokeKey(record, key);
@@ -78,7 +85,7 @@ exports.handler = async (event) => {
       return json(200, { customer: record, warning });
     }
 
-    return json(400, { error: 'Unknown action. Use "grant" or "revoke".' });
+    return json(400, { error: 'Unknown action. Use "grant", "revoke", or "reset-link".' });
   }
 
   return json(405, { error: 'Method Not Allowed' });

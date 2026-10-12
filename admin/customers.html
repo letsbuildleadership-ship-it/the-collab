@@ -178,8 +178,20 @@
       if (res && res.warning) alert(res.warning);
       loadList();
     };
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'pill mini';
+    resetBtn.style.marginLeft = '0.4rem';
+    resetBtn.textContent = 'Password reset link';
+    resetBtn.title = 'Make a link this customer can use to choose a new password (valid 72 hours). Send it to them yourself.';
+    resetBtn.onclick = async () => {
+      const res = await api('', { method: 'POST', body: JSON.stringify({ action: 'reset-link', token: c.token }) });
+      if (!res || !res.url) return;
+      try { await navigator.clipboard.writeText(res.url); } catch (e) { /* clipboard unavailable */ }
+      prompt(`Reset link for ${res.email} (Member ID ${res.memberId}). Copied if your browser allows; send it to them. Valid 72 hours, works once.`, res.url);
+    };
     actionCell.appendChild(grantBtn);
     actionCell.appendChild(revokeBtn);
+    actionCell.appendChild(resetBtn);
     return tr;
   }
 

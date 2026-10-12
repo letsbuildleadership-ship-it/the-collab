@@ -384,7 +384,7 @@
       try { sessionStorage.removeItem(SEAT_INVITE_KEY); } catch (e) { /* storage unavailable */ }
       const data = await fetchMe(null);
       if (data) renderDashboard(data);
-      else show('account-signed-out');
+      else location.replace('login.html');
       return;
     }
     if (r.data.needsSignIn) {
@@ -625,7 +625,7 @@
 
     if (!data) {
       if (pendingInvite()) showSeatInvite(null);
-      else show('account-signed-out');
+      else location.replace('login.html');
       return;
     }
     afterSignIn(data);
@@ -696,7 +696,13 @@
 
     document.addEventListener('click', async (e) => {
       const t = e.target && e.target.closest ? e.target.closest('button, a') : null;
-      if (t && t.id === 'seat-invite-signin-link') { e.preventDefault(); show('account-signed-out'); return; }
+      if (t && t.id === 'seat-invite-signin-link') { e.preventDefault(); location.href = 'login.html'; return; }
+      if (t && t.id === 'account-sign-out') {
+        e.preventDefault();
+        await fetch('/.netlify/functions/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+        location.replace('login.html');
+        return;
+      }
       if (t && t.id === 'seat-invite-create') { await seatAction({ action: 'invite' }); return; }
       if (t && t.dataset && t.dataset.seatRevoke) { await seatAction({ action: 'revoke-invite', code: t.dataset.seatRevoke }); return; }
       if (t && t.dataset && (t.dataset.seatRemove !== undefined) && t.dataset.seatEmail) {

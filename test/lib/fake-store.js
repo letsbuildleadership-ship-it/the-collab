@@ -12,6 +12,7 @@ let founderSeq = 0;
 let seatInvites = new Map();
 let memberSeq = 0;
 let byMemberId = new Map();
+let resetCodes = new Map();
 let purchaseEmails = new Map();
 
 function reset() {
@@ -24,6 +25,7 @@ function reset() {
   seatInvites = new Map();
   memberSeq = 0;
   byMemberId = new Map();
+  resetCodes = new Map();
   purchaseEmails = new Map();
 }
 
@@ -179,6 +181,18 @@ async function getTokenByMemberId(memberId) {
   return byMemberId.get(String(memberId).trim().toUpperCase()) || null;
 }
 
+async function saveResetCode(code, info) {
+  resetCodes.set(code, info);
+}
+
+async function getResetCode(code) {
+  return resetCodes.get(code) || null;
+}
+
+async function deleteResetCode(code) {
+  resetCodes.delete(code);
+}
+
 module.exports = {
   reset,
   randomToken,
@@ -202,6 +216,9 @@ module.exports = {
   listImpactLedger,
   markImpactRemitted,
   getTokenByMemberId,
+  saveResetCode,
+  getResetCode,
+  deleteResetCode,
   hasSentPurchaseEmail,
   markPurchaseEmailSent,
 };
