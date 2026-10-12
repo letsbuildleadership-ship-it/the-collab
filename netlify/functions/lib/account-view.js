@@ -90,7 +90,7 @@ function buildAccountView(record, now) {
     owned,
     locked,
     founderSnapshots,
-    // TRIARCH™ tier rewards (null if they've never had Membership).
+    // TRIARCH™ progress and tier rewards (always present; picks need Membership).
     membershipRewards: rewardsStatus(record, now),
     activityProgress: record.activityProgress || {},
     // Level name always reflects the current catalog label, so Founders keep

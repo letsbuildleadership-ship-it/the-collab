@@ -49,30 +49,42 @@ function optionsFor(record, tierDef, now) {
 }
 
 /**
- * The member's reward status per tier, or null when they've never had
- * Membership. A pick already made always shows; new picks need an active
- * Membership and a completed tier.
+ * The member's TRIARCH™ progress and reward status per tier: each tier's
+ * Four Phases products with steps done, whether it's complete, the pick
+ * already made, and (with an active Membership) the choices available.
+ * Always returned, so free members can see how rewards work.
  */
 function rewardsStatus(record, now) {
   const active = membershipActive(record, now);
   const picks = record.membershipPicks || {};
-  if (!active && !Object.keys(picks).length) return null;
+  const progress = record.activityProgress || {};
+  const tiers = TIERS.map((t) => {
+    const pick = picks[t.tier] || null;
+    const completed = tierCompleted(record, t);
+    const canPick = active && completed && !pick;
+    const products = pricing
+      .fourPhasesKeys()
+      .filter((k) => (pricing.entryForKey(k) || {}).phase === t.phase)
+      .map((k) => ({ key: k, name: pricing.entryForKey(k).name, stepsDone: Math.min(STEPS_PER_ITEM, new Set(progress[k] || []).size), stepsTotal: STEPS_PER_ITEM }));
+    return {
+      tier: t.tier,
+      name: t.name,
+      phase: t.phase,
+      maxPrice: t.maxPrice,
+      completed,
+      products,
+      pick: pick ? { key: pick.key, name: (pricing.entryForKey(pick.key) || {}).name || pick.key, pickedAt: pick.pickedAt } : null,
+      options: canPick ? optionsFor(record, t, now) : [],
+    };
+  });
+  const all = tiers.flatMap((t) => t.products);
   return {
     active,
-    tiers: TIERS.map((t) => {
-      const pick = picks[t.tier] || null;
-      const completed = tierCompleted(record, t);
-      const canPick = active && completed && !pick;
-      return {
-        tier: t.tier,
-        name: t.name,
-        phase: t.phase,
-        maxPrice: t.maxPrice,
-        completed,
-        pick: pick ? { key: pick.key, name: (pricing.entryForKey(pick.key) || {}).name || pick.key, pickedAt: pick.pickedAt } : null,
-        options: canPick ? optionsFor(record, t, now) : [],
-      };
-    }),
+    productsTotal: all.length,
+    productsCompleted: all.filter((p) => p.stepsDone >= p.stepsTotal).length,
+    tiersCompleted: tiers.filter((t) => t.completed).length,
+    picksClaimed: tiers.filter((t) => t.pick).length,
+    tiers,
   };
 }
 

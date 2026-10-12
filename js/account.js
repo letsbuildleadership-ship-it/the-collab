@@ -153,6 +153,7 @@
   function itemCard({ name, actionsHtml, key }) {
     const div = document.createElement('div');
     div.className = 'card item-card';
+    if (key) div.id = `item-${key}`;
     div.innerHTML = `<h3 class="item-name">${name}</h3><div class="item-actions">${actionsHtml}</div>${key ? missionChecklistHtml(key) : ''}`;
     return div;
   }
@@ -527,8 +528,15 @@
     rw.tiers.forEach((t) => {
       const card = document.createElement('div');
       card.className = 'card reward-card';
+      const productsHtml = (t.products || []).length
+        ? `<ul class="reward-products">${t.products.map((p) => `<li class="${p.stepsDone >= p.stepsTotal ? 'done' : ''}"><a href="#item-${esc(p.key)}" data-jump="${esc(p.key)}" style="color:inherit;">${esc(p.name)}</a><span>${p.stepsDone}/${p.stepsTotal}</span></li>`).join('')}</ul>`
+        : '';
       let body;
-      if (t.pick) {
+      if (!rw.active && !t.pick) {
+        body = t.completed
+          ? `<p class="reward-state">Tier complete. Renew your .LLab Membership™ to choose your reward.</p>`
+          : `<p class="reward-state">With an active .LLab Membership™, finish these to choose one product up to $${t.maxPrice.toLocaleString()}, free.</p>`;
+      } else if (t.pick) {
         body = `<p class="reward-state">Your reward</p><h4 style="margin:0.25rem 0 0;">${esc(t.pick.name)}</h4><p class="reward-state" style="margin-top:0.4rem;">Yours to keep. Find it in your products above.</p>`;
       } else if (t.options && t.options.length) {
         const opts = t.options.map((o) => `<option value="${esc(o.key)}">${esc(o.name)} (${esc(o.price_display)})</option>`).join('');
@@ -543,7 +551,7 @@
       } else {
         body = `<p class="reward-state">Complete all three steps on every ${esc(t.name)} product to choose one product up to $${t.maxPrice.toLocaleString()}, free.</p>`;
       }
-      card.innerHTML = `<span class="num">Tier ${t.tier} · ${esc(t.name)}</span><p class="reward-state" style="margin:0.2rem 0 0.6rem;">Choices up to $${t.maxPrice.toLocaleString()}</p>${body}`;
+      card.innerHTML = `<span class="num">Tier ${t.tier} · ${esc(t.name)}${t.completed ? ' · Complete' : ''}</span><p class="reward-state" style="margin:0.2rem 0 0.4rem;">Reward choices up to $${t.maxPrice.toLocaleString()}</p>${productsHtml}${body}`;
       list.appendChild(card);
     });
   }
@@ -559,6 +567,74 @@
     const data = await res.json().catch(() => ({}));
     if (!res.ok) { if (err) { err.textContent = data.error || 'Could not claim that reward.'; err.hidden = false; } return; }
     renderDashboard(data);
+  }
+
+
+  /* "What to do next / What you've done" panel at the top of the portal. */
+  function renderJourney(data) {
+    const panel = $('journey-panel');
+    if (!panel) return;
+    const rw = data.membershipRewards;
+    const membershipActive = !!(rw && rw.active);
+    const done = [];
+    const todo = [];
+    let next = null;
+
+    if (data.founder) done.push(`Founders Organization: ${esc(data.founder.levelLabel || 'Founder')}${data.founder.founderNumber ? ` · Founder Number ${esc(data.founder.founderNumber)}` : ''}`);
+    if (data.partnership) done.push(`Partnership: ${esc(data.partnership.tierLabel)}${data.partnership.expiresAt ? ` · through ${formatShortDate(data.partnership.expiresAt)}` : ''}`);
+    if (data.seat) done.push(`Partnership seat: ${esc(data.seat.tierLabel || '')}`);
+    if (membershipActive) done.push('.LLab Membership™ is active: all Four Phases products are open');
+    else todo.push('.LLab Membership™ not active yet');
+
+    if (rw) {
+      (rw.productsCompleted ? done : todo).push(`${rw.productsCompleted} of ${rw.productsTotal} Four Phases products completed`);
+      (rw.tiersCompleted ? done : todo).push(`${rw.tiersCompleted} of ${rw.tiers.length} TRIARCH™ tiers complete`);
+      if (rw.picksClaimed) done.push(`${rw.picksClaimed} tier reward${rw.picksClaimed === 1 ? '' : 's'} claimed`);
+      const claimable = rw.tiers.find((t) => t.options && t.options.length);
+      if (claimable) {
+        next = {
+          title: `Claim your ${claimable.name} reward`,
+          body: `You completed the ${claimable.name} tier. Choose one product up to $${claimable.maxPrice.toLocaleString()}, free and yours to keep.`,
+          cta: `<a class="pill pill--solid" href="#rewards-group">Choose my reward <span class="arrow">→</span></a>`,
+        };
+      } else if (membershipActive) {
+        const tier = rw.tiers.find((t) => !t.completed);
+        const product = tier && tier.products.find((p) => p.stepsDone < p.stepsTotal);
+        if (tier && product) {
+          next = {
+            title: `Work through ${product.name}`,
+            body: `It's part of the ${tier.name} tier. Open it, then check off its three steps (review the material, apply it to your work, log your takeaway): ${product.stepsDone} of ${product.stepsTotal} done. Finish every ${tier.name} product to earn a free reward up to $${tier.maxPrice.toLocaleString()}.`,
+            cta: `<a class="pill pill--solid" href="#item-${esc(product.key)}" data-jump="${esc(product.key)}">Go to ${esc(product.name)} <span class="arrow">→</span></a>`,
+          };
+        } else if (!tier) {
+          next = { title: 'Every TRIARCH™ tier is complete', body: 'You have finished all four tiers. Keep using your products, and explore the snapshots for what to add next.', cta: '' };
+        }
+      }
+    }
+    if (!next && !membershipActive) {
+      const offer = data.membershipOffer;
+      const plan = offer && (offer.plans || []).find((p) => p.payment_link);
+      next = {
+        title: 'Start your .LLab Membership™',
+        body: 'Membership opens all nine Four Phases products and lets you earn a free product each time you complete a TRIARCH™ tier. Until then, your free tools are ready below.',
+        cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join Membership · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">See free tools <span class="arrow">→</span></a>` : '',
+      };
+    }
+
+    $('journey-next-title').textContent = next ? next.title : '';
+    $('journey-next-body').textContent = next ? next.body : '';
+    $('journey-next-cta').innerHTML = next ? next.cta : '';
+    $('journey-done').innerHTML = [...done.map((d) => `<li>${d}</li>`), ...todo.map((d) => `<li class="todo">${esc(d)}</li>`)].join('');
+    panel.hidden = false;
+  }
+
+  function jumpTo(key) {
+    const el = $(`item-${key}`);
+    if (!el) return false;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('is-target');
+    setTimeout(() => el.classList.remove('is-target'), 2400);
+    return true;
   }
 
   function renderDashboard(data) {
@@ -718,6 +794,7 @@
       sessionStorage.setItem('collab_link_seen', '1');
     }
 
+    renderJourney(data);
     show('account-dashboard');
   }
 
@@ -893,6 +970,7 @@
 
     document.addEventListener('click', async (e) => {
       const t = e.target && e.target.closest ? e.target.closest('button, a') : null;
+      if (t && t.dataset && t.dataset.jump) { if (jumpTo(t.dataset.jump)) { e.preventDefault(); } return; }
       if (t && t.dataset && t.dataset.rewardClaim) { e.preventDefault(); await claimReward(t.dataset.rewardClaim); return; }
       if (t && t.id === 'seat-invite-signin-link') { e.preventDefault(); location.href = 'login.html'; return; }
       if (t && t.id === 'account-sign-out') {
@@ -946,9 +1024,9 @@
       renderStewardNote(state.data);
 
       const result = await postProgress(itemKey, stepIndex, done);
-      if (result && state.data && state.data.membershipRewards) {
+      if (result && state.data) {
         const fresh = await fetchMe(null);
-        if (fresh) { state.data.membershipRewards = fresh.membershipRewards; renderRewards(state.data); }
+        if (fresh) { state.data.membershipRewards = fresh.membershipRewards; renderRewards(state.data); renderJourney(state.data); }
       }
       if (!result) {
         // Save failed — revert the optimistic UI update.
