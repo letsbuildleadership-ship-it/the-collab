@@ -24,6 +24,41 @@ collections:
           - { label: "Footer tagline", name: "footer_tagline", widget: "string" }
           - { label: "Contact email", name: "contact_email", widget: "string" }
 
+  - name: "portal"
+    label: "Member Portal"
+    files:
+      - name: "portal"
+        label: "Member Portal™ sections (Omnidirectional Enterprise™ Membership)"
+        file: "content/portal.json"
+        fields:
+          - { label: "Internal note (not shown to customers)", name: "_readme", widget: "text", required: false }
+          - { label: "Eyebrow (small heading)", name: "eyebrow", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "text" }
+          - label: "Sections (shown in this order)"
+            name: "sections"
+            widget: "list"
+            summary: "{{fields.eyebrow}} ({{fields.type}})"
+            hint: "Add a new part of The Co.LLab™ with type Program. Founders, Partnerships, and .LLab Membership are built in. Turn Enabled off to hide a section."
+            fields:
+              - { label: "ID (short, lowercase, no spaces)", name: "id", widget: "string" }
+              - { label: "Type", name: "type", widget: "select", options: ["program", "founders", "partnerships", "llab"], default: "program" }
+              - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Title highlight (orange)", name: "title_highlight", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Link", name: "link", widget: "string", required: false }
+              - { label: "Link label", name: "link_label", widget: "string", required: false }
+          - label: "TRIARCH™ tier rewards (.LLab Membership™)"
+            name: "reward_tiers"
+            widget: "list"
+            summary: "Tier {{fields.tier}} · {{fields.name}} · up to ${{fields.max_price}}"
+            fields:
+              - { label: "Tier number", name: "tier", widget: "number", value_type: "int" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Phase (must match a product phase)", name: "phase", widget: "string" }
+              - { label: "Highest product price a member can pick (dollars)", name: "max_price", widget: "number", value_type: "int" }
+
   - name: "commerce"
     label: "Products & Pricing"
     files:

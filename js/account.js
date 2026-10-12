@@ -721,7 +721,69 @@
     show('account-dashboard');
   }
 
+
+  /* Member Portal™ sections come from content/portal.json, so new parts of
+   * The Co.LLab™ can be added (type "program"), reordered, renamed, or
+   * hidden without code changes. The static page is the fallback. */
+  function setTitle(el, title, highlight) {
+    if (!el) return;
+    el.innerHTML = `${esc(title || '')}${highlight ? ` <strong>${esc(highlight)}</strong>` : ''}`;
+  }
+
+  function leadHtml(sec) {
+    const link = sec.link ? ` <a href="${esc(sec.link)}">${esc(sec.link_label || 'Learn more')}</a>.` : '';
+    return `${esc(sec.description || '')}${link}`;
+  }
+
+  async function applyPortalConfig() {
+    let cfg;
+    try {
+      const res = await fetch('/content/portal.json', { cache: 'no-cache' });
+      if (!res.ok) return;
+      cfg = await res.json();
+    } catch (e) {
+      return;
+    }
+    if (cfg.eyebrow && $('portal-eyebrow')) $('portal-eyebrow').textContent = cfg.eyebrow;
+    if (cfg.intro && $('portal-intro')) $('portal-intro').textContent = cfg.intro;
+
+    const container = $('portal-sections');
+    const jump = $('portal-jump');
+    if (!container || !Array.isArray(cfg.sections)) return;
+    const builtIn = { founders: 'portal-founders', partnerships: 'portal-partnerships', llab: 'portal-llab' };
+    const seen = new Set();
+    if (jump) jump.innerHTML = '';
+
+    cfg.sections.forEach((sec) => {
+      if (!sec || !sec.id) return;
+      let el = builtIn[sec.type] ? $(builtIn[sec.type]) : $(`portal-${sec.id}`);
+      if (!el && sec.type === 'program') {
+        el = document.createElement('div');
+        el.className = 'portal-section';
+        el.id = `portal-${sec.id}`;
+        el.innerHTML = '<p class="eyebrow"></p><h2 class="portal-title"></h2><p class="item-desc portal-lead" data-portal-lead></p>';
+      }
+      if (!el) return;
+      seen.add(el.id);
+      const eyebrow = el.querySelector('.eyebrow');
+      if (eyebrow && sec.eyebrow) eyebrow.textContent = sec.eyebrow;
+      if (sec.title || sec.title_highlight) setTitle(el.querySelector('.portal-title'), sec.title, sec.title_highlight);
+      const lead = el.querySelector('[data-portal-lead]');
+      if (lead && sec.description) lead.innerHTML = leadHtml(sec);
+      el.hidden = sec.enabled === false;
+      container.appendChild(el); // keeps the configured order
+      if (jump && sec.enabled !== false) {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#${el.id}">${esc(sec.eyebrow || sec.title_highlight || sec.id)}</a>`;
+        jump.appendChild(li);
+      }
+    });
+    // Built-in sections left out of the config stay hidden.
+    Object.values(builtIn).forEach((id) => { if (!seen.has(id) && $(id)) $(id).hidden = true; });
+  }
+
   async function boot() {
+    applyPortalConfig();
     show('account-loading');
     const params = new URLSearchParams(location.search);
     const sessionId = params.get('session_id');

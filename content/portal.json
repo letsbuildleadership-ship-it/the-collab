@@ -1,0 +1,68 @@
+{
+  "_readme": "Member Portal™ (Omnidirectional Enterprise™ Membership) settings. The portal shows these sections in this order. Built-in types (founders, partnerships, llab) keep their special content; add a new part of The Co.LLab™ later with type \"program\" (a heading, description, and link). Set enabled to false to hide a section without deleting it. Reward tiers set the TRIARCH™ tier reward price caps for .LLab Membership™.",
+  "eyebrow": "Omnidirectional Enterprise™ Membership",
+  "intro": "Omnidirectional Enterprise™ Membership houses every part of The Co.LLab™: the Founders Organization, Partnerships, and .LLab Membership™. The TRIARCH™ (CROWN, SCEPTER, SIGNET & HEIRLOOM) is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.",
+  "sections": [
+    {
+      "id": "founders",
+      "type": "founders",
+      "enabled": true,
+      "eyebrow": "Founders Organization",
+      "title": "The Co.LLab™",
+      "title_highlight": "Founders Organization",
+      "description": "Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number.",
+      "link": "founders.html",
+      "link_label": "Learn about the Founders Organization"
+    },
+    {
+      "id": "partnerships",
+      "type": "partnerships",
+      "enabled": true,
+      "eyebrow": "Partnerships",
+      "title": "Omnidirectional Enterprise™",
+      "title_highlight": "Partnership",
+      "description": "Bring Leadership Infrastructure™ into your organization with a one-time Partnership: Partner, Strategic, Enterprise, or Omnidirectional, each with 12 months of every membership and seats for your team.",
+      "link": "partnership.html",
+      "link_label": "Compare Partnership tiers"
+    },
+    {
+      "id": "llab",
+      "type": "llab",
+      "enabled": true,
+      "eyebrow": ".LLab Membership™",
+      "title": "The",
+      "title_highlight": ".LLab Membership™",
+      "description": "Membership opens every Four Phases product while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.",
+      "link": "products.html#membership",
+      "link_label": "View membership"
+    },
+    {
+      "id": "technology",
+      "type": "program",
+      "enabled": false,
+      "eyebrow": "Technology",
+      "title": "Legacy",
+      "title_highlight": "Ventures™",
+      "description": "Technology that supports community culture as a necessary tool for preservation. In development.",
+      "link": "technology.html",
+      "link_label": "See the ventures"
+    },
+    {
+      "id": "atelier",
+      "type": "program",
+      "enabled": false,
+      "eyebrow": ".LLab Atelier™",
+      "title": ".LLab Atelier™",
+      "title_highlight": "Spaces",
+      "description": "Office studios, art studios, community spaces, and ergonomic efficiency homes. Coming soon.",
+      "link": "atelier.html#spaces",
+      "link_label": "See the spaces"
+    }
+  ],
+  "reward_tiers": [
+    { "tier": 1, "name": "CROWN", "phase": "Phase I · Foundations", "max_price": 50 },
+    { "tier": 2, "name": "SCEPTER", "phase": "Phase II · Infrastructure Planning & Management", "max_price": 150 },
+    { "tier": 3, "name": "SIGNET", "phase": "Phase III · Internal Operating Systems", "max_price": 300 },
+    { "tier": 4, "name": "HEIRLOOM", "phase": "Phase IV · Preservation", "max_price": 1000 }
+  ]
+}

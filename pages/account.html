@@ -38,7 +38,7 @@
   .founder-card-copy { margin-top: 0.75rem; font-size: 0.82rem; line-height: 1.6; color: var(--white-faint); max-width: 68ch; }
   .item-desc { color: var(--white-dim); font-size: 0.92rem; line-height: 1.55; margin: 0; }
   .offer-card { border: 1px solid rgba(var(--filament-2-rgb), 0.55); }
-  .save-link-box[hidden], .phase-group[hidden], #founders-join[hidden], #partnership-join[hidden] { display: none !important; }
+  .save-link-box[hidden], .phase-group[hidden], #founders-join[hidden], #partnership-join[hidden], .portal-section[hidden] { display: none !important; }
   .portal-section { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 2.75rem); border-top: 1px solid var(--hairline-strong); scroll-margin-top: 90px; }
   .portal-title { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 300; margin: 0.9rem 0 0; color: #fdf6ec; }
   .portal-title strong { font-weight: 600; color: var(--filament-1); }
@@ -84,9 +84,9 @@
   <section class="hero" style="padding-bottom: clamp(2rem, 5vw, 3rem);">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
-      <p class="eyebrow">Omnidirectional Enterprise™ Membership</p>
+      <p class="eyebrow" id="portal-eyebrow">Omnidirectional Enterprise™ Membership</p>
       <h1 class="display" style="margin-top:1.5rem; font-size:clamp(2.4rem, 7vw, 6.4rem);">Your <strong>Member Portal™.</strong></h1>
-      <p class="subhead" style="margin-top:2rem;">Omnidirectional Enterprise™ Membership houses every part of The Co.LLab™: the Founders Organization, Partnerships, and .LLab Membership™. The TRIARCH™ (CROWN, SCEPTER, SIGNET &amp; HEIRLOOM) is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.</p>
+      <p class="subhead" id="portal-intro" style="margin-top:2rem;">Omnidirectional Enterprise™ Membership houses every part of The Co.LLab™: the Founders Organization, Partnerships, and .LLab Membership™. The TRIARCH™ (CROWN, SCEPTER, SIGNET &amp; HEIRLOOM) is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.</p>
     </div>
   </section>
 
@@ -156,7 +156,7 @@
         </div>
         <div class="card">
           <span class="num">Inside your membership</span>
-          <ul class="portal-jump">
+          <ul class="portal-jump" id="portal-jump">
             <li><a href="#portal-founders">Founders Organization</a></li>
             <li><a href="#portal-partnerships">Partnerships</a></li>
             <li><a href="#portal-llab">.LLab Membership™</a></li>
@@ -171,6 +171,7 @@
         </div>
       </div>
 
+      <div id="portal-sections">
       <!-- Founders Organization -->
       <div class="portal-section" id="portal-founders">
         <p class="eyebrow">Founders Organization</p>
@@ -181,7 +182,7 @@
           <div class="grid grid-3" id="founders-owned-list"></div>
         </div>
         <div id="founders-join" hidden>
-          <p class="item-desc portal-lead">Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number. <a href="founders.html">Learn about the Founders Organization</a>.</p>
+          <p class="item-desc portal-lead" data-portal-lead>Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number. <a href="founders.html">Learn about the Founders Organization</a>.</p>
           <div class="grid grid-3" id="founders-join-list"></div>
         </div>
       </div>
@@ -192,7 +193,7 @@
         <h2 class="portal-title">Omnidirectional Enterprise™ <strong>Partnership</strong></h2>
         <div id="partnership-group" hidden></div>
         <div id="partnership-join" hidden>
-          <p class="item-desc portal-lead">Bring Leadership Infrastructure™ into your organization with a one-time Partnership: Partner, Strategic, Enterprise, or Omnidirectional, each with 12 months of every membership and seats for your team. <a href="partnership.html">Compare Partnership tiers</a>.</p>
+          <p class="item-desc portal-lead" data-portal-lead>Bring Leadership Infrastructure™ into your organization with a one-time Partnership: Partner, Strategic, Enterprise, or Omnidirectional, each with 12 months of every membership and seats for your team. <a href="partnership.html">Compare Partnership tiers</a>.</p>
         </div>
       </div>
 
@@ -200,7 +201,7 @@
       <div class="portal-section" id="portal-llab">
         <p class="eyebrow">.LLab Membership™</p>
         <h2 class="portal-title">The <strong>.LLab Membership™</strong></h2>
-        <p class="item-desc portal-lead">Membership opens every Four Phases product while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.</p>
+        <p class="item-desc portal-lead" data-portal-lead>Membership opens every Four Phases product while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.</p>
         <div class="grid grid-2" style="margin-top:1.5rem;">
           <div class="card" id="membership-status-card">
             <span class="num">.LLab Membership™</span>
@@ -241,6 +242,7 @@
         </div>
       </div>
 
+      </div><!-- /portal-sections -->
     </div>
   </section>
 

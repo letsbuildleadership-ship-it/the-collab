@@ -9,12 +9,14 @@ const membershipStatus = require('./membership-status');
 
 const STEPS_PER_ITEM = 3;
 
-const TIERS = [
-  { tier: 1, key: 'crown', name: 'CROWN', phase: 'Phase I · Foundations', maxPrice: 50 },
-  { tier: 2, key: 'scepter', name: 'SCEPTER', phase: 'Phase II · Infrastructure Planning & Management', maxPrice: 150 },
-  { tier: 3, key: 'signet', name: 'SIGNET', phase: 'Phase III · Internal Operating Systems', maxPrice: 300 },
-  { tier: 4, key: 'heirloom', name: 'HEIRLOOM', phase: 'Phase IV · Preservation', maxPrice: 1000 },
-];
+// Tier price caps live in content/portal.json (editable in the site admin).
+const TIERS = (require('../../../content/portal.json').reward_tiers || []).map((t) => ({
+  tier: Number(t.tier),
+  key: String(t.name || '').toLowerCase(),
+  name: t.name,
+  phase: t.phase,
+  maxPrice: Number(t.max_price),
+}));
 
 function membershipActive(record, now) {
   const m = membershipStatus.effectiveMemberships(record, now).membership;
