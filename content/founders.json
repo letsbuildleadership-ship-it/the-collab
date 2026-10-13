@@ -21,8 +21,8 @@
       "break_before": true
     }
   ],
-  "hero_subhead_prefix": "The company partnership pathway within The Co.LLab™'s Omnidirectional Enterprise™ model — providing the capital and support that build The Co.LLab™ and its",
-  "hero_subhead_glow": "Leadership Infrastructure™.",
+  "hero_subhead_prefix": "Become a founding partner.",
+  "hero_subhead_glow": "Let’s build your legacy through Omnidirectional Enterprise™.",
   "hero_cta_label": "Become a Founder",
   "hero_cta_link": "#apply",
   "distinct_eyebrow": "The partnership model",
@@ -38,55 +38,55 @@
       "break_before": false
     }
   ],
-  "distinct_body": "Separate from The .LLab, the Founders Organization is how companies partner with The Co.LLab™. Their support builds Leadership Infrastructure™, and that value flows back out across the ecosystem.",
+  "distinct_body": "Companies and people who fund The Co.LLab™ — and whose support flows back out across the ecosystem.",
   "phases_eyebrow": "The Four Phases of Leadership Infrastructure™",
   "phases": [
     {
       "title": "Foundations",
-      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure."
+      "description": "Know who you are and what you stand on."
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Determining what infrastructure is needed and how the pieces should connect."
+      "description": "Decide what to build and how it connects."
     },
     {
       "title": "Internal Operating Systems",
-      "description": "Building the systems, processes, tools, and leadership mechanisms that let the organization function."
+      "description": "Build the systems that make it run."
     },
     {
       "title": "Preservation",
-      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy."
+      "description": "Make it last beyond any one person."
     }
   ],
   "apply_tag": "Introductory Founder Offer",
   "apply_headline": "Four founding options. One Founders Organization.",
-  "apply_body": "Each founding option provides capital and support to build The Co.LLab™ and its Leadership Infrastructure™ — value that moves back through the Omnidirectional Enterprise™ ecosystem.",
+  "apply_body": "Every option builds Leadership Infrastructure™ — and flows back out to the ecosystem.",
   "tiers": [
     {
       "tag": "Community Founder",
       "price": "$20",
-      "description": "Your entry into the Omnidirectional Enterprise™. Your purchase becomes revenue that builds The Co.LLab™'s Leadership Infrastructure™ — and flows back out to creators, organizations, nonprofits, and communities.",
+      "description": "Your entry into Omnidirectional Enterprise™.",
       "link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15",
       "impact_label": "10% supports Blazing Smiles"
     },
     {
       "tag": "Premium Community Founder",
       "price": "$50",
-      "description": "A founding purchase that builds The Co.LLab™'s Leadership Infrastructure™ and flows back through the Omnidirectional Enterprise™ — connecting companies, creators, nonprofits, and communities.",
+      "description": "Build more, give more back.",
       "link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16",
       "impact_label": "10% supports Wavecraft Oceans Project"
     },
     {
       "tag": "Founder",
       "price": "$350",
-      "description": "Founding participation in the Founders Organization — providing capital and support to build The Co.LLab™ and its Leadership Infrastructure™.",
+      "description": "Founding partnership for organizations.",
       "link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "impact_label": "10% supports Blazing Smiles"
     },
     {
       "tag": "Legacy Founder",
       "price": "$1,000",
-      "description": "Founding participation at the highest contribution level — supporting the development and preservation of Leadership Infrastructure™ across the Omnidirectional Enterprise™.",
+      "description": "Our highest founding level — build a legacy with us.",
       "link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
       "impact_label": "10% supports Wavecraft Oceans Project"
     }
@@ -95,6 +95,6 @@
   "founder_not_investment": "Founding options are purchases, not investments. They carry no ownership stake and no financial return.",
   "recognition_eyebrow": "Founder Recognition",
   "recognition_headline": "Every Founder, permanently recognized.",
-  "recognition_body": "Every Founder receives a permanent Founder Number and a permanent place here — recognition of participation in building The Co.LLab™.",
+  "recognition_body": "Every Founder gets a permanent Founder Number and a place here.",
   "recognition_empty": "Founder Numbers are issued the moment a Founder purchase completes — check back soon."
 }
