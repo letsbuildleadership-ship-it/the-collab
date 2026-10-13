@@ -9,7 +9,7 @@
 
   "creator_eyebrow": "Now open",
   "creator_headline": "Creator Infrastructure™.",
-  "creator_body": "The Co.LLab™'s Leadership Infrastructure™ methodology, applied to every kind of creative venture — for artists, designers, writers, musicians, filmmakers, educators, makers, researchers, cultural practitioners, and community builders. Five free resources, a beginner-first product ladder, and full inclusion in .LLab Membership™.",
+  "creator_body": "Leadership Infrastructure™ for creative ventures — artists, writers, musicians, makers, and more. Five free resources, a beginner-first product ladder, and full inclusion in .LLab Membership™.",
   "creator_cta_label": "Explore Creator Infrastructure™",
   "creator_cta_link": "creator.html",
   "creator_teasers": [
@@ -25,7 +25,7 @@
     { "text": "™", "style": "default", "break_before": false }
   ],
   "membership_status": "Open Now",
-  "membership_body": "Ongoing access to the frameworks, systems, community, research, and products built around Leadership Infrastructure™ — every .LLab™ Four Phases product below, unlocked while you're a member. Each time you complete a TRIARCH™ tier (CROWN, SCEPTER, SIGNET, HEIRLOOM), choose one more product at no charge, yours to keep; higher tiers open higher-priced choices.",
+  "membership_body": "Every .LLab™ Four Phases product below, unlocked while you're a member. Finish a TRIARCH™ tier (CROWN, SCEPTER, SIGNET, HEIRLOOM) and pick one more product free, yours to keep.",
   "membership_tiers": [
     { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly.", "link": "https://buy.stripe.com/eVqfZg1EqewtaFRfpk9ws0U" },
     { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually. Two months free.", "link": "https://buy.stripe.com/8x24gy2Iuagd6pB0uq9ws0V" }
@@ -37,7 +37,7 @@
     { "text": "™", "style": "default", "break_before": false }
   ],
   "library_status": "Founding Rate — Open Now",
-  "library_body": "Founding access to the .LLab digital library — the curated resource stream, welcome guide, and infrastructure roadmap that sit underneath every .LLab™ product. The on-ramp for anyone not ready for full Membership.",
+  "library_body": "The $10 on-ramp: the .LLab digital library, a welcome guide, and the Infrastructure Roadmap™.",
   "library_tiers": [
     { "tag": "Monthly", "price": "$10/mo", "description": "Founding-rate monthly access to the digital library.", "link": "https://buy.stripe.com/aFa3cu82O88529l1yu9ws0W" },
     { "tag": "Annual", "price": "$100/yr", "description": "Founding-rate annual access to the digital library. Two months free.", "link": "https://buy.stripe.com/9B600i3My1JH8xJ4KG9ws0X" }

@@ -1281,3 +1281,30 @@ a.pill.is-owned {
   color: var(--filament-2);
   border-color: rgba(var(--filament-2-rgb), 0.6);
 }
+
+/* ---------- membership comparison chart (home #compare) ---------- */
+
+.compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.compare-card {
+  border: 1px solid var(--hairline-strong);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.compare-card--featured { border-color: var(--white); background: var(--black-soft); }
+.compare-card .kicker { font-size: var(--label-size); letter-spacing: 0.16em; text-transform: uppercase; color: var(--white-dim); }
+.compare-card h3 { margin: 0; font-size: 1.6rem; }
+.compare-card .tm { font-size: 0.6em; font-weight: 500; }
+.compare-price { margin: 0; font-size: 2.2rem; font-weight: 700; }
+.compare-price span { font-size: 1rem; font-weight: 400; }
+.compare-price small { display: block; font-size: 0.85rem; font-weight: 400; color: var(--white-dim); }
+.compare-list { list-style: none; margin: 0; padding: 0; flex: 1; }
+.compare-list li { padding: 0.55rem 0 0.55rem 1.8rem; border-top: 1px solid var(--hairline); position: relative; }
+.compare-list li::before { position: absolute; left: 0; font-weight: 700; }
+.compare-list li.yes::before { content: '✓'; }
+.compare-list li.no { color: var(--white-faint); text-decoration: line-through; }
+.compare-list li.no::before { content: '—'; }
+.compare-card .pill { align-self: flex-start; }
+.compare-note { margin-top: 1.75rem; color: var(--white-dim); }
+@media (max-width: 860px) { .compare-grid { grid-template-columns: 1fr; } }
