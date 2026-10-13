@@ -19,7 +19,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 function card(t) {
   const top = t.rank === tiers.length ? ' partner-card--top' : '';
   const session = t.engagement ? t.engagement.label : 'No private sessions';
-  return `        <div class="card partner-card${top}" style="text-align:left;">
+  return `        <div class="card partner-card offer-card offer-card--featured${top}" style="text-align:left;">
           <span class="num">${esc(t.tier_label)}</span>
           <p class="tier-line">${esc(t.headline)}</p>
           <h3>${esc(t.price_display)}</h3>
@@ -33,7 +33,7 @@ ${t.benefits.filter((b) => !/seat|orientation|briefing/i.test(b)).map((b) => `  
             <div><dt>Included session</dt><dd>${esc(session)}</dd></div>
             <div><dt>Access level</dt><dd>${esc(t.access_level)}</dd></div>
           </dl>
-          <a class="pill pill--solid" href="${esc(t.payment_link)}" style="margin-top:auto; width:fit-content;">Purchase ${esc(t.tier_label)} · ${esc(t.price_display)} <span class="arrow">→</span></a>
+          <a class="price-btn price-btn--solid" href="${esc(t.payment_link)}" style="margin-top:auto; width:fit-content;">Purchase ${esc(t.tier_label)} · ${esc(t.price_display)}</a>
         </div>`;
 }
 

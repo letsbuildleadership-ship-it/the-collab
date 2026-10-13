@@ -1400,3 +1400,8 @@ a.pill.is-owned {
 .free-label { font-size: var(--label-size); letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-dim); margin-right: 0.5rem; }
 .free-chip { padding: 0.45em 1em; border: 1px solid var(--hairline-strong); border-radius: 999px; font-size: 0.85rem; text-decoration: none; color: var(--white); }
 .free-chip:hover { border-color: var(--white); }
+.offer-solo { max-width: 380px; margin: 2rem auto 0; text-align: left; }
+.founder-offer .offer-list { margin-top: 0.25rem; }
+.partner-card.offer-card { padding: 2rem 1.75rem; }
+.partner-card .price-btn--solid, .partner-card .price-btn--solid:visited { background: var(--white); color: var(--black); border-color: var(--white); }
+.partner-card .price-btn--solid:hover { background: transparent; color: var(--white); }
