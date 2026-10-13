@@ -5,13 +5,13 @@
     { "text": " ", "style": "default", "break_before": false },
     { "text": "building good.", "style": "glow", "break_before": true }
   ],
-  "hero_subhead": "Select Founders Organization products are designated Impact Products™ — a fixed 10% of the purchase price supports a partner nonprofit, tracked openly.",
+  "hero_subhead": "10% of every Impact Product™ supports a partner nonprofit — tracked openly.",
 
   "how_eyebrow": "How Impact Products work",
   "how_steps": [
     { "title": "A product is designated", "description": "The Co.LLab™ marks a specific product as an Impact Product and sets a fixed percentage — currently 10%." },
-    { "title": "The allocation is recorded", "description": "At the moment of purchase, that percentage of the sale is logged to an internal ledger, tied to the nonprofit partner." },
-    { "title": "Totals are public", "description": "Aggregate totals per partner are shown below — no purchase details, no customer information, just the running total." },
+    { "title": "The allocation is recorded", "description": "Each sale's share is logged to the partner's ledger." },
+    { "title": "Totals are public", "description": "Running totals per partner below — no customer details." },
     { "title": "Funds are remitted", "description": "The Co.LLab™ reconciles and sends the allocated amount to each partner directly, on a regular cadence." }
   ],
   "how_notice": "Full transparency: Stripe doesn't split funds automatically. Unless a partner has its own Stripe Connect account, The Co.LLab™ tracks the 10% and sends it directly. The ledger below shows what's allocated and what's been sent.",
@@ -29,7 +29,7 @@
     { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Founder", "price": "$350", "link": "founders.html" },
     { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Legacy Founder", "price": "$1,000", "link": "founders.html" }
   ],
-  "products_note": "Additional products may be designated as Impact Products over time. Each one is marked clearly, both here and on its own page.",
+  "products_note": "More Impact Products may be added, each clearly marked.",
 
   "closing_eyebrow": "Go deeper",
   "closing_headline": "Every founding option directs 10% to a partner nonprofit."
