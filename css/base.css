@@ -149,6 +149,19 @@ section {
 
 .wordmark { color: var(--paper); text-transform: none; letter-spacing: 0.06em; font-size: 1rem; }
 .wordmark .dot { color: var(--paper); }
+.wordmark { align-items: center; }
+.wordmark-text { display: flex; flex-direction: column; line-height: 1.15; }
+.wordmark-tagline {
+  font-size: 0.62em;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+@media (min-width: 861px) {
+  .wordmark { flex-shrink: 0; }
+  .wordmark-tagline { white-space: normal; max-width: 13em; }
+  .nav-links a { white-space: nowrap; }
+}
 
 .logo-mark {
   height: 38px;

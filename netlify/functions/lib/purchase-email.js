@@ -112,7 +112,7 @@ function buildPurchaseEmail(record, session) {
     `Your products are licensed for your internal use under the Co.LLab™ IP License: ${SITE}/pages/ip-license.html`,
     `Questions? Reply to this email or write to ${CONTACT}.`,
     '',
-    'The Co.LLab™: Building Leadership Infrastructure™',
+    'The Co.LLab™ Building Leadership Infrastructure™',
   ].filter((l) => l !== null).join('\n');
 
   // HTML version (inline styles; email clients ignore stylesheets).
@@ -139,7 +139,7 @@ ${signInLines.map((l) => `<p style="margin:0 0 16px;font-size:14px;line-height:1
 <p style="margin:0 0 24px;font-size:12px;color:#6b7a70;">This button signs you in. Keep this email private and do not forward it.</p>
 <p style="margin:0;font-size:12px;line-height:1.6;color:#6b7a70;">Your products are licensed for your internal use under the <a href="${SITE}/pages/ip-license.html" style="color:${C.accent};">Co.LLab™ IP License</a>. Questions? Reply to this email or write to <a href="mailto:${CONTACT}" style="color:${C.accent};">${CONTACT}</a>.</p>
 </td></tr>
-<tr><td style="padding:16px 32px;border-top:1px solid ${C.line};font-size:12px;color:#6b7a70;">The Co.LLab™: Building Leadership Infrastructure™</td></tr>
+<tr><td style="padding:16px 32px;border-top:1px solid ${C.line};font-size:12px;color:#6b7a70;">The Co.LLab™ Building Leadership Infrastructure™</td></tr>
 </table></td></tr></table></body></html>`;
 
   return { to: record.email, subject, text, html, replyTo: CONTACT };
