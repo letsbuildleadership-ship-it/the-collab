@@ -34,7 +34,7 @@
   "directory_cards": [
     {
       "title": "Founders Organization",
-      "description": "Leadership and organizational infrastructure — the four-phase model in practice.",
+      "description": "Leadership and organizational infrastructure — the IV Phases™ model in practice.",
       "link": "/pages/founders.html"
     },
     {
@@ -59,7 +59,7 @@
     },
     {
       "title": "About",
-      "description": "Mission, vision, the four phases, and the Omnidirectional Enterprise™.",
+      "description": "Mission, vision, the IV Phases™, and the Omnidirectional Enterprise™.",
       "link": "/pages/about.html"
     }
   ],
@@ -96,7 +96,7 @@
       "label": "Directions"
     }
   ],
-  "phases_eyebrow": "The Four Phases of Leadership Infrastructure™",
+  "phases_eyebrow": "The IV Phases™ of Leadership Infrastructure™",
   "phases": [
     {
       "title": "Foundations",

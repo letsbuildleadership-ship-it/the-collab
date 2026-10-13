@@ -25,7 +25,7 @@
     { "tag": "PRESERVE", "title": "Legacy", "description": "Work, ownership, and infrastructure that can be handed down or carried on." }
   ],
 
-  "phases_eyebrow": "The four-phase model, applied to creators",
+  "phases_eyebrow": "The IV Phases™ model, applied to creators",
   "phases": [
     { "title": "Foundations", "description": "IDEA → IDENTITY. Know what you're creating and who you are as its architect." },
     { "title": "Infrastructure Planning & Management", "description": "IDENTITY → VENTURE. Decide what systems your work needs to become a venture." },
@@ -49,7 +49,7 @@
     { "title": "Identify Need", "description": "See exactly which phase of your creative infrastructure is thin." },
     { "title": "Individual Product", "description": "Buy the one product that solves that specific problem — no bundle required." },
     { "title": "Implement & Refine", "description": "Put it to work in your actual practice, then refine it." },
-    { "title": "Advance Through The Four Phases", "description": "Move from Foundations toward Preservation as your venture grows." },
+    { "title": "Advance Through The IV Phases™", "description": "Move from Foundations toward Preservation as your venture grows." },
     { "title": ".LLab Membership™", "description": "Unlock the full Creator Infrastructure™ catalog, ongoing systems, and community." },
     { "title": "Enterprise & Legacy", "description": "Deeper infrastructure for a creative enterprise built to outlast any one project." }
   ],

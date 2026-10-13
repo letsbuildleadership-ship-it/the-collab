@@ -8,7 +8,7 @@ export const meta = {
     eyebrow: 'Creator Infrastructure™ — Free Quick Start',
     title: '.LLab Creator Quick Start <strong>Guide</strong>™',
     subtitle: 'Five infrastructure moves you can make this week, whatever you\'re creating.',
-    phase: 'All Four Phases',
+    phase: 'All IV Phases™',
     price: 'Free',
     footerRight: '.LLab Creator Infrastructure™',
   },
@@ -33,7 +33,7 @@ ${licensePageHtml}
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">4</span><span class="pathway-label">Preservation</span><p>Enterprise → Legacy</p></div>
   </div>
-  <p class="diagram-caption">The same four-phase movement underneath every .LLab™ infrastructure line.</p>
+  <p class="diagram-caption">The same IV Phases™ movement underneath every .LLab™ infrastructure line.</p>
 
   <div class="activity-box">
     <span class="activity-kicker">Move 1 · Foundations</span>
@@ -100,7 +100,7 @@ ${licensePageHtml}
 
   <div class="callout">
     <p class="callout-label">What's Next</p>
-    <p>Take the free <strong>.LLab Creator Infrastructure Diagnostic™</strong> for a fuller picture across all four phases, or go straight to the product that matches your thinnest phase in the Creator Infrastructure™ product ladder.</p>
+    <p>Take the free <strong>.LLab Creator Infrastructure Diagnostic™</strong> for a fuller picture across all IV Phases™, or go straight to the product that matches your thinnest phase in the Creator Infrastructure™ product ladder.</p>
   </div>
 
   <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>

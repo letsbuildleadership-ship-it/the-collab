@@ -34,7 +34,7 @@ ${licenseHtml}
 <p>Where practice and offer don't match — is what you're selling actually representative of your best work?</p>
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 
-<p><strong>STEP 3 — APPLY THE FOUR PHASES</strong></p>
+<p><strong>STEP 3 — APPLY THE IV PHASES™</strong></p>
 <p><strong>FOUNDATIONS</strong> — Does your offer reflect your actual creative identity, or a compromise?</p>
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 <p><strong>INFRASTRUCTURE PLANNING &amp; MANAGEMENT</strong> — What's the one connection (practice-audience-offer) that needs the most work right now?</p>

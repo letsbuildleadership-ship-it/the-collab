@@ -43,7 +43,7 @@
       { "key": "curator", "name": "CURATOR", "requires": "CROWN fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
       { "key": "architect", "name": "ARCHITECT", "requires": "CROWN and SCEPTER fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
       { "key": "steward", "name": "STEWARD", "requires": "CROWN, SCEPTER, and SIGNET fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },
-      { "key": "sovereign", "name": "SOVEREIGN", "requires": "All four phases of a cycle fully stewarded.", "description": "You have carried a complete cycle from sight to legacy. Authority, structure, capability, and preservation are all demonstrated." },
+      { "key": "sovereign", "name": "SOVEREIGN", "requires": "All IV Phases™ of a cycle fully stewarded.", "description": "You have carried a complete cycle from sight to legacy. Authority, structure, capability, and preservation are all demonstrated." },
       { "key": "legacy-bearer", "name": "LEGACY BEARER", "requires": "A full cycle completed and the next cycle begun.", "description": "You have proven the cycle repeats. What you built does not end with one turn of the wheel — it compounds." }
     ],
     "marks": [

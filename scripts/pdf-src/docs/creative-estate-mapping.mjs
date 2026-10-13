@@ -43,7 +43,7 @@ ${licenseHtml}
 <p>Which of your operating systems (from The Creator Operating System™, if you have it) would keep running without you actively managing them?</p>
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 
-<p><strong>THE FOUR PHASES, APPLIED TO YOUR ESTATE</strong></p>
+<p><strong>THE IV PHASES™, APPLIED TO YOUR ESTATE</strong></p>
 <p><strong>CAPTURED</strong> — what needs to be documented that currently exists only in your head: <span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 <p><strong>EMBEDDED</strong> — what needs to become a written process, not a personal habit: <span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 <p><strong>TRANSFERRED</strong> — who needs access, instructions, or rights they don't currently have: <span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>

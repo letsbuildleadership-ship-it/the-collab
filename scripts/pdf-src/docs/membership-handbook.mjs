@@ -20,7 +20,7 @@ export const contentHtml = `
 
   <div class="callout">
     <div class="callout-label">What's included</div>
-    <p>The complete .LLab™ product catalog across all four phases — Strength Map, Alignment Map, Build Plan, Legacy Profile, Operating System, Legacy Infrastructure Map, Diagnostic, Blueprint, and Legacy Infrastructure Architecture — plus this Infrastructure Roadmap, unlocked automatically in your account.</p>
+    <p>The complete .LLab™ product catalog across all IV Phases™ — Strength Map, Alignment Map, Build Plan, Legacy Profile, Operating System, Legacy Infrastructure Map, Diagnostic, Blueprint, and Legacy Infrastructure Architecture — plus this Infrastructure Roadmap, unlocked automatically in your account.</p>
   </div>
 
   <div class="quote">"The Co.LLab: Building Leadership Infrastructure™ empowers organizations to transform potential into performance by building leadership infrastructure that drives results, culture, and sustainable growth."</div>
@@ -31,7 +31,7 @@ export const contentHtml = `
 </section>
 
 <section class="page">
-  <p class="kicker">The four phases</p>
+  <p class="kicker">The IV Phases™</p>
   <h1 class="doc-h1">How to move through the <strong>catalog.</strong></h1>
   <p class="lead">The catalog is designed to be worked through in order — each phase builds on real output from the one before it — but every product also stands on its own if you already know exactly what you need.</p>
 

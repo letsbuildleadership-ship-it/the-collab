@@ -37,5 +37,5 @@ export const contentHtml = renderChecklistDoc({
     { label: '7–8 Checked', copy: 'Knowledge transfer is strong. The Diagnostic™ below checks the other three phases too.' },
   ],
   commitPrompt: "The one piece of knowledge I'll get out of my head and into writing this month is:",
-  upsell: { name: 'The .LLab Leadership Infrastructure Diagnostic™', price: '$300', copy: 'assesses all four phases at once, including this one.' },
+  upsell: { name: 'The .LLab Leadership Infrastructure Diagnostic™', price: '$300', copy: 'assesses all IV Phases™ at once, including this one.' },
 });

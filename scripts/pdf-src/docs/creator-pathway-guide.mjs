@@ -8,7 +8,7 @@ export const meta = {
     eyebrow: 'Creator Infrastructure™ — Free Pathway Guide',
     title: '.LLab Creator Infrastructure <strong>Pathway Guide</strong>™',
     subtitle: 'The full map — Foundations to Preservation — and which product fits where you are right now.',
-    phase: 'All Four Phases',
+    phase: 'All IV Phases™',
     price: 'Free',
     footerRight: '.LLab Creator Infrastructure™',
   },
@@ -69,7 +69,7 @@ ${licensePageHtml}
 
   <div class="callout">
     <p class="callout-label">Take The Diagnostic</p>
-    <p>Take the free <strong>.LLab Creator Infrastructure Diagnostic™</strong> — it scores you across all four phases and points to the exact product to start with.</p>
+    <p>Take the free <strong>.LLab Creator Infrastructure Diagnostic™</strong> — it scores you across all IV Phases™ and points to the exact product to start with.</p>
   </div>
 
   <div class="callout">
