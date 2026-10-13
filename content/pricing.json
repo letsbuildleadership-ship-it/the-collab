@@ -95,7 +95,7 @@
       "stripe_price_id": "price_1U3H0gAK6n3ctuR9R0CHUfbt",
       "payment_link": "https://buy.stripe.com/7sYbJ0gzkcol8xJ0uq9ws0p",
       "pdf_file": "diagnostic.pdf",
-      "description": "A comprehensive assessment of organizational leadership infrastructure across all IV Phases™."
+      "description": "A comprehensive assessment of organizational leadership infrastructure across all of The IV Phases™."
     },
     {
       "key": "blueprint",
@@ -236,7 +236,7 @@
       "stripe_price_id": "price_1TjpMwAK6n3ctuR9UEPmFzwk",
       "payment_link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "pdf_file": "founders-organization.pdf",
-      "description": "Full access to the Founders Organization: the IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
+      "description": "Full access to the Founders Organization: The IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
       "impact": { "partner_key": "blazing-smiles", "percent": 10 },
       "founder_rank": 3,
       "founder_level_label": "Founder",
@@ -319,7 +319,7 @@
       "stripe_price_id": "price_1U7aU7AK6n3ctuR9rxOzHC0A",
       "payment_link": "https://buy.stripe.com/3cI14m3Mybkh5lxcd89ws0N",
       "pdf_file": "blueprint-complete.pdf",
-      "description": "The full Blueprint™ magazine series: Welcome + all IV Phases™, in one edition."
+      "description": "The full Blueprint™ magazine series: Welcome + all of The IV Phases™, in one edition."
     }
   ],
 
@@ -356,7 +356,7 @@
       "engagement": null,
       "benefits": [
         "Keep the foundations: Leadership Infrastructure™ Phase I–II tools and Blueprint™ Welcome, Phase One, and Phase Two, yours for good",
-        "A full year inside The Co.LLab™: .LLab Membership™ with every IV Phases™ product, the Library Card™ and Legacy Library™, and The .LLab Journal™",
+        "A full year inside The Co.LLab™: .LLab Membership™ with every product in The IV Phases™, the Library Card™ and Legacy Library™, and The .LLab Journal™",
         "Recognized as a Co.LLab™ Partner in your account",
         "Eligible for designated ecosystem opportunities"
       ]
@@ -430,7 +430,7 @@
       },
       "benefits": [
         "Everything in Strategic",
-        "Keep the complete designated Co.LLab™ IP portfolio: all IV Phases™, Creator Infrastructure™, Preservation resources, and the full Blueprint™ series",
+        "Keep the complete designated Co.LLab™ IP portfolio: all of The IV Phases™, Creator Infrastructure™, Preservation resources, and the full Blueprint™ series",
         "New designated releases during your 12-month term, yours to keep",
         "Equip your leadership team: 5 individual seats",
         "An annual enterprise orientation for your seat holders",
@@ -541,7 +541,7 @@
     {
       "key": "infrastructure-roadmap",
       "name": ".LLab Infrastructure Roadmap™",
-      "description": "A guided map of the full .LLab™ IV Phases™ Product Infrastructure and how to move through it — included free with Membership and the Library Card.",
+      "description": "A guided map of the full .LLab™ The IV Phases™ Product Infrastructure and how to move through it — included free with Membership and the Library Card.",
       "pdf_file": "infrastructure-roadmap.pdf",
       "granted_by": ["membership", "library-card"]
     }
