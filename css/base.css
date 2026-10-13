@@ -881,21 +881,19 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 .doorway-card:hover { background: var(--black-soft); }
 
 /* the abstract mark from the storefront sign, reused (never redrawn) as a
-   faint watermark — rotated per card so the four doorways read as one
-   family without repeating the same crop identically four times. */
+   faint watermark. Kept at its native aspect ratio and unrotated — forcing
+   it into a square or turning it distorts the mark. */
 .doorway-card .mark {
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 92px;
-  height: 92px;
-  opacity: 0.1;
+  top: 1rem;
+  right: 1rem;
+  width: 84px;
+  height: auto;
+  aspect-ratio: 1008 / 576;
+  object-fit: contain;
+  opacity: 0.12;
   pointer-events: none;
 }
-
-.doorway-card:nth-child(2) .mark { transform: rotate(90deg); }
-.doorway-card:nth-child(3) .mark { transform: rotate(180deg); }
-.doorway-card:nth-child(4) .mark { transform: rotate(270deg); }
 
 .doorway-card .kicker {
   font-size: 0.68rem;
@@ -1130,15 +1128,11 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 }
 
 .doorway-card .mark--sm {
-  width: 44px;
-  height: 44px;
-  opacity: 0.08;
-  top: -8px;
-  right: -8px;
+  width: 56px;
+  opacity: 0.1;
+  top: 0.85rem;
+  right: 0.85rem;
 }
-
-.doorway-card:nth-child(5) .mark { transform: rotate(45deg); }
-.doorway-card:nth-child(6) .mark { transform: rotate(135deg); }
 
 /* ---------- free tool + paid product pairing (phase groups) ---------- */
 
