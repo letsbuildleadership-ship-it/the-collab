@@ -17,7 +17,7 @@ export const meta = {
 const diagItem = (text) => `
 <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:9px; padding-bottom:9px; border-bottom:1px solid var(--hairline);">
   <p style="font-size:9.8px; margin:0; color:var(--ink); flex:1;">${text}</p>
-  <div style="display:flex; gap:5px; flex:0 0 auto;">${[0, 1, 2, 3].map((n) => `<span style="width:16px;height:16px;border-radius:50%;border:1.2px solid var(--hairline-strong); display:flex; align-items:center; justify-content:center; font-size:7.5px; color:var(--ink-dim);">${n}</span>`).join('')}</div>
+  <div data-score-dots style="display:flex; gap:5px; flex:0 0 auto;">${[0, 1, 2, 3].map((n) => `<span style="width:16px;height:16px;border-radius:50%;border:1.2px solid var(--hairline-strong); display:flex; align-items:center; justify-content:center; font-size:7.5px; color:var(--ink-dim);">${n}</span>`).join('')}</div>
 </div>`;
 
 const phasePanel = (numeral, title, arc, items) => `
