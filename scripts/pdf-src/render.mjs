@@ -18,7 +18,7 @@ export function renderCover({ eyebrow, title, subtitle, phase, price, footerRigh
         ${price ? `<div>Investment<strong>${price}</strong></div>` : ''}
       </div>
       <div class="cover-footer">
-        <span>The Co.LLab: Building Leadership Infrastructure™</span>
+        <span>The Co.LLab: Building Leadership Infrastructure™<br/>Let’s build your legacy through Omnidirectional Enterprise™</span>
         <span>${footerRight || ''}</span>
       </div>
     </div>

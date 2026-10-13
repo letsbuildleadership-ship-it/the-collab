@@ -25,7 +25,7 @@
     { "text": "™", "style": "default", "break_before": false }
   ],
   "membership_status": "Open Now",
-  "membership_body": "Every .LLab™ Four Phases product below, unlocked while you're a member. Finish a TRIARCH™ tier (CROWN, SCEPTER, SIGNET, HEIRLOOM) and pick one more product free, yours to keep.",
+  "membership_body": "The Four Phases IP: every .LLab™ Phase I–IV product below, unlocked while you're a member. Finish a TRIARCH™ tier (CROWN, SCEPTER, SIGNET, HEIRLOOM) and pick one more product free, yours to keep.",
   "membership_tiers": [
     { "tag": "Monthly", "price": "$150/mo", "description": "Full membership access, billed monthly.", "link": "https://buy.stripe.com/eVqfZg1EqewtaFRfpk9ws0U" },
     { "tag": "Annual", "price": "$1,500/yr", "description": "Full membership access, billed annually. Two months free.", "link": "https://buy.stripe.com/8x24gy2Iuagd6pB0uq9ws0V" }
