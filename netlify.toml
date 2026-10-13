@@ -83,3 +83,10 @@
   from = "/impact"
   to = "/pages/impact.html"
   status = 200
+
+# Digital business card: "Add to contacts" downloads a vCard.
+[[headers]]
+  for = "/ashley-clasby.vcf"
+  [headers.values]
+    Content-Type = "text/vcard; charset=utf-8"
+    Content-Disposition = "attachment; filename=\"ashley-clasby.vcf\""
