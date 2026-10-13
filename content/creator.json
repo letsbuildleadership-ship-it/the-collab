@@ -17,7 +17,7 @@
 
   "journey_eyebrow": "The creator journey",
   "journey_headline": "Creation. Venture. Enterprise. Legacy.",
-  "journey_body": "Four words describe where a body of work can go — Create, Build, Operate, Preserve — the same four moves The Co.LLab™ uses for every kind of infrastructure, applied here to creative work.",
+  "journey_body": "Create, Build, Operate, Preserve — the same four moves behind all our infrastructure, applied to creative work.",
   "journey_steps": [
     { "tag": "CREATE", "title": "Creation", "description": "What you are already making — the work, the practice, the body of ideas." },
     { "tag": "BUILD", "title": "Venture", "description": "The point where a practice becomes something with an audience, an offer, and a shape." },
@@ -35,11 +35,11 @@
 
   "triarch_eyebrow": "Built on TRIARCH™",
   "triarch_headline": "The same keystone, applied to creative work.",
-  "triarch_body": "TRIARCH™ — CROWN, SCEPTER, SIGNET, HEIRLOOM — is the value architecture underneath every .LLab™ product, including this one. For a creator, CROWN is claiming authorship and identity; SCEPTER is the deliberate structure behind the work; SIGNET is the proof that the systems actually produce; HEIRLOOM is the body of work made ready to hand down. The .LLab Membership™ and Legacy Library™ apply this same cycle to your creative infrastructure.",
+  "triarch_body": "TRIARCH™ is the value cycle under every .LLab™ product. For a creator: CROWN claims authorship, SCEPTER structures the work, SIGNET proves the systems produce, HEIRLOOM readies the work to hand down.",
 
   "omni_eyebrow": "Omnidirectional Enterprise™",
   "omni_headline": "Value doesn't move in one direction — for creators either.",
-  "omni_body": "A creator's value, authority, IP, participation, opportunity, and knowledge don't have to flow one way, from creator down to audience. Creator Infrastructure™ is built so collaborators, community, and audience can also contribute value, ideas, and opportunity back into the venture.",
+  "omni_body": "Value doesn't just flow from creator to audience. Collaborators, community, and audience can feed ideas and opportunity back in.",
 
   "pathway_eyebrow": "How people move through it",
   "pathway_headline": "Discover. Try something free. Buy what solves the real problem.",
@@ -92,7 +92,7 @@
 
   "products_eyebrow": "Buy what you need, when you need it",
   "products_headline": "The Creator Infrastructure™ product ladder",
-  "products_body": "Beginner-first, and built for people who don't yet think of themselves as entrepreneurs. Each product maps to one phase, solves one real problem, and is purchasable on its own — or already unlocked with .LLab Membership™.",
+  "products_body": "Beginner-first. Each product covers one phase and one real problem — buy it on its own, or unlock it with .LLab Membership™.",
   "creator_products": [
     { "phase": "Phase I · Foundations", "title": "Creator Identity Map™", "price": "$20", "description": "Turn what you're already creating into a clear creative identity you can build infrastructure around.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
     { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },

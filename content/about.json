@@ -36,7 +36,7 @@
   "vision_body_glow": "them.",
   "problem_eyebrow": "The core problem",
   "problem_headline": "Most infrastructure is built first. Then humans are expected to adapt.",
-  "problem_body": "The Co.LLab™ reverses that model. Traditional: design, deploy, train, expect adoption. Ours: understand the human, design the infrastructure, build the operating system, develop, preserve. Designing around human behavior — rather than forcing human behavior into predetermined systems — is the fundamental idea behind everything here.",
+  "problem_body": "We reverse that model. Traditional: design, deploy, train, hope for adoption. Ours: understand the human first, then build infrastructure around them.",
   "phases_eyebrow": "How we work — the four-phase model",
   "phases": [
     {
@@ -58,7 +58,7 @@
   ],
   "model_eyebrow": "Omnidirectional Enterprise™",
   "model_headline": "Not a linear funnel. Value moves in every direction.",
-  "model_body": "The Co.LLab™ isn't a single-purpose consulting business. Value moves between people, ideas, infrastructure, products, organizations, community, and legacy — with multiple entry points and multiple ways to create value, each connected back to Leadership Infrastructure™.",
+  "model_body": "Not a single-purpose consulting business. Value moves between people, ideas, products, organizations, and community — with many ways in, all connected to Leadership Infrastructure™.",
   "ethics_body": "Every direction that value moves in is built on ethical business practice. How we treat people is not separate from what we build — it's part of the infrastructure itself.",
   "audiences": [
     {
@@ -79,12 +79,12 @@
     {
       "tag": "Artists & Creators",
       "title": "Creator Infrastructure™",
-      "description": "Leadership Infrastructure™ methodology, applied to every kind of creative venture — artists, designers, writers, musicians, filmmakers, educators, makers, researchers, cultural practitioners, and community builders. Creators keep authorship and ownership of their IP; The Co.LLab™ builds the infrastructure around it."
+      "description": "Leadership Infrastructure™ for every kind of creative venture. Creators keep ownership of their IP; The Co.LLab™ builds the infrastructure around it."
     }
   ],
   "ip_eyebrow": "Intellectual property is an asset",
   "ip_headline": "Ideas → Research → Theory → Framework → Infrastructure → Product → Licensing → Enterprise.",
-  "ip_body": "The Co.LLab™ has accumulated frameworks, methodologies, terminology, models, research, theories, products, systems, creative IP, and educational assets. The goal isn't to hide these pieces — it's to give them a visible architecture.",
+  "ip_body": "Frameworks, models, research, products, and creative IP — given a visible architecture instead of kept hidden.",
   "personality_eyebrow": "Brand personality",
   "personality_headline": [
     {
@@ -98,9 +98,9 @@
       "break_before": false
     }
   ],
-  "personality_body": "Academic without being boring. Corporate without becoming sterile. Creative without becoming chaotic. Experimental without losing credibility. Serious about ideas without taking itself too seriously. There is room for weirdness — \"let's investigate this absolutely ridiculous idea and see where it goes\" is part of the R.A.T.™ spirit.",
+  "personality_body": "Academic, not boring. Corporate, not sterile. Creative, not chaotic. Serious about ideas — with room for the delightfully ridiculous. That's the R.A.T.™ spirit.",
   "community_eyebrow": "Community",
-  "community_body": "The community isn't based on everyone agreeing. We can disagree, question things, explore strange ideas, and still treat each other with respect. No hate. No disrespect. This is for people who want to think, investigate, question, theorize, and build.",
+  "community_body": "You don't have to agree to belong. Question, disagree, explore — with respect. No hate. Built for people who think and build.",
   "closing_eyebrow": "The idea behind all of it",
   "closing_headline": [
     {

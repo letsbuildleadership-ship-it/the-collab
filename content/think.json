@@ -12,11 +12,11 @@
 
   "meta_eyebrow": "A concept from The Co.LLab™",
   "meta_headline": "Metacognitive Infrastructure Thinking™",
-  "meta_body": "Thinking about the infrastructure behind thinking itself. Instead of asking “how do we solve this problem,” ask: “what structure is producing the way we're approaching this problem?” Then: “what infrastructure would allow people to think, decide, create, lead, and operate differently?”",
+  "meta_body": "Don't just ask \"how do we solve this?\" Ask \"what structure is shaping how we approach it — and what would let people think and lead differently?\"",
 
   "intel_eyebrow": "Bridging theory and technology",
   "intel_headline": ".LLab Intelligence Infrastructure™",
-  "intel_body": "Intelligent systems should understand human behavior rather than simply demand human compliance. This is a proprietary approach to designing intelligent systems around how people actually behave — one of the bridges between The Co.LLab™'s theoretical work and future technology.",
+  "intel_body": "Intelligent systems should understand people, not demand compliance. Our approach designs them around how people actually behave.",
   "intel_domains": [
     { "label": "AI" },
     { "label": "Organizational systems" },
