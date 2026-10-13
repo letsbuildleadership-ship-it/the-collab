@@ -78,5 +78,10 @@ ${licensePageHtml}
   </div>
 
   <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+  <div class="activity-box">
+    <span class="activity-kicker">Your Next Step</span>
+    <p class="activity-prompt">Which phase are you in right now, and what is the one next step you will take?</p>
+    <div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div>
+  </div>
 </section>
 `;
