@@ -5,16 +5,16 @@
     { "text": " ", "style": "default", "break_before": false },
     { "text": "building good.", "style": "glow", "break_before": true }
   ],
-  "hero_subhead": "10% of every Impact Product™ supports a partner nonprofit — tracked openly.",
+  "hero_subhead": "Every Impact Product™ supports a partner nonprofit — tracked openly.",
 
   "how_eyebrow": "How Impact Products work",
   "how_steps": [
-    { "title": "A product is designated", "description": "The Co.LLab™ marks a specific product as an Impact Product and sets a fixed percentage — currently 10%." },
+    { "title": "A product is designated", "description": "The Co.LLab™ marks a specific product as an Impact Product and designates a share of each sale for a partner nonprofit." },
     { "title": "The allocation is recorded", "description": "Each sale's share is logged to the partner's ledger." },
     { "title": "Totals are public", "description": "Running totals per partner below — no customer details." },
     { "title": "Funds are remitted", "description": "The Co.LLab™ reconciles and sends the allocated amount to each partner directly, on a regular cadence." }
   ],
-  "how_notice": "Full transparency: Stripe doesn't split funds automatically. Unless a partner has its own Stripe Connect account, The Co.LLab™ tracks the 10% and sends it directly. The ledger below shows what's allocated and what's been sent.",
+  "how_notice": "Full transparency: Stripe doesn't split funds automatically. Unless a partner has its own Stripe Connect account, The Co.LLab™ tracks the nonprofit share and sends it directly. The ledger below shows what's allocated and what's been sent.",
 
   "partners_eyebrow": "Current partners",
   "partners_static": [
@@ -24,13 +24,13 @@
 
   "products_eyebrow": "Current Impact Products",
   "products": [
-    { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Community Founder", "price": "$20", "link": "founders.html" },
-    { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Premium Community Founder", "price": "$50", "link": "founders.html" },
-    { "tag": "10% supports Blazing Smiles", "title": "Founders Organization — Founder", "price": "$350", "link": "founders.html" },
-    { "tag": "10% supports Wavecraft Oceans Project", "title": "Founders Organization — Legacy Founder", "price": "$1,000", "link": "founders.html" }
+    { "tag": "Supports Blazing Smiles", "title": "Founders Organization — Community Founder", "price": "$20", "link": "founders.html" },
+    { "tag": "Supports Wavecraft Oceans Project", "title": "Founders Organization — Premium Community Founder", "price": "$50", "link": "founders.html" },
+    { "tag": "Supports Blazing Smiles", "title": "Founders Organization — Founder", "price": "$350", "link": "founders.html" },
+    { "tag": "Supports Wavecraft Oceans Project", "title": "Founders Organization — Legacy Founder", "price": "$1,000", "link": "founders.html" }
   ],
   "products_note": "More Impact Products may be added, each clearly marked.",
 
   "closing_eyebrow": "Go deeper",
-  "closing_headline": "Every founding option directs 10% to a partner nonprofit."
+  "closing_headline": "Every founding option gives back to a partner nonprofit."
 }
