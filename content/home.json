@@ -23,13 +23,13 @@
     }
   ],
   "hero_subhead": "We build the infrastructure around the person, organization, or idea — not the other way around.",
-  "hero_cta_primary_label": "Explore the Founders Organization",
-  "hero_cta_primary_link": "/pages/founders.html",
-  "hero_cta_secondary_label": "Explore The .LLab",
-  "hero_cta_secondary_link": "/pages/products.html",
+  "hero_cta_primary_label": "Become a Member",
+  "hero_cta_primary_link": "/pages/products.html#membership",
+  "hero_cta_secondary_label": "Explore the Founders Organization",
+  "hero_cta_secondary_link": "/pages/founders.html",
   "doorway_eyebrow": "What are you building?",
-  "doorway_headline": "Four doorways into The Co.LLab™.",
-  "doorway_body": "Pick the one closest to what you're building.",
+  "doorway_headline": "More ways in.",
+  "doorway_body": "Creating something, or here for the research? Start here.",
   "directory_eyebrow": "The ecosystem",
   "directory_cards": [
     {
