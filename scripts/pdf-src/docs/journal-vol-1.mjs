@@ -52,7 +52,7 @@ export const contentHtml = `
     <p>Pick your organization's most frequent recurring decision. Ask: could someone two levels removed from leadership make this decision correctly, using only what's written down? If the honest answer is no, that's the system to build before the next round of growth — not after.</p>
   </div>
 
-  <p>This is precisely why Infrastructure Planning &amp; Management sits before Internal Operating Systems in the four-phase model, and why both sit before any serious growth initiative. Planning what infrastructure is actually needed, and building the systems that make decisions repeatable without the founder in the room, isn't preparation for some future, more mature version of the organization. It's the thing that determines whether growth becomes durable enterprise value — or just a faster way to discover, all at once, everything that was never actually built.</p>
+  <p>This is precisely why Infrastructure Planning &amp; Management sits before Internal Operating Systems in the IV Phases™ model, and why both sit before any serious growth initiative. Planning what infrastructure is actually needed, and building the systems that make decisions repeatable without the founder in the room, isn't preparation for some future, more mature version of the organization. It's the thing that determines whether growth becomes durable enterprise value — or just a faster way to discover, all at once, everything that was never actually built.</p>
 </section>
 
 <section class="page">

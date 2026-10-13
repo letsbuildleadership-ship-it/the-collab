@@ -5,7 +5,7 @@ export const meta = {
   cover: {
     eyebrow: 'Phase IV · Preservation — a .LLab™ Assessment',
     title: '.LLab Leadership Infrastructure <strong>Diagnostic</strong>™',
-    subtitle: "A comprehensive, scored assessment of your organization's leadership infrastructure across all four phases.",
+    subtitle: "A comprehensive, scored assessment of your organization's leadership infrastructure across all IV Phases™.",
     phase: 'IV · Preservation',
     price: '$300',
     footerRight: 'The .LLab™ IV Phases Product Infrastructure',

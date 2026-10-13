@@ -5,7 +5,7 @@ export const meta = {
   cover: {
     eyebrow: 'Build — for founders',
     title: 'The Co.LLab™ Founders <strong>Organization</strong>',
-    subtitle: 'Welcome. This is the infrastructure behind your enterprise — the four-phase model, applied to you and what you’re building.',
+    subtitle: 'Welcome. This is the infrastructure behind your enterprise — the IV Phases™ model, applied to you and what you’re building.',
     phase: 'Build · Founders Organization',
     price: 'Founder / Legacy Founder',
     footerRight: 'The Co.LLab™ Founders Organization',
@@ -16,7 +16,7 @@ export const contentHtml = `
 <section class="page">
   <p class="kicker">Welcome</p>
   <h1 class="doc-h1">You have the momentum. <strong>Now the infrastructure.</strong></h1>
-  <p class="lead">Most founders don't fail from lack of talent, vision, or effort. They stall because the enterprise around them was never built to carry what they're asking it to carry — no decision infrastructure, no operating systems, no plan for anything to run without the founder personally in every room. The Founders Organization exists to fix exactly that, using the same four-phase model behind everything in The Co.LLab™ ecosystem.</p>
+  <p class="lead">Most founders don't fail from lack of talent, vision, or effort. They stall because the enterprise around them was never built to carry what they're asking it to carry — no decision infrastructure, no operating systems, no plan for anything to run without the founder personally in every room. The Founders Organization exists to fix exactly that, using the same IV Phases™ model behind everything in The Co.LLab™ ecosystem.</p>
 
   <div class="callout">
     <div class="callout-label">Why this is separate from The .LLab™</div>
@@ -25,7 +25,7 @@ export const contentHtml = `
 
   <h2 class="doc-h2">What's included</h2>
   <ul class="doc-list">
-    <li>Full access to the four-phase infrastructure model, applied specifically to founders and early enterprises.</li>
+    <li>Full access to the IV Phases™ infrastructure model, applied specifically to founders and early enterprises.</li>
     <li>The founder community — a working group of people building through the same phases, at the same time.</li>
     <li>Every resource in the introductory cohort, at your founding-rate lock-in.</li>
   </ul>
@@ -33,7 +33,7 @@ export const contentHtml = `
 
 <section class="page">
   <p class="kicker">The framework</p>
-  <h1 class="doc-h1">The four-phase model, <strong>applied to founders.</strong></h1>
+  <h1 class="doc-h1">The IV Phases™ model, <strong>applied to founders.</strong></h1>
 
   <div class="step-row">
     <span class="step-number">1</span>

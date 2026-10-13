@@ -116,7 +116,7 @@ async function loadContent() {
           if (value !== undefined) srcEl.setAttribute('src', value);
         });
         withinNode(node, '[data-item-index]').forEach((idxEl) => {
-          idxEl.textContent = String(idx + 1).padStart(2, '0');
+          idxEl.textContent = idxEl.dataset.itemIndex === 'roman' ? ['I', 'II', 'III', 'IV', 'V', 'VI'][idx] || String(idx + 1) : String(idx + 1).padStart(2, '0');
         });
         container.appendChild(node);
       });

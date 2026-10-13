@@ -43,7 +43,7 @@ ${tiers.map(card).join('\n')}
       <p class="tier-license" style="margin-top:1.5rem;">Every tier uses the standard <a href="ip-license.html">Co.LLab™ IP license</a>: internal use only. No training, consulting, client use, co-branding, or resale without written authorization.</p>`;
 
 const grants = Object.fromEntries(tiers.map((t) => [t.key, new Set(pricing.partnershipGrantKeysFor(t.key))]));
-// .LLab Membership™ opens the Four Phases products during the term.
+// .LLab Membership™ opens the IV Phases™ products during the term.
 const catalog = new Set(pricing.fourPhasesKeys());
 
 function cell(key, t) {

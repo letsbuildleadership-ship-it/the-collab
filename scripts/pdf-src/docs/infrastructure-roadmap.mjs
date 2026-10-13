@@ -6,7 +6,7 @@ export const meta = {
     eyebrow: 'Included with Membership & the Library Card',
     title: '.LLab Infrastructure <strong>Roadmap</strong>™',
     subtitle: 'A guided map of the full .LLab™ IV Phases Product Infrastructure — what each product does, and where to start.',
-    phase: 'All Four Phases',
+    phase: 'All IV Phases™',
     price: 'Included',
     footerRight: 'The .LLab Infrastructure Roadmap™',
   },
@@ -15,12 +15,12 @@ export const meta = {
 export const contentHtml = `
 <section class="page">
   <p class="kicker">How to use this map</p>
-  <h1 class="doc-h1">Nine products. <strong>Four phases.</strong> One path.</h1>
+  <h1 class="doc-h1">Nine products. <strong>IV Phases™.</strong> One path.</h1>
   <p class="lead">The .LLab™ IV Phases Product Infrastructure can be bought piece by piece, exactly where you need it — or worked through in order, each product building on real output from the last. This Roadmap is your orientation to the whole catalog, so you never have to guess where to start.</p>
 
   <div class="callout">
     <div class="callout-label">The core idea</div>
-    <p>Every product maps to one of four phases: Foundations, Infrastructure Planning &amp; Management, Internal Operating Systems, and Preservation. Work through the phase that matches your most urgent problem — or start at Phase I if you're not sure.</p>
+    <p>Every product maps to one of IV Phases™: Foundations, Infrastructure Planning &amp; Management, Internal Operating Systems, and Preservation. Work through the phase that matches your most urgent problem — or start at Phase I if you're not sure.</p>
   </div>
 </section>
 

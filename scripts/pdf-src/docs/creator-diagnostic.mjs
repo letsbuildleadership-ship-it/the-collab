@@ -7,8 +7,8 @@ export const meta = {
   cover: {
     eyebrow: 'Creator Infrastructure™ — Free Diagnostic',
     title: '.LLab Creator Infrastructure <strong>Diagnostic</strong>™',
-    subtitle: 'A short self-assessment across all four phases — free edition.',
-    phase: 'All Four Phases',
+    subtitle: 'A short self-assessment across all IV Phases™ — free edition.',
+    phase: 'All IV Phases™',
     price: 'Free',
     footerRight: '.LLab Creator Infrastructure™',
   },
@@ -34,7 +34,7 @@ ${licensePageHtml}
   <div class="content-header">
     <span class="page-index">01 · Score Phases I &amp; II</span>
     <h2 class="section-title">A Directional Score.<br/><strong>Not A Test You Can Fail.</strong></h2>
-    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all four phases of Creator Infrastructure™ — score honestly.</p>
+    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all IV Phases™ of Creator Infrastructure™ — score honestly.</p>
   </div>
   ${phasePanel('I', 'Foundations', 'Idea → Identity', [
     'I can describe what I make in one clear sentence, without hedging.',

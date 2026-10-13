@@ -37,7 +37,7 @@
   "problem_eyebrow": "The core problem",
   "problem_headline": "Most infrastructure is built first. Then humans are expected to adapt.",
   "problem_body": "We reverse that model. Traditional: design, deploy, train, hope for adoption. Ours: understand the human first, then build infrastructure around them.",
-  "phases_eyebrow": "How we work — the four-phase model",
+  "phases_eyebrow": "How we work — the IV Phases™ model",
   "phases": [
     {
       "title": "Foundations",
