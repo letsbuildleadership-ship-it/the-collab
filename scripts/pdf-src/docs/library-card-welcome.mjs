@@ -46,7 +46,7 @@ export const contentHtml = `
 <section class="page">
   <p class="kicker">Getting the most from it</p>
   <h1 class="doc-h1">Start with the <strong>Roadmap.</strong></h1>
-  <p class="lead">Your <strong>.LLab Infrastructure Roadmap™</strong> is the fastest way to understand what the rest of the ecosystem offers — the full IV Phases catalog, how the IV Phases™ connect, and which product to consider first based on what you're actually facing right now.</p>
+  <p class="lead">Your <strong>.LLab Infrastructure Roadmap™</strong> is the fastest way to understand what the rest of the ecosystem offers — the full IV Phases catalog, how The IV Phases™ connect, and which product to consider first based on what you're actually facing right now.</p>
 
   <div class="worksheet-field">
     <div class="field-label">What made you curious about The .LLab™ in the first place?</div>
