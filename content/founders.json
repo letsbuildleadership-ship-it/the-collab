@@ -67,28 +67,28 @@
       "price": "$20",
       "description": "Your entry into Omnidirectional Enterprise™.",
       "link": "https://buy.stripe.com/bJedR82Iu0FD7tFfpk9ws15",
-      "impact_label": "10% supports Blazing Smiles"
+      "impact_label": "Supports Blazing Smiles"
     },
     {
       "tag": "Premium Community Founder",
       "price": "$50",
       "description": "Build more, give more back.",
       "link": "https://buy.stripe.com/3cI14m6YK2NL9BNelg9ws16",
-      "impact_label": "10% supports Wavecraft Oceans Project"
+      "impact_label": "Supports Wavecraft Oceans Project"
     },
     {
       "tag": "Founder",
       "price": "$350",
       "description": "Founding partnership for organizations.",
       "link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
-      "impact_label": "10% supports Blazing Smiles"
+      "impact_label": "Supports Blazing Smiles"
     },
     {
       "tag": "Legacy Founder",
       "price": "$1,000",
       "description": "Our highest founding level — build a legacy with us.",
       "link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
-      "impact_label": "10% supports Wavecraft Oceans Project"
+      "impact_label": "Supports Wavecraft Oceans Project"
     }
   ],
   "founder_benefits": "Every founding option includes a permanent Founder Number, a digital Founder Card, and 20% off eligible future products from The Co.LLab™ while signed in.",
