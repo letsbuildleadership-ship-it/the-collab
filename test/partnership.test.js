@@ -196,12 +196,12 @@ test('subscription memberships (no currentPeriodEnd) are unaffected by expiry ch
 const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
-test('partnership page lists every tier link, states purchase-not-investment, and never links to Founders', () => {
+test('partnership page lists every tier link, states purchase-not-security, and never links to Founders', () => {
   const html = read('pages/partnership.html');
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
   assert.match(html, /strategic purchase/i);
-  assert.match(html, /not an investment or a security/i);
+  assert.match(html, /not a financial investment or a security/i);
   assert.ok(!/founders\.html/.test(html), 'partnership page must not link to the Founders page');
 });
 

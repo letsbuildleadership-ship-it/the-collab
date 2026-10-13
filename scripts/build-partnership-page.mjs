@@ -23,11 +23,9 @@ function card(t) {
           <span class="num">${esc(t.tier_label)}</span>
           <p class="tier-line">${esc(t.headline)}</p>
           <h3>${esc(t.price_display)}</h3>
-          <p class="term">One-time purchase · 12 months of memberships</p>
-          <p class="tier-tagline">${esc(t.tagline || '')}</p>
           <p class="tier-best"><strong>Best for:</strong> ${esc(t.best_for || t.positioning)}</p>
           <ul class="access-list">
-${t.benefits.map((b) => `            <li>${esc(b)}</li>`).join('\n')}
+${t.benefits.filter((b) => !/seat|orientation|briefing/i.test(b)).map((b) => `            <li>${esc(b)}</li>`).join('\n')}
           </ul>
           <dl class="tier-facts">
             <div><dt>Seats</dt><dd>${t.seats} individual${t.seats === 1 ? '' : 's'}</dd></div>
@@ -35,14 +33,14 @@ ${t.benefits.map((b) => `            <li>${esc(b)}</li>`).join('\n')}
             <div><dt>Included session</dt><dd>${esc(session)}</dd></div>
             <div><dt>Access level</dt><dd>${esc(t.access_level)}</dd></div>
           </dl>
-          <p class="tier-license">Standard <a href="ip-license.html">Co.LLab™ IP license</a>: internal use only. No training, consulting, client use, co-branding, or resale without written authorization.</p>
           <a class="pill pill--solid" href="${esc(t.payment_link)}" style="margin-top:auto; width:fit-content;">Purchase ${esc(t.tier_label)} · ${esc(t.price_display)} <span class="arrow">→</span></a>
         </div>`;
 }
 
 const tierCards = `      <div class="grid grid-4 tier-grid" style="margin-top:2.5rem;">
 ${tiers.map(card).join('\n')}
-      </div>`;
+      </div>
+      <p class="tier-license" style="margin-top:1.5rem;">Every tier uses the standard <a href="ip-license.html">Co.LLab™ IP license</a>: internal use only. No training, consulting, client use, co-branding, or resale without written authorization.</p>`;
 
 const grants = Object.fromEntries(tiers.map((t) => [t.key, new Set(pricing.partnershipGrantKeysFor(t.key))]));
 // .LLab Membership™ opens the Four Phases products during the term.
