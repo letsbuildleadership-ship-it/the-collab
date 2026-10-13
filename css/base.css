@@ -1345,3 +1345,4 @@ a.pill.is-owned {
   font-size: var(--label-size); letter-spacing: 0.12em; text-transform: uppercase;
 }
 .terms-details[open] summary { margin-bottom: 1rem; }
+.ip-price { margin: 0; font-size: 1.6rem; font-weight: 700; }
