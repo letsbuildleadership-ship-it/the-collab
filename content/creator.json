@@ -4,14 +4,14 @@
   "banner_cta_label": "See The Free Resources",
   "banner_cta_link": "#free",
 
-  "eyebrow": "For artists, designers, writers, musicians, filmmakers, educators, makers, researchers, cultural practitioners, and community builders",
+  "eyebrow": "For every kind of creator",
   "hero_headline": [
     { "text": "You were already ", "style": "default", "break_before": false },
     { "text": "creating.", "style": "white", "break_before": false },
     { "text": "We help you build what your creation can ", "style": "default", "break_before": true },
     { "text": "become.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "Creator Infrastructure™ applies The Co.LLab™'s Leadership Infrastructure™ methodology to every kind of creative venture — the systems, succession plans, and body-of-work architecture that let creative work outlast the creator.",
+  "hero_subhead": "The systems and structure that turn creative work into a venture — and a legacy that outlasts you.",
   "hero_cta_label": "Start With A Free Resource",
   "hero_cta_link": "#free",
 
@@ -19,33 +19,33 @@
   "journey_headline": "Creation. Venture. Enterprise. Legacy.",
   "journey_body": "Create, Build, Operate, Preserve — the same four moves behind all our infrastructure, applied to creative work.",
   "journey_steps": [
-    { "tag": "CREATE", "title": "Creation", "description": "What you are already making — the work, the practice, the body of ideas." },
-    { "tag": "BUILD", "title": "Venture", "description": "The point where a practice becomes something with an audience, an offer, and a shape." },
+    { "tag": "CREATE", "title": "Creation", "description": "What you're already making." },
+    { "tag": "BUILD", "title": "Venture", "description": "When a practice gets an audience and an offer." },
     { "tag": "OPERATE", "title": "Enterprise", "description": "Systems that let the venture run without every decision depending on you." },
     { "tag": "PRESERVE", "title": "Legacy", "description": "Work, ownership, and infrastructure that can be handed down or carried on." }
   ],
 
   "phases_eyebrow": "The four-phase model, applied to creators",
   "phases": [
-    { "title": "Foundations", "description": "IDEA → IDENTITY. Understanding what you're actually creating and who you are as its architect — before touching a business model." },
-    { "title": "Infrastructure Planning & Management", "description": "IDENTITY → VENTURE. Determining what systems a creative identity needs to become a venture, and how the pieces connect." },
-    { "title": "Internal Operating Systems", "description": "VENTURE → ENTERPRISE. The repeatable systems, offers, and operations that let the venture run and grow." },
-    { "title": "Preservation", "description": "ENTERPRISE → LEGACY. What gets documented, transferred, and sustained so the work outlives any one project — or its creator." }
+    { "title": "Foundations", "description": "IDEA → IDENTITY. Know what you're creating and who you are as its architect." },
+    { "title": "Infrastructure Planning & Management", "description": "IDENTITY → VENTURE. Decide what systems your work needs to become a venture." },
+    { "title": "Internal Operating Systems", "description": "VENTURE → ENTERPRISE. Systems that let it run and grow." },
+    { "title": "Preservation", "description": "ENTERPRISE → LEGACY. Make the work outlive any one project — or you." }
   ],
 
   "triarch_eyebrow": "Built on TRIARCH™",
   "triarch_headline": "The same keystone, applied to creative work.",
-  "triarch_body": "TRIARCH™ is the value cycle under every .LLab™ product. For a creator: CROWN claims authorship, SCEPTER structures the work, SIGNET proves the systems produce, HEIRLOOM readies the work to hand down.",
+  "triarch_body": "CROWN claims authorship. SCEPTER structures the work. SIGNET proves it produces. HEIRLOOM readies it to hand down.",
 
   "omni_eyebrow": "Omnidirectional Enterprise™",
   "omni_headline": "Value doesn't move in one direction — for creators either.",
-  "omni_body": "Value doesn't just flow from creator to audience. Collaborators, community, and audience can feed ideas and opportunity back in.",
+  "omni_body": "Value flows both ways — your community feeds ideas and opportunity back in.",
 
   "pathway_eyebrow": "How people move through it",
   "pathway_headline": "Discover. Try something free. Buy what solves the real problem.",
   "pathway_steps": [
     { "title": "Discover", "description": "Find Creator Infrastructure™ through The .LLab, a free resource, or a search." },
-    { "title": "Free Resource", "description": "Get real, usable value first — a guide, a diagnostic, a tool, a preview, a map of the whole pathway." },
+    { "title": "Free Resource", "description": "Start with real value — free." },
     { "title": "Identify Need", "description": "See exactly which phase of your creative infrastructure is thin." },
     { "title": "Individual Product", "description": "Buy the one product that solves that specific problem — no bundle required." },
     { "title": "Implement & Refine", "description": "Put it to work in your actual practice, then refine it." },
@@ -56,7 +56,7 @@
 
   "free_eyebrow": "Five free resources — not teasers",
   "free_headline": "Real, usable value before you spend anything.",
-  "free_body": "Every .LLab™ infrastructure line ships with five free resources. Each one solves something real on its own, and each one points to the paid product that goes deeper.",
+  "free_body": "Five free resources. Each solves something real and leads to the next step.",
   "free_resources": [
     {
       "tag": "Free Quick Start",
@@ -67,44 +67,44 @@
     {
       "tag": "Free Diagnostic",
       "title": ".LLab Creator Infrastructure Diagnostic™ (Free Edition)",
-      "description": "A short self-assessment across all four phases — tells you exactly where your creative infrastructure is thin.",
+      "description": "Find where your creative infrastructure is thin.",
       "link": "/content/library/creator-diagnostic.pdf"
     },
     {
       "tag": "Free Practical Tool",
       "title": "The Body of Work Inventory™",
-      "description": "A working tool for cataloguing what you've actually made — the first step toward Body of Work Architecture.",
+      "description": "Catalogue everything you've made.",
       "link": "/content/library/creator-practical-tool.pdf"
     },
     {
       "tag": "Free Product Preview",
       "title": "The Creator Operating System™ — Preview",
-      "description": "The opening module of the full Creator Operating System™ product, so you can see exactly what it builds.",
+      "description": "Try the first module of the Creator Operating System™.",
       "link": "/content/library/creator-product-preview.pdf"
     },
     {
       "tag": "Free Pathway Guide",
       "title": ".LLab Creator Infrastructure Pathway Guide™",
-      "description": "The full map — Foundations to Preservation — and which product fits where you are right now.",
+      "description": "See the full path and where you are on it.",
       "link": "/content/library/creator-pathway-guide.pdf"
     }
   ],
 
   "products_eyebrow": "Buy what you need, when you need it",
   "products_headline": "The Creator Infrastructure™ product ladder",
-  "products_body": "Beginner-first. Each product covers one phase and one real problem — buy it on its own, or unlock it with .LLab Membership™.",
+  "products_body": "Beginner-first. One phase, one problem per product — or unlock all with .LLab Membership™.",
   "creator_products": [
-    { "phase": "Phase I · Foundations", "title": "Creator Identity Map™", "price": "$20", "description": "Turn what you're already creating into a clear creative identity you can build infrastructure around.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
+    { "phase": "Phase I · Foundations", "title": "Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
     { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },
     { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Venture Build Plan™", "price": "$100", "description": "A practical 30-day plan for turning your creative practice into a venture.", "link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11" },
-    { "phase": "Phase III · Internal Operating Systems", "title": "The Creator Operating System™", "price": "$300", "description": "Repeatable systems for running the creative venture day-to-day — without every decision depending on you.", "link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12" },
+    { "phase": "Phase III · Internal Operating Systems", "title": "The Creator Operating System™", "price": "$300", "description": "Run your venture without every decision depending on you.", "link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12" },
     { "phase": "Phase IV · Preservation", "title": "Creative Estate Mapping™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.", "link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13" },
-    { "phase": "Phase IV · Preservation", "title": "Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
+    { "phase": "Phase IV · Preservation", "title": "Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "Preserve your body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
   ],
 
-  "membership_note": "Every product on this page is already included in .LLab Membership™ — the same membership that unlocks the full Leadership Infrastructure™ catalog.",
+  "membership_note": "Every product here is included in .LLab Membership™.",
   "membership_cta_label": "See .LLab Membership™",
   "membership_cta_link": "products.html#membership",
 
-  "tax_notice": "Tax treatment varies by individual circumstance. Consult your tax professional before claiming any deduction."
+  "tax_notice": "May qualify as a tax deduction or write-off — speak with your tax strategist."
 }

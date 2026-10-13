@@ -12,7 +12,7 @@
       "break_before": false
     }
   ],
-  "hero_subhead": "The Co.LLab™ is an intellectual-property and leadership-infrastructure ecosystem — not a conventional consulting practice. This is where ideas live, research happens, theories develop, infrastructure gets built, and people collaborate.",
+  "hero_subhead": "An IP and leadership-infrastructure ecosystem — where ideas become infrastructure, and infrastructure becomes legacy.",
   "mission_eyebrow": "Mission",
   "mission_quote": [
     {
@@ -41,11 +41,11 @@
   "phases": [
     {
       "title": "Foundations",
-      "description": "Understanding the person, organization, purpose, potential, values, identity, and underlying structure."
+      "description": "Know who you are and what you stand on."
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Determining what infrastructure is needed and how the pieces should connect."
+      "description": "Decide what to build and how it connects."
     },
     {
       "title": "Internal Operating Systems",
@@ -53,13 +53,13 @@
     },
     {
       "title": "Preservation",
-      "description": "Making the infrastructure sustainable, transferable, scalable, and capable of creating lasting legacy."
+      "description": "Make it last beyond any one person."
     }
   ],
   "model_eyebrow": "Omnidirectional Enterprise™",
   "model_headline": "Not a linear funnel. Value moves in every direction.",
   "model_body": "Not a single-purpose consulting business. Value moves between people, ideas, products, organizations, and community — with many ways in, all connected to Leadership Infrastructure™.",
-  "ethics_body": "Every direction that value moves in is built on ethical business practice. How we treat people is not separate from what we build — it's part of the infrastructure itself.",
+  "ethics_body": "Built on ethics. How we treat people is part of the infrastructure.",
   "audiences": [
     {
       "tag": "Founders",
