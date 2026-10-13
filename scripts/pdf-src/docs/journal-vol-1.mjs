@@ -76,4 +76,13 @@ export const contentHtml = `
 
   <div class="quote">An organization that depends entirely on one person isn't an organization yet. It's a very well-organized dependency.</div>
 </section>
+
+<section class="page">
+  <div class="content-header"><span class="page-index">Your Turn</span><h2 class="section-title">Reflect.</h2></div>
+  <div class="activity-box">
+    <span class="activity-kicker">Reflect</span>
+    <p class="activity-prompt">Where does your organization still depend on one person? What would it take to turn that into infrastructure?</p>
+    <div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div><div class="activity-line"></div>
+  </div>
+</section>
 `;
