@@ -35,6 +35,13 @@ function buildIndex() {
     if (p.stripe_price_id) byPriceId.set(p.stripe_price_id, p.key);
   }
 
+  // Partner-only IP (one per phase): granted by Partnership tiers, and sold
+  // on its own once it has a Stripe price. Not opened by Membership.
+  for (const p of registry.partner_ip || []) {
+    byKey.set(p.key, { ...p, kind: 'partner-ip' });
+    if (p.stripe_price_id) byPriceId.set(p.stripe_price_id, p.key);
+  }
+
   // Omnidirectional Enterprise™ Partnerships: one-time purchases, fully
   // separate from the Founders Organization (no founder_rank, no impact,
   // founder_discount_exempt). Left out of paymentLinkMap() so the Founder
@@ -160,6 +167,7 @@ function partnershipGrantKeys() {
     ...(registry.products || []).filter((p) => !p.founder_rank && released(p)).map((p) => p.key),
     ...(registry.blueprint_series || []).filter(released).map((p) => p.key),
     ...(registry.bonus_products || []).map((p) => p.key),
+    ...(registry.partner_ip || []).map((p) => p.key),
   ];
 }
 

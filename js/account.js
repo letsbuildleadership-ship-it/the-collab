@@ -446,7 +446,7 @@
       copy = `${r.daysLeft} day${r.daysLeft === 1 ? '' : 's'} left in your Partnership term. To keep going without a gap, continue any or all of our memberships at their regular prices:`;
     } else {
       heading = `Memberships included through ${end}`;
-      copy = 'Your one-time Partnership includes every membership for 12 months. Nothing renews automatically. Near the end of your term, you can continue any or all memberships at their regular prices.';
+      copy = 'Your one-time Partnership includes every membership for its term. Nothing renews automatically. Near the end of your term, you can continue any or all memberships at their regular prices.';
     }
 
     const options = (r.options || [])
@@ -526,7 +526,7 @@
       card.innerHTML = `<span class="num">${esc(t.tier)}</span>
         <p class="tier-price">${esc(t.price_display)}</p>
         <p class="item-desc" style="color:#fdf6ec;">${esc(t.tagline || '')}</p>
-        <p class="item-desc">${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.lifetime ? 'Lifetime memberships' : '12 months of every membership'}</p>
+        <p class="item-desc">${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.lifetime ? 'Lifetime memberships' : `${(t.term_months || 12) / 12} year${(t.term_months || 12) === 12 ? '' : 's'} of every membership`}</p>
         ${t.payment_link ? `<div class="item-actions"><a class="pill pill--accent" href="${t.payment_link}" target="_blank" rel="noopener">Choose ${esc(t.tier)} <span class="arrow">→</span></a></div>` : ''}`;
       list.appendChild(card);
     });

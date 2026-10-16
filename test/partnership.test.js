@@ -152,10 +152,10 @@ test('before expiry the partner has full catalog + Library access; after expiry 
   for (const key of ['membership', 'library-card', 'journal']) assert.ok(!ent.includes(key), key);
   // The tier's permanent grants remain; catalog access that came only from Membership ends.
   assert.ok(ent.includes('strength-map'));
-  assert.ok(ent.includes('blueprint-welcome'));
   assert.ok(ent.includes('legacy-architecture'), 'all of The IV Phases™ is licensed to keep');
+  assert.ok(ent.includes('legacy-foundations-framework'));
   assert.ok(ent.includes('infrastructure-roadmap'));
-  assert.ok(!ent.includes('creator-identity-map'));
+  assert.ok(!ent.includes('legacy-infrastructure-plan'));
 });
 
 test('expired memberships read as "expired" with regular-price renewal plans', async () => {

@@ -20,7 +20,8 @@ function card(t) {
   const top = t.rank === tiers.length ? ' partner-card--top' : '';
   return `        <div class="card partner-card offer-card offer-card--featured${top}" style="text-align:left;">
           <span class="num">${esc(t.tier_label)}${t.phase_label ? ` · ${esc(t.phase_label)}` : ''}</span>
-          <p class="tier-line">${esc(t.headline)}</p>
+          <p class="tier-line">${esc(t.headline)}</p>${t.legacy_line ? `
+          <p class="tier-best"><em>${esc(t.legacy_line)}</em></p>` : ''}
           <h3>${esc(t.price_display)}</h3>
           <p class="tier-best"><strong>Best for:</strong> ${esc(t.best_for || t.positioning)}</p>
           <ul class="access-list">
@@ -28,17 +29,22 @@ ${t.benefits.filter((b) => !/seat|orientation|briefing/i.test(b)).map((b) => `  
           </ul>
           <dl class="tier-facts">
             <div><dt>Seats</dt><dd>${t.seats} individual${t.seats === 1 ? '' : 's'}</dd></div>
-            <div><dt>Memberships</dt><dd>${t.lifetime ? 'Lifetime. Never renew.' : '12 months, then renew yearly'}</dd></div>
+            <div><dt>Memberships</dt><dd>${term(t)}</dd></div>
             <div><dt>New releases</dt><dd>${releases(t)}</dd></div>
           </dl>
           <a class="price-btn price-btn--solid" href="${esc(t.payment_link)}" style="margin-top:auto; width:fit-content;">Purchase ${esc(t.tier_label)} · ${esc(t.price_display)}</a>
         </div>`;
 }
 
+function term(t) {
+  if (t.lifetime) return 'Lifetime. Never renew.';
+  const y = t.term_months / 12;
+  return `${y} year${y === 1 ? '' : 's'}, then renew yearly`;
+}
+const short = (t) => (t.lifetime ? 'Lifetime' : `${t.term_months / 12} yr`);
 function releases(t) {
   if (!t.includes_eligible_releases) return 'Not included';
-  if (t.releases_months) return `${t.releases_months / 12} years, yours to keep`;
-  return '12 months, yours to keep';
+  return t.lifetime ? 'For life, yours to keep' : 'While you’re a member, yours to keep';
 }
 
 const tierCards = `      <div class="grid grid-4 tier-grid" style="margin-top:2.5rem;">
@@ -52,7 +58,7 @@ const catalog = new Set(pricing.fourPhasesKeys());
 
 function cell(key, t) {
   if (grants[t.key].has(key)) return '<td class="keep">Licensed</td>';
-  if (catalog.has(key)) return '<td>12 mo.</td>';
+  if (catalog.has(key)) return `<td>${short(t)}</td>`;
   return '<td class="none">—</td>';
 }
 
@@ -62,8 +68,7 @@ const groups = [
   { title: 'Leadership Infrastructure™ · Phase II · Infrastructure Planning & Management', sample: 'products.html#phase-2-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'infrastructure-planning') },
   { title: 'Leadership Infrastructure™ · Phase III · Internal Operating Systems', sample: 'products.html#phase-3-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'operating-systems') },
   { title: 'Leadership Infrastructure™ · Phase IV · Preservation', sample: 'products.html#phase-4-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'preservation') },
-  { title: 'Creator Infrastructure™', sample: 'creator.html#free', items: products.filter((p) => p.line === 'creator') },
-  { title: 'The Blueprint™ series', sample: null, items: reg.blueprint_series },
+  { title: 'Partner-only IP · one per phase', sample: null, items: reg.partner_ip || [] },
   { title: 'Bonus', sample: null, items: reg.bonus_products },
 ];
 
@@ -80,10 +85,10 @@ const groupRows = groups
 const all = (v) => tiers.map(() => `<td>${v}</td>`).join('');
 const per = (fn) => tiers.map((t) => `<td>${fn(t)}</td>`).join('');
 const membershipRows = `<tr class="group"><th colspan="${tiers.length + 1}" scope="rowgroup">Memberships, research &amp; publications <a href="journal-preview.html">Free Journal preview →</a></th></tr>
-${reg.memberships.map((m) => `<tr><th scope="row">${esc(m.name)}${m.key === 'library-card' ? ' + The Legacy Library™' : ''}</th>${per((t) => (t.lifetime ? 'Lifetime' : '12 mo.'))}</tr>`).join('\n')}`;
+${reg.memberships.map((m) => `<tr><th scope="row">${esc(m.name)}${m.key === 'library-card' ? ' + The Legacy Library™' : ''}</th>${per(short)}</tr>`).join('\n')}`;
 const partnershipRows = `<tr class="group"><th colspan="${tiers.length + 1}" scope="rowgroup">Partnership</th></tr>
 <tr><th scope="row">Individual access seats</th>${per((t) => String(t.seats))}</tr>
-<tr><th scope="row">New Co.LLab™ releases, yours to keep</th>${per((t) => (!t.includes_eligible_releases ? '—' : t.releases_months ? `${t.releases_months / 12} years` : '12 mo.'))}</tr>
+<tr><th scope="row">New Co.LLab™ releases, yours to keep</th>${per((t) => (!t.includes_eligible_releases ? '—' : short(t)))}</tr>
 <tr><th scope="row">Membership renewal</th>${per((t) => (t.lifetime ? 'Never' : 'Yearly, regular price'))}</tr>
 <tr><th scope="row">Partner recognition in your account</th>${per((t) => (t.rank === tiers.length ? 'Omnidirectional Partner' : 'Yes'))}</tr>`;
 

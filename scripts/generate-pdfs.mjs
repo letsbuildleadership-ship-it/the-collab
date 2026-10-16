@@ -57,6 +57,10 @@ const ALL_DOCS = [
   'knowledge-transfer-checklist',
   'continuity-quick-check',
   'legacy-infrastructure-snapshot',
+  'legacy-foundations-framework',
+  'legacy-infrastructure-plan',
+  'legacy-operating-systems-manual',
+  'legacy-preservation-vault',
 ];
 
 // Runs inside the rendered page. Finds every place a customer is meant to

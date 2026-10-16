@@ -65,6 +65,7 @@ function buildAccountView(record, now) {
           best_for: t.best_for || null,
           seats: t.seats || 1,
           lifetime: !!t.lifetime,
+          term_months: t.term_months || 12,
           payment_link: t.payment_link || null,
         }));
   const founderSnapshots = record.founder ? [] : [...founderTiers].filter((key) => (pricing.entryForKey(key) || {}).payment_link).map(snapshot);
