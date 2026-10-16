@@ -71,7 +71,15 @@ function partnershipReleaseKeys(record) {
   if (!p || !p.purchasedAt || !p.expiresAt) return [];
   const tier = pricing.entryForKey(p.key);
   if (!tier || !tier.includes_eligible_releases) return [];
-  return pricing.eligibleReleaseKeys(p.purchasedAt, p.expiresAt);
+  // A tier can cap its release window below its membership term (a lifetime
+  // tier keeps new releases for releases_months only).
+  let end = p.expiresAt;
+  if (tier.releases_months) {
+    const cap = new Date(p.purchasedAt);
+    cap.setUTCMonth(cap.getUTCMonth() + tier.releases_months);
+    if (cap.toISOString() < end) end = cap.toISOString();
+  }
+  return pricing.eligibleReleaseKeys(p.purchasedAt, end);
 }
 
 function effectiveEntitlements(record, now) {

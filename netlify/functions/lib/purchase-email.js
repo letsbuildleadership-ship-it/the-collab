@@ -62,11 +62,13 @@ function buildPurchaseEmail(record, session) {
       const p = record.partnership || {};
       const lines = [
         `Your products are in your account to keep: ${e.grant_scope === 'complete' ? 'the complete designated Co.LLab™ IP portfolio' : 'every product included in your tier'}.`,
-        `Every membership is active through ${p.expiresAt ? longDate(p.expiresAt) : 'the end of your 12-month term'}: .LLab Membership™, the Library Card™ and The Legacy Library™, and The .LLab Journal™.`,
+        e.lifetime
+          ? 'Every membership is yours for life: .LLab Membership™, the Library Card™ and The Legacy Library™, and The .LLab Journal™. Nothing to renew.'
+          : `Every membership is active through ${p.expiresAt ? longDate(p.expiresAt) : 'the end of your 12-month term'}: .LLab Membership™, the Library Card™ and The Legacy Library™, and The .LLab Journal™.`,
       ];
       if ((e.seats || 1) > 1) lines.push(`Your Partnership includes ${e.seats} individual seats, including yours. Invite your team from the Partnership panel in your account; each invite link works once and expires after 14 days.`);
       if (e.engagement && e.engagement.label) lines.push(`Included session: ${e.engagement.label}. We'll be in touch to schedule it.`);
-      lines.push('About 30 days before your term ends, your account will show your options to continue any membership at its regular price.');
+      if (!e.lifetime) lines.push('About 30 days before your term ends, your account will show your options to continue any membership at its regular price.');
       sections.push({ title: e.tier_label ? `${e.tier_label} Partnership` : e.name, lines });
     } else if (e.kind === 'membership') {
       sections.push({

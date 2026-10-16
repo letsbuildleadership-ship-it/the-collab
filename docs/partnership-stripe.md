@@ -41,3 +41,29 @@ prices, or links are needed; the existing Payment Links stay.
 The owner $0 test link `plink_1UP3TMAK6n3ctuR9uqiiuvXU` and code
 `PARTNER-TEST-94A796` (single use, expires ~2026-10-17) can be deactivated
 after the test purchase.
+
+## 4. Tier update (2026-10-16): to apply in Stripe
+
+The site now sells the tiers below (content/pricing.json). Paste these as
+the four product descriptions so checkout matches the page.
+
+**Partner ($5,000)**
+> One-time purchase. A license to all 9 products of The IV Phases™ and the Blueprint™ Welcome Issue, yours to keep using. 12 months of .LLab Membership™, Library Card™ and Journal™, then renew yearly at regular prices. 1 seat. All Co.LLab™ IP is owned by Ashley E. Clasby and licensed for internal business use only. All sales final once access is unlocked, subject to applicable law.
+
+**Strategic ($10,000)**
+> One-time purchase. Everything in Partner, plus a license to the full Blueprint™ series and Complete Edition. 12 months of every membership, then renew yearly. 3 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
+
+**Enterprise ($25,000)**
+> One-time purchase. Everything in Strategic, plus a license to all of Creator Infrastructure™ and every new Co.LLab™ release during your 12 months. 12 months of every membership, then renew yearly. 10 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
+
+**Omnidirectional ($50,000)**
+> One-time purchase. Everything in Enterprise, plus lifetime .LLab Membership™, Library Card™ and Journal™ (never renew) and every new Co.LLab™ release for 3 years. 25 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
+
+**Checkout message (all four links)**
+> One-time purchase. All sales are final once access is unlocked, subject to applicable law. Use is governed by the Co.LLab™ IP license: wearethellab.netlify.app/pages/ip-license.html. Full terms: wearethellab.netlify.app/pages/partnership.html#terms
+
+**ACH:** in Stripe, enable "ACH Direct Debit" (US bank account) on all four
+Partnership Payment Links. ACH costs 0.8% capped at $5 per payment versus
+2.9% + 30¢ by card. ACH payments take about 4 business days to clear;
+fulfillment runs on checkout completion, so pay sales commission only after
+the payment shows as succeeded.

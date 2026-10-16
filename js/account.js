@@ -435,7 +435,10 @@
     const end = formatShortDate(p.expiresAt);
     let heading;
     let copy;
-    if (r.status === 'ended') {
+    if (p.lifetime) {
+      heading = 'Lifetime memberships';
+      copy = 'Your Partnership includes every membership for life. Nothing to renew.';
+    } else if (r.status === 'ended') {
       heading = 'Your Partnership membership term has ended';
       copy = `Thank you for partnering with The Co.LLab™. Every product and Blueprint™ issue from your Partnership is still yours. Continue any or all of our memberships at their regular prices:`;
     } else if (r.status === 'ending-soon') {
@@ -523,7 +526,7 @@
       card.innerHTML = `<span class="num">${esc(t.tier)}</span>
         <p class="tier-price">${esc(t.price_display)}</p>
         <p class="item-desc" style="color:#fdf6ec;">${esc(t.tagline || '')}</p>
-        <p class="item-desc">${t.seats} seat${t.seats === 1 ? '' : 's'} · 12 months of every membership</p>
+        <p class="item-desc">${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.lifetime ? 'Lifetime memberships' : '12 months of every membership'}</p>
         ${t.payment_link ? `<div class="item-actions"><a class="pill pill--accent" href="${t.payment_link}" target="_blank" rel="noopener">Choose ${esc(t.tier)} <span class="arrow">→</span></a></div>` : ''}`;
       list.appendChild(card);
     });
@@ -611,7 +614,7 @@
       : { type: 'founders', on: false, status: 'Not a Founder yet', sub: 'Founding options from $20', cta: 'See Founder options', href: '#founders-join' });
     const p = data.partnership;
     tiles.push(p
-      ? { type: 'partnerships', on: true, status: esc(p.tierLabel), sub: `${p.seats || 1} seat${(p.seats || 1) === 1 ? '' : 's'}${p.expiresAt ? ` · through ${formatShortDate(p.expiresAt)}` : ''}`, cta: 'Your Partnership', href: '#portal-partnerships' }
+      ? { type: 'partnerships', on: true, status: esc(p.tierLabel), sub: `${p.seats || 1} seat${(p.seats || 1) === 1 ? '' : 's'}${p.lifetime ? ' · Lifetime' : p.expiresAt ? ` · through ${formatShortDate(p.expiresAt)}` : ''}`, cta: 'Your Partnership', href: '#portal-partnerships' }
       : data.seat
         ? { type: 'partnerships', on: true, status: `${esc(data.seat.tierLabel || '')} seat`, sub: 'Through your organization', cta: 'Your seat', href: '#portal-partnerships' }
         : { type: 'partnerships', on: false, status: 'No Partnership yet', sub: 'For organizations and teams', cta: 'See Partnership tiers', href: '#partnership-join' });
