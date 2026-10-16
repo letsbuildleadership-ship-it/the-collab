@@ -19,7 +19,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 function card(t) {
   const top = t.rank === tiers.length ? ' partner-card--top' : '';
   return `        <div class="card partner-card offer-card offer-card--featured${top}" style="text-align:left;">
-          <span class="num">${esc(t.tier_label)}</span>
+          <span class="num">${esc(t.tier_label)}${t.phase_label ? ` · ${esc(t.phase_label)}` : ''}</span>
           <p class="tier-line">${esc(t.headline)}</p>
           <h3>${esc(t.price_display)}</h3>
           <p class="tier-best"><strong>Best for:</strong> ${esc(t.best_for || t.positioning)}</p>

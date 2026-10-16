@@ -364,7 +364,8 @@
         "A license to all 9 products of The IV Phases™, yours to keep using after your term",
         "The Blueprint™ — Welcome, yours to keep",
         "12 months of .LLab Membership™, the .LLab Library Card™ (with The Legacy Library™) and The .LLab Journal™"
-      ]
+      ],
+      "phase_label": "Phase I · Foundations"
     },
     {
       "key": "partnership-strategic",
@@ -378,7 +379,7 @@
       "founder_discount_exempt": true,
       "description": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
       "rank": 2,
-      "headline": "Your leadership holds.",
+      "headline": "Your plan holds.",
       "tagline": "Your team runs on the system, not just on you.",
       "best_for": "Established businesses whose leadership team needs to run without the owner in every decision.",
       "positioning": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
@@ -408,7 +409,8 @@
         "Everything in Partner",
         "A license to every issue of The Blueprint™, including the Complete Edition (All 5 Issues), yours to keep",
         "Bring your leadership team in: 3 seats"
-      ]
+      ],
+      "phase_label": "Phase II · Infrastructure Planning & Management"
     },
     {
       "key": "partnership-enterprise",
@@ -422,7 +424,7 @@
       "founder_discount_exempt": true,
       "description": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
       "rank": 3,
-      "headline": "Your whole company holds.",
+      "headline": "Your systems hold.",
       "tagline": "Every framework, across every department.",
       "best_for": "Organizations building infrastructure across teams and departments.",
       "positioning": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
@@ -436,7 +438,8 @@
         "A license to all of Creator Infrastructure™, yours to keep",
         "Every new Co.LLab™ release during your 12 months, yours to keep",
         "Equip your organization: 10 seats"
-      ]
+      ],
+      "phase_label": "Phase III · Internal Operating Systems"
     },
     {
       "key": "partnership-omnidirectional",
@@ -466,7 +469,8 @@
         "Scale across your company: 25 seats"
       ],
       "lifetime": true,
-      "releases_months": 36
+      "releases_months": 36,
+      "phase_label": "Phase IV · Preservation"
     }
   ],
   "memberships": [
