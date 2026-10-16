@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { licensePageHtml } from './docs/_license.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseCss = fs.readFileSync(path.join(__dirname, 'base.css'), 'utf8');
@@ -27,7 +28,13 @@ export function renderCover({ eyebrow, title, subtitle, phase, price, footerRigh
   </section>`;
 }
 
+// Every product carries The Co.LLab IP™ license and the website logo on
+// every page. Products that don't include the license themselves get the
+// standard license page right after the cover.
+const brandHtml = () => `<div class="page-brand"><img src="${logoSrc}" alt="The Co.LLab™" /><span>The Co<span class="dot">.</span>LLab™</span></div>`;
+
 export function wrapDocument({ docTitle, coverHtml, contentHtml }) {
+  if (!/intellectual property license/i.test(contentHtml)) contentHtml = `${licensePageHtml}\n${contentHtml}`;
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +43,7 @@ export function wrapDocument({ docTitle, coverHtml, contentHtml }) {
 <style>${baseCss}</style>
 </head>
 <body>
+${brandHtml()}
 ${coverHtml}
 ${contentHtml}
 </body>
