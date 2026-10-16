@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { renderCover, wrapDocument } from './pdf-src/render.mjs';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { MARKER_PREFIX, addFormFields, takeMarkerRects } from './pdf-src/fillable.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -180,7 +180,7 @@ async function main() {
         pages.forEach((el, i) => {
           const footer = document.createElement('div');
           footer.className = 'auto-footer';
-          footer.innerHTML = `<span>The Co.LLab™ — ${title}</span><span>Page ${i + 1} of ${pages.length}</span>`;
+          footer.innerHTML = `<span>The Co.LLab™ — ${title}</span><span></span>`;
           el.appendChild(footer);
         });
       }, meta.docTitle.replace(/<[^>]+>/g, ''));
@@ -189,10 +189,21 @@ async function main() {
       const flat = await page.pdf({ printBackground: true, preferCSSPageSize: true });
       await page.close();
 
-      let bytes = flat;
+      // Page numbers on every printed page after the cover ("Page n of N").
+      const numbered = await PDFDocument.load(flat);
+      const font = await numbered.embedFont(StandardFonts.Helvetica);
+      const all = numbered.getPages();
+      all.forEach((pg, i) => {
+        if (i === 0) return;
+        const label = `PAGE ${i + 1} OF ${all.length}`;
+        const size = 6.4;
+        pg.drawText(label, { x: pg.getWidth() - 68.4 - font.widthOfTextAtSize(label, size), y: 32, size, font, color: rgb(0.275, 0.345, 0.29) });
+      });
+      const stamped = await numbered.save();
+      let bytes = stamped;
       let count = 0;
       if (targets.length) {
-        const pdf = await PDFDocument.load(flat);
+        const pdf = await PDFDocument.load(stamped);
         ({ bytes, count } = await addFormFields(pdf, toFieldSpecs(targets, takeMarkerRects(pdf))));
       }
       fs.writeFileSync(outPath, bytes);

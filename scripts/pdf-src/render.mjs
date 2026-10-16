@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { licensePageHtml } from './docs/_license.mjs';
+import { backmatterHtml } from './docs/_backmatter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseCss = fs.readFileSync(path.join(__dirname, 'base.css'), 'utf8');
@@ -35,6 +36,7 @@ const brandHtml = () => `<div class="page-brand"><img src="${logoSrc}" alt="The 
 
 export function wrapDocument({ docTitle, coverHtml, contentHtml }) {
   if (!/intellectual property license/i.test(contentHtml)) contentHtml = `${licensePageHtml}\n${contentHtml}`;
+  contentHtml = `${contentHtml}\n${backmatterHtml(docTitle)}`;
   return `<!DOCTYPE html>
 <html>
 <head>
