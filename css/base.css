@@ -415,7 +415,7 @@ section {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(4, 1fr);
+  grid-template-columns: 1.4fr repeat(3, 1fr);
   gap: 2.5rem;
 }
 
