@@ -8,6 +8,7 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
 - **Sales model:** self-serve and asynchronous, with no calls.
 - **Framing:** the business, economic and geopolitical problem, with Co.LLab IP™ as the solution. No promises.
 - **Home:** the full Partnership case, structured as enterprise-architecture marketing.
+- **.LLab:** the marketing engine. It is the free front door on every page, and Partnerships is the lead purchase.
 
 ## Architecture
 | Layer | Pages |
@@ -50,6 +51,13 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
 - **Mission.**
 - **07 · The enterprise behind it:** IP ownership and license, plus Founders, .LLab and Creator.
 - **Hero copy:** `content/home.json` matches the HTML.
+
+## Stage 4: .LLab as the marketing engine
+- **Home hero:** "See the four tiers" and "Join The .LLab free" (`#llab`).
+- **Home 06 · The .LLab:** the original .LLab access grid is restored (Membership, Library Card, Journal, free Portal, 5 Stripe links). It adds the .LLab positioning line and notes that every Partnership tier includes .LLab.
+- **Free resources:** follow the .LLab section.
+- **Enterprise row:** Founders, Creator, Impact.
+- **Every marketing page:** a `.llab-cta` "Enter The .LLab" band above the footer. Not on login, account, library or Home.
 
 ## Verification
 - `npm test`: 128/128 pass.
