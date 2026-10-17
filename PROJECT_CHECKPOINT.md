@@ -59,6 +59,31 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
 - **Enterprise row:** Founders, Creator, Impact.
 - **Every marketing page:** a `.llab-cta` "Enter The .LLab" band above the footer. Not on login, account, library or Home.
 
+## Stage 5: Editorial / luxury photography system
+- **Photos:** the owner's originals are baked into the site's green-and-cream duotone in `assets/img/editorial/` (`stage.jpg`, `scaffolding.jpg`, `storefront.jpg`). The transparent monogram is `assets/img/brand/mark-white.png`.
+- **CSS:** end of `css/base.css`. Reusable parts:
+  - `hero--lookbook`: a hero where the photo reads.
+  - `.lookbook` (+ `--center`, `--scrim`): a full-bleed image with a caption.
+  - `.tiles` / `.tile`: collection tiles.
+  - `.storefront`: the brand mark as a shop front, with the invitation beside it.
+  - `.monogram`: a divider.
+- **Home:**
+  - Hero is the scaffolding photo.
+  - Concert lookbook interlude ("because nobody builds alone") before the Partnership tiers.
+  - Monogram dividers.
+  - .LLab section opens with the storefront image.
+  - 07 is 4 image tiles: Founders, Creator, Impact, Technology.
+- **Every marketing page:** the "Enter The .LLab" band is now a storefront (brand mark on scaffolding).
+- **About:** the "reliable" band is a scaffolding lookbook.
+- **Creator:** a concert lookbook after the positioning block.
+- **Partnerships:** the hero is the scaffolding lookbook.
+- **Phones:** captions sit below the image and tiles stack single-column.
+- **SW cache:** `collab-shell-v9`.
+- **Adding a photo:**
+  1. Bake it to the duotone with the same recipe (autocontrast, then colorize black (10,22,14), mid (118,120,96), white (247,230,200)). Save in `assets/img/editorial/`.
+  2. Use it as a `<figure class="lookbook">` or a `.tile`.
+  3. Give it descriptive alt text.
+
 ## Verification
 - `npm test`: 128/128 pass.
 - Internal links: none broken.

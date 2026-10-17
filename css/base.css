@@ -1479,3 +1479,233 @@ a.pill.is-owned {
 #paths .card .num { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; }
 #paths .card > .pill { margin-top: auto !important; align-self: flex-start; }
 #paths .card > p:last-of-type { margin-bottom: 1.25rem; }
+
+/* ==========================================================================
+   Editorial / lookbook system — full-bleed photography, collection tiles,
+   storefront entrance, monogram divider. Photos live in assets/img/editorial/
+   (palette duotones). Reuse these classes for any new photograph.
+   ========================================================================== */
+
+/* hero that lets the photograph read (scrim only where the copy sits) */
+.hero--lookbook {
+  min-height: min(92vh, 60rem);
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: 50% 38%;
+  background-color: rgb(var(--black-rgb));
+}
+.hero--lookbook > .wrap { width: 100%; }
+.hero--lookbook::before {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.9) 0%, rgba(var(--black-rgb), 0.55) 42%, rgba(var(--black-rgb), 0.05) 78%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.96) 0%, transparent 38%);
+}
+@media (max-width: 860px) {
+  .hero--lookbook { min-height: 82vh; }
+  .hero--lookbook::before {
+    background: linear-gradient(180deg, rgba(var(--black-rgb), 0.35) 0%, rgba(var(--black-rgb), 0.78) 55%, rgba(var(--black-rgb), 0.96) 100%);
+  }
+}
+
+/* full-bleed campaign image with a one-line caption */
+.lookbook {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: rgb(var(--black-rgb));
+}
+.lookbook img {
+  display: block;
+  width: 100%;
+  height: clamp(26rem, 80vh, 54rem);
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  transform: scale(1.07);
+  transition: transform 2.8s var(--ease);
+}
+.lookbook.is-visible img { transform: scale(1); }
+.lookbook::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(var(--black-rgb), 0.94) 0%, rgba(var(--black-rgb), 0.35) 34%, transparent 58%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.7) 0%, transparent 16%);
+}
+.lookbook figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding-bottom: clamp(2rem, 6vw, 4.5rem);
+}
+.lookbook figcaption .headline { max-width: 22ch; margin-top: 1rem; }
+
+/* collection tiles — the lookbook grid, one tile per offering */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  margin-top: 2.5rem;
+}
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: rgb(var(--black-rgb));
+  border: 1px solid var(--hairline);
+  color: inherit;
+}
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: transform 1.4s var(--ease), filter 0.8s var(--ease);
+}
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, rgba(var(--black-rgb), 0.2) 46%, transparent 70%);
+}
+.tile:hover img, .tile:focus-visible img { transform: scale(1.05); filter: none; }
+.tile:focus-visible { outline: 1px solid var(--filament-2); outline-offset: 3px; }
+.tile-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.tile-label .num {
+  display: block;
+  font-size: var(--nav-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.tile-label strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  line-height: 1.2;
+}
+.tile-label em {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-style: normal;
+  font-size: var(--nav-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 0.25em;
+  transition: border-color 0.4s var(--ease), letter-spacing 0.4s var(--ease);
+}
+.tile:hover .tile-label em { border-color: var(--filament-2); letter-spacing: 0.2em; }
+@media (max-width: 960px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+
+/* storefront — the brand mark as a shop front, with the invitation beside it */
+.storefront {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.storefront-figure { margin: 0; position: relative; overflow: hidden; border: 1px solid var(--hairline); }
+.storefront-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 2s var(--ease);
+}
+.storefront-figure:hover img { transform: scale(1.04); }
+.storefront-copy { text-align: left; }
+.storefront-copy .hero-cta-row { justify-content: flex-start; }
+.llab-cta .storefront-copy .subhead { margin-left: 0; margin-right: 0; }
+@media (max-width: 860px) {
+  .storefront { grid-template-columns: 1fr; }
+  .storefront-figure img { aspect-ratio: 4 / 3; object-position: 50% 46%; }
+}
+#llab .storefront { margin-bottom: 3rem; }
+
+/* monogram divider */
+.monogram {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.monogram::before, .monogram::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+.monogram img { height: 1.6rem; width: auto; opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lookbook img, .storefront-figure img, .tile img { transition: none; transform: none; }
+}
+.tile-desc { display: block; margin-top: 0.5rem; font-size: 0.82rem; line-height: 1.45; color: var(--white-dim); max-width: 28ch; }
+.hero--lookbook .eyebrow { text-shadow: 0 0 14px rgba(var(--black-rgb), 0.95), 0 0 4px rgba(var(--black-rgb), 0.9); }
+
+/* caption centered in the open space of the frame (when subjects sit at the edges) */
+.lookbook--center figcaption {
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 var(--gutter);
+}
+.lookbook--center figcaption .wrap { padding: 0; max-width: 46rem; }
+.lookbook--center figcaption .eyebrow { justify-content: center; }
+.lookbook--center figcaption .headline { max-width: 20ch; margin-left: auto; margin-right: auto; font-size: clamp(1.5rem, 3.1vw, 2.7rem); }
+.lookbook--center::after {
+  background:
+    radial-gradient(60% 55% at 50% 50%, rgba(var(--black-rgb), 0.55), transparent 75%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.85) 0%, transparent 30%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.7) 0%, transparent 16%);
+}
+.tile::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.97) 0%, rgba(var(--black-rgb), 0.82) 30%, rgba(var(--black-rgb), 0.15) 62%, transparent 78%); }
+
+/* phones: caption sits below the photograph, tiles go single-column */
+@media (max-width: 860px) {
+  .lookbook img { height: clamp(18rem, 56vh, 30rem); }
+  .lookbook::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 28%), linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%); }
+  .lookbook figcaption,
+  .lookbook--center figcaption {
+    position: static;
+    display: block;
+    text-align: left;
+    padding: 0.5rem 0 2.5rem;
+    background: rgb(var(--black-rgb));
+  }
+  .lookbook--center figcaption .wrap { padding-left: var(--gutter); padding-right: var(--gutter); max-width: var(--container); }
+  .lookbook--center figcaption .eyebrow { justify-content: flex-start; }
+  .lookbook--center figcaption .headline { margin-left: 0; margin-right: 0; font-size: clamp(1.4rem, 6vw, 2rem); }
+  .lookbook figcaption .headline { max-width: none; }
+}
+@media (max-width: 560px) {
+  .tiles { grid-template-columns: 1fr; }
+  .tile { aspect-ratio: 4 / 3; }
+}
+
+/* copy on the left, over a busy photograph: deeper scrim behind the text only */
+.lookbook--scrim::after {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.92) 0%, rgba(var(--black-rgb), 0.78) 34%, rgba(var(--black-rgb), 0.1) 72%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.9) 0%, transparent 40%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%);
+}
+.lookbook--scrim figcaption .headline { max-width: 18ch; }
+.lookbook--center figcaption .headline { max-width: 18ch; }
+@media (max-width: 860px) { .lookbook--scrim::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 28%), linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%); } }
