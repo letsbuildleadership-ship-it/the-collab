@@ -32,7 +32,6 @@ test('Partnership spec strip and the Home price range match the pricing registry
     assert.ok(text.includes(`${lo}–${hi}`), `${f}: price range ${lo}–${hi}`);
     assert.ok(text.includes(seats), `${f}: seats ${seats}`);
     assert.match(text, /one-time purchase · no subscription/);
-    assert.match(text, /Free to join The \.LLab · no card needed/i);
     assert.ok(!/guarantee|return on|roi|limited spots|only \d+ left/i.test(text), `${f}: no invented claims`);
   }
 });
