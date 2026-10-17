@@ -1830,3 +1830,23 @@ table th, table td { line-height: 1.45; }
 /* caption headlines on photographs: one size, readable measure */
 .lookbook figcaption .headline { font-size: clamp(1.5rem, 2.8vw, 2.4rem); line-height: 1.15; }
 .lookbook--scrim figcaption .headline { max-width: 28ch; }
+
+/* ---------- Lookbook gallery ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.chip { font: inherit; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.6em 1.3em; cursor: pointer; transition: background 0.3s var(--ease), color 0.3s var(--ease); }
+.chip:hover { border-color: var(--filament-2); }
+.chip[aria-pressed='true'] { background: var(--filament-2); border-color: var(--filament-2); color: var(--black); }
+.shots { columns: 3 300px; column-gap: clamp(0.75rem, 1.6vw, 1.5rem); margin-top: 2.5rem; }
+.shot { display: block; position: relative; overflow: hidden; margin: 0 0 clamp(0.75rem, 1.6vw, 1.5rem); break-inside: avoid; border: 1px solid var(--hairline); background: rgb(var(--black-rgb)); }
+.shot[hidden] { display: none; }
+.shot img { display: block; width: 100%; height: auto; transition: transform 1.4s var(--ease); }
+.shot:hover img, .shot:focus-visible img { transform: scale(1.04); }
+.shot-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.7rem 1rem; background: rgba(var(--black-rgb), 0.9); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; transform: translateY(100%); transition: transform 0.5s var(--ease); }
+.shot:hover .shot-label, .shot:focus-visible .shot-label { transform: none; }
+@media (hover: none) { .shot-label { transform: none; } }
+.lightbox { border: 0; padding: 0; background: rgb(var(--black-rgb)); color: #fff; max-width: 96vw; max-height: 96vh; width: auto; }
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.92); }
+.lightbox img { display: block; max-width: 96vw; max-height: 86vh; width: auto; height: auto; margin: 0 auto; }
+.lb-cap { margin: 0; padding: 0.8rem 1.2rem; font-size: 0.9rem; font-weight: 700; text-align: center; }
+.lightbox button { position: absolute; z-index: 1; background: rgba(var(--black-rgb), 0.85); color: #fff; border: 1px solid var(--hairline-strong); width: 2.75rem; height: 2.75rem; font-size: 1.6rem; cursor: pointer; }
+.lb-close { top: 0.75rem; right: 0.75rem; } .lb-prev { left: 0.75rem; top: 45%; } .lb-next { right: 0.75rem; top: 45%; }

@@ -117,7 +117,9 @@ Real, unstaged photographs read as honest, and honesty is what a buyer spending 
 
 ## 7. Adding to the system
 
-**Adding a photograph (one command):**
+**Adding many photographs (bulk):** drop JPGs in `photos/inbox/` (name one `p2-anything.jpg` to tag it Phase II) and run `npm run photos`. Each is toned to match the site, sized, added to the manifest and to the Lookbook page (`pages/lookbook.html`, filterable by phase, with a lightbox). Originals move to `photos/done/` and are never published. Add `alt` text in `assets/img/editorial/manifest.json`, then rerun `npm run gallery`.
+
+**Adding one photograph (full control):**
 
     node scripts/add-photo.mjs <file> <slug> --phase 1-4 --alt "describe it" --focus "50% 55%"
     # optional: --crop x,y,w,h   --blur "x,y,w,h;x,y,w,h"   --keep-color   --note "…"

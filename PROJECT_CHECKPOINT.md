@@ -95,6 +95,7 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
   - Atelier hero: racks.
   - Journal hero: track.
 - **Ads:** 11 concepts (02, 05 and 08 re-shot; 09–11 are phase ads).
+- **Bulk intake:** `npm run photos` (drop JPGs in `photos/inbox/`, which is git-ignored) → duotone, manifest, Lookbook page (`pages/lookbook.html`, in More menu + sitemap). `npm run gallery` rebuilds the page only.
 - **Not used:** the blue animation frame. Strategy: `docs/marketing-strategy.md` §6–7.
 
 ## Verification
