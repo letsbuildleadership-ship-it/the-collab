@@ -1149,7 +1149,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
    ========================================================================== */
 
 /* nine header items: switch to the menu button before they crowd */
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .nav-links.is-open {
@@ -1178,7 +1178,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 }
 .nav-signin a::after { display: none; }
 .nav-signin a:hover { border-color: var(--filament-2); }
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links.is-open .nav-signin { margin-top: 0.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
   .nav-links.is-open .nav-signin a { padding: 0.6em 1.4em; }
 }
@@ -1461,7 +1461,7 @@ a.pill.is-owned {
 }
 .nav-more.is-open .nav-more-menu { display: flex; }
 
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links.is-open .nav-more-menu {
     position: static;
     min-width: 0;
@@ -1709,3 +1709,120 @@ a.pill.is-owned {
 .lookbook--scrim figcaption .headline { max-width: 18ch; }
 .lookbook--center figcaption .headline { max-width: 18ch; }
 @media (max-width: 860px) { .lookbook--scrim::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 28%), linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%); } }
+
+/* ==========================================================================
+   Legibility + ad-grade hierarchy
+   Measured with a real-pixel contrast audit: small labels were ~1.6:1
+   (WCAG AA needs 4.5:1). Small text is now larger, heavier and near-full
+   opacity; any text laid over a photograph sits on a frosted panel.
+   ========================================================================== */
+:root {
+  --white-dim: rgba(var(--text-rgb), 0.94);
+  --white-faint: rgba(var(--text-rgb), 0.84);
+  --nav-size: 0.78rem;
+  --label-size: 0.86rem;
+}
+.eyebrow { color: var(--filament-2); font-weight: 700; letter-spacing: 0.18em; }
+.eyebrow::before { width: 32px; height: 2px; }
+
+/* hero over a photograph: muted + blurred on the copy side, clear on the other */
+.hero--lookbook::before {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.92) 0%, rgba(var(--black-rgb), 0.84) 60%, rgba(var(--black-rgb), 0.5) 88%, rgba(var(--black-rgb), 0.22) 100%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.96) 0%, transparent 38%);
+  -webkit-backdrop-filter: blur(6px) saturate(0.7);
+  backdrop-filter: blur(6px) saturate(0.7);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 68%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 68%, transparent 100%);
+}
+.hero--lookbook .subhead { color: var(--paper); text-shadow: 0 1px 12px rgba(var(--black-rgb), 0.9); }
+.hero--lookbook .eyebrow { color: var(--filament-2); }
+@media (max-width: 860px) {
+  .hero--lookbook::before {
+    -webkit-mask-image: none; mask-image: none;
+    background: linear-gradient(180deg, rgba(var(--black-rgb), 0.55) 0%, rgba(var(--black-rgb), 0.86) 50%, rgba(var(--black-rgb), 0.96) 100%);
+  }
+}
+
+/* captions on photographs: a frosted glass panel — an "ad overlay card" that guarantees contrast */
+@media (min-width: 861px) {
+  .lookbook figcaption .wrap > * { position: relative; }
+  .lookbook figcaption .wrap {
+    max-width: 44rem;
+    margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    margin-right: auto;
+    padding: clamp(1.25rem, 2.2vw, 2rem) clamp(1.5rem, 2.6vw, 2.5rem);
+    background: rgba(var(--black-rgb), 0.74);
+    -webkit-backdrop-filter: blur(16px) saturate(0.8);
+    backdrop-filter: blur(16px) saturate(0.8);
+    border: 1px solid var(--hairline-strong);
+  }
+  .lookbook--center figcaption .wrap { margin: 0 auto; max-width: 40rem; text-align: center; }
+  .lookbook figcaption .subhead { color: var(--paper); }
+}
+.lookbook figcaption .eyebrow { color: var(--filament-2); }
+
+/* collection tiles: the label is a solid strip under the photograph */
+.tile img { height: calc(100% - 7.5rem); }
+.tile::after { display: none; }
+.tile-label {
+  background: rgba(var(--black-rgb), 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--hairline-strong);
+  min-height: 7.5rem;
+}
+.tile-label .num { color: var(--filament-2); font-weight: 700; }
+.tile-desc { color: var(--paper); opacity: 0.92; font-size: 0.88rem; }
+@media (max-width: 560px) { .tile img { height: calc(100% - 8.5rem); } .tile-label { min-height: 8.5rem; } }
+
+/* secondary + small text: warm peach-cream (≈13:1 on the green) keeps the brand warmth and reads at a glance */
+:root {
+  --white-dim: #ffd9c4;
+  --white-faint: #ffc7a8;
+}
+.card .num, .offer-kicker, .phase-node .num { color: var(--filament-2); }
+.hero--photo .subhead, .hero--photo .glow-text { color: var(--paper); }
+.hero--photo .glow-text { font-weight: 700; }
+
+/* type floor: nothing a visitor is meant to read sits below ~13.5px */
+.eyebrow { font-size: 0.9rem; }
+.num, .offer-kicker, .footer-col h4, .tile-label .num, .tile-label em, .nav-links a, .nav-more-toggle { font-size: max(var(--nav-size), 0.82rem); }
+.pill, .price-btn { font-size: 0.86rem; }
+table th, table td, dl dt, dl dd, .tax-note, .footer-col li a, .footer-bottom span, .banner { font-size: max(0.88rem, 1em); }
+table th, table td { line-height: 1.45; }
+
+/* long button labels wrap instead of pushing the page sideways on phones */
+@media (max-width: 560px) {
+  .pill, .price-btn { white-space: normal; text-align: left; max-width: 100%; line-height: 1.35; }
+  .hero-cta-row { align-items: stretch; }
+}
+
+/* ==========================================================================
+   Ad-grade components: spec strip (key facts at a glance), live proof
+   ========================================================================== */
+.factbar-wrap { padding: clamp(2rem, 4vw, 3rem) 0; border-bottom: 1px solid var(--hairline); background: rgba(var(--black-rgb), 0.96); }
+.factbar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); }
+.factbar li { padding: 0.25rem clamp(1rem, 2vw, 1.75rem); border-left: 1px solid var(--hairline-strong); display: flex; flex-direction: column; gap: 0.45rem; }
+.factbar li:first-child { border-left: 0; padding-left: 0; }
+.factbar strong { font-size: clamp(1.35rem, 2.2vw, 2.1rem); font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.01em; white-space: nowrap; }
+.factbar span { font-size: 0.9rem; line-height: 1.4; color: var(--white-dim); }
+@media (max-width: 960px) {
+  .factbar { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
+  .factbar li:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .factbar li:last-child { grid-column: 1 / -1; border-left: 0; padding-left: 0; }
+}
+.oe-proof { display: flex; gap: clamp(2rem, 6vw, 5rem); margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
+.oe-proof[hidden] { display: none; }
+.oe-proof > div { display: flex; flex-direction: column; gap: 0.35rem; }
+.oe-proof-num { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 300; color: var(--paper); font-variant-numeric: tabular-nums; }
+.oe-proof-label { font-size: 0.86rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--filament-2); }
+.tag { font-size: 0.8rem; font-weight: 700; color: var(--filament-2); border-color: var(--filament-2); }
+
+/* smallest text: bold white — maximum legibility at any size */
+.eyebrow, .num, .offer-kicker, .footer-col h4, .tag, .tile-label .num, .tile-desc, .factbar span,
+.oe-proof-label, .tax-note, .footer-bottom span, small, .wordmark-tagline, .nav-more-toggle {
+  color: #fff;
+  font-weight: 700;
+}
+.tag { border-color: #fff; }

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "01-legacy",
+    "lever": "Loss aversion + identity",
+    "hook": "Every company starts with a vision. Most lose it.",
+    "support": "The founder steps back, people change, the market shifts.",
+    "cta": "See the four tiers"
+  },
+  {
+    "id": "02-succession",
+    "lever": "Mortality salience + legacy",
+    "hook": "Pass it on. So it outlasts you.",
+    "support": "Phase IV · Preservation. The Legacy Preservation Vault™, licensed to keep.",
+    "cta": "Preserve your legacy"
+  },
+  {
+    "id": "03-four-phases",
+    "lever": "Cognitive ease (4-step ladder)",
+    "hook": "Define it. Plan it. Live it. Pass it on.",
+    "support": "Define your legacy, build it into how you work, and pass it on.",
+    "cta": "See the four phases"
+  },
+  {
+    "id": "04-economics",
+    "lever": "Authority + reframe",
+    "hook": "Generating value and capturing value are different processes.",
+    "support": "Practice Omnidirectional Enterprise™ with licensed Co.LLab IP™.",
+    "cta": "Read the case"
+  },
+  {
+    "id": "05-one-payment",
+    "lever": "Risk reversal + price clarity",
+    "hook": "One payment. Licensed to keep.",
+    "support": "No subscription. No automatic charges. Four levels, $5,000–$50,000.",
+    "cta": "Choose your level"
+  },
+  {
+    "id": "06-start-free",
+    "lever": "Foot-in-the-door + reciprocity",
+    "hook": "Start free. Build your legacy.",
+    "support": "Join The .LLab — free, no card needed. Every free tool, by phase.",
+    "cta": "Join The .LLab free"
+  },
+  {
+    "id": "07-unity",
+    "lever": "Unity + belonging",
+    "hook": "Nobody builds alone.",
+    "support": "Value moves between businesses, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.",
+    "cta": "See the model"
+  },
+  {
+    "id": "08-team",
+    "lever": "Status + internal buy-in",
+    "hook": "Your legacy. Your whole team.",
+    "support": "Seats for 1, 3, 5, or 10 people. One account each, added by invite.",
+    "cta": "See the seat levels"
+  }
+]
