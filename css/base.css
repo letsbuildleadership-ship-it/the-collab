@@ -1933,3 +1933,19 @@ main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: cla
   .model-ribbon ul { gap: 0.3rem; }
   .model-ribbon li a { font-size: 0.68rem; letter-spacing: 0.04em; padding: 0.4em 0.65em; }
 }
+
+/* Partnership at a glance: clean four-tile infographic */
+.factbar--info { grid-template-columns: repeat(4, 1fr); gap: clamp(0.75rem, 1.6vw, 1.25rem); }
+.factbar--info li, .factbar--info li:first-child {
+  border: 1px solid var(--hairline-strong); border-top: 3px solid var(--filament-2);
+  padding: clamp(1rem, 2vw, 1.6rem); align-items: flex-start; justify-content: space-between; gap: 0.7rem;
+  background: rgba(var(--black-rgb), 0.6); min-height: 8.5rem;
+}
+.factbar--info strong { font-size: clamp(1.35rem, 2.05vw, 2rem); font-weight: 700; color: var(--filament-2); letter-spacing: -0.02em; white-space: nowrap; line-height: 1.05; }
+.factbar--info span { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; line-height: 1.4; }
+@media (max-width: 860px) {
+  .factbar--info { grid-template-columns: repeat(2, 1fr); row-gap: clamp(0.75rem, 1.6vw, 1.25rem); }
+  .factbar--info li:last-child, .factbar--info li:nth-child(odd) { grid-column: auto; padding: clamp(1rem, 2vw, 1.6rem); }
+  .factbar--info li { min-height: 7.5rem; }
+  .factbar--info strong { font-size: clamp(1.4rem, 6vw, 2rem); white-space: normal; }
+}
