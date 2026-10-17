@@ -17,7 +17,7 @@
 **Strengths:** owned IP, a clear 4-step system, a free front door, no-subscription clarity at the top tier. **Gaps:** no verified social proof yet; Partnership is self-serve at a high ticket, so trust must come from the page; Founders status is "being developed" (pursuing 501(c)(3)) and must stay worded that way.
 
 ## 2. Marketing strategy — one operating model
-**Rule: no tactic exists outside Omnidirectional Enterprise™ × The IV Phases™.** Every ad, page, offer, email and funnel step is tagged with a **node** (who / which direction value moves: Businesses, Nonprofits, Communities, People, Technology, Capital, Knowledge + IP, Creators) and a **phase** (I Define → awareness · II Plan → consideration · III Live → purchase · IV Pass it on → retention, advocacy, legacy). `marketing/ads/index.json` carries the tags and `npm test` fails if any node or phase is uncovered.
+**Rule: no tactic exists outside Omnidirectional Enterprise™ × The IV Phases™.** Every ad, page, offer, email and funnel step is tagged with a **node** (who / which direction value moves: Businesses, Nonprofits, Communities, People, Technology, Capital, Knowledge + IP, Creators) and a **phase** (I Foundations → awareness · II Infrastructure Planning & Management → consideration · III Internal Operating Systems → purchase · IV Preservation → retention, advocacy, legacy). `marketing/ads/index.json` carries the tags and `npm test` fails if any node or phase is uncovered.
 
 **Positioning:** *Every company starts with a vision. Most lose it.* The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP. Frame: problem → solution; threat always paired with an action; no promises, no fake scarcity.
 
