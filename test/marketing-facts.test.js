@@ -81,7 +81,8 @@ test('canonical node links: every circle (full model, mini strips, mobile lists)
   let checked = 0;
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
     const html = read(f), pre = f === 'index.html' ? 'pages/' : '';
-    for (const m of html.matchAll(new RegExp(`<a [^>]*href="([^"]+)"[^>]*aria-label="(${names}) —`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: circle ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<a [^>]*href="([^"]+)"[^>]*aria-label="(${names})(?: —|")`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: circle ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<a href="([^"]+)"><span class="oe-node-title">(${names})</span>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: node list ${m[2]}`); checked++; }
     for (const m of html.matchAll(new RegExp(`<li><a href="([^"]+)"[^>]*>(${names})</a></li>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: ribbon ${m[2]}`); checked++; }
   }
   assert.ok(checked > 150, 'maps found: ' + checked);
