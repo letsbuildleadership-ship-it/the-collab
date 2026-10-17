@@ -27,3 +27,21 @@
 .oe-link circle { transition: stroke .2s ease; }
 .oe-link:hover circle { stroke: #ff8a1f; stroke-opacity: 1; }
 .oem-sub { font: 600 15px var(--font); letter-spacing: 0.2em; fill: var(--filament-2); }
+
+/* compact "Where this fits" strip under each hero */
+.fits { padding: clamp(1.5rem, 4vw, 2.5rem) 0; border-bottom: 1px solid var(--hairline); background: rgba(var(--black-rgb), 0.96); }
+.fits-wrap { display: flex; align-items: center; gap: clamp(1.5rem, 5vw, 4rem); }
+.fits-map { flex: none; width: clamp(180px, 22vw, 260px); }
+.fits-map .oe-mini-svg { max-width: none; }
+.fits-text { display: flex; flex-direction: column; gap: 0.9rem; align-items: flex-start; }
+.fits-line { margin: 0; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 300; color: var(--paper); line-height: 1.15; }
+.fits-phases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.fits-phases li { display: flex; align-items: center; gap: 0.5rem; padding: 0.4em 0.9em; border: 1px solid var(--hairline-strong); border-radius: 999px; color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; }
+.fits-phases li b { color: var(--filament-2); }
+.fits-phases li.on { opacity: 1; background: var(--filament-2); border-color: var(--filament-2); color: var(--black); }
+.fits-phases li.on b { color: var(--black); }
+.model-ribbon li a.is-on { background: var(--filament-2); border-color: var(--filament-2); color: var(--black); }
+@media (max-width: 640px) { .fits-wrap { flex-direction: column; align-items: flex-start; } .fits-map { width: 200px; } }
+.fits-map { width: clamp(220px, 27vw, 330px); }
+.fits .oem-n { font-size: 31px; font-weight: 700; fill: #fff; }
+.fits .oem-n:not(.on) { opacity: 0.85; }
