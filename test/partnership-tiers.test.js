@@ -259,7 +259,8 @@ test('partnership page: one card per tier with the right price, payment link, se
 });
 
 test("What's included table marks exactly each tier's permanent grants as Licensed", () => {
-  const table = page.slice(page.indexOf('<table class="included">'), page.indexOf('</table>'));
+  const tableStart = page.indexOf('<table class="included">');
+  const table = page.slice(tableStart, page.indexOf('</table>', tableStart));
   const rows = [...table.matchAll(/<tr><th scope="row">([^<]+)<\/th>((?:<td[^>]*>[^<]*<\/td>)+)<\/tr>/g)];
   const byName = new Map(rows.map((r) => [r[1], [...r[2].matchAll(/<td[^>]*>([^<]*)<\/td>/g)].map((c) => c[1])]));
   const tiers = pricing.registry.partnerships;
