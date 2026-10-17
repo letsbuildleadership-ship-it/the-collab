@@ -230,7 +230,7 @@ test('partnership page includes the clickable Omnidirectional Enterprise™ circ
   assert.match(html, /class="oe-mini-svg"/);
   const links = [...html.matchAll(/<a href="([^"]+)" class="oe-link"/g)].map((m) => m[1]);
   assert.ok(links.length >= 7, 'circle model nodes should be clickable');
-  assert.ok(!links.some((h) => /founders/.test(h)));
+  // the model map is shared navigation (like the header): its Communities circle goes to the Founders Organization
 });
 
 // ---- end-of-term offer ----------------------------------------------------

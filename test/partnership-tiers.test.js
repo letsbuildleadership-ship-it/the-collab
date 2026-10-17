@@ -278,7 +278,7 @@ test("What's included table marks exactly each tier's permanent grants as Licens
 test('partnership page: refund policy, license link, Founders separation, and no fabricated claims', () => {
   assert.match(page, /All sales are final once access is unlocked, subject to applicable law/);
   assert.ok(page.includes('href="ip-license.html"'));
-  const body = page.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '');
+  const body = page.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>\s*<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
   assert.ok(!/founders\.html/.test(body), 'no Founders cross-promotion in partnership content');
   assert.match(page, /no Founders product is included in any partnership/);
   assert.ok(!/testimonial|limited spots|only \d+ (left|available)|guaranteed (results|return)/i.test(page));

@@ -74,3 +74,15 @@ test('text colour tokens keep AA contrast (4.5:1) on the site background', () =>
   assert.ok(ratio(text, bg) >= 4.5, '--white (body) contrast');
 });
 function rgb(s) { return s.split(',').map((n) => parseInt(n, 10)); }
+
+test('canonical node links: every circle (full model, mini strips, mobile lists) and ribbon chip goes to its one aligned page', () => {
+  const CAN = { Businesses: 'partnership.html#tiers', Capital: 'partnership.html#tiers', Communities: 'founders.html', Nonprofits: 'impact.html', People: 'products.html', Technology: 'technology.html', 'Knowledge + IP': 'think.html', Creators: 'creator.html' };
+  const names = Object.keys(CAN).map((n) => n.replace(/[+]/g, '\\+')).join('|');
+  let checked = 0;
+  for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
+    const html = read(f), pre = f === 'index.html' ? 'pages/' : '';
+    for (const m of html.matchAll(new RegExp(`<a [^>]*href="([^"]+)"[^>]*aria-label="(${names}) —`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: circle ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<li><a href="([^"]+)"[^>]*>(${names})</a></li>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: ribbon ${m[2]}`); checked++; }
+  }
+  assert.ok(checked > 150, 'maps found: ' + checked);
+});
