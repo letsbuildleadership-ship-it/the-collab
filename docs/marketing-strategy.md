@@ -12,7 +12,7 @@ The website is built to work two ways at once: as the platform where a buyer dec
 |---|---|---|
 | **Loss aversion**: losses weigh roughly twice as much as equal gains | Kahneman & Tversky | Lead with the loss ("Most lose it"), not the gain. |
 | **Threat needs efficacy**: fear persuades only when paired with a clear, doable action | Witte, Extended Parallel Process Model | Every threat line is followed by a concrete action: four phases, one payment, one button. A fear-only ad makes people avoid it. |
-| **Mortality salience and symbolic immortality**: thinking of mortality pushes people toward work that outlives them | Terror Management Theory | "Pass it on. So it outlasts you." is the strongest emotional line. Keep the tone dignified, not morbid. |
+| **Mortality salience and symbolic immortality**: thinking of mortality pushes people toward work that outlives them | Terror Management Theory | "Pass it on." is the strongest emotional line. Keep the tone dignified, not morbid. |
 | **Generativity**: midlife concern for what continues after you | Erikson | Apprentice seats ("partners sponsor people outside their company") and nonprofit giving speak to this motive. |
 | **Status and cultural capital**: owning proprietary IP signals standing | Veblen, Bourdieu | Name the owner of the IP and use the word "licensed". Keep the look restrained. A $50,000 purchase needs a premium-looking page. |
 | **Social identity**: people choose what says who they are | Tajfel & Turner | "Best for: owners leading on their own / leadership teams / the whole company / companies building beyond their founder" lets buyers self-select. "Partners" and the ecosystem give a group to belong to. |
@@ -56,7 +56,7 @@ Run `node scripts/build-ads.mjs` to render `marketing/ads/*.png` (4:5 feed and 1
 | # | Hook | Lever | Funnel stage | Lands on |
 |---|---|---|---|---|
 | 01 | Every company starts with a vision. **Most lose it.** | Loss aversion, identity | Cold | Home |
-| 02 | **Pass it on.** So it outlasts you. | Mortality salience, legacy | Warm to hot | Partnership |
+| 02 | **Pass it on.** | Mortality salience, legacy | Warm to hot | Partnership |
 | 03 | Define it. Plan it. Live it. **Pass it on.** | Processing fluency | Warm | Home #solution |
 | 04 | Generating value and capturing value **are different processes.** | Authority, reframe | Cold (LinkedIn) | Home #market |
 | 05 | **One payment.** Licensed to keep. | Risk reversal, price clarity | Hot | Partnership #tiers |
