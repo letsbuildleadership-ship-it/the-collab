@@ -3,7 +3,7 @@
   "banner_highlight": "Now Open",
   "banner_cta_label": "Become a Founder",
   "banner_cta_link": "#apply",
-  "eyebrow": "Founders Organization · BUILD",
+  "eyebrow": "Founders Organization™ · BUILD",
   "hero_headline": [
     {
       "text": "The Co.LLab",
@@ -16,7 +16,7 @@
       "break_before": false
     },
     {
-      "text": "Founders Organization.",
+      "text": "Founders Organization™.",
       "style": "glow",
       "break_before": true
     }
