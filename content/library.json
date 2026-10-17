@@ -11,7 +11,7 @@
         "mark": "👑",
         "name": "CROWN",
         "arc": "Foundations → Authority",
-        "description": "The right to lead begins with clear sight of who you are and what you stand for. CROWN is the seat of authority — earned, not assumed."
+        "description": "The right to lead begins with clear sight of who you are and what you stand for. CROWN™ is the seat of authority — earned, not assumed."
       },
       {
         "key": "scepter",
@@ -19,7 +19,7 @@
         "mark": "⚜️",
         "name": "SCEPTER",
         "arc": "Infrastructure Planning & Management → Structure",
-        "description": "Authority without structure dissipates. SCEPTER is the instrument of governance — the deliberate design of how things will run."
+        "description": "Authority without structure dissipates. SCEPTER™ is the instrument of governance — the deliberate design of how things will run."
       },
       {
         "key": "signet",
@@ -27,7 +27,7 @@
         "mark": "💍",
         "name": "SIGNET",
         "arc": "Internal Operating Systems → Capability",
-        "description": "SIGNET is the seal of authenticity — the capability that proves the structure works, stamped into daily practice."
+        "description": "SIGNET™ is the seal of authenticity — the capability that proves the structure works, stamped into daily practice."
       },
       {
         "key": "heirloom",
@@ -35,14 +35,14 @@
         "mark": "🏛️",
         "name": "HEIRLOOM",
         "arc": "Preservation → Legacy",
-        "description": "What is built must be able to outlive its builder. HEIRLOOM is what you hand down — preserved on purpose."
+        "description": "What is built must be able to outlive its builder. HEIRLOOM™ is what you hand down — preserved on purpose."
       }
     ],
     "orders": [
       { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The Legacy Library™.", "description": "You have taken up the Library Card™. The cycle is yours to steward." },
-      { "key": "curator", "name": "CURATOR", "requires": "CROWN fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
-      { "key": "architect", "name": "ARCHITECT", "requires": "CROWN and SCEPTER fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
-      { "key": "steward", "name": "STEWARD", "requires": "CROWN, SCEPTER, and SIGNET fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },
+      { "key": "curator", "name": "CURATOR", "requires": "CROWN™ fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
+      { "key": "architect", "name": "ARCHITECT", "requires": "CROWN™ and SCEPTER™ fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
+      { "key": "steward", "name": "STEWARD", "requires": "CROWN™, SCEPTER™, and SIGNET™ fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },
       { "key": "sovereign", "name": "SOVEREIGN", "requires": "all of The IV Phases™ of a cycle fully stewarded.", "description": "You have carried a complete cycle from sight to legacy. Authority, structure, capability, and preservation are all demonstrated." },
       { "key": "legacy-bearer", "name": "LEGACY BEARER", "requires": "A full cycle completed and the next cycle begun.", "description": "You have proven the cycle repeats. What you built does not end with one turn of the wheel — it compounds." }
     ],
@@ -113,7 +113,7 @@
       "theme": "CHOOSE",
       "phase": "crown",
       "title": "CHOOSE — The Authority of Commitment",
-      "intent": "CROWN closes with a decision. Authority is claimed the moment you choose — and stand behind the choice.",
+      "intent": "CROWN™ closes with a decision. Authority is claimed the moment you choose — and stand behind the choice.",
       "books": [
         { "title": "Essentialism", "author": "Greg McKeown" },
         { "title": "Principles", "author": "Ray Dalio" },
@@ -122,7 +122,7 @@
       ],
       "scholarly_reading": {
         "title": "Choice as the First Act of Leadership",
-        "focus": "Every phase after CROWN depends on a choice made cleanly here — indecision is itself a choice, and rarely a good one.",
+        "focus": "Every phase after CROWN™ depends on a choice made cleanly here — indecision is itself a choice, and rarely a good one.",
         "prompt": "What decision have you been deferring? Write a research note on what the deferral itself has already cost."
       },
       "reflective_practice": {
@@ -147,7 +147,7 @@
       ],
       "scholarly_reading": {
         "title": "Structure Follows Position",
-        "focus": "No infrastructure survives being built on the wrong position — SCEPTER's first task is an honest map of where things actually stand.",
+        "focus": "No infrastructure survives being built on the wrong position — SCEPTER™'s first task is an honest map of where things actually stand.",
         "prompt": "Where does your organization actually stand today, versus where its plans assume it stands? Write a research note on the gap."
       },
       "reflective_practice": {
@@ -163,7 +163,7 @@
       "theme": "DESIGN",
       "phase": "scepter",
       "title": "DESIGN — Deliberate Structure",
-      "intent": "SCEPTER is wielded through design — the deliberate shaping of systems, not the hope that things will simply work out.",
+      "intent": "SCEPTER™ is wielded through design — the deliberate shaping of systems, not the hope that things will simply work out.",
       "books": [
         { "title": "Thinking in Systems", "author": "Donella H. Meadows" },
         { "title": "The Design of Everyday Things", "author": "Don Norman" },
@@ -188,7 +188,7 @@
       "theme": "BUILD",
       "phase": "scepter",
       "title": "BUILD — Structure Made Real",
-      "intent": "SCEPTER closes with construction — turning design into something that actually stands and holds weight.",
+      "intent": "SCEPTER™ closes with construction — turning design into something that actually stands and holds weight.",
       "books": [
         { "title": "The Hard Thing About Hard Things", "author": "Ben Horowitz" },
         { "title": "Execution", "author": "Larry Bossidy & Ram Charan" },
@@ -213,7 +213,7 @@
       "theme": "MULTIPLY",
       "phase": "signet",
       "title": "MULTIPLY — Capability Beyond Yourself",
-      "intent": "SIGNET opens with multiplication — proving that capability lives in the system and the people, not only in you.",
+      "intent": "SIGNET™ opens with multiplication — proving that capability lives in the system and the people, not only in you.",
       "books": [
         { "title": "Multipliers", "author": "Liz Wiseman" },
         { "title": "The Effective Executive", "author": "Peter F. Drucker" },
@@ -238,7 +238,7 @@
       "theme": "CREATE",
       "phase": "signet",
       "title": "CREATE — Original Capability",
-      "intent": "SIGNET is stamped through creation — the original work that proves capability rather than merely maintaining what exists.",
+      "intent": "SIGNET™ is stamped through creation — the original work that proves capability rather than merely maintaining what exists.",
       "books": [
         { "title": "Steal Like an Artist", "author": "Austin Kleon" },
         { "title": "Where Good Ideas Come From", "author": "Steven Johnson" },
@@ -263,7 +263,7 @@
       "theme": "DISCERN",
       "phase": "signet",
       "title": "DISCERN — Proven Judgment",
-      "intent": "SIGNET closes with discernment — judgment sharp enough to tell what actually works from what merely looks like it does.",
+      "intent": "SIGNET™ closes with discernment — judgment sharp enough to tell what actually works from what merely looks like it does.",
       "books": [
         { "title": "Thinking in Bets", "author": "Annie Duke" },
         { "title": "The Great Mental Models", "author": "Shane Parrish" },
@@ -288,7 +288,7 @@
       "theme": "STEWARD",
       "phase": "heirloom",
       "title": "STEWARD — Care for What Is Built",
-      "intent": "HEIRLOOM opens with stewardship — the shift from building for yourself to caring for what now belongs to more than you.",
+      "intent": "HEIRLOOM™ opens with stewardship — the shift from building for yourself to caring for what now belongs to more than you.",
       "books": [
         { "title": "Good to Great", "author": "Jim Collins" },
         { "title": "The Servant as Leader", "author": "Robert K. Greenleaf" },
@@ -313,7 +313,7 @@
       "theme": "COMPOUND",
       "phase": "heirloom",
       "title": "COMPOUND — What Endures Grows",
-      "intent": "HEIRLOOM is carried through compounding — small, consistent stewardship that accumulates into something far larger than any single act.",
+      "intent": "HEIRLOOM™ is carried through compounding — small, consistent stewardship that accumulates into something far larger than any single act.",
       "books": [
         { "title": "The Compound Effect", "author": "Darren Hardy" },
         { "title": "Atomic Habits", "author": "James Clear" },
@@ -347,7 +347,7 @@
       ],
       "scholarly_reading": {
         "title": "Designing What Outlives You",
-        "focus": "A true HEIRLOOM is designed to be handed down cleanly — the cycle you just completed is only proof that it's ready to repeat without you at its center.",
+        "focus": "A true HEIRLOOM™ is designed to be handed down cleanly — the cycle you just completed is only proof that it's ready to repeat without you at its center.",
         "prompt": "If you stepped away today, what would still run cleanly without you? Write a research note on the gap between that and the whole."
       },
       "reflective_practice": {
