@@ -1911,3 +1911,14 @@ table th, table td { line-height: 1.45; }
 
 /* generous, quiet rhythm */
 main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: clamp(3.5rem, 8vw, 7rem); padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+
+/* small "join free" button in the model ribbon */
+.model-ribbon .wrap { flex-wrap: wrap; }
+.model-ribbon ul { flex: 1 1 auto; min-width: 0; }
+.ribbon-join { flex: none; margin-left: auto; white-space: nowrap; font-size: 0.78rem; font-weight: 700; color: var(--black); background: var(--filament-2); border-radius: 999px; padding: 0.35em 0.95em; transition: background 0.25s var(--ease); }
+.ribbon-join:hover, .ribbon-join:focus-visible { background: #fff; }
+@media (max-width: 860px) { .ribbon-join { margin-left: 0; white-space: normal; } }
+.model-ribbon .ribbon-label { flex: 1 1 auto; }
+.model-ribbon .ribbon-join { order: 2; margin-left: 0; }
+.model-ribbon ul { order: 3; flex: 1 1 100%; }
+@media (max-width: 860px) { .model-ribbon .ribbon-join { align-self: flex-start; white-space: nowrap; font-size: 0.7rem; padding: 0.35em 0.85em; max-width: 100%; } }

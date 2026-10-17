@@ -198,7 +198,7 @@ const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 // Page content without the shared site header and footer: the primary nav links
 // every offer, while Founders and Partnership content never cross-promote.
-const content = (html) => html.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>\s*<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
+const content = (html) => html.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>[\s\S]*?<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
 
 test('partnership page lists every tier link, states IP ownership and results terms, and never links to Founders', () => {
   const html = read('pages/partnership.html');
