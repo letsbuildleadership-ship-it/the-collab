@@ -1850,3 +1850,8 @@ table th, table td { line-height: 1.45; }
 .lb-cap { margin: 0; padding: 0.8rem 1.2rem; font-size: 0.9rem; font-weight: 700; text-align: center; }
 .lightbox button { position: absolute; z-index: 1; background: rgba(var(--black-rgb), 0.85); color: #fff; border: 1px solid var(--hairline-strong); width: 2.75rem; height: 2.75rem; font-size: 1.6rem; cursor: pointer; }
 .lb-close { top: 0.75rem; right: 0.75rem; } .lb-prev { left: 0.75rem; top: 45%; } .lb-next { right: 0.75rem; top: 45%; }
+
+/* caption panel on the right when the subject sits on the left */
+@media (min-width: 861px) {
+  .lookbook--right figcaption .wrap { margin-left: auto; margin-right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
+}
