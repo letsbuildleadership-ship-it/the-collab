@@ -16,7 +16,7 @@ const dollars = (t) => Number(t.price_display.replace(/[^0-9]/g, ''));
 const fmt = (n) => '$' + n.toLocaleString('en-US');
 
 function factbar(html) {
-  const m = html.match(/<ul class="factbar">([\s\S]*?)<\/ul>/);
+  const m = html.match(/<ul class="factbar[^"]*">([\s\S]*?)<\/ul>/);
   assert.ok(m, 'factbar present');
   return m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 }
