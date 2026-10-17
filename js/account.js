@@ -13,14 +13,17 @@
     'Build · Founders Organization',
   ];
 
+  // Display-only ™ on the TRIARCH™ level names (data keeps the plain names).
+  const tm = (n) => (/^(CROWN|SCEPTER|SIGNET|HEIRLOOM)$/.test(n) ? n + '™' : n);
+
   // Console-facing TRIARCH™ names for the same phase keys used everywhere
   // else (pricing.json, buildAccountView). Display-only — never sent
   // anywhere, so the underlying phase strings stay the source of truth.
   const BAY_NAME = {
-    'Phase I · Foundations': '👑 CROWN — Foundations',
-    'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER — Infrastructure Planning & Management',
-    'Phase III · Internal Operating Systems': '💍 SIGNET — Internal Operating Systems',
-    'Phase IV · Preservation': '🏛️ HEIRLOOM — Preservation',
+    'Phase I · Foundations': '👑 CROWN™ — Foundations',
+    'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER™ — Infrastructure Planning & Management',
+    'Phase III · Internal Operating Systems': '💍 SIGNET™ — Internal Operating Systems',
+    'Phase IV · Preservation': '🏛️ HEIRLOOM™ — Preservation',
     'Build · Founders Organization': 'Founders Organization™',
   };
 
@@ -35,10 +38,10 @@
     'Phase IV · Preservation',
   ];
   const TRACK_LABEL = {
-    'Phase I · Foundations': 'CROWN',
-    'Phase II · Infrastructure Planning & Management': 'SCEPTER',
-    'Phase III · Internal Operating Systems': 'SIGNET',
-    'Phase IV · Preservation': 'HEIRLOOM',
+    'Phase I · Foundations': 'CROWN™',
+    'Phase II · Infrastructure Planning & Management': 'SCEPTER™',
+    'Phase III · Internal Operating Systems': 'SIGNET™',
+    'Phase IV · Preservation': 'HEIRLOOM™',
   };
 
   // Generic 3-step refinement checklist shown under every owned item — a
@@ -234,7 +237,7 @@
       return `All four phases of the TRIARCH™ are charted and refined, <strong>${memberId}</strong>. Your infrastructure stands complete.`;
     }
     if (ownedCount === 0) {
-      return `Welcome, <strong>${memberId}</strong>. CROWN is your first phase — everything else is built on it.`;
+      return `Welcome, <strong>${memberId}</strong>. CROWN™ is your first phase — everything else is built on it.`;
     }
     if (openRefinements > 0) {
       return `${openRefinements} refinement${openRefinements === 1 ? '' : 's'} still open. Complete a module's three steps to bring its phase fully online.`;
@@ -624,7 +627,7 @@
     const cleared = rw ? rw.tiers.filter((t) => t.completed) : [];
     const top = cleared[cleared.length - 1];
     tiles.push(active
-      ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${top.name}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
+      ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${tm(top.name)}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
       : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools included', cta: 'Unlock all 9 quests', href: '#offer-membership' });
     const label = { founders: name('founders', 'Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
     el.innerHTML = tiles
@@ -653,7 +656,7 @@
     const top = cleared[cleared.length - 1];
 
     // Player card
-    $('game-rank').textContent = top ? `Level ${top.tier} · ${LEVEL_ICON[top.name] || ''} ${top.name}` : 'Level 0 · Initiate';
+    $('game-rank').textContent = top ? `Level ${top.tier} · ${LEVEL_ICON[top.name] || ''} ${tm(top.name)}` : 'Level 0 · Initiate';
     const pct = totalSteps ? Math.round((steps / totalSteps) * 100) : 0;
     $('xp-fill').style.width = `${pct}%`;
     $('xp-text').textContent = `${steps * XP_PER_STEP} / ${totalSteps * XP_PER_STEP} XP`;
@@ -662,7 +665,7 @@
       badge(active, '★', 'Member'),
       badge(!!data.founder, '◆', 'Founder'),
       badge(!!(data.partnership || data.seat), '⬢', 'Partner'),
-      ...tiers.map((t) => badge(t.completed, LEVEL_ICON[t.name] || '•', t.name)),
+      ...tiers.map((t) => badge(t.completed, LEVEL_ICON[t.name] || '•', tm(t.name))),
     ].join('');
 
     // Current quest
@@ -675,9 +678,9 @@
       const quest = level && level.products.find((p) => p.stepsDone < p.stepsTotal);
       if (level && quest) {
         q = {
-          label: `Current quest · Level ${level.tier} ${level.name}`,
+          label: `Current quest · Level ${level.tier} ${tm(level.name)}`,
           title: shortName(quest.name),
-          body: `${quest.stepsDone}/${quest.stepsTotal} steps done. Clear every ${level.name} quest to unlock free loot (up to $${level.maxPrice.toLocaleString()}).`,
+          body: `${quest.stepsDone}/${quest.stepsTotal} steps done. Clear every ${tm(level.name)} quest to unlock free loot (up to $${level.maxPrice.toLocaleString()}).`,
           cta: `<a class="pill pill--solid" href="#item-${esc(quest.key)}" data-jump="${esc(quest.key)}">Play quest <span class="arrow">→</span></a>`,
         };
       } else {
@@ -733,7 +736,7 @@
       } else if (t.options && t.options.length) {
         const opts = t.options.map((o) => `<option value="${esc(o.key)}">${esc(o.name)} (${esc(o.price_display)})</option>`).join('');
         lootHtml = `<p class="loot-state is-ready">🎁 Loot ready: pick 1</p>
-          <select data-reward-select="${t.tier}" aria-label="${esc(t.name)} loot">${opts}</select>
+          <select data-reward-select="${t.tier}" aria-label="${esc(tm(t.name))} loot">${opts}</select>
           <button type="button" class="pill pill--solid" data-reward-claim="${t.tier}">Claim <span class="arrow">→</span></button>
           <p class="login-error" data-reward-error="${t.tier}" hidden></p>`;
       } else if (t.completed && !rw.active) {
@@ -745,7 +748,7 @@
       }
       const card = document.createElement('div');
       card.className = `card reward-card${t.completed ? ' is-cleared' : ''}`;
-      card.innerHTML = `<div class="level-head"><span class="level-icon">${LEVEL_ICON[t.name] || ''}</span><div><span class="num">Level ${t.tier}</span><h4>${esc(t.name)}${t.completed ? ' · Cleared' : ''}</h4></div></div>
+      card.innerHTML = `<div class="level-head"><span class="level-icon">${LEVEL_ICON[t.name] || ''}</span><div><span class="num">Level ${t.tier}</span><h4>${esc(tm(t.name))}${t.completed ? ' · Cleared' : ''}</h4></div></div>
         <div class="xp-bar xp-bar--sm"><span style="width:${Math.round((done / total) * 100)}%"></span></div>
         <ul class="reward-products">${quests}</ul>${lootHtml}`;
       list.appendChild(card);
