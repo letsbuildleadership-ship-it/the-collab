@@ -1,6 +1,6 @@
 # PROJECT_CHECKPOINT
-**Status:** PR #41 live (Partnership-led Home, .LLab funnel, photography + Lookbook, legibility, ads, bulk photo intake).
-**Branch** `claude/collab-website-architecture-l0haw2` — streamline pass (Home 37→32 KB: problem+risk merged, dense positioning moved to About, duplicate "free" cards folded into one link row, after-purchase 6→4 cards; `STRATEGY.md` + `CLAUDE.md` added). Not yet merged.
+**Status:** PRs #41, #42 live (Partnership-led Home, .LLab funnel, photography + Lookbook, legibility, ads, bulk photo intake).
+**Branch** `claude/collab-website-architecture-l0haw2` — Home cut to 7 beats (hero, facts, problem, 4 phase tiles, tiers, .LLab entry, mission): 37→23 KB, ~13k→6.7k px. Dropped sections live on Partnership/.LLab/About. Not yet merged.
 
 **Verification each time:** `npm test` · pages × 1440/390 (no overflow/errors) · Stripe link set unchanged · live check after merge.
 **Open:** two "partnering" lines (Founders $350 tier; Think diagram card) · diagram-label contrast (~2% of text) · no real social proof yet · ads not running.
