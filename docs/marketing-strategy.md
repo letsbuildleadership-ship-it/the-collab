@@ -27,11 +27,11 @@ Each page and ad follows Attention → Interest (the problem) → Desire (the IP
 |---|---|
 | Hero ("Every company starts with a vision. Most lose it.") | Attention: loss frame and identity. |
 | Spec strip | Cognitive ease: price, term, seats, free door in five facts. |
-| 01 The market, 02 The risk | Interest: external and internal threat, in business, economic and geopolitical terms. |
-| 03 The solution, 04 Tiers | Desire and action: Co.LLab IP™, four phases, four prices. |
-| 05 After you buy | Risk reversal: one payment, licensed to keep, no subscription, plain terms. |
-| 06 The .LLab, free resources | Low-commitment path for buyers not ready yet. |
-| 07 The enterprise | Authority and adjacent offers. |
+| 01 The problem | Interest: the economic problem and the risk inside the company. |
+| 02 The solution, 03 Tiers | Desire and action: Co.LLab IP™, four phases, four prices. |
+| 04 After you buy | Risk reversal: one payment, licensed to keep, no subscription, plain terms. |
+| 05 The .LLab (free row inside) | Low-commitment path for buyers not ready yet. |
+| 06 The enterprise | Authority and adjacent offers. |
 
 ## 3. Principles applied
 
