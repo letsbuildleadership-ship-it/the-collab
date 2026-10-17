@@ -8,8 +8,8 @@ Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify
 `index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology,  · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
 
-## Page pattern (shopping-site style)
-Every marketing page: header → **model ribbon** (8 Omnidirectional Enterprise™ nodes, links to offers) → hero → key content → expandable `<details class="more">` for secondary detail → .LLab storefront → footer. Home has the big interactive model (#model). Hash links auto-open panels (js/main.js). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.
+## Page pattern (luxury / shopping-site style)
+Header → **model ribbon** (the only element repeated site-wide, plus the Home/Think/Partnership model) → hero → the page's own main points + products → **Continue** strip (2 links). **Each product/idea lives on exactly one page; other pages link, never repeat.** Home = hero, problem/solution, big model, 3 path tiles. Removed copy is archived in `docs/archive/removed-blocks.html` (404 on the live site). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.
 
 ## Rules
 - Approved copy and prices are fixed: no invented claims, testimonials, scarcity or earnings. Prices/Stripe links only via `content/pricing.json`.

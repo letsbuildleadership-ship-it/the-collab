@@ -21,10 +21,12 @@ function factbar(html) {
   return m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 }
 
-test('spec strip on Home and Partnership matches the pricing registry', () => {
+test('Partnership spec strip and the Home price range match the pricing registry', () => {
   const lo = fmt(Math.min(...tiers.map(dollars))), hi = fmt(Math.max(...tiers.map(dollars)));
   const seats = tiers.map((t) => t.seats).join(' · ');
-  for (const f of ['index.html', 'pages/partnership.html']) {
+  const home = read('index.html').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  assert.ok(home.includes(`${lo}–${hi}`), 'Home states the registry price range');
+  for (const f of ['pages/partnership.html']) {
     const text = factbar(read(f));
     assert.ok(text.includes(`${tiers.length} levels of partnership`), `${f}: level count`);
     assert.ok(text.includes(`${lo}–${hi}`), `${f}: price range ${lo}–${hi}`);
