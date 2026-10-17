@@ -66,7 +66,7 @@
 .oe-c-oe   { font: 600 13.5px var(--font); letter-spacing: 0.2em; fill: var(--paper); }
 .oe-c-sub  { font: 600 12.5px var(--font); letter-spacing: 0.24em; fill: var(--filament-2); }
 .oe-n-title { font: 600 14.5px var(--font); letter-spacing: 0.14em; fill: var(--white); }
-.oe-n-line  { font: 400 13.5px var(--font); fill: rgba(var(--text-rgb), 0.7); }
+.oe-n-line  { font: 500 14.5px var(--font); fill: #ffd9c4; }
 
 /* text list of the same nodes — shown on small screens where the diagram text is too small */
 .oe-nodes { display: none; list-style: none; margin: 0; padding: 0; }
