@@ -63,7 +63,7 @@ The 15 ads and their node × phase tags are listed in `marketing/ads/index.json`
 1. Loss framing (01) against aspiration ("Pass it on", 02).
 2. Price visible (05) against hidden (01).
 3. Photograph against type-only.
-4. CTA wording: "See the four tiers" against "Preserve your legacy".
+4. CTA wording: "Explore Partnerships" against "Preserve your legacy".
 
 Measure click-through, landing-page-to-free-join rate, free-to-paid rate and tier mix.
 
