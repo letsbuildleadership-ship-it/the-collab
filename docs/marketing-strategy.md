@@ -82,8 +82,8 @@ Real, unstaged photographs read as honest, and honesty is what a buyer spending 
 | Phase | Photograph | What it signals | Psychology and sociology |
 |---|---|---|---|
 | **I · Foundations** (Define) | Wood-slat booth, enamel AMERICAN sign, high table and stools | Identity, rootedness, a place people gather. The table and stools are the Partnership **seats**. | Place identity and in-group belonging for heartland and small-business owners. Concrete imagery is recalled better than abstract claims. |
-| **II · Planning** (Plan) | Steel scaffolding corridor | Structure going up before the building exists. | Makes an abstract service tangible. |
-| **III · Operating Systems** (Live) | Tailored jackets on a wood-paneled rack | Order, standards, fit: how things are kept every day. The luxury-retail feel. | Fluency and quality cues: ordered scenes signal competence. The "built around the person" line from the site reads as tailoring. |
+| **II · Infrastructure Planning & Management** (Plan) | Steel scaffolding corridor | Structure going up before the building exists. | Makes an abstract service tangible. |
+| **III · Internal Operating Systems** (Live) | Tailored jackets on a wood-paneled rack | Order, standards, fit: how things are kept every day. The luxury-retail feel. | Fluency and quality cues: ordered scenes signal competence. The "built around the person" line from the site reads as tailoring. |
 | **IV · Preservation** (Pass it on) | One railroad track to the horizon | The path is already laid and continues past you. | Symbolic immortality and generativity: the picture of "so it outlasts you". It carries the emotional close without death imagery. |
 
 **Where they run**

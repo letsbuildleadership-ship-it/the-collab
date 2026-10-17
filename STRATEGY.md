@@ -23,7 +23,7 @@
 
 **The funnel is the four phases:** I Free Portal + free tools (People) → II Library Card $10/mo → III Membership $150/mo (all 9 IV Phases products) or a Partnership level (Businesses/Capital) → IV Omnidirectional tier (lifetime, 10 seats), apprentice seats, nonprofit giving, referrals.
 
-| Node → | Phase I · Define | Phase II · Plan | Phase III · Live | Phase IV · Pass it on | Home page |
+| Node → | Phase I · Foundations | Phase II · Infrastructure Planning & Management | Phase III · Internal Operating Systems | Phase IV · Preservation | Home page |
 |---|---|---|---|---|---|
 | **Businesses** | ads 01, 09 | ad 10 | ads 08, 11 | — | Partnerships |
 | **Capital** | — | ad 04 | ad 05 | ad 02 | Partnership tiers |

@@ -13,7 +13,7 @@ const header = slice('<header class="site-header">', '</header>').replace(' aria
 const footer = slice('<footer class="site-footer">', '</footer>');
 const cta = partnership.match(/  <section class="band llab-cta">[\s\S]*?<\/section>/)[0];
 const photos = JSON.parse(fs.readFileSync(path.join(root, 'assets/img/editorial/manifest.json'), 'utf8')).filter((p) => p.gallery !== false);
-const PH = { 1: 'I · Foundations', 2: 'II · Planning', 3: 'III · Operating Systems', 4: 'IV · Preservation' };
+const PH = { 1: 'I · Foundations', 2: 'II · Infrastructure Planning & Management', 3: 'III · Internal Operating Systems', 4: 'IV · Preservation' };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const phases = [1, 2, 3, 4].filter((n) => photos.some((p) => p.phase === n));
 
