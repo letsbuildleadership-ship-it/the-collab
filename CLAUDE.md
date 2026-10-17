@@ -2,11 +2,14 @@
 Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify publishes `main`, no build step). Strategy: `STRATEGY.md`. State: `PROJECT_CHECKPOINT.md`.
 
 ## Commands
-`npm test` (131 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs`
+`npm test` (131 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs`
 
 ## Map
-`index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology, lookbook*) · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).
+`index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology,  · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
+
+## Page pattern (shopping-site style)
+Every marketing page: header → **model ribbon** (8 Omnidirectional Enterprise™ nodes, links to offers) → hero → key content → expandable `<details class="more">` for secondary detail → .LLab storefront → footer. Home has the big interactive model (#model). Hash links auto-open panels (js/main.js). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.
 
 ## Rules
 - Approved copy and prices are fixed: no invented claims, testimonials, scarcity or earnings. Prices/Stripe links only via `content/pricing.json`.

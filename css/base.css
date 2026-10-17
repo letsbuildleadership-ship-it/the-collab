@@ -1855,3 +1855,40 @@ table th, table td { line-height: 1.45; }
 @media (min-width: 861px) {
   .lookbook--right figcaption .wrap { margin-left: auto; margin-right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
 }
+
+/* ==========================================================================
+   Shopping-site patterns: model ribbon (department bar), expandable details,
+   trust line, sticky mobile buy button. Lookbook figures shortened.
+   ========================================================================== */
+.model-ribbon { background: rgba(var(--black-rgb), 0.96); border-bottom: 1px solid var(--hairline-strong); }
+.model-ribbon .wrap { display: flex; align-items: center; gap: 1.25rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
+.ribbon-label { flex: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-2); }
+.model-ribbon ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.5rem; overflow-x: auto; scrollbar-width: none; }
+.model-ribbon ul::-webkit-scrollbar { display: none; }
+.model-ribbon li a { display: block; white-space: nowrap; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.4em 1em; transition: border-color 0.25s var(--ease), background 0.25s var(--ease); }
+.model-ribbon li a:hover, .model-ribbon li a:focus-visible { border-color: var(--filament-2); background: rgba(var(--filament-2-rgb), 0.15); }
+@media (max-width: 860px) { .model-ribbon .wrap { flex-direction: column; align-items: flex-start; gap: 0.5rem; } .model-ribbon ul { width: 100%; } }
+
+.more-wrap { padding: clamp(2rem, 5vw, 3.5rem) 0; }
+.more-list { margin-top: 1.25rem; border-bottom: 1px solid var(--hairline-strong); }
+.more { border-top: 1px solid var(--hairline-strong); }
+.more > summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.1rem 0; font-size: 1.05rem; font-weight: 700; color: #fff; }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: '+'; flex: none; font-size: 1.5rem; line-height: 1; color: var(--filament-2); }
+.more[open] > summary::after { content: '–'; }
+.more > summary:focus-visible { outline: 1px solid var(--filament-2); outline-offset: 2px; }
+.more-body { padding: 0.5rem 0 2rem; }
+.more-body > .eyebrow:first-child { display: none; }
+
+.trust { margin: 1.25rem 0 0; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.06em; color: #fff; }
+.trust::before { content: '🔒 '; }
+
+.sticky-cta { display: none; }
+@media (max-width: 860px) {
+  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; padding: 0.7rem var(--gutter); background: rgba(var(--black-rgb), 0.97); border-top: 1px solid var(--hairline-strong); transform: translateY(110%); transition: transform 0.35s var(--ease); }
+  .sticky-cta.is-on { transform: none; }
+  .sticky-cta .pill { width: 100%; justify-content: center; }
+}
+
+.lookbook img { height: clamp(18rem, 46vh, 30rem); }
+.oe-mini-band--hero .oe-mini-svg { max-width: 640px; }
