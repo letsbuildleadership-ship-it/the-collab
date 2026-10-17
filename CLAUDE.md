@@ -12,6 +12,7 @@ Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify
 Header → **model ribbon** (the only element repeated site-wide, plus the Home/Think/Partnership model) → hero → the page's own main points + products → **Continue** strip (2 links). **Each product/idea lives on exactly one page; other pages link, never repeat.** Home = hero, problem/solution, big model, 3 path tiles. Removed copy is archived in `docs/archive/removed-blocks.html` (404 on the live site). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.
 
 ## Rules
+- **Every marketing tactic (ad, page, offer, email, funnel step) is modeled under Omnidirectional Enterprise (node) × The IV Phases (1–4).** Tag new ads in `scripts/build-ads.mjs` (`TAG`); a test enforces it. See `STRATEGY.md` §2.
 - Approved copy and prices are fixed: no invented claims, testimonials, scarcity or earnings. Prices/Stripe links only via `content/pricing.json`.
 - Founders, .LLab, Partnerships stay distinct. Founders ≠ membership. Partnership + Founders pages don't cross-promote in content (shared header/footer only).
 - Nav is identical on every page (Home · Partnerships · Founders · .LLab · Think · Journal · About · More). Edit all pages if it changes.

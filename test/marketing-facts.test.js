@@ -44,7 +44,12 @@ test('generated ad copy states the registry price range and seat counts', () => 
   assert.ok(all.includes(`${lo}–${hi}`), 'price range in an ad');
   assert.ok(all.includes('Seats for 1, 3, 5, or 10'), 'seat counts in an ad');
   assert.ok(!/guarantee|return on|roi|limited|hurry|last chance/i.test(all), 'no invented scarcity or claims');
-  assert.equal(ads.length, 11);
+  assert.equal(ads.length, 15);
+  // every tactic is modeled under Omnidirectional Enterprise (node) x The IV Phases (1-4)
+  const NODES = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+  for (const a of ads) { assert.ok(NODES.includes(a.node), `${a.id}: node`); assert.ok([1, 2, 3, 4].includes(a.phase), `${a.id}: phase`); assert.ok(a.lands, `${a.id}: landing`); }
+  for (const n of NODES) assert.ok(ads.some((a) => a.node === n), `a tactic for node ${n}`);
+  for (const ph of [1, 2, 3, 4]) assert.ok(ads.some((a) => a.phase === ph), `a tactic for phase ${ph}`);
 });
 
 function tokens(css) {

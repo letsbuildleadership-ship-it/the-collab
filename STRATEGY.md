@@ -16,13 +16,25 @@
 
 **Strengths:** owned IP, a clear 4-step system, a free front door, no-subscription clarity at the top tier. **Gaps:** no verified social proof yet; Partnership is self-serve at a high ticket, so trust must come from the page; Founders status is "being developed" (pursuing 501(c)(3)) and must stay worded that way.
 
-## 2. Marketing strategy
-**Positioning:** *Every company starts with a vision. Most lose it.* The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.
-**Frame:** business, economic and geopolitical problem → IP as the solution. Threat is always paired with an action. No promises, no fake scarcity.
-**Funnel:** ad / share card → Home (problem → solution → tiers) → **free .LLab join** → Library Card $10 → Membership → **Partnership**. Every page ends on the .LLab storefront; every Partnership already includes .LLab.
-**Assets:** 11 ads × 2 sizes (`marketing/ads/`), share card, Lookbook, phase photographs (booth I, scaffolding II, racks III, track IV).
-**Channels:** LinkedIn (owners), Meta (lookalikes), search (succession, legacy planning). Sequence cold 01/04/07 → warm 03/06/09–11 → hot 05/08/02.
-**KPIs:** ad CTR → Home→free-join rate → free→paid rate → tier mix → Partnership conversion.
+## 2. Marketing strategy — one operating model
+**Rule: no tactic exists outside Omnidirectional Enterprise™ × The IV Phases™.** Every ad, page, offer, email and funnel step is tagged with a **node** (who / which direction value moves: Businesses, Nonprofits, Communities, People, Technology, Capital, Knowledge + IP, Creators) and a **phase** (I Define → awareness · II Plan → consideration · III Live → purchase · IV Pass it on → retention, advocacy, legacy). `marketing/ads/index.json` carries the tags and `npm test` fails if any node or phase is uncovered.
+
+**Positioning:** *Every company starts with a vision. Most lose it.* The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP. Frame: problem → solution; threat always paired with an action; no promises, no fake scarcity.
+
+**The funnel is the four phases:** I Free Portal + free tools (People) → II Library Card $10/mo → III Membership $150/mo (all 9 IV Phases products) or a Partnership level (Businesses/Capital) → IV Omnidirectional tier (lifetime, 10 seats), apprentice seats, nonprofit giving, referrals.
+
+| Node → | Phase I · Define | Phase II · Plan | Phase III · Live | Phase IV · Pass it on | Home page |
+|---|---|---|---|---|---|
+| **Businesses** | ads 01, 09 | ad 10 | ads 08, 11 | — | Partnerships |
+| **Capital** | — | ad 04 | ad 05 | ad 02 | Partnership tiers |
+| **People** | ad 06 (free join) | Library Card | Membership | — | The .LLab |
+| **Creators** | ad 12 | — | — | — | Creator™ |
+| **Knowledge + IP** | — | ads 03, 15 | — | — | Think · Journal |
+| **Technology** | — | — | ad 14 | — | Technology |
+| **Communities** | — | — | — | ad 07 | Founders · Co.LLab+™ |
+| **Nonprofits** | — | — | — | ad 13 | Impact™ |
+
+**Media plan by phase:** I = cold reach (LinkedIn for owners, Meta lookalikes; Creators on image-led feeds) → II = retarget with framework and economic ads → III = conversion ads with price clarity → IV = lifetime/legacy, apprentice and nonprofit stories. **Search** captures intent (succession, legacy planning). **KPIs per phase:** I reach/CTR → II Home→free-join → III free→paid and tier mix → IV renewals, referrals, seats used.
 
 ## 3. Commerce strategy
 **Ladder:** Free Portal → $10 Library Card → $150 Membership → Partner IP / Partnership. One lead offer per screen; price lists live on their own pages.
@@ -34,5 +46,5 @@
 1. Collect and publish **real proof** (testimonials, founder count/impact ledger fills automatically).
 2. Add **analytics + UTM** per ad so the funnel KPIs above are measurable.
 3. Capture **email** at free join and run a short nurture to the Library Card, then Membership.
-4. Run the first ad test: loss frame (01) vs aspiration (02).
+4. Fill the empty matrix cells (e.g. Capital × I, Creators × III) with tested ads, and run the first test: loss frame (01) vs legacy frame (02).
 5. Reword the two remaining "partnering" lines on Founders if the separation should be total.

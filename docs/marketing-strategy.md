@@ -53,21 +53,9 @@ Run `node scripts/build-ads.mjs` to render `marketing/ads/*.png` (4:5 feed and 1
 
 **Template rules:** one image, one hook of eight words or fewer, one supporting line, one call to action, the legal line wherever pricing appears.
 
-| # | Hook | Lever | Funnel stage | Lands on |
-|---|---|---|---|---|
-| 01 | Every company starts with a vision. **Most lose it.** | Loss aversion, identity | Cold | Home |
-| 02 | **Pass it on.** | Mortality salience, legacy | Warm to hot | Partnership |
-| 03 | Define it. Plan it. Live it. **Pass it on.** | Processing fluency | Warm | Home #solution |
-| 04 | Generating value and capturing value **are different processes.** | Authority, reframe | Cold (LinkedIn) | Home #market |
-| 05 | **One payment.** Licensed to keep. | Risk reversal, price clarity | Hot | Partnership #tiers |
-| 06 | **Start free.** Build your legacy. | Foot-in-the-door, reciprocity | Cold to warm | Home #llab |
-| 07 | **Nobody builds alone.** | Unity, belonging | Cold | Think #model |
-| 08 | Your legacy. **Your whole team.** | Status, internal buy-in | Hot | Partnership #included |
-| 09 | **Define** your legacy. | Identity (Phase I) | Warm | Partnership #tiers |
-| 10 | **Plan** your legacy. | Structure (Phase II) | Warm | Partnership #tiers |
-| 11 | **Live** your legacy. | Daily practice (Phase III) | Warm | Partnership #tiers |
+The 15 ads and their node × phase tags are listed in `marketing/ads/index.json` and mapped in `STRATEGY.md` §2.
 
-**Sequence.** Cold: 01, 04, 07. Warm: 03, 06, 09–11. Hot: 05, 08, 02. Cap frequency so cold ads don't repeat past about 6 impressions per person.
+**Sequence.** By phase: I cold reach (01, 06, 09, 12) → II retarget (03, 04, 10, 15) → III convert (05, 08, 11, 14) → IV legacy and advocacy (02, 07, 13). Cap cold frequency at about 6 impressions per person.
 
 **Channels.** LinkedIn for owners and executives (04 and 01 first). Meta for lookalike audiences. Search for intent terms such as business succession, legacy planning and leadership infrastructure.
 
