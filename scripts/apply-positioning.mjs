@@ -4,9 +4,9 @@
 import fs from 'node:fs';
 
 const P = {
-  founders: ['Founders Organization · Community Economic Development',
+  founders: ['Founders Organization™ · Community Economic Development',
     'Unequal access to entrepreneurial education, business infrastructure, capital networks, and professional relationships can constrain small-business formation, local investment, economic mobility, and regional development.',
-    'Founders Organization is being developed as a community-based nonprofit initiative intended to pursue 501(c)(3) status, with the aim of expanding access to entrepreneurial education, business resources, and leadership infrastructure that support community-based enterprise development and local economic participation.'],
+    'Founders Organization™ is being developed as a community-based nonprofit initiative intended to pursue 501(c)(3) status, with the aim of expanding access to entrepreneurial education, business resources, and leadership infrastructure that support community-based enterprise development and local economic participation.'],
   llab: ['The .LLab · Research & Intellectual Property Development',
     'Fragmented research and weak connections between theory, applied practice, and implementation can slow innovation and prevent intellectual assets from becoming practically useful or commercially applicable.',
     'The .LLab develops research, theory, applied practices, and proprietary intellectual property into structured knowledge resources that support innovation, strategic decision-making, and enterprise development.'],
@@ -63,7 +63,7 @@ const HOME_EXTRA = `
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem;">
         <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p></div>
         <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of businesses, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
-        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization</a>, <a href="pages/products.html">.LLab</a>, <a href="pages/think.html">Think</a>, <a href="pages/journal.html">Journal</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">Creator™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
+        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">.LLab</a>, <a href="pages/think.html">Think</a>, <a href="pages/journal.html">Journal</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">Creator™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
       </div>`;
 
 const PAGES = [

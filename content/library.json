@@ -39,7 +39,7 @@
       }
     ],
     "orders": [
-      { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The Legacy Library™.", "description": "You have taken up the Library Card. The cycle is yours to steward." },
+      { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The Legacy Library™.", "description": "You have taken up the Library Card™. The cycle is yours to steward." },
       { "key": "curator", "name": "CURATOR", "requires": "CROWN fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
       { "key": "architect", "name": "ARCHITECT", "requires": "CROWN and SCEPTER fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
       { "key": "steward", "name": "STEWARD", "requires": "CROWN, SCEPTER, and SIGNET fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },

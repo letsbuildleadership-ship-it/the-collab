@@ -21,7 +21,7 @@
     'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER — Infrastructure Planning & Management',
     'Phase III · Internal Operating Systems': '💍 SIGNET — Internal Operating Systems',
     'Phase IV · Preservation': '🏛️ HEIRLOOM — Preservation',
-    'Build · Founders Organization': 'Founders Organization',
+    'Build · Founders Organization': 'Founders Organization™',
   };
 
   // The progression track shown above the dashboard: Welcome, then the
@@ -626,7 +626,7 @@
     tiles.push(active
       ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${top.name}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
       : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools included', cta: 'Unlock all 9 quests', href: '#offer-membership' });
-    const label = { founders: name('founders', 'Founders Organization'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
+    const label = { founders: name('founders', 'Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
     el.innerHTML = tiles
       .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)
       .join('');

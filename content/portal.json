@@ -1,18 +1,18 @@
 {
   "_readme": "Member Portal™ (Omnidirectional Enterprise™ Membership) settings. The portal shows these sections in this order. Built-in types (founders, partnerships, llab) keep their special content; add a new part of The Co.LLab™ later with type \"program\" (a heading, description, and link). Set enabled to false to hide a section without deleting it. Reward tiers set the TRIARCH™ tier reward price caps for .LLab Membership™.",
   "eyebrow": "Omnidirectional Enterprise™ Membership",
-  "intro": "Founders Organization, Partnerships, and .LLab Membership™, in one place. The TRIARCH™ is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.",
+  "intro": "Founders Organization™, Partnerships, and .LLab Membership™, in one place. The TRIARCH™ is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.",
   "sections": [
     {
       "id": "founders",
       "type": "founders",
       "enabled": true,
-      "eyebrow": "Founders Organization",
+      "eyebrow": "Founders Organization™",
       "title": "The Co.LLab™",
-      "title_highlight": "Founders Organization",
+      "title_highlight": "Founders Organization™",
       "description": "Founders help build The Co.LLab™'s Leadership Infrastructure™ and are recognized with a permanent Founder Number.",
       "link": "founders.html",
-      "link_label": "Learn about the Founders Organization"
+      "link_label": "Learn about the Founders Organization™"
     },
     {
       "id": "partnerships",

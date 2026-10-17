@@ -33,7 +33,7 @@
 
   "library_eyebrow": "The digital library",
   "library_headline": [
-    { "text": "The .LLab Library Card", "style": "glow", "break_before": false },
+    { "text": "The .LLab Library Card™", "style": "glow", "break_before": false },
     { "text": "™", "style": "default", "break_before": false }
   ],
   "library_status": "Founding Rate — Open Now",
