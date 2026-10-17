@@ -21,7 +21,7 @@
       "break_before": true
     }
   ],
-  "hero_subhead_prefix": "Become a founding partner.",
+  "hero_subhead_prefix": "Become a Founder.",
   "hero_subhead_glow": "Let’s build your legacy through Omnidirectional Enterprise™.",
   "hero_cta_label": "Become a Founder",
   "hero_cta_link": "#apply",
@@ -79,7 +79,7 @@
     {
       "tag": "Founder",
       "price": "$350",
-      "description": "Founding partnership for organizations.",
+      "description": "Founding level for organizations.",
       "link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "impact_label": "Supports Blazing Smiles"
     },
