@@ -64,6 +64,8 @@ function buildAccountView(record, now) {
           tagline: t.tagline || null,
           best_for: t.best_for || null,
           seats: t.seats || 1,
+          lifetime: !!t.lifetime,
+          term_months: t.term_months || 12,
           payment_link: t.payment_link || null,
         }));
   const founderSnapshots = record.founder ? [] : [...founderTiers].filter((key) => (pricing.entryForKey(key) || {}).payment_link).map(snapshot);
@@ -124,6 +126,7 @@ function buildAccountView(record, now) {
           purchasedAt: record.partnership.purchasedAt,
           expiresAt: record.partnership.expiresAt,
           seats: record.partnership.seats || 1,
+          lifetime: !!(pricing.entryForKey(record.partnership.key) || {}).lifetime,
           renewal: membershipStatus.partnershipRenewal(record, now),
           engagement: (pricing.entryForKey(record.partnership.key) || {}).engagement || null,
           seatsUsed: 1 + (record.partnership.seatHolders || []).length,

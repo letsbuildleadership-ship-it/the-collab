@@ -85,7 +85,7 @@ test('Partner purchase grants its designated products (not the complete portfoli
   const { record } = await fulfillCheckoutSession(partnerSession('cs_p1', 500000), [PARTNER_PRICE]);
 
   for (const key of pricing.partnershipGrantKeysFor('partnership-partner')) assert.ok(record.entitlements.includes(key), key);
-  for (const key of ['legacy-architecture', 'operating-system', 'creator-identity-map', 'blueprint-phase3', 'blueprint-complete']) {
+  for (const key of ['creator-identity-map', 'blueprint-phase3', 'blueprint-complete']) {
     assert.ok(!record.entitlements.includes(key), `Partner must not keep ${key}`);
   }
   for (const f of pricing.founderTierKeys()) assert.ok(!record.entitlements.includes(f));
@@ -116,7 +116,8 @@ test('a later, shorter partnership term never cuts an earlier longer one short',
   const later = Date.UTC(2026, 11, 1);
   await fulfillCheckoutSession(partnerSession('cs_long', 5000000, 'p@example.com', later), [OMNI_PRICE]);
   const { record } = await fulfillCheckoutSession(partnerSession('cs_short', 500000, 'p@example.com', PURCHASED), [PARTNER_PRICE]);
-  assert.equal(record.memberships.membership.currentPeriodEnd, '2027-12-01T00:00:00.000Z');
+  // Omnidirectional is lifetime (term_months 1200).
+  assert.equal(record.memberships.membership.currentPeriodEnd, '2126-12-01T00:00:00.000Z');
   assert.equal(record.partnership.key, 'partnership-omnidirectional');
 });
 
@@ -151,10 +152,10 @@ test('before expiry the partner has full catalog + Library access; after expiry 
   for (const key of ['membership', 'library-card', 'journal']) assert.ok(!ent.includes(key), key);
   // The tier's permanent grants remain; catalog access that came only from Membership ends.
   assert.ok(ent.includes('strength-map'));
-  assert.ok(ent.includes('blueprint-phase2'));
+  assert.ok(ent.includes('legacy-architecture'), 'all of The IV Phases™ is licensed to keep');
+  assert.ok(ent.includes('legacy-foundations-framework'));
   assert.ok(ent.includes('infrastructure-roadmap'));
-  assert.ok(!membershipStatus.catalogUnlockKeys(record, after).includes('legacy-architecture'));
-  assert.ok(!ent.includes('legacy-architecture'));
+  assert.ok(!ent.includes('legacy-infrastructure-plan'));
 });
 
 test('expired memberships read as "expired" with regular-price renewal plans', async () => {
@@ -196,12 +197,12 @@ test('subscription memberships (no currentPeriodEnd) are unaffected by expiry ch
 const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 
-test('partnership page lists every tier link, states purchase-not-security, and never links to Founders', () => {
+test('partnership page lists every tier link, states IP ownership and results terms, and never links to Founders', () => {
   const html = read('pages/partnership.html');
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
-  assert.match(html, /strategic purchase/i);
-  assert.match(html, /not a financial investment or a security/i);
+  assert.match(html, /owned by Ashley E\. Clasby and licensed through The Co\.LLab™/);
+  assert.match(html, /Results depend on how each business applies it/);
   assert.ok(!/founders\.html/.test(html), 'partnership page must not link to the Founders page');
 });
 

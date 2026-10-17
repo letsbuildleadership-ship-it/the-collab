@@ -35,37 +35,55 @@ test.beforeEach(() => fakeStore.reset());
 
 // ---- tier definitions -----------------------------------------------------
 
-test('tiers are ranked, seat counts are 1/2/5/10, and each tier keeps more than the one below', () => {
+test('tiers are ranked, seat counts are 1/3/5/10, and each tier keeps more than the one below', () => {
   const tiers = pricing.registry.partnerships;
   assert.deepEqual(tiers.map((t) => t.rank), [1, 2, 3, 4]);
-  assert.deepEqual(tiers.map((t) => t.seats), [1, 2, 5, 10]);
+  assert.deepEqual(tiers.map((t) => t.seats), [1, 3, 5, 10]);
+  assert.deepEqual(tiers.map((t) => t.term_months), [12, 24, 36, 1200]);
   const sets = tiers.map((t) => new Set(pricing.partnershipGrantKeysFor(t.key)));
   for (let i = 1; i < sets.length; i++) {
     for (const k of sets[i - 1]) assert.ok(sets[i].has(k), `${tiers[i].key} must include ${k}`);
   }
   assert.ok(sets[1].size > sets[0].size, 'Strategic keeps more than Partner');
   assert.ok(sets[2].size > sets[1].size, 'Enterprise keeps more than Strategic');
-  assert.deepEqual([...sets[2]].sort(), pricing.partnershipGrantKeys().sort(), 'Enterprise = complete designated portfolio');
-  assert.deepEqual([...sets[3]].sort(), [...sets[2]].sort(), 'Omnidirectional keeps the same portfolio');
+  assert.ok(sets[3].size > sets[2].size, 'Omnidirectional keeps more than Enterprise');
+  // Every tier licenses all of The IV Phases; each adds one partner-only product.
+  for (const set of sets) for (const k of pricing.fourPhasesKeys()) assert.ok(set.has(k), k);
+  const partnerKeys = (pricing.registry.partner_ip || []).map((p) => p.key);
+  assert.deepEqual(sets.map((set) => partnerKeys.filter((k) => set.has(k)).length), [1, 2, 3, 4]);
+  for (const set of sets) assert.ok(![...set].some((k) => (pricing.entryForKey(k) || {}).line === 'creator'), 'no Creator Infrastructure in partnerships');
 });
 
-test('no tier grants Founders products and only Enterprise+ include eligible releases', () => {
+test('no tier grants Founders products and every tier includes new releases', () => {
   const founders = new Set(pricing.founderTierKeys());
   for (const t of pricing.registry.partnerships) {
     assert.ok(!pricing.partnershipGrantKeysFor(t.key).some((k) => founders.has(k)), t.key);
   }
   assert.deepEqual(
     pricing.registry.partnerships.map((t) => !!t.includes_eligible_releases),
-    [false, false, true, true]
+    [true, true, true, true]
   );
+  // Partner-only IP is never opened by .LLab Membership™.
+  for (const p of pricing.registry.partner_ip) assert.ok(!pricing.fourPhasesKeys().includes(p.key), p.key);
 });
 
-test('engagement: none for Partner, one defined annual session for the others', () => {
-  const [partner, strategic, enterprise, omni] = pricing.registry.partnerships;
-  assert.equal(partner.engagement, null);
-  for (const t of [strategic, enterprise, omni]) {
-    assert.ok(t.engagement.label && t.engagement.format, t.key);
-    assert.match(t.engagement.format, /per 12-month term/);
+test('every tier is self-guided: no included sessions', () => {
+  for (const t of pricing.registry.partnerships) assert.equal(t.engagement, null, t.key);
+});
+
+test('only Omnidirectional is lifetime, and it keeps releases for life', async () => {
+  assert.deepEqual(pricing.registry.partnerships.map((t) => !!t.lifetime), [false, false, false, true]);
+  const { record } = await buy('partnership-omnidirectional', 'life@example.com', Math.floor(Date.UTC(2020, 0, 1) / 1000));
+  assert.ok(membershipStatus.isMembershipActive(record.memberships['library-card']), 'lifetime memberships still active years later');
+  const inWindow = { key: 'rel-in', name: 'In', partnership_release: true, released_at: '2021-06-01T00:00:00Z' };
+  const after = { key: 'rel-after', name: 'After', partnership_release: true, released_at: '2024-06-01T00:00:00Z' };
+  pricing.registry.products.push(inWindow, after);
+  try {
+    const keys = membershipStatus.effectiveEntitlements(record);
+    assert.ok(keys.includes('rel-in'));
+    assert.ok(keys.includes('rel-after'));
+  } finally {
+    pricing.registry.products.splice(-2, 2);
   }
 });
 
@@ -76,27 +94,27 @@ test('buying a lower tier during a higher tier never downgrades the label, seats
   const { record } = await buy('partnership-partner', 'up@example.com');
   assert.equal(record.partnership.key, 'partnership-omnidirectional');
   assert.equal(record.partnership.seats, 10);
-  assert.ok(record.entitlements.includes('blueprint-complete'));
+  assert.ok(record.entitlements.includes('legacy-preservation-vault'));
 });
 
-test('upgrading Partner -> Enterprise raises seats and adds the complete portfolio', async () => {
+test('upgrading Partner -> Enterprise raises seats and adds the Phase II–III partner IP', async () => {
   await buy('partnership-partner', 'grow@example.com', nowSec() - 86400);
   const { record } = await buy('partnership-enterprise', 'grow@example.com');
   assert.equal(record.partnership.key, 'partnership-enterprise');
   assert.equal(record.partnership.seats, 5);
-  for (const k of pricing.partnershipGrantKeys()) assert.ok(record.entitlements.includes(k), k);
+  for (const k of pricing.partnershipGrantKeysFor('partnership-enterprise')) assert.ok(record.entitlements.includes(k), k);
 });
 
 // ---- eligible releases ----------------------------------------------------
 
-test('a designated release inside the term is kept by Enterprise, not by Strategic', async () => {
+test('a designated release inside the membership term is kept by every tier', async () => {
   const fake = { key: 'future-release-x', name: 'Future X', partnership_release: true, released_at: new Date().toISOString() };
   pricing.registry.products.push(fake);
   try {
     const ent = await buy('partnership-enterprise', 'ent@example.com', nowSec() - 3600);
     const strat = await buy('partnership-strategic', 'str@example.com', nowSec() - 3600);
     assert.ok(membershipStatus.effectiveEntitlements(ent.record).includes('future-release-x'));
-    assert.ok(!membershipStatus.effectiveEntitlements(strat.record).includes('future-release-x'));
+    assert.ok(membershipStatus.effectiveEntitlements(strat.record).includes('future-release-x'));
   } finally {
     pricing.registry.products.pop();
   }
@@ -124,7 +142,7 @@ test('Partner (1 seat) cannot create invites', async () => {
 test('Strategic: invite -> new teammate claims -> gets tier access; owner never sees their token', async () => {
   const owner = await buy('partnership-strategic', 'boss@example.com');
   const inv = bodyOf(await call(owner.token, { action: 'invite' }));
-  assert.equal(inv.free, 0);
+  assert.equal(inv.free, 1);
   assert.equal(inv.invites.length, 1);
   const code = inv.invites[0].code;
   assert.match(inv.invites[0].link, /seat_invite=/);
@@ -143,7 +161,7 @@ test('Strategic: invite -> new teammate claims -> gets tier access; owner never 
   for (const k of pricing.partnershipGrantKeysFor('partnership-strategic')) {
     assert.equal((await dl(mateToken, k)).statusCode, 200, k);
   }
-  assert.equal((await dl(mateToken, 'blueprint-complete')).statusCode, 403);
+  assert.equal((await dl(mateToken, 'creator-identity-map')).statusCode, 403);
   const lib = await library.handler({ httpMethod: 'GET', headers: {}, queryStringParameters: { token: mateToken } });
   assert.equal(lib.statusCode, 200);
   const accountView = buildAccountView(await resolveAccess(await fakeStore.getCustomerByToken(mateToken)));
@@ -184,8 +202,9 @@ test('an invite can never open an existing account: that email must sign in firs
   assert.equal((await dl(existingToken, 'operating-system')).statusCode, 200);
 });
 
-test('seat limits hold: Strategic has exactly one extra seat', async () => {
+test('seat limits hold: Strategic has exactly two extra seats', async () => {
   const owner = await buy('partnership-strategic', 'cap@example.com');
+  assert.equal((await call(owner.token, { action: 'invite' })).statusCode, 200);
   assert.equal((await call(owner.token, { action: 'invite' })).statusCode, 200);
   assert.equal((await call(owner.token, { action: 'invite' })).statusCode, 409);
 });
@@ -194,7 +213,7 @@ test('revoking an invite frees the seat and kills the link', async () => {
   const owner = await buy('partnership-strategic', 'rev@example.com');
   const { code } = bodyOf(await call(owner.token, { action: 'invite' })).invites[0];
   const after = bodyOf(await call(owner.token, { action: 'revoke-invite', code }));
-  assert.equal(after.free, 1);
+  assert.equal(after.free, 2);
   assert.equal((await call(null, { action: 'claim', code, email: 'late@example.com' })).statusCode, 410);
 });
 
@@ -219,7 +238,7 @@ test("seat memberships end with the purchaser's term", async () => {
   const view = await resolveAccess(await fakeStore.getCustomerByToken(mateToken));
   assert.equal(membershipStatus.isMembershipActive(view.memberships['library-card']), false);
   assert.equal((await dl(mateToken, 'operating-system')).statusCode, 200, 'tier products remain');
-  assert.equal((await dl(mateToken, 'legacy-architecture')).statusCode, 403, 'catalog-via-Membership ended');
+  assert.equal((await dl(mateToken, 'legacy-operating-systems-manual')).statusCode, 403, 'products outside the tier stay closed');
 });
 
 // ---- website consistency --------------------------------------------------
@@ -239,18 +258,19 @@ test('partnership page: one card per tier with the right price, payment link, se
   assert.equal((page.match(/<h3>\$[0-9,]+<\/h3>/g) || []).length, 4, 'exactly four price headings');
 });
 
-test("What's included table marks exactly each tier's permanent grants as Keep", () => {
+test("What's included table marks exactly each tier's permanent grants as Licensed", () => {
   const table = page.slice(page.indexOf('<table class="included">'), page.indexOf('</table>'));
   const rows = [...table.matchAll(/<tr><th scope="row">([^<]+)<\/th>((?:<td[^>]*>[^<]*<\/td>)+)<\/tr>/g)];
   const byName = new Map(rows.map((r) => [r[1], [...r[2].matchAll(/<td[^>]*>([^<]*)<\/td>/g)].map((c) => c[1])]));
   const tiers = pricing.registry.partnerships;
-  for (const key of pricing.partnershipGrantKeys()) {
+  const granted = new Set(tiers.flatMap((t) => pricing.partnershipGrantKeysFor(t.key)));
+  for (const key of granted) {
     const entry = pricing.entryForKey(key);
     const cells = byName.get(entry.name.replace(/&/g, '&amp;'));
     assert.ok(cells, `row for ${key}`);
     tiers.forEach((t, i) => {
       const keep = pricing.partnershipGrantKeysFor(t.key).includes(key);
-      assert.equal(cells[i] === 'Keep', keep, `${t.key} / ${key}`);
+      assert.equal(cells[i] === 'Licensed', keep, `${t.key} / ${key}`);
     });
   }
 });

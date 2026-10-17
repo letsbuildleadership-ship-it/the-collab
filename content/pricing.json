@@ -1,6 +1,5 @@
 {
   "_readme": "Canonical product/pricing registry consumed by Netlify Functions (webhook fulfillment, entitlement grants, PDF delivery) and by the account dashboard. Edit prices, links, and PDF filenames here via /admin (Decap CMS) — no code changes needed for price updates. Each `stripe_price_id` MUST match a live Stripe Price on The Co.LLab's Stripe account, since the webhook maps incoming Stripe price IDs back to a product key by scanning this file.",
-
   "_impact_readme": "Impact Products designate a percentage of the purchase price to a partner nonprofit. Allocations are computed and recorded in an internal Netlify Blobs ledger at fulfillment time (netlify/functions/lib/fulfill.js) for later remittance/reconciliation. Money is NOT automatically transferred to the nonprofit via Stripe unless that partner's `stripe_connect_account_id` is set below and Stripe Connect is actually configured for that account — until then this is bookkeeping only, not a live payment split.",
   "impact_partners": [
     {
@@ -18,7 +17,6 @@
       "stripe_connect_account_id": null
     }
   ],
-
   "products": [
     {
       "key": "strength-map",
@@ -125,7 +123,6 @@
       "name": "Creator Identity Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
-      "line": "creator",
       "price_display": "$20",
       "stripe_price_id": "price_1UELbWAK6n3ctuR9RIgjeUgc",
       "payment_link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z",
@@ -138,7 +135,6 @@
       "name": "Creator Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
-      "line": "creator",
       "price_display": "$50",
       "stripe_price_id": "price_1UELbcAK6n3ctuR9RssoUh1X",
       "payment_link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10",
@@ -151,7 +147,6 @@
       "name": "Creator Venture Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
-      "line": "creator",
       "price_display": "$100",
       "stripe_price_id": "price_1UELbeAK6n3ctuR9cy2beQV9",
       "payment_link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11",
@@ -164,7 +159,6 @@
       "name": "The Creator Operating System™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
-      "line": "creator",
       "price_display": "$300",
       "stripe_price_id": "price_1UELbgAK6n3ctuR9Lj3TvDRt",
       "payment_link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12",
@@ -177,7 +171,6 @@
       "name": "Creative Estate Mapping™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
-      "line": "creator",
       "price_display": "$200",
       "stripe_price_id": "price_1UELbiAK6n3ctuR9sBeIKFPS",
       "payment_link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13",
@@ -190,7 +183,6 @@
       "name": "Creator Legacy Infrastructure Architecture™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
-      "line": "creator",
       "price_display": "$750",
       "stripe_price_id": "price_1UELbkAK6n3ctuR9Ko2fJtE4",
       "payment_link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14",
@@ -209,7 +201,10 @@
       "description": "Your entry into the Omnidirectional Enterprise™. Your purchase becomes revenue that builds The Co.LLab™'s Leadership Infrastructure™ — and flows back out to creators, organizations, nonprofits, and communities.",
       "founder_rank": 1,
       "founder_level_label": "Community Founder",
-      "impact": { "partner_key": "blazing-smiles", "percent": 10 },
+      "impact": {
+        "partner_key": "blazing-smiles",
+        "percent": 10
+      },
       "founder_discount_exempt": true
     },
     {
@@ -224,7 +219,10 @@
       "description": "A founding purchase that builds The Co.LLab™'s Leadership Infrastructure™ and flows back through the Omnidirectional Enterprise™ — connecting companies, creators, nonprofits, and communities.",
       "founder_rank": 2,
       "founder_level_label": "Premium Community Founder",
-      "impact": { "partner_key": "wavecraft-oceans", "percent": 10 },
+      "impact": {
+        "partner_key": "wavecraft-oceans",
+        "percent": 10
+      },
       "founder_discount_exempt": true
     },
     {
@@ -237,7 +235,10 @@
       "payment_link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "pdf_file": "founders-organization.pdf",
       "description": "Full access to the Founders Organization: The IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
-      "impact": { "partner_key": "blazing-smiles", "percent": 10 },
+      "impact": {
+        "partner_key": "blazing-smiles",
+        "percent": 10
+      },
       "founder_rank": 3,
       "founder_level_label": "Founder",
       "founder_discount_exempt": true
@@ -252,13 +253,15 @@
       "payment_link": "https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i",
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Everything in Founder, plus priority infrastructure planning and the deepest founding-rate lock-in available.",
-      "impact": { "partner_key": "wavecraft-oceans", "percent": 10 },
+      "impact": {
+        "partner_key": "wavecraft-oceans",
+        "percent": 10
+      },
       "founder_rank": 4,
       "founder_level_label": "Legacy Founder",
       "founder_discount_exempt": true
     }
   ],
-
   "_blueprint_readme": "The Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
   "blueprint_series": [
     {
@@ -322,8 +325,50 @@
       "description": "The full Blueprint™ magazine series: Welcome + all of The IV Phases™, in one edition."
     }
   ],
-
-  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier.",
+  "_partner_ip_readme": "Partner-only IP for the Omnidirectional Enterprise™ Partnership: one product per phase, granted cumulatively by tier (see each tier's grants). Also sold on its own once a stripe_price_id and payment_link are added. Never opened by .LLab Membership™.",
+  "partner_ip": [
+    {
+      "key": "legacy-foundations-framework",
+      "name": "The Legacy Foundations Framework™",
+      "phase": "Phase I · Foundations",
+      "phase_key": "foundations",
+      "price_display": "$750",
+      "pdf_file": "legacy-foundations-framework.pdf",
+      "description": "Define your legacy. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.",
+      "line": "partner"
+    },
+    {
+      "key": "legacy-infrastructure-plan",
+      "name": "The Legacy Infrastructure Plan™",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "phase_key": "infrastructure-planning",
+      "price_display": "$1,500",
+      "pdf_file": "legacy-infrastructure-plan.pdf",
+      "description": "Plan your legacy. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.",
+      "line": "partner"
+    },
+    {
+      "key": "legacy-operating-systems-manual",
+      "name": "The Legacy Operating Systems Manual™",
+      "phase": "Phase III · Internal Operating Systems",
+      "phase_key": "operating-systems",
+      "price_display": "$2,500",
+      "pdf_file": "legacy-operating-systems-manual.pdf",
+      "description": "Live your legacy. The rhythms, standards, and practices that run your legacy through every department.",
+      "line": "partner"
+    },
+    {
+      "key": "legacy-preservation-vault",
+      "name": "The Legacy Preservation Vault™",
+      "phase": "Phase IV · Preservation",
+      "phase_key": "preservation",
+      "price_display": "$5,000",
+      "pdf_file": "legacy-preservation-vault.pdf",
+      "description": "Preserve your legacy. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.",
+      "line": "partner"
+    }
+  ],
+  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase (a tier with \"lifetime\": true never expires) with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier. Tiers with releases_months keep eligible releases only within that many months of purchase.",
   "partnerships": [
     {
       "key": "partnership-partner",
@@ -337,29 +382,33 @@
       "founder_discount_exempt": true,
       "description": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
       "rank": 1,
-      "headline": "Access the infrastructure.",
-      "tagline": "Your foundation for leading on purpose.",
-      "best_for": "Independent leaders, creators, and founders ready to build on solid ground.",
+      "headline": "Define your legacy.",
+      "best_for": "Owners leading on their own.",
       "positioning": "Entry into the Co.LLab™ Enterprise Ecosystem — for independent professionals, creators, and businesses beginning to integrate Leadership Infrastructure™ into their operations.",
-      "access_level": "Foundational",
+      "access_level": "Foundation",
       "grant_scope": "designated",
       "grants": [
         "strength-map",
         "alignment-map",
         "build-plan",
+        "legacy-profile",
+        "operating-system",
+        "legacy-map",
+        "diagnostic",
+        "blueprint",
+        "legacy-architecture",
         "infrastructure-roadmap",
-        "blueprint-welcome",
-        "blueprint-phase1",
-        "blueprint-phase2"
+        "legacy-foundations-framework"
       ],
-      "includes_eligible_releases": false,
+      "includes_eligible_releases": true,
       "engagement": null,
       "benefits": [
-        "Keep the foundations: Leadership Infrastructure™ Phase I–II tools and Blueprint™ Welcome, Phase One, and Phase Two, yours for good",
-        "A full year inside The Co.LLab™: .LLab Membership™ with every product in The IV Phases™, the Library Card™ and Legacy Library™, and The .LLab Journal™",
-        "Recognized as a Co.LLab™ Partner in your account",
-        "Eligible for designated ecosystem opportunities"
-      ]
+        "The Legacy Foundations Framework™, licensed to keep (1 partner-only product)",
+        "All IV Phases™, licensed to keep (9 products)",
+        "1 year of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+      ],
+      "phase_label": "Phase I · Foundations",
+      "legacy_line": "Who you are and what you stand on."
     },
     {
       "key": "partnership-strategic",
@@ -368,16 +417,15 @@
       "price_display": "$10,000",
       "stripe_price_id": "price_1UP1yAAK6n3ctuR9GsBjRFro",
       "payment_link": "https://buy.stripe.com/dRm7sK5UG9c9dS3cd89ws1a",
-      "term_months": 12,
-      "seats": 2,
+      "term_months": 24,
+      "seats": 3,
       "founder_discount_exempt": true,
       "description": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
       "rank": 2,
-      "headline": "Integrate the infrastructure.",
-      "tagline": "Turn strategy into systems your team actually runs on.",
-      "best_for": "Established businesses and leadership teams integrating infrastructure into daily operations.",
+      "headline": "Plan your legacy.",
+      "best_for": "Leadership teams.",
       "positioning": "Strategic integration of Leadership Infrastructure™ — for established businesses and organizations seeking a more comprehensive approach to leadership, operations, and enterprise sustainability.",
-      "access_level": "Strategic",
+      "access_level": "Leadership",
       "grant_scope": "designated",
       "grants": [
         "strength-map",
@@ -385,24 +433,23 @@
         "build-plan",
         "legacy-profile",
         "operating-system",
+        "legacy-map",
+        "diagnostic",
+        "blueprint",
+        "legacy-architecture",
         "infrastructure-roadmap",
-        "blueprint-welcome",
-        "blueprint-phase1",
-        "blueprint-phase2",
-        "blueprint-phase3"
+        "legacy-foundations-framework",
+        "legacy-infrastructure-plan"
       ],
-      "includes_eligible_releases": false,
-      "engagement": {
-        "label": "One annual group orientation or recorded strategic briefing",
-        "format": "One group orientation per 12-month term, held live by video (up to 60 minutes) on a date set by The Co.LLab™. If you cannot attend, you receive a recorded strategic briefing instead. Must be used within the term; it does not carry over."
-      },
+      "includes_eligible_releases": true,
+      "engagement": null,
       "benefits": [
-        "Everything in Partner",
-        "Keep Phase III Internal Operating Systems tools and Blueprint™ Phase Three: decision rhythms, accountability, and culture systems",
-        "Bring a second leader in: 2 individual seats",
-        "An annual group orientation (or recorded strategic briefing) to put it to work",
-        "Priority consideration for ecosystem collaboration opportunities"
-      ]
+        "Everything in Partner, plus The Legacy Infrastructure Plan™, licensed to keep (1 partner-only product)",
+        "All IV Phases™, licensed to keep (9 products)",
+        "2 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+      ],
+      "phase_label": "Phase II · Infrastructure Planning & Management",
+      "legacy_line": "Where it's going and how it connects."
     },
     {
       "key": "partnership-enterprise",
@@ -411,31 +458,40 @@
       "price_display": "$25,000",
       "stripe_price_id": "price_1UP269AK6n3ctuR9kYElHc6N",
       "payment_link": "https://buy.stripe.com/28EfZg0AmfAx9BNfpk9ws1b",
-      "term_months": 12,
+      "term_months": 36,
       "seats": 5,
       "founder_discount_exempt": true,
       "description": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
       "rank": 3,
-      "headline": "Access the complete designated IP portfolio.",
-      "tagline": "Every framework, every phase, built into your organization.",
-      "best_for": "Organizations building Leadership Infrastructure™ across teams and departments.",
+      "headline": "Live your legacy.",
+      "best_for": "The whole company.",
       "positioning": "Comprehensive Enterprise Infrastructure access — for organizations seeking the complete designated Co.LLab™ intellectual property portfolio for internal organizational use.",
-      "access_level": "Comprehensive",
-      "grant_scope": "complete",
-      "grants": [],
+      "access_level": "Complete portfolio",
+      "grant_scope": "designated",
+      "grants": [
+        "strength-map",
+        "alignment-map",
+        "build-plan",
+        "legacy-profile",
+        "operating-system",
+        "legacy-map",
+        "diagnostic",
+        "blueprint",
+        "legacy-architecture",
+        "infrastructure-roadmap",
+        "legacy-foundations-framework",
+        "legacy-infrastructure-plan",
+        "legacy-operating-systems-manual"
+      ],
       "includes_eligible_releases": true,
-      "engagement": {
-        "label": "One annual enterprise orientation",
-        "format": "One enterprise orientation per 12-month term, held live by video for your seat holders (up to 90 minutes), scheduled by mutual agreement within the term. It does not carry over."
-      },
+      "engagement": null,
       "benefits": [
-        "Everything in Strategic",
-        "Keep the complete designated Co.LLab™ IP portfolio: all of The IV Phases™, Creator Infrastructure™, Preservation resources, and the full Blueprint™ series",
-        "New designated releases during your 12-month term, yours to keep",
-        "Equip your leadership team: 5 individual seats",
-        "An annual enterprise orientation for your seat holders",
-        "Eligible for designated enterprise collaboration opportunities"
-      ]
+        "Everything in Strategic, plus The Legacy Operating Systems Manual™, licensed to keep (1 partner-only product)",
+        "All IV Phases™, licensed to keep (9 products)",
+        "3 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+      ],
+      "phase_label": "Phase III · Internal Operating Systems",
+      "legacy_line": "In every decision, every day."
     },
     {
       "key": "partnership-omnidirectional",
@@ -444,41 +500,53 @@
       "price_display": "$50,000",
       "stripe_price_id": "price_1UP1ycAK6n3ctuR9tseEPqVf",
       "payment_link": "https://buy.stripe.com/9B6dR896SagddS36SO9ws1c",
-      "term_months": 12,
+      "term_months": 1200,
       "seats": 10,
       "founder_discount_exempt": true,
       "description": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
       "rank": 4,
-      "headline": "Access the portfolio and participate in the broader enterprise ecosystem.",
-      "tagline": "Lead in every direction.",
-      "best_for": "Organizations that want the full portfolio and a defined path into the broader Co.LLab™ ecosystem.",
+      "headline": "Preserve your legacy.",
+      "best_for": "Companies building beyond their founder.",
       "positioning": "The Omnidirectional Enterprise™ Partnership — for organizations seeking comprehensive IP access and a defined pathway into the broader Co.LLab™ enterprise ecosystem.",
-      "access_level": "Ecosystem-wide",
-      "grant_scope": "complete",
-      "grants": [],
+      "access_level": "Lifetime",
+      "grant_scope": "designated",
+      "grants": [
+        "strength-map",
+        "alignment-map",
+        "build-plan",
+        "legacy-profile",
+        "operating-system",
+        "legacy-map",
+        "diagnostic",
+        "blueprint",
+        "legacy-architecture",
+        "infrastructure-roadmap",
+        "legacy-foundations-framework",
+        "legacy-infrastructure-plan",
+        "legacy-operating-systems-manual",
+        "legacy-preservation-vault"
+      ],
       "includes_eligible_releases": true,
-      "engagement": {
-        "label": "One annual Omnidirectional Enterprise™ strategic briefing",
-        "format": "One strategic briefing per 12-month term, held live by video for your seat holders (up to 90 minutes), scheduled by mutual agreement within the term. It does not carry over."
-      },
+      "engagement": null,
       "benefits": [
-        "Everything in Enterprise",
-        "Scale across your organization: 10 individual seats",
-        "Participation opportunities in designated cross-organizational research and collaboration initiatives",
-        "Priority consideration for ecosystem collaborations and eligibility for mutually agreed strategic initiatives",
-        "Recognized as an Omnidirectional Enterprise™ partner",
-        "An annual Omnidirectional Enterprise™ strategic briefing"
-      ]
+        "Everything in Enterprise, plus The Legacy Preservation Vault™, licensed to keep (1 partner-only product)",
+        "All IV Phases™, licensed to keep (9 products)",
+        "Lifetime of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+      ],
+      "lifetime": true,
+      "phase_label": "Phase IV · Preservation",
+      "legacy_line": "So it outlasts you."
     }
   ],
-
   "memberships": [
     {
       "key": "membership",
       "name": ".LLab Membership™",
       "description": "The IV Phases™ IP — every Phase I–IV .LLab™ product, unlocked while you're a member — plus ongoing access to the frameworks, systems, community, and research of Leadership Infrastructure™.",
       "pdf_file": "membership-handbook.pdf",
-      "grants": ["infrastructure-roadmap"],
+      "grants": [
+        "infrastructure-roadmap"
+      ],
       "unlocks_catalog": true,
       "plans": [
         {
@@ -500,7 +568,9 @@
       "name": ".LLab Library Card™",
       "description": "Founding access to The .LLab Library Card™ — the digital library and curated resource stream inside The Co.LLab™ ecosystem.",
       "pdf_file": "library-card-welcome.pdf",
-      "grants": ["infrastructure-roadmap"],
+      "grants": [
+        "infrastructure-roadmap"
+      ],
       "unlocks_catalog": false,
       "plans": [
         {
@@ -536,14 +606,16 @@
       ]
     }
   ],
-
   "bonus_products": [
     {
       "key": "infrastructure-roadmap",
       "name": ".LLab Infrastructure Roadmap™",
       "description": "A guided map of the full .LLab™ The IV Phases™ Product Infrastructure and how to move through it — included free with Membership and the Library Card.",
       "pdf_file": "infrastructure-roadmap.pdf",
-      "granted_by": ["membership", "library-card"]
+      "granted_by": [
+        "membership",
+        "library-card"
+      ]
     }
   ]
 }
