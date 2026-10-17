@@ -1960,3 +1960,13 @@ main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: cla
 .factbar--info li:first-child { border-top: 0; }
 .factbar--info strong { font-size: clamp(1.4rem, 2.4vw, 2rem); white-space: normal; }
 @media (max-width: 560px) { .factbar--info li, .factbar--info li:first-child, .factbar--info li:last-child, .factbar--info li:nth-child(odd) { grid-template-columns: 1fr; row-gap: 0.35rem; } .factbar--info li:first-child { border-top: 0; } }
+
+/* Partnership quick overview: one row per product level */
+table.overview { width: 100%; max-width: 64rem; margin: 0 auto; border-collapse: collapse; border-top: 3px solid var(--filament-2); text-align: left; display: table; }
+table.overview caption { caption-side: top; text-align: left; padding: 0 0 1rem; color: #fff; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
+table.overview th, table.overview td { padding: 0.85rem 0.9rem; border-bottom: 1px solid var(--hairline-strong); vertical-align: middle; font-size: 1rem; line-height: 1.35; color: var(--paper); }
+table.overview thead th { color: #fff; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+table.overview tbody th { color: var(--filament-2); font-weight: 700; font-size: 1.1rem; }
+table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); white-space: nowrap; }
+@media (max-width: 640px) { table.overview td:nth-child(3) { font-size: 0.95rem; } }
+@media (max-width: 640px) { table.overview th:nth-child(2), table.overview td:nth-child(2) { display: none; } table.overview th, table.overview td { padding: 0.7rem 0.5rem; font-size: 0.9rem; } table.overview thead th { font-size: 0.64rem; letter-spacing: 0.04em; } table.overview tbody th { font-size: 0.9rem; } }

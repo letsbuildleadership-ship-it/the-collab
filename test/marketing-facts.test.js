@@ -16,7 +16,7 @@ const dollars = (t) => Number(t.price_display.replace(/[^0-9]/g, ''));
 const fmt = (n) => '$' + n.toLocaleString('en-US');
 
 function factbar(html) {
-  const m = html.match(/<ul class="factbar[^"]*">([\s\S]*?)<\/ul>/);
+  const m = html.match(/<table class="factbar[^"]*">([\s\S]*?)<\/table>/);
   assert.ok(m, 'factbar present');
   return m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 }
@@ -30,7 +30,12 @@ test('Partnership spec strip and the Home price range match the pricing registry
     const text = factbar(read(f));
     assert.ok(text.includes(`${tiers.length} levels of partnership`), `${f}: level count`);
     assert.ok(text.includes(`${lo}–${hi}`), `${f}: price range ${lo}–${hi}`);
-    assert.ok(text.includes(seats), `${f}: seats ${seats}`);
+    const rows = [...read(f).match(/<table class="factbar[^"]*">[\s\S]*?<\/table>/)[0].matchAll(/<tr><th scope="row">([^<]*)<\/th><td>[^<]*<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td>/g)];
+    assert.equal(rows.length, tiers.length, `${f}: one row per level`);
+    tiers.forEach((tier, i) => {
+      assert.equal(rows[i][2], tier.price_display, `${f}: row ${i + 1} price`);
+      assert.equal(Number(rows[i][3]), tier.seats, `${f}: row ${i + 1} seats`);
+    });
     assert.match(text, /one-time purchase · no subscription/);
     assert.ok(!/guarantee|return on|roi|limited spots|only \d+ left/i.test(text), `${f}: no invented claims`);
   }
