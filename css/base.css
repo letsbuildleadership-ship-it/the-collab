@@ -1826,3 +1826,7 @@ table th, table td { line-height: 1.45; }
   font-weight: 700;
 }
 .tag { border-color: #fff; }
+
+/* caption headlines on photographs: one size, readable measure */
+.lookbook figcaption .headline { font-size: clamp(1.5rem, 2.8vw, 2.4rem); line-height: 1.15; }
+.lookbook--scrim figcaption .headline { max-width: 28ch; }

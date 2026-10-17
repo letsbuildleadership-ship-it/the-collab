@@ -84,6 +84,19 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
   2. Use it as a `<figure class="lookbook">` or a `.tile`.
   3. Give it descriptive alt text.
 
+## Stage 6: Photographs as a system
+- **Tool:** `node scripts/add-photo.mjs <file> <slug> --phase N --alt "…"` (crop, blur third-party marks, duotone, resize, manifest).
+- **Library:** `assets/img/editorial/` (+ `manifest.json`): scaffolding, stage, storefront, track, racks, booth.
+- **The IV Phases™ in four photographs:** booth (I), scaffolding (II), racks (III), track (IV).
+- **Placements:**
+  - Phase tiles on Home and Partnerships.
+  - Mission over the track.
+  - Founders hero: booth.
+  - Atelier hero: racks.
+  - Journal hero: track.
+- **Ads:** 11 concepts (02, 05 and 08 re-shot; 09–11 are phase ads).
+- **Not used:** the blue animation frame. Strategy: `docs/marketing-strategy.md` §6–7.
+
 ## Verification
 - `npm test`: 128/128 pass.
 - Internal links: none broken.

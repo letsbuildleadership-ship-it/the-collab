@@ -42,7 +42,7 @@ test('generated ad copy states the registry price range and seat counts', () => 
   assert.ok(all.includes(`${lo}–${hi}`), 'price range in an ad');
   assert.ok(all.includes('Seats for 1, 3, 5, or 10'), 'seat counts in an ad');
   assert.ok(!/guarantee|return on|roi|limited|hurry|last chance/i.test(all), 'no invented scarcity or claims');
-  assert.equal(ads.length, 8);
+  assert.equal(ads.length, 11);
 });
 
 function tokens(css) {

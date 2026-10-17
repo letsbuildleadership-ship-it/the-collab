@@ -63,8 +63,11 @@ Run `node scripts/build-ads.mjs` to render `marketing/ads/*.png` (4:5 feed and 1
 | 06 | **Start free.** Build your legacy. | Foot-in-the-door, reciprocity | Cold to warm | Home #llab |
 | 07 | **Nobody builds alone.** | Unity, belonging | Cold | Think #model |
 | 08 | Your legacy. **Your whole team.** | Status, internal buy-in | Hot | Partnership #included |
+| 09 | **Define** your legacy. | Identity (Phase I) | Warm | Partnership #tiers |
+| 10 | **Plan** your legacy. | Structure (Phase II) | Warm | Partnership #tiers |
+| 11 | **Live** your legacy. | Daily practice (Phase III) | Warm | Partnership #tiers |
 
-**Sequence.** Cold: 01, 04, 07. Warm: 03, 06. Hot: 05, 08, 02. Cap frequency so cold ads don't repeat past about 6 impressions per person.
+**Sequence.** Cold: 01, 04, 07. Warm: 03, 06, 09–11. Hot: 05, 08, 02. Cap frequency so cold ads don't repeat past about 6 impressions per person.
 
 **Channels.** LinkedIn for owners and executives (04 and 01 first). Meta for lookalike audiences. Search for intent terms such as business succession, legacy planning and leadership infrastructure.
 
@@ -84,7 +87,44 @@ Measure click-through, landing-page-to-free-join rate, free-to-paid rate and tie
 - **Endorsements.** Add any testimonial only when it is real, with permission, and with FTC-compliant disclosure.
 - **Accessibility.** Text stays at or above WCAG AA contrast. A regression test guards the colour tokens.
 
-## 6. Adding to the system
+## 6. Photography as strategy: The IV Phases™ in four photographs
 
-- **New photo:** bake it to the site duotone (see `PROJECT_CHECKPOINT.md`), save it in `assets/img/editorial/`, then use it as a `.lookbook` or `.tile`. For an ad, add an entry to `ADS` in `scripts/build-ads.mjs`.
+Real, unstaged photographs read as honest, and honesty is what a buyer spending $5,000–$50,000 is checking for. Stock imagery would undercut that. Each phase has one signature photograph, and the same pictures run on the site and in the ads.
+
+| Phase | Photograph | What it signals | Psychology and sociology |
+|---|---|---|---|
+| **I · Foundations** (Define) | Wood-slat booth, enamel AMERICAN sign, high table and stools | Identity, rootedness, a place people gather. The table and stools are the Partnership **seats**. | Place identity and in-group belonging for heartland and small-business owners. Concrete imagery is recalled better than abstract claims. |
+| **II · Planning** (Plan) | Steel scaffolding corridor | Structure going up before the building exists. | Makes an abstract service tangible. |
+| **III · Operating Systems** (Live) | Tailored jackets on a wood-paneled rack | Order, standards, fit: how things are kept every day. The luxury-retail feel. | Fluency and quality cues: ordered scenes signal competence. The "built around the person" line from the site reads as tailoring. |
+| **IV · Preservation** (Pass it on) | One railroad track to the horizon | The path is already laid and continues past you. | Symbolic immortality and generativity: the picture of "so it outlasts you". It carries the emotional close without death imagery. |
+
+**Where they run**
+- **Home:** the four phases are photograph tiles that link to the Partnership levels (Home #solution). The mission closes over the railroad.
+- **Partnership page:** the same four tiles.
+- **Founders page hero:** the booth, for community and Main Street.
+- **Atelier hero:** the racks.
+- **Journal hero:** the railroad ("Ideas, before infrastructure").
+- **Ads:** 02 (railroad), 05 (racks, with price tags visible), 08 (booth seats), and 09–11 (one per phase).
+
+**Picking future photographs.** Choose one that:
+1. Has one clear subject and room for text.
+2. Is human-scale and real.
+3. Maps to a phase or a lever above.
+4. Contains no readable third-party brands. The booth photo had Budweiser and Sturgis logos, which are blurred in the file.
+5. Has consent if people are identifiable (the concert photo is flagged for this in the manifest).
+
+**Not used.** The blue light-streak frame is one frame of a logo animation: low resolution, blown out, with a partial "WE". It would work as the first second of a video ad, not as a still.
+
+## 7. Adding to the system
+
+**Adding a photograph (one command):**
+
+    node scripts/add-photo.mjs <file> <slug> --phase 1-4 --alt "describe it" --focus "50% 55%"
+    # optional: --crop x,y,w,h   --blur "x,y,w,h;x,y,w,h"   --keep-color   --note "…"
+
+It crops, blurs any third-party marks you list, bakes the site duotone, resizes, saves to `assets/img/editorial/<slug>.jpg` and records it in `assets/img/editorial/manifest.json`. Then:
+- **On a page:** use `<figure class="lookbook">` or a `.tile` (copy an existing one).
+- **In an ad:** add the slug to `ADS` in `scripts/build-ads.mjs` and run `node scripts/build-ads.mjs`.
+- **Or** send the photos in chat with a note on where each belongs, and it's done for you.
+
 - **New ad:** pull the hook and support line from approved copy. Pair every threat with an action.

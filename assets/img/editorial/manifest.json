@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "scaffolding",
+    "file": "scaffolding.jpg",
+    "width": 1320,
+    "height": 1649,
+    "phase": 2,
+    "focus": "50% 40%",
+    "alt": "Black-and-white view down a long corridor of steel scaffolding.",
+    "note": ""
+  },
+  {
+    "slug": "stage",
+    "file": "stage.jpg",
+    "width": 2000,
+    "height": 1152,
+    "phase": null,
+    "focus": "62% 50%",
+    "alt": "Two performers on a dim stage: one working at two laptops, the other in a cowboy hat singing into a microphone through stage smoke.",
+    "note": "People photo: use only with the performers' consent for advertising."
+  },
+  {
+    "slug": "storefront",
+    "file": "storefront.jpg",
+    "width": 1070,
+    "height": 1328,
+    "phase": null,
+    "focus": "50% 45%",
+    "alt": "The Co.LLab mark on a black panel hung in steel scaffolding — the storefront of The .LLab.",
+    "note": ""
+  },
+  {
+    "slug": "track",
+    "file": "track.jpg",
+    "width": 1420,
+    "height": 2048,
+    "phase": 4,
+    "focus": "50% 56%",
+    "alt": "A single railroad track running straight to the horizon between green grass and a cornfield under a wide blue sky.",
+    "note": ""
+  },
+  {
+    "slug": "racks",
+    "file": "racks.jpg",
+    "width": 1932,
+    "height": 2576,
+    "phase": 3,
+    "focus": "40% 62%",
+    "alt": "Rows of tailored jackets on a wood-paneled rack in a quiet menswear store.",
+    "note": ""
+  },
+  {
+    "slug": "booth",
+    "file": "booth.jpg",
+    "width": 1932,
+    "height": 2576,
+    "phase": 1,
+    "focus": "50% 58%",
+    "alt": "A rustic wood-slat booth with an enamel AMERICAN sign, a high table and stools, lit from behind.",
+    "note": "Third-party logos (Budweiser, Sturgis, seed-company sign) blurred in the source before baking."
+  }
+]

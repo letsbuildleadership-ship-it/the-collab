@@ -54,5 +54,26 @@
     "hook": "Your legacy. Your whole team.",
     "support": "Seats for 1, 3, 5, or 10 people. One account each, added by invite.",
     "cta": "See the seat levels"
+  },
+  {
+    "id": "09-define",
+    "lever": "Phase I · identity (booth, sign, table)",
+    "hook": "Define your legacy.",
+    "support": "Who you are and what you stand on.",
+    "cta": "See the Partner level"
+  },
+  {
+    "id": "10-plan",
+    "lever": "Phase II · structure (scaffolding)",
+    "hook": "Plan your legacy.",
+    "support": "Where it's going and how it connects.",
+    "cta": "See the Strategic level"
+  },
+  {
+    "id": "11-live",
+    "lever": "Phase III · standards in daily use (racks)",
+    "hook": "Live your legacy.",
+    "support": "In every decision, every day.",
+    "cta": "See the Enterprise level"
   }
 ]
