@@ -304,3 +304,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     statNumbers.forEach((el) => statObserver.observe(el));
   }
 });
+
+/* expandable "More detail" panels: open the panel that holds a link target, and a sticky mobile buy button */
+(function () {
+  function openFor(id) {
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    var d = el.closest('details');
+    if (d && !d.open) { d.open = true; el.scrollIntoView(); }
+  }
+  window.addEventListener('hashchange', function () { openFor(location.hash.slice(1)); });
+  document.addEventListener('DOMContentLoaded', function () {
+    openFor(location.hash.slice(1));
+    var bar = document.querySelector('.sticky-cta');
+    if (bar) {
+      var on = function () { bar.classList.toggle('is-on', window.scrollY > 600); };
+      window.addEventListener('scroll', on, { passive: true }); on();
+    }
+  });
+})();

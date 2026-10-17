@@ -1,9 +1,11 @@
 // Builds pages/lookbook.html from assets/img/editorial/manifest.json (every photo, filterable by phase, with lightbox).
 //   node scripts/build-gallery.mjs
+// PARKED: the Lookbook page is removed for now. Run with --force to regenerate pages/lookbook.html (then re-add nav/footer/sitemap links).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+if (!process.argv.includes('--force')) { console.log('Lookbook page is parked (use --force to rebuild).'); process.exit(0); }
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const partnership = fs.readFileSync(path.join(root, 'pages/partnership.html'), 'utf8');
 const slice = (a, b) => partnership.slice(partnership.indexOf(a), partnership.indexOf(b) + b.length);
