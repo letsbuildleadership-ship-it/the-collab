@@ -1,42 +1,49 @@
-# PROJECT_CHECKPOINT — Website Architecture, Marketing & Commerce
+# PROJECT_CHECKPOINT — Enterprise Structural Reorganization
 
-Branch: `claude/collab-website-architecture-l0haw2`
+Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is merged and live.
 
-## Completed
-### Stage 1 — Audit
-- `pages/founders.html` exists, with 4 live Stripe links. It couldn't be reached from the Partnership and IP License pages.
-- Header nav was inconsistent across pages. Footer "Navigate" lacked Partnerships.
-- No broken internal links. All pages have title, description and canonical.
+## Owner direction
+**Partnerships is the lead offer.** Founders Organization is a supporting offer.
 
-### Stage 2 — Navigation (all 17 pages: `index.html`, `pages/*.html`)
-- **Header, identical everywhere:** Home · Founders Organization · .LLab · Partnerships · Think · Journal · About · More ▾ · Sign in.
-- **More menu:** Creator™, Impact™, The IV Phases™, Omnidirectional Enterprise™, Free Tools, Free Journal Preview, .LLab Atelier™, Co.LLab+™, Technology · Legacy Ventures™.
-- **Footer "Navigate":** Home, Founders Organization, .LLab, Partnerships, Think, Journal, About.
-- **More menu behavior:** `css/base.css` (end of file) and `js/main.js`.
-  - aria-expanded, Escape, outside click, focus-out.
-  - Inline inside the mobile menu.
-- **Founders ↔ Partnership separation** now applies to page content, not the shared nav. The tests strip the header and footer before checking.
-- **Service worker:** cache bumped to `collab-shell-v7`.
+## Architecture
+| Layer | Pages |
+|---|---|
+| Enterprise | Home, About |
+| Core framework + IP | Think (`#model`: Omnidirectional Enterprise™ + The IV Phases™) |
+| Offerings | Partnerships (lead), Founders Organization, .LLab, Creator™, Impact™, Technology · Legacy Ventures™, Atelier™, Co.LLab+™ |
+| Resources | Journal, Free Journal Preview, Free Tools (`products.html#phases`) |
 
-### Stage 3 — Discovery → purchase
-- **Think closing CTAs:** added .LLab and Partnerships.
-- **Journal closing CTAs:** added Partnerships.
-- **About closing CTAs:** added Partnerships.
+## Completed (stage 2, this branch)
+1. **Framework moved from About to Think.**
+   - The OE model and IV Phases section moved from `about.html` to `think.html#model`.
+   - About keeps a short pointer to it.
+   - All `about.html#model` / `#four-phases` links now point to Think: menus, footers, closing maps, scripts.
+   - The CMS fields `model_*`, `ethics_body` and `audiences` moved from `about.json` to `think.json` and `admin/config.yml`.
+   - About and Think SEO titles updated.
+   - Think's duplicate closing mini-map removed.
+2. **Partnership-led site.**
+   - Menu and footer order: Partnerships → Founders → .LLab.
+   - Site banner (`content/site.json` and the static fallback) uses the Partnership page's approved banner text.
+   - The Founders page keeps its own static Founders banner.
+   - "Go deeper" button rows on Think, Journal and About lead with Partnerships.
+3. **Home order:** hero → positioning → mission → OE → IV Phases → Partnership tiers (featured) → Choose your path (`#paths`).
+   - Hero buttons: "Choose a partnership" and "Choose your path" (`content/home.json`).
+   - The duplicate .LLab and Founders price grids were removed. Those checkouts remain on their own pages.
+4. **Partner IP** (`#partner-ip`) moved from .LLab to Partnerships, between Included and Terms.
+5. **Founders eyebrows:** "Founders Organization · BUILD" and "The model" (`content/founders.json`).
+6. **Journal order:** intro → Recent entries → How an idea becomes infrastructure → Subscribe → Go deeper.
+7. **CSS:** `#paths` card styles (no mobile overflow).
+8. **Service worker:** cache `collab-shell-v8`.
 
-### Stage 4 — Verification
+## Verification
 - `npm test`: 128/128 pass.
-- **Stale tests updated to match the current approved data in `content/pricing.json`:**
-  - Tiers are `grant_scope: designated`, so the email says "every product included in your tier".
-  - `engagement: null`, so no session is promised.
-- **New test:** every page has exactly one nav, one More menu and one Sign in, with both Founders and Partnerships in the header nav.
-- **Playwright, all 17 pages at 1440px and 390px:** menu opens inside the viewport, Escape closes it, no horizontal overflow, 0 JS errors.
-- **Stripe links:** unchanged.
+- Internal links: none broken.
+- Stripe: the set of unique links across the site is identical before and after.
+- Playwright, 17 pages × 2 widths: nav OK, no horizontal overflow, 0 JS errors.
 
-## Notes
-- `scripts/build-ip-license.mjs` copies the header and footer from partnership.html, so a rebuild keeps the new nav.
-
-## Remaining
-- Netlify production deploy check after merge. There is no build step: the site is static and publish dir is `.`.
+## Open notes
+- **Founders tier copy:** "Founding partnership for organizations." in `content/founders.json` is approved product copy. Left unchanged.
+- **Think model copy:** an audience card says "Companies partnering with The Co.LLab™" under Founders. It's approved copy and left unchanged. Revise if the Founders wording should drop "partnering".
 
 ## Next action
-Owner: review and merge. Then spot-check the live nav and checkout buttons.
+Owner approves go-live, then merge the PR and verify the live site via Composio.

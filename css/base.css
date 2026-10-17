@@ -1472,3 +1472,10 @@ a.pill.is-owned {
   }
   .nav-links.is-open .nav-more-toggle { padding: 0.35rem 0; }
 }
+
+/* ---------- Home "Choose your path" ---------- */
+
+#paths .card { min-width: 0; display: flex; flex-direction: column; }
+#paths .card .num { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; }
+#paths .card > .pill { margin-top: auto !important; align-self: flex-start; }
+#paths .card > p:last-of-type { margin-bottom: 1.25rem; }

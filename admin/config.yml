@@ -336,6 +336,19 @@ collections:
             fields: *headline_segment_fields
           - { label: "Hero subhead", name: "hero_subhead", widget: "text" }
 
+          - { label: "Omnidirectional Enterprise™ eyebrow", name: "model_eyebrow", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ headline", name: "model_headline", widget: "string" }
+          - { label: "Omnidirectional Enterprise™ body", name: "model_body", widget: "text" }
+          - { label: "Ethical business body", name: "ethics_body", widget: "text" }
+          - label: "Audiences"
+            name: "audiences"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
           - { label: "Trilogy eyebrow", name: "trilogy_eyebrow", widget: "string" }
           - { label: "Trilogy headline", name: "trilogy_headline", widget: "string" }
           - { label: "Trilogy body", name: "trilogy_body", widget: "text" }
@@ -654,19 +667,6 @@ collections:
             widget: "list"
             summary: "{{fields.title}}"
             fields: *title_description_fields
-
-          - { label: "Omnidirectional Enterprise™ eyebrow", name: "model_eyebrow", widget: "string" }
-          - { label: "Omnidirectional Enterprise™ headline", name: "model_headline", widget: "string" }
-          - { label: "Omnidirectional Enterprise™ body", name: "model_body", widget: "text" }
-          - { label: "Ethical business body", name: "ethics_body", widget: "text" }
-          - label: "Audiences"
-            name: "audiences"
-            widget: "list"
-            summary: "{{fields.title}}"
-            fields:
-              - { label: "Tag", name: "tag", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
 
           - { label: "IP ecosystem eyebrow", name: "ip_eyebrow", widget: "string" }
           - { label: "IP ecosystem headline", name: "ip_headline", widget: "string" }
