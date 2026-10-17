@@ -1,32 +1,22 @@
 {
-  "eyebrow": "Let’s build your legacy through Omnidirectional Enterprise™",
+  "eyebrow": "The Co.LLab™ Omnidirectional Enterprise™ Partnership",
   "hero_headline": [
     {
-      "text": "The ",
+      "text": "Every company starts with a vision.",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "infrastructure",
-      "style": "white",
-      "break_before": false
-    },
-    {
-      "text": "behind ",
-      "style": "default",
-      "break_before": true
-    },
-    {
-      "text": "human potential.",
+      "text": "Most lose it.",
       "style": "glow",
-      "break_before": false
+      "break_before": true
     }
   ],
-  "hero_subhead": "We build the infrastructure around the person, organization, or idea — not the other way around.",
-  "hero_cta_primary_label": "Choose a partnership",
+  "hero_subhead": "The founder steps back, people change, the market shifts. The Co.LLab™ helps companies define their legacy, build it into how they work, and pass it on.",
+  "hero_cta_primary_label": "See the four tiers",
   "hero_cta_primary_link": "#partnership",
-  "hero_cta_secondary_label": "Choose your path",
-  "hero_cta_secondary_link": "#paths",
+  "hero_cta_secondary_label": "Evaluate it free first",
+  "hero_cta_secondary_link": "#free",
   "doorway_eyebrow": "What are you building?",
   "doorway_headline": "More ways in.",
   "doorway_body": "Creating something, or here for the research? Start here.",

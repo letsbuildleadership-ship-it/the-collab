@@ -2,8 +2,12 @@
 
 Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is merged and live.
 
-## Owner direction
-**Partnerships is the lead offer.** Founders Organization is a supporting offer.
+## Owner direction (interview, stage 3)
+- **Lead offer:** Partnerships.
+- **Buyer:** people with capital who fear losing money and not being remembered.
+- **Sales model:** self-serve and asynchronous, with no calls.
+- **Framing:** the business, economic and geopolitical problem, with Co.LLab IP™ as the solution. No promises.
+- **Home:** the full Partnership case, structured as enterprise-architecture marketing.
 
 ## Architecture
 | Layer | Pages |
@@ -35,6 +39,18 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
 7. **CSS:** `#paths` card styles (no mobile overflow).
 8. **Service worker:** cache `collab-shell-v8`.
 
+## Stage 3: Home rebuilt as the Partnership case (all copy reused from approved sources)
+- **Hero:** Partnership promise, with "See the four tiers" and "Evaluate it free first" buttons.
+- **01 · The market:** existing economic and geopolitical positioning.
+- **02 · The risk inside the company:** IV Phases positioning problem.
+- **03 · The solution:** Co.LLab IP™, the Partnership solution text, the four phases and the no-promise license line.
+- **04 · Partnership tiers:** Stripe unchanged.
+- **05 · What happens after you buy:** from Clear Terms.
+- **06 · Evaluate it free.**
+- **Mission.**
+- **07 · The enterprise behind it:** IP ownership and license, plus Founders, .LLab and Creator.
+- **Hero copy:** `content/home.json` matches the HTML.
+
 ## Verification
 - `npm test`: 128/128 pass.
 - Internal links: none broken.
@@ -46,4 +62,4 @@ Branch: `claude/collab-website-architecture-l0haw2`. PR #40 (unified nav) is mer
 - **Think model copy:** an audience card says "Companies partnering with The Co.LLab™" under Founders. It's approved copy and left unchanged. Revise if the Founders wording should drop "partnering".
 
 ## Next action
-Owner approves go-live, then merge the PR and verify the live site via Composio.
+Owner reviews the Home preview (screenshots), then says go live: merge via GitHub and verify the live site via Composio.
