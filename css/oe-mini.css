@@ -45,3 +45,8 @@
 .fits-map { width: clamp(220px, 27vw, 330px); }
 .fits .oem-n { font-size: 31px; font-weight: 700; fill: #fff; }
 .fits .oem-n:not(.on) { opacity: 0.85; }
+
+/* larger "where this fits" circle map */
+.fits-map { width: clamp(300px, 40vw, 520px); }
+@media (max-width: 640px) { .fits-map { width: 100%; max-width: 380px; } }
+.fits .oem-n { font-size: 27px; }
