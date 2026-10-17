@@ -2,9 +2,11 @@
   "name": "the-collab",
   "version": "1.0.0",
   "private": true,
-  "description": "Co.LLab web app — static site + Netlify Functions backend for .LLab product entitlements and delivery.",
+  "description": "Co.LLab web app \u2014 static site + Netlify Functions backend for .LLab product entitlements and delivery.",
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "photos": "node scripts/photos.mjs",
+    "gallery": "node scripts/build-gallery.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",

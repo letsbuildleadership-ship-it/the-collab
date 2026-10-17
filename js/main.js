@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   /* scroll reveal */
   const revealTargets = document.querySelectorAll(
-    'section .eyebrow, section .headline, section .display, section .subhead, .card, .phase-node'
+    'section .eyebrow, section .headline, section .display, section .subhead, .card, .phase-node, .lookbook'
   );
 
   if ('IntersectionObserver' in window && !reduceMotion) {

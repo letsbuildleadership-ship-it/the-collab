@@ -1149,7 +1149,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
    ========================================================================== */
 
 /* nine header items: switch to the menu button before they crowd */
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .nav-links.is-open {
@@ -1178,7 +1178,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
 }
 .nav-signin a::after { display: none; }
 .nav-signin a:hover { border-color: var(--filament-2); }
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links.is-open .nav-signin { margin-top: 0.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
   .nav-links.is-open .nav-signin a { padding: 0.6em 1.4em; }
 }
@@ -1461,7 +1461,7 @@ a.pill.is-owned {
 }
 .nav-more.is-open .nav-more-menu { display: flex; }
 
-@media (max-width: 1180px) {
+@media (max-width: 1320px) {
   .nav-links.is-open .nav-more-menu {
     position: static;
     min-width: 0;
@@ -1471,4 +1471,387 @@ a.pill.is-owned {
     margin-top: 0.75rem;
   }
   .nav-links.is-open .nav-more-toggle { padding: 0.35rem 0; }
+}
+
+/* ---------- Home "Choose your path" ---------- */
+
+#paths .card { min-width: 0; display: flex; flex-direction: column; }
+#paths .card .num { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; }
+#paths .card > .pill { margin-top: auto !important; align-self: flex-start; }
+#paths .card > p:last-of-type { margin-bottom: 1.25rem; }
+
+/* ==========================================================================
+   Editorial / lookbook system — full-bleed photography, collection tiles,
+   storefront entrance, monogram divider. Photos live in assets/img/editorial/
+   (palette duotones). Reuse these classes for any new photograph.
+   ========================================================================== */
+
+/* hero that lets the photograph read (scrim only where the copy sits) */
+.hero--lookbook {
+  min-height: min(92vh, 60rem);
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: 50% 38%;
+  background-color: rgb(var(--black-rgb));
+}
+.hero--lookbook > .wrap { width: 100%; }
+.hero--lookbook::before {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.9) 0%, rgba(var(--black-rgb), 0.55) 42%, rgba(var(--black-rgb), 0.05) 78%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.96) 0%, transparent 38%);
+}
+@media (max-width: 860px) {
+  .hero--lookbook { min-height: 82vh; }
+  .hero--lookbook::before {
+    background: linear-gradient(180deg, rgba(var(--black-rgb), 0.35) 0%, rgba(var(--black-rgb), 0.78) 55%, rgba(var(--black-rgb), 0.96) 100%);
+  }
+}
+
+/* full-bleed campaign image with a one-line caption */
+.lookbook {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: rgb(var(--black-rgb));
+}
+.lookbook img {
+  display: block;
+  width: 100%;
+  height: clamp(26rem, 80vh, 54rem);
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  transform: scale(1.07);
+  transition: transform 2.8s var(--ease);
+}
+.lookbook.is-visible img { transform: scale(1); }
+.lookbook::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(var(--black-rgb), 0.94) 0%, rgba(var(--black-rgb), 0.35) 34%, transparent 58%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.7) 0%, transparent 16%);
+}
+.lookbook figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding-bottom: clamp(2rem, 6vw, 4.5rem);
+}
+.lookbook figcaption .headline { max-width: 22ch; margin-top: 1rem; }
+
+/* collection tiles — the lookbook grid, one tile per offering */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  margin-top: 2.5rem;
+}
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: rgb(var(--black-rgb));
+  border: 1px solid var(--hairline);
+  color: inherit;
+}
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: transform 1.4s var(--ease), filter 0.8s var(--ease);
+}
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, rgba(var(--black-rgb), 0.2) 46%, transparent 70%);
+}
+.tile:hover img, .tile:focus-visible img { transform: scale(1.05); filter: none; }
+.tile:focus-visible { outline: 1px solid var(--filament-2); outline-offset: 3px; }
+.tile-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.tile-label .num {
+  display: block;
+  font-size: var(--nav-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.tile-label strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  line-height: 1.2;
+}
+.tile-label em {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-style: normal;
+  font-size: var(--nav-size);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 0.25em;
+  transition: border-color 0.4s var(--ease), letter-spacing 0.4s var(--ease);
+}
+.tile:hover .tile-label em { border-color: var(--filament-2); letter-spacing: 0.2em; }
+@media (max-width: 960px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+
+/* storefront — the brand mark as a shop front, with the invitation beside it */
+.storefront {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.storefront-figure { margin: 0; position: relative; overflow: hidden; border: 1px solid var(--hairline); }
+.storefront-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 2s var(--ease);
+}
+.storefront-figure:hover img { transform: scale(1.04); }
+.storefront-copy { text-align: left; }
+.storefront-copy .hero-cta-row { justify-content: flex-start; }
+.llab-cta .storefront-copy .subhead { margin-left: 0; margin-right: 0; }
+@media (max-width: 860px) {
+  .storefront { grid-template-columns: 1fr; }
+  .storefront-figure img { aspect-ratio: 4 / 3; object-position: 50% 46%; }
+}
+#llab .storefront { margin-bottom: 3rem; }
+
+/* monogram divider */
+.monogram {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.monogram::before, .monogram::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+.monogram img { height: 1.6rem; width: auto; opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lookbook img, .storefront-figure img, .tile img { transition: none; transform: none; }
+}
+.tile-desc { display: block; margin-top: 0.5rem; font-size: 0.82rem; line-height: 1.45; color: var(--white-dim); max-width: 28ch; }
+.hero--lookbook .eyebrow { text-shadow: 0 0 14px rgba(var(--black-rgb), 0.95), 0 0 4px rgba(var(--black-rgb), 0.9); }
+
+/* caption centered in the open space of the frame (when subjects sit at the edges) */
+.lookbook--center figcaption {
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 var(--gutter);
+}
+.lookbook--center figcaption .wrap { padding: 0; max-width: 46rem; }
+.lookbook--center figcaption .eyebrow { justify-content: center; }
+.lookbook--center figcaption .headline { max-width: 20ch; margin-left: auto; margin-right: auto; font-size: clamp(1.5rem, 3.1vw, 2.7rem); }
+.lookbook--center::after {
+  background:
+    radial-gradient(60% 55% at 50% 50%, rgba(var(--black-rgb), 0.55), transparent 75%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.85) 0%, transparent 30%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.7) 0%, transparent 16%);
+}
+.tile::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.97) 0%, rgba(var(--black-rgb), 0.82) 30%, rgba(var(--black-rgb), 0.15) 62%, transparent 78%); }
+
+/* phones: caption sits below the photograph, tiles go single-column */
+@media (max-width: 860px) {
+  .lookbook img { height: clamp(18rem, 56vh, 30rem); }
+  .lookbook::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 28%), linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%); }
+  .lookbook figcaption,
+  .lookbook--center figcaption {
+    position: static;
+    display: block;
+    text-align: left;
+    padding: 0.5rem 0 2.5rem;
+    background: rgb(var(--black-rgb));
+  }
+  .lookbook--center figcaption .wrap { padding-left: var(--gutter); padding-right: var(--gutter); max-width: var(--container); }
+  .lookbook--center figcaption .eyebrow { justify-content: flex-start; }
+  .lookbook--center figcaption .headline { margin-left: 0; margin-right: 0; font-size: clamp(1.4rem, 6vw, 2rem); }
+  .lookbook figcaption .headline { max-width: none; }
+}
+@media (max-width: 560px) {
+  .tiles { grid-template-columns: 1fr; }
+  .tile { aspect-ratio: 4 / 3; }
+}
+
+/* copy on the left, over a busy photograph: deeper scrim behind the text only */
+.lookbook--scrim::after {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.92) 0%, rgba(var(--black-rgb), 0.78) 34%, rgba(var(--black-rgb), 0.1) 72%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.9) 0%, transparent 40%),
+    linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%);
+}
+.lookbook--scrim figcaption .headline { max-width: 18ch; }
+.lookbook--center figcaption .headline { max-width: 18ch; }
+@media (max-width: 860px) { .lookbook--scrim::after { background: linear-gradient(to top, rgba(var(--black-rgb), 0.95) 0%, transparent 28%), linear-gradient(to bottom, rgba(var(--black-rgb), 0.6) 0%, transparent 14%); } }
+
+/* ==========================================================================
+   Legibility + ad-grade hierarchy
+   Measured with a real-pixel contrast audit: small labels were ~1.6:1
+   (WCAG AA needs 4.5:1). Small text is now larger, heavier and near-full
+   opacity; any text laid over a photograph sits on a frosted panel.
+   ========================================================================== */
+:root {
+  --white-dim: rgba(var(--text-rgb), 0.94);
+  --white-faint: rgba(var(--text-rgb), 0.84);
+  --nav-size: 0.78rem;
+  --label-size: 0.86rem;
+}
+.eyebrow { color: var(--filament-2); font-weight: 700; letter-spacing: 0.18em; }
+.eyebrow::before { width: 32px; height: 2px; }
+
+/* hero over a photograph: muted + blurred on the copy side, clear on the other */
+.hero--lookbook::before {
+  background:
+    linear-gradient(90deg, rgba(var(--black-rgb), 0.92) 0%, rgba(var(--black-rgb), 0.84) 60%, rgba(var(--black-rgb), 0.5) 88%, rgba(var(--black-rgb), 0.22) 100%),
+    linear-gradient(to top, rgba(var(--black-rgb), 0.96) 0%, transparent 38%);
+  -webkit-backdrop-filter: blur(6px) saturate(0.7);
+  backdrop-filter: blur(6px) saturate(0.7);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 68%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 68%, transparent 100%);
+}
+.hero--lookbook .subhead { color: var(--paper); text-shadow: 0 1px 12px rgba(var(--black-rgb), 0.9); }
+.hero--lookbook .eyebrow { color: var(--filament-2); }
+@media (max-width: 860px) {
+  .hero--lookbook::before {
+    -webkit-mask-image: none; mask-image: none;
+    background: linear-gradient(180deg, rgba(var(--black-rgb), 0.55) 0%, rgba(var(--black-rgb), 0.86) 50%, rgba(var(--black-rgb), 0.96) 100%);
+  }
+}
+
+/* captions on photographs: a frosted glass panel — an "ad overlay card" that guarantees contrast */
+@media (min-width: 861px) {
+  .lookbook figcaption .wrap > * { position: relative; }
+  .lookbook figcaption .wrap {
+    max-width: 44rem;
+    margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    margin-right: auto;
+    padding: clamp(1.25rem, 2.2vw, 2rem) clamp(1.5rem, 2.6vw, 2.5rem);
+    background: rgba(var(--black-rgb), 0.74);
+    -webkit-backdrop-filter: blur(16px) saturate(0.8);
+    backdrop-filter: blur(16px) saturate(0.8);
+    border: 1px solid var(--hairline-strong);
+  }
+  .lookbook--center figcaption .wrap { margin: 0 auto; max-width: 40rem; text-align: center; }
+  .lookbook figcaption .subhead { color: var(--paper); }
+}
+.lookbook figcaption .eyebrow { color: var(--filament-2); }
+
+/* collection tiles: the label is a solid strip under the photograph */
+.tile img { height: calc(100% - 7.5rem); }
+.tile::after { display: none; }
+.tile-label {
+  background: rgba(var(--black-rgb), 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--hairline-strong);
+  min-height: 7.5rem;
+}
+.tile-label .num { color: var(--filament-2); font-weight: 700; }
+.tile-desc { color: var(--paper); opacity: 0.92; font-size: 0.88rem; }
+@media (max-width: 560px) { .tile img { height: calc(100% - 8.5rem); } .tile-label { min-height: 8.5rem; } }
+
+/* secondary + small text: warm peach-cream (≈13:1 on the green) keeps the brand warmth and reads at a glance */
+:root {
+  --white-dim: #ffd9c4;
+  --white-faint: #ffc7a8;
+}
+.card .num, .offer-kicker, .phase-node .num { color: var(--filament-2); }
+.hero--photo .subhead, .hero--photo .glow-text { color: var(--paper); }
+.hero--photo .glow-text { font-weight: 700; }
+
+/* type floor: nothing a visitor is meant to read sits below ~13.5px */
+.eyebrow { font-size: 0.9rem; }
+.num, .offer-kicker, .footer-col h4, .tile-label .num, .tile-label em, .nav-links a, .nav-more-toggle { font-size: max(var(--nav-size), 0.82rem); }
+.pill, .price-btn { font-size: 0.86rem; }
+table th, table td, dl dt, dl dd, .tax-note, .footer-col li a, .footer-bottom span, .banner { font-size: max(0.88rem, 1em); }
+table th, table td { line-height: 1.45; }
+
+/* long button labels wrap instead of pushing the page sideways on phones */
+@media (max-width: 560px) {
+  .pill, .price-btn { white-space: normal; text-align: left; max-width: 100%; line-height: 1.35; }
+  .hero-cta-row { align-items: stretch; }
+}
+
+/* ==========================================================================
+   Ad-grade components: spec strip (key facts at a glance), live proof
+   ========================================================================== */
+.factbar-wrap { padding: clamp(2rem, 4vw, 3rem) 0; border-bottom: 1px solid var(--hairline); background: rgba(var(--black-rgb), 0.96); }
+.factbar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); }
+.factbar li { padding: 0.25rem clamp(1rem, 2vw, 1.75rem); border-left: 1px solid var(--hairline-strong); display: flex; flex-direction: column; gap: 0.45rem; }
+.factbar li:first-child { border-left: 0; padding-left: 0; }
+.factbar strong { font-size: clamp(1.35rem, 2.2vw, 2.1rem); font-weight: 300; line-height: 1.1; color: var(--paper); letter-spacing: -0.01em; white-space: nowrap; }
+.factbar span { font-size: 0.9rem; line-height: 1.4; color: var(--white-dim); }
+@media (max-width: 960px) {
+  .factbar { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
+  .factbar li:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .factbar li:last-child { grid-column: 1 / -1; border-left: 0; padding-left: 0; }
+}
+.oe-proof { display: flex; gap: clamp(2rem, 6vw, 5rem); margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
+.oe-proof[hidden] { display: none; }
+.oe-proof > div { display: flex; flex-direction: column; gap: 0.35rem; }
+.oe-proof-num { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 300; color: var(--paper); font-variant-numeric: tabular-nums; }
+.oe-proof-label { font-size: 0.86rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--filament-2); }
+.tag { font-size: 0.8rem; font-weight: 700; color: var(--filament-2); border-color: var(--filament-2); }
+
+/* smallest text: bold white — maximum legibility at any size */
+.eyebrow, .num, .offer-kicker, .footer-col h4, .tag, .tile-label .num, .tile-desc, .factbar span,
+.oe-proof-label, .tax-note, .footer-bottom span, small, .wordmark-tagline, .nav-more-toggle {
+  color: #fff;
+  font-weight: 700;
+}
+.tag { border-color: #fff; }
+
+/* caption headlines on photographs: one size, readable measure */
+.lookbook figcaption .headline { font-size: clamp(1.5rem, 2.8vw, 2.4rem); line-height: 1.15; }
+.lookbook--scrim figcaption .headline { max-width: 28ch; }
+
+/* ---------- Lookbook gallery ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.chip { font: inherit; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.6em 1.3em; cursor: pointer; transition: background 0.3s var(--ease), color 0.3s var(--ease); }
+.chip:hover { border-color: var(--filament-2); }
+.chip[aria-pressed='true'] { background: var(--filament-2); border-color: var(--filament-2); color: var(--black); }
+.shots { columns: 3 300px; column-gap: clamp(0.75rem, 1.6vw, 1.5rem); margin-top: 2.5rem; }
+.shot { display: block; position: relative; overflow: hidden; margin: 0 0 clamp(0.75rem, 1.6vw, 1.5rem); break-inside: avoid; border: 1px solid var(--hairline); background: rgb(var(--black-rgb)); }
+.shot[hidden] { display: none; }
+.shot img { display: block; width: 100%; height: auto; transition: transform 1.4s var(--ease); }
+.shot:hover img, .shot:focus-visible img { transform: scale(1.04); }
+.shot-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.7rem 1rem; background: rgba(var(--black-rgb), 0.9); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; transform: translateY(100%); transition: transform 0.5s var(--ease); }
+.shot:hover .shot-label, .shot:focus-visible .shot-label { transform: none; }
+@media (hover: none) { .shot-label { transform: none; } }
+.lightbox { border: 0; padding: 0; background: rgb(var(--black-rgb)); color: #fff; max-width: 96vw; max-height: 96vh; width: auto; }
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.92); }
+.lightbox img { display: block; max-width: 96vw; max-height: 86vh; width: auto; height: auto; margin: 0 auto; }
+.lb-cap { margin: 0; padding: 0.8rem 1.2rem; font-size: 0.9rem; font-weight: 700; text-align: center; }
+.lightbox button { position: absolute; z-index: 1; background: rgba(var(--black-rgb), 0.85); color: #fff; border: 1px solid var(--hairline-strong); width: 2.75rem; height: 2.75rem; font-size: 1.6rem; cursor: pointer; }
+.lb-close { top: 0.75rem; right: 0.75rem; } .lb-prev { left: 0.75rem; top: 45%; } .lb-next { right: 0.75rem; top: 45%; }
+
+/* caption panel on the right when the subject sits on the left */
+@media (min-width: 861px) {
+  .lookbook--right figcaption .wrap { margin-left: auto; margin-right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
 }

@@ -40,6 +40,16 @@
     X-Robots-Tag = "noindex"
 
 [[headers]]
+  for = "/marketing/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/docs/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

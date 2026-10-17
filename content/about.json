@@ -56,32 +56,6 @@
       "description": "Make it last beyond any one person."
     }
   ],
-  "model_eyebrow": "Omnidirectional Enterprise™",
-  "model_headline": "Not a linear funnel. A coordinated system linking contribution, ownership, and return.",
-  "model_body": "Not a single-purpose consulting business. Value moves between people, ideas, products, organizations, and community — with many ways in, all connected to Leadership Infrastructure™.",
-  "ethics_body": "Built on ethics. How we treat people is part of the infrastructure.",
-  "audiences": [
-    {
-      "tag": "Founders",
-      "title": "Founders Organization",
-      "description": "Companies partnering with The Co.LLab™ — their participation builds Leadership Infrastructure™ and moves value back through the ecosystem."
-    },
-    {
-      "tag": "Organizations",
-      "title": "Corporate / Enterprise",
-      "description": "Organizations building infrastructure behind their leadership."
-    },
-    {
-      "tag": "Leaders",
-      "title": ".LLab™ Products & Membership",
-      "description": "Leaders accessing frameworks and tools directly."
-    },
-    {
-      "tag": "Artists & Creators",
-      "title": "Creator Infrastructure™",
-      "description": "Leadership Infrastructure™ for every kind of creative venture. Creators keep ownership of their IP; The Co.LLab™ builds the infrastructure around it."
-    }
-  ],
   "ip_eyebrow": "Intellectual property is an asset",
   "ip_headline": "Ideas → Research → Theory → Framework → Infrastructure → Product → Licensing → Enterprise.",
   "ip_body": "Frameworks, models, research, products, and creative IP — given a visible architecture instead of kept hidden.",
