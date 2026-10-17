@@ -58,15 +58,16 @@ test('Founders tier: recognizes the Founder level and number', async () => {
   assert.match(msg.text, /Founder Number F-\d{5}/);
 });
 
-test('Partnership: tier subject, term end date, seats, and session', async () => {
+test('Partnership: tier subject, term end date, seats, and session (only when the tier includes one)', async () => {
   const s = session('cs_ent', 'd@example.com');
   const result = await fulfillCheckoutSession(s, [ENTERPRISE.stripe_price_id]);
   const msg = buildPurchaseEmail(result.record, s);
   assert.match(msg.subject, /Enterprise Partnership is active/);
-  assert.match(msg.text, /complete designated Co\.LLab™ IP portfolio/);
+  assert.match(msg.text, /every product included in your tier/); // tiers grant a designated scope (content/pricing.json)
   assert.match(msg.text, /active through [A-Z][a-z]+ \d{1,2}, \d{4}/);
   assert.match(msg.text, /5 individual seats/);
-  assert.match(msg.text, new RegExp(ENTERPRISE.engagement.label));
+  if (ENTERPRISE.engagement) assert.match(msg.text, new RegExp(ENTERPRISE.engagement.label));
+  else assert.ok(!/Included session/.test(msg.text), 'no session promised when the tier has none');
 });
 
 test('sends once per session, even when the webhook retries', async () => {

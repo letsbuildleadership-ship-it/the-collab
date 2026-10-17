@@ -196,6 +196,9 @@ test('subscription memberships (no currentPeriodEnd) are unaffected by expiry ch
 
 const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
+// Page content without the shared site header and footer: the primary nav links
+// every offer, while Founders and Partnership content never cross-promote.
+const content = (html) => html.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '');
 
 test('partnership page lists every tier link, states IP ownership and results terms, and never links to Founders', () => {
   const html = read('pages/partnership.html');
@@ -203,11 +206,20 @@ test('partnership page lists every tier link, states IP ownership and results te
   assert.match(html, /Clear Terms/);
   assert.match(html, /owned by Ashley E\. Clasby and licensed through The Co\.LLab™/);
   assert.match(html, /Results depend on how each business applies it/);
-  assert.ok(!/founders\.html/.test(html), 'partnership page must not link to the Founders page');
+  assert.ok(!/founders\.html/.test(content(html)), 'partnership page content must not link to the Founders page');
 });
 
-test('Founders page never links to the partnership page; sitemap and nav include it', () => {
-  assert.ok(!/partnership\.html/.test(read('pages/founders.html')));
+test('Founders page content never links to the partnership page; sitemap and every primary nav include both', () => {
+  assert.ok(!/partnership\.html/.test(content(read('pages/founders.html'))));
+  for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
+    const html = read(f);
+    for (const cls of ['nav-links', 'nav-more', 'nav-signin']) {
+      assert.equal(html.split(`class="${cls}"`).length - 1, 1, `${f}: exactly one .${cls}`);
+    }
+    const nav = html.match(/<ul class="nav-links">[\s\S]*?<li class="nav-signin">/)[0];
+    assert.match(nav, /partnership\.html"[^>]*>Partnerships</, f);
+    assert.match(nav, /founders\.html"[^>]*>Founders Organization</, f);
+  }
   assert.match(read('sitemap.xml'), /pages\/partnership\.html/);
   assert.match(read('index.html'), /href="pages\/partnership\.html"/);
   assert.match(read('pages/products.html'), /href="partnership\.html"/);

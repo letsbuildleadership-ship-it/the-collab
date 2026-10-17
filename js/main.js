@@ -211,6 +211,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  /* header "More" menu */
+  const more = document.querySelector('.nav-more');
+  const moreToggle = more && more.querySelector('.nav-more-toggle');
+  if (moreToggle) {
+    const setMore = (open) => {
+      more.classList.toggle('is-open', open);
+      moreToggle.setAttribute('aria-expanded', String(open));
+    };
+    moreToggle.addEventListener('click', () => setMore(!more.classList.contains('is-open')));
+    document.addEventListener('click', (e) => { if (!more.contains(e.target)) setMore(false); });
+    more.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && more.classList.contains('is-open')) { setMore(false); moreToggle.focus(); }
+    });
+    more.addEventListener('focusout', (e) => { if (!more.contains(e.relatedTarget)) setMore(false); });
+  }
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* scroll reveal */
