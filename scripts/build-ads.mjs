@@ -34,7 +34,21 @@ const ADS = [
   { id: '09-define',        lever: 'Phase I · identity (booth, sign, table)',     eyebrow: 'The IV Phases™ · Phase I · Foundations', hook: '*Define* your legacy.', support: 'Who you are and what you stand on.', cta: 'See the Partner level', img: 'booth', pos: '50% 58%', legal: true },
   { id: '10-plan',          lever: 'Phase II · structure (scaffolding)',           eyebrow: 'The IV Phases™ · Phase II · Planning', hook: '*Plan* your legacy.', support: "Where it's going and how it connects.", cta: 'See the Strategic level', img: 'scaffolding', pos: '50% 40%', legal: true },
   { id: '11-live',          lever: 'Phase III · standards in daily use (racks)',   eyebrow: 'The IV Phases™ · Phase III · Operating Systems', hook: '*Live* your legacy.', support: 'In every decision, every day.', cta: 'See the Enterprise level', img: 'racks', pos: '40% 62%', legal: true },
+  { id: '12-creators',      lever: 'Creators · identity (Creator™)',               eyebrow: 'Creator™', hook: '*You were already creating.*', support: 'We help you build what your creation can become.', cta: 'Start with a free resource', img: 'stage', pos: '80% 40%', legal: false },
+  { id: '13-nonprofits',    lever: 'Nonprofits · prosocial legacy (Impact™)',      eyebrow: 'Impact™', hook: '*Building leadership,* building good.', support: 'Select Founders Organization products support partner nonprofits — tracked openly in a public ledger.', cta: 'See the partners', img: 'arch', pos: '40% 62%', legal: false },
+  { id: '14-technology',    lever: 'Technology · tools that preserve (Ventures™)', eyebrow: 'Technology · Legacy Ventures™', hook: 'Technology that *preserves what matters.*', support: 'Technology that supports community culture — a necessary tool for preservation.', cta: 'See the ventures', img: 'road', pos: '45% 55%', legal: false },
+  { id: '15-knowledge',     lever: 'Knowledge + IP · ideas to frameworks (Journal)', eyebrow: 'The .LLab Journal™', hook: 'Ideas, *before infrastructure.*', support: 'Where research becomes frameworks — and frameworks become products.', cta: 'Read the Journal', img: 'lake', pos: '55% 55%', legal: false },
 ];
+
+// Every tactic is modeled under Omnidirectional Enterprise (node = who/direction of value) x The IV Phases (1 Define, 2 Plan, 3 Live, 4 Pass it on).
+const TAG = {
+  '01-legacy': ['Businesses', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Knowledge + IP', 2, '/pages/partnership.html#cohort'],
+  '04-economics': ['Capital', 2, '/pages/about.html#economic'], '05-one-payment': ['Capital', 3, '/pages/partnership.html#tiers'], '06-start-free': ['People', 1, '/pages/login.html#join'],
+  '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Businesses', 3, '/pages/partnership.html#tiers'], '09-define': ['Businesses', 1, '/pages/partnership.html#cohort'],
+  '10-plan': ['Businesses', 2, '/pages/partnership.html#cohort'], '11-live': ['Businesses', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],
+  '13-nonprofits': ['Nonprofits', 4, '/pages/impact.html'], '14-technology': ['Technology', 3, '/pages/technology.html'], '15-knowledge': ['Knowledge + IP', 2, '/pages/journal.html'],
+};
+for (const a of ADS) { const t = TAG[a.id]; if (!t) throw new Error('ad without node/phase: ' + a.id); [a.node, a.phase, a.lands] = t; }
 
 const SIZES = {
   feed: { w: 1080, h: 1350, suffix: '4x5' },
@@ -93,5 +107,5 @@ const shoot = async (ad, size, file) => {
 for (const ad of ADS) for (const size of Object.values(SIZES)) await shoot(ad, size, path.join(outDir, `${ad.id}-${size.suffix}.png`));
 // social share card: every pasted link is an ad
 await shoot(ADS[0], { w: 1200, h: 630 }, path.join(root, 'assets/img/og-cover.png'));
-fs.writeFileSync(path.join(outDir, 'index.json'), JSON.stringify(ADS.map(({ id, lever, hook, support, cta }) => ({ id, lever, hook: hook.replace(/\*/g, ''), support, cta })), null, 2) + '\n');
+fs.writeFileSync(path.join(outDir, 'index.json'), JSON.stringify(ADS.map(({ id, node, phase, lands, lever, hook, support, cta }) => ({ id, node, phase, lands, lever, hook: hook.replace(/\*/g, ''), support, cta })), null, 2) + '\n');
 await browser.close();

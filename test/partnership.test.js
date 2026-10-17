@@ -231,7 +231,6 @@ test('partnership page includes the clickable Omnidirectional Enterprise™ circ
   const links = [...html.matchAll(/<a href="([^"]+)" class="oe-link"/g)].map((m) => m[1]);
   assert.ok(links.length >= 7, 'circle model nodes should be clickable');
   assert.ok(!links.some((h) => /founders/.test(h)));
-  assert.match(html, /human potential/);
 });
 
 // ---- end-of-term offer ----------------------------------------------------

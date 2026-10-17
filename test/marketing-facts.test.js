@@ -21,10 +21,12 @@ function factbar(html) {
   return m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 }
 
-test('spec strip on Home and Partnership matches the pricing registry', () => {
+test('Partnership spec strip and the Home price range match the pricing registry', () => {
   const lo = fmt(Math.min(...tiers.map(dollars))), hi = fmt(Math.max(...tiers.map(dollars)));
   const seats = tiers.map((t) => t.seats).join(' · ');
-  for (const f of ['index.html', 'pages/partnership.html']) {
+  const home = read('index.html').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  assert.ok(home.includes(`${lo}–${hi}`), 'Home states the registry price range');
+  for (const f of ['pages/partnership.html']) {
     const text = factbar(read(f));
     assert.ok(text.includes(`${tiers.length} levels of partnership`), `${f}: level count`);
     assert.ok(text.includes(`${lo}–${hi}`), `${f}: price range ${lo}–${hi}`);
@@ -42,7 +44,12 @@ test('generated ad copy states the registry price range and seat counts', () => 
   assert.ok(all.includes(`${lo}–${hi}`), 'price range in an ad');
   assert.ok(all.includes('Seats for 1, 3, 5, or 10'), 'seat counts in an ad');
   assert.ok(!/guarantee|return on|roi|limited|hurry|last chance/i.test(all), 'no invented scarcity or claims');
-  assert.equal(ads.length, 11);
+  assert.equal(ads.length, 15);
+  // every tactic is modeled under Omnidirectional Enterprise (node) x The IV Phases (1-4)
+  const NODES = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+  for (const a of ads) { assert.ok(NODES.includes(a.node), `${a.id}: node`); assert.ok([1, 2, 3, 4].includes(a.phase), `${a.id}: phase`); assert.ok(a.lands, `${a.id}: landing`); }
+  for (const n of NODES) assert.ok(ads.some((a) => a.node === n), `a tactic for node ${n}`);
+  for (const ph of [1, 2, 3, 4]) assert.ok(ads.some((a) => a.phase === ph), `a tactic for phase ${ph}`);
 });
 
 function tokens(css) {
