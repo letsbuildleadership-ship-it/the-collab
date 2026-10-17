@@ -1337,7 +1337,7 @@ a.pill.is-owned {
 
 .tax-note { font-size: 0.85rem; color: var(--white-dim); margin: 1.25rem 0 0; }
 .tax-note a { text-decoration: underline; }
-.site-footer .tax-note { margin: 0 0 1.25rem; }
+.site-footer .tax-note { margin: clamp(2rem, 4vw, 3rem) 0 1.25rem; padding-top: clamp(1.25rem, 3vw, 2rem); border-top: 1px solid var(--hairline); }
 .terms-details { margin: 2rem auto 0; max-width: 68ch; text-align: left; }
 .terms-details summary {
   cursor: pointer; display: inline-block; padding: 0.6em 1.4em;
