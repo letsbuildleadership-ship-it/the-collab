@@ -1949,3 +1949,14 @@ main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: cla
   .factbar--info li { min-height: 7.5rem; }
   .factbar--info strong { font-size: clamp(1.4rem, 6vw, 2rem); white-space: normal; }
 }
+
+/* Partnership at a glance: table, each figure sits directly beside its label */
+.factbar--info { grid-template-columns: 1fr; gap: 0; max-width: 56rem; margin: 0 auto; border: 1px solid var(--hairline-strong); border-top: 3px solid var(--filament-2); }
+.factbar--info li, .factbar--info li:first-child, .factbar--info li:last-child, .factbar--info li:nth-child(odd) {
+  display: grid; grid-template-columns: minmax(10rem, 17rem) 1fr; align-items: center; column-gap: clamp(1rem, 3vw, 2.5rem);
+  min-height: 0; border: 0; border-top: 1px solid var(--hairline-strong); border-radius: 0; background: transparent; grid-column: auto;
+  padding: clamp(0.9rem, 1.8vw, 1.25rem) clamp(1rem, 2.5vw, 1.75rem);
+}
+.factbar--info li:first-child { border-top: 0; }
+.factbar--info strong { font-size: clamp(1.4rem, 2.4vw, 2rem); white-space: normal; }
+@media (max-width: 560px) { .factbar--info li, .factbar--info li:first-child, .factbar--info li:last-child, .factbar--info li:nth-child(odd) { grid-template-columns: 1fr; row-gap: 0.35rem; } .factbar--info li:first-child { border-top: 0; } }
