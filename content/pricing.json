@@ -335,7 +335,9 @@
       "price_display": "$750",
       "pdf_file": "legacy-foundations-framework.pdf",
       "description": "Define your legacy. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.",
-      "line": "partner"
+      "line": "partner",
+      "stripe_price_id": "price_1URNMYAK6n3ctuR98g7KY2ih",
+      "payment_link": "https://buy.stripe.com/5kQ00ibf0741aFR3GC9ws1i"
     },
     {
       "key": "legacy-infrastructure-plan",
@@ -345,7 +347,9 @@
       "price_display": "$1,500",
       "pdf_file": "legacy-infrastructure-plan.pdf",
       "description": "Plan your legacy. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.",
-      "line": "partner"
+      "line": "partner",
+      "stripe_price_id": "price_1URNMaAK6n3ctuR9HokW2HSq",
+      "payment_link": "https://buy.stripe.com/eVq5kCaaWgEB7tFgto9ws1j"
     },
     {
       "key": "legacy-operating-systems-manual",
@@ -355,7 +359,9 @@
       "price_display": "$2,500",
       "pdf_file": "legacy-operating-systems-manual.pdf",
       "description": "Live your legacy. The rhythms, standards, and practices that run your legacy through every department.",
-      "line": "partner"
+      "line": "partner",
+      "stripe_price_id": "price_1URNMdAK6n3ctuR96pPJOWPP",
+      "payment_link": "https://buy.stripe.com/dRmaEW82O9c9eW7cd89ws1k"
     },
     {
       "key": "legacy-preservation-vault",
@@ -365,7 +371,9 @@
       "price_display": "$5,000",
       "pdf_file": "legacy-preservation-vault.pdf",
       "description": "Preserve your legacy. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.",
-      "line": "partner"
+      "line": "partner",
+      "stripe_price_id": "price_1URNMgAK6n3ctuR9DQNPr4ps",
+      "payment_link": "https://buy.stripe.com/eVqeVc1Eq0FD4ht7WS9ws1l"
     }
   ],
   "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase (a tier with \"lifetime\": true never expires) with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier. Tiers with releases_months keep eligible releases only within that many months of purchase.",
@@ -376,7 +384,7 @@
       "tier_label": "Partner",
       "price_display": "$5,000",
       "stripe_price_id": "price_1UP1xlAK6n3ctuR9EFyv5jVx",
-      "payment_link": "https://buy.stripe.com/3cIfZg6YKcol4ht2Cy9ws19",
+      "payment_link": "https://buy.stripe.com/bJe00i0Am74101d7WS9ws1e",
       "term_months": 12,
       "seats": 1,
       "founder_discount_exempt": true,
@@ -416,7 +424,7 @@
       "tier_label": "Strategic",
       "price_display": "$10,000",
       "stripe_price_id": "price_1UP1yAAK6n3ctuR9GsBjRFro",
-      "payment_link": "https://buy.stripe.com/dRm7sK5UG9c9dS3cd89ws1a",
+      "payment_link": "https://buy.stripe.com/cNi7sKdn81JH6pBcd89ws1f",
       "term_months": 24,
       "seats": 3,
       "founder_discount_exempt": true,
@@ -457,7 +465,7 @@
       "tier_label": "Enterprise",
       "price_display": "$25,000",
       "stripe_price_id": "price_1UP269AK6n3ctuR9kYElHc6N",
-      "payment_link": "https://buy.stripe.com/28EfZg0AmfAx9BNfpk9ws1b",
+      "payment_link": "https://buy.stripe.com/dRm7sKcj40FDdS35OK9ws1g",
       "term_months": 36,
       "seats": 5,
       "founder_discount_exempt": true,
@@ -499,7 +507,7 @@
       "tier_label": "Omnidirectional",
       "price_display": "$50,000",
       "stripe_price_id": "price_1UP1ycAK6n3ctuR9tseEPqVf",
-      "payment_link": "https://buy.stripe.com/9B6dR896SagddS36SO9ws1c",
+      "payment_link": "https://buy.stripe.com/3cI14m3Myewt6pB4KG9ws1h",
       "term_months": 1200,
       "seats": 10,
       "founder_discount_exempt": true,
