@@ -1,0 +1,123 @@
+{
+  "key": "event-infrastructure",
+  "open": true,
+  "title": "Event Infrastructure Plan™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Build the infrastructure behind any event, a conference, fundraiser, festival, market or performance, through The IV Phases™: purpose, ownership, operations and continuity.",
+  "pdfTitle": "Event Infrastructure Plan™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I — Purpose and stakeholders",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Define the purpose: what outcome should this event produce, and what should attendees carry away from it?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — Purpose and stakeholders",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Identify the stakeholders: attendees, presenters or artists, your team, the venue, sponsors and the surrounding community. Who is the event for first?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase I — Purpose and stakeholders",
+      "phase": 0,
+      "type": "text",
+      "prompt": "State your non-negotiables: the standards this event will not trade for revenue or attendance."
+    },
+    {
+      "id": "n4",
+      "section": "Phase II — Ownership and authority",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Assign ownership: name one accountable owner for each of program and content, venue and setup, audio-visual and technical, security and crowd safety, welfare and first aid, registration and admission, vendors and hospitality, and volunteers and staff."
+    },
+    {
+      "id": "n5",
+      "section": "Phase II — Ownership and authority",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Secure authority: which permits, licenses, insurance and venue agreements are required, and who holds each? (Confirm requirements locally.)"
+    },
+    {
+      "id": "n6",
+      "section": "Phase II — Ownership and authority",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Establish the financial plan: costs, revenue sources and the break-even point."
+    },
+    {
+      "id": "n7",
+      "section": "Phase II — Ownership and authority",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Design attendee flow: registration or ticketing, admission, capacity, circulation, accessibility, and entry and exit."
+    },
+    {
+      "id": "n8",
+      "section": "Phase III — Operations",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Set the operating rhythm: the run-of-show from opening to close, the owner of each segment, and who calls each cue."
+    },
+    {
+      "id": "n9",
+      "section": "Phase III — Operations",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Confirm technical readiness: sound, screens and lighting, power and redundancy, and a full test before admission."
+    },
+    {
+      "id": "n10",
+      "section": "Phase III — Operations",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Establish the safety and welfare protocol: first aid, hydration and climate, accessibility, emergency response, alcohol or other substances as law and venue require, and how an incident is reported and who acts."
+    },
+    {
+      "id": "n11",
+      "section": "Phase III — Operations",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Define command and communication: channels, decision rights, and the contingency when the plan fails."
+    },
+    {
+      "id": "n12",
+      "section": "Phase IV — Continuity and legacy",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Capture results: attendance, outcomes against purpose, incidents and lessons learned."
+    },
+    {
+      "id": "n13",
+      "section": "Phase IV — Continuity and legacy",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Sustain relationships: how presenters or artists, your team, the venue, sponsors and the community are thanked and retained, and what is owed to them after the event."
+    },
+    {
+      "id": "n14",
+      "section": "Phase IV — Continuity and legacy",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Document for continuity: contacts, contracts, run sheets and setup plans, in enough detail for another leader to run the next one."
+    },
+    {
+      "id": "n15",
+      "section": "Phase IV — Continuity and legacy",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Build the legacy: what would make this event a lasting series, collective or institution that someone else could carry on?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one infrastructure commitment for this event, its owner and its date:"
+  }
+}

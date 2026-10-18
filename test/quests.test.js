@@ -156,17 +156,17 @@ test('workbook quests analyse coverage, scores and choices against the member\'s
   assert.ok(choose.options.includes('Accountability'));
 });
 
-test('the Run an Event quest is open to every member and follows The IV Phases', async () => {
-  const q = quests.get('run-an-event');
+test('the Event Infrastructure Plan quest is open to every member and follows The IV Phases', async () => {
+  const q = quests.get('event-infrastructure');
   assert.ok(q && q.open);
   assert.deepEqual([...new Set(q.nodes.map((n) => n.phase))], [0, 1, 2, 3]);
   const token = await member('live@example.com');
-  const res = await call(token, 'GET', { key: 'run-an-event' });
+  const res = await call(token, 'GET', { key: 'event-infrastructure' });
   assert.equal(res.statusCode, 200);
   const a = {};
   q.nodes.forEach((n) => { a[n.id] = 'Our sound lead will own the system and power plan, and we review it every week before the date.'; });
   a.commit = 'I will lock the venue agreement by Friday.';
-  const out = await call(token, 'POST', {}, { key: 'run-an-event', answers: a, complete: true });
+  const out = await call(token, 'POST', {}, { key: 'event-infrastructure', answers: a, complete: true });
   assert.equal(out.statusCode, 200);
   assert.equal(JSON.parse(out.body).saved.outcome.phaseMap.length, 4);
 });
