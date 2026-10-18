@@ -2011,14 +2011,29 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .fm-dots i { width: 1.3rem; height: 1.3rem; }
 @media (max-width: 960px) { .fm-name { font-size: 1.15rem; } .fm-slogan { font-size: 1.05rem; } }
 
-/* About: "Start where you fit" direction cards */
-.dir-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.75rem, 1.6vw, 1.25rem); margin-top: 2.5rem; }
-.dir-card { display: flex; flex-direction: column; gap: 0.9rem; padding: clamp(1.1rem, 2vw, 1.6rem); background: rgba(var(--black-rgb), 0.7); border: 1px solid var(--hairline-strong); border-top: 3px solid var(--filament-2); }
-.dir-card h3 { margin: 0; color: #fff; font-size: clamp(1.4rem, 2vw, 1.8rem); font-weight: 800; line-height: 1.1; }
-.dir-pitch { margin: 0; color: var(--paper); font-size: 1.02rem; line-height: 1.45; flex: 1; }
-.dir-card .price-btn { width: fit-content; max-width: 100%; text-align: left; border-radius: 28px; }
-.dir-also { margin: 0; color: #fff; font-size: 0.85rem; font-weight: 700; line-height: 1.6; }
-.dir-also span { color: var(--filament-2); letter-spacing: 0.08em; text-transform: uppercase; margin-right: 0.35rem; }
-.dir-also a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 1100px) { .dir-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .dir-grid { grid-template-columns: 1fr; } }
+
+/* About: ad-style strategy table */
+.ad-section { background: radial-gradient(120% 80% at 0% 0%, rgba(255, 46, 18, 0.22), transparent 60%), rgb(var(--black-rgb)); }
+.ad-headline { margin: 1.25rem 0 0; color: #fff; font-size: clamp(2.4rem, 7vw, 5rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.02em; text-transform: uppercase; max-width: 14ch; }
+.ad-headline strong { color: #ff4a3a; text-shadow: 0 0 28px rgba(255, 46, 18, 0.65); }
+.ad-sub { margin: 1.25rem 0 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 600; max-width: 36ch; }
+.ad-table { width: 100%; margin-top: 2.5rem; border-collapse: separate; border-spacing: 0 0.6rem; display: table; }
+.ad-table thead th { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.1rem; text-align: left; }
+.ad-table tbody th, .ad-table tbody td { background: rgba(255, 255, 255, 0.05); padding: 1rem 1.1rem; vertical-align: middle; border-top: 1px solid var(--hairline-strong); border-bottom: 1px solid var(--hairline-strong); }
+.ad-table tbody th { border-left: 4px solid #ff4a3a; width: 24%; text-align: left; }
+.ad-table tbody td:last-child { border-right: 1px solid var(--hairline-strong); }
+.ad-table tbody tr:hover th, .ad-table tbody tr:hover td { background: rgba(255, 74, 58, 0.14); }
+.ad-table tbody th a { display: inline-block; background: #c8200f; color: #fff; font-weight: 800; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.2; padding: 0.4em 0.75em; border-radius: 6px; box-shadow: 0 0 18px rgba(255, 46, 18, 0.55); }
+.at-nodes { width: 32%; }
+.at-nodes span { display: inline-block; margin: 0.2rem 0.3rem 0.2rem 0; padding: 0.3em 0.75em; border-radius: 999px; background: linear-gradient(135deg, #ff8a1f, #ffb347); color: #000; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.at-idea { color: #fff; font-size: clamp(1.05rem, 1.5vw, 1.25rem); font-weight: 600; line-height: 1.4; }
+@media (max-width: 860px) {
+  .ad-table thead { display: none; }
+  .ad-table, .ad-table tbody, .ad-table tr, .ad-table tbody th, .ad-table tbody td { display: block; width: auto; }
+  .ad-table tr { margin-bottom: 0.9rem; border-left: 4px solid #ff4a3a; background: rgba(255, 255, 255, 0.05); }
+  .ad-table tbody th, .ad-table tbody td { border: 0; border-left: 0; background: transparent; padding: 0.55rem 1rem; width: auto; }
+  .ad-table tbody th { padding-top: 1rem; }
+  .ad-table tbody tr:hover th, .ad-table tbody tr:hover td { background: transparent; }
+  .at-nodes { width: auto; }
+  .at-idea { padding-bottom: 1rem; }
+}
