@@ -82,6 +82,7 @@
   .q-node { grid-column: span 3; border: 1px solid var(--hairline-strong); border-radius: 18px; padding: 1.25rem 1.3rem; background: rgba(15,29,19,.72); }
   .q-node:nth-child(3n+1) { grid-column: span 4; }
   .q-node:nth-child(3n+2) { grid-column: span 2; }
+  .q-node.is-locked, .q-close.is-locked { opacity: .45; }
   .q-node.is-done { border-color: #ff6a2e; box-shadow: 0 0 0 1px rgba(255,106,46,.35), 0 0 22px rgba(255,46,18,.14); }
   .q-label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #ff8a5c; font-weight: 800; margin: 0 0 .4rem; }
   .q-section { grid-column: 1 / -1; margin: 1.4rem 0 -.2rem; font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; color: #ff8a5c; font-weight: 800; }
@@ -161,7 +162,7 @@
       <div class="q-run" id="q-run" hidden>
         <div class="q-bar" aria-hidden="true"><span id="q-fill"></span></div>
         <p class="q-meta" id="q-count" aria-live="polite"></p>
-        <p style="color:var(--white-dim);">Answer in any order. Your progress saves as you go.</p>
+        <p style="color:var(--white-dim);">Each step opens as you complete the one before it, following the progression of The IV Phases™: Define it, Plan it, Live it, Pass it on. Your progress saves as you go.</p>
         <p class="q-meta" id="q-hint" hidden></p>
         <div class="q-map" id="q-map"></div>
         <div id="q-close"></div>

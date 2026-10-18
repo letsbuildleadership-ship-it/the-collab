@@ -1,4 +1,4 @@
-// Guided quest page: answer in any order, progress autosaves, finishing
+// Guided quest page: steps open in sequence (The IV Phases progression), progress autosaves, finishing
 // builds the outcome and the member's PDF report (all handled by
 // /.netlify/functions/quest). User-written text is only ever set via
 // textContent / .value.
@@ -43,6 +43,43 @@
     return 'Captured.';
   }
 
+  // Steps run in sequence. A group (a section, or each question when the quest
+  // has no sections and needs every answer) opens once the one before it is met.
+  function groups() {
+    var out = [];
+    var every = !(quest.minAnswered && quest.minAnswered < 1);
+    quest.nodes.forEach(function (n) {
+      var last = out[out.length - 1];
+      if (n.section && last && last.section === n.section) { last.nodes.push(n); return; }
+      if (!n.section && !every && last && !last.section) { last.nodes.push(n); return; }
+      out.push({ section: n.section || '', nodes: [n] });
+    });
+    out.forEach(function (g) { g.need = every ? g.nodes.length : Math.ceil(quest.minAnswered * g.nodes.length); });
+    return out;
+  }
+  function applyLocks() {
+    var gs = groups();
+    var open = true;
+    gs.forEach(function (g) {
+      var count = g.nodes.filter(answered).length;
+      var unlocked = open || count > 0;
+      g.nodes.forEach(function (n) { setLocked(n.id, !unlocked); });
+      if (count < g.need) open = false;
+    });
+    setLocked(quest.closing.id, !open);
+    if (quest.omni) setLocked(quest.omni.id, !open);
+  }
+  function setLocked(id, locked) {
+    var card = document.querySelector('[data-node="' + id + '"]');
+    if (!card) return;
+    card.classList.toggle('is-locked', locked);
+    card.setAttribute('aria-disabled', locked ? 'true' : 'false');
+    var note = card.querySelector('.q-lock');
+    if (locked && !note) { note = el('p', 'q-meta q-lock', 'Opens when the step before it is complete.'); card.insertBefore(note, card.children[1]); }
+    if (!locked && note) note.remove();
+    card.querySelectorAll('button, textarea, input').forEach(function (c) { c.disabled = locked; });
+  }
+
   function refresh() {
     var nodes = allNodes();
     var done = nodes.filter(answered).length;
@@ -50,6 +87,7 @@
     var need = requiredCount();
     $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
     $('q-finish').disabled = !canFinish();
+    applyLocks();
     nodes.forEach(function (n) {
       var card = document.querySelector('[data-node="' + n.id + '"]');
       if (!card) return;
