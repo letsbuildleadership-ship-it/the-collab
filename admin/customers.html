@@ -26,6 +26,7 @@
   <h1 class="headline" style="margin-top:1.25rem;">Admin sign-in</h1>
   <p class="subhead" style="margin:1rem auto 1.5rem;">Enter the ADMIN_TOKEN configured in Netlify's environment variables.</p>
   <div id="config-status" style="text-align:left; font-size:0.78rem; color:var(--white-faint); border:1px solid var(--hairline); border-radius:10px; padding:0.9rem 1rem; margin-bottom:1.5rem;">Checking configuration…</div>
+  <button type="button" id="email-test-btn" class="btn" style="margin-bottom:1.5rem;">Send test email</button> <span id="email-test-out" style="font-size:0.8rem;"></span>
   <form id="gate-form" style="display:flex; gap:0.6rem;">
     <input id="gate-input" type="password" placeholder="Admin token" style="flex:1;" />
     <button type="submit" class="pill pill--solid">Enter</button>
@@ -109,6 +110,15 @@
     }
   }
   checkConfigStatus();
+  document.getElementById('email-test-btn').addEventListener('click', async () => {
+    const out = document.getElementById('email-test-out');
+    out.textContent = 'Sending…';
+    try {
+      const r = await fetch('/.netlify/functions/admin-status', { method: 'POST', headers: { 'X-Admin-Token': token() || '' } });
+      const d = await r.json();
+      out.textContent = d.sent ? 'Sent to ' + d.to + ' — check the inbox.' : 'Failed: ' + (d.error || 'sign in first');
+    } catch (e) { out.textContent = 'Failed: could not reach the site.'; }
+  });
 
   async function api(path, opts) {
     const res = await fetch(`/.netlify/functions/admin-customers${path}`, {
