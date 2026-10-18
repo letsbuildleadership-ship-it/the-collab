@@ -59,7 +59,7 @@ export const signatures = (roles) => `
 </div>`;
 
 export const close = (product) => `
-<p style="margin-top:18px;"><strong>Define it. Plan it. Live it. Preserve it.</strong><br/>${product} · The Omnidirectional Enterprise™ Partnership<br/>The Co.LLab: Building Leadership Infrastructure™<br/>Let’s build your legacy through Omnidirectional Enterprise™.</p>`;
+<p style="margin-top:18px;"><strong>Define it. Plan it. Live it. Preserve it.</strong><br/>${product} · The Omnidirectional Enterprise™ Partnership<br/>The Co.LLab: Building Leadership Infrastructure™<br/>Let’s Build Your Legacy Through Omnidirectional Enterprise™.</p>`;
 
 export const partnerCover = (phase, title, subtitle, price) => ({
   eyebrow: `Phase ${phase} — Omnidirectional Enterprise™ Partnership IP`,
