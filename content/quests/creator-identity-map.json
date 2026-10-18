@@ -34,7 +34,7 @@
       "section": "Step 3 — Separate Identity From Medium",
       "phase": null,
       "type": "text",
-      "prompt": "Your identity is not \"I make paintings\" or \"I write essays\" — it's what you're actually doing through that medium.  Complete: I use to ."
+      "prompt": "What are you actually doing through your medium? Complete: I use [your medium] to …"
     },
     {
       "id": "n5",

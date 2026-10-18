@@ -399,17 +399,10 @@
     },
     {
       "id": "n45",
-      "section": "Foundations",
-      "phase": 0,
+      "section": "Your Legacy Prompt",
+      "phase": null,
       "type": "text",
-      "prompt": "Clarity, purpose, identity, values, and direction."
-    },
-    {
-      "id": "n46",
-      "section": "Preservation",
-      "phase": 3,
-      "type": "text",
-      "prompt": "Knowledge, leadership continuity, culture, organizational value, and legacy.  Rather than focusing only on gaps, your profile identifies where your organization already has strength and how those strengths can become stronger infrastructure."
+      "prompt": "What do you want your organization to be able to do, preserve, or become because you built it?"
     }
   ],
   "closing": {

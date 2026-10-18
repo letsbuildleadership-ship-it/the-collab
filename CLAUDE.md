@@ -2,7 +2,7 @@
 Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify publishes `main`, no build step). Strategy: `STRATEGY.md`. State: `PROJECT_CHECKPOINT.md`.
 
 ## Commands
-`npm test` (163 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
+`npm test` (168 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
 
 ## Map
 `index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology,  · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).

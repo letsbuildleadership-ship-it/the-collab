@@ -174,6 +174,19 @@
     listInto('r-strengths', o.strengths);
     listInto('r-improve', o.improvements);
     $('r-next').textContent = o.nextMove ? 'A next move: ' + o.nextMove : '';
+    var omni = o.omni;
+    $('r-omni-wrap').hidden = !omni;
+    if (omni) {
+      $('r-omni').textContent = omni.read;
+      var ol = $('r-omni-nodes');
+      ol.textContent = '';
+      omni.nodes.forEach(function (n) {
+        var li = el('li');
+        li.appendChild(el('strong', null, n.name));
+        li.appendChild(el('span', null, n.mentions ? n.mentions + ' mention' + (n.mentions === 1 ? '' : 's') : 'not yet'));
+        ol.appendChild(li);
+      });
+    }
     $('r-pdf').href = API + '?key=' + encodeURIComponent(key) + '&pdf=1';
   }
 
@@ -195,6 +208,11 @@
     var close = $('q-close');
     close.textContent = '';
     close.appendChild(buildCard(quest.closing, true));
+    var omniWrap = $('q-omni');
+    omniWrap.textContent = '';
+    var oc = buildCard(quest.omni, true);
+    oc.insertBefore(el('p', 'q-meta', 'Optional, and it makes your Legacy Read stronger.'), oc.children[2]);
+    omniWrap.appendChild(oc);
     refresh();
   }
 
@@ -234,6 +252,17 @@
         window.scrollTo(0, 0);
       })
       .catch(function () { $('q-finish-err').textContent = 'Could not reach the site.'; btn.disabled = false; });
+  });
+
+  $('fb-send').addEventListener('click', function () {
+    var msg = $('fb-msg');
+    msg.textContent = 'Sending…';
+    fetch('/.netlify/functions/ip-feedback', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ questKey: key, unclear: $('fb-unclear').value, support: $('fb-support').value, ecosystem: $('fb-eco').value }) })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok) { msg.textContent = 'Thank you. It is with us and we will decide on it.'; ['fb-unclear', 'fb-support', 'fb-eco'].forEach(function (i) { $(i).value = ''; }); } else msg.textContent = res.d.error || 'Could not send.';
+      })
+      .catch(function () { msg.textContent = 'Could not reach the site.'; });
   });
 
   $('r-retake').addEventListener('click', function () { showRun(); window.scrollTo(0, 0); });

@@ -74,6 +74,12 @@ async function buildQuestPdf({ quest, record, result }) {
     y -= 6;
   }
 
+  if (result.outcome.omni) {
+    heading('Beyond your own walls: your Omnidirectional Enterprise™ read');
+    para(result.outcome.omni.read);
+    para(result.outcome.omni.nodes.map((n) => `${n.name}: ${n.mentions || 'not yet'}`).join('   ·   '), { size: 9, color: MUTED });
+  }
+
   heading('Your answers');
   let lastSection = null;
   for (const node of quest.nodes) {
@@ -84,6 +90,10 @@ async function buildQuestPdf({ quest, record, result }) {
     para(node.label ? `${node.label}: ${node.prompt}` : node.prompt, { f: bold, size: 10, gap: 1 });
     para(shown, { indent: 12, gap: result.notes && result.notes[node.id] ? 2 : 6 });
     if (result.notes && result.notes[node.id]) para(`Your note: ${result.notes[node.id]}`, { indent: 12, size: 9.5, color: MUTED, gap: 6 });
+  }
+  if (result.answers.omni) {
+    para('Beyond your own walls', { f: bold, size: 10, gap: 1 });
+    para(result.answers.omni, { indent: 12, gap: 6 });
   }
   if (result.answers[quest.closing.id]) {
     para(quest.closing.prompt, { f: bold, size: 10, gap: 1 });

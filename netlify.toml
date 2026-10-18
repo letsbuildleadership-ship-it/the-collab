@@ -6,6 +6,10 @@
   node_bundler = "esbuild"
   included_files = ["content/library/**", "content/quests/**"]
 
+# Weekly reminder of undecided IP-review items (Mondays, 14:00 UTC).
+[functions."ip-digest"]
+  schedule = "0 14 * * 1"
+
 # Required environment variables (set in Netlify: Site configuration ->
 # Environment variables — never commit real values):
 #   STRIPE_SECRET_KEY     live secret key for the Co.LLab™ Stripe account
@@ -356,6 +360,12 @@
 
 [[redirects]]
   from = "/content/quests/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/ip-backlog.json"
   to = "/404"
   status = 404
   force = true

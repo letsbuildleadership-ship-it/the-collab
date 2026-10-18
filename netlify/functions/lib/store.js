@@ -122,6 +122,31 @@ async function upsertCommunityReflection(monthOrder, memberId, text) {
   return entries;
 }
 
+// Operations records the owner reviews: IP feedback, the improvement backlog's decisions and the
+// member company Directory. Kept apart from customer records. Layout: {collection}/{id}.json
+function opsStore() {
+  if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
+    return getStore({ name: 'collab-ops', siteID: process.env.SITE_ID, token: process.env.NETLIFY_BLOBS_TOKEN });
+  }
+  return getStore('collab-ops');
+}
+const opsKey = (collection, id) => `${collection}/${String(id).replace(/[^\w.-]/g, '_')}.json`;
+async function opsPut(collection, id, value) {
+  await opsStore().setJSON(opsKey(collection, id), value);
+  return value;
+}
+async function opsGet(collection, id) {
+  return opsStore().get(opsKey(collection, id), { type: 'json' });
+}
+async function opsDelete(collection, id) {
+  await opsStore().delete(opsKey(collection, id));
+}
+async function opsList(collection) {
+  const page = await opsStore().list({ prefix: `${collection}/` });
+  const rows = await Promise.all(page.blobs.map((b) => opsStore().get(b.key, { type: 'json' })));
+  return rows.filter(Boolean);
+}
+
 function randomToken() {
   return crypto.randomBytes(24).toString('base64url');
 }
@@ -401,4 +426,8 @@ module.exports = {
   deleteResetCode,
   hasSentPurchaseEmail,
   markPurchaseEmailSent,
+  opsPut,
+  opsGet,
+  opsDelete,
+  opsList,
 };
