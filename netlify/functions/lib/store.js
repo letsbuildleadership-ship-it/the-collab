@@ -223,6 +223,41 @@ async function setTokenForEmail(email, token) {
   await store().setJSON(`by-email/${hashEmail(email)}.json`, { token });
 }
 
+/** An account made by the free sign-up form whose email was never confirmed, and that holds nothing paid. */
+function isUnconfirmedFreeSignup(record) {
+  return Boolean(
+    record && record.signupSource === 'free' && record.emailVerified !== true &&
+    !(record.entitlements || []).length && !Object.keys(record.memberships || {}).length &&
+    !(record.purchases || []).length && !record.partnership && !record.founder && !record.seat
+  );
+}
+
+/**
+ * Account for a PURCHASE by email. A free sign-up form never proves the person owns the
+ * address, so if the only account for this email is an unconfirmed free sign-up, the buyer
+ * gets a brand-new account (new token, new Member ID) and the old one is cut off. This stops
+ * anyone from signing up with someone else's email and collecting that person's purchase.
+ */
+async function getOrCreateCustomerForPurchase(email) {
+  const existingToken = await getTokenByEmail(email);
+  if (existingToken) {
+    const record = await getCustomerByToken(existingToken);
+    if (record && !isUnconfirmedFreeSignup(record)) return { token: existingToken, record, isNew: false };
+    if (record) {
+      record.passwordHash = null;
+      record.supersededAt = new Date().toISOString();
+      await saveCustomer(record);
+    }
+  }
+  const token = randomToken();
+  const memberId = await nextMemberId();
+  const record = newCustomer(email, token, memberId);
+  await saveCustomer(record);
+  await setTokenForEmail(email, token);
+  await linkMemberId(memberId, token);
+  return { token, record, isNew: true, replacedUnconfirmedSignup: Boolean(existingToken) };
+}
+
 /** Find the existing account for this email, or create a fresh one. */
 async function getOrCreateCustomerByEmail(email) {
   const existingToken = await getTokenByEmail(email);
@@ -295,6 +330,28 @@ async function deleteResetCode(code) {
   await store().delete(`resets/${code}.json`);
 }
 
+// Email confirmation codes: verifications/{code}.json -> { token, expiresAt }. Single use.
+async function saveVerifyCode(code, info) {
+  await store().setJSON(`verifications/${code}.json`, info);
+}
+async function getVerifyCode(code) {
+  return (await store().get(`verifications/${code}.json`, { type: 'json' })) || null;
+}
+async function deleteVerifyCode(code) {
+  await store().delete(`verifications/${code}.json`);
+}
+
+// Sign-in throttle: throttle/{hash}.json -> { count, lastFailAt, lockedUntil }.
+async function getLoginThrottle(key) {
+  return (await store().get(`throttle/${hashEmail(key)}.json`, { type: 'json' })) || null;
+}
+async function saveLoginThrottle(key, info) {
+  await store().setJSON(`throttle/${hashEmail(key)}.json`, info);
+}
+async function clearLoginThrottle(key) {
+  await store().delete(`throttle/${hashEmail(key)}.json`);
+}
+
 // Purchase confirmation emails: one marker per Checkout Session, written
 // after a successful send so webhook retries never email twice.
 async function hasSentPurchaseEmail(sessionId) {
@@ -317,6 +374,14 @@ module.exports = {
   getTokenByEmail,
   setTokenForEmail,
   getOrCreateCustomerByEmail,
+  getOrCreateCustomerForPurchase,
+  isUnconfirmedFreeSignup,
+  saveVerifyCode,
+  getVerifyCode,
+  deleteVerifyCode,
+  getLoginThrottle,
+  saveLoginThrottle,
+  clearLoginThrottle,
   linkStripeCustomer,
   getTokenByStripeCustomer,
   linkSubscription,

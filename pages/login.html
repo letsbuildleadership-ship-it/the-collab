@@ -314,6 +314,15 @@
   var params = new URLSearchParams(location.search);
   var resetCode = params.get('reset');
   if (resetCode) { history.replaceState({}, '', location.pathname); show('reset'); }
+  var verifyCode = params.get('verify');
+  if (verifyCode) {
+    history.replaceState({}, '', location.pathname);
+    $('login-intro').textContent = 'Confirming your email…';
+    post('verify-email', { code: verifyCode }).then(function (res) {
+      if (res.ok) { $('login-intro').textContent = 'Email confirmed. Taking you to your account…'; setTimeout(function () { location.href = ACCOUNT; }, 900); }
+      else $('login-intro').textContent = res.data.error || 'This confirmation link did not work. Sign in and choose Send it again.';
+    });
+  }
   else if (location.hash === '#forgot-password') show('forgot');
   else if (location.hash === '#forgot-username') show('username');
   else if (location.hash === '#join') show('join');

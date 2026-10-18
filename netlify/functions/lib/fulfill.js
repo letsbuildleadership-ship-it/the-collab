@@ -102,7 +102,7 @@ async function fulfillCheckoutSession(session, priceIds) {
   const email = (session.customer_details && session.customer_details.email) || session.customer_email;
   if (!email) return null;
 
-  const { token, record } = await store.getOrCreateCustomerByEmail(email);
+  const { token, record } = await store.getOrCreateCustomerForPurchase(email);
 
   if (session.customer && !record.stripeCustomerId) {
     record.stripeCustomerId = session.customer;
