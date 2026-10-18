@@ -15,7 +15,8 @@
 #   STRIPE_SECRET_KEY     live secret key for the Co.LLab™ Stripe account
 #   STRIPE_WEBHOOK_SECRET signing secret for the "The Co.LLab website" webhook
 #                         endpoint (Stripe dashboard -> Developers -> Webhooks)
-#   ADMIN_TOKEN           bearer token the owner uses to sign in at /admin/customers.html
+#   ADMIN_TOKEN           the owner's token (signs the owner in)
+#   ADMIN_ENTRY           private address segment for owner sign-in; owner pages look like a missing page without it
 #                         (also gates admin-test-checkout.js's $1 test purchases)
 #
 # Optional environment variables:
@@ -163,12 +164,6 @@
 [[redirects]]
   from = "/pages/directory.html"
   to = "/pages/collaborating-companies.html"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/admin/directory.html"
-  to = "/admin/collaborating-companies.html"
   status = 301
   force = true
 
