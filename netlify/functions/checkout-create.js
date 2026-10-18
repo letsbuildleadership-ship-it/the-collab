@@ -115,6 +115,10 @@ exports.handler = async (event) => {
       sessionParams.customer_email = record.email;
     }
 
+    if (resolved.mode === 'payment' && record && record.email) {
+      sessionParams.payment_intent_data = { receipt_email: record.email };
+    }
+
     if (applyFounderDiscount) {
       sessionParams.discounts = [{ coupon: FOUNDER_COUPON_ID }];
     } else if (pricing.entryForKey(key).kind !== 'partnership') {
