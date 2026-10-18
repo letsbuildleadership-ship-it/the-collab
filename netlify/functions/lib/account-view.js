@@ -112,7 +112,7 @@ function buildAccountView(record, now) {
     // Free tools: open to every member, free or paid.
     freeTools,
     // Guided quests: status per quest key (draft / done) for the portal cards and report list.
-    // Paid members (a paid product or a membership) can list their company in the Directory.
+    // Companies that license Co.LLab™ IP or hold a Membership can join the Collaborating Companies.
     directoryEligible: require('./directory').isEligible(record),
     questKeys: [...questLib.quests.keys()],
     quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),

@@ -54,7 +54,7 @@ test('validation: https only, real hosts, needs a way to reach the company, one 
   assert.equal(validateListing({ ...good, directions: ['Businesses', 'Creators', 'Capital', 'People'] }).listing.directions.length, 3);
 });
 
-test('listing is a paid-member benefit: free accounts cannot list, paid members can', async () => {
+test('joining is part of a license or Membership: free accounts cannot join, license holders can', async () => {
   const free = await freeMember('free@example.com');
   assert.equal(JSON.parse((await call(free, 'GET', null, { mine: '1' })).body).eligible, false);
   assert.equal((await call(free, 'POST', good)).statusCode, 403);
@@ -76,7 +76,7 @@ test('nothing is public until approved; the public view hides account details; e
   assert.equal(rows.length, 1);
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'rejected' })).statusCode, 400, 'rejection needs a note');
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'approved' })).statusCode, 200);
-  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /listed in the Omnidirectional Enterprise/.test(m.text)));
+  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /joined the Collaborating Companies/.test(m.text)));
 
   const pub = JSON.parse((await call(null, 'GET')).body);
   assert.equal(pub.listings.length, 1);

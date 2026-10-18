@@ -1,4 +1,4 @@
-// Owner-only review of Directory listings: approve or reject, with a note the
+// Owner-only review of Collaborating Companies pages: approve or reject, with a note the
 // member sees. Approving or rejecting emails the member.
 const store = require('./lib/store');
 const { json } = require('./lib/http');
@@ -36,12 +36,12 @@ exports.handler = async (event) => {
       const record = token && (await store.getCustomerByToken(token));
       if (record && record.email) {
         const text = status === 'approved'
-          ? `Your company, ${item.companyName}, is now listed in the Omnidirectional Enterprise™ Directory: https://wearethellab.netlify.app/pages/directory.html`
-          : `Your Directory listing for ${item.companyName} needs a change before it can appear:\n\n${note}\n\nEdit it here: https://wearethellab.netlify.app/pages/directory.html`;
-        await sendMail({ to: record.email, subject: status === 'approved' ? 'You are listed in the Directory' : 'Your Directory listing needs a change', text, html: `<pre style="font-family:inherit;white-space:pre-wrap">${text.replace(/</g, '&lt;')}</pre>` });
+          ? `Your company, ${item.companyName}, has joined the Collaborating Companies in the Omnidirectional Enterprise™: https://wearethellab.netlify.app/pages/collaborating-companies.html`
+          : `Your Collaborating Companies page for ${item.companyName} needs a change before it can appear:\n\n${note}\n\nEdit it here: https://wearethellab.netlify.app/pages/collaborating-companies.html`;
+        await sendMail({ to: record.email, subject: status === 'approved' ? 'Welcome to the Collaborating Companies' : 'Your Collaborating Companies page needs a change', text, html: `<pre style="font-family:inherit;white-space:pre-wrap">${text.replace(/</g, '&lt;')}</pre>` });
       }
     } catch (err) {
-      console.error('Directory decision email failed:', err.message);
+      console.error('Collaborating Companies decision email failed:', err.message);
     }
   }
   return json(200, { ok: true });
