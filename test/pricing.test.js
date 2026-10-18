@@ -15,7 +15,7 @@ test('every one-time product has a unique stripe_price_id, payment_link, and pdf
     seenPrices.add(p.stripe_price_id);
     seenLinks.add(p.payment_link);
   }
-  assert.equal(pricing.registry.products.length, 19, 'expected 9 leadership phase products + 6 creator infrastructure products + 4 founders tiers');
+  assert.equal(pricing.registry.products.length, 20, 'expected 9 leadership phase products + 7 creator infrastructure products + 4 founders tiers');
 });
 
 test('keyForPriceId resolves every registered price back to its product/membership key', () => {
@@ -49,9 +49,9 @@ test('Membership unlocks the full one-time catalog; Library Card and Journal do 
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
 
-test('allCatalogProductKeys returns all one-time products (9 leadership IV-phase + 6 creator infrastructure + 4 Founders tiers)', () => {
+test('allCatalogProductKeys returns all one-time products (9 leadership IV-phase + 7 creator infrastructure + 4 Founders tiers)', () => {
   const keys = pricing.allCatalogProductKeys();
-  assert.equal(keys.length, 19);
+  assert.equal(keys.length, 20);
   assert.ok(keys.includes('strength-map'));
   assert.ok(keys.includes('legacy-architecture'));
   assert.ok(keys.includes('friends-family'));
@@ -59,6 +59,18 @@ test('allCatalogProductKeys returns all one-time products (9 leadership IV-phase
   assert.ok(keys.includes('founder'));
   assert.ok(keys.includes('creator-identity-map'));
   assert.ok(keys.includes('creator-legacy-architecture'));
+  assert.ok(keys.includes('creator-website-blueprint'));
+});
+
+test('Creator Website Blueprint is $100, delivered as a PDF, and kept off the public path', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const root = path.join(__dirname, '..');
+  const entry = pricing.entryForKey('creator-website-blueprint');
+  assert.equal(entry.price_display, '$100');
+  assert.equal(pricing.keyForPriceId(entry.stripe_price_id), 'creator-website-blueprint');
+  assert.ok(fs.existsSync(path.join(root, 'content', 'library', entry.pdf_file)), 'PDF exists for the download function');
+  assert.match(fs.readFileSync(path.join(root, 'netlify.toml'), 'utf8'), /from = "\/content\/library\/creator-website-blueprint\.pdf"[\s\S]*?force = true/);
 });
 
 test('bonus product infrastructure-roadmap resolves via entryForKey', () => {

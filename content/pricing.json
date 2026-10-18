@@ -154,6 +154,18 @@
       "description": "A practical 30-day plan for turning your creative practice into a venture."
     },
     {
+      "key": "creator-website-blueprint",
+      "line": "creator",
+      "name": "Creator Website Blueprint™",
+      "phase": "Phase II · Infrastructure Planning & Management",
+      "phase_key": "infrastructure-planning",
+      "price_display": "$100",
+      "stripe_price_id": "price_1URr0bAK6n3ctuR9CKLBYIUH",
+      "payment_link": "https://buy.stripe.com/fZudR8cj4gEB3dpgto9ws1m",
+      "pdf_file": "creator-website-blueprint.pdf",
+      "description": "A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. An iPhone edition and a computer edition."
+    },
+    {
       "key": "creator-operating-system",
       "line": "creator",
       "name": "The Creator Operating System™",

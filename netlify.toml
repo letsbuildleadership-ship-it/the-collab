@@ -154,3 +154,10 @@
   to = "/404.html"
   status = 404
   force = true
+
+# Paid file: delivered only by the download function after a purchase.
+[[redirects]]
+  from = "/content/library/creator-website-blueprint.pdf"
+  to = "/404"
+  status = 404
+  force = true
