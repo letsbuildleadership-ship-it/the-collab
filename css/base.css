@@ -21,9 +21,9 @@
 
   /* fire "filament" accent — red to orange, for emphasis against base type */
   --filament-1: #ff2e12;
-  --filament-2: #ff8a1f;
+  --filament-2: #ff6a2e;
   --filament-1-rgb: 255, 46, 18;
-  --filament-2-rgb: 255, 138, 31;
+  --filament-2-rgb: 255, 106, 46;
   --filament: linear-gradient(90deg, var(--filament-1), var(--filament-2));
 
   /* hot "ember" accent — deep glowing red to orange, for rare emphasis */
@@ -1975,7 +1975,7 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .fm-name { color: var(--filament-2); font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
 .fm-dots { display: contents; }
 .fm-dots i { justify-self: center; width: 1.15rem; height: 1.15rem; border-radius: 50%; border: 1px solid var(--hairline-strong); }
-.fm-dots i.on { background: linear-gradient(135deg, #ff2e12, #ff8a1f); border-color: var(--filament-2); box-shadow: 0 0 12px rgba(255, 96, 46, 0.55); }
+.fm-dots i.on { background: linear-gradient(135deg, #ff2e12, #ff6a2e); border-color: var(--filament-2); box-shadow: 0 0 12px rgba(255, 96, 46, 0.55); }
 .fm-nodes { display: none; }
 .fm-slogan { color: var(--paper); font-size: 0.95rem; line-height: 1.4; padding-left: 0.6rem; }
 @media (max-width: 960px) {
@@ -2014,14 +2014,14 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .ad-headline strong { color: #ff4a3a; text-shadow: 0 0 28px rgba(255, 46, 18, 0.65); }
 .ad-sub { margin: 1.25rem 0 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 600; max-width: 36ch; }
 .ad-table { width: 100%; margin-top: 2.5rem; border-collapse: separate; border-spacing: 0 0.6rem; display: table; }
-.ad-table thead th { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.1rem; text-align: left; }
+.ad-table thead th { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.1rem; text-align: left; }
 .ad-table tbody th, .ad-table tbody td { background: rgba(255, 255, 255, 0.05); padding: 1rem 1.1rem; vertical-align: middle; border-top: 1px solid var(--hairline-strong); border-bottom: 1px solid var(--hairline-strong); }
 .ad-table tbody th { border-left: 4px solid #ff4a3a; width: 24%; text-align: left; }
 .ad-table tbody td:last-child { border-right: 1px solid var(--hairline-strong); }
 .ad-table tbody tr:hover th, .ad-table tbody tr:hover td { background: rgba(255, 74, 58, 0.14); }
 .ad-table tbody th a { display: inline-block; background: #c8200f; color: #fff; font-weight: 800; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.2; padding: 0.4em 0.75em; border-radius: 6px; box-shadow: 0 0 18px rgba(255, 46, 18, 0.55); }
 .at-nodes { width: 32%; }
-.at-nodes span { display: inline-block; margin: 0.2rem 0.3rem 0.2rem 0; padding: 0.3em 0.75em; border-radius: 999px; background: linear-gradient(135deg, #ff8a1f, #ffb347); color: #000; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.at-nodes span { display: inline-block; margin: 0.2rem 0.3rem 0.2rem 0; padding: 0.3em 0.75em; border-radius: 999px; background: linear-gradient(135deg, #ff6a2e, #ff6a2e); color: #000; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .at-idea { color: #fff; font-size: clamp(1.05rem, 1.5vw, 1.25rem); font-weight: 600; line-height: 1.4; }
 @media (max-width: 860px) {
   .ad-table thead { display: none; }
@@ -2039,32 +2039,45 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .at-nodes span { background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); }
 
 /* About table: page-name tags use the site's orange-to-red gradient and glow (black text keeps AA across the gradient) */
-.ad-table tbody th a { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border-radius: 8px; box-shadow: 0 0 22px rgba(255, 96, 46, 0.85), 0 0 44px rgba(255, 46, 18, 0.4); }
-.ad-table tbody th a:hover, .ad-table tbody th a:focus-visible { color: #000; box-shadow: 0 0 30px rgba(255, 138, 31, 1), 0 0 56px rgba(255, 46, 18, 0.6); }
+.ad-table tbody th a { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border-radius: 8px; box-shadow: 0 0 22px rgba(255, 96, 46, 0.85), 0 0 44px rgba(255, 46, 18, 0.4); }
+.ad-table tbody th a:hover, .ad-table tbody th a:focus-visible { color: #000; box-shadow: 0 0 30px rgba(255, 106, 46, 1), 0 0 56px rgba(255, 46, 18, 0.6); }
 
 /* glowing phase pills (no yellow fills) */
 .fits-phases.phase-glow li.on { background: rgba(255, 46, 18, 0.18); border: 1.5px solid #ff6a2e; color: #fff; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); opacity: 1; }
-.fits-phases.phase-glow li.on b { color: #ff8a1f; }
+.fits-phases.phase-glow li.on b { color: #ff6a2e; }
 
 /* phase pills are links */
 .fits-phases li:has(> a) { padding: 0; }
 .fits-phases li > a { display: flex; align-items: center; gap: 0.5rem; padding: 0.4em 0.9em; color: inherit; text-decoration: none; border-radius: 999px; }
-.fits-phases li:has(> a):hover, .fits-phases li:has(> a:focus-visible) { box-shadow: 0 0 20px rgba(255, 138, 31, 0.9); border-color: #ff8a1f; transform: translateY(-1px); }
+.fits-phases li:has(> a):hover, .fits-phases li:has(> a:focus-visible) { box-shadow: 0 0 20px rgba(255, 106, 46, 0.9); border-color: #ff6a2e; transform: translateY(-1px); }
 .fits-phases li > a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 /* strategy table: every chip and idea line is a link */
 .at-nodes a.at-chip { display: inline-block; margin: 0.2rem 0.3rem 0.2rem 0; padding: 0.3em 0.75em; border-radius: 999px; background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); font-weight: 800; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: box-shadow 0.25s, transform 0.25s; }
-.at-nodes a.at-chip:hover, .at-nodes a.at-chip:focus-visible { box-shadow: 0 0 24px rgba(255, 138, 31, 1), inset 0 0 12px rgba(255, 46, 18, 0.4); transform: translateY(-1px); }
+.at-nodes a.at-chip:hover, .at-nodes a.at-chip:focus-visible { box-shadow: 0 0 24px rgba(255, 106, 46, 1), inset 0 0 12px rgba(255, 46, 18, 0.4); transform: translateY(-1px); }
 .at-idea a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255, 106, 46, 0.7); text-underline-offset: 4px; text-decoration-thickness: 2px; }
-.at-idea a:hover, .at-idea a:focus-visible { text-decoration-color: #ff8a1f; }
+.at-idea a:hover, .at-idea a:focus-visible { text-decoration-color: #ff6a2e; }
 
 /* Top ribbon: same glow aesthetic as the strategy table */
 .model-ribbon li a { background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 12px rgba(255, 96, 46, 0.55), inset 0 0 8px rgba(255, 46, 18, 0.25); }
-.model-ribbon li a:hover, .model-ribbon li a:focus-visible { background: rgba(255, 46, 18, 0.3); border-color: #ff8a1f; box-shadow: 0 0 22px rgba(255, 138, 31, 0.95), inset 0 0 10px rgba(255, 46, 18, 0.4); }
-.model-ribbon li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border-color: #ff8a1f; box-shadow: 0 0 22px rgba(255, 96, 46, 0.9), 0 0 44px rgba(255, 46, 18, 0.4); }
-.model-ribbon .ribbon-join { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border: 0; font-weight: 800; box-shadow: 0 0 20px rgba(255, 96, 46, 0.85), 0 0 40px rgba(255, 46, 18, 0.4); }
-.model-ribbon .ribbon-join:hover, .model-ribbon .ribbon-join:focus-visible { box-shadow: 0 0 28px rgba(255, 138, 31, 1), 0 0 54px rgba(255, 46, 18, 0.6); color: #000; }
+.model-ribbon li a:hover, .model-ribbon li a:focus-visible { background: rgba(255, 46, 18, 0.3); border-color: #ff6a2e; box-shadow: 0 0 22px rgba(255, 106, 46, 0.95), inset 0 0 10px rgba(255, 46, 18, 0.4); }
+.model-ribbon li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border-color: #ff6a2e; box-shadow: 0 0 22px rgba(255, 96, 46, 0.9), 0 0 44px rgba(255, 46, 18, 0.4); }
+.model-ribbon .ribbon-join { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border: 0; font-weight: 800; box-shadow: 0 0 20px rgba(255, 96, 46, 0.85), 0 0 40px rgba(255, 46, 18, 0.4); }
+.model-ribbon .ribbon-join:hover, .model-ribbon .ribbon-join:focus-visible { box-shadow: 0 0 28px rgba(255, 106, 46, 1), 0 0 54px rgba(255, 46, 18, 0.6); color: #000; }
 .model-ribbon .ribbon-label { text-shadow: 0 0 14px rgba(255, 96, 46, 0.7); }
 .model-ribbon li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff6a2e); border-color: #ff6a2e; }
 .model-ribbon ul { padding: 8px 6px 12px; margin: -8px -6px -12px; }
 .model-ribbon ul li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border-color: #ff6a2e; box-shadow: 0 0 22px rgba(255, 96, 46, 0.9), 0 0 44px rgba(255, 46, 18, 0.4); }
+
+/* One aesthetic site-wide: red-to-orange gradient with glow for solid buttons; glowing translucent pills for chips */
+.pill--solid, .pill--accent, .price-btn--solid, .partner-card .price-btn--solid, .offer-card .price-btn--solid, a.pill--solid, a.price-btn--solid {
+  background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border-color: transparent; font-weight: 800;
+  box-shadow: 0 0 18px rgba(255, 96, 46, 0.7), 0 0 36px rgba(255, 46, 18, 0.3);
+}
+.pill--solid:hover, .pill--accent:hover, .price-btn--solid:hover, .partner-card .price-btn--solid:hover, .offer-card .price-btn--solid:hover {
+  background: linear-gradient(90deg, #ff4a2a, #ff8a4a); color: #000; border-color: transparent;
+  box-shadow: 0 0 28px rgba(255, 106, 46, 1), 0 0 54px rgba(255, 46, 18, 0.55);
+}
+.fits .fits-phases li.on { background: rgba(255, 46, 18, 0.18); border: 1.5px solid #ff6a2e; color: #fff; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); }
+.fits .fits-phases li.on b { color: #ff6a2e; }
+.chip[aria-pressed='true'] { background: rgba(255, 46, 18, 0.18); border: 1.5px solid #ff6a2e; color: #fff; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6); }

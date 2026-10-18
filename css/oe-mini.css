@@ -25,7 +25,7 @@
 
 .oe-link { cursor: pointer; }
 .oe-link circle { transition: stroke .2s ease; }
-.oe-link:hover circle { stroke: #ff8a1f; stroke-opacity: 1; }
+.oe-link:hover circle { stroke: #ff6a2e; stroke-opacity: 1; }
 .oem-sub { font: 600 15px var(--font); letter-spacing: 0.2em; fill: var(--filament-2); }
 
 /* compact "Where this fits" strip under each hero */

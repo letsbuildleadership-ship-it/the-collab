@@ -154,7 +154,7 @@
 /* clickable nodes */
 .oe-link { cursor: pointer; }
 .oe-link circle { transition: stroke .2s ease, fill .2s ease; }
-.oe-link:hover circle, .oe-link:focus-visible circle { stroke: #ff8a1f; stroke-opacity: 1; }
+.oe-link:hover circle, .oe-link:focus-visible circle { stroke: #ff6a2e; stroke-opacity: 1; }
 .oe-link:focus-visible { outline: none; }
 .oe-nodes li a { display: flex; flex-direction: column; gap: 0.4rem; color: inherit; text-decoration: none; }
 
