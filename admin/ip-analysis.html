@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IP Analysis — The Co.LLab™ Admin</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<style>
+  body { padding: 2.5rem clamp(1.25rem, 4vw, 3rem); }
+  #gate { max-width: 420px; margin: 8rem auto; text-align: center; }
+  #app { display: none; max-width: 1100px; margin: 0 auto; }
+  input, select, textarea { background: transparent; border: 1px solid var(--hairline-strong); border-radius: 8px; padding: 0.5em 0.8em; color: var(--white); font-family: var(--font); }
+  .row { border: 1px solid var(--hairline-strong); border-radius: 14px; padding: 1rem 1.2rem; margin-top: 1rem; }
+  .row.is-new { border-color: #ff6a2e; }
+  .row h3 { margin: 0 0 .3rem; font-size: 1.05rem; }
+  .meta { color: var(--white-faint); font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .why { color: var(--white-dim); line-height: 1.55; margin: .5rem 0; }
+  .decide { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: .6rem; }
+  .decide textarea { flex: 1; min-width: 220px; min-height: 2.6em; }
+  .badge { display: inline-block; padding: .15em .7em; border-radius: 999px; font-size: .75rem; font-weight: 800; border: 1px solid var(--hairline-strong); }
+  .badge.new { background: rgba(255,46,18,.18); border-color: #ff6a2e; color: #fff; }
+  .insight { margin: .5rem 0; color: var(--white-dim); line-height: 1.55; }
+  .bars { display: grid; gap: .5rem; margin: .8rem 0; }
+  .bar { display: grid; grid-template-columns: 220px 1fr 50px; gap: .8rem; align-items: center; color: var(--white-dim); font-size: .9rem; }
+  .bar > i { display: block; height: 10px; border-radius: 999px; background: linear-gradient(90deg, #ff6a2e, #ff2e12); }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .85rem; }
+  th, td { text-align: left; padding: .6em .8em; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  th { color: var(--white-faint); text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; }
+  .scroll { overflow-x: auto; }
+  .sev-high { border-color: #ff2e12; background: rgba(255,46,18,.18); color: #fff; }
+  .tools { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1rem 0; align-items: center; }
+  .chip { cursor: pointer; border: 1px solid var(--hairline-strong); background: transparent; color: var(--white); border-radius: 999px; padding: .4em 1em; font: inherit; font-weight: 700; }
+  .chip[aria-pressed="true"] { background: rgba(255,46,18,.18); border-color: #ff6a2e; }
+  .qlist { margin: .6rem 0 0; padding-left: 1.2rem; color: var(--white-dim); line-height: 1.5; }
+  @media (max-width: 720px) { .bar { grid-template-columns: 120px 1fr 40px; } }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <p class="eyebrow" style="justify-content:center;">Owner access only</p>
+  <h1 class="headline" style="margin-top:1.25rem;">IP analysis sign-in</h1>
+  <form id="gate-form" style="display:flex; gap:0.6rem; margin-top:1.5rem;">
+    <input id="gate-input" type="password" placeholder="Admin token" style="flex:1;" />
+    <button type="submit" class="pill pill--solid">Enter</button>
+  </form>
+  <p id="gate-error" style="display:none; margin-top:1rem; color: var(--ember-2); font-size:0.85rem;">Invalid token.</p>
+</div>
+
+<div id="app">
+  <p class="eyebrow">The Co.LLab™ Admin</p>
+  <h1 class="headline" style="margin-top:1rem;">IP Analysis</h1>
+  <p class="subhead" style="margin-top:0.75rem;">Review all of the IP and run the analysis. It checks how each guided IP is built against The IV Phases™ and the Omnidirectional Enterprise™, how members actually use it (anonymous counts), and what members told you, then ranks what to improve. Every recommendation stays <span class="badge new">new</span> until you decide on it.</p>
+  <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
+  <div class="tools">
+    <button type="button" class="pill pill--solid" id="run">Run analysis</button>
+    <button type="button" class="pill mini" id="dl-csv">Download IP catalog (CSV)</button>
+    <button type="button" class="pill mini" id="dl-json">Download full analysis (JSON)</button>
+    <span class="meta" id="stamp"></span>
+  </div>
+  <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="ip-feedback.html">Feedback &amp; ideas</a> <a class="pill mini" href="collaborating-companies.html">Collaborating Companies</a></p>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">The portfolio</h2>
+  <p class="why">How the IP as a whole is balanced.</p>
+  <h3 class="meta">Guided prompts per phase (all IP)</h3><div class="bars" id="phase-bars"></div>
+  <h3 class="meta">Prompts reaching each Omnidirectional Enterprise™ direction (all IP)</h3><div class="bars" id="oe-bars"></div>
+  <h3 class="meta">IP by line and phase</h3><div class="scroll"><table><thead id="matrix-head"></thead><tbody id="matrix-body"></tbody></table></div>
+  <p class="why" id="usage-note"></p>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">What to improve</h2>
+  <div class="tools" id="filters"></div>
+  <div id="recs"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">All IP</h2>
+  <p class="why">Every guided IP. "Read questions" shows the full question set exactly as members see it.</p>
+  <div class="scroll"><table><thead><tr><th>IP</th><th>Kind</th><th>Phase</th><th>Price</th><th>Questions</th><th>Per phase</th><th>Started</th><th>Finished</th><th>Feedback</th><th></th></tr></thead><tbody id="catalog"></tbody></table></div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'collab_admin_token';
+  const STATUSES = ['new', 'considering', 'planned', 'done', 'declined'];
+  const PHASES = ['Foundations', 'Infrastructure Planning & Management', 'Internal Operating Systems', 'Preservation'];
+  const $ = (id) => document.getElementById(id);
+  const token = () => sessionStorage.getItem(KEY) || '';
+  let data = null;
+  let filter = 'All';
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
+
+  async function api(method, body, qs) {
+    const res = await fetch('/.netlify/functions/admin-ip-analysis' + (qs || ''), { method, headers: { 'X-Admin-Token': token(), 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+    if (res.status === 401) { sessionStorage.removeItem(KEY); $('gate').style.display = 'block'; $('app').style.display = 'none'; throw new Error('Unauthorized'); }
+    return res.json();
+  }
+
+  function bars(id, rows) {
+    const box = $(id); box.textContent = '';
+    const max = Math.max(1, ...rows.map((r) => r[1]));
+    rows.forEach(([name, n]) => {
+      const row = el('div', 'bar');
+      row.appendChild(el('span', null, name));
+      const bar = el('i'); bar.style.width = Math.max(2, Math.round((n / max) * 100)) + '%';
+      row.appendChild(bar);
+      row.appendChild(el('span', null, String(n)));
+      box.appendChild(row);
+    });
+  }
+
+  function decideRow(r) {
+    const box = el('div', 'decide');
+    const sel = el('select');
+    STATUSES.forEach((s) => { const o = el('option', null, s); o.value = s; if (s === r.status) o.selected = true; sel.appendChild(o); });
+    const note = el('textarea'); note.placeholder = 'Note (required if declined)'; note.value = r.note || '';
+    const save = el('button', 'pill mini', 'Save decision'); save.type = 'button';
+    const msg = el('span', 'meta');
+    save.addEventListener('click', async () => {
+      msg.textContent = 'Saving…';
+      const res = await api('POST', { id: r.id, status: sel.value, note: note.value });
+      msg.textContent = res.error || 'Saved';
+      if (!res.error) run();
+    });
+    box.append(sel, note, save, msg);
+    return box;
+  }
+
+  function renderRecs() {
+    const box = $('recs'); box.textContent = '';
+    const fl = $('filters'); fl.textContent = '';
+    ['All', 'New', 'High', 'Content', 'Usage', 'Feedback'].forEach((f) => {
+      const b = el('button', 'chip', f); b.type = 'button'; b.setAttribute('aria-pressed', String(f === filter));
+      b.addEventListener('click', () => { filter = f; renderRecs(); });
+      fl.appendChild(b);
+    });
+    const rows = data.recommendations.filter((r) => filter === 'All' || (filter === 'New' && r.status === 'new') || (filter === 'High' && r.severity === 'high') || r.source === filter.toLowerCase());
+    if (!rows.length) box.appendChild(el('p', 'why', 'Nothing here.'));
+    rows.forEach((r) => {
+      const row = el('div', 'row' + (r.status === 'new' ? ' is-new' : ''));
+      const h = el('h3', null, r.ip + ' ');
+      h.appendChild(el('span', 'badge ' + (r.severity === 'high' ? 'sev-high' : ''), r.severity));
+      h.appendChild(document.createTextNode(' '));
+      h.appendChild(el('span', 'badge ' + (r.status === 'new' ? 'new' : ''), r.status));
+      row.appendChild(h);
+      row.appendChild(el('div', 'meta', r.source));
+      row.appendChild(el('p', 'why', r.text));
+      if (r.evidence) { const p = el('p', 'why'); p.appendChild(el('strong', null, 'Evidence: ')); p.appendChild(document.createTextNode(r.evidence)); row.appendChild(p); }
+      row.appendChild(decideRow(r));
+      box.appendChild(row);
+    });
+  }
+
+  function renderCatalog() {
+    const body = $('catalog'); body.textContent = '';
+    data.catalog.forEach((i) => {
+      const tr = el('tr');
+      [i.title, i.kind, i.phase || '', i.price || '', i.questions ? String(i.questions) : 'no guided quest yet', i.audit ? i.audit.phaseCounts.join(' / ') : '', i.audit ? String(i.usage.started) : '', i.audit ? (i.usage.started ? Math.round((i.usage.completionRate || 0) * 100) + '%' : '') : '', i.feedback.total ? i.feedback.total + (i.feedback.unclear ? ' (' + i.feedback.unclear + ' unclear)' : '') : ''].forEach((t) => tr.appendChild(el('td', null, t)));
+      const td = el('td');
+      if (i.audit) {
+        const b = el('button', 'pill mini', 'Read questions'); b.type = 'button';
+        b.addEventListener('click', async () => {
+          const next = tr.nextSibling;
+          if (next && next.classList && next.classList.contains('qrow')) { next.remove(); return; }
+          const r = await api('GET', null, '?quest=' + encodeURIComponent(i.key));
+          if (r.error) return;
+          const row = el('tr', 'qrow'); const cell = el('td'); cell.colSpan = 10;
+          let last = null; let ol = null;
+          r.quest.nodes.forEach((n) => {
+            if (n.section && n.section !== last) { last = n.section; cell.appendChild(el('p', 'meta', n.section)); ol = el('ol', 'qlist'); cell.appendChild(ol); }
+            if (!ol) { ol = el('ol', 'qlist'); cell.appendChild(ol); }
+            const li = el('li', null, (n.label ? n.label + ': ' : '') + n.prompt + (n.options ? ' [' + n.options.join(', ') + ']' : ''));
+            ol.appendChild(li);
+          });
+          cell.appendChild(el('p', 'meta', 'Closing'));
+          const o2 = el('ol', 'qlist'); o2.appendChild(el('li', null, r.quest.closing.prompt)); cell.appendChild(o2);
+          row.appendChild(cell); tr.after(row);
+        });
+        td.appendChild(b);
+      }
+      tr.appendChild(td);
+      body.appendChild(tr);
+    });
+  }
+
+  function render() {
+    $('awaiting').textContent = data.awaiting ? data.awaiting + ' recommendation' + (data.awaiting === 1 ? '' : 's') + ' awaiting your decision.' : 'Every recommendation has a decision.';
+    $('stamp').textContent = 'Analysis run ' + new Date(data.generatedAt).toLocaleString();
+    bars('phase-bars', PHASES.map((p, i) => [p, data.portfolio.phaseTotals[i]]));
+    bars('oe-bars', data.portfolio.oe.map((o) => [o.name, o.prompts]));
+    const head = $('matrix-head'); head.textContent = '';
+    const hr = el('tr'); hr.appendChild(el('th', null, 'Line')); PHASES.forEach((p) => hr.appendChild(el('th', null, p))); head.appendChild(hr);
+    const mb = $('matrix-body'); mb.textContent = '';
+    Object.entries(data.portfolio.matrix).forEach(([line, counts]) => { const tr = el('tr'); tr.appendChild(el('td', null, line === 'core' ? '.LLab (core)' : line)); counts.forEach((c) => tr.appendChild(el('td', null, String(c)))); mb.appendChild(tr); });
+    $('usage-note').textContent = 'Member activity: ' + data.insights.note;
+    renderRecs();
+    renderCatalog();
+  }
+
+  function download(name, type, text) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type }));
+    a.download = name; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  async function run() {
+    $('stamp').textContent = 'Running…';
+    data = await api('GET');
+    render();
+  }
+
+  $('run').addEventListener('click', run);
+  $('dl-json').addEventListener('click', () => data && download('ip-analysis.json', 'application/json', JSON.stringify(data, null, 2)));
+  $('dl-csv').addEventListener('click', () => {
+    if (!data) return;
+    const q = (v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+    const rows = [['IP', 'Kind', 'Line', 'Phase', 'Price', 'Questions', 'Foundations', 'Planning', 'Operating', 'Preservation', 'Started', 'Finished', 'Feedback', 'Unclear flags']];
+    data.catalog.forEach((i) => rows.push([i.title, i.kind, i.line, i.phase, i.price, i.questions, ...(i.audit ? i.audit.phaseCounts : ['', '', '', '']), i.usage.started, i.usage.completed, i.feedback.total, i.feedback.unclear]));
+    download('ip-catalog.csv', 'text/csv', rows.map((r) => r.map(q).join(',')).join('\n'));
+  });
+
+  $('gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = $('gate-input').value.trim();
+    if (!v) return;
+    sessionStorage.setItem(KEY, v);
+    try { await run(); $('gate').style.display = 'none'; $('app').style.display = 'block'; } catch (err) { $('gate-error').style.display = 'block'; }
+  });
+  if (token()) run().then(() => { $('gate').style.display = 'none'; $('app').style.display = 'block'; }).catch(() => {});
+})();
+</script>
+</body>
+</html>
