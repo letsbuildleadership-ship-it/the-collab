@@ -13,12 +13,12 @@ const analysis = require('../netlify/functions/admin-ip-analysis');
 const customers = require('../netlify/functions/admin-customers');
 const auth = require('../netlify/functions/lib/admin-auth');
 
-test.beforeEach(() => { fakeStore.reset(); process.env.ADMIN_TOKEN = 'owner-secret-token'; });
-test.afterEach(() => { delete process.env.ADMIN_TOKEN; });
+test.beforeEach(() => { fakeStore.reset(); process.env.ADMIN_TOKEN = 'owner-secret-token'; process.env.ADMIN_ENTRY = 'entrykey123'; });
+test.afterEach(() => { delete process.env.ADMIN_TOKEN; delete process.env.ADMIN_ENTRY; });
 
 const signIn = (token, ip = '1.2.3.4') => session.handler({ httpMethod: 'POST', headers: { 'x-nf-client-connection-ip': ip }, body: JSON.stringify({ token }) });
 const cookieOf = (res) => res.headers['Set-Cookie'].split(';')[0];
-const getPage = (name, cookie) => page.handler({ httpMethod: 'GET', headers: cookie ? { cookie } : {}, queryStringParameters: { p: name } });
+const getPage = (name, cookie, enter) => page.handler({ httpMethod: 'GET', headers: cookie ? { cookie } : {}, queryStringParameters: { p: enter ? `${enter}/${name}` : name } });
 
 test('only the owner token opens a session; the cookie is HttpOnly, Secure and SameSite=Strict', async () => {
   assert.equal((await signIn('nope')).statusCode, 401);
@@ -35,16 +35,36 @@ test('guessing is limited: seven wrong tries lock that address', async () => {
   assert.equal((await signIn('owner-secret-token', '8.8.8.8')).statusCode, 200, 'other addresses are unaffected');
 });
 
-test('owner pages are not public: no session gets only a sign-in form', async () => {
-  const anon = await getPage('ip-analysis.html');
-  assert.equal(anon.statusCode, 200);
-  assert.match(anon.body, /Owner sign-in/);
-  assert.equal(anon.body.includes('IP Analysis'), false);
-  assert.equal((await getPage('ip-analysis.html', 'collab_admin=1.abc')).body.includes('IP Analysis'), false, 'a forged cookie is not accepted');
-  assert.equal((await getPage('config.yml')).statusCode, 401);
+test('owner pages are invisible: without a session every address looks like a page that does not exist', async () => {
+  for (const name of ['', 'index.html', 'ip-analysis.html', 'customers.html', 'config.yml', 'nothing.html']) {
+    const r = await getPage(name);
+    assert.equal(r.statusCode, 404, name || '(root)');
+    assert.match(r.body, /Page Not Found/);
+    assert.equal(r.body.includes('Owner'), false);
+    assert.equal(r.body.includes('IP Analysis'), false);
+  }
+  assert.equal((await getPage('ip-analysis.html', 'collab_admin=1.abc')).statusCode, 404, 'a forged cookie gets nothing');
+  assert.equal((await getPage('ip-analysis.html', null, 'wrong-key')).statusCode, 404, 'a wrong entry key gets nothing');
+});
+
+test('the sign-in form appears only at the private entry address, then the page opens', async () => {
+  const form = await getPage('ip-analysis.html', null, 'entrykey123');
+  assert.equal(form.statusCode, 200);
+  assert.match(form.body, /Owner sign-in/);
+  assert.match(form.body, /location\.replace\('\/admin\/ip-analysis\.html'\)/);
+  assert.equal(form.body.includes('IP Analysis'), false);
+  assert.equal((await getPage('config.yml', null, 'entrykey123')).statusCode, 404);
+
+  delete process.env.ADMIN_ENTRY;
+  assert.equal((await getPage('ip-analysis.html', null, 'entrykey123')).statusCode, 404, 'with no entry key configured the form never appears');
+  process.env.ADMIN_ENTRY = 'entrykey123';
 
   const cookie = cookieOf(await signIn('owner-secret-token'));
+  const viaEntry = await getPage('ip-analysis.html', cookie, 'entrykey123');
+  assert.equal(viaEntry.statusCode, 302, 'a signed-in owner on the entry address is sent to the clean page address');
+  assert.equal(viaEntry.headers.Location, '/admin/ip-analysis.html');
   const real = await getPage('ip-analysis.html', cookie);
+  assert.equal(real.statusCode, 200);
   assert.match(real.body, /IP Analysis/);
   assert.match(real.headers['X-Robots-Tag'], /noindex/);
   assert.equal(real.headers['Cache-Control'], 'private, no-store');

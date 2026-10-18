@@ -9,7 +9,7 @@ Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
 
 ## Members & owner tools
-Owner pages are private: `/admin/*` is served by `netlify/functions/admin-page.js` only to a signed-in owner session (token -> signed cookie); never add static admin files outside that route.
+Owner pages are private: `/admin/*` is served by `netlify/functions/admin-page.js` only to a signed-in owner session (token -> signed cookie) and looks like a missing page to everyone else; the owner signs in at the private entry address `/admin/<ADMIN_ENTRY>/<page>` (ADMIN_ENTRY lives in Netlify env, never in code). Never add static admin files outside that route.
 Portal quests (`content/quests`, `netlify/functions/quest.js`) · Collaborating Companies (`pages/collaborating-companies.html`, part of a license/Membership, owner-approved) · owner pages `admin/customers.html`, `admin/ip-feedback.html` (IP review: feedback + ideas + weekly email, nothing left undecided) · `admin/ip-analysis.html` (review all IP, run the analysis, decide on each recommendation), `admin/collaborating-companies.html`.
 
 ## Page pattern (luxury / shopping-site style)
