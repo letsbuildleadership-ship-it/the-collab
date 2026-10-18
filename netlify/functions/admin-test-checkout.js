@@ -19,12 +19,7 @@ const { json } = require('./lib/http');
 
 const TEST_CENTS = 100; // $1
 
-function isAuthorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false; // fail closed if the owner hasn't set one yet
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: isAuthorized } = require('./lib/admin-auth');
 
 function siteOrigin(event) {
   const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.netlify.app';

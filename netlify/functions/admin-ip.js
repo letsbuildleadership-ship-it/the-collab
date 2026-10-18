@@ -8,12 +8,7 @@ const backlog = require('../../content/ip-backlog.json').items;
 
 const STATUSES = ['new', 'considering', 'planned', 'done', 'declined'];
 
-function authorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false;
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: authorized } = require('./lib/admin-auth');
 
 async function load() {
   const [feedback, statuses, customers] = await Promise.all([store.opsList('ip-feedback'), store.opsList('ip-backlog-status'), store.listCustomers()]);

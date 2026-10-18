@@ -38,12 +38,7 @@
 const { json } = require('./lib/http');
 const pricing = require('./lib/pricing');
 
-function isAuthorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false;
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: isAuthorized } = require('./lib/admin-auth');
 
 async function findExistingPromotionCode(stripe, code) {
   const list = await stripe.promotionCodes.list({ code, limit: 1 });

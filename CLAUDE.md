@@ -2,13 +2,14 @@
 Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify publishes `main`, no build step). Strategy: `STRATEGY.md`. State: `PROJECT_CHECKPOINT.md`.
 
 ## Commands
-`npm test` (176 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
+`npm test` (183 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
 
 ## Map
 `index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology,  · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
 
 ## Members & owner tools
+Owner pages are private: `/admin/*` is served by `netlify/functions/admin-page.js` only to a signed-in owner session (token -> signed cookie); never add static admin files outside that route.
 Portal quests (`content/quests`, `netlify/functions/quest.js`) · Collaborating Companies (`pages/collaborating-companies.html`, part of a license/Membership, owner-approved) · owner pages `admin/customers.html`, `admin/ip-feedback.html` (IP review: feedback + ideas + weekly email, nothing left undecided) · `admin/ip-analysis.html` (review all IP, run the analysis, decide on each recommendation), `admin/collaborating-companies.html`.
 
 ## Page pattern (luxury / shopping-site style)
