@@ -777,7 +777,7 @@
     const freeNote = $('free-member-note');
     if (freeNote) freeNote.hidden = data.memberType !== 'free';
     const verifyNote = $('email-verify-note');
-    if (verifyNote) verifyNote.hidden = data.emailVerified !== false;
+    if (verifyNote) verifyNote.hidden = data.emailVerified !== false || data.emailEnabled === false;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
     renderFounderCard(data);
     renderPartnership(data);
