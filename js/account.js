@@ -923,6 +923,7 @@
       reportList.appendChild(card);
     });
     $('quest-reports-group').hidden = !reports.length;
+    $('directory-link').hidden = !data.directoryEligible;
     $('quest-reports-count').textContent = reports.length ? `${reports.length}` : '';
     $('free-tools-count').textContent = toolCount ? `${toolCount}` : '';
 

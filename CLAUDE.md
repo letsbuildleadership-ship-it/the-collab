@@ -2,11 +2,14 @@
 Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify publishes `main`, no build step). Strategy: `STRATEGY.md`. State: `PROJECT_CHECKPOINT.md`.
 
 ## Commands
-`npm test` (168 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
+`npm test` (172 tests) · `npm run photos` (bulk photo intake) · `npm run gallery` (Lookbook page parked; `--force` to rebuild) · `node scripts/build-ads.mjs` · `node scripts/build-partnership-page.mjs` (tier tables from pricing) · `node scripts/build-ip-license.mjs` · `node scripts/generate-pdfs.mjs <key>` (product PDFs) · `node scripts/build-quests.mjs` (free-tool quests) · `node scripts/build-paid-quests.mjs` (15 paid workbook quests, needs pdftotext) · `node scripts/block-paid-files.mjs` (run after adding any paid PDF: blocks it from public download)
 
 ## Map
 `index.html` Home · `pages/*.html` (partnership, founders, products=.LLab, think [framework], journal, about, creator, impact, atelier, community, technology,  · `content/*.json` (CMS copy, `pricing.json` = prices/Stripe) · `css/base.css` (all components at the end) · `js/main.js` · `netlify/functions/` · `assets/img/editorial/` (photos + `manifest.json`) · `marketing/ads/` (generated).
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
+
+## Members & owner tools
+Portal quests (`content/quests`, `netlify/functions/quest.js`) · Company Directory (`pages/directory.html`, paid-member benefit, owner-approved) · owner pages `admin/customers.html`, `admin/ip-feedback.html` (IP review: feedback + ideas + weekly email, nothing left undecided), `admin/directory.html`.
 
 ## Page pattern (luxury / shopping-site style)
 Header → **model ribbon** (the only element repeated site-wide, plus the Home/Think/Partnership model) → hero → the page's own main points + products → **Continue** strip (2 links). **Each product/idea lives on exactly one page; other pages link, never repeat.** Home = hero, problem/solution, big model, 3 path tiles. Removed copy is archived in `docs/archive/removed-blocks.html` (404 on the live site). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.
