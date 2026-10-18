@@ -7,7 +7,7 @@ const path = require('path');
 const { hasSession } = require('./lib/admin-auth');
 const crypto = require('crypto');
 
-const TYPES = { '.html': 'text/html; charset=utf-8', '.yml': 'text/yaml; charset=utf-8' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.yml': 'text/yaml; charset=utf-8', '.pdf': 'application/pdf' };
 const HEADERS = { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow', 'X-Content-Type-Options': 'nosniff' };
 
 function locate(name) {
@@ -42,7 +42,7 @@ exports.handler = async (event) => {
   let entry = false;
   if (parts.length && parts.length <= 2 && process.env.ADMIN_TOKEN && entryKeyOk(parts[0])) { entry = true; parts.shift(); if (!parts.length) parts.push('customers.html'); }
   const name = parts.length ? parts.join('/') : 'index.html';
-  if (!/^[a-z0-9-]+\.(html|yml)$/.test(name)) return notFound();
+  if (!/^[a-z0-9-]+\.(html|yml|pdf)$/.test(name)) return notFound();
 
   if (!hasSession(event)) {
     // Not signed in: the page does not exist, unless it was reached through the private entry address.
@@ -52,5 +52,6 @@ exports.handler = async (event) => {
   if (entry) return { statusCode: 302, headers: { ...HEADERS, Location: `/admin/${name}` }, body: '' };
   const file = locate(name);
   if (!file) return notFound();
+  if (name.endsWith('.pdf')) return { statusCode: 200, isBase64Encoded: true, headers: { ...HEADERS, 'Content-Type': TYPES['.pdf'], 'Content-Disposition': `inline; filename="${name}"` }, body: fs.readFileSync(file).toString('base64') };
   return { statusCode: 200, headers: { ...HEADERS, 'Content-Type': TYPES[path.extname(name)] }, body: fs.readFileSync(file, 'utf8') };
 };
