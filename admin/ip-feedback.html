@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IP Review — The Co.LLab™ Admin</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<style>
+  body { padding: 2.5rem clamp(1.25rem, 4vw, 3rem); }
+  #gate { max-width: 420px; margin: 8rem auto; text-align: center; }
+  #app { display: none; max-width: 1100px; margin: 0 auto; }
+  input, select, textarea { background: transparent; border: 1px solid var(--hairline-strong); border-radius: 8px; padding: 0.5em 0.8em; color: var(--white); font-family: var(--font); }
+  .row { border: 1px solid var(--hairline-strong); border-radius: 14px; padding: 1rem 1.2rem; margin-top: 1rem; }
+  .row.is-new { border-color: #ff6a2e; }
+  .row h3 { margin: 0 0 .3rem; font-size: 1.05rem; }
+  .meta { color: var(--white-faint); font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .why { color: var(--white-dim); line-height: 1.55; margin: .5rem 0; }
+  .decide { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: .6rem; }
+  .decide textarea { flex: 1; min-width: 220px; min-height: 2.6em; }
+  .badge { display: inline-block; padding: .15em .7em; border-radius: 999px; font-size: .75rem; font-weight: 800; border: 1px solid var(--hairline-strong); }
+  .badge.new { background: rgba(255,46,18,.18); border-color: #ff6a2e; color: #fff; }
+  .insight { margin: .5rem 0; color: var(--white-dim); line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <p class="eyebrow" style="justify-content:center;">Owner access only</p>
+  <h1 class="headline" style="margin-top:1.25rem;">IP review sign-in</h1>
+  <form id="gate-form" style="display:flex; gap:0.6rem; margin-top:1.5rem;">
+    <input id="gate-input" type="password" placeholder="Admin token" style="flex:1;" />
+    <button type="submit" class="pill pill--solid">Enter</button>
+  </form>
+  <p id="gate-error" style="display:none; margin-top:1rem; color: var(--ember-2); font-size:0.85rem;">Invalid token.</p>
+</div>
+
+<div id="app">
+  <p class="eyebrow">The Co.LLab™ Admin</p>
+  <h1 class="headline" style="margin-top:1rem;">IP Review</h1>
+  <p class="subhead" style="margin-top:0.75rem;">Where ideas for improving the IP and supporting the Omnidirectional Enterprise™ ecosystem are kept until you decide on them. Every item stays marked <span class="badge new">new</span> and is listed in a weekly email until you mark it considering, planned, done or declined (with a note on why).</p>
+  <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
+  <p><a class="pill mini" href="customers.html">Customers</a></p>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">What members are telling us</h2>
+  <div id="feedback"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">What the data suggests</h2>
+  <p class="why" id="insight-note"></p>
+  <div id="insights"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">Ideas for the IP and the ecosystem</h2>
+  <div id="backlog"></div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'collab_admin_token';
+  const STATUSES = ['new', 'considering', 'planned', 'done', 'declined'];
+  const $ = (id) => document.getElementById(id);
+  const token = () => sessionStorage.getItem(KEY) || '';
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
+
+  async function api(method, body) {
+    const res = await fetch('/.netlify/functions/admin-ip', { method, headers: { 'X-Admin-Token': token(), 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+    if (res.status === 401) { sessionStorage.removeItem(KEY); $('gate').style.display = 'block'; $('app').style.display = 'none'; throw new Error('Unauthorized'); }
+    return res.json();
+  }
+
+  function decideRow(kind, item) {
+    const box = el('div', 'decide');
+    const sel = el('select');
+    STATUSES.forEach((s) => { const o = el('option', null, s); o.value = s; if (s === item.status) o.selected = true; sel.appendChild(o); });
+    const note = el('textarea'); note.placeholder = 'Note (required if declined)'; note.value = item.note || '';
+    const save = el('button', 'pill mini', 'Save decision'); save.type = 'button';
+    const msg = el('span', 'meta');
+    save.addEventListener('click', async () => {
+      msg.textContent = 'Saving…';
+      try {
+        const r = await api('POST', { kind, id: item.id, status: sel.value, note: note.value });
+        msg.textContent = r.error ? r.error : 'Saved';
+        if (!r.error) load();
+      } catch (e) { msg.textContent = 'Failed'; }
+    });
+    box.append(sel, note, save, msg);
+    return box;
+  }
+
+  function badge(status) { return el('span', 'badge ' + (status === 'new' ? 'new' : ''), status); }
+
+  function render(d) {
+    $('awaiting').textContent = d.awaiting ? d.awaiting + ' item' + (d.awaiting === 1 ? '' : 's') + ' awaiting your decision.' : 'Nothing is waiting. Every item has a decision.';
+
+    const fb = $('feedback'); fb.textContent = '';
+    if (!d.feedback.length) fb.appendChild(el('p', 'why', 'No member feedback yet. It appears here (and by email) when members use the form at the end of a quest.'));
+    d.feedback.forEach((f) => {
+      const row = el('div', 'row' + (f.status === 'new' ? ' is-new' : ''));
+      const h = el('h3', null, f.questTitle + ' '); h.appendChild(badge(f.status));
+      row.appendChild(h);
+      row.appendChild(el('div', 'meta', String(f.createdAt).slice(0, 10) + (f.memberId ? ' · ' + f.memberId : '')));
+      [['Unclear or missing', f.unclear], ['How we could support their organization', f.support], ['How we could support the ecosystem', f.ecosystem]].forEach(([k, v]) => {
+        if (!v) return;
+        const p = el('p', 'why'); p.appendChild(el('strong', null, k + ': ')); p.appendChild(document.createTextNode(v)); row.appendChild(p);
+      });
+      row.appendChild(decideRow('feedback', f));
+      fb.appendChild(row);
+    });
+
+    const ins = $('insights'); ins.textContent = '';
+    $('insight-note').textContent = d.insights.note;
+    d.insights.suggestions.forEach((s) => ins.appendChild(el('p', 'insight', '• ' + s.text)));
+    d.insights.perQuest.forEach((q) => {
+      ins.appendChild(el('p', 'meta', q.title + ': ' + q.started + ' started, ' + q.completed + ' finished'));
+    });
+
+    const bl = $('backlog'); bl.textContent = '';
+    d.backlog.forEach((b) => {
+      const row = el('div', 'row' + (b.status === 'new' ? ' is-new' : ''));
+      const h = el('h3', null, b.title + ' '); h.appendChild(badge(b.status));
+      row.appendChild(h);
+      row.appendChild(el('div', 'meta', b.area + ' · ' + b.phase));
+      row.appendChild(el('p', 'why', b.why));
+      const first = el('p', 'why'); first.appendChild(el('strong', null, 'First step: ')); first.appendChild(document.createTextNode(b.firstStep)); row.appendChild(first);
+      row.appendChild(decideRow('backlog', b));
+      bl.appendChild(row);
+    });
+  }
+
+  async function load() { render(await api('GET')); }
+
+  $('gate-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const v = $('gate-input').value.trim();
+    if (!v) return;
+    sessionStorage.setItem(KEY, v);
+    try {
+      await load();
+      $('gate').style.display = 'none';
+      $('app').style.display = 'block';
+    } catch (err) { $('gate-error').style.display = 'block'; }
+  });
+
+  if (token()) load().then(() => { $('gate').style.display = 'none'; $('app').style.display = 'block'; }).catch(() => {});
+})();
+</script>
+</body>
+</html>

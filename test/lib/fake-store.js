@@ -16,6 +16,7 @@ let resetCodes = new Map();
 let purchaseEmails = new Map();
 let verifyCodes = new Map();
 let throttles = new Map();
+let ops = new Map();
 
 function reset() {
   customers = new Map();
@@ -31,6 +32,7 @@ function reset() {
   purchaseEmails = new Map();
   verifyCodes = new Map();
   throttles = new Map();
+  ops = new Map();
 }
 
 async function saveSeatInvite(code, invite) {
@@ -66,6 +68,12 @@ async function listFounders() {
 async function listCustomers() {
   return Array.from(customers.values());
 }
+
+const opsKey = (c, id) => `${c}/${id}`;
+async function opsPut(c, id, v) { ops.set(opsKey(c, id), JSON.parse(JSON.stringify(v))); return v; }
+async function opsGet(c, id) { return ops.has(opsKey(c, id)) ? JSON.parse(JSON.stringify(ops.get(opsKey(c, id)))) : null; }
+async function opsDelete(c, id) { ops.delete(opsKey(c, id)); }
+async function opsList(c) { return [...ops.entries()].filter(([k]) => k.startsWith(`${c}/`)).map(([, v]) => JSON.parse(JSON.stringify(v))); }
 
 function randomToken() {
   return crypto.randomBytes(12).toString('base64url');
@@ -248,6 +256,10 @@ module.exports = {
   nextFounderNumber,
   listFounders,
   listCustomers,
+  opsPut,
+  opsGet,
+  opsDelete,
+  opsList,
   saveSeatInvite,
   getSeatInvite,
   deleteSeatInvite,

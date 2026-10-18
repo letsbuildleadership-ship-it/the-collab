@@ -14,9 +14,30 @@ const KEYS = [
   'strength-map', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture',
   'creator-identity-map', 'creator-alignment-map', 'creator-venture-build-plan', 'creator-operating-system', 'creative-estate-mapping', 'creator-legacy-architecture',
 ];
+// Fixes for lines the PDF text extraction can't express cleanly.
+const DROP = /^(Knowledge, leadership continuity|Clarity, purpose, identity|Strategy, decision-making, accountability|Culture, communication, execution)/;
+const RENAME = new Map([
+  [/^Your identity is not "I make paintings"/, 'What are you actually doing through your medium? Complete: I use [your medium] to …'],
+]);
+
+// The Creator Website Blueprint™ is a manual rather than a workbook, so its quest is written to follow
+// the manual's Blueprint, Your First Site and Streamlined Loop™ parts, one phase at a time.
+const WEBSITE_QUEST = [
+  [0, 'Foundations', 'What is the one sentence your website must say about you and your work?'],
+  [0, 'Foundations', 'Who is the one person the site is for first, and what do they need from you?'],
+  [0, 'Foundations', 'What is the one action you want a visitor to take?'],
+  [1, 'Infrastructure Planning & Management', 'Which pages will the site have, and what does each one do for the visitor?'],
+  [1, 'Infrastructure Planning & Management', 'Which tool will you use for each step of the Streamlined Loop™: brief, build, hold, publish and connect?'],
+  [1, 'Infrastructure Planning & Management', 'What will you offer or sell on it, and how will people pay or contact you?'],
+  [2, 'Internal Operating Systems', 'What is your update loop: how often will you update the site, and what is the first ten-minute update you will do?'],
+  [2, 'Internal Operating Systems', 'Which photographs, copy and links will you keep current, and where do you keep them?'],
+  [3, 'Preservation', 'Who owns your domain, hosting account and code repository, and where are those logins safely kept?'],
+  [3, 'Preservation', 'If you could not touch the site for six months, what would keep it running and who could update it?'],
+  [3, 'Preservation', 'What will you write down so someone else could rebuild the site from your notes?'],
+];
 const PHASE_LABEL = { foundations: 'Phase I · Foundations', 'infrastructure-planning': 'Phase II · Infrastructure Planning & Management', 'operating-systems': 'Phase III · Internal Operating Systems', preservation: 'Phase IV · Preservation' };
 
-const SKIP_SECTIONS = /^(THE CO\.LLAB PRINCIPLE|THE NEXT STEP|YOUR NEXT STEP|HOW TO RESPOND|BUILD FROM STRENGTH|YOUR CO\.LLAB™ INFRASTRUCTURE PROFILE|YOUR INFRASTRUCTURE ROADMAP|THE CO\.LLAB™? OPERATING RHYTHM|YOUR LEGACY PROMPT|YOUR NEXT MOVE|THE LEGACY INFRASTRUCTURE MODEL|THE FINAL OUTPUT)/;
+const SKIP_SECTIONS = /^(THE CO\.LLAB PRINCIPLE|THE NEXT STEP|YOUR NEXT STEP|HOW TO RESPOND|BUILD FROM STRENGTH|YOUR CO\.LLAB™ INFRASTRUCTURE PROFILE|YOUR INFRASTRUCTURE ROADMAP|THE CO\.LLAB™? OPERATING RHYTHM|YOUR NEXT MOVE|THE LEGACY INFRASTRUCTURE MODEL|THE FINAL OUTPUT)/;
 const INSTRUCTION = /^(build from|define|choose|complete|ask yourself|repeat|circle|select|use |check|identify the|note|key question|strengthen|explore)/i;
 const titleCase = (s) => s.toLowerCase().replace(/(^|[\s—–-])([a-z])/g, (m, a, b) => a + b.toUpperCase()).replace(/\bIv\b/g, 'IV').replace(/\bIi\b/g, 'II').replace(/\bIii\b/g, 'III').replace(/Co\.llab/g, 'Co.LLab').replace(/\bLlab\b/g, '.LLab').replace(/ And /g, ' and ').replace(/ Of /g, ' of ').replace(/ To /g, ' to ').replace(/ The /g, ' the ');
 const PHASE_QUESTION = ['What should never be lost as we grow?', 'What depends on a person that should belong to the organization?', 'How do we make what matters part of how we operate?', 'What must exist for what we built to continue?'];
@@ -71,7 +92,8 @@ function parse(key) {
 
   const push = (n) => {
     const pm = /^(FOUNDATIONS|INFRASTRUCTURE PLANNING & MANAGEMENT|INTERNAL OPERATING SYSTEMS|PRESERVATION) — /.exec(n.prompt || '');
-    if (/^Offer \/ Price/.test(n.prompt || '')) return {};
+    if (/^Offer \/ Price/.test(n.prompt || '') || DROP.test(n.prompt || '')) return {};
+    for (const [re, to] of RENAME) if (re.test(n.prompt || '')) n = { ...n, prompt: to };
     nodes.push({ id: `n${nodes.length + 1}`, section: titleCase(header), phase: pm ? phaseOf(pm[1], phase) : phase, ...n });
     return nodes[nodes.length - 1];
   };
@@ -171,6 +193,17 @@ function parse(key) {
 }
 
 const outDir = path.join(root, 'content/quests');
+{
+  const entry = pricing.products.find((p) => p.key === 'creator-website-blueprint');
+  const nodes = WEBSITE_QUEST.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
+  const quest = {
+    key: entry.key, title: entry.name, phase: PHASE_LABEL[entry.phase_key], archetype: 'workbook',
+    intro: 'Plan your creator website one phase at a time, so it is built to keep working and to be carried forward.',
+    pdfTitle: entry.name, minAnswered: 0.6, upsell: null, nodes,
+    closing: { id: 'commit', type: 'text', prompt: 'The one change we will make next, who will own it, and by when:' },
+  };
+  fs.writeFileSync(path.join(outDir, `${entry.key}.json`), `${JSON.stringify(quest, null, 2)}\n`);
+}
 let n = 0;
 for (const key of KEYS) {
   const entry = pricing.products.find((p) => p.key === key);

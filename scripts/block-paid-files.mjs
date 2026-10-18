@@ -22,7 +22,7 @@ export function paidPdfFiles(p = pricing) {
 }
 
 export function blockedPaths(p = pricing) {
-  return [...paidPdfFiles(p).map((f) => `/content/library/${f}`), '/content/library.json', '/content/quests/*', '/netlify/*'];
+  return [...paidPdfFiles(p).map((f) => `/content/library/${f}`), '/content/library.json', '/content/quests/*', '/content/ip-backlog.json', '/netlify/*'];
 }
 
 const rule = (from) => `[[redirects]]\n  from = "${from}"\n  to = "/404"\n  status = 404\n  force = true\n`;

@@ -11,23 +11,40 @@ const LEXICON = [
   /\b(document\w*|succe\w+|transfer\w*|legacy|continu\w*|hand-?offs?|archive\w*|records?|mentor\w*|next generation|future|outlast\w*|sustain\w*|preserv\w*|estate|heirs?|retire\w*|pass(ed)? on)\b/gi,
 ];
 
+// Language anchors: the Co.LLab™ mission moves human potential into performance, sustainable
+// enterprise value and lasting legacy; The IV Phases™ carry it, Foundations first.
 const BUILD = [
-  'Write one sentence of purpose that a new team member could repeat in their own words. Everything you build on top of it will lean on it.',
-  'Give it an owner and a structure: one named person, one decision it is responsible for, and one date to review it together.',
-  'Put it into the rhythm of the week: a standing check-in, a visible practice, or a habit that someone owns.',
-  'Document it and name who carries it forward. If you stepped away for a year, this has to keep running without you.',
+  'Name the human potential you are building around, then write one sentence of purpose a new team member could repeat. Foundations come first because everything else in The IV Phases™ leans on them.',
+  'Turn it into leadership infrastructure: name one owner, the decision it is responsible for, and one review date, so it no longer depends on a single person.',
+  'Make it how you operate: give it a standing rhythm (a check-in, a standard, a visible practice) so performance does not depend on memory.',
+  'Preserve it so it outlasts you: document it, name who carries it, and set the date it will be handed on. This is how work becomes legacy.',
 ];
 const PROTECT = [
-  'Keep it visible: restate it at the start of your next planning cycle so it stays the reason, not just the history.',
-  'Record how it is organized and who owns it, so it survives a change of role.',
-  'Make the practice teachable: show it to one new person and let them run it once while you watch.',
-  'Add it to your legacy record: what it is, why it works, and who can carry it next.',
+  'Keep it central: restate it at the start of your next planning cycle so it stays the reason you build, not only the history.',
+  'Capture how it is organized and who owns it, so it survives a change of role.',
+  'Make it teachable: show it to one new person, then let them run it once while you watch.',
+  'Add it to your legacy record: what it is, why it works, and who carries it next.',
 ];
+// The guiding question of each phase (The IV Phases™ Reference Model).
 const LEGACY_QUESTION = [
-  'If you were not in the room, what would still be true about this work?',
-  'Who besides you could make the next decision here, and what would they need to know?',
-  'What happens here every week whether or not you are watching?',
-  'What would the next leader need in their hands on day one?',
+  'What should never be lost as we grow?',
+  'What depends on a person that should belong to the organization?',
+  'How do we make what matters part of how we operate?',
+  'What must exist for what we built to continue?',
+];
+// Mission chain: human potential, performance, sustainable enterprise value, lasting legacy.
+const CHAIN = ['human potential', 'performance', 'sustainable enterprise value', 'lasting legacy'];
+
+// The eight directions value moves in an Omnidirectional Enterprise™.
+const OE_NODES = [
+  ['Businesses', /\b(compan\w+|business\w*|clients?|customers?|vendors?|suppliers?|partners?|partnerships?|organizations?)\b/gi],
+  ['Nonprofits', /\b(nonprofits?|non-profits?|charit\w+|volunteers?|donors?|giving|foundations? (?:grant|board)|mission-driven)\b/gi],
+  ['Communities', /\b(communit\w+|neighbou?rhoods?|local|public|members?|families|families|network\w*)\b/gi],
+  ['People', /\b(people|employees?|staff|team\w*|leaders?|mentor\w*|apprentic\w+|successors?|talent|colleagues?)\b/gi],
+  ['Technology', /\b(software|tools?|platforms?|apps?|automat\w+|data|digital|website|systems?|ai)\b/gi],
+  ['Capital', /\b(funding|funds?|revenue|budgets?|invest\w+|profit\w*|pric\w+|cash|financ\w+|capital|grants?|income)\b/gi],
+  ['Knowledge + IP', /\b(knowledge|documentation|frameworks?|methods?|curricul\w+|intellectual|IP|brand|playbooks?|research|processes)\b/gi],
+  ['Creators', /\b(creators?|artists?|creative\w*|writers?|designers?|content|audiences?|studios?|makers?)\b/gi],
 ];
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
@@ -91,12 +108,27 @@ function textInsight(node, answer, phaseIdx) {
   } else if (r.level === 'specific') {
     const has = [r.has.owner && 'an owner', r.has.time && 'a timeframe', r.has.number && 'a number'].filter(Boolean);
     evidence = `"${q}" names ${has.length > 1 ? `${has.slice(0, -1).join(', ')} and ${has[has.length - 1]}` : has[0]}.`;
-    text = `That is infrastructure language. Next: ${lowerFirst(PROTECT[phaseIdx])}`;
+    text = `That is infrastructure language. Next step: ${PROTECT[phaseIdx]}`;
   } else {
     evidence = `"${q}" is a solid start, and it does not yet say ${r.missing.slice(0, 2).join(' or ')}.`;
-    text = `Add that and it can be carried by someone other than you. Then: ${lowerFirst(BUILD[phaseIdx])}`;
+    text = `Add that and it can be carried by someone other than you. Next step: ${BUILD[phaseIdx]}`;
   }
   return { label: name, evidence, text, level: r.level };
+}
+
+/** Which of the eight Omnidirectional Enterprise™ directions the member's own words reach. */
+function omniRead(text) {
+  const nodes = OE_NODES.map(([name, re]) => ({ name, mentions: (String(text).match(re) || []).length }));
+  const touched = nodes.filter((n) => n.mentions > 0);
+  const silent = nodes.filter((n) => !n.mentions).map((n) => n.name);
+  let read;
+  if (!touched.length) {
+    read = 'Nothing you wrote reaches beyond your own walls yet. In an Omnidirectional Enterprise™ value moves in every direction, between companies, people, creators and communities. Start by naming one outside party who could carry, fund or learn from this work.';
+  } else {
+    read = `In an Omnidirectional Enterprise™ value moves in every direction. Your answers reach ${touched.length} of 8 directions (${touched.map((n) => n.name).join(', ')}).`;
+    if (silent.length) read += ` They do not yet mention ${silent.slice(0, 4).join(', ')}${silent.length > 4 ? ' or the rest' : ''}. Ask who in those directions could carry this, strengthen it, or buy from you.`;
+  }
+  return { nodes, read };
 }
 
 function phaseMapFrom(buckets) {
@@ -116,7 +148,8 @@ function legacyRead(map, extra) {
     parts.push(`Your answers sit mostly in ${thin.name}.`);
   }
   if (silent.length) parts.push(`Nothing you wrote touches ${silent.join(' or ')}. In The IV Phases™ each phase holds up the next, so that is where the infrastructure is not yet built.`);
-  parts.push(`Start in ${thin.name}. ${PHASES.indexOf(thin.name) >= 0 ? LEGACY_QUESTION[PHASES.indexOf(thin.name)] : ''}`);
+  const ti = PHASES.indexOf(thin.name);
+  parts.push(`The Co.LLab™ mission moves ${CHAIN.join(' → ')}. ${thin.name} is where that chain is weakest for you right now (${CHAIN[ti]}). Start there, and ask: ${LEGACY_QUESTION[ti]}`);
   if (extra) parts.push(extra);
   return { text: parts.join(' '), thinIdx: PHASES.indexOf(thin.name), strongIdx: PHASES.indexOf(strong.name) };
 }
@@ -212,7 +245,7 @@ function analyzeWorkbook(q, answers) {
   return { score, max, strengths: strengths.slice(0, 8).map(({ rank, ...r }) => r), improvements: improvements.slice(0, 8).map(({ weight, level, ...r }) => r), phaseMap: map, legacyRead: read.text, summary: extra };
 }
 
-function analyze(q, answers) {
+function analyzeCore(q, answers) {
   if (q.archetype === 'workbook') return analyzeWorkbook(q, answers);
   const base = phaseIndexOfQuest(q);
   const buckets = emptyBuckets();
@@ -288,4 +321,19 @@ function analyze(q, answers) {
   return { score, max, strengths, improvements: improvements.slice(0, 8).map(({ weight, level, ...rest }) => rest), phaseMap: map, legacyRead: read.text };
 }
 
-module.exports = { analyze, readText, PHASES };
+const allText = (answers) => Object.values(answers).flatMap((v) => (Array.isArray(v) ? v : typeof v === 'string' ? [v] : [])).join(' ');
+
+function analyze(q, answers) {
+  const r = analyzeCore(q, answers);
+  r.omni = omniRead(allText(answers));
+  if (answers.omni) {
+    const ins = textInsight({ label: 'Beyond your own walls', prompt: '' }, answers.omni, 2);
+    const entry = { label: 'Beyond your own walls', evidence: ins.evidence, text: ins.level === 'specific' ? 'You named who this reaches. List your company in the Omnidirectional Enterprise™ Directory so those directions can find you.' : ins.text };
+    if (ins.level === 'specific') r.strengths.push({ label: entry.label, evidence: entry.evidence, text: answers.omni });
+    r.improvements.push(entry);
+    r.improvements = r.improvements.slice(0, 9);
+  }
+  return r;
+}
+
+module.exports = { analyze, readText, omniRead, PHASES, OE_NODES };

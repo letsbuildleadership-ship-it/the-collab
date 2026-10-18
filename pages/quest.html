@@ -164,6 +164,7 @@
         <p class="q-meta" id="q-hint" hidden></p>
         <div class="q-map" id="q-map"></div>
         <div id="q-close"></div>
+        <div id="q-omni" style="margin-top:1rem;"></div>
         <div class="q-actions">
           <button type="button" class="pill pill--solid" id="q-finish" disabled>Finish quest <span class="arrow">→</span></button>
           <a class="pill" href="account.html">Back to my portal</a>
@@ -182,7 +183,25 @@
         <ul id="r-strengths"></ul>
         <h3 class="q-label" style="margin-top:2rem;">How we'd build from here, together</h3>
         <ul id="r-improve"></ul>
+        <div id="r-omni-wrap" hidden>
+          <h3 class="q-label" style="margin-top:2rem;">Beyond your own walls: your Omnidirectional Enterprise™ read</h3>
+          <p class="q-prompt" id="r-omni"></p>
+          <ul id="r-omni-nodes"></ul>
+          <p style="margin-top:1rem;"><a class="pill" href="directory.html">See the Omnidirectional Enterprise™ Directory <span class="arrow">→</span></a></p>
+        </div>
         <p class="q-prompt" id="r-next" style="margin-top:2rem;"></p>
+        <div class="q-close" id="r-feedback" style="margin-top:2rem;">
+          <h3 class="q-label">Help us improve the IP</h3>
+          <p class="q-prompt">The Co.LLab™ is built with its members. Tell us what to fix, and how we can better support your organization and the businesses in the Omnidirectional Enterprise™. We read and decide on every note.</p>
+          <label class="q-label" for="fb-unclear">Which question was unclear, or what was missing?</label>
+          <textarea class="q-text" id="fb-unclear" maxlength="800"></textarea>
+          <label class="q-label" for="fb-support" style="margin-top:.8rem; display:block;">How could The Co.LLab™ better support your organization?</label>
+          <textarea class="q-text" id="fb-support" maxlength="800"></textarea>
+          <label class="q-label" for="fb-eco" style="margin-top:.8rem; display:block;">How could it better support the businesses in the Omnidirectional Enterprise™ ecosystem?</label>
+          <textarea class="q-text" id="fb-eco" maxlength="800"></textarea>
+          <div class="q-actions"><button type="button" class="pill" id="fb-send">Send to The Co.LLab™</button><span class="q-meta" id="fb-msg" aria-live="polite"></span></div>
+          <p class="q-meta" style="margin-top:.8rem;">Transparency: we send nothing you wrote here to anyone outside The Co.LLab™. We also look at anonymous counts, such as which steps members skip, to improve the IP. We never read your quest answers unless you send them here.</p>
+        </div>
         <div class="q-actions">
           <a class="pill pill--solid" id="r-pdf" href="#">Download your report (PDF) <span class="arrow">→</span></a>
           <a class="pill" href="account.html">Back to my portal</a>

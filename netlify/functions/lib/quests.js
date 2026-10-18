@@ -15,12 +15,21 @@ for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.json'))) {
 
 const MAX_TEXT = 1000;
 
+// Every quest ends by looking outward: an Omnidirectional Enterprise™ moves value in every direction.
+const OMNI = {
+  id: 'omni',
+  type: 'text',
+  optional: true,
+  label: 'Beyond your own walls',
+  prompt: 'Who outside your organization (companies, people, creators, communities) could carry, use or be strengthened by this work, and how would value move between you?',
+};
+
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 const lowerFirst = (s) => (s ? s[0].toLowerCase() + s.slice(1) : s);
 
 function publicQuest(q) {
   const { key, title, phase, archetype, intro, nodes, closing, upsell, minAnswered, scaleHint } = q;
-  return { key, title, phase, archetype, intro, nodes, closing, upsell, minAnswered, scaleHint };
+  return { key, title, phase, archetype, intro, nodes, closing, omni: OMNI, upsell, minAnswered, scaleHint };
 }
 
 /** @returns {{ ok: true, answers: object } | { ok: false, error: string }} */
@@ -28,7 +37,7 @@ function validateAnswers(q, raw, { complete }) {
   const answers = {};
   const input = raw && typeof raw === 'object' ? raw : {};
   let answeredNodes = 0;
-  for (const node of [...q.nodes, q.closing]) {
+  for (const node of [...q.nodes, q.closing, OMNI]) {
     const v = input[node.id];
     const missing = v === undefined || v === null || v === '' || (Array.isArray(v) && node.type !== 'choose');
     if (missing) continue;
@@ -48,7 +57,7 @@ function validateAnswers(q, raw, { complete }) {
       const t = clean(v).slice(0, MAX_TEXT);
       if (t) answers[node.id] = t;
     }
-    if (node !== q.closing && answers[node.id] !== undefined) answeredNodes += 1;
+    if (node !== q.closing && node !== OMNI && answers[node.id] !== undefined) answeredNodes += 1;
   }
   if (complete) {
     const required = Math.ceil((q.minAnswered || 1) * q.nodes.length);
@@ -94,6 +103,7 @@ function outcomeFor(q, answers) {
     strengths: a.strengths,
     improvements: a.improvements,
     commitment: answers[q.closing.id] || '',
+    omni: a.omni,
     nextMove: q.upsell ? `${q.upsell.name} (${q.upsell.price}) ${lowerFirst(q.upsell.copy)}` : '',
   };
 }
