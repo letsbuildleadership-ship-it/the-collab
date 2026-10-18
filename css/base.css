@@ -1998,3 +1998,15 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .fm-name { color: #ff4a3a; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.01em; text-shadow: 0 0 14px rgba(255, 74, 58, 0.75), 0 0 32px rgba(255, 46, 18, 0.45); }
 .fm-name:hover, .fm-name:focus-visible { color: #ff6a5a; text-shadow: 0 0 18px rgba(255, 74, 58, 0.95), 0 0 40px rgba(255, 46, 18, 0.6); }
 @media (max-width: 960px) { .fm-name { font-size: 1.3rem; } }
+
+/* About infographic, legibility pass: white names on a solid red tag (glow on the tag, never on the letters) */
+.fm-name {
+  display: inline-block; justify-self: start; padding: 0.4em 0.75em; border-radius: 6px;
+  background: #c8200f; color: #fff; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.01em; line-height: 1.2; text-shadow: none;
+  box-shadow: 0 0 16px rgba(255, 46, 18, 0.55);
+}
+.fm-name:hover, .fm-name:focus-visible { background: #e02a16; color: #fff; text-shadow: none; box-shadow: 0 0 24px rgba(255, 74, 58, 0.8); }
+.fm-head { font-size: 0.8rem; }
+.fm-slogan { color: #fff; font-size: 1.05rem; line-height: 1.4; }
+.fm-dots i { width: 1.3rem; height: 1.3rem; }
+@media (max-width: 960px) { .fm-name { font-size: 1.15rem; } .fm-slogan { font-size: 1.05rem; } }
