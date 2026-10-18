@@ -7,12 +7,7 @@ const store = require('./lib/store');
 const pricing = require('./lib/pricing');
 const { json } = require('./lib/http');
 
-function isAuthorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false; // fail closed if the owner hasn't set one yet
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: isAuthorized } = require('./lib/admin-auth');
 
 exports.handler = async (event) => {
   if (!isAuthorized(event)) return json(401, { error: 'Unauthorized. Set ADMIN_TOKEN and send it as X-Admin-Token.' });

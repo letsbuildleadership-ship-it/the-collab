@@ -4,12 +4,7 @@ const store = require('./lib/store');
 const { json } = require('./lib/http');
 const { sendMail } = require('./lib/mailer');
 
-function authorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false;
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: authorized } = require('./lib/admin-auth');
 
 exports.handler = async (event) => {
   if (!authorized(event)) return json(401, { error: 'Unauthorized.' });

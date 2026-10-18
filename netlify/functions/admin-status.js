@@ -3,14 +3,13 @@
 // only whether ADMIN_TOKEN exists (so the admin page can prompt setup); the
 // Stripe/setup details require the admin token.
 const { json } = require('./lib/http');
+const { isAdmin } = require('./lib/admin-auth');
 
 exports.handler = async (event) => {
   const isPost = event.httpMethod === 'POST';
   if (event.httpMethod !== 'GET' && !isPost) return json(405, { error: 'Method Not Allowed' });
 
-  const expected = process.env.ADMIN_TOKEN;
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  if (!expected || header !== expected) return json(200, { adminTokenConfigured: !!expected });
+  if (!isAdmin(event)) return json(200, { adminTokenConfigured: !!process.env.ADMIN_TOKEN });
 
   // Admin-only: send a test email to the sending account and report the real result.
   if (isPost) {

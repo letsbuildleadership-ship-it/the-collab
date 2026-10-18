@@ -12,12 +12,7 @@ const { computeInsights } = require('./lib/ip-insights');
 const STATUSES = ['new', 'considering', 'planned', 'done', 'declined'];
 const SEVERITY = { high: 0, medium: 1, low: 2 };
 
-function authorized(event) {
-  const expected = process.env.ADMIN_TOKEN;
-  if (!expected) return false;
-  const header = event.headers['x-admin-token'] || event.headers['X-Admin-Token'];
-  return header === expected;
-}
+const { isAdmin: authorized } = require('./lib/admin-auth');
 
 async function analyze() {
   const [customers, feedback, statuses] = await Promise.all([store.listCustomers(), store.opsList('ip-feedback'), store.opsList('ip-reco-status')]);
