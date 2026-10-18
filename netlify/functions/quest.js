@@ -32,7 +32,7 @@ exports.handler = async (event) => {
 
   // Free-tool quests are open to every member; a product's quest needs the product
   // (same entitlement check as its PDF download).
-  if (!freeToolKeys.has(key)) {
+  if (!quest.open && !freeToolKeys.has(key)) {
     const access = await resolveAccess(record);
     const owned = new Set(membershipStatus.effectiveEntitlements(access));
     if (!owned.has(key) && !membershipStatus.catalogUnlockKeys(access).includes(key)) return json(403, { error: 'You do not have access to this quest.' });

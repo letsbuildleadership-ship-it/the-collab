@@ -114,6 +114,8 @@ function buildAccountView(record, now) {
     // Guided quests: status per quest key (draft / done) for the portal cards and report list.
     // Companies that license Co.LLab™ IP or hold a Membership can join the Collaborating Companies.
     directoryEligible: require('./directory').isEligible(record),
+    // Quests open to every signed-in member that are not tied to a product (for example .LLab Sound™).
+    openQuests: [...questLib.quests.values()].filter((q) => q.open).map((q) => ({ key: q.key, name: q.title, phase: q.phase, description: q.intro })),
     questKeys: [...questLib.quests.keys()],
     quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
     // Shown while Membership isn't active: what it includes and how to join.

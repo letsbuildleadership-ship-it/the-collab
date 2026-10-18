@@ -34,7 +34,7 @@ const freeQuests = () => freeTools.map((t) => quests.get(t.key));
 
 test('every free tool has a quest, and every paid workbook has one', () => {
   for (const t of freeTools) assert.ok(quests.get(t.key), t.key);
-  const paid = [...quests.values()].filter((q) => q.archetype === 'workbook');
+  const paid = [...quests.values()].filter((q) => q.archetype === 'workbook' && !q.open);
   assert.equal(paid.length, 16);
   for (const q of paid) assert.ok(pricing.entryForKey(q.key), q.key);
 });
@@ -154,4 +154,19 @@ test('workbook quests analyse coverage, scores and choices against the member\'s
   const o3 = outcomeFor(sm, s);
   assert.ok(o3.improvements.some((i) => /Accountability/.test(i.evidence) && /nothing you wrote mentions/.test(i.evidence)));
   assert.ok(choose.options.includes('Accountability'));
+});
+
+test('the Live Night quest is open to every member and follows The IV Phases', async () => {
+  const q = quests.get('live-night');
+  assert.ok(q && q.open);
+  assert.deepEqual([...new Set(q.nodes.map((n) => n.phase))], [0, 1, 2, 3]);
+  const token = await member('live@example.com');
+  const res = await call(token, 'GET', { key: 'live-night' });
+  assert.equal(res.statusCode, 200);
+  const a = {};
+  q.nodes.forEach((n) => { a[n.id] = 'Our sound lead will own the system and power plan, and we review it every week before the date.'; });
+  a.commit = 'I will lock the venue agreement by Friday.';
+  const out = await call(token, 'POST', {}, { key: 'live-night', answers: a, complete: true });
+  assert.equal(out.statusCode, 200);
+  assert.equal(JSON.parse(out.body).saved.outcome.phaseMap.length, 4);
 });
