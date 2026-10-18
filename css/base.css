@@ -1968,8 +1968,8 @@ table.overview th, table.overview td { padding: 0.85rem 0.9rem; border-bottom: 1
 table.overview thead th { color: #fff; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 table.overview tbody th { color: var(--filament-2); font-weight: 700; font-size: 1.1rem; }
 table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); white-space: nowrap; }
-@media (max-width: 640px) { table.overview td:nth-child(3) { font-size: 0.95rem; } }
-@media (max-width: 640px) { table.overview th:nth-child(2), table.overview td:nth-child(2) { display: none; } table.overview th, table.overview td { padding: 0.7rem 0.5rem; font-size: 0.9rem; } table.overview thead th { font-size: 0.64rem; letter-spacing: 0.04em; } table.overview tbody th { font-size: 0.9rem; } }
+@media (max-width: 640px) { table.overview td:nth-child(3) { font-size: 0.88rem; } }
+@media (max-width: 640px) { table.overview th:nth-child(2), table.overview td:nth-child(2) { display: none; } table.overview th, table.overview td { padding: 0.7rem 0.3rem; font-size: 0.84rem; } table.overview thead th { font-size: 0.64rem; letter-spacing: 0.04em; } table.overview tbody th { font-size: 0.82rem; } }
 
 /* About: page x direction infographic */
 .fit-matrix { margin-top: 2.5rem; border-top: 3px solid var(--filament-2); }
@@ -1989,3 +1989,12 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
   .fm-nodes { display: block; color: #fff; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
   .fm-slogan { padding-left: 0; }
 }
+
+/* footer columns never push the page wider than the screen */
+.footer-grid > * { min-width: 0; }
+.footer-col li a, .footer-col li p { overflow-wrap: anywhere; }
+
+/* About infographic: page names pop */
+.fm-name { color: #ff4a3a; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.01em; text-shadow: 0 0 14px rgba(255, 74, 58, 0.75), 0 0 32px rgba(255, 46, 18, 0.45); }
+.fm-name:hover, .fm-name:focus-visible { color: #ff6a5a; text-shadow: 0 0 18px rgba(255, 74, 58, 0.95), 0 0 40px rgba(255, 46, 18, 0.6); }
+@media (max-width: 960px) { .fm-name { font-size: 1.3rem; } }
