@@ -2057,3 +2057,14 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .at-nodes a.at-chip:hover, .at-nodes a.at-chip:focus-visible { box-shadow: 0 0 24px rgba(255, 138, 31, 1), inset 0 0 12px rgba(255, 46, 18, 0.4); transform: translateY(-1px); }
 .at-idea a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255, 106, 46, 0.7); text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .at-idea a:hover, .at-idea a:focus-visible { text-decoration-color: #ff8a1f; }
+
+/* Top ribbon: same glow aesthetic as the strategy table */
+.model-ribbon li a { background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 12px rgba(255, 96, 46, 0.55), inset 0 0 8px rgba(255, 46, 18, 0.25); }
+.model-ribbon li a:hover, .model-ribbon li a:focus-visible { background: rgba(255, 46, 18, 0.3); border-color: #ff8a1f; box-shadow: 0 0 22px rgba(255, 138, 31, 0.95), inset 0 0 10px rgba(255, 46, 18, 0.4); }
+.model-ribbon li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border-color: #ff8a1f; box-shadow: 0 0 22px rgba(255, 96, 46, 0.9), 0 0 44px rgba(255, 46, 18, 0.4); }
+.model-ribbon .ribbon-join { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border: 0; font-weight: 800; box-shadow: 0 0 20px rgba(255, 96, 46, 0.85), 0 0 40px rgba(255, 46, 18, 0.4); }
+.model-ribbon .ribbon-join:hover, .model-ribbon .ribbon-join:focus-visible { box-shadow: 0 0 28px rgba(255, 138, 31, 1), 0 0 54px rgba(255, 46, 18, 0.6); color: #000; }
+.model-ribbon .ribbon-label { text-shadow: 0 0 14px rgba(255, 96, 46, 0.7); }
+.model-ribbon li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff6a2e); border-color: #ff6a2e; }
+.model-ribbon ul { padding: 8px 6px 12px; margin: -8px -6px -12px; }
+.model-ribbon ul li a.is-on { background: linear-gradient(90deg, #ff2e12, #ff6a2e); color: #000; border-color: #ff6a2e; box-shadow: 0 0 22px rgba(255, 96, 46, 0.9), 0 0 44px rgba(255, 46, 18, 0.4); }
