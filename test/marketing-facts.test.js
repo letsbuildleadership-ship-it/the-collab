@@ -95,7 +95,7 @@ test('canonical node links: every circle (full model, mini strips, mobile lists)
 test('every "where this fits" circle map highlights at least two nodes', () => {
   for (const f of fs.readdirSync(path.join(root, 'pages')).filter((n) => n.endsWith('.html'))) {
     const html = read(`pages/${f}`);
-    if (!html.includes('id="fits"')) continue;
+    if (!html.includes('class="fits"')) continue;
     const on = (html.match(/class="oem-n on"/g) || []).length;
     assert.ok(on >= 2, `${f}: ${on} highlighted node(s)`);
   }
