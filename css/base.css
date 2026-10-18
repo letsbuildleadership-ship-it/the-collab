@@ -1923,10 +1923,6 @@ main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: cla
 .model-ribbon ul { order: 3; flex: 1 1 100%; }
 @media (max-width: 860px) { .model-ribbon .ribbon-join { align-self: flex-start; white-space: nowrap; font-size: 0.7rem; padding: 0.35em 0.85em; max-width: 100%; } }
 
-/* Home path cards: the photograph is a thin strip, the words lead */
-#shop .tile { aspect-ratio: auto; display: flex; flex-direction: column; }
-#shop .tile img { position: static; inset: auto; height: 84px; width: 100%; flex: none; }
-#shop .tile-label { position: static; min-height: 0; flex: 1; }
 
 /* Phones: smaller chips so Businesses, Knowledge + IP and Communities all show on first view */
 @media (max-width: 860px) {
