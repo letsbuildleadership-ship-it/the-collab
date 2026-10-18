@@ -92,7 +92,7 @@
   async function checkConfigStatus() {
     const el = document.getElementById('config-status');
     try {
-      const res = await fetch('/.netlify/functions/admin-status');
+      const res = await fetch('/.netlify/functions/admin-status', { headers: { 'X-Admin-Token': token() || '' } });
       const s = await res.json();
       const row = (label, ok) => `<div>${ok ? '✅' : '❌'} ${label}</div>`;
       el.innerHTML =
@@ -301,6 +301,7 @@
     sessionStorage.setItem(ADMIN_KEY, value);
     try {
       await loadList();
+      checkConfigStatus();
       gate.style.display = 'none';
       app.style.display = 'block';
       loadImpactLedger();

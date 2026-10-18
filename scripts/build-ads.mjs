@@ -73,8 +73,8 @@ ${wide
 .panel::after{content:'';position:absolute;top:0;bottom:0;right:-90px;width:90px;background:linear-gradient(90deg,#0f1d13,rgba(15,29,19,0))}`
   : `.photo{inset:0 0 auto 0;height:62%}.panel{position:absolute;left:0;right:0;bottom:0;padding:${pad}px ${pad}px ${pad - 12}px;background:linear-gradient(to top,#0f1d13 0%,#0f1d13 84%,rgba(15,29,19,0) 100%);padding-top:150px;top:auto}`}
 .logo{position:absolute;${wide ? 'right:36px;top:30px' : 'left:' + pad + 'px;top:56px'};width:${wide ? 190 : 260}px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,138,31,.6),0 8px 30px rgba(0,0,0,.5)}
-.eye{font-size:${eye}px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ff8a1f;margin-bottom:${wide ? 18 : 24}px;display:flex;align-items:center;gap:16px}
-.eye::before{content:'';width:44px;height:3px;background:linear-gradient(90deg,#ff2e12,#ff8a1f)}
+.eye{font-size:${eye}px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ff6a2e;margin-bottom:${wide ? 18 : 24}px;display:flex;align-items:center;gap:16px}
+.eye::before{content:'';width:44px;height:3px;background:linear-gradient(90deg,#ff2e12,#ff6a2e)}
 h1{text-wrap:balance;font-size:${hook}px;line-height:1.02;font-weight:200;letter-spacing:-.025em;color:#fdf6ec;max-width:${wide ? '14ch' : '15ch'}}
 h1 em{font-style:normal;font-weight:700;color:#ff6a3d;text-shadow:0 0 26px rgba(255,70,20,.45)}
 .sup{text-wrap:pretty;font-size:${sup}px;line-height:1.35;font-weight:400;color:#ffd9c4;margin-top:${wide ? 22 : 30}px;max-width:${wide ? '30ch' : '34ch'}}
