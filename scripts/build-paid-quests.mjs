@@ -35,24 +35,25 @@ const WEBSITE_QUEST = [
   [3, 'Preservation', 'If you could not touch the site for six months, what would keep it running and who could update it?'],
   [3, 'Preservation', 'What will you write down so someone else could rebuild the site from your notes?'],
 ];
-// A free planning quest for any event (conference, workshop, fundraiser, festival, market, show, party).
+// A free member quest for any event (conference, fundraiser, festival, market, performance).
+// Written in executive language: inside the membership it is a quest, in the world it is event infrastructure.
 // "open" means every signed-in member can use it; it is not tied to a product.
 const EVENT = [
-  [0, 'What the event is for', 'What is this event for, and what should people feel, learn or remember when it ends?'],
-  [0, 'What the event is for', 'Who is the event for first, and who else does it serve: speakers or artists, the team, the venue, sponsors and the community around it?'],
-  [0, 'What the event is for', 'What are your non-negotiables: the standards you will not trade away for money or attendance?'],
-  [1, 'Who owns what', 'Who owns each part: program and content, venue and setup, sound, screens and lighting, power and technical, security and crowd safety, welfare and first aid, registration or ticketing and the door, food and vendors, volunteers and staff? Name one owner for each.'],
-  [1, 'Who owns what', 'Which permits, licenses, insurance and venue agreements does the event need, and who holds them? (Check the rules where you are.)'],
-  [1, 'Who owns what', 'What does the event cost, what comes in, and what is your break-even?'],
-  [1, 'Who owns what', 'How do people arrive and move: registration or ticketing, the door, your capacity limit, crowd flow, accessibility, and entry and exit routes?'],
-  [2, 'The event itself', 'What is the run-of-show: doors, each segment or set, changeovers and the finish, and who calls each cue?'],
-  [2, 'The event itself', 'What is your technical plan: sound, screens or lighting, power and backup, a test run before doors, and any volume limits?'],
-  [2, 'The event itself', 'What is your safety and welfare plan: first aid, water and food, heat or cold, accessibility, a quiet space, emergencies, alcohol or other substances as the law and venue require, and how a problem is reported and who acts?'],
-  [2, 'The event itself', 'How will your team communicate on the day, who makes which decisions, and what happens when the plan breaks?'],
-  [3, 'What lasts', 'What will you record afterward: attendance, what worked, what did not, incidents and lessons?'],
-  [3, 'What lasts', 'How will you thank and keep the speakers or artists, team, venue, sponsors and community, and what do you owe them after the event?'],
-  [3, 'What lasts', 'What will you write down so someone else could run the next one: contacts, contracts, run sheets and setup plans?'],
-  [3, 'What lasts', 'What would make this event part of something lasting: a series, a collective, a name someone else could carry on?'],
+  [0, 'Purpose and stakeholders', 'Define the purpose: what outcome should this event produce, and what should attendees carry away from it?'],
+  [0, 'Purpose and stakeholders', 'Identify the stakeholders: attendees, presenters or artists, your team, the venue, sponsors and the surrounding community. Who is the event for first?'],
+  [0, 'Purpose and stakeholders', 'State your non-negotiables: the standards this event will not trade for revenue or attendance.'],
+  [1, 'Ownership and authority', 'Assign ownership: name one accountable owner for each of program and content, venue and setup, audio-visual and technical, security and crowd safety, welfare and first aid, registration and admission, vendors and hospitality, and volunteers and staff.'],
+  [1, 'Ownership and authority', 'Secure authority: which permits, licenses, insurance and venue agreements are required, and who holds each? (Confirm requirements locally.)'],
+  [1, 'Ownership and authority', 'Establish the financial plan: costs, revenue sources and the break-even point.'],
+  [1, 'Ownership and authority', 'Design attendee flow: registration or ticketing, admission, capacity, circulation, accessibility, and entry and exit.'],
+  [2, 'Operations', 'Set the operating rhythm: the run-of-show from opening to close, the owner of each segment, and who calls each cue.'],
+  [2, 'Operations', 'Confirm technical readiness: sound, screens and lighting, power and redundancy, and a full test before admission.'],
+  [2, 'Operations', 'Establish the safety and welfare protocol: first aid, hydration and climate, accessibility, emergency response, alcohol or other substances as law and venue require, and how an incident is reported and who acts.'],
+  [2, 'Operations', 'Define command and communication: channels, decision rights, and the contingency when the plan fails.'],
+  [3, 'Continuity and legacy', 'Capture results: attendance, outcomes against purpose, incidents and lessons learned.'],
+  [3, 'Continuity and legacy', 'Sustain relationships: how presenters or artists, your team, the venue, sponsors and the community are thanked and retained, and what is owed to them after the event.'],
+  [3, 'Continuity and legacy', 'Document for continuity: contacts, contracts, run sheets and setup plans, in enough detail for another leader to run the next one.'],
+  [3, 'Continuity and legacy', 'Build the legacy: what would make this event a lasting series, collective or institution that someone else could carry on?'],
 ];
 const PHASE_LABEL = { foundations: 'Phase I · Foundations', 'infrastructure-planning': 'Phase II · Infrastructure Planning & Management', 'operating-systems': 'Phase III · Internal Operating Systems', preservation: 'Phase IV · Preservation' };
 
@@ -215,12 +216,12 @@ const outDir = path.join(root, 'content/quests');
 {
   const nodes = EVENT.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
   const quest = {
-    key: 'run-an-event', open: true, title: 'Run an Event Quest™', phase: 'Phase II · Infrastructure Planning & Management', archetype: 'workbook',
-    intro: 'Plan any event, a conference, workshop, fundraiser, festival, market, show or party, through The IV Phases™: what it is for, who owns what, how the day runs, and what lasts after it.',
-    pdfTitle: 'Run an Event Quest™', minAnswered: 0.6, upsell: null, nodes,
-    closing: { id: 'commit', type: 'text', prompt: 'The one thing we will lock in next for this event, who will own it, and by when:' },
+    key: 'event-infrastructure', open: true, title: 'Event Infrastructure Plan™', phase: 'Phase II · Infrastructure Planning & Management', archetype: 'workbook',
+    intro: 'Build the infrastructure behind any event, a conference, fundraiser, festival, market or performance, through The IV Phases™: purpose, ownership, operations and continuity.',
+    pdfTitle: 'Event Infrastructure Plan™', minAnswered: 0.6, upsell: null, nodes,
+    closing: { id: 'commit', type: 'text', prompt: 'The one infrastructure commitment for this event, its owner and its date:' },
   };
-  fs.writeFileSync(path.join(outDir, 'run-an-event.json'), `${JSON.stringify(quest, null, 2)}\n`);
+  fs.writeFileSync(path.join(outDir, 'event-infrastructure.json'), `${JSON.stringify(quest, null, 2)}\n`);
 }
 {
   const entry = pricing.products.find((p) => p.key === 'creator-website-blueprint');
