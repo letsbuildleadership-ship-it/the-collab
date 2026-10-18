@@ -50,3 +50,4 @@
 .fits-map { width: clamp(300px, 40vw, 520px); }
 @media (max-width: 640px) { .fits-map { width: 100%; max-width: 380px; } }
 .fits .oem-n { font-size: 27px; }
+.fits-why { margin: 0.75rem 0 1rem; max-width: 44ch; color: var(--paper); font-size: 1.05rem; line-height: 1.5; }

@@ -100,3 +100,13 @@ test('every "where this fits" circle map highlights at least two nodes', () => {
     assert.ok(on >= 2, `${f}: ${on} highlighted node(s)`);
   }
 });
+
+test('every "where this fits" strip states its marketing position', () => {
+  for (const f of fs.readdirSync(path.join(root, 'pages')).filter((n) => n.endsWith('.html'))) {
+    const html = read(`pages/${f}`);
+    if (!html.includes('class="fits"')) continue;
+    const why = (html.match(/<p class="fits-why">([^<]+)<\/p>/) || [])[1];
+    assert.ok(why, `${f}: fits-why present`);
+    assert.ok(!/guarantee|return on|roi\b|limited spots|buys a license/i.test(why), `${f}: no invented claims`);
+  }
+});
