@@ -1,4 +1,4 @@
-// Omnidirectional Enterprise™ Directory: public list, plus the signed-in
+// Collaborating Companies: public list, plus the signed-in
 // member's own listing form. All member-written text is set with textContent
 // or .value, and outbound links are https only (re-checked here).
 (function () {
@@ -90,19 +90,19 @@
     var box = $('d-mine');
     box.textContent = '';
     if (state.signedOut) {
-      box.appendChild(el('p', 'd-desc', 'Sign in to list your company. Listing is part of paid membership.'));
+      box.appendChild(el('p', 'd-desc', 'Sign in to join. Open to companies that license Co.LLab™ IP or hold a Membership.'));
       var a = el('a', 'pill pill--solid', 'Sign in'); a.href = 'login.html'; box.appendChild(a);
       return;
     }
     if (!state.eligible) {
-      box.appendChild(el('p', 'd-desc', 'Listing is part of paid membership: it opens when you own at least one paid Co.LLab™ product or hold a membership. You can browse the Directory now.'));
+      box.appendChild(el('p', 'd-desc', 'Open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership. You can browse the Collaborating Companies now.'));
       var p = el('a', 'pill pill--solid', 'See the .LLab™ products'); p.href = 'products.html'; box.appendChild(p);
       return;
     }
     var l = state.listing;
     if (l) {
       var s = el('p', 'd-desc');
-      s.appendChild(document.createTextNode('Your listing: '));
+      s.appendChild(document.createTextNode('Your company page: '));
       s.appendChild(el('span', 'd-status ' + l.status, l.status === 'approved' ? 'Live' : l.status === 'rejected' ? 'Needs a change' : 'Waiting for review'));
       box.appendChild(s);
       if (l.status === 'rejected' && l.note) box.appendChild(el('p', 'd-err', l.note));
@@ -145,9 +145,9 @@
     var msg = el('span', 'd-err'); msg.setAttribute('aria-live', 'polite');
     actions.append(save, msg);
     if (l) {
-      var rem = el('button', 'pill', 'Remove my listing'); rem.type = 'button';
+      var rem = el('button', 'pill', 'Remove my company'); rem.type = 'button';
       rem.addEventListener('click', function () {
-        if (!confirm('Remove your listing from the Directory?')) return;
+        if (!confirm('Remove your company from the Collaborating Companies?')) return;
         fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'remove' }) }).then(function () { loadMine(); loadPublic(); });
       });
       actions.appendChild(rem);
@@ -172,14 +172,14 @@
     fetch(API + '?mine=1', { credentials: 'same-origin' })
       .then(function (r) { if (r.status === 401) { renderMine({ signedOut: true }); return null; } return r.json(); })
       .then(function (d) { if (d) { DIRS = d.directions; renderMine(d); } })
-      .catch(function () { $('d-mine').textContent = 'Could not load your listing.'; });
+      .catch(function () { $('d-mine').textContent = 'Could not load your company page.'; });
   }
 
   function loadPublic() {
     fetch(API)
       .then(function (r) { return r.json(); })
       .then(function (d) { DIRS = d.directions; listings = d.listings; renderFilters(); renderGrid(); })
-      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the Directory. Please try again.'; });
+      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the Collaborating Companies. Please try again.'; });
   }
 
   loadPublic();

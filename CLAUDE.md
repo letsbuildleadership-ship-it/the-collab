@@ -9,7 +9,7 @@ Static site + Netlify Functions. Live: https://wearethellab.netlify.app (Netlify
 *generated: lookbook (build-gallery), ip-license, partnership tier tables.
 
 ## Members & owner tools
-Portal quests (`content/quests`, `netlify/functions/quest.js`) · Company Directory (`pages/directory.html`, paid-member benefit, owner-approved) · owner pages `admin/customers.html`, `admin/ip-feedback.html` (IP review: feedback + ideas + weekly email, nothing left undecided), `admin/directory.html`.
+Portal quests (`content/quests`, `netlify/functions/quest.js`) · Collaborating Companies (`pages/collaborating-companies.html`, part of a license/Membership, owner-approved) · owner pages `admin/customers.html`, `admin/ip-feedback.html` (IP review: feedback + ideas + weekly email, nothing left undecided), `admin/collaborating-companies.html`.
 
 ## Page pattern (luxury / shopping-site style)
 Header → **model ribbon** (the only element repeated site-wide, plus the Home/Think/Partnership model) → hero → the page's own main points + products → **Continue** strip (2 links). **Each product/idea lives on exactly one page; other pages link, never repeat.** Home = hero, problem/solution, big model, 3 path tiles. Removed copy is archived in `docs/archive/removed-blocks.html` (404 on the live site). Sticky mobile buy button on Home/Partnerships/Founders/.LLab.

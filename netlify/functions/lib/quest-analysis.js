@@ -328,7 +328,7 @@ function analyze(q, answers) {
   r.omni = omniRead(allText(answers));
   if (answers.omni) {
     const ins = textInsight({ label: 'Beyond your own walls', prompt: '' }, answers.omni, 2);
-    const entry = { label: 'Beyond your own walls', evidence: ins.evidence, text: ins.level === 'specific' ? 'You named who this reaches. List your company in the Omnidirectional Enterprise™ Directory so those directions can find you.' : ins.text };
+    const entry = { label: 'Beyond your own walls', evidence: ins.evidence, text: ins.level === 'specific' ? 'You named who this reaches. Join the Collaborating Companies so those directions can find you.' : ins.text };
     if (ins.level === 'specific') r.strengths.push({ label: entry.label, evidence: entry.evidence, text: answers.omni });
     r.improvements.push(entry);
     r.improvements = r.improvements.slice(0, 9);

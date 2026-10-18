@@ -1,7 +1,8 @@
-// The Omnidirectional Enterprise™ Directory: companies that use paid Co.LLab™ IP
-// list what they offer so other members can work with them and buy from them
-// directly. Listing is a paid-member benefit, opt-in, and reviewed before it
-// appears. Founders purchases alone do not qualify (Founders is not a membership).
+// Collaborating Companies: companies that license Co.LLab™ IP (any paid .LLab™ product)
+// or hold a Membership collaborate through the Omnidirectional Enterprise™, and
+// show what they offer so others can work with them directly. Part of the license
+// and the Membership, opt-in, and reviewed before it appears. Founders purchases
+// alone do not qualify (Founders is not a membership).
 const membershipStatus = require('./membership-status');
 const pricing = require('./pricing');
 
