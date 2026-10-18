@@ -1,0 +1,80 @@
+{
+  "key": "creator-identity-map",
+  "title": "Creator Identity Map™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Turn what you're already creating into a clear creative identity you can build infrastructure around.",
+  "pdfTitle": "Creator Identity Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Inventory Your Mediums and Methods",
+      "phase": null,
+      "type": "text",
+      "prompt": "List every format your creative work has taken, however minor."
+    },
+    {
+      "id": "n2",
+      "section": "Step 2 — Find the Thread",
+      "phase": null,
+      "type": "text",
+      "prompt": "What subject, question, feeling, or method shows up across almost everything you've made?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 2 — Find the Thread",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would someone who has seen several of your pieces say you're \"always doing\"?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 3 — Separate Identity From Medium",
+      "phase": null,
+      "type": "text",
+      "prompt": "Your identity is not \"I make paintings\" or \"I write essays\" — it's what you're actually doing through that medium.  Complete: I use to ."
+    },
+    {
+      "id": "n5",
+      "section": "Step 4 — Build the Identity Statement, Phase By Phase",
+      "phase": 0,
+      "type": "text",
+      "prompt": "FOUNDATIONS — What is the thread, plainly stated?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 4 — Build the Identity Statement, Phase By Phase",
+      "phase": 1,
+      "type": "text",
+      "prompt": "INFRASTRUCTURE PLANNING & MANAGEMENT — Who does this identity actually serve or reach?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 4 — Build the Identity Statement, Phase By Phase",
+      "phase": 2,
+      "type": "text",
+      "prompt": "INTERNAL OPERATING SYSTEMS — How does this identity show up consistently in the work you release?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 4 — Build the Identity Statement, Phase By Phase",
+      "phase": 3,
+      "type": "text",
+      "prompt": "PRESERVATION — What would need to survive for this identity to outlast any single piece of work?"
+    },
+    {
+      "id": "n9",
+      "section": "Step 5 — Your Creator Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I create … for … because …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

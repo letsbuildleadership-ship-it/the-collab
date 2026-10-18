@@ -1,0 +1,101 @@
+{
+  "key": "creator-venture-build-plan",
+  "title": "Creator Venture Build Plan™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "A practical 30-day plan for turning your creative practice into a venture.",
+  "pdfTitle": "Creator Venture Build Plan™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Week 1 — Define the Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does a buyer or supporter actually receive, and by when?"
+    },
+    {
+      "id": "n2",
+      "section": "Week 1 — Define the Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the price or ask, and why that number specifically?"
+    },
+    {
+      "id": "n3",
+      "section": "Week 2 — Build the Smallest Version",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the leanest version of this offer you could deliver in the next two weeks?"
+    },
+    {
+      "id": "n4",
+      "section": "Week 2 — Build the Smallest Version",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will you deliberately leave out of this first version?"
+    },
+    {
+      "id": "n5",
+      "section": "Week 2 — Build the Smallest Version",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who are the first three people you'll offer it to directly?"
+    },
+    {
+      "id": "n6",
+      "section": "Week 3 — Create the Reach Path",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where does your specific audience already spend attention?"
+    },
+    {
+      "id": "n7",
+      "section": "Week 3 — Create the Reach Path",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the one channel you'll commit to for the next 90 days?"
+    },
+    {
+      "id": "n8",
+      "section": "Week 3 — Create the Reach Path",
+      "phase": null,
+      "type": "text",
+      "prompt": "What's the first piece of outreach, content, or announcement you'll publish?"
+    },
+    {
+      "id": "n9",
+      "section": "Week 4 — Run It and Record What Happened",
+      "phase": null,
+      "type": "text",
+      "prompt": "What actually happened when you offered it — numbers, reactions, results?"
+    },
+    {
+      "id": "n10",
+      "section": "Week 4 — Run It and Record What Happened",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would you change about the offer itself before doing this again?"
+    },
+    {
+      "id": "n11",
+      "section": "Week 4 — Run It and Record What Happened",
+      "phase": null,
+      "type": "text",
+      "prompt": "What repeatable system, if any, is now visible from this first round?"
+    },
+    {
+      "id": "n12",
+      "section": "Your 30-Day Commitment",
+      "phase": null,
+      "type": "text",
+      "prompt": "By the end of this plan, I will have offered to and I will know …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

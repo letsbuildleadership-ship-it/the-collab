@@ -1,0 +1,236 @@
+{
+  "key": "operating-system",
+  "title": ".LLab Leadership Operating System™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "workbook",
+  "intro": "Translate leadership principles into repeatable organizational practices.",
+  "pdfTitle": ".LLab Leadership Operating System™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Mission",
+        "Vision",
+        "Values",
+        "Purpose",
+        "Leadership identity",
+        "Strategic priorities"
+      ],
+      "pickMin": 0,
+      "pickMax": 6
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our leadership principle:"
+    },
+    {
+      "id": "n3",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Behavior that demonstrates it:"
+    },
+    {
+      "id": "n4",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How we reinforce it:"
+    },
+    {
+      "id": "n5",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Planning",
+        "Decision-making",
+        "Roles",
+        "Accountability",
+        "Management",
+        "Resources"
+      ],
+      "pickMin": 0,
+      "pickMax": 6
+    },
+    {
+      "id": "n6",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Priority:"
+    },
+    {
+      "id": "n7",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Owner:"
+    },
+    {
+      "id": "n8",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Expected outcome:"
+    },
+    {
+      "id": "n9",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Review process:"
+    },
+    {
+      "id": "n10",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Culture",
+        "Communication",
+        "Collaboration",
+        "Feedback",
+        "Execution",
+        "Performance"
+      ],
+      "pickMin": 0,
+      "pickMax": 6
+    },
+    {
+      "id": "n11",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Strength we want to reinforce:"
+    },
+    {
+      "id": "n12",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Behavior we expect:"
+    },
+    {
+      "id": "n13",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "System that supports it:"
+    },
+    {
+      "id": "n14",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How we measure it:"
+    },
+    {
+      "id": "n15",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Knowledge",
+        "Culture",
+        "Leadership development",
+        "Continuity",
+        "Organizational memory",
+        "Legacy"
+      ],
+      "pickMin": 0,
+      "pickMax": 6
+    },
+    {
+      "id": "n16",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must continue:"
+    },
+    {
+      "id": "n17",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Who needs to know it:"
+    },
+    {
+      "id": "n18",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How will we preserve it:"
+    },
+    {
+      "id": "n19",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How will we transfer it:"
+    },
+    {
+      "id": "n20",
+      "section": "Align",
+      "phase": null,
+      "type": "text",
+      "prompt": "Are we still connected to our mission and vision?"
+    },
+    {
+      "id": "n21",
+      "section": "Plan",
+      "phase": null,
+      "type": "text",
+      "prompt": "What matters most right now?"
+    },
+    {
+      "id": "n22",
+      "section": "Execute",
+      "phase": null,
+      "type": "text",
+      "prompt": "How will we turn priorities into action?"
+    },
+    {
+      "id": "n23",
+      "section": "Review",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is working and what can we strengthen?"
+    },
+    {
+      "id": "n24",
+      "section": "Preserve",
+      "phase": null,
+      "type": "text",
+      "prompt": "What should be carried forward?"
+    },
+    {
+      "id": "n25",
+      "section": "Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "What are we building that can outlast the current leadership?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "key": "creator-legacy-architecture",
+  "title": "Creator Legacy Infrastructure Architecture™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.",
+  "pdfTitle": "Creator Legacy Infrastructure Architecture™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Pillar 1 — Identity Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "How is the creative identity documented so it can be understood, applied, and carried forward by someone other than you?"
+    },
+    {
+      "id": "n2",
+      "section": "Pillar 1 — Identity Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the written statement of what this body of work is, and is not?"
+    },
+    {
+      "id": "n3",
+      "section": "Pillar 2 — Ownership Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the complete, current picture of who owns what — copyrights, trademarks, master files, platform accounts, domains?"
+    },
+    {
+      "id": "n4",
+      "section": "Pillar 2 — Ownership Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What legal or administrative gaps exist, and what is the plan to close each one?"
+    },
+    {
+      "id": "n5",
+      "section": "Pillar 3 — Operating Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which systems from The Creator Operating System™ are documented well enough that someone else could run them?"
+    },
+    {
+      "id": "n6",
+      "section": "Pillar 3 — Operating Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the single point of failure in how this venture runs today — the one thing that stops if you stop?"
+    },
+    {
+      "id": "n7",
+      "section": "Pillar 4 — Succession Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "If this body of work needed to continue without you — temporarily or permanently — who is positioned to carry it, and what would they need?"
+    },
+    {
+      "id": "n8",
+      "section": "Pillar 4 — Succession Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What decisions have you made (or need to make) about licensing, archiving, or transferring the work after you're no longer actively creating it?"
+    },
+    {
+      "id": "n9",
+      "section": "Pillar 5 — Cultural Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does this body of work contribute to the community, culture, or field it belongs to — beyond its commercial value?"
+    },
+    {
+      "id": "n10",
+      "section": "Pillar 5 — Cultural Architecture",
+      "phase": null,
+      "type": "text",
+      "prompt": "How should that contribution be described for someone encountering the work after you?"
+    },
+    {
+      "id": "n11",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "This body of work exists to …"
+    },
+    {
+      "id": "n12",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It is owned and documented in …"
+    },
+    {
+      "id": "n13",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It can be carried forward by …"
+    },
+    {
+      "id": "n14",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "What I want it to leave behind is …"
+    },
+    {
+      "id": "n15",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "The Co.LLab: Building Leadership Infrastructure™ …"
+    },
+    {
+      "id": "n16",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Explore .LLab Creator Infrastructure™ …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

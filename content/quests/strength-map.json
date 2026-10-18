@@ -1,0 +1,179 @@
+{
+  "key": "strength-map",
+  "title": "Leadership Infrastructure Strength Map™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Identify one organizational strength and learn how to build infrastructure around it.",
+  "pdfTitle": "Leadership Infrastructure Strength Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Identify Your Strength",
+      "phase": null,
+      "type": "choose",
+      "prompt": "What does your organization already do particularly well?",
+      "options": [
+        "Leadership",
+        "Culture",
+        "Communication",
+        "Strategy",
+        "Decision-making",
+        "Accountability",
+        "Collaboration",
+        "Execution",
+        "Innovation",
+        "People development",
+        "Customer relationships"
+      ],
+      "pickMin": 1,
+      "pickMax": 1
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Identify Your Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our strongest area is:"
+    },
+    {
+      "id": "n3",
+      "section": "Step 2 — Define the Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "What makes this strength valuable to your organization?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — Define the Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who benefits from this strength?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — Define the Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where does this strength show up today?"
+    },
+    {
+      "id": "n6",
+      "section": "Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What gives this strength direction?"
+    },
+    {
+      "id": "n7",
+      "section": "Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What mission, vision, value, or leadership principle supports it?"
+    },
+    {
+      "id": "n8",
+      "section": "Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "How can we organize this strength?"
+    },
+    {
+      "id": "n9",
+      "section": "Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What responsibility, process, decision, or accountability structure supports it?"
+    },
+    {
+      "id": "n10",
+      "section": "Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How does this strength show up every day?"
+    },
+    {
+      "id": "n11",
+      "section": "Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What behaviors, practices, communication, or systems reinforce it?"
+    },
+    {
+      "id": "n12",
+      "section": "Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How can this strength continue?"
+    },
+    {
+      "id": "n13",
+      "section": "Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What needs to be documented, shared, developed, or preserved?"
+    },
+    {
+      "id": "n14",
+      "section": "Step 5 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one action you can take within the next 30 days to strengthen this infrastructure?"
+    },
+    {
+      "id": "n15",
+      "section": "Step 5 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would success look like?"
+    },
+    {
+      "id": "n16",
+      "section": "Step 5 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to be involved?"
+    },
+    {
+      "id": "n17",
+      "section": "Your Strength Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are strong in …"
+    },
+    {
+      "id": "n18",
+      "section": "Your Strength Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "This strength creates value by …"
+    },
+    {
+      "id": "n19",
+      "section": "Your Strength Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We can strengthen it by …"
+    },
+    {
+      "id": "n20",
+      "section": "Your Strength Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We can build it into our infrastructure through …"
+    },
+    {
+      "id": "n21",
+      "section": "Your Strength Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We can preserve it by …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

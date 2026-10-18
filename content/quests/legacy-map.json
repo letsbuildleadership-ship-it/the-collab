@@ -1,0 +1,325 @@
+{
+  "key": "legacy-map",
+  "title": ".LLab Legacy Infrastructure Map™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Identify what should be captured, embedded, transferred, and sustained.",
+  "pdfTitle": ".LLab Legacy Infrastructure Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Define Your Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "What are you building?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Define Your Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "Why does it matter?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — Define Your Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you want your organization to be known for?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 1 — Define Your Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "What should still exist because you built it?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Mission:"
+    },
+    {
+      "id": "n7",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Vision:"
+    },
+    {
+      "id": "n8",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Values:"
+    },
+    {
+      "id": "n9",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Leadership principles:"
+    },
+    {
+      "id": "n10",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our legacy foundation:"
+    },
+    {
+      "id": "n11",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What needs to become organizational?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Important knowledge:"
+    },
+    {
+      "id": "n13",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Critical decisions:"
+    },
+    {
+      "id": "n14",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Key responsibilities:"
+    },
+    {
+      "id": "n15",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Important relationships:"
+    },
+    {
+      "id": "n16",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What needs to be documented, structured, or transferred?"
+    },
+    {
+      "id": "n17",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How should your legacy show up every day?"
+    },
+    {
+      "id": "n18",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Leadership behaviors we want to continue:"
+    },
+    {
+      "id": "n19",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Cultural practices we want to preserve:"
+    },
+    {
+      "id": "n20",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Communication practices we want to maintain:"
+    },
+    {
+      "id": "n21",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Operating practices that create value:"
+    },
+    {
+      "id": "n22",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How can these become part of the organization’s infrastructure?"
+    },
+    {
+      "id": "n23",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must continue?"
+    },
+    {
+      "id": "n24",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Knowledge:"
+    },
+    {
+      "id": "n25",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Culture:"
+    },
+    {
+      "id": "n26",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Leadership practices:"
+    },
+    {
+      "id": "n27",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Processes:"
+    },
+    {
+      "id": "n28",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Organizational history:"
+    },
+    {
+      "id": "n29",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How will we preserve it?"
+    },
+    {
+      "id": "n30",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Who needs to be able to carry it forward?"
+    },
+    {
+      "id": "n31",
+      "section": "Identify",
+      "phase": null,
+      "type": "text",
+      "prompt": "What matters?"
+    },
+    {
+      "id": "n32",
+      "section": "Capture",
+      "phase": null,
+      "type": "text",
+      "prompt": "What needs to be preserved?"
+    },
+    {
+      "id": "n33",
+      "section": "Embed",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where will it live within the organization?"
+    },
+    {
+      "id": "n34",
+      "section": "Transfer",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to understand and carry it?"
+    },
+    {
+      "id": "n35",
+      "section": "Sustain",
+      "phase": null,
+      "type": "text",
+      "prompt": "How will it continue?"
+    },
+    {
+      "id": "n36",
+      "section": "Legacy",
+      "phase": null,
+      "type": "text",
+      "prompt": "What remains because you built it?"
+    },
+    {
+      "id": "n37",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "If I stepped away tomorrow, what would continue because I intentionally built the infrastructure?"
+    },
+    {
+      "id": "n38",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would disappear if I were no longer there?"
+    },
+    {
+      "id": "n39",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "What can I do now to make that knowledge, value, or practice transferable?"
+    },
+    {
+      "id": "n40",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are building …"
+    },
+    {
+      "id": "n41",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It matters because …"
+    },
+    {
+      "id": "n42",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We will embed it into our infrastructure by …"
+    },
+    {
+      "id": "n43",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We will preserve it through …"
+    },
+    {
+      "id": "n44",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our goal is for it to continue …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

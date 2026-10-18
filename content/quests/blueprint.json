@@ -1,0 +1,304 @@
+{
+  "key": "blueprint",
+  "title": ".LLab Infrastructure Blueprint™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Turn Diagnostic insights into an intentional infrastructure-building framework.",
+  "pdfTitle": ".LLab Infrastructure Blueprint™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "",
+      "phase": null,
+      "type": "text",
+      "prompt": "It follows the same IV Phases™, but instead of asking “What’s wrong?”, it asks:"
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our current strength:"
+    },
+    {
+      "id": "n3",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What are we already doing well?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How can we strengthen it?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What would make this strength more consistent?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How can we embed it?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Where should this strength show up across the organization?"
+    },
+    {
+      "id": "n8",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How can we scale it?"
+    },
+    {
+      "id": "n9",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What would allow this strength to support future growth?"
+    },
+    {
+      "id": "n10",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Strength to develop:"
+    },
+    {
+      "id": "n11",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Desired outcome:"
+    },
+    {
+      "id": "n12",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Action:"
+    },
+    {
+      "id": "n13",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What planning or management practice is already working?"
+    },
+    {
+      "id": "n14",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What makes it effective?"
+    },
+    {
+      "id": "n15",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where could it be strengthened?"
+    },
+    {
+      "id": "n16",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "How could it become a repeatable organizational practice?"
+    },
+    {
+      "id": "n17",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Strength to develop:"
+    },
+    {
+      "id": "n18",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Desired outcome:"
+    },
+    {
+      "id": "n19",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Action:"
+    },
+    {
+      "id": "n20",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What part of our culture or operations is already working?"
+    },
+    {
+      "id": "n21",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What behaviors make it successful?"
+    },
+    {
+      "id": "n22",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How can we reinforce those behaviors?"
+    },
+    {
+      "id": "n23",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How can we make the practice consistent across the organization?"
+    },
+    {
+      "id": "n24",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Strength to develop:"
+    },
+    {
+      "id": "n25",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Desired outcome:"
+    },
+    {
+      "id": "n26",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Action:"
+    },
+    {
+      "id": "n27",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What do we already have that must be preserved?"
+    },
+    {
+      "id": "n28",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Why does it matter?"
+    },
+    {
+      "id": "n29",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How can we document or transfer it?"
+    },
+    {
+      "id": "n30",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How can we ensure it continues as the organization evolves?"
+    },
+    {
+      "id": "n31",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Strength to preserve:"
+    },
+    {
+      "id": "n32",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Desired outcome:"
+    },
+    {
+      "id": "n33",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Action:"
+    },
+    {
+      "id": "n34",
+      "section": "The Co.LLab™ Build Map",
+      "phase": null,
+      "type": "text",
+      "prompt": "At the end, the organization creates:"
+    },
+    {
+      "id": "n35",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "What are you building that should outlast you?"
+    },
+    {
+      "id": "n36",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "Strength:"
+    },
+    {
+      "id": "n37",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "Infrastructure needed:"
+    },
+    {
+      "id": "n38",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "People responsible:"
+    },
+    {
+      "id": "n39",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "First action:"
+    },
+    {
+      "id": "n40",
+      "section": "The Final Prompt",
+      "phase": null,
+      "type": "text",
+      "prompt": "Desired future state:"
+    },
+    {
+      "id": "n41",
+      "section": "The Co.LLab Promise",
+      "phase": null,
+      "type": "text",
+      "prompt": "The Co. LLab doesn’t begin by replacing what organizations already have."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

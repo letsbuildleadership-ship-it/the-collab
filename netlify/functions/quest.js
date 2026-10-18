@@ -4,6 +4,9 @@
 // member's record so the report lives in their portal.
 // Quests are engagement only — they never touch entitlements or downloads.
 const store = require('./lib/store');
+const membershipStatus = require('./lib/membership-status');
+const { resolveAccess } = require('./lib/access');
+const freeToolKeys = new Set(require('../../content/free-tools.json').tools.map((t) => t.key));
 const { tokenFromEvent, json, CORS_HEADERS } = require('./lib/http');
 const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor } = require('./lib/quests');
 const { buildQuestPdf } = require('./lib/quest-pdf');
@@ -26,6 +29,14 @@ exports.handler = async (event) => {
   const key = String((isGet ? qs.key : body.key) || '');
   const quest = quests.get(key);
   if (!quest) return json(404, { error: 'Quest not found.' });
+
+  // Free-tool quests are open to every member; a product's quest needs the product
+  // (same entitlement check as its PDF download).
+  if (!freeToolKeys.has(key)) {
+    const access = await resolveAccess(record);
+    const owned = new Set(membershipStatus.effectiveEntitlements(access));
+    if (!owned.has(key) && !membershipStatus.catalogUnlockKeys(access).includes(key)) return json(403, { error: 'You do not have access to this quest.' });
+  }
 
   record.quests = record.quests || {};
   const saved = record.quests[key] || null;

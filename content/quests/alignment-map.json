@@ -1,0 +1,259 @@
+{
+  "key": "alignment-map",
+  "title": "Leadership Alignment Map™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Connect mission, vision, values, strategy, culture, and leadership.",
+  "pdfTitle": "Leadership Alignment Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Our Foundation",
+      "phase": null,
+      "type": "text",
+      "prompt": "What are we here to build?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Our Foundation",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our Mission:"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — Our Foundation",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our Vision:"
+    },
+    {
+      "id": "n4",
+      "section": "Step 1 — Our Foundation",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our Purpose:"
+    },
+    {
+      "id": "n5",
+      "section": "Step 1 — Our Foundation",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we want to be known for?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 2 — Our Leadership",
+      "phase": null,
+      "type": "choose",
+      "prompt": "What values should guide how we lead?",
+      "options": [
+        "Integrity",
+        "Accountability",
+        "Innovation",
+        "Excellence",
+        "Trust",
+        "Growth",
+        "Collaboration",
+        "Service",
+        "Courage",
+        "Transparency"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n7",
+      "section": "Step 2 — Our Leadership",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our leadership values:"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Turn Values Into Behavior",
+      "phase": null,
+      "type": "text",
+      "prompt": "Value:"
+    },
+    {
+      "id": "n9",
+      "section": "Step 3 — Turn Values Into Behavior",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does this value look like when we lead?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 3 — Turn Values Into Behavior",
+      "phase": null,
+      "type": "text",
+      "prompt": "What behavior demonstrates it?"
+    },
+    {
+      "id": "n11",
+      "section": "Step 3 — Turn Values Into Behavior",
+      "phase": null,
+      "type": "text",
+      "prompt": "What behavior would contradict it?"
+    },
+    {
+      "id": "n12",
+      "section": "Our Mission",
+      "phase": null,
+      "type": "text",
+      "prompt": "What we exist to accomplish."
+    },
+    {
+      "id": "n13",
+      "section": "Our Vision",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where we are going."
+    },
+    {
+      "id": "n14",
+      "section": "Our Strategy",
+      "phase": null,
+      "type": "text",
+      "prompt": "How we intend to get there."
+    },
+    {
+      "id": "n15",
+      "section": "Our Culture",
+      "phase": null,
+      "type": "text",
+      "prompt": "How we work together along the way."
+    },
+    {
+      "id": "n16",
+      "section": "Our Leadership",
+      "phase": null,
+      "type": "text",
+      "prompt": "How we make decisions and create accountability."
+    },
+    {
+      "id": "n17",
+      "section": "Our Performance",
+      "phase": null,
+      "type": "text",
+      "prompt": "What success looks like."
+    },
+    {
+      "id": "n18",
+      "section": "Step 5 — Find the Alignment",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Where are we strongest?",
+      "options": [
+        "Mission & Vision",
+        "Leadership & Values",
+        "Strategy",
+        "Culture",
+        "Accountability",
+        "Execution",
+        "Communication"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n19",
+      "section": "Step 5 — Find the Alignment",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is already aligned?"
+    },
+    {
+      "id": "n20",
+      "section": "Step 5 — Find the Alignment",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where could we create greater alignment?"
+    },
+    {
+      "id": "n21",
+      "section": "Step 5 — Find the Alignment",
+      "phase": null,
+      "type": "text",
+      "prompt": "What strength can we build from?"
+    },
+    {
+      "id": "n22",
+      "section": "Step 6 — Your Alignment Action",
+      "phase": null,
+      "type": "text",
+      "prompt": "One thing we can do to create greater alignment:"
+    },
+    {
+      "id": "n23",
+      "section": "Step 6 — Your Alignment Action",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to be involved?"
+    },
+    {
+      "id": "n24",
+      "section": "Step 6 — Your Alignment Action",
+      "phase": null,
+      "type": "text",
+      "prompt": "When will we begin?"
+    },
+    {
+      "id": "n25",
+      "section": "Step 6 — Your Alignment Action",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will change if we succeed?"
+    },
+    {
+      "id": "n26",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We exist to …"
+    },
+    {
+      "id": "n27",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are building toward …"
+    },
+    {
+      "id": "n28",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We lead through …"
+    },
+    {
+      "id": "n29",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our culture reflects …"
+    },
+    {
+      "id": "n30",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our strategy focuses on …"
+    },
+    {
+      "id": "n31",
+      "section": "Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Success means …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

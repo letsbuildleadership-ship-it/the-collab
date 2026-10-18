@@ -1,0 +1,192 @@
+{
+  "key": "legacy-profile",
+  "title": ".LLab Leadership Legacy Profile™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "workbook",
+  "intro": "Connect personal leadership strengths to organizational influence, infrastructure, and legacy.",
+  "pdfTitle": ".LLab Leadership Legacy Profile™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Your Leadership Strength",
+      "phase": null,
+      "type": "choose",
+      "prompt": "What is your strongest leadership quality?",
+      "options": [
+        "Vision",
+        "Strategy",
+        "Communication",
+        "Relationship Building",
+        "Decision-Making",
+        "Innovation",
+        "Problem Solving",
+        "Developing People",
+        "Building Culture",
+        "Creating Opportunity"
+      ],
+      "pickMin": 1,
+      "pickMax": 1
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Your Leadership Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "What makes this strength valuable?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 2 — Your Leadership Impact",
+      "phase": null,
+      "type": "text",
+      "prompt": "What changes because of your leadership?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — Your Leadership Impact",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who benefits from your leadership?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — Your Leadership Impact",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do people learn from working with you?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 2 — Your Leadership Impact",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you want people to remember about how you led?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — Turn Influence Into Infrastructure",
+      "phase": null,
+      "type": "text",
+      "prompt": "Your strength:"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Turn Influence Into Infrastructure",
+      "phase": null,
+      "type": "text",
+      "prompt": "The principle behind it:"
+    },
+    {
+      "id": "n9",
+      "section": "Step 3 — Turn Influence Into Infrastructure",
+      "phase": null,
+      "type": "text",
+      "prompt": "The behavior that demonstrates it:"
+    },
+    {
+      "id": "n10",
+      "section": "Step 3 — Turn Influence Into Infrastructure",
+      "phase": null,
+      "type": "text",
+      "prompt": "The system or practice that could support it:"
+    },
+    {
+      "id": "n11",
+      "section": "Step 3 — Turn Influence Into Infrastructure",
+      "phase": null,
+      "type": "text",
+      "prompt": "The people who could carry it forward:"
+    },
+    {
+      "id": "n12",
+      "section": "Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What belief or principle should continue?"
+    },
+    {
+      "id": "n13",
+      "section": "Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What structure would help it continue?"
+    },
+    {
+      "id": "n14",
+      "section": "Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How should it show up in everyday operations?"
+    },
+    {
+      "id": "n15",
+      "section": "Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How will you make it transferable and sustainable?"
+    },
+    {
+      "id": "n16",
+      "section": "Step 5 — Your Legacy Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I want to be known for …"
+    },
+    {
+      "id": "n17",
+      "section": "Step 5 — Your Legacy Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I create value by …"
+    },
+    {
+      "id": "n18",
+      "section": "Step 5 — Your Legacy Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I want others to carry forward …"
+    },
+    {
+      "id": "n19",
+      "section": "Step 5 — Your Legacy Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I can turn this leadership strength into infrastructure by …"
+    },
+    {
+      "id": "n20",
+      "section": "Step 5 — Your Legacy Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "The legacy I am building is …"
+    },
+    {
+      "id": "n21",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "If your title disappeared tomorrow, what would remain because of your leadership?"
+    },
+    {
+      "id": "n22",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "If you left the organization tomorrow, what would continue because you built it?"
+    },
+    {
+      "id": "n23",
+      "section": "The Legacy Test",
+      "phase": null,
+      "type": "text",
+      "prompt": "What could you build today that would still create value years from now?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

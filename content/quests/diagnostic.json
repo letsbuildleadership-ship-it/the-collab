@@ -1,0 +1,420 @@
+{
+  "key": "diagnostic",
+  "title": ".LLab Leadership Infrastructure Diagnostic™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "A comprehensive assessment of organizational leadership infrastructure across all of The IV Phases™.",
+  "pdfTitle": ".LLab Leadership Infrastructure Diagnostic™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "scaleHint": "1 = Rarely true  ·  2 = Sometimes true  ·  3 = Generally true  ·  4 = Consistently true  ·  5 = Strongly embedded",
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our mission provides clear direction for the organization.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our leadership team shares a clear understanding of our vision.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our values are reflected in how we lead and make decisions.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our leaders understand the behaviors that represent our values.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n5",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our strategic priorities reflect our mission and vision.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n6",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "People understand how their work contributes to our larger purpose.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n7",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our leadership identity is clear and recognizable.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n8",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our organization has a clear understanding of what makes our approach distinctive.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n9",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our leaders use our mission, vision, and values to guide important decisions.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n10",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our foundation gives us a strong platform for future growth.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n11",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What is one leadership or organizational strength you believe your organization does particularly well?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "We have a clear process for turning priorities into action.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n13",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Leaders understand how important decisions are made.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n14",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Ownership of key decisions is clear.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n15",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Leadership and management responsibilities are understood.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n16",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "We regularly evaluate progress toward our priorities.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n17",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Accountability is part of how we manage our work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n18",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Leaders have the information they need to make informed decisions.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n19",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Our planning considers both organizational goals and available resources.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n20",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "We communicate effectively when priorities or circumstances change.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n21",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "scale",
+      "prompt": "Our management practices support our organization’s ability to grow.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n22",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What planning, management, or leadership practice currently helps your organization operate effectively?"
+    },
+    {
+      "id": "n23",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Our culture reflects the values we communicate.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n24",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Communication expectations are clear.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n25",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Leaders model the behaviors they expect from others.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n26",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Performance expectations are understood.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n27",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Teams understand what successful execution looks like.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n28",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Feedback contributes to improvement.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n29",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Our internal systems support collaboration.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n30",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "People understand how organizational decisions affect their work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n31",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Our leadership practices remain consistent during periods of pressure or change.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n32",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "scale",
+      "prompt": "Our internal systems support continued performance as we grow.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n33",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What aspect of your culture, communication, or day-to-day operations is currently one of your organization’s greatest strengths?"
+    },
+    {
+      "id": "n34",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Important organizational knowledge is accessible beyond individual leaders.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n35",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "We intentionally develop future leaders.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n36",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Leadership responsibilities can be transferred effectively.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n37",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "We understand what principles and practices should remain consistent as we grow.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n38",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Our culture can be carried forward as the organization evolves.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n39",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Our success does not depend entirely on one individual.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n40",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Important organizational lessons and knowledge are captured.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n41",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "We have considered the legacy we want the organization to create.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n42",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "Our leadership practices support continuity.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n43",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "scale",
+      "prompt": "We are building something that can create value beyond the current generation of leaders.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n44",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What is one thing about your organization’s knowledge, culture, leadership, or legacy that you most want to preserve?"
+    },
+    {
+      "id": "n45",
+      "section": "Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Clarity, purpose, identity, values, and direction."
+    },
+    {
+      "id": "n46",
+      "section": "Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Knowledge, leadership continuity, culture, organizational value, and legacy.  Rather than focusing only on gaps, your profile identifies where your organization already has strength and how those strengths can become stronger infrastructure."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

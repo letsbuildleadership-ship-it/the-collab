@@ -65,10 +65,22 @@ async function buildQuestPdf({ quest, record, result }) {
   }
   para(result.outcome.summary);
 
+  if (result.outcome.legacyRead) {
+    heading('Your Legacy Read');
+    para(result.outcome.legacyRead);
+    for (const ph of result.outcome.phaseMap || []) {
+      para(`${ph.name}: ${ph.total ? `${ph.answered} of ${ph.total} answered, ` : ''}${ph.strengths} strong, ${ph.gaps} to build, ${ph.mentions} mention${ph.mentions === 1 ? '' : 's'} in your words`, { size: 9.5, color: MUTED, gap: 2 });
+    }
+    y -= 6;
+  }
+
   heading('Your answers');
+  let lastSection = null;
   for (const node of quest.nodes) {
     const a = result.answers[node.id];
-    const shown = typeof a === 'boolean' ? (a ? 'Yes' : 'Not yet') : String(a);
+    if (a === undefined) continue;
+    if (node.section && node.section !== lastSection) { lastSection = node.section; para(node.section, { f: bold, size: 10.5, color: ORANGE, gap: 3 }); }
+    const shown = typeof a === 'boolean' ? (a ? 'Yes' : 'Not yet') : Array.isArray(a) ? (a.length ? a.join(', ') : 'None yet') : String(a);
     para(node.label ? `${node.label}: ${node.prompt}` : node.prompt, { f: bold, size: 10, gap: 1 });
     para(shown, { indent: 12, gap: result.notes && result.notes[node.id] ? 2 : 6 });
     if (result.notes && result.notes[node.id]) para(`Your note: ${result.notes[node.id]}`, { indent: 12, size: 9.5, color: MUTED, gap: 6 });
@@ -81,12 +93,14 @@ async function buildQuestPdf({ quest, record, result }) {
   heading(quest.archetype === 'worksheet' || quest.archetype === 'starter' ? 'Where you are strongest' : "What's working");
   for (const s of result.outcome.strengths) {
     para(s.label, { f: bold, size: 10, gap: 1 });
+    if (s.evidence) para(s.evidence, { indent: 12, size: 9.5, color: ORANGE, gap: 1 });
     para(s.text, { indent: 12, gap: 6 });
   }
 
   heading("How we'd build from here, together");
   for (const s of result.outcome.improvements) {
     para(s.label, { f: bold, size: 10, gap: 1 });
+    if (s.evidence) para(s.evidence, { indent: 12, size: 9.5, color: ORANGE, gap: 1 });
     para(s.text, { indent: 12, gap: 6 });
   }
 
