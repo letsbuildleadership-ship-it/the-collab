@@ -114,9 +114,9 @@
     const out = document.getElementById('email-test-out');
     out.textContent = 'Sending…';
     try {
-      const r = await fetch('/.netlify/functions/admin-status', { method: 'POST', headers: { 'X-Admin-Token': token() || '' } });
+      const r = await fetch('/.netlify/functions/admin-status', { method: 'POST', headers: { 'X-Admin-Token': token() || document.getElementById('gate-input').value.trim() } });
       const d = await r.json();
-      out.textContent = d.sent ? 'Sent to ' + d.to + ' — check the inbox.' : 'Failed: ' + (d.error || 'sign in first');
+      out.textContent = d.sent ? 'Sent to ' + d.to + ' — check the inbox.' : 'Failed: ' + (d.error || 'wrong token — paste it in the box above first');
     } catch (e) { out.textContent = 'Failed: could not reach the site.'; }
   });
 
