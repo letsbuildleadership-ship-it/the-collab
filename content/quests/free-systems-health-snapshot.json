@@ -1,0 +1,66 @@
+{
+  "key": "free-systems-health-snapshot",
+  "title": "Systems Health Snapshot™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "snapshot",
+  "intro": "Score each system as it functions today, not as it's designed to function.",
+  "pdfTitle": "Systems Health Snapshot™",
+  "upsell": {
+    "name": "The .LLab Leadership Operating System™",
+    "price": "$750",
+    "copy": "is the full build for whichever system scored lowest."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "scale",
+      "label": "Culture",
+      "prompt": "Whether stated values match what actually happens day to day.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "type": "scale",
+      "label": "Rhythm",
+      "prompt": "Whether meetings, planning, and review run on a predictable cadence.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "type": "scale",
+      "label": "Communication",
+      "prompt": "Whether information reaches the right people without being chased.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "type": "scale",
+      "label": "Influence",
+      "prompt": "Whether your leadership reach extends beyond the room you're in.",
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "bands": [
+    {
+      "label": "4–9",
+      "copy": "Systems are informal right now. Start with whichever one scored lowest."
+    },
+    {
+      "label": "10–15",
+      "copy": "Some systems are operating well; others are still improvised."
+    },
+    {
+      "label": "16–20",
+      "copy": "Systems are genuinely healthy. The Operating System™ below makes them repeatable."
+    }
+  ],
+  "closing": {
+    "id": "reflect",
+    "type": "text",
+    "prompt": "The system scoring lowest is, and the first fix I'll make is:"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "key": "free-30-day-infrastructure-starter",
+  "title": "30-Day Infrastructure Starter™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "starter",
+  "intro": "Pick one gap. Build one system for it. Resist adding a second.",
+  "pdfTitle": "30-Day Infrastructure Starter™",
+  "upsell": {
+    "name": "The Leadership Infrastructure Build Plan™",
+    "price": "$100",
+    "copy": "turns this starter into a full 30-day build plan."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Week One — Name The Gap",
+      "prompt": "Identify the single infrastructure gap costing you the most right now."
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Week Two — Design The Minimum",
+      "prompt": "Sketch the smallest version of a system that would close it."
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Week Three — Test It",
+      "prompt": "Run it for a week. Note where it holds and where it breaks."
+    },
+    {
+      "id": "n4",
+      "type": "text",
+      "label": "Week Four — Decide What Stays",
+      "prompt": "Keep what worked. Cut what didn't. Write down the final version."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The system I'm committing to build this month is:"
+  }
+}

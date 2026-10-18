@@ -1,0 +1,74 @@
+{
+  "key": "free-leadership-foundations-checklist",
+  "title": "Leadership Foundations Checklist™",
+  "phase": "Phase I · Foundations",
+  "archetype": "checklist",
+  "intro": "Most leadership foundations are half-built and never checked. This audit checks them — quickly, and honestly.",
+  "pdfTitle": "Leadership Foundations Checklist™",
+  "upsell": {
+    "name": "The Leadership Infrastructure Strength Map™",
+    "price": "$20",
+    "copy": "turns one identified strength into a plan for building infrastructure around it."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "check",
+      "prompt": "I can name my core values in one sentence, without notes."
+    },
+    {
+      "id": "n2",
+      "type": "check",
+      "prompt": "My team or collaborators could describe my priorities the same way I would."
+    },
+    {
+      "id": "n3",
+      "type": "check",
+      "prompt": "I have a clear picture of what I'm responsible for versus what I'm not."
+    },
+    {
+      "id": "n4",
+      "type": "check",
+      "prompt": "I know which relationships and structures I'm currently leaning on most."
+    },
+    {
+      "id": "n5",
+      "type": "check",
+      "prompt": "I’ve written down what “working well” actually looks like for me."
+    },
+    {
+      "id": "n6",
+      "type": "check",
+      "prompt": "I have at least one system — not just a habit — that keeps me consistent."
+    },
+    {
+      "id": "n7",
+      "type": "check",
+      "prompt": "I know where my leadership infrastructure is thinnest right now."
+    },
+    {
+      "id": "n8",
+      "type": "check",
+      "prompt": "I've told at least one other person what I'm building."
+    }
+  ],
+  "bands": [
+    {
+      "label": "0–3 Checked",
+      "copy": "Foundations are early. Start with whichever unchecked item surprised you most — that's usually the real gap."
+    },
+    {
+      "label": "4–6 Checked",
+      "copy": "Real structure exists. Pick the weakest checkbox and build one piece of infrastructure around it next."
+    },
+    {
+      "label": "7–8 Checked",
+      "copy": "A strong foundation. You're ready to go deeper with the paid Strength Map™ below."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The unchecked item I'll close first, and how, is:"
+  }
+}

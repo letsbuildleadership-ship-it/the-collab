@@ -1,0 +1,74 @@
+{
+  "key": "free-operating-rhythm-checklist",
+  "title": "Operating Rhythm Checklist™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "checklist",
+  "intro": "A healthy operating rhythm is predictable, and rarely urgent. This checks whether yours is.",
+  "pdfTitle": "Operating Rhythm Checklist™",
+  "upsell": {
+    "name": "The .LLab Leadership Operating System™",
+    "price": "$750",
+    "copy": "turns healthy rhythms into repeatable organizational practice."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "check",
+      "prompt": "Recurring meetings have a stated purpose, not just a stated time."
+    },
+    {
+      "id": "n2",
+      "type": "check",
+      "prompt": "Decisions have a clear, known process — not case-by-case improvisation."
+    },
+    {
+      "id": "n3",
+      "type": "check",
+      "prompt": "Information reaches the people who need it without being asked twice."
+    },
+    {
+      "id": "n4",
+      "type": "check",
+      "prompt": "There's a regular rhythm for reviewing what's working and what isn't."
+    },
+    {
+      "id": "n5",
+      "type": "check",
+      "prompt": "Planning happens on a cadence, not only under pressure."
+    },
+    {
+      "id": "n6",
+      "type": "check",
+      "prompt": "Communication channels are few enough that nothing gets lost between them."
+    },
+    {
+      "id": "n7",
+      "type": "check",
+      "prompt": "Rhythms are documented somewhere besides one person's calendar."
+    },
+    {
+      "id": "n8",
+      "type": "check",
+      "prompt": "The rhythm has been reviewed and adjusted in the last year."
+    }
+  ],
+  "bands": [
+    {
+      "label": "0–3 Checked",
+      "copy": "The rhythm is mostly reactive right now. Start by naming the purpose of one recurring meeting."
+    },
+    {
+      "label": "4–6 Checked",
+      "copy": "Some rhythm exists. Pick the weakest checkbox and put a cadence behind it."
+    },
+    {
+      "label": "7–8 Checked",
+      "copy": "The rhythm is genuinely healthy. The Operating System™ below makes it repeatable at scale."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one rhythm I'll document or set a cadence for this month is:"
+  }
+}

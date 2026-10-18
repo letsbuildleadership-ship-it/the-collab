@@ -1,0 +1,38 @@
+{
+  "key": "free-one-strength-starter",
+  "title": "One Strength Starter™",
+  "phase": "Phase I · Foundations",
+  "archetype": "starter",
+  "intro": "Pick the strength that's most load-bearing right now — the one everything else leans on.",
+  "pdfTitle": "One Strength Starter™",
+  "upsell": {
+    "name": "The Leadership Infrastructure Strength Map™",
+    "price": "$20",
+    "copy": "turns this single strength into real infrastructure."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Name It",
+      "prompt": "Write the strength in one sentence, no qualifiers."
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Prove It",
+      "prompt": "Describe one recent, specific example of it in action."
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Build On It",
+      "prompt": "Choose one small action this week that uses it on purpose."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one action I'll take this week that uses this strength on purpose is:"
+  }
+}

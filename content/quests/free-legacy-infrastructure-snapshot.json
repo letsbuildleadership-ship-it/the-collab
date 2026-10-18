@@ -1,0 +1,66 @@
+{
+  "key": "free-legacy-infrastructure-snapshot",
+  "title": "Legacy Infrastructure Snapshot™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "snapshot",
+  "intro": "The four tests every lasting piece of infrastructure has to pass.",
+  "pdfTitle": "Legacy Infrastructure Snapshot™",
+  "upsell": {
+    "name": "The .LLab Legacy Infrastructure Architecture™",
+    "price": "$1,000",
+    "copy": "is the comprehensive framework this snapshot leads to."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "scale",
+      "label": "Capture",
+      "prompt": "Whether what matters is actually recorded anywhere durable.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "type": "scale",
+      "label": "Embed",
+      "prompt": "Whether it's built into systems, not just stored in a file.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "type": "scale",
+      "label": "Transfer",
+      "prompt": "Whether someone else could actually pick it up and continue it.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "type": "scale",
+      "label": "Sustain",
+      "prompt": "Whether it would keep running, or quietly stop, without you.",
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "bands": [
+    {
+      "label": "4–9",
+      "copy": "Legacy infrastructure is mostly untested right now. Start with Capture — write it down first."
+    },
+    {
+      "label": "10–15",
+      "copy": "Some of it would survive. Some wouldn't. Find the weakest test."
+    },
+    {
+      "label": "16–20",
+      "copy": "Legacy infrastructure passes its own test. The Architecture™ below is the comprehensive version."
+    }
+  ],
+  "closing": {
+    "id": "reflect",
+    "type": "text",
+    "prompt": "The test my infrastructure would fail first is, and why:"
+  }
+}

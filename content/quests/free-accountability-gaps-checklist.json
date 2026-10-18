@@ -1,0 +1,74 @@
+{
+  "key": "free-accountability-gaps-checklist",
+  "title": "Accountability Gaps Checklist™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "checklist",
+  "intro": "Most accountability breaks down quietly, not in one dramatic failure. This checklist finds the quiet breaks before they compound.",
+  "pdfTitle": "Accountability Gaps Checklist™",
+  "upsell": {
+    "name": "The Leadership Alignment Map™",
+    "price": "$50",
+    "copy": "is the next step for closing the gaps you just found."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "check",
+      "prompt": "Decisions made in meetings are written down somewhere everyone can find."
+    },
+    {
+      "id": "n2",
+      "type": "check",
+      "prompt": "Every open commitment has one clearly named owner."
+    },
+    {
+      "id": "n3",
+      "type": "check",
+      "prompt": "I know what happens when a deadline is missed — and so does everyone else."
+    },
+    {
+      "id": "n4",
+      "type": "check",
+      "prompt": "Feedback moves in both directions, not just downward."
+    },
+    {
+      "id": "n5",
+      "type": "check",
+      "prompt": "I can name who is accountable to me, and who I'm accountable to."
+    },
+    {
+      "id": "n6",
+      "type": "check",
+      "prompt": "Nothing important currently depends only on my memory."
+    },
+    {
+      "id": "n7",
+      "type": "check",
+      "prompt": "Follow-through is checked on a schedule, not just when something breaks."
+    },
+    {
+      "id": "n8",
+      "type": "check",
+      "prompt": "I've had an honest conversation about accountability in the last 90 days."
+    }
+  ],
+  "bands": [
+    {
+      "label": "0–3 Checked",
+      "copy": "Accountability is informal right now. Start by naming one owner for one open commitment today."
+    },
+    {
+      "label": "4–6 Checked",
+      "copy": "Some real structure exists. Pick the weakest checkbox and put a system behind it."
+    },
+    {
+      "label": "7–8 Checked",
+      "copy": "Accountability is strong. The Alignment Map™ below connects it to the rest of your infrastructure."
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one commitment I'll assign a clear owner to this week is:"
+  }
+}

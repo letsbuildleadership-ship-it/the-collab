@@ -1,0 +1,44 @@
+{
+  "key": "free-clarity-direction-worksheet",
+  "title": "Clarity & Direction Worksheet™",
+  "phase": "Phase I · Foundations",
+  "archetype": "worksheet",
+  "intro": "Write in plain language. No prompt should take longer than a minute to answer.",
+  "pdfTitle": "Clarity & Direction Worksheet™",
+  "upsell": {
+    "name": "The Leadership Infrastructure Strength Map™",
+    "price": "$20",
+    "copy": "is the next step once your direction is named."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Prompt 1",
+      "prompt": "The one thing I'm actually building right now is…"
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Prompt 2",
+      "prompt": "I'll know it's working when…"
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Prompt 3",
+      "prompt": "The decision I keep avoiding is…"
+    },
+    {
+      "id": "n4",
+      "type": "text",
+      "label": "Prompt 4",
+      "prompt": "If I only had one strength to build from, it would be…"
+    }
+  ],
+  "closing": {
+    "id": "synthesis",
+    "type": "text",
+    "prompt": "In one sentence, my direction right now is:"
+  }
+}

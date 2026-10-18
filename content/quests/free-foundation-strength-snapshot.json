@@ -1,0 +1,66 @@
+{
+  "key": "free-foundation-strength-snapshot",
+  "title": "Foundation Strength Snapshot™",
+  "phase": "Phase I · Foundations",
+  "archetype": "snapshot",
+  "intro": "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.",
+  "pdfTitle": "Foundation Strength Snapshot™",
+  "upsell": {
+    "name": "The Leadership Infrastructure Strength Map™",
+    "price": "$20",
+    "copy": "builds infrastructure around your lowest-scoring dimension."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "scale",
+      "label": "Clarity",
+      "prompt": "How clearly you can state what you're building and why.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "type": "scale",
+      "label": "Consistency",
+      "prompt": "Whether your actions match your stated priorities week to week.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "type": "scale",
+      "label": "Support",
+      "prompt": "The relationships and structures actually holding you up.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "type": "scale",
+      "label": "Direction",
+      "prompt": "How confidently you know your next right move.",
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "bands": [
+    {
+      "label": "4–9",
+      "copy": "Foundations are early across the board. Start with your lowest-scoring dimension, not your favorite one."
+    },
+    {
+      "label": "10–15",
+      "copy": "A mixed foundation. One or two dimensions are carrying the others — reinforce the weakest."
+    },
+    {
+      "label": "16–20",
+      "copy": "A strong foundation. The Strength Map™ below builds real infrastructure on top of it."
+    }
+  ],
+  "closing": {
+    "id": "reflect",
+    "type": "text",
+    "prompt": "My lowest-scoring dimension is, and one thing I'll do about it this week is:"
+  }
+}

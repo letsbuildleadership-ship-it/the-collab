@@ -110,6 +110,8 @@ function buildAccountView(record, now) {
     memberType,
     // Free tools: open to every member, free or paid.
     freeTools,
+    // Guided quests: status per quest key (draft / done) for the portal cards and report list.
+    quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
     // Shown while Membership isn't active: what it includes and how to join.
     membershipOffer:
       !membershipActive && membershipEntry
