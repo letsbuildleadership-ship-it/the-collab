@@ -2037,3 +2037,7 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
   .at-nodes { width: auto; }
   .at-idea { padding-bottom: 1rem; }
 }
+
+/* About table: glowing chips and header like the circle map, no yellow fills */
+.ad-table thead th { background: rgba(255, 46, 18, 0.18); color: #fff; border-top: 2px solid #ff4a3a; border-bottom: 2px solid #ff4a3a; box-shadow: 0 0 18px rgba(255, 46, 18, 0.35); }
+.at-nodes span { background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); }
