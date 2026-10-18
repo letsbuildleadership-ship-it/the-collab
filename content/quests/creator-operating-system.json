@@ -1,0 +1,101 @@
+{
+  "key": "creator-operating-system",
+  "title": "The Creator Operating System™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "workbook",
+  "intro": "Repeatable systems for running the creative venture day-to-day — without every decision depending on you.",
+  "pdfTitle": "The Creator Operating System™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Module 1 — the Weekly Operating Rhythm",
+      "phase": null,
+      "type": "text",
+      "prompt": "My weekly rhythm:"
+    },
+    {
+      "id": "n2",
+      "section": "Module 1 — the Weekly Operating Rhythm",
+      "phase": null,
+      "type": "text",
+      "prompt": "The one block I will protect no matter what:"
+    },
+    {
+      "id": "n3",
+      "section": "Module 2 — the Offer System",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the one offer you should retire, and the one you should double down on?"
+    },
+    {
+      "id": "n4",
+      "section": "Module 3 — the Audience System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Discovery:"
+    },
+    {
+      "id": "n5",
+      "section": "Module 3 — the Audience System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Engagement:"
+    },
+    {
+      "id": "n6",
+      "section": "Module 3 — the Audience System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Trust:"
+    },
+    {
+      "id": "n7",
+      "section": "Module 3 — the Audience System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Purchase/Support:"
+    },
+    {
+      "id": "n8",
+      "section": "Module 3 — the Audience System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Return:"
+    },
+    {
+      "id": "n9",
+      "section": "Module 4 — the Delivery System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Write the exact steps between \"someone says yes\" and \"they have what they paid for, and are glad they did.\" Where does this currently break down or depend entirely on memory?"
+    },
+    {
+      "id": "n10",
+      "section": "Module 4 — the Delivery System",
+      "phase": null,
+      "type": "text",
+      "prompt": "What checklist or template would make this repeatable without you re-deciding it each time?"
+    },
+    {
+      "id": "n11",
+      "section": "Module 5 — the Decision System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Name the three decisions that come up most often in your venture (pricing a commission, accepting a collaboration, saying yes to a project).  For each, write the standing rule you'll apply instead of deciding fresh every time."
+    },
+    {
+      "id": "n12",
+      "section": "Module 6 — the Review System",
+      "phase": null,
+      "type": "text",
+      "prompt": "Once a month, answer three questions: What worked and should be repeated? What didn't and should be dropped? What's one system from Modules 1–5 that needs adjusting?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

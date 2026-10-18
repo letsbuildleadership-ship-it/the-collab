@@ -29,11 +29,16 @@
     var v = answers[n.id];
     return n.type === 'text' ? typeof v === 'string' && v.trim() !== '' : v !== undefined;
   }
+  function requiredCount() { return Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
+  function canFinish() {
+    return quest.nodes.filter(answered).length >= requiredCount() && answered(quest.closing);
+  }
 
   function feedback(n) {
     var v = answers[n.id];
     if (!answered(n)) return '';
     if (n.type === 'check') return v ? 'Locked in. A strength to protect.' : 'Added to your build list.';
+    if (n.type === 'choose') return n.coverage ? (v.length ? v.length + ' in place. The rest go on your build list.' : 'Noted. All of it goes on your build list.') : 'Captured.';
     if (n.type === 'scale') return v >= 4 ? 'A real strength.' : v <= 2 ? 'Added to your build list.' : 'Steady. Room to grow.';
     return 'Captured.';
   }
@@ -42,8 +47,9 @@
     var nodes = allNodes();
     var done = nodes.filter(answered).length;
     $('q-fill').style.width = Math.round((done / nodes.length) * 100) + '%';
-    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged';
-    $('q-finish').disabled = done < nodes.length;
+    var need = requiredCount();
+    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
+    $('q-finish').disabled = !canFinish();
     nodes.forEach(function (n) {
       var card = document.querySelector('[data-node="' + n.id + '"]');
       if (!card) return;
@@ -94,6 +100,37 @@
       t.addEventListener('input', function () { notes[n.id] = t.value; queueSave(); });
       dig.appendChild(t);
       card.appendChild(dig);
+    } else if (n.type === 'choose') {
+      var picks = Array.isArray(answers[n.id]) ? answers[n.id].slice() : [];
+      var crow = el('div', 'q-choices');
+      var sync = function () {
+        crow.querySelectorAll('.q-choice').forEach(function (b) { b.setAttribute('aria-pressed', picks.indexOf(b.getAttribute('data-opt')) >= 0 ? 'true' : 'false'); });
+      };
+      n.options.forEach(function (o) {
+        var b = el('button', 'q-choice', o);
+        b.type = 'button';
+        b.setAttribute('data-opt', o);
+        b.addEventListener('click', function () {
+          var i = picks.indexOf(o);
+          if (i >= 0) picks.splice(i, 1);
+          else if (n.pickMax === 1) picks = [o];
+          else if (picks.length < n.pickMax) picks.push(o);
+          sync();
+          setAnswer(n, picks.slice());
+        });
+        crow.appendChild(b);
+      });
+      if (n.coverage) {
+        var none = el('button', 'q-choice', 'None of these yet');
+        none.type = 'button';
+        none.addEventListener('click', function () { picks = []; sync(); setAnswer(n, []); });
+        crow.appendChild(none);
+      } else if (n.pickMax > 1) {
+        card.appendChild(el('p', 'q-meta', 'Choose ' + (n.pickMin === n.pickMax ? n.pickMin : n.pickMin + ' to ' + n.pickMax) + '.'));
+      }
+      card.appendChild(crow);
+      card.appendChild(el('p', 'q-feed'));
+      sync();
     } else {
       var ta = el('textarea', 'q-text');
       ta.maxLength = 1000;
@@ -112,7 +149,8 @@
     items.forEach(function (it) {
       var li = el('li');
       li.appendChild(el('strong', null, it.label));
-      li.appendChild(document.createTextNode(it.text));
+      if (it.evidence) li.appendChild(el('em', null, it.evidence));
+      li.appendChild(el('span', null, it.text));
       ul.appendChild(li);
     });
   }
@@ -124,6 +162,15 @@
     $('r-score').textContent = o.score !== null && o.max ? o.score + ' of ' + o.max + (o.bandLabel ? '  (' + o.bandLabel + ')' : '') : 'Done. Well done.';
     $('r-summary').textContent = o.summary;
     $('r-s-title').textContent = quest.archetype === 'worksheet' || quest.archetype === 'starter' ? 'Where you are strongest' : "What's working";
+    $('r-legacy').textContent = o.legacyRead || '';
+    var pm = $('r-phases');
+    pm.textContent = '';
+    (o.phaseMap || []).forEach(function (p) {
+      var li = el('li');
+      li.appendChild(el('strong', null, p.name));
+      li.appendChild(el('span', null, (p.total ? p.answered + ' of ' + p.total + ' answered · ' : '') + p.strengths + ' strong · ' + p.gaps + ' to build · ' + p.mentions + ' mention' + (p.mentions === 1 ? '' : 's') + ' in your words'));
+      pm.appendChild(li);
+    });
     listInto('r-strengths', o.strengths);
     listInto('r-improve', o.improvements);
     $('r-next').textContent = o.nextMove ? 'A next move: ' + o.nextMove : '';
@@ -135,7 +182,16 @@
     $('q-run').hidden = false;
     var map = $('q-map');
     map.textContent = '';
-    quest.nodes.forEach(function (n) { map.appendChild(buildCard(n, false)); });
+    var lastSection = null;
+    quest.nodes.forEach(function (n) {
+      if (n.section && n.section !== lastSection) {
+        lastSection = n.section;
+        map.appendChild(el('h2', 'q-section', n.section));
+      }
+      map.appendChild(buildCard(n, false));
+    });
+    $('q-hint').textContent = quest.scaleHint || '';
+    $('q-hint').hidden = !quest.scaleHint;
     var close = $('q-close');
     close.textContent = '';
     close.appendChild(buildCard(quest.closing, true));

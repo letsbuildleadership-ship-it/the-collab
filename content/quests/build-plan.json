@@ -1,0 +1,227 @@
+{
+  "key": "build-plan",
+  "title": "Leadership Infrastructure Build Plan™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Turn one strength or opportunity into a practical 30-day infrastructure build plan.",
+  "pdfTitle": "Leadership Infrastructure Build Plan™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — What Are We Building?",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our priority:"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — What Are We Building?",
+      "phase": null,
+      "type": "text",
+      "prompt": "Why does it matter?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — What Are We Building?",
+      "phase": null,
+      "type": "text",
+      "prompt": "What strength are we building from?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 1 — What Are We Building?",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would stronger infrastructure allow us to do?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What mission, vision, value, or leadership principle supports this priority?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What needs to be clear?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our foundation action:"
+    },
+    {
+      "id": "n8",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Who owns this priority?"
+    },
+    {
+      "id": "n9",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What decisions need to be made?"
+    },
+    {
+      "id": "n10",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What process or structure will support it?"
+    },
+    {
+      "id": "n11",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "How will accountability be maintained?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Our infrastructure action:"
+    },
+    {
+      "id": "n13",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What behaviors need to become consistent?"
+    },
+    {
+      "id": "n14",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What communication supports this?"
+    },
+    {
+      "id": "n15",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What system or practice will reinforce it?"
+    },
+    {
+      "id": "n16",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Our operating action:"
+    },
+    {
+      "id": "n17",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What knowledge needs to be captured?"
+    },
+    {
+      "id": "n18",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What should continue regardless of who is leading?"
+    },
+    {
+      "id": "n19",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "How will we transfer this to others?"
+    },
+    {
+      "id": "n20",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Our preservation action:"
+    },
+    {
+      "id": "n21",
+      "section": "Week 1 — Clarify",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our priority:"
+    },
+    {
+      "id": "n22",
+      "section": "Week 1 — Clarify",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our desired outcome:"
+    },
+    {
+      "id": "n23",
+      "section": "Week 2 — Structure",
+      "phase": null,
+      "type": "text",
+      "prompt": "The process or system we will establish:"
+    },
+    {
+      "id": "n24",
+      "section": "Week 2 — Structure",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who owns it:"
+    },
+    {
+      "id": "n25",
+      "section": "Week 3 — Embed",
+      "phase": null,
+      "type": "text",
+      "prompt": "The behavior or practice we will reinforce:"
+    },
+    {
+      "id": "n26",
+      "section": "Week 3 — Embed",
+      "phase": null,
+      "type": "text",
+      "prompt": "How we will measure progress:"
+    },
+    {
+      "id": "n27",
+      "section": "Week 4 — Preserve",
+      "phase": null,
+      "type": "text",
+      "prompt": "What we will document, share, or transfer:"
+    },
+    {
+      "id": "n28",
+      "section": "Your Commitment",
+      "phase": null,
+      "type": "text",
+      "prompt": "The one infrastructure change we will make next:"
+    },
+    {
+      "id": "n29",
+      "section": "Your Commitment",
+      "phase": null,
+      "type": "text",
+      "prompt": "The result we expect:"
+    },
+    {
+      "id": "n30",
+      "section": "Your Commitment",
+      "phase": null,
+      "type": "text",
+      "prompt": "How we will know it is working:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

@@ -864,7 +864,11 @@
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       items.forEach((item) => {
-        const actions = `<a class="pill pill--solid" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
+        const qs = (data.quests || {})[item.key];
+        const hasQuest = (data.questKeys || []).includes(item.key);
+        const questLabel = qs && qs.status === 'done' ? 'View my report' : qs ? 'Continue quest' : 'Start guided quest';
+        const questPill = hasQuest ? `<a class="pill pill--solid" href="quest.html?key=${encodeURIComponent(item.key)}">${questLabel} <span class="arrow">→</span></a> ` : '';
+        const actions = `${questPill}<a class="pill" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
         grid.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.key }));
       });
       section.appendChild(heading);
@@ -904,7 +908,8 @@
     toolsGroup.hidden = !toolCount;
 
     // Completed quest reports live here for good.
-    const reports = (data.freeTools || []).filter((t) => ((data.quests || {})[t.key] || {}).status === 'done');
+    const nameFor = new Map([...(data.freeTools || []), ...(data.owned || [])].map((t) => [t.key, t.name]));
+    const reports = Object.keys(data.quests || {}).filter((k) => data.quests[k].status === 'done' && nameFor.has(k)).map((k) => ({ key: k, name: nameFor.get(k) }));
     const reportList = $('quest-reports-list');
     reportList.innerHTML = '';
     reports.forEach((tool) => {

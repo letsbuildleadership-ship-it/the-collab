@@ -84,6 +84,7 @@
   .q-node:nth-child(3n+2) { grid-column: span 2; }
   .q-node.is-done { border-color: #ff6a2e; box-shadow: 0 0 0 1px rgba(255,106,46,.35), 0 0 22px rgba(255,46,18,.14); }
   .q-label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #ff8a5c; font-weight: 800; margin: 0 0 .4rem; }
+  .q-section { grid-column: 1 / -1; margin: 1.4rem 0 -.2rem; font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase; color: #ff8a5c; font-weight: 800; }
   .q-prompt { color: var(--white); font-size: 1.05rem; line-height: 1.55; margin: 0 0 .9rem; }
   .q-choices { display: flex; gap: .5rem; flex-wrap: wrap; }
   .q-choice { cursor: pointer; border: 1px solid var(--hairline-strong); background: transparent; color: #fdf6ec; border-radius: 999px; padding: .6em 1.2em; font: inherit; font-weight: 700; min-width: 3em; }
@@ -100,6 +101,8 @@
   .q-result ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .8rem; }
   .q-result li { border: 1px solid var(--hairline); border-radius: 14px; padding: .9rem 1.1rem; color: var(--white-dim); line-height: 1.55; }
   .q-result li strong { display: block; color: #fdf6ec; margin-bottom: .2rem; }
+  .q-result li em { display: block; color: #ff8a5c; font-style: normal; font-weight: 700; font-size: .9rem; margin-bottom: .25rem; }
+  .q-result li span { display: block; }
   .q-result [hidden], .q-run[hidden] { display: none !important; }
   @media (max-width: 720px) { .q-map { grid-template-columns: 1fr; } .q-node, .q-node:nth-child(n) { grid-column: auto; } }
 </style>
@@ -158,6 +161,7 @@
         <div class="q-bar" aria-hidden="true"><span id="q-fill"></span></div>
         <p class="q-meta" id="q-count" aria-live="polite"></p>
         <p style="color:var(--white-dim);">Answer in any order. Your progress saves as you go.</p>
+        <p class="q-meta" id="q-hint" hidden></p>
         <div class="q-map" id="q-map"></div>
         <div id="q-close"></div>
         <div class="q-actions">
@@ -169,8 +173,11 @@
 
       <div class="q-result" id="q-result" hidden>
         <p class="eyebrow">Quest complete</p>
-        <h2 class="display" style="font-size:clamp(1.8rem,4vw,3rem); margin:.8rem 0;" id="r-score"></h2>
-        <p class="subhead" id="r-summary"></p>
+        <h2 class="display" style="font-size:clamp(1.8rem,4vw,3rem); margin:.8rem 0;" id="r-score" style="color:#fdf6ec;"></h2>
+        <p class="subhead" id="r-summary" style="color:#fdf6ec;"></p>
+        <h3 class="q-label" style="margin-top:2rem;">Your Legacy Read</h3>
+        <p class="q-prompt" id="r-legacy"></p>
+        <ul id="r-phases"></ul>
         <h3 class="q-label" style="margin-top:2rem;" id="r-s-title">What's working</h3>
         <ul id="r-strengths"></ul>
         <h3 class="q-label" style="margin-top:2rem;">How we'd build from here, together</h3>

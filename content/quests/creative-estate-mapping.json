@@ -1,0 +1,94 @@
+{
+  "key": "creative-estate-mapping",
+  "title": "Creative Estate Mapping™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.",
+  "pdfTitle": "Creative Estate Mapping™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Part 1 — the Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "Using your Body of Work Inventory™ (or starting fresh), what is the full scope of what exists?"
+    },
+    {
+      "id": "n2",
+      "section": "Part 1 — the Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where is it stored, and is it backed up anywhere durable?"
+    },
+    {
+      "id": "n3",
+      "section": "Part 2 — the Rights",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you actually own outright (copyright, trademark, master files) versus license or share?"
+    },
+    {
+      "id": "n4",
+      "section": "Part 2 — the Rights",
+      "phase": null,
+      "type": "text",
+      "prompt": "Is there any work whose ownership is unclear or undocumented?"
+    },
+    {
+      "id": "n5",
+      "section": "Part 3 — the Relationships",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who are the people (collaborators, platforms, a gallery, a publisher, an agent, a community) this estate depends on?"
+    },
+    {
+      "id": "n6",
+      "section": "Part 3 — the Relationships",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who would need to be contacted, and what would they need to know, if you were unavailable for six months?"
+    },
+    {
+      "id": "n7",
+      "section": "Part 4 — the Systems",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which of your operating systems (from The Creator Operating System™, if you have it) would keep running without you actively managing them?"
+    },
+    {
+      "id": "n8",
+      "section": "Part 4 — the Systems",
+      "phase": null,
+      "type": "text",
+      "prompt": "CAPTURED — what needs to be documented that currently exists only in your head:"
+    },
+    {
+      "id": "n9",
+      "section": "Part 4 — the Systems",
+      "phase": null,
+      "type": "text",
+      "prompt": "EMBEDDED — what needs to become a written process, not a personal habit:"
+    },
+    {
+      "id": "n10",
+      "section": "Part 4 — the Systems",
+      "phase": null,
+      "type": "text",
+      "prompt": "TRANSFERRED — who needs access, instructions, or rights they don't currently have:"
+    },
+    {
+      "id": "n11",
+      "section": "Part 4 — the Systems",
+      "phase": null,
+      "type": "text",
+      "prompt": "SUSTAINED — what needs ongoing maintenance (renewals, backups, relationships) to keep working:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

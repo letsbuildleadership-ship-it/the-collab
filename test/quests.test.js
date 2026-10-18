@@ -29,13 +29,18 @@ const fullAnswers = (q, pick) => {
   return a;
 };
 
-test('every free tool has a quest', () => {
-  assert.equal(quests.size, freeTools.length);
+const pricing = require('../netlify/functions/lib/pricing');
+const freeQuests = () => freeTools.map((t) => quests.get(t.key));
+
+test('every free tool has a quest, and every paid workbook has one', () => {
   for (const t of freeTools) assert.ok(quests.get(t.key), t.key);
+  const paid = [...quests.values()].filter((q) => q.archetype === 'workbook');
+  assert.equal(paid.length, 15);
+  for (const q of paid) assert.ok(pricing.entryForKey(q.key), q.key);
 });
 
 test('a perfect score still gets ways to improve, a low score gets a build list', () => {
-  for (const q of quests.values()) {
+  for (const q of freeQuests()) {
     for (const pick of [true, false]) {
       const o = outcomeFor(q, fullAnswers(q, pick));
       assert.ok(o.improvements.length >= 3, `${q.key} improvements`);
@@ -52,7 +57,7 @@ test('validation rejects incomplete or malformed answers', () => {
 });
 
 test('quest endpoints need a signed-in member', async () => {
-  const q = [...quests.values()][0];
+  const q = freeQuests()[0];
   assert.equal((await call(null, 'GET', { key: q.key })).statusCode, 401);
 });
 
@@ -86,7 +91,67 @@ test('draft saves, finishing stores the outcome, report is a PDF, drafts never o
 test('one member cannot read another member\'s report', async () => {
   const a = await member('a@example.com');
   const b = await member('b@example.com');
-  const q = [...quests.values()][0];
+  const q = freeQuests()[0];
   await call(a, 'POST', {}, { key: q.key, answers: fullAnswers(q, true), complete: true });
   assert.equal((await call(b, 'GET', { key: q.key, pdf: '1' })).statusCode, 404);
+});
+
+test('the outcome is built from the member\'s own data, not a template', () => {
+  const q = quests.get('free-clarity-direction-worksheet');
+  const vague = { n1: 'Better leadership for everyone, always.', n2: 'Do more things.', n3: 'Hmm', n4: 'Some stuff.', synthesis: 'Try harder.' };
+  const sharp = { n1: 'I will name one owner for each of our three programs by March 3.', n2: 'Every week our team reviews the three owners in a standing meeting.', n3: 'We document the process so a successor can run it within 30 days.', n4: 'Mission and values are written on one page by Friday.', synthesis: 'I will assign owners by March 3.' };
+  const a = outcomeFor(q, vague);
+  const b = outcomeFor(q, sharp);
+  assert.notDeepEqual(a.improvements.map((i) => i.text), b.improvements.map((i) => i.text));
+  assert.ok(a.improvements.some((i) => i.evidence.includes('Better leadership for everyone')), 'quotes their words');
+  assert.ok(a.legacyRead && a.phaseMap.length === 4);
+  assert.ok(b.strengths.some((s) => /owner|timeframe/.test(s.evidence)));
+});
+
+test('scores are analysed: the gap between strongest and weakest is named', () => {
+  const q = quests.get('free-foundation-strength-snapshot');
+  const o = outcomeFor(q, { n1: 1, n2: 4, n3: 3, n4: 5, reflect: 'Clarity is my lowest and I will write it down by Friday.' });
+  const first = o.improvements[0];
+  assert.match(first.evidence, /Clarity 1 of 5/);
+  assert.match(first.evidence, /carrying/);
+  assert.match(o.legacyRead, /weakest link is Clarity/);
+});
+
+test('paid quests are locked until the member owns the product', async () => {
+  const token = await member('free@example.com');
+  assert.equal((await call(token, 'GET', { key: 'strength-map' })).statusCode, 403);
+  const { fulfillCheckoutSession } = require('../netlify/functions/lib/fulfill');
+  const product = pricing.registry.products.find((p) => p.key === 'strength-map');
+  await fulfillCheckoutSession({ id: 'cs_q', customer_details: { email: 'free@example.com' }, amount_total: 1 }, [product.stripe_price_id]);
+  const res = await call(await fakeStore.getTokenByEmail('free@example.com'), 'GET', { key: 'strength-map' });
+  assert.equal(res.statusCode, 200);
+  assert.ok(JSON.parse(res.body).quest.nodes.length > 5);
+});
+
+test('workbook quests analyse coverage, scores and choices against the member\'s own words', () => {
+  const arch = quests.get('legacy-architecture');
+  const ans = {};
+  arch.nodes.forEach((n) => { ans[n.id] = n.type === 'choose' ? n.options.slice(0, 2) : 'We have a plan; I will assign an owner by June 1 and review every month.'; });
+  ans.commit = 'I will document our three critical processes by Friday.';
+  const out = outcomeFor(arch, ans);
+  assert.ok(out.improvements.some((i) => /Not yet in place/.test(i.label) && /You did not select/.test(i.evidence)));
+  assert.equal(out.phaseMap.length, 4);
+
+  const diag = quests.get('diagnostic');
+  const d = {};
+  diag.nodes.forEach((n, i) => { d[n.id] = n.type === 'scale' ? (n.phase === 3 ? 1 : 4) : 'Strong weekly check-ins with a clear owner.'; });
+  d.commit = 'I will fix succession by June.';
+  const o2 = outcomeFor(diag, d);
+  assert.equal(o2.max, 200);
+  assert.match(o2.legacyRead, /Preservation is lowest/);
+  assert.ok(o2.improvements.some((i) => /You rated this 1 of 5 in Preservation/.test(i.evidence)));
+
+  const sm = quests.get('strength-map');
+  const choose = sm.nodes.find((n) => n.type === 'choose');
+  const s = {};
+  sm.nodes.forEach((n) => { s[n.id] = n.type === 'choose' ? ['Accountability'] : 'We review our work together every week.'; });
+  s.commit = 'I will start by Monday.';
+  const o3 = outcomeFor(sm, s);
+  assert.ok(o3.improvements.some((i) => /Accountability/.test(i.evidence) && /nothing you wrote mentions/.test(i.evidence)));
+  assert.ok(choose.options.includes('Accountability'));
 });

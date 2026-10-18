@@ -4,7 +4,7 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = ["content/library/**"]
+  included_files = ["content/library/**", "content/quests/**"]
 
 # Required environment variables (set in Netlify: Site configuration ->
 # Environment variables — never commit real values):
@@ -350,6 +350,12 @@
 
 [[redirects]]
   from = "/content/library.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/quests/*"
   to = "/404"
   status = 404
   force = true

@@ -4,6 +4,7 @@
 const pricing = require('./pricing');
 const membershipStatus = require('./membership-status');
 const { isConfigured: emailConfigured } = require('./mailer');
+const questLib = require('./quests');
 const freeTools = require('../../../content/free-tools.json').tools;
 const { rewardsStatus } = require('./membership-rewards');
 
@@ -111,6 +112,7 @@ function buildAccountView(record, now) {
     // Free tools: open to every member, free or paid.
     freeTools,
     // Guided quests: status per quest key (draft / done) for the portal cards and report list.
+    questKeys: [...questLib.quests.keys()],
     quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
     // Shown while Membership isn't active: what it includes and how to join.
     membershipOffer:

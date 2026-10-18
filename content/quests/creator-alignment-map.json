@@ -1,0 +1,115 @@
+{
+  "key": "creator-alignment-map",
+  "title": "Creator Alignment Map™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Connect your creative practice, your audience, and your offer into one coherent picture.",
+  "pdfTitle": "Creator Alignment Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Your Three Points",
+      "phase": null,
+      "type": "text",
+      "prompt": "Practice — what you make and how:"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Your Three Points",
+      "phase": null,
+      "type": "text",
+      "prompt": "Audience — who actually engages with it today:"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — Your Three Points",
+      "phase": null,
+      "type": "text",
+      "prompt": "Offer — what's currently for sale or support (if anything):"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — Find the Gaps",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where practice and audience don't match — are you making for one audience but reaching another?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — Find the Gaps",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where audience and offer don't match — does your audience want something you're not yet offering?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 2 — Find the Gaps",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where practice and offer don't match — is what you're selling actually representative of your best work?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — Apply the IV Phases™",
+      "phase": 0,
+      "type": "text",
+      "prompt": "FOUNDATIONS — Does your offer reflect your actual creative identity, or a compromise?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Apply the IV Phases™",
+      "phase": 1,
+      "type": "text",
+      "prompt": "INFRASTRUCTURE PLANNING & MANAGEMENT — What's the one connection (practice-audience-offer) that needs the most work right now?"
+    },
+    {
+      "id": "n9",
+      "section": "Step 3 — Apply the IV Phases™",
+      "phase": 2,
+      "type": "text",
+      "prompt": "INTERNAL OPERATING SYSTEMS — What would need to be true for this alignment to hold up every month, not just when you're paying attention to it?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 3 — Apply the IV Phases™",
+      "phase": 3,
+      "type": "text",
+      "prompt": "PRESERVATION — If your audience or platform changed tomorrow, would your offer still make sense?"
+    },
+    {
+      "id": "n11",
+      "section": "Step 4 — Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My practice is …"
+    },
+    {
+      "id": "n12",
+      "section": "Step 4 — Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My audience is …"
+    },
+    {
+      "id": "n13",
+      "section": "Step 4 — Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My offer will be …"
+    },
+    {
+      "id": "n14",
+      "section": "Step 4 — Your Alignment Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "The gap I'm closing first is …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

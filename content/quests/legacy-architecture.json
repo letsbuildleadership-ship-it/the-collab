@@ -1,0 +1,121 @@
+{
+  "key": "legacy-architecture",
+  "title": ".LLab Legacy Infrastructure Architecture™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "The comprehensive .LLab framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy.",
+  "pdfTitle": ".LLab Legacy Infrastructure Architecture™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Mission",
+        "Vision",
+        "Values",
+        "Purpose",
+        "Leadership principles",
+        "Organizational identity"
+      ],
+      "pickMin": 0,
+      "pickMax": 6
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost as we grow?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Decision-making",
+        "Leadership responsibilities",
+        "Critical processes",
+        "Institutional knowledge",
+        "Documentation",
+        "Leadership development",
+        "Succession"
+      ],
+      "pickMin": 0,
+      "pickMax": 7
+    },
+    {
+      "id": "n4",
+      "section": "Phase II — Infrastructure Planning & Management",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What currently depends on a person that needs to become part of the organization?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Culture",
+        "Leadership behaviors",
+        "Communication",
+        "Decision-making",
+        "Performance",
+        "Organizational practices",
+        "Shared knowledge"
+      ],
+      "pickMin": 0,
+      "pickMax": 7
+    },
+    {
+      "id": "n6",
+      "section": "Phase III — Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How do we make what matters part of how the organization operates?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "choose",
+      "coverage": true,
+      "prompt": "Which of these are already in place in your organization today?",
+      "options": [
+        "Organizational memory",
+        "Critical knowledge",
+        "Culture",
+        "Leadership principles",
+        "Processes",
+        "History",
+        "Relationships",
+        "Future leadership"
+      ],
+      "pickMin": 0,
+      "pickMax": 8
+    },
+    {
+      "id": "n8",
+      "section": "Phase IV — Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What infrastructure must exist for what we built to continue?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

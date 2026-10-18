@@ -2,7 +2,7 @@
 // file in content/library/ is downloadable by anyone who knows its address.
 // This script rewrites the block of forced-404 redirects in netlify.toml (one
 // per paid PDF in content/pricing.json, plus the function source and the
-// server-only library content). Paid files are then reachable only through the
+// server-only library content, quest definitions). Paid files are then reachable only through the
 // download function, after a purchase. Run: node scripts/block-paid-files.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -22,7 +22,7 @@ export function paidPdfFiles(p = pricing) {
 }
 
 export function blockedPaths(p = pricing) {
-  return [...paidPdfFiles(p).map((f) => `/content/library/${f}`), '/content/library.json', '/netlify/*'];
+  return [...paidPdfFiles(p).map((f) => `/content/library/${f}`), '/content/library.json', '/content/quests/*', '/netlify/*'];
 }
 
 const rule = (from) => `[[redirects]]\n  from = "${from}"\n  to = "/404"\n  status = 404\n  force = true\n`;
