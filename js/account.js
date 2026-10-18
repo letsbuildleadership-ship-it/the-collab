@@ -882,7 +882,26 @@
     const toolsGroup = $('free-tools-group');
     const toolsList = $('free-tools-list');
     toolsList.innerHTML = '';
-    const toolCount = (data.freeTools || []).length;
+    const toolCount = (data.freeTools || []).length + (data.openQuests || []).length;
+    if ((data.openQuests || []).length) {
+      const h = document.createElement('h4');
+      h.className = 'tool-phase';
+      h.textContent = 'Live events · .LLab Sound™';
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-3';
+      data.openQuests.forEach((oq) => {
+        const qs = (data.quests || {})[oq.key];
+        const label = qs && qs.status === 'done' ? 'View my report' : qs ? 'Continue quest' : 'Start quest';
+        const card = itemCard({ name: esc(oq.name), actionsHtml: `<a class="pill pill--solid" href="quest.html?key=${encodeURIComponent(oq.key)}">${label} <span class="arrow">→</span></a>` });
+        const desc = document.createElement('p');
+        desc.className = 'item-desc';
+        desc.textContent = oq.description;
+        card.insertBefore(desc, card.querySelector('.item-actions'));
+        grid.appendChild(card);
+      });
+      toolsList.appendChild(h);
+      toolsList.appendChild(grid);
+    }
     PHASE_ORDER.forEach((phase) => {
       const tools = freeByPhase.get(phase) || [];
       if (!tools.length) return;
@@ -908,7 +927,7 @@
     toolsGroup.hidden = !toolCount;
 
     // Completed quest reports live here for good.
-    const nameFor = new Map([...(data.freeTools || []), ...(data.owned || [])].map((t) => [t.key, t.name]));
+    const nameFor = new Map([...(data.freeTools || []), ...(data.openQuests || []), ...(data.owned || [])].map((t) => [t.key, t.name]));
     const reports = Object.keys(data.quests || {}).filter((k) => data.quests[k].status === 'done' && nameFor.has(k)).map((k) => ({ key: k, name: nameFor.get(k) }));
     const reportList = $('quest-reports-list');
     reportList.innerHTML = '';
