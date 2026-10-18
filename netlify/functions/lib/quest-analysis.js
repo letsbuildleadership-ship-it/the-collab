@@ -44,7 +44,7 @@ const OE_NODES = [
   ['Technology', /\b(software|tools?|platforms?|apps?|automat\w+|data|digital|website|systems?|ai)\b/gi],
   ['Capital', /\b(funding|funds?|revenue|budgets?|invest\w+|profit\w*|pric\w+|cash|financ\w+|capital|grants?|income)\b/gi],
   ['Knowledge + IP', /\b(knowledge|documentation|frameworks?|methods?|curricul\w+|intellectual|IP|brand|playbooks?|research|processes)\b/gi],
-  ['Creators', /\b(creators?|artists?|creative\w*|writers?|designers?|content|audiences?|studios?|makers?)\b/gi],
+  ['Creators', /\b(creators?|artists?|creative\w*|writers?|designers?|content|audiences?|studios?|makers?|musicians?|music\w*|bands?|audio)\b/gi],
 ];
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
