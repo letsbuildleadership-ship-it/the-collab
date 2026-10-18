@@ -42,6 +42,7 @@ const ALL_DOCS = [
   'creative-estate-mapping',
   'creator-legacy-architecture',
   'creator-website-blueprint',
+  'creator-website-glossary',
   'leadership-foundations-checklist',
   'clarity-direction-worksheet',
   'foundation-strength-snapshot',

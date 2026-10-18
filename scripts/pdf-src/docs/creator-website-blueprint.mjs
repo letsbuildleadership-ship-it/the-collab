@@ -1,4 +1,5 @@
 import { GLOSSARY_GROUPS } from './_website-glossary.mjs';
+import { STARTER_SITE } from './_starter-site.mjs';
 
 export const meta = {
   key: 'creator-website-blueprint',
@@ -17,15 +18,21 @@ export const meta = {
 /* ---------- helpers ---------- */
 const a = (href, text) => `<a href="${href}">${text || href}</a>`;
 const tbl = (head, rows) => `<table class="doc-table"><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-const call = (label, text) => `<div class="callout"><div class="callout-label">${label}</div><p>${text}</p></div>`;
+const call = (label, text) => `<div class="callout"><p class="callout-label">${label}</p><p>${text}</p></div>`;
 const ul = (items) => `<ul class="doc-list">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`;
 const ol = (items) => `<ol class="doc-list">${items.map((i) => `<li>${i}</li>`).join('')}</ol>`;
 const chk = (items) => `<ul class="checklist">${items.map((i) => `<li><span class="checkbox"></span><span>${i}</span></li>`).join('')}</ul>`;
 const code = (lines) => `<pre style="background:#16241a; color:#fbf5e9; font-size:10px; line-height:1.55; padding:12px 16px; border-radius:3px; margin:10px 0 16px; white-space:pre-wrap; word-break:break-word;">${lines.join('\n')}</pre>`;
-const sec = (kicker, title, inner) => `<section class="page">
-<div class="content-header"><span class="page-index">${kicker}</span><h2 class="section-title">${title}</h2></div>
+let secNo = 0;
+const sec = (kicker, title, inner) => {
+  secNo += 1;
+  const label = kicker.replace(/^PART \d+ · /, '').toLowerCase().replace(/(^|\s)\S/g, (m) => m.toUpperCase());
+  const t = title.replace(/,? ?<strong>/, '<br/><strong>');
+  return `<section class="page">
+<div class="content-header"><span class="page-index">${String(secNo).padStart(2, '0')} · ${label}</span><h2 class="section-title">${t}</h2></div>
 ${inner}
 </section>`;
+};
 const h3 = (t) => `<h3 class="doc-h3">${t}</h3>`;
 const p = (t) => `<p>${t}</p>`;
 
@@ -98,17 +105,20 @@ const pages = [];
 
 /* How to use this manual */
 pages.push(sec('START HERE', 'How to use <strong>this manual</strong>', `
+<p><strong>CREATOR WEBSITE BLUEPRINT™</strong></p>
+<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p class="lead">This manual shows you how to build a luxury-style, ad-style website and keep it running with five tools: ChatGPT, Claude, GitHub, Netlify and Composio. You do not need to write code. You need to give clear instructions, check the result, and approve it.</p>
-${call('The Streamlined Loop', 'One short loop, repeated for every change. <strong>Brief</strong> it (ChatGPT) → <strong>Build</strong> it (Claude) → <strong>Hold</strong> it (GitHub) → <strong>Publish</strong> it (Netlify) → <strong>Connect</strong> it (Composio) → <strong>Check</strong> the live page. Then start the next change.')}
+${call('The Streamlined Loop™', 'One short loop, repeated for every change. <strong>Brief</strong> it (ChatGPT) → <strong>Build</strong> it (Claude) → <strong>Hold</strong> it (GitHub) → <strong>Publish</strong> it (Netlify) → <strong>Connect</strong> it (Composio) → <strong>Check</strong> the live page. Then start the next change.')}
 ${h3('Two editions, five levels')}
-${p('Part 3 is the <strong>iPhone Edition</strong>. Part 4 is the <strong>Computer Edition</strong>. Read the one you work on, or both. Each edition runs from a <strong>base level</strong> (the least you need) to a <strong>ceiling level</strong> (the most the market offers today). Every tool also has its own five-level ladder in Part 2.')}
+${p('Part 4 is the <strong>iPhone Edition</strong>. Part 5 is the <strong>Computer Edition</strong>. Read the one you work on, or both. Each edition runs from a <strong>base level</strong> (the least you need) to a <strong>ceiling level</strong> (the most the market offers today). Every tool also has its own five-level ladder in Part 3.')}
 ${tbl(['Part', 'What it holds', 'Read it when'], [
     ['1 · The Blueprint', 'The page pattern, the rules, and a build checklist.', 'You are planning the site.'],
-    ['2 · The Five Tools', 'What each tool does, its level ladder, and links.', 'You are choosing plans or setting up.'],
-    ['3 · iPhone Edition', 'A manual for building from an iPhone.', 'Your phone is your main device.'],
-    ['4 · Computer Edition', 'A manual for building from a laptop or desktop.', 'You work at a desk.'],
-    ['5 · Selling', 'How to put a product on the site and take payment.', 'You are ready to sell.'],
-    ['6 · Appendices', 'Troubleshooting, the full glossary and a launch checklist.', 'Something broke, or you are about to launch.'],
+    ['2 · Your First Site', 'A complete starter site, three ways to put it online, and a definition of done.', 'You want a working website first.'],
+    ['3 · The Five Tools', 'What each tool does, its level ladder, and links.', 'You are choosing plans or setting up.'],
+    ['4 · iPhone Edition', 'A manual for building from an iPhone.', 'Your phone is your main device.'],
+    ['5 · Computer Edition', 'A manual for building from a laptop or desktop.', 'You work at a desk.'],
+    ['6 · Selling', 'How to put a product on the site and take payment.', 'You are ready to sell.'],
+    ['7 · Appendices', 'Troubleshooting, links, the full glossary and a launch checklist.', 'Something broke, or you are about to launch.'],
   ])}
 ${call('How to read the links', 'Every link in this PDF is clickable. Pricing pages are linked, not quoted, so the numbers you see are current.')}
 ${PRICING_NOTE}
@@ -167,8 +177,76 @@ ${chk([
 ${call('Your loop', 'Do the checklist once with ChatGPT and Claude, then keep it as a template. Every new page starts from it.')}
 `));
 
-/* Part 2 */
-pages.push(sec('PART 2 · THE FIVE TOOLS', 'The Streamlined <strong>Loop</strong>', `
+/* Part 2: your first site */
+pages.push(sec('PART 2 · YOUR FIRST SITE', 'Your first site, <strong>live</strong>', `
+<p class="lead">By the end of this part you can have a real website at a public address, built on the nine-part pattern, with every link working. It is a one-page starter. You then make it yours and add pages.</p>
+${h3('What "working website" means here')}
+${tbl(['Check', 'Done when'], [
+    ['It is public', 'Anyone can open its https address on a phone or a computer.'],
+    ['Its links work', 'Every menu item, chip and button goes to a real section.'],
+    ['It fits any screen', 'No sideways scrolling at phone width or desktop width.'],
+    ['It updates', 'A change you approve on GitHub appears on the site without uploading anything by hand.'],
+    ['It is yours', 'The placeholder names, words and colors are replaced with your own.'],
+  ])}
+${call('What this part does not do', 'It gives you a working, live starter and the way to extend it. The words, photographs, products and pages that make it your website are yours to write. How long that takes, and what it earns, depends on you.')}
+${h3('Choose your path')}
+${tbl(['Path', 'Best for', 'You need', 'Result'], [
+    ['A · Claude builds it', 'Anyone with Claude Pro or higher and a GitHub repository', 'Claude Code, GitHub, Netlify', 'A live site from one prompt, then you edit by asking.'],
+    ['B · Paste and publish', 'iPhone or any browser. No tools to install', 'GitHub and Netlify accounts (both have free levels)', 'A live site you pasted in yourself.'],
+    ['C · Drag and drop', 'A computer, fastest first look', 'A Netlify account', 'A live site in about a minute, with no Git.'],
+  ])}
+`));
+
+pages.push(sec('PART 2 · YOUR FIRST SITE', 'Put it <strong>online</strong>', `
+${h3('Path A · Claude builds it')}
+${ol([
+    'Create an empty repository on GitHub: open ' + a('https://github.com/new', 'github.com/new'), 
+    'Connect Netlify to it (Add new site → Import an existing project → GitHub → your repository → Deploy).',
+    'Open Claude Code on that repository and say the prompt below.',
+    'Read the pull request on GitHub, then merge it. Netlify publishes it.',
+  ])}
+${code(['Create index.html as a one-page website from the nine-part pattern:', 'header, ribbon, hero, problem and solution, main points, strategy table,', 'continue strip, footer. Use a dark green background (#0f1d13), a red-to-orange', 'gradient for buttons, and white or black text only. Use my brand name', '[YOUR BRAND]™ everywhere. Make every link work inside the page.', 'Work on a new branch and open a pull request. Do not merge.'])}
+${h3('Path B · Paste and publish (works on an iPhone)')}
+${ol([
+    'On GitHub choose New repository (' + a('https://github.com/new', 'github.com/new') + '). Name it, then Create repository.',
+    'Choose Create a new file. Name it <code>index.html</code>. Paste the starter site from the next page. Choose Commit changes.',
+    `In Netlify choose Add new site → Import an existing project → GitHub → your repository → Deploy.`,
+    'When the deploy says Published, open the address Netlify shows (it ends in .netlify.app).',
+  ])}
+${h3('Path C · Drag and drop (computer)')}
+${ol([
+    'Make a folder. Save the starter site inside it as <code>index.html</code>.',
+    'Open ' + a('https://app.netlify.com/drop', 'app.netlify.com/drop') + ' and drag the folder onto the page.',
+    'Open the address Netlify gives you. Later, connect GitHub so changes publish by themselves.',
+  ])}
+${call('Check', 'Open the address on your phone and on a computer. Tap every menu item, chip and button. If each one scrolls to a section, your first site works.')}
+`));
+
+pages.push(sec('PART 2 · YOUR FIRST SITE', 'The starter <strong>site</strong>', `
+${p('Copy everything below into one file named <code>index.html</code>. Replace the words in capitals with your own.')}
+<pre style="background:#16241a; color:#fbf5e9; font-size:8.2px; line-height:1.4; padding:10px 12px; border-radius:3px; margin:8px 0; white-space:pre-wrap; word-break:break-word;">${STARTER_SITE.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>
+`));
+
+pages.push(sec('PART 2 · YOUR FIRST SITE', 'Make it <strong>yours</strong>', `
+${chk([
+    'Replace every <strong>YOUR BRAND™</strong> with the name you coined, with ™ each time.',
+    'Write one plain sentence for the problem and one for the solution. Make no promises.',
+    'Replace Direction one, two and three with the three groups you serve.',
+    'Replace each <strong>YOUR PRODUCT™</strong> with a real offer, one idea per product.',
+    'Change the two Continue buttons to point at your real next sections or pages.',
+    'Add your legal note and a contact address to the footer.',
+    'Check the text on the gradient buttons is black and everything else is white.',
+    'Open the site on a phone. Fix anything that scrolls sideways.',
+  ])}
+${h3('Add the next pages')}
+${p('Keep the one-page site live. Then add one page at a time, using the same nine parts. Ask Claude for exactly one page per request:')}
+${code(['Add pages/about.html using the same header, ribbon and footer as index.html.', 'It needs a hero, a problem and solution block, one main point, and a Continue strip', 'that links to the next two pages. Update the menu on every page.', 'Work on a new branch. Open a pull request. Do not merge.'])}
+${h3('When the site is ready to grow')}
+${ul(['Add your own domain in Netlify (Domain management).', 'Add the photographs only you took, with alternative text.', 'Add the strategy table for every page you have.', 'Add a product with Part 6, Selling.'])}
+`));
+
+/* Part 3 */
+pages.push(sec('PART 3 · THE FIVE TOOLS', 'The Streamlined <strong>Loop</strong>™', `
 ${p('Five tools, five jobs. Each one does one thing, so you always know which to open.')}
 ${tbl(['Step', 'Tool', 'Its job', 'You give it', 'You get back'], [
     ['1 · Brief', 'ChatGPT', 'Second opinion and writer', 'A rough idea and your rules', 'Clean copy and a page plan'],
@@ -199,7 +277,7 @@ const USE = {
 };
 ['chatgpt', 'claude', 'github', 'netlify', 'composio'].forEach((k, i) => {
   const t = TOOLS[k];
-  pages.push(sec('PART 2 · THE FIVE TOOLS', `${t.name} <strong>· ${['Brief', 'Build', 'Hold', 'Publish', 'Connect'][['chatgpt', 'claude', 'github', 'netlify', 'composio'].indexOf(k)]}</strong>`, `
+  pages.push(sec('PART 3 · THE FIVE TOOLS', `${t.name} <strong>· ${['Brief', 'Build', 'Hold', 'Publish', 'Connect'][['chatgpt', 'claude', 'github', 'netlify', 'composio'].indexOf(k)]}</strong>`, `
 ${p(`<strong>Job in the loop.</strong> ${t.role}`)}
 ${ladder(t)}
 ${h3('Use it like this')}
@@ -208,7 +286,7 @@ ${ul(USE[k])}
 });
 
 /* Part 3: iPhone */
-pages.push(sec('PART 3 · IPHONE EDITION', 'Build from <strong>your iPhone</strong>', `
+pages.push(sec('PART 4 · IPHONE EDITION', 'Build from <strong>your iPhone</strong>', `
 <p class="lead">An iPhone is enough to run the whole loop. The heavy work happens in the cloud, on Claude's servers and Netlify's servers. Your phone is where you brief, review, approve and check.</p>
 ${h3('Choose your iPhone level')}
 ${p('Level means the device you hold, from the least you need to the most the market offers. Names of models change every year, so judge your phone by these capabilities.')}
@@ -222,7 +300,7 @@ ${h3('Add-ons that help')}
 ${ul(['A Bluetooth keyboard for long drafting sessions.', 'A stand or case with a kickstand so the phone sits at eye level for reviews.', 'A power bank for a full day away from a desk.', 'An Apple Pencil is not needed. Use Dictation for long text.'])}
 `));
 
-pages.push(sec('PART 3 · IPHONE EDITION', 'Set up <strong>in twenty minutes</strong>', `
+pages.push(sec('PART 4 · IPHONE EDITION', 'Set up <strong>in twenty minutes</strong>', `
 ${ol([
     `<strong>Secure your Apple ID.</strong> Turn on two-factor authentication. Use passkeys wherever a service offers them. Open Settings → your name → Sign-In & Security.`,
     `<strong>Install the apps.</strong> From the App Store, get ${a('https://chatgpt.com', 'ChatGPT')}, ${a('https://claude.ai', 'Claude')} and ${a('https://github.com/mobile', 'GitHub')}.`,
@@ -237,7 +315,7 @@ ${call('Check', 'Open your live site in Safari. If it loads, Netlify is connecte
 ${call('Never paste secrets', 'Do not paste passwords, API keys or the Stripe secret key into any chat. Put them in Netlify under Site configuration → Environment variables. Tools read them there.')}
 `));
 
-pages.push(sec('PART 3 · IPHONE EDITION', 'The ten-minute <strong>update loop</strong>', `
+pages.push(sec('PART 4 · IPHONE EDITION', 'The ten-minute <strong>update loop</strong>', `
 ${p('This is the loop you will run every day from your phone.')}
 ${ol([
     `<strong>Brief (ChatGPT).</strong> Tap the microphone and speak the change: "Rewrite the Partnership headline to name the problem of working alone. Give me three short versions." Pick one.`,
@@ -252,7 +330,7 @@ ${h3('A useful prompt pattern')}
 ${code(['Change: <what you want, in one sentence>', 'Where: <the page or section>', 'Rules: keep my wording exact; no promises; mark coined names with ™;', '       run the tests; push to a new branch; do not merge.'])}
 `));
 
-pages.push(sec('PART 3 · IPHONE EDITION', 'Photographs, copy <strong>and shortcuts</strong>', `
+pages.push(sec('PART 4 · IPHONE EDITION', 'Photographs, copy <strong>and shortcuts</strong>', `
 ${h3('Photographs from your phone')}
 ${ol([
     'Shoot in good light, one clear subject, room for text.',
@@ -277,7 +355,7 @@ ${tbl(['Shortcut name', 'Opens'], [
   ])}
 `));
 
-pages.push(sec('PART 3 · IPHONE EDITION', 'iPhone levels, <strong>base to ceiling</strong>', `
+pages.push(sec('PART 4 · IPHONE EDITION', 'iPhone levels, <strong>base to ceiling</strong>', `
 ${p('Combine your device level with your plan levels. This table shows a sensible starting point at each step. Move up only when you hit a real limit.')}
 ${tbl(['Stage', 'iPhone level', 'Plan levels', 'What you can run'], [
     ['Base', 'Base', 'ChatGPT Free · Claude Free · GitHub Free · Netlify Free · Composio Free', 'Write and plan in chat. Edit pages by pasting changes into GitHub. Publish with Netlify. No Claude Code yet.'],
@@ -296,7 +374,7 @@ ${call('Preview on your phone', 'When Claude opens a pull request, Netlify build
 `));
 
 /* Part 4: Computer */
-pages.push(sec('PART 4 · COMPUTER EDITION', 'Build from <strong>a computer</strong>', `
+pages.push(sec('PART 5 · COMPUTER EDITION', 'Build from <strong>a computer</strong>', `
 <p class="lead">A computer gives you the fastest loop: a local preview, a terminal, and room to run tests. You can start with nothing installed and add each tool as you need it.</p>
 ${h3('Choose your computer level')}
 ${tbl(['Level', 'Your computer', 'How you work', 'What to watch'], [
@@ -316,7 +394,7 @@ ${tbl(['Tool', 'Get it', 'Check it works'], [
   ])}
 `));
 
-pages.push(sec('PART 4 · COMPUTER EDITION', 'Set up <strong>the loop</strong>', `
+pages.push(sec('PART 5 · COMPUTER EDITION', 'Set up <strong>the loop</strong>', `
 ${ol([
     `<strong>Sign in to GitHub from the terminal.</strong> Run <code>gh auth login</code> and follow the prompts.`,
     `<strong>Get your repository.</strong> Run <code>gh repo clone your-name/your-repo</code>, then <code>cd your-repo</code>.`,
@@ -332,7 +410,7 @@ ${code(['npx serve .', '# or', 'python3 -m http.server 8000', '', '# with Netlif
 ${call('Check', 'Open the address the command prints. If your home page loads, the local setup works.')}
 `));
 
-pages.push(sec('PART 4 · COMPUTER EDITION', 'The daily <strong>build loop</strong>', `
+pages.push(sec('PART 5 · COMPUTER EDITION', 'The daily <strong>build loop</strong>', `
 ${ol([
     `<strong>Start fresh.</strong> <code>git checkout main</code> then <code>git pull</code>.`,
     `<strong>Branch.</strong> <code>git checkout -b change-headline</code>.`,
@@ -348,7 +426,7 @@ ${ol([
 ${call('If something is wrong', 'Open the merged pull request on GitHub and choose Revert. GitHub creates a new pull request that undoes it. Merge that, and Netlify publishes the previous version.')}
 `));
 
-pages.push(sec('PART 4 · COMPUTER EDITION', 'Netlify <strong>in practice</strong>', `
+pages.push(sec('PART 5 · COMPUTER EDITION', 'Netlify <strong>in practice</strong>', `
 ${tbl(['Need', 'Where to do it', 'Notes'], [
     ['See why a publish failed', 'Netlify → your site → Deploys → the failed deploy → Deploy log', 'Copy the first error line to Claude and ask for a fix.'],
     ['Preview a change before merge', 'The deploy preview link on the pull request', 'Use it to test on a real phone.'],
@@ -362,7 +440,7 @@ ${tbl(['Need', 'Where to do it', 'Notes'], [
 ${call('Public means public', 'Anything in a folder that Netlify publishes can be opened by anyone who knows the address. Keep paid files out of the public path, or block the path with a forced redirect, and serve paid files through a function that checks the purchase first.')}
 `));
 
-pages.push(sec('PART 4 · COMPUTER EDITION', 'Computer levels, <strong>base to ceiling</strong>', `
+pages.push(sec('PART 5 · COMPUTER EDITION', 'Computer levels, <strong>base to ceiling</strong>', `
 ${tbl(['Stage', 'Computer level', 'Plan levels', 'What you can run'], [
     ['Base', 'Base', 'All five tools at Free (Claude without Claude Code)', 'Plan in chat. Edit in the browser at github.dev. Publish with Netlify.'],
     ['Starter', 'Base or Mid', 'Claude Pro with Claude Code · others at Free', 'The full loop with a local preview at Mid.'],
@@ -380,7 +458,7 @@ ${ul([
 `));
 
 /* Part 5: selling */
-pages.push(sec('PART 5 · SELLING', 'Put a product <strong>on your site</strong>', `
+pages.push(sec('PART 6 · SELLING', 'Put a product <strong>on your site</strong>', `
 ${p('When a page is ready to sell, add the product in four places, in this order.')}
 ${ol([
     `<strong>Create the product and price in Stripe.</strong> Use ${a('https://docs.stripe.com/payment-links', 'Stripe Payment Links')}. Set the name, the price and a one-time payment. Copy the price ID and the link.`,
@@ -394,7 +472,7 @@ ${call('Test before you announce', 'Do a real test purchase, then confirm the fi
 `));
 
 /* Part 6: appendices */
-pages.push(sec('PART 6 · APPENDICES', 'Troubleshooting', `
+pages.push(sec('PART 7 · APPENDICES', 'Troubleshooting', `
 ${tbl(['Problem', 'Likely cause', 'Fix'], [
     ['My change is not on the live site', 'The pull request was not merged, or the deploy is still running.', 'Check GitHub for the merge. Check Netlify Deploys for a Published label.'],
     ['The live site shows the old version', 'Your browser or phone is showing a saved copy.', 'Reload, then try a private tab.'],
@@ -409,7 +487,7 @@ ${tbl(['Problem', 'Likely cause', 'Fix'], [
   ])}
 `));
 
-pages.push(sec('PART 6 · APPENDICES', 'Links <strong>in one place</strong>', `
+pages.push(sec('PART 7 · APPENDICES', 'Links <strong>in one place</strong>', `
 ${tbl(['Tool', 'Home', 'Plans and pricing', 'Learn'], [
     ['ChatGPT', a('https://chatgpt.com', 'chatgpt.com'), a('https://chatgpt.com/pricing', 'Pricing'), a('https://help.openai.com', 'Help center')],
     ['Claude', a('https://claude.ai', 'claude.ai'), a('https://claude.com/pricing', 'Pricing'), a('https://code.claude.com/docs', 'Claude Code docs')],
@@ -427,9 +505,9 @@ ${ul([
 ${call('A note on names', 'The ™ symbol shows you claim a name. It is not a registration. Registration is a separate legal step.')}
 `));
 
-pages.push(sec('PART 6 · APPENDICES', 'The full <strong>glossary</strong>', GLOSSARY_GROUPS.map((g) => `${h3(g.name)}${tbl(['Term', 'Meaning', 'Use it for'], g.terms)}`).join('')));
+pages.push(sec('PART 7 · APPENDICES', 'The full <strong>glossary</strong>', GLOSSARY_GROUPS.map((g) => `${h3(g.name)}${tbl(['Term', 'Meaning', 'Use it for'], g.terms)}`).join('')));
 
-pages.push(sec('PART 6 · APPENDICES', 'Launch <strong>checklist</strong>', `
+pages.push(sec('PART 7 · APPENDICES', 'Launch <strong>checklist</strong>', `
 ${chk([
     'Every page uses the nine-part pattern.',
     'The header, ribbon and footer are identical on every page.',
@@ -446,7 +524,15 @@ ${chk([
     'Secrets live only in Netlify environment variables.',
     'You know how to revert a bad publish.',
   ])}
-${call('Build the infrastructure. Strengthen the practice. Create the legacy.', 'The free version of the glossary, as a one-page infographic, is on the Creator page of the Co.LLab™ website.')}
+${call('Build the infrastructure. Strengthen the practice. Create the legacy.', 'The Website Glossary™, a free one-page infographic of the words in this manual, is on the Creator page of the Co.LLab™ website.')}
 `));
+
+pages.push(`<section class="page">
+<p><strong>YOUR NEXT MOVE</strong></p>
+<p>Once your site is live and you are updating it with the loop, the next infrastructure question is how to run the whole creative venture without every decision depending on you. That is <strong>The Creator Operating System™</strong> ($300).</p>
+<p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
+<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+</section>`);
 
 export const contentHtml = pages.join('\n');
