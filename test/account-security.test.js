@@ -163,3 +163,14 @@ test('a failed relay reply is reported as an error, never as sent', async () => 
     delete process.env.MAIL_WEBHOOK_SECRET;
   }
 });
+
+test('the account view only asks for email confirmation when the site can send email', async () => {
+  const { buildAccountView } = require('../netlify/functions/lib/account-view');
+  const res = await call(signup, { email: 'view@example.com', password: 'free-pass-1' });
+  assert.equal(JSON.parse(res.body).emailEnabled, true, 'test transport counts as configured');
+  mailer._setTransportForTests(null);
+  const record = await fakeStore.getCustomerByToken(await fakeStore.getTokenByEmail('view@example.com'));
+  const { resolveAccess } = require('../netlify/functions/lib/access');
+  const view = buildAccountView(await resolveAccess(record));
+  assert.equal(view.emailEnabled, false, 'with no SMTP and no relay, the banner stays hidden');
+});

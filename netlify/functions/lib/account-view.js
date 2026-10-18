@@ -3,6 +3,7 @@
 // password sign-in) so both return the exact same data.
 const pricing = require('./pricing');
 const membershipStatus = require('./membership-status');
+const { isConfigured: emailConfigured } = require('./mailer');
 const freeTools = require('../../../content/free-tools.json').tools;
 const { rewardsStatus } = require('./membership-rewards');
 
@@ -119,6 +120,8 @@ function buildAccountView(record, now) {
     hasPassword: !!record.passwordHash,
     // false only for free sign-ups that have not confirmed their email yet
     emailVerified: record.signupSource === 'free' ? record.emailVerified === true : true,
+    // the site can only ask for confirmation when it can actually send the email
+    emailEnabled: emailConfigured(),
     memberOfCollab: true,
     memberships,
     partnership: record.partnership
