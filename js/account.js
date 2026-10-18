@@ -886,7 +886,7 @@
     if ((data.openQuests || []).length) {
       const h = document.createElement('h4');
       h.className = 'tool-phase';
-      h.textContent = 'Live events · .LLab Sound™';
+      h.textContent = 'Events';
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       data.openQuests.forEach((oq) => {

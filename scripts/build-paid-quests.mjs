@@ -35,24 +35,24 @@ const WEBSITE_QUEST = [
   [3, 'Preservation', 'If you could not touch the site for six months, what would keep it running and who could update it?'],
   [3, 'Preservation', 'What will you write down so someone else could rebuild the site from your notes?'],
 ];
-// A free planning quest for .LLab Sound™: what it takes to run a live night (a rave, show or community event).
+// A free planning quest for any event (conference, workshop, fundraiser, festival, market, show, party).
 // "open" means every signed-in member can use it; it is not tied to a product.
-const LIVE_NIGHT = [
-  [0, 'What the night is for', 'What is this night for, and what should people feel and remember when it ends?'],
-  [0, 'What the night is for', 'Who is the night for first, and who else does it serve: the artists, the crew, the venue and the community around it?'],
-  [0, 'What the night is for', 'What are your non-negotiables: the standards you will not trade away for money or crowd size?'],
-  [1, 'Who owns what', 'Who owns each part: programming and music, sound, lighting and visuals, staging and power, security and crowd safety, welfare and medical, ticketing and door, vendors, volunteers? Name one owner for each.'],
-  [1, 'Who owns what', 'Which permits, licenses, insurance and venue agreements does the night need, and who holds them? (Check the rules where you are.)'],
-  [1, 'Who owns what', 'What does the night cost, what comes in, and what is your break-even?'],
-  [1, 'Who owns what', 'How do people get in and move: ticketing, the door, your capacity limit, crowd flow, and entry and exit routes?'],
-  [2, 'The night itself', 'What is the run-of-show: doors, sets, changeovers and curfew, and who calls each cue?'],
-  [2, 'The night itself', 'What is your sound and visuals plan: the system, power and backup, sound check, volume limits and hearing safety?'],
-  [2, 'The night itself', 'What is your safety and welfare plan: water, a quiet space, medical help, heat, crowd crush, alcohol and drugs as the law and venue require, and how a problem is reported and who acts?'],
-  [2, 'The night itself', 'How will your team communicate on the night, who makes which decisions, and what happens when the plan breaks?'],
-  [3, 'What lasts', 'What will you record afterward: numbers, what worked, what did not, incidents and lessons?'],
-  [3, 'What lasts', 'How will you thank and keep the artists, crew, venue and community, and what do you owe them after the night?'],
-  [3, 'What lasts', 'What will you write down so someone else could run the next one: contacts, contracts, cue sheets and load-in plans?'],
-  [3, 'What lasts', 'What would make this night part of something lasting: a series, a collective, a name someone else could carry on?'],
+const EVENT = [
+  [0, 'What the event is for', 'What is this event for, and what should people feel, learn or remember when it ends?'],
+  [0, 'What the event is for', 'Who is the event for first, and who else does it serve: speakers or artists, the team, the venue, sponsors and the community around it?'],
+  [0, 'What the event is for', 'What are your non-negotiables: the standards you will not trade away for money or attendance?'],
+  [1, 'Who owns what', 'Who owns each part: program and content, venue and setup, sound, screens and lighting, power and technical, security and crowd safety, welfare and first aid, registration or ticketing and the door, food and vendors, volunteers and staff? Name one owner for each.'],
+  [1, 'Who owns what', 'Which permits, licenses, insurance and venue agreements does the event need, and who holds them? (Check the rules where you are.)'],
+  [1, 'Who owns what', 'What does the event cost, what comes in, and what is your break-even?'],
+  [1, 'Who owns what', 'How do people arrive and move: registration or ticketing, the door, your capacity limit, crowd flow, accessibility, and entry and exit routes?'],
+  [2, 'The event itself', 'What is the run-of-show: doors, each segment or set, changeovers and the finish, and who calls each cue?'],
+  [2, 'The event itself', 'What is your technical plan: sound, screens or lighting, power and backup, a test run before doors, and any volume limits?'],
+  [2, 'The event itself', 'What is your safety and welfare plan: first aid, water and food, heat or cold, accessibility, a quiet space, emergencies, alcohol or other substances as the law and venue require, and how a problem is reported and who acts?'],
+  [2, 'The event itself', 'How will your team communicate on the day, who makes which decisions, and what happens when the plan breaks?'],
+  [3, 'What lasts', 'What will you record afterward: attendance, what worked, what did not, incidents and lessons?'],
+  [3, 'What lasts', 'How will you thank and keep the speakers or artists, team, venue, sponsors and community, and what do you owe them after the event?'],
+  [3, 'What lasts', 'What will you write down so someone else could run the next one: contacts, contracts, run sheets and setup plans?'],
+  [3, 'What lasts', 'What would make this event part of something lasting: a series, a collective, a name someone else could carry on?'],
 ];
 const PHASE_LABEL = { foundations: 'Phase I · Foundations', 'infrastructure-planning': 'Phase II · Infrastructure Planning & Management', 'operating-systems': 'Phase III · Internal Operating Systems', preservation: 'Phase IV · Preservation' };
 
@@ -213,14 +213,14 @@ function parse(key) {
 
 const outDir = path.join(root, 'content/quests');
 {
-  const nodes = LIVE_NIGHT.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
+  const nodes = EVENT.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
   const quest = {
-    key: 'live-night', open: true, title: '.LLab Sound™ Live Night Quest', phase: 'Phase II · Infrastructure Planning & Management', archetype: 'workbook',
-    intro: 'Plan a live night, a rave, a show or a community event, through The IV Phases™: what it is for, who owns what, how the night runs, and what lasts after it.',
-    pdfTitle: '.LLab Sound™ Live Night Quest', minAnswered: 0.6, upsell: null, nodes,
-    closing: { id: 'commit', type: 'text', prompt: 'The one thing we will lock in next for this night, who will own it, and by when:' },
+    key: 'run-an-event', open: true, title: 'Run an Event Quest™', phase: 'Phase II · Infrastructure Planning & Management', archetype: 'workbook',
+    intro: 'Plan any event, a conference, workshop, fundraiser, festival, market, show or party, through The IV Phases™: what it is for, who owns what, how the day runs, and what lasts after it.',
+    pdfTitle: 'Run an Event Quest™', minAnswered: 0.6, upsell: null, nodes,
+    closing: { id: 'commit', type: 'text', prompt: 'The one thing we will lock in next for this event, who will own it, and by when:' },
   };
-  fs.writeFileSync(path.join(outDir, 'live-night.json'), `${JSON.stringify(quest, null, 2)}\n`);
+  fs.writeFileSync(path.join(outDir, 'run-an-event.json'), `${JSON.stringify(quest, null, 2)}\n`);
 }
 {
   const entry = pricing.products.find((p) => p.key === 'creator-website-blueprint');
