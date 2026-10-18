@@ -8,6 +8,7 @@ const { hashPassword } = require('./lib/password');
 const { buildAccountView } = require('./lib/account-view');
 const { resolveAccess } = require('./lib/access');
 const { json, setTokenCookie } = require('./lib/http');
+const { sendVerificationEmail } = require('./lib/account-emails');
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -35,7 +36,16 @@ exports.handler = async (event) => {
   if (name && !record.name) record.name = name;
   record.joinedFreeAt = new Date().toISOString();
   record.signupSource = 'free';
+  record.emailVerified = false;
+  record.verifyEmailSentAt = new Date().toISOString();
   await store.saveCustomer(record);
+  // Free tools work right away. The confirmation email proves the address is theirs; until then a
+  // later purchase by that address starts a fresh account (see store.getOrCreateCustomerForPurchase).
+  try {
+    await sendVerificationEmail(record);
+  } catch (err) {
+    console.error('verification email failed', err.message);
+  }
 
   return json(201, { ...buildAccountView(await resolveAccess(record)), restoreToken: token }, { 'Set-Cookie': setTokenCookie(token) });
 };

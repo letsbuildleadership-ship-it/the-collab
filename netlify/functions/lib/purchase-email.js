@@ -144,7 +144,22 @@ ${signInLines.map((l) => `<p style="margin:0 0 16px;font-size:14px;line-height:1
 <tr><td style="padding:16px 32px;border-top:1px solid ${C.line};font-size:12px;color:#6b7a70;">The Co.LLab™ Building Leadership Infrastructure™</td></tr>
 </table></td></tr></table></body></html>`;
 
-  return { to: record.email, subject, text, html, replyTo: CONTACT };
+  return {
+    to: record.email,
+    subject,
+    text,
+    html,
+    replyTo: CONTACT,
+    template: 'purchase-confirmation',
+    vars: {
+      firstName: firstName || '',
+      memberId: record.memberId || '',
+      products: entries.map((e) => e.name).join('\n'),
+      total: total || '',
+      accountUrl,
+      contact: CONTACT,
+    },
+  };
 }
 
 /**

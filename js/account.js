@@ -776,6 +776,8 @@
     $('account-email').textContent = data.email;
     const freeNote = $('free-member-note');
     if (freeNote) freeNote.hidden = data.memberType !== 'free';
+    const verifyNote = $('email-verify-note');
+    if (verifyNote) verifyNote.hidden = data.emailVerified !== false;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
     renderFounderCard(data);
     renderPartnership(data);
@@ -1151,5 +1153,16 @@
         }
       });
     }
+  });
+
+  // "Send it again" for an unconfirmed free sign-up
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest && e.target.closest('#email-verify-resend');
+    if (!link) return;
+    e.preventDefault();
+    const status = $('email-verify-status');
+    fetch('/.netlify/functions/verify-email', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'resend' }) })
+      .then((r) => r.json().catch(() => ({})).then((d) => { status.textContent = r.ok ? ' Sent. Check your inbox.' : ` ${d.error || 'Could not send. Try again later.'}`; }))
+      .catch(() => { status.textContent = ' Could not send. Try again later.'; });
   });
 })();

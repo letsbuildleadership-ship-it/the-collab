@@ -31,7 +31,7 @@ function resetEmail(record, url) {
 <p><a href="${url}" style="display:inline-block;background:#ff602e;color:#0f1d13;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:999px;">Choose a new password</a></p>
 <p style="font-size:13px;color:#6b7a70;">The link works once, for 1 hour. If you didn't ask for this, you can ignore this email; your password won't change.</p>
 <p style="font-size:13px;color:#6b7a70;">The Co.LLab™</p></div>`;
-  return { to: record.email, subject: 'Reset your Co.LLab™ password', text, html, replyTo: CONTACT };
+  return { to: record.email, subject: 'Reset your Co.LLab™ password', text, html, replyTo: CONTACT, template: 'password-reset', vars: { url, memberId: record.memberId || '', contact: CONTACT } };
 }
 
 exports.handler = async (event) => {

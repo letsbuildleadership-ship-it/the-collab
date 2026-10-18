@@ -117,6 +117,8 @@ function buildAccountView(record, now) {
     name: record.name || null,
     memberId: record.memberId || null,
     hasPassword: !!record.passwordHash,
+    // false only for free sign-ups that have not confirmed their email yet
+    emailVerified: record.signupSource === 'free' ? record.emailVerified === true : true,
     memberOfCollab: true,
     memberships,
     partnership: record.partnership

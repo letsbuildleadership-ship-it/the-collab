@@ -8,6 +8,11 @@ const { buildAccountView } = require('./lib/account-view');
 const { resolveAccess } = require('./lib/access');
 const { json, setTokenCookie } = require('./lib/http');
 
+// 7 wrong tries for one email or Member ID, then a 15-minute pause. Tries older than 30 minutes are forgotten.
+const MAX_TRIES = 7;
+const LOCK_MS = 15 * 60 * 1000;
+const FORGET_MS = 30 * 60 * 1000;
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method Not Allowed' });
 
@@ -26,6 +31,13 @@ exports.handler = async (event) => {
     return json(400, { error: 'Email or Member ID, and password, are required.' });
   }
 
+  const throttleKey = `login:${identifier.toLowerCase()}`;
+  const throttle = await store.getLoginThrottle(throttleKey);
+  if (throttle && throttle.lockedUntil && Date.parse(throttle.lockedUntil) > Date.now()) {
+    const retryAfterSeconds = Math.ceil((Date.parse(throttle.lockedUntil) - Date.now()) / 1000);
+    return json(429, { error: 'Too many tries. Wait 15 minutes, or use Forgot password to reset it by email.', retryAfterSeconds }, { 'Retry-After': String(retryAfterSeconds) });
+  }
+
   const token = identifier.includes('@')
     ? await store.getTokenByEmail(identifier)
     : await store.getTokenByMemberId(identifier.toUpperCase());
@@ -33,8 +45,14 @@ exports.handler = async (event) => {
 
   // Same generic error either way — don't reveal whether the account exists.
   if (!record || !verifyPassword(password, record.passwordHash)) {
-    return json(401, { error: 'Incorrect email, Member ID, or password.' });
+    const recent = throttle && throttle.lastFailAt && Date.now() - Date.parse(throttle.lastFailAt) < FORGET_MS;
+    const count = (recent ? throttle.count : 0) + 1;
+    const next = { count, lastFailAt: new Date().toISOString(), lockedUntil: count >= MAX_TRIES ? new Date(Date.now() + LOCK_MS).toISOString() : null };
+    await store.saveLoginThrottle(throttleKey, next);
+    const triesLeft = Math.max(0, MAX_TRIES - count);
+    return json(401, { error: triesLeft ? `Incorrect email, Member ID, or password. ${triesLeft} ${triesLeft === 1 ? 'try' : 'tries'} left.` : 'Too many tries. Wait 15 minutes, or use Forgot password to reset it by email.', triesLeft });
   }
+  if (throttle) await store.clearLoginThrottle(throttleKey);
 
   return json(200, { ...buildAccountView(await resolveAccess(record)), restoreToken: record.token }, { 'Set-Cookie': setTokenCookie(record.token) });
 };

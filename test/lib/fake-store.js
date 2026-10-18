@@ -14,6 +14,8 @@ let memberSeq = 0;
 let byMemberId = new Map();
 let resetCodes = new Map();
 let purchaseEmails = new Map();
+let verifyCodes = new Map();
+let throttles = new Map();
 
 function reset() {
   customers = new Map();
@@ -27,6 +29,8 @@ function reset() {
   byMemberId = new Map();
   resetCodes = new Map();
   purchaseEmails = new Map();
+  verifyCodes = new Map();
+  throttles = new Map();
 }
 
 async function saveSeatInvite(code, invite) {
@@ -121,6 +125,42 @@ async function getOrCreateCustomerByEmail(email) {
   return { token, record, isNew: true };
 }
 
+function isUnconfirmedFreeSignup(record) {
+  return Boolean(
+    record && record.signupSource === 'free' && record.emailVerified !== true &&
+    !(record.entitlements || []).length && !Object.keys(record.memberships || {}).length &&
+    !(record.purchases || []).length && !record.partnership && !record.founder && !record.seat
+  );
+}
+
+async function getOrCreateCustomerForPurchase(email) {
+  const existingToken = await getTokenByEmail(email);
+  if (existingToken) {
+    const record = await getCustomerByToken(existingToken);
+    if (record && !isUnconfirmedFreeSignup(record)) return { token: existingToken, record, isNew: false };
+    if (record) {
+      record.passwordHash = null;
+      record.supersededAt = new Date().toISOString();
+      await saveCustomer(record);
+    }
+  }
+  const token = randomToken();
+  const record = newCustomer(email, token);
+  memberSeq += 1;
+  record.memberId = `M-${String(memberSeq).padStart(5, '0')}`;
+  byMemberId.set(record.memberId, token);
+  await saveCustomer(record);
+  await setTokenForEmail(email, token);
+  return { token, record, isNew: true, replacedUnconfirmedSignup: Boolean(existingToken) };
+}
+
+async function saveVerifyCode(code, info) { verifyCodes.set(code, info); }
+async function getVerifyCode(code) { return verifyCodes.get(code) || null; }
+async function deleteVerifyCode(code) { verifyCodes.delete(code); }
+async function getLoginThrottle(key) { return throttles.get(hashEmail(key)) || null; }
+async function saveLoginThrottle(key, info) { throttles.set(hashEmail(key), info); }
+async function clearLoginThrottle(key) { throttles.delete(hashEmail(key)); }
+
 async function linkStripeCustomer(stripeCustomerId, token) {
   byStripeCustomer.set(stripeCustomerId, token);
 }
@@ -195,6 +235,14 @@ async function deleteResetCode(code) {
 
 module.exports = {
   reset,
+  getOrCreateCustomerForPurchase,
+  isUnconfirmedFreeSignup,
+  saveVerifyCode,
+  getVerifyCode,
+  deleteVerifyCode,
+  getLoginThrottle,
+  saveLoginThrottle,
+  clearLoginThrottle,
   randomToken,
   hashEmail,
   nextFounderNumber,
