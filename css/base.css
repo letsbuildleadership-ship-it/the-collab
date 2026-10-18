@@ -2041,3 +2041,7 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 /* About table: glowing chips and header like the circle map, no yellow fills */
 .ad-table thead th { background: rgba(255, 46, 18, 0.18); color: #fff; border-top: 2px solid #ff4a3a; border-bottom: 2px solid #ff4a3a; box-shadow: 0 0 18px rgba(255, 46, 18, 0.35); }
 .at-nodes span { background: rgba(255, 46, 18, 0.18); color: #fff; border: 1.5px solid #ff6a2e; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); }
+
+/* About table: page-name tags use the site's orange-to-red gradient and glow (black text keeps AA across the gradient) */
+.ad-table tbody th a { background: linear-gradient(90deg, #ff2e12, #ff8a1f); color: #000; border-radius: 8px; box-shadow: 0 0 22px rgba(255, 96, 46, 0.85), 0 0 44px rgba(255, 46, 18, 0.4); }
+.ad-table tbody th a:hover, .ad-table tbody th a:focus-visible { color: #000; box-shadow: 0 0 30px rgba(255, 138, 31, 1), 0 0 56px rgba(255, 46, 18, 0.6); }
