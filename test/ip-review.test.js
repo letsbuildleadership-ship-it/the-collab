@@ -85,3 +85,46 @@ test('insights are anonymous counts and flag nothing until there is enough data'
   assert.equal(data.insights.suggestions.length, 0);
   assert.equal(JSON.stringify(data.insights).includes('m3@example.com'), false);
 });
+
+const analysisFn = require('../netlify/functions/admin-ip-analysis');
+const { auditQuest } = require('../netlify/functions/lib/ip-audit');
+const analysisCall = (method, body, qs, tok = 'tok') => analysisFn.handler({ httpMethod: method, headers: { 'x-admin-token': tok }, queryStringParameters: qs || {}, body: body ? JSON.stringify(body) : undefined });
+
+test('IP analysis is owner-only and covers every guided IP with structure, portfolio and recommendations', async () => {
+  assert.equal((await analysisCall('GET', null, null, 'wrong')).statusCode, 401);
+  const data = JSON.parse((await analysisCall('GET')).body);
+  assert.ok(data.catalog.length >= quests.size);
+  assert.ok(data.catalog.every((i) => i.title && i.kind));
+  assert.equal(data.portfolio.phaseTotals.length, 4);
+  assert.equal(data.portfolio.oe.length, 8);
+  assert.ok(data.recommendations.length > 0);
+  assert.ok(data.recommendations.every((r) => r.id && r.text && ['high', 'medium', 'low'].includes(r.severity) && r.status === 'new'));
+  assert.equal(new Set(data.recommendations.map((r) => r.id)).size, data.recommendations.length, 'ids are unique and stable');
+  assert.equal(data.awaiting, data.recommendations.length);
+});
+
+test('the full question set of any IP can be read, and a decision on a recommendation is remembered', async () => {
+  const one = JSON.parse((await analysisCall('GET', null, { quest: 'diagnostic' })).body);
+  assert.ok(one.quest.nodes.length > 20);
+  assert.equal((await analysisCall('GET', null, { quest: 'nope' })).statusCode, 404);
+
+  const rec = JSON.parse((await analysisCall('GET')).body).recommendations[0];
+  assert.equal((await analysisCall('POST', { id: rec.id, status: 'declined' })).statusCode, 400);
+  assert.equal((await analysisCall('POST', { id: rec.id, status: 'planned', note: 'Next quarter' })).statusCode, 200);
+  const after = JSON.parse((await analysisCall('GET')).body);
+  assert.equal(after.recommendations.find((r) => r.id === rec.id).status, 'planned');
+  assert.equal(after.awaiting, after.recommendations.length - 1);
+});
+
+test('content audit flags missing phases, bare labels and repeated prompts', () => {
+  const q = { key: 'x', title: 'Test IP', archetype: 'workbook', phase: 'Phase I · Foundations', nodes: [
+    { id: 'n1', type: 'text', phase: 0, section: 'A', prompt: 'Our mission:' },
+    { id: 'n2', type: 'text', phase: 0, section: 'A', prompt: 'Our vision:' },
+    { id: 'n3', type: 'text', phase: 0, section: 'A', prompt: 'Our values:' },
+    { id: 'n4', type: 'text', phase: 0, section: 'A', prompt: 'Our values:' },
+  ] };
+  const f = auditQuest(q).findings.map((x) => x.id.split('-').pop());
+  assert.ok(f.includes('gap'));
+  assert.ok(f.includes('labels'));
+  assert.ok(f.includes('duplicates'));
+});
