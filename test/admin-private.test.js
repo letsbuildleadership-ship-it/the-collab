@@ -44,6 +44,7 @@ test('owner pages are invisible: without a session every address looks like a pa
     assert.equal(r.body.includes('IP Analysis'), false);
   }
   assert.equal((await getPage('ip-analysis.html', 'collab_admin=1.abc')).statusCode, 404, 'a forged cookie gets nothing');
+  assert.equal((await getPage('sales-pitch-guideline.pdf')).statusCode, 404, 'the guideline PDF is invisible without a session');
   assert.equal((await getPage('ip-analysis.html', null, 'wrong-key')).statusCode, 404, 'a wrong entry key gets nothing');
 });
 
