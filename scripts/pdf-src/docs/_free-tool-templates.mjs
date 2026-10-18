@@ -9,6 +9,12 @@ import { licensePageHtml } from './_license.mjs';
 
 const brandFooter = `<p style="margin-top:22px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/products.html">Explore The .LLab™ IV Phases Product Infrastructure</a></p>`;
 
+// Records each doc's source data so scripts/build-quests.mjs can turn the same
+// content into an interactive quest (no second copy of the text to keep in sync).
+function capture(archetype, args) {
+  globalThis.__questData = { archetype, ...args };
+}
+
 function upsellCallout({ name, price, copy }) {
   return `<div class="callout"><p class="callout-label">Ready To Go Further?</p><p><strong>${name}</strong> (${price}) ${copy}</p></div>`;
 }
@@ -19,6 +25,7 @@ function header(pageIndex, title, intro) {
 
 /** Checklist archetype: 8 yes/no items, scored by count. */
 export function renderChecklistDoc({ headline, intro, contrast, items, bands, commitPrompt, upsell }) {
+  capture('checklist', { headline, intro, contrast, items, bands, commitPrompt, upsell });
   return `
 ${licensePageHtml}
 <section class="page">
@@ -58,6 +65,7 @@ ${licensePageHtml}
 
 /** Worksheet archetype: 4 open-ended prompts, split 2 + 2 across pages. */
 export function renderWorksheetDoc({ headline, intro, frameworkLabel, frameworkSteps, prompts, synthesisPrompt, upsell }) {
+  capture('worksheet', { headline, intro, frameworkLabel, frameworkSteps, prompts, synthesisPrompt, upsell });
   const activity = (p) => `<div class="activity-box"><span class="activity-kicker">${p.kicker}</span><p class="activity-prompt">${p.prompt}</p><div class="activity-line"></div></div>`;
   return `
 ${licensePageHtml}
@@ -93,6 +101,7 @@ ${licensePageHtml}
 
 /** Snapshot archetype: four 1-5 self-scored dimensions. */
 export function renderSnapshotDoc({ headline, intro, dimensions, bands, reflectPrompt, upsell }) {
+  capture('snapshot', { headline, intro, dimensions, bands, reflectPrompt, upsell });
   return `
 ${licensePageHtml}
 <section class="page">
@@ -131,6 +140,7 @@ ${licensePageHtml}
 
 /** Starter archetype: 3-4 numbered steps building one small system. */
 export function renderStarterDoc({ headline, intro, steps, closingPrompt, upsell }) {
+  capture('starter', { headline, intro, steps, closingPrompt, upsell });
   const half = Math.ceil(steps.length / 2);
   const page2Steps = steps.slice(0, half);
   const page3Steps = steps.slice(half);

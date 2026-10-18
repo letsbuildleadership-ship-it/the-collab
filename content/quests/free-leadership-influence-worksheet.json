@@ -1,0 +1,44 @@
+{
+  "key": "free-leadership-influence-worksheet",
+  "title": "Leadership Influence Worksheet™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "worksheet",
+  "intro": "Map where your influence actually travels — and where it stops.",
+  "pdfTitle": "Leadership Influence Worksheet™",
+  "upsell": {
+    "name": "The .LLab Leadership Legacy Profile™",
+    "price": "$150",
+    "copy": "connects your influence map to infrastructure and legacy."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Prompt 1",
+      "prompt": "Where my influence is strongest right now is…"
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Prompt 2",
+      "prompt": "Where it doesn't reach yet is…"
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Prompt 3",
+      "prompt": "The person or system that extends it when I'm not there is…"
+    },
+    {
+      "id": "n4",
+      "type": "text",
+      "label": "Prompt 4",
+      "prompt": "One system that would extend it further is…"
+    }
+  ],
+  "closing": {
+    "id": "synthesis",
+    "type": "text",
+    "prompt": "The single move that would extend my influence furthest is:"
+  }
+}

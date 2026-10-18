@@ -1,0 +1,44 @@
+{
+  "key": "free-mission-to-action-worksheet",
+  "title": "Mission-to-Action Worksheet™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "worksheet",
+  "intro": "This does. Four prompts that turn a mission statement into three concrete actions.",
+  "pdfTitle": "Mission-to-Action Worksheet™",
+  "upsell": {
+    "name": "The Leadership Alignment Map™",
+    "price": "$50",
+    "copy": "connects mission, vision, values, strategy, culture, and leadership in full."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Prompt 1",
+      "prompt": "My mission, in one sentence, is…"
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Prompt 2",
+      "prompt": "The place my current actions don't match that mission is…"
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Prompt 3",
+      "prompt": "Three actions I can take this month that would close that gap are…"
+    },
+    {
+      "id": "n4",
+      "type": "text",
+      "label": "Prompt 4",
+      "prompt": "The person who needs to know about this shift is…"
+    }
+  ],
+  "closing": {
+    "id": "synthesis",
+    "type": "text",
+    "prompt": "The one action from my list I'll start today is:"
+  }
+}

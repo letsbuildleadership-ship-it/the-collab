@@ -888,7 +888,9 @@
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       tools.forEach((tool) => {
-        const actions = `<a class="pill" href="${tool.file}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>`;
+        const qs = (data.quests || {})[tool.key];
+        const questLabel = qs && qs.status === 'done' ? 'View my report' : qs ? 'Continue quest' : 'Start quest';
+        const actions = `<a class="pill pill--solid" href="quest.html?key=${encodeURIComponent(tool.key)}">${questLabel} <span class="arrow">→</span></a> <a class="pill" href="${tool.file}" target="_blank" rel="noopener">Blank PDF <span class="arrow">→</span></a>`;
         const card = itemCard({ name: esc(tool.name), actionsHtml: actions });
         const desc = document.createElement('p');
         desc.className = 'item-desc';
@@ -900,6 +902,23 @@
       toolsList.appendChild(grid);
     });
     toolsGroup.hidden = !toolCount;
+
+    // Completed quest reports live here for good.
+    const reports = (data.freeTools || []).filter((t) => ((data.quests || {})[t.key] || {}).status === 'done');
+    const reportList = $('quest-reports-list');
+    reportList.innerHTML = '';
+    reports.forEach((tool) => {
+      const when = String(data.quests[tool.key].completedAt || '').slice(0, 10);
+      const actions = `<a class="pill pill--solid" href="/.netlify/functions/quest?key=${encodeURIComponent(tool.key)}&pdf=1">Download report (PDF) <span class="arrow">→</span></a> <a class="pill" href="quest.html?key=${encodeURIComponent(tool.key)}">View <span class="arrow">→</span></a>`;
+      const card = itemCard({ name: esc(tool.name), actionsHtml: actions });
+      const desc = document.createElement('p');
+      desc.className = 'item-desc';
+      desc.textContent = when ? `Completed ${when}` : 'Completed';
+      card.insertBefore(desc, card.querySelector('.item-actions'));
+      reportList.appendChild(card);
+    });
+    $('quest-reports-group').hidden = !reports.length;
+    $('quest-reports-count').textContent = reports.length ? `${reports.length}` : '';
     $('free-tools-count').textContent = toolCount ? `${toolCount}` : '';
 
     renderMembershipOffer(data);

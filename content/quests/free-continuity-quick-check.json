@@ -1,0 +1,66 @@
+{
+  "key": "free-continuity-quick-check",
+  "title": "Continuity Quick-Check™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "snapshot",
+  "intro": "Imagine you're unreachable for thirty days. Score honestly against that scenario.",
+  "pdfTitle": "Continuity Quick-Check™",
+  "upsell": {
+    "name": "The .LLab Infrastructure Blueprint™",
+    "price": "$500",
+    "copy": "turns this check into an intentional infrastructure-building framework."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "scale",
+      "label": "Documentation",
+      "prompt": "How much of what you know is actually written down somewhere else.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "type": "scale",
+      "label": "Delegation",
+      "prompt": "How much currently depends on you personally to keep moving.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "type": "scale",
+      "label": "Dependency",
+      "prompt": "How many critical relationships or systems run through you alone.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "type": "scale",
+      "label": "Readiness",
+      "prompt": "How prepared your team would be if you were unreachable tomorrow.",
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "bands": [
+    {
+      "label": "4–9",
+      "copy": "Continuity is fragile right now. Start with your lowest-scoring dimension."
+    },
+    {
+      "label": "10–15",
+      "copy": "Some continuity exists, but real dependencies remain."
+    },
+    {
+      "label": "16–20",
+      "copy": "Strong continuity. The Infrastructure Blueprint™ below makes it intentional, not accidental."
+    }
+  ],
+  "closing": {
+    "id": "reflect",
+    "type": "text",
+    "prompt": "The dependency I'd most need to remove first is:"
+  }
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Quest | The Co.LLab™</title>
+<meta name="description" content="Work through a Co.LLab™ quest at your own pace and keep your completed report in your member portal." />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://wearethellab.netlify.app/pages/quest.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Co.LLab™" />
+<meta property="og:title" content="Your Quest | The Co.LLab™" />
+<meta property="og:description" content="Work through a Co.LLab™ quest and keep your completed report in your portal." />
+<meta property="og:url" content="https://wearethellab.netlify.app/pages/quest.html" />
+<meta property="og:image" content="https://wearethellab.netlify.app/assets/img/og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Your Quest | The Co.LLab™" />
+<meta name="twitter:description" content="Work through a Co.LLab™ quest and keep your completed report in your portal." />
+<meta name="twitter:image" content="https://wearethellab.netlify.app/assets/img/og-cover.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://wearethellab.netlify.app/pages/quest.html#webpage",
+      "url": "https://wearethellab.netlify.app/pages/quest.html",
+      "name": "Your Quest | The Co.LLab™",
+      "description": "Sign in to your Co.LLab™ account to access your products, memberships, and Partnership.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://wearethellab.netlify.app/#website"
+      },
+      "about": {
+        "@id": "https://wearethellab.netlify.app/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://wearethellab.netlify.app/assets/img/og-cover.png"
+      },
+      "breadcrumb": {
+        "@id": "https://wearethellab.netlify.app/pages/quest.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://wearethellab.netlify.app/pages/quest.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "The Co.LLab™",
+          "item": "https://wearethellab.netlify.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Your Quest",
+          "item": "https://wearethellab.netlify.app/pages/quest.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="../css/oe-mini.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon-64.png" />
+<link rel="apple-touch-icon" href="../assets/img/favicon-180.png" />
+<style>
+  main { --white: #fdf6ec; --white-dim: rgba(253, 246, 236, 0.86); --white-faint: rgba(253, 246, 236, 0.68); }
+  main .pill { --white: rgb(255, 96, 46); }
+  .q-wrap { max-width: 1040px; margin: 0 auto; }
+  .q-bar { height: 10px; border-radius: 999px; background: rgba(253,246,236,.12); overflow: hidden; margin: 1.25rem 0 .5rem; }
+  .q-bar > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff6a2e, #ff2e12); box-shadow: 0 0 14px rgba(255,46,18,.55); transition: width .4s ease; }
+  .q-meta { color: var(--white-dim); font-size: .9rem; font-weight: 700; }
+  .q-map { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; margin-top: 1.5rem; }
+  .q-node { grid-column: span 3; border: 1px solid var(--hairline-strong); border-radius: 18px; padding: 1.25rem 1.3rem; background: rgba(15,29,19,.72); }
+  .q-node:nth-child(3n+1) { grid-column: span 4; }
+  .q-node:nth-child(3n+2) { grid-column: span 2; }
+  .q-node.is-done { border-color: #ff6a2e; box-shadow: 0 0 0 1px rgba(255,106,46,.35), 0 0 22px rgba(255,46,18,.14); }
+  .q-label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #ff8a5c; font-weight: 800; margin: 0 0 .4rem; }
+  .q-prompt { color: var(--white); font-size: 1.05rem; line-height: 1.55; margin: 0 0 .9rem; }
+  .q-choices { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .q-choice { cursor: pointer; border: 1px solid var(--hairline-strong); background: transparent; color: #fdf6ec; border-radius: 999px; padding: .6em 1.2em; font: inherit; font-weight: 700; min-width: 3em; }
+  .q-choice[aria-pressed="true"] { background: rgba(255,46,18,.18); border-color: #ff6a2e; color: #fff; }
+  .q-text { width: 100%; box-sizing: border-box; min-height: 5.5em; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 14px; padding: .8em 1em; color: #fdf6ec; font: inherit; line-height: 1.5; resize: vertical; }
+  .q-feed { margin: .8rem 0 0; font-size: .9rem; font-weight: 700; color: #ff8a5c; min-height: 1.2em; }
+  .q-dig { margin-top: .6rem; }
+  .q-dig summary { cursor: pointer; color: var(--white-dim); font-size: .85rem; font-weight: 700; }
+  .q-dig .q-text { min-height: 3.5em; margin-top: .5rem; }
+  .q-close { margin-top: 1.5rem; border: 1px solid #ff6a2e; border-radius: 18px; padding: 1.25rem 1.3rem; background: rgba(255,46,18,.08); }
+  .q-actions { margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .q-err { color: #ff8a5c; font-weight: 700; }
+  .q-result h2 { color: #fdf6ec; }
+  .q-result ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .8rem; }
+  .q-result li { border: 1px solid var(--hairline); border-radius: 14px; padding: .9rem 1.1rem; color: var(--white-dim); line-height: 1.55; }
+  .q-result li strong { display: block; color: #fdf6ec; margin-bottom: .2rem; }
+  .q-result [hidden], .q-run[hidden] { display: none !important; }
+  @media (max-width: 720px) { .q-map { grid-template-columns: 1fr; } .q-node, .q-node:nth-child(n) { grid-column: auto; } }
+</style>
+</head>
+<body data-page="quest">
+
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab™" class="logo-mark" /><span class="wordmark-text"><span class="wordmark-name">The Co<span class="dot">.</span>LLab™</span><span class="wordmark-tagline">Building Leadership Infrastructure™</span></span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="partnership.html">Partnerships</a></li>
+        <li><a href="products.html">.LLab™</a></li>
+        <li><a href="think.html">Think</a></li>
+        <li><a href="journal.html">Journal™</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-more">
+          <button type="button" class="nav-more-toggle" aria-expanded="false" aria-controls="nav-more-menu">More</button>
+          <ul class="nav-more-menu" id="nav-more-menu">
+            <li><a href="creator.html">Creator™</a></li>
+            <li><a href="impact.html">Impact™</a></li>
+            <li><a href="think.html#four-phases">The IV Phases™</a></li>
+            <li><a href="think.html#model">Omnidirectional Enterprise™</a></li>
+            <li><a href="products.html#phases">Free Tools</a></li>
+            <li><a href="journal-preview.html">Free Journal Preview</a></li>
+            <li><a href="atelier.html">.LLab Atelier™</a></li>
+            <li><a href="community.html">Co.LLab+™</a></li>
+            <li><a href="technology.html">Technology · Legacy Ventures™</a></li>
+            <li><a href="founders.html">Founders Organization™</a></li>
+          </ul>
+        </li>
+        <li class="nav-signin"><a href="login.html" aria-current="page">Sign in</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom: clamp(1.5rem, 4vw, 2.5rem);">
+    <div class="glow"></div>
+    <div class="wrap q-wrap" style="position:relative;">
+      <p class="eyebrow" id="q-phase">Your Quest</p>
+      <h1 class="display" style="margin-top:1.25rem; font-size:clamp(2.2rem, 5.5vw, 4.4rem);" id="q-title">Loading…</h1>
+      <p class="subhead" style="margin-top:1.25rem;" id="q-intro"></p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap q-wrap">
+      <p id="q-error" class="q-err" hidden></p>
+
+      <div class="q-run" id="q-run" hidden>
+        <div class="q-bar" aria-hidden="true"><span id="q-fill"></span></div>
+        <p class="q-meta" id="q-count" aria-live="polite"></p>
+        <p style="color:var(--white-dim);">Answer in any order. Your progress saves as you go.</p>
+        <div class="q-map" id="q-map"></div>
+        <div id="q-close"></div>
+        <div class="q-actions">
+          <button type="button" class="pill pill--solid" id="q-finish" disabled>Finish quest <span class="arrow">→</span></button>
+          <a class="pill" href="account.html">Back to my portal</a>
+          <span class="q-err" id="q-finish-err"></span>
+        </div>
+      </div>
+
+      <div class="q-result" id="q-result" hidden>
+        <p class="eyebrow">Quest complete</p>
+        <h2 class="display" style="font-size:clamp(1.8rem,4vw,3rem); margin:.8rem 0;" id="r-score"></h2>
+        <p class="subhead" id="r-summary"></p>
+        <h3 class="q-label" style="margin-top:2rem;" id="r-s-title">What's working</h3>
+        <ul id="r-strengths"></ul>
+        <h3 class="q-label" style="margin-top:2rem;">How we'd build from here, together</h3>
+        <ul id="r-improve"></ul>
+        <p class="q-prompt" id="r-next" style="margin-top:2rem;"></p>
+        <div class="q-actions">
+          <a class="pill pill--solid" id="r-pdf" href="#">Download your report (PDF) <span class="arrow">→</span></a>
+          <a class="pill" href="account.html">Back to my portal</a>
+          <button type="button" class="pill" id="r-retake">Retake this quest</button>
+        </div>
+        <p style="color:var(--white-faint); margin-top:1rem;">Your report is saved in your member portal under Quests.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="wordmark"><img src="../assets/img/logo-mark.png" data-field-src="logo_src" alt="The Co.LLab™" class="logo-mark" /><span>The Co<span class="dot">.</span>LLab™</span></a>
+        <p data-field="footer_tagline" style="margin-top:1.25rem; max-width:32ch;">Let’s build your legacy through Omnidirectional Enterprise™.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="partnership.html">Partnerships</a></li>
+          <li><a href="products.html">.LLab™</a></li>
+          <li><a href="think.html">Think</a></li>
+          <li><a href="journal.html">Journal™</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="creator.html">Creator™</a></li>
+          <li><a href="impact.html">Impact™</a></li>
+          <li><a href="think.html#four-phases">The IV Phases™</a></li>
+          <li><a href="think.html#model">Omnidirectional Enterprise™</a></li>
+          <li><a href="products.html#phases">Free Tools</a></li>
+          <li><a href="journal-preview.html">Free Journal Preview</a></li>
+          <li><a href="atelier.html">.LLab Atelier™</a></li>
+          <li><a href="community.html">Co.LLab+™</a></li>
+          <li><a href="technology.html">Technology · Legacy Ventures™</a></li>
+          <li><a href="founders.html">Founders Organization™</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="login.html">Member Login</a></li>
+          <li><a href="account.html">Your account</a></li>
+          <li><p data-field="contact_email">letsbuildleadership@gmail.com</p></li>
+          <li><a href="/card/">Digital business card</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="tax-note">Co.LLab™ licenses are commonly purchased as a business expense for professional development. Ask your tax professional how it applies to you.</p>
+      <div class="footer-bottom">
+      <span>© <span id="year"></span> The Co.LLab™. All rights reserved.</span>
+      <span data-field="footer_tagline">Let’s build your legacy through Omnidirectional Enterprise™</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../js/quest.js"></script>
+</body>
+</html>

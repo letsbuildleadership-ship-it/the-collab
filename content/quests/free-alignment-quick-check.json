@@ -1,0 +1,66 @@
+{
+  "key": "free-alignment-quick-check",
+  "title": "Alignment Quick-Check™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "snapshot",
+  "intro": "A five-minute check on whether your day-to-day work still matches your stated priorities. This is a mirror, not a report card.",
+  "pdfTitle": "Alignment Quick-Check™",
+  "upsell": {
+    "name": "The Leadership Alignment Map™",
+    "price": "$50",
+    "copy": "closes the gaps this quick-check surfaces."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "scale",
+      "label": "Mission Clarity",
+      "prompt": "Whether your mission is stated clearly enough to guide a decision.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "type": "scale",
+      "label": "Priority Fit",
+      "prompt": "Whether today's priorities actually reflect that mission.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "type": "scale",
+      "label": "Resource Fit",
+      "prompt": "Whether time, money, and attention go where the mission says they should.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "type": "scale",
+      "label": "Follow-Through",
+      "prompt": "Whether commitments made against the mission actually get finished.",
+      "min": 1,
+      "max": 5
+    }
+  ],
+  "bands": [
+    {
+      "label": "4–9",
+      "copy": "Alignment is loose right now. Start with whichever dimension scored lowest."
+    },
+    {
+      "label": "10–15",
+      "copy": "Partial alignment. Mission and action agree some of the time — find where they split."
+    },
+    {
+      "label": "16–20",
+      "copy": "Strong alignment. The Alignment Map™ below connects it to strategy and culture too."
+    }
+  ],
+  "closing": {
+    "id": "reflect",
+    "type": "text",
+    "prompt": "The dimension furthest out of alignment is, and the fix I'll try first is:"
+  }
+}

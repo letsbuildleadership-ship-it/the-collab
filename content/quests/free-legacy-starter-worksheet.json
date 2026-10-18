@@ -1,0 +1,44 @@
+{
+  "key": "free-legacy-starter-worksheet",
+  "title": "Legacy Starter Worksheet™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "worksheet",
+  "intro": "Begin naming what you want to leave behind — and who needs to carry it forward.",
+  "pdfTitle": "Legacy Starter Worksheet™",
+  "upsell": {
+    "name": "The .LLab Legacy Infrastructure Map™",
+    "price": "$200",
+    "copy": "identifies what should be captured, embedded, transferred, and sustained."
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "text",
+      "label": "Prompt 1",
+      "prompt": "What I want to outlast me is…"
+    },
+    {
+      "id": "n2",
+      "type": "text",
+      "label": "Prompt 2",
+      "prompt": "What currently exists only in my head is…"
+    },
+    {
+      "id": "n3",
+      "type": "text",
+      "label": "Prompt 3",
+      "prompt": "Who could carry it forward, starting today, is…"
+    },
+    {
+      "id": "n4",
+      "type": "text",
+      "label": "Prompt 4",
+      "prompt": "\"Preserved well\" would look like…"
+    }
+  ],
+  "closing": {
+    "id": "synthesis",
+    "type": "text",
+    "prompt": "The first thing I'll document or hand off this month is:"
+  }
+}
