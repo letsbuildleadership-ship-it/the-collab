@@ -77,7 +77,7 @@ exports.handler = async (event) => {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return json(500, { error: 'STRIPE_SECRET_KEY is not set.' });
   const dry = Boolean(event.queryStringParameters && event.queryStringParameters.dry);
-  const origin = process.env.URL || 'https://wearethellab.netlify.app';
+  const origin = process.env.URL || 'https://wearethellab.com';
   try {
     const { getStripe } = require('./lib/stripe-client');
     const results = await createLinks(getStripe(), items, { origin, dry });

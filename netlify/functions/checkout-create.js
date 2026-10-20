@@ -29,7 +29,7 @@ function getStripe() {
 const FOUNDER_COUPON_ID = 'collab-founder-20';
 
 function siteOrigin(event) {
-  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.netlify.app';
+  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.com';
   return `https://${host}`;
 }
 

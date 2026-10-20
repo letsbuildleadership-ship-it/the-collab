@@ -52,8 +52,8 @@ exports.handler = async (event) => {
     await sendMail({
       to,
       subject: `New IP feedback on ${quest.title}`,
-      text: `${lines.map(([k, v]) => `${k}:\n${v}`).join('\n\n')}\n\nDecide on it in your IP review: https://wearethellab.netlify.app/admin/ip-feedback.html`,
-      html: `<p><strong>${quest.title}</strong></p>${lines.map(([k, v]) => `<p><em>${k}</em><br/>${v.replace(/</g, '&lt;')}</p>`).join('')}<p><a href="https://wearethellab.netlify.app/admin/ip-feedback.html">Decide on it in your IP review</a></p>`,
+      text: `${lines.map(([k, v]) => `${k}:\n${v}`).join('\n\n')}\n\nDecide on it in your IP review: https://wearethellab.com/admin/ip-feedback.html`,
+      html: `<p><strong>${quest.title}</strong></p>${lines.map(([k, v]) => `<p><em>${k}</em><br/>${v.replace(/</g, '&lt;')}</p>`).join('')}<p><a href="https://wearethellab.com/admin/ip-feedback.html">Decide on it in your IP review</a></p>`,
     });
   } catch (err) {
     console.error('IP feedback email failed:', err.message);

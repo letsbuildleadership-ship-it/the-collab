@@ -66,8 +66,8 @@ exports.handler = async (event) => {
     await sendMail({
       to: process.env.OWNER_EMAIL || process.env.SMTP_USER || 'letsbuildleadership@gmail.com',
       subject: `Collaborating company to review: ${listing.companyName}`,
-      text: `${listing.companyName}\n${listing.description}\n\nReview it: https://wearethellab.netlify.app/admin/collaborating-companies.html`,
-      html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="https://wearethellab.netlify.app/admin/collaborating-companies.html">Review it</a></p>`,
+      text: `${listing.companyName}\n${listing.description}\n\nReview it: https://wearethellab.com/admin/collaborating-companies.html`,
+      html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="https://wearethellab.com/admin/collaborating-companies.html">Review it</a></p>`,
     });
   } catch (err) {
     console.error('.LLab Collaborating Companies review email failed:', err.message);

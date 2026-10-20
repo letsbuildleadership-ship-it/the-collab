@@ -1,11 +1,11 @@
 # The Co.LLab™ — posts to copy and paste
 
-Link everywhere: https://wearethellab.netlify.app
+Link everywhere: https://wearethellab.com
 
 ## Instagram bio (copy this)
 The Co.LLab™ · Omnidirectional Enterprise™
 Leadership infrastructure + IP
-wearethellab.netlify.app
+wearethellab.com
 
 (Put the link in the bio's "Website" field, not just the text.)
 
@@ -16,7 +16,7 @@ Omnidirectional Enterprise™ is an economic enterprise system that connects peo
 
 It is the operating model of The Co.LLab™.
 
-Link in bio. wearethellab.netlify.app
+Link in bio. wearethellab.com
 
 #OmnidirectionalEnterprise #LeadershipInfrastructure #IntellectualProperty #TheCoLLab
 
@@ -25,7 +25,7 @@ Foundations. Planning. Operating. Preservation.
 
 The IV Phases™ give a business one common way to decide and organize.
 
-See every product, in one place: wearethellab.netlify.app/pages/all-products.html
+See every product, in one place: wearethellab.com/pages/all-products.html
 
 #TheIVPhases #TheCoLLab #LeadershipInfrastructure
 
@@ -38,21 +38,21 @@ That is one of the four pieces of Omnidirectional Enterprise™:
 3. A cross-sector network
 4. Revenue reinvested
 
-Read the economic case: wearethellab.netlify.app
+Read the economic case: wearethellab.com
 
 #OmnidirectionalEnterprise #IP #TheCoLLab
 
 ## Post 4: partnership
 Partnership™ is a structured opportunity for businesses to practice Omnidirectional Enterprise™ through licensed IP, products, leadership infrastructure, and cross-sector capabilities.
 
-wearethellab.netlify.app/pages/partnership.html
+wearethellab.com/pages/partnership.html
 
 #Partnership #OmnidirectionalEnterprise #TheCoLLab
 
 ## Post 5: the shop
 The .LLab Products™: memberships, The IV Phases™, .LLab Creators™, partnerships and free tools, all on one page.
 
-wearethellab.netlify.app/pages/all-products.html
+wearethellab.com/pages/all-products.html
 
 #TheLLab #TheCoLLab #IP
 

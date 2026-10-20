@@ -4,7 +4,7 @@
 // (a link the owner sends the customer directly).
 const store = require('./store');
 
-const SITE = (process.env.URL || 'https://wearethellab.netlify.app').replace(/\/$/, '');
+const SITE = (process.env.URL || 'https://wearethellab.com').replace(/\/$/, '');
 const HOUR = 60 * 60 * 1000;
 
 async function createResetLink(token, hours = 1) {

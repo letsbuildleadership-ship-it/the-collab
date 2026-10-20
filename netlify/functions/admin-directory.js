@@ -31,8 +31,8 @@ exports.handler = async (event) => {
       const record = token && (await store.getCustomerByToken(token));
       if (record && record.email) {
         const text = status === 'approved'
-          ? `Your company, ${item.companyName}, has joined the .LLab Collaborating Companies in the Omnidirectional Enterprise™: https://wearethellab.netlify.app/pages/collaborating-companies.html`
-          : `Your .LLab Collaborating Companies page for ${item.companyName} needs a change before it can appear:\n\n${note}\n\nEdit it here: https://wearethellab.netlify.app/pages/collaborating-companies.html`;
+          ? `Your company, ${item.companyName}, has joined the .LLab Collaborating Companies in the Omnidirectional Enterprise™: https://wearethellab.com/pages/collaborating-companies.html`
+          : `Your .LLab Collaborating Companies page for ${item.companyName} needs a change before it can appear:\n\n${note}\n\nEdit it here: https://wearethellab.com/pages/collaborating-companies.html`;
         await sendMail({ to: record.email, subject: status === 'approved' ? 'Welcome to the .LLab Collaborating Companies' : 'Your .LLab Collaborating Companies page needs a change', text, html: `<pre style="font-family:inherit;white-space:pre-wrap">${text.replace(/</g, '&lt;')}</pre>` });
       }
     } catch (err) {
