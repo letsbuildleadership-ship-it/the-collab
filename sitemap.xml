@@ -56,6 +56,11 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://wearethellab.netlify.app/pages/all-products.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://wearethellab.netlify.app/pages/legacy-library.html</loc>
     <lastmod>2026-10-20</lastmod>
     <priority>0.4</priority>
