@@ -2185,6 +2185,3 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .nav-toggle { padding: 0 0.85rem; }
   .wordmark-tagline { display: none; }
 }
-/* dropdown: every title reads the same; the current page is not picked out in orange */
-.nav-links.is-open a[aria-current='page'] { color: var(--white-dim); }
-.nav-links.is-open a[aria-current='page']:hover, .nav-links.is-open a:hover { color: var(--white); }
