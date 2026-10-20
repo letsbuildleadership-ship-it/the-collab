@@ -2165,3 +2165,7 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .toc-links a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--hairline-strong); font-size: clamp(1.15rem, 2.2vw, 1.6rem); font-weight: 300; line-height: 1.15; color: var(--paper); }
 .toc-links a .arrow { color: var(--filament-2); font-weight: 700; }
 .toc-links a:hover, .toc-links a:focus-visible { color: var(--filament-2); }
+
+/* Home: the Omnidirectional wheel stands alone above the economic case, centred */
+#model .oe-mid { display: block; }
+#model .oe-map { max-width: 780px; margin: 2rem auto 0; }

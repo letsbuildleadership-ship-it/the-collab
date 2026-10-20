@@ -8,13 +8,16 @@ const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const pricing = require('../content/pricing.json');
 const freeTools = require('../content/free-tools.json').tools;
 
-test('the home page has no contents list and states the economic case of Omnidirectional Enterprise™', () => {
+test('the home page has no contents list; the Omnidirectional wheel sits above the economic case', () => {
   const html = read('index.html');
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   assert.ok(!/id="contents"|class="toc-/.test(main), 'no contents section on the home page');
+  assert.match(main, /id="model"/);
+  assert.equal((main.match(/class="oe-link"/g) || []).length, 18, 'nine branches in the wheel and in its mobile version');
+  assert.ok(main.indexOf('id="model"') < main.indexOf('id="economic"'), 'the wheel is above the economic case');
   assert.match(main, /id="economic"/);
   assert.match(main, /Generating value and capturing value/);
-  assert.ok(!/class="ps-block"/.test(main) && !/id="model"/.test(main), 'the long sections stay off the cover');
+  assert.ok(!/class="ps-block"/.test(main) && !/oe-phases/.test(main), 'the long sections stay off the cover');
 });
 
 test('the product hub lists every product once, with its link from the pricing registry', () => {
