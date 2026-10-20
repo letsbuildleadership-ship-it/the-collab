@@ -2081,3 +2081,34 @@ table.overview td:nth-child(3) { font-weight: 700; color: var(--filament-2); whi
 .fits .fits-phases li.on { background: rgba(255, 46, 18, 0.18); border: 1.5px solid #ff6a2e; color: #fff; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6), inset 0 0 10px rgba(255, 46, 18, 0.25); }
 .fits .fits-phases li.on b { color: #ff6a2e; }
 .chip[aria-pressed='true'] { background: rgba(255, 46, 18, 0.18); border: 1.5px solid #ff6a2e; color: #fff; box-shadow: 0 0 14px rgba(255, 96, 46, 0.6); }
+
+/* ---- Book cover (home) and product hub ---- */
+.toc-list { display: grid; gap: 0; margin-top: 1.25rem; border-top: 1px solid var(--hairline-strong); }
+.toc-row { padding: 1.1rem 0; border-bottom: 1px solid var(--hairline-strong); display: grid; gap: 0.75rem; }
+.toc-main { display: grid; grid-template-columns: 3.2rem minmax(0, 1.2fr) minmax(0, 1.4fr) auto; gap: 1rem; align-items: baseline; color: var(--paper); }
+.toc-no { font-weight: 700; letter-spacing: 0.12em; color: var(--filament-2); }
+.toc-title { font-size: clamp(1.25rem, 2.6vw, 2rem); font-weight: 300; line-height: 1.1; color: var(--paper); }
+.toc-line { color: var(--paper); font-size: 1rem; line-height: 1.4; opacity: 0.9; }
+.toc-main:hover .toc-title, .toc-main:focus-visible .toc-title { color: var(--filament-2); }
+.toc-subs { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-left: 4.2rem; }
+.toc-chip { display: inline-flex; align-items: center; padding: 0.4rem 0.9rem; border: 1px solid var(--hairline-strong); border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; color: var(--paper); transition: border-color 0.3s var(--ease), color 0.3s var(--ease); }
+.toc-chip:hover, .toc-chip:focus-visible { border-color: var(--filament-2); color: var(--filament-2); }
+.toc-back { margin-top: 2.5rem; display: grid; gap: 0.75rem; }
+.toc-back .toc-subs { padding-left: 0; }
+.hub-jump { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 2rem; }
+.hub-list { display: grid; margin-top: 1.25rem; border-top: 1px solid var(--hairline-strong); }
+.hub-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) auto auto; gap: 1rem; align-items: center; padding: 0.95rem 0; border-bottom: 1px solid var(--hairline-strong); color: var(--paper); font-size: clamp(1rem, 1.8vw, 1.2rem); }
+a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--filament-2); }
+.hub-meta { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; color: var(--paper); opacity: 0.8; }
+.hub-price { font-weight: 700; color: var(--paper); text-align: right; }
+.hub-plans { grid-column: 3 / -1; display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; }
+.hub-plans .pill { padding: 0.45rem 1rem; font-size: 0.8rem; }
+@media (max-width: 700px) {
+  .toc-main { grid-template-columns: 2.4rem minmax(0, 1fr) auto; }
+  .toc-line { grid-column: 2 / -1; font-size: 0.95rem; }
+  .toc-subs { padding-left: 3.4rem; }
+  .hub-row { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .hub-meta { grid-column: 1 / 2; grid-row: 2; }
+  .hub-price { grid-row: 1; grid-column: 2; }
+  .hub-plans { grid-column: 1 / -1; justify-content: flex-start; }
+}
