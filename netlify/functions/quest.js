@@ -39,7 +39,7 @@ exports.handler = async (event) => {
   // Paid IP is only for paid members: a product's quest needs the product or Membership (same
   // entitlement check as its PDF download).
   if (isProductQuest && !ownsIt) return json(403, { error: 'You do not have access to this quest.' });
-  // Free members work the quests on the free tools and get a simple read. The full analysis,
+  // Free members work the quests on the free tools and get a quick infrastructure analysis. The full analysis,
   // outcomes and report are a Membership benefit (owning a product covers its own quest).
   const canAnalyze = membershipStatus.hasFullCatalog(access) || (isProductQuest && ownsIt);
 
