@@ -227,7 +227,7 @@ ${lb(46, P.range, 'IV Phases™ products')}
 ${lb(58, P.tiers[0].price, P.tiers[0].label)}
 ${lb(68, P.tiers[1].price, P.tiers[1].label)}
 ${lb(80, P.tiers[2].price, P.tiers[2].label)}
-${lb(96, P.tiers[3].price, P.tiers[3].label)}
+${lb(96, P.tiers[3].price, `<b>${P.tiers[3].label}</b> · ${P.tiers[3].termShort}: capture the value you generate, with revenue reinvested across the portfolio`)}
 </div>
 <div class="note" style="margin-top:10px"><b>Partnership™ is the whole ladder in one purchase.</b> Every IV Phases™ product, plus Membership, Library Card and Journal for the term, and a partner-only product. Seats for ${P.tiers.map((t) => t.seats).join(', ')}. Internal-use license; results depend on how you apply it.</div>`);
 
