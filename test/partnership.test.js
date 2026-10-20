@@ -217,7 +217,7 @@ test('Founders page content never links to the partnership page; sitemap and eve
       assert.equal(html.split(`class="${cls}"`).length - 1, 1, `${f}: exactly one .${cls}`);
     }
     const nav = html.match(/<ul class="nav-links">[\s\S]*?<li class="nav-signin">/)[0];
-    assert.match(nav, /partnership\.html"[^>]*>Partnerships</, f);
+    assert.match(nav, /partnership\.html"[^>]*>Partnership™</, f);
     assert.match(nav, /founders\.html"[^>]*>Founders</, f);
   }
   assert.match(read('sitemap.xml'), /pages\/partnership\.html/);
