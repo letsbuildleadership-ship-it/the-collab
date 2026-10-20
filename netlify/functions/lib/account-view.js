@@ -117,8 +117,6 @@ function buildAccountView(record, now) {
     // Quests open to every signed-in member that are not tied to a product (for example .LLab Sound™).
     openQuests: [...questLib.quests.values()].filter((q) => q.open).map((q) => ({ key: q.key, name: q.title, phase: q.phase, description: q.intro })),
     questKeys: [...questLib.quests.keys()],
-    // The nine Four Phases quests every signed-in member can work through; Membership analyzes the answers.
-    gameQuests: pricing.fourPhasesKeys().map((k) => pricing.entryForKey(k)).filter(Boolean).map((e) => ({ key: e.key, name: e.name, phase: e.phase })),
     quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
     // Shown while Membership isn't active: what it includes and how to join.
     membershipOffer:

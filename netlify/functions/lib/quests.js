@@ -108,4 +108,18 @@ function outcomeFor(q, answers) {
   };
 }
 
-module.exports = { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor };
+// The simple read a free member gets on a free tool: where they stand and one thing that is working.
+// The full analysis (the build list, the phase and Omnidirectional reads, the report) is Membership.
+function previewFor(o) {
+  return {
+    score: o.score,
+    max: o.max,
+    bandLabel: o.bandLabel,
+    summary: o.summary,
+    working: o.strengths.length,
+    toBuild: o.improvements.length,
+    oneStrength: o.strengths[0] || '',
+  };
+}
+
+module.exports = { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor };

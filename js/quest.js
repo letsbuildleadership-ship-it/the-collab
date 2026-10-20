@@ -259,12 +259,19 @@
     var t = $('q-tier');
     if (t) {
       t.hidden = canAnalyze;
-      t.textContent = 'Free members work the whole quest. Membership analyzes your answers and delivers your outcomes, so you can finish and save yours now and unlock the analysis when you join.';
+      t.textContent = 'Finish this quest free for a simple read of where you stand. Membership gives the full analysis and your outcomes.';
     }
-    $('q-finish').firstChild.textContent = canAnalyze ? 'Finish quest ' : 'Save my answers ';
+    $('q-finish').firstChild.textContent = canAnalyze ? 'Finish quest ' : 'See my simple read ';
   }
 
-  function showLocked() {
+  function showLocked(p) {
+    p = p || {};
+    $('lk-score').textContent = p.score !== null && p.score !== undefined && p.max ? p.score + ' of ' + p.max + (p.bandLabel ? '  (' + p.bandLabel + ')' : '') : 'Done. Well done.';
+    $('lk-summary').textContent = p.summary || '';
+    $('lk-counts').textContent = (p.working || 0) + ' working · ' + (p.toBuild || 0) + ' to build';
+    var one = $('lk-one');
+    one.hidden = !p.oneStrength;
+    one.textContent = p.oneStrength ? 'Working: ' + p.oneStrength : '';
     $('q-run').hidden = true;
     $('q-locked').hidden = false;
     window.scrollTo(0, 0);
@@ -292,6 +299,7 @@
         if (saved && saved.status === 'done') { showResult(saved); return; }
         showRun();
         setTier();
+        if (!canAnalyze && saved && saved.readyForAnalysis && saved.preview) showLocked(saved.preview);
       })
       .catch(function () { fail('Could not reach the site. Please try again.'); });
   }
@@ -304,7 +312,7 @@
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok) { $('q-finish-err').textContent = res.d.error || 'Could not finish.'; btn.disabled = false; return; }
-        if (res.d.analysisLocked) { showLocked(); return; }
+        if (res.d.analysisLocked) { showLocked(res.d.preview); return; }
         showResult(res.d.saved);
         window.scrollTo(0, 0);
       })
