@@ -102,7 +102,7 @@ ${partnershipRows}
           </tbody>
         </table>
       </div>
-      <p class="subhead" style="margin-top:1rem; font-size:0.85rem;">Founders Organization™ products are not included in any partnership.</p>`;
+      <p class="subhead" style="margin-top:1rem; font-size:0.85rem;">The Co.LLab Founders Organization™ products are not included in any partnership.</p>`;
 
 const sessionTerm = `        <li><strong>Seats.</strong> ${tiers.map((t) => `${esc(t.tier_label)} ${t.seats}`).join(', ')} (including the purchaser). One seat = one person's account, added by single-use invite link. No shared accounts.</li>
         <li><strong>Self-guided.</strong> Every tier is licensed IP your team puts to work on its own. Consulting, implementation, and custom work are not included and require a separate written agreement.</li>`;
