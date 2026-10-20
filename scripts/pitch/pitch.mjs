@@ -215,6 +215,7 @@ const p5 = pg('05 · Start free', 'See the method <b>before you pay.</b>', `
 <div class="rep" style="margin:16px 0 12px"><div class="stamp">Your report</div><div class="rt">Your Legacy Read</div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="bars"><div style="background:#ff5a1f;width:82%"></div><div style="background:#ff7a1f;width:64%"></div><div style="background:#4fae7b;width:48%"></div><div style="background:#fff;width:30%"></div></div><div class="rt">What’s working · How we’d build from here, together · Beyond your own walls</div></div>
 <div class="qb"><img src="${qJoin}"/><div><b>Join free</b><span>wearethellab.netlify.app<br/>Scan to open the member portal.</span></div></div>`);
 
+const tl = (t) => `<b>${t.label}</b>: ${t.line.charAt(0).toLowerCase()}${t.line.slice(1)} ${t.bestFor}`;
 const lb = (h, pr, t) => `<div class="lr"><div class="lrb" style="width:${h}%">${pr}</div><div class="lrt">${t}</div></div>`;
 const p6 = pg('06 · The ladder', 'From a free door to a <b>lifetime Partnership.</b>', `
 <p class="lead">Every Partnership already includes the .LLab™, so the free door leads straight to the paid one.</p>
@@ -224,9 +225,9 @@ ${lb(34, P.libMo, '.LLab Library Card™')}
 ${lb(40, P.journalYr, 'The .LLab Journal™')}
 ${lb(46, P.memMo, '.LLab Membership™ + Infrastructure Analysis™')}
 ${lb(46, P.range, 'IV Phases™ products')}
-${lb(58, P.tiers[0].price, P.tiers[0].label)}
-${lb(68, P.tiers[1].price, P.tiers[1].label)}
-${lb(80, P.tiers[2].price, P.tiers[2].label)}
+${lb(58, P.tiers[0].price, tl(P.tiers[0]))}
+${lb(68, P.tiers[1].price, tl(P.tiers[1]))}
+${lb(80, P.tiers[2].price, tl(P.tiers[2]))}
 ${lb(96, P.tiers[3].price, `<b>${P.tiers[3].label}</b> · ${P.tiers[3].termShort}: capture the value you generate, with revenue reinvested across the portfolio`)}
 </div>
 <div class="note" style="margin-top:10px"><b>Partnership™ is the whole ladder in one purchase.</b> Every IV Phases™ product, plus Membership, Library Card and Journal for the term, and a partner-only product. Seats for ${P.tiers.map((t) => t.seats).join(', ')}. Internal-use license; results depend on how you apply it.</div>`);
