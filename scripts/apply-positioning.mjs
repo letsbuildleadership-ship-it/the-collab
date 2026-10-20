@@ -16,9 +16,9 @@ const P = {
   tools: ['Free Tools · Business & Strategic Resources',
     'Unequal access to practical business knowledge, analytical resources, and decision-making tools can create barriers to effective planning and commercial execution.',
     'Free Tools provides accessible resources that support business literacy, strategic analysis, organizational capability, and informed resource allocation.'],
-  think: ['Think · Strategic Research & Analysis',
+  think: ['R.A.T.™ · Research And Theory — Strategic Research & Analysis',
     'Geopolitical realignment, trade policy shifts, market volatility, technological disruption, and regulatory change increase uncertainty for businesses, investors, and institutions.',
-    'Think analyzes business, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
+    'R.A.T.™ analyzes business, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
   journal: ['Journal · Business, Economics & Geopolitics Magazine',
     'Business, economic, and geopolitical developments are often examined in isolation, obscuring their interconnected effects on markets, industries, labor, technology, and everyday economic conditions.',
     'Journal publishes magazine-style analysis connecting business, economics, geopolitics, technology, culture, and society to explain market developments and their implications for enterprise strategy and economic participation.'],
@@ -63,7 +63,7 @@ const HOME_EXTRA = `
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem;">
         <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p></div>
         <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of businesses, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
-        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">.LLab</a>, <a href="pages/think.html">Think</a>, <a href="pages/journal.html">Journal</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">Creator™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
+        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">Creator Infrastructure™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
       </div>`;
 
 const PAGES = [
