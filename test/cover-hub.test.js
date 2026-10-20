@@ -25,6 +25,7 @@ test('the product hub lists every product once, with its link from the pricing r
   const links = [
     ...pricing.products.map((p) => p.payment_link).filter(Boolean),
     ...(pricing.blueprint_series || []).map((p) => p.payment_link),
+    ...(pricing.partner_ip || []).map((p) => p.payment_link),
     ...pricing.partnerships.map((p) => p.payment_link),
     ...pricing.memberships.flatMap((m) => m.plans.map((pl) => pl.payment_link)),
   ];

@@ -292,13 +292,17 @@ test('IP license page carries the license text verbatim from the product license
   assert.ok(lic.includes(licenseHtml.trim()), 'license copied exactly');
 });
 
-test('each partner-only IP card says which Partnership levels include it, matching the grants', () => {
-  const html = page;
-  const section = html.slice(html.indexOf('id="partner-ip"'), html.indexOf('</section>', html.indexOf('id="partner-ip"')));
+test('each partner-only IP is a labeled product in the catalog and says which Partnership levels include it', () => {
+  const hub = fs.readFileSync(path.join(__dirname, '..', 'pages', 'all-products.html'), 'utf8');
   for (const ip of pricing.registry.partner_ip) {
     const levels = pricing.registry.partnerships.filter((t) => t.grants.includes(ip.key)).map((t) => t.tier_label);
-    const card = section.slice(section.indexOf(`<h3>${ip.name}</h3>`));
-    const said = (/Included with ([^.<]*)\./.exec(card) || [])[1] || '';
+    const card = hub.slice(hub.indexOf(`<h3>${ip.name}</h3>`));
+    assert.ok(hub.includes(`<h3>${ip.name}</h3>`), `${ip.key} is in the catalog`);
+    const at = hub.indexOf(`<h3>${ip.name}</h3>`);
+    assert.match(hub.slice(Math.max(0, at - 700), at), /Partner-only IP · a product/, `${ip.key}: labeled`);
+    const said = (/Included with ([^<]*?)</.exec(card) || [])[1] || '';
     assert.equal(said.replace(/ and /, ', ').split(', ').join('|'), levels.join('|'), `${ip.key}: included-with line`);
+    assert.ok(hub.includes(`href="${ip.payment_link}"`), `${ip.key}: order link`);
   }
+  assert.ok(!/class="offer-card[^"]*"[^>]*>\s*<span class="offer-kicker">Phase I · \$750/.test(page), 'partner IP cards are off the Partnership page');
 });

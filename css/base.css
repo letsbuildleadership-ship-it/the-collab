@@ -2185,3 +2185,47 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .nav-toggle { padding: 0 0.85rem; }
   .wordmark-tagline { display: none; }
 }
+
+/* The .LLab Products: a fast-fashion style shop. Image-led tiles, filter chips, sort, one-tap order. */
+.fx-bar { position: sticky; top: 68px; z-index: 20; background: rgba(var(--black-rgb), 0.96); border-block: 1px solid var(--hairline-strong); padding-block: 0.75rem; }
+.fx-bar-in { display: grid; gap: 0.75rem; }
+.fx-chips { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.25rem; scrollbar-width: thin; }
+.fx-chip { flex: none; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 1rem; border: 1px solid var(--hairline-strong); border-radius: 999px; background: none; color: var(--paper); font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.fx-chip span { font-size: 0.75rem; opacity: 0.8; }
+.fx-chip:hover { border-color: var(--filament-2); }
+.fx-chip.is-on { background: var(--filament-2); border-color: var(--filament-2); color: var(--black); }
+.fx-tools { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: end; }
+.fx-search, .fx-sort { display: grid; gap: 0.25rem; }
+.fx-search { flex: 1 1 14rem; }
+.fx-search input, .fx-sort select { width: 100%; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px solid var(--hairline-strong); background: rgba(var(--black-rgb), 0.7); color: var(--paper); font: inherit; font-size: 0.9rem; }
+.fx-count { margin: 1.25rem 0 1rem; font-size: 0.9rem; font-weight: 700; color: var(--paper); }
+.fx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr)); gap: 1.4rem 1rem; padding-bottom: 3rem; }
+.fx-card { display: flex; flex-direction: column; min-width: 0; }
+.fx-card[hidden] { display: none; }
+.fx-img { position: relative; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: var(--panel, #17301d); border: 1px solid var(--hairline-strong); }
+.fx-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fx-img--brand { display: grid; place-items: center; padding: 1.25rem; background: linear-gradient(160deg, #ff2e12 0%, #ff7a1f 100%); }
+.fx-mark { font-size: clamp(1.2rem, 3.4vw, 1.9rem); font-weight: 800; line-height: 1.05; color: #0f1d13; text-align: center; text-wrap: balance; }
+.fx-badge { position: absolute; top: 0.6rem; left: 0.6rem; padding: 0.3rem 0.65rem; border-radius: 999px; background: #0f1d13; color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.fx-badge--new { left: auto; right: 0.6rem; background: var(--filament-2); color: #0f1d13; }
+.fx-body { display: grid; gap: 0.3rem; padding: 0.7rem 0.15rem 0; align-content: start; flex: 1; }
+.fx-line { margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--filament-2); }
+.fx-body h3 { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.25; color: var(--paper); }
+.fx-tag { margin: 0; font-size: 0.86rem; line-height: 1.4; color: var(--paper); opacity: 0.9; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.fx-meta { margin: 0; font-size: 0.75rem; font-weight: 700; color: var(--paper); opacity: 0.8; }
+.fx-buy { margin-top: auto; padding-top: 0.6rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.fx-price { font-size: 1.15rem; font-weight: 700; color: var(--paper); }
+.fx-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.55rem 1.2rem; border-radius: 999px; background: linear-gradient(90deg, #ff2e12, #ff7a1f); color: #0f1d13; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.fx-btn--ghost { background: none; border: 1px solid var(--hairline-strong); color: #fff; }
+.fx-soon { display: inline-block; padding: 0.45rem 0.9rem; border: 1px solid rgba(255, 96, 46, 0.6); border-radius: 999px; font-size: 0.75rem; font-weight: 700; color: #fff; }
+@media (max-width: 640px) {
+  .fx-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem 0.7rem; }
+  .fx-body h3 { font-size: 0.92rem; }
+  .fx-tag { -webkit-line-clamp: 2; font-size: 0.8rem; }
+  .fx-btn { width: 100%; }
+  .fx-price { font-size: 1.05rem; }
+}
+.fx-img--brand { aspect-ratio: 4 / 3; }
+.fx-mark { overflow-wrap: anywhere; }
+@media (max-width: 640px) { .fx-mark { font-size: clamp(0.95rem, 4.4vw, 1.35rem); } }
+.fx-tools { margin-top: 1.25rem; }
