@@ -1,0 +1,347 @@
+{
+  "key": "creator-foundations-assessment",
+  "title": ".LLab Creator Foundations Assessment™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "A scored, thirty-statement assessment of the foundations under a creative practice.",
+  "pdfTitle": ".LLab Creator Foundations Assessment™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "scaleHint": "1 = Rarely true  ·  2 = Sometimes true  ·  3 = Generally true  ·  4 = Consistently true  ·  5 = Strongly embedded",
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Part 1 — Voice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I can describe the voice of my work in a few words.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "section": "Part 1 — Voice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "People recognize my work before they see my name.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "section": "Part 1 — Voice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know what my work stands for.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "section": "Part 1 — Voice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know what I will not make or trade.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n5",
+      "section": "Part 1 — Voice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My voice is written down, not just felt.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n6",
+      "section": "Part 2 — Practice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My tools, materials and space are in order.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n7",
+      "section": "Part 2 — Practice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I keep records of my work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n8",
+      "section": "Part 2 — Practice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I could describe my process to a collaborator.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n9",
+      "section": "Part 2 — Practice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "The practice does not stop when I am away.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n10",
+      "section": "Part 2 — Practice",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I protect time for the work itself.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n11",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I can name who my work is for.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n12",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know what that audience needs from me.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n13",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know where they find and follow my work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n14",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I hear from them regularly.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n15",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I can describe them in a sentence.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n16",
+      "section": "Part 3 — Audience",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My audience is growing in a direction I chose.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n17",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I can state what I offer in one sentence.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n18",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Each offer is matched to a specific audience.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n19",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "People can support my work in one clear step.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n20",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know what I will not offer.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n21",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My offers are written down with their terms.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n22",
+      "section": "Part 4 — Offer",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I review my offers at least once a year.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n23",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know which rights I hold in my work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n24",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My agreements are written down.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n25",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My work and records are backed up in more than one place.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n26",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I know who would manage my work if I could not.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n27",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "I credit and document collaborators.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n28",
+      "section": "Part 5 — Ownership",
+      "phase": null,
+      "type": "scale",
+      "prompt": "My work could be handed on from my records alone.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n29",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Voice total:"
+    },
+    {
+      "id": "n30",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Practice total:"
+    },
+    {
+      "id": "n31",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Audience total:"
+    },
+    {
+      "id": "n32",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Offer total:"
+    },
+    {
+      "id": "n33",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Ownership total:"
+    },
+    {
+      "id": "n34",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which part scored highest? What explains it?"
+    },
+    {
+      "id": "n35",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which part scored lowest? What is one reason?"
+    },
+    {
+      "id": "n36",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the one foundation to strengthen first?"
+    },
+    {
+      "id": "n37",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What action will you take in the next 30 days?"
+    },
+    {
+      "id": "n38",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to be involved?"
+    },
+    {
+      "id": "n39",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "How will you know it worked?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

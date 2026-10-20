@@ -12,7 +12,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pricing = JSON.parse(fs.readFileSync(path.join(root, 'content/pricing.json'), 'utf8'));
 const KEYS = [
   'strength-map', 'values-charter', 'leadership-identity-profile', 'decision-principles-playbook', 'foundations-assessment', 'foundations-manual', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture',
-  'creator-identity-map', 'creator-alignment-map', 'creator-venture-build-plan', 'creator-operating-system', 'creative-estate-mapping', 'creator-legacy-architecture',
+  'creator-identity-map', 'creator-voice-values-map', 'creator-practice-profile', 'creator-audience-offer-map', 'creator-foundations-assessment', 'creator-foundations-manual', 'creator-alignment-map', 'creator-venture-build-plan', 'creator-operating-system', 'creative-estate-mapping', 'creator-legacy-architecture',
 ];
 // Fixes for lines the PDF text extraction can't express cleanly.
 const DROP = /^(Knowledge, leadership continuity|Clarity, purpose, identity|Strategy, decision-making, accountability|Culture, communication, execution)/;

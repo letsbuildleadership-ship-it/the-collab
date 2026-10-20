@@ -19,7 +19,7 @@ Header → **model ribbon** (the only element repeated site-wide, plus the Home/
 - **Every marketing tactic (ad, page, offer, email, funnel step) is modeled under Omnidirectional Enterprise (node) × The IV Phases (1–4).** Tag new ads in `scripts/build-ads.mjs` (`TAG`); a test enforces it. See `STRATEGY.md` §2.
 - Approved copy and prices are fixed: no invented claims, testimonials, scarcity or earnings. Prices/Stripe links only via `content/pricing.json`.
 - Founders, .LLab, Partnerships stay distinct. Founders ≠ membership. Partnership + Founders pages don't cross-promote in content (shared header/footer only).
-- Nav is identical on every page (Home · Partnerships · Founders · .LLab · Think · Journal · About · More). Edit all pages if it changes.
+- Nav is identical on every page and uses the exact page titles (Home · Partnership™ · The .LLab™ · .LLab R.A.T.™ · Research And Theory · The .LLab Journal™ · The Co.LLab Founders Organization™ · About The Co.LLab™ · More); it shows as the menu button below 1760px. Edit all pages if it changes.
 - Text must stay AA-contrast; smallest text is bold white; text on photos sits on a frosted panel (`.lookbook`, `.tile`, `hero--lookbook`).
 - New photos: `npm run photos` (JPGs in git-ignored `photos/inbox/`; blur third-party logos with `add-photo.mjs --blur`).
 

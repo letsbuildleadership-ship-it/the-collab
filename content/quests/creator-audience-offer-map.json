@@ -1,0 +1,141 @@
+{
+  "key": "creator-audience-offer-map",
+  "title": ".LLab Creator Audience & Offer Map™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Connect who your work is for with what you offer them.",
+  "pdfTitle": ".LLab Creator Audience & Offer Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Who My Work Is For",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who responds most strongly to my work?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Who My Work Is For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do they need, want or care about that my work speaks to?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — Who My Work Is For",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where do they already gather, look or listen?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — What I Offer Today",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which of these do I already offer?",
+      "options": [
+        "Original work",
+        "Prints or editions",
+        "Commissions",
+        "Lessons or workshops",
+        "Performances or events",
+        "Licensing",
+        "Collaborations",
+        "Memberships or subscriptions"
+      ],
+      "pickMin": 1,
+      "pickMax": 1
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — What I Offer Today",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which one do people ask for most?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 3 — Match Each Audience to An Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "Audience 1 and the offer that fits them:"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — Match Each Audience to An Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "Audience 2 and the offer that fits them:"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Match Each Audience to An Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "Audience 3 and the offer that fits them:"
+    },
+    {
+      "id": "n9",
+      "section": "Step 4 — How They Find and Support the Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "How do people find me today?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 4 — How They Find and Support the Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "How can someone support the work in one clear step?"
+    },
+    {
+      "id": "n11",
+      "section": "Step 4 — How They Find and Support the Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I not want to offer, even if asked?"
+    },
+    {
+      "id": "n12",
+      "section": "Step 5 — My Audience and Offer Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My work is for …"
+    },
+    {
+      "id": "n13",
+      "section": "Step 5 — My Audience and Offer Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "They need …"
+    },
+    {
+      "id": "n14",
+      "section": "Step 5 — My Audience and Offer Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I offer …"
+    },
+    {
+      "id": "n15",
+      "section": "Step 5 — My Audience and Offer Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "They can support it by …"
+    },
+    {
+      "id": "n16",
+      "section": "Step 5 — My Audience and Offer Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "One action I will take in the next 30 days:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}
