@@ -1,0 +1,43 @@
+name: Rebuild pitch
+
+# Keeps the tappable pitch PDF and the deck (assets/pitch/) true to the site: when prices, products,
+# terms or the pitch templates change on main, rebuild both and commit them back.
+on:
+  push:
+    branches: [main]
+    paths:
+      - content/pricing.json
+      - content/free-tools.json
+      - scripts/pitch/**
+      - scripts/pdf-src/render.mjs
+      - scripts/pdf-src/base.css
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-pitch
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y fonts-inter
+      - run: npx playwright install --with-deps chromium
+      - run: npm run pitch
+      - name: Commit the rebuilt pitch
+        run: |
+          if git diff --quiet -- assets/pitch; then echo "Pitch already current"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/pitch
+          git commit -m "Rebuild pitch and deck from the current pricing [skip ci]"
+          git push
