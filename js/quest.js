@@ -9,6 +9,7 @@
   var answers = {};
   var notes = {};
   var saveTimer = null;
+  var canAnalyze = true;
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -254,6 +255,21 @@
     refresh();
   }
 
+  function setTier() {
+    var t = $('q-tier');
+    if (t) {
+      t.hidden = canAnalyze;
+      t.textContent = 'Free members work the whole quest. Membership analyzes your answers and delivers your outcomes, so you can finish and save yours now and unlock the analysis when you join.';
+    }
+    $('q-finish').firstChild.textContent = canAnalyze ? 'Finish quest ' : 'Save my answers ';
+  }
+
+  function showLocked() {
+    $('q-run').hidden = true;
+    $('q-locked').hidden = false;
+    window.scrollTo(0, 0);
+  }
+
   function init() {
     if (!key) { fail('No quest selected. Pick one from your portal.'); return; }
     fetch(API + '?key=' + encodeURIComponent(key), { credentials: 'same-origin' })
@@ -266,6 +282,7 @@
         if (!res.ok) { fail(res.d.error || 'Could not load this quest.'); return; }
         quest = res.d.quest;
         var saved = res.d.saved;
+        canAnalyze = res.d.canAnalyze !== false;
         $('q-phase').textContent = quest.phase;
         $('q-title').textContent = quest.title;
         $('q-intro').textContent = quest.intro;
@@ -274,6 +291,7 @@
         if (saved && saved.notes) notes = saved.notes;
         if (saved && saved.status === 'done') { showResult(saved); return; }
         showRun();
+        setTier();
       })
       .catch(function () { fail('Could not reach the site. Please try again.'); });
   }
@@ -286,6 +304,7 @@
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok) { $('q-finish-err').textContent = res.d.error || 'Could not finish.'; btn.disabled = false; return; }
+        if (res.d.analysisLocked) { showLocked(); return; }
         showResult(res.d.saved);
         window.scrollTo(0, 0);
       })
@@ -302,6 +321,9 @@
       })
       .catch(function () { msg.textContent = 'Could not reach the site.'; });
   });
+
+  $('lk-edit').addEventListener('click', function () { $('q-locked').hidden = true; $('q-run').hidden = false; btnReset(); window.scrollTo(0, 0); });
+  function btnReset() { $('q-finish').disabled = !canFinish(); }
 
   $('r-retake').addEventListener('click', function () { showRun(); window.scrollTo(0, 0); });
 
