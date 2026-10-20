@@ -21,7 +21,7 @@
 
 **Positioning:** *Every company starts with a vision. Most lose it.* The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP. Frame: problem → solution; threat always paired with an action; no promises, no fake scarcity.
 
-**The funnel is the four phases:** I Free Portal + free tools (People) → II Library Card $10/mo → III Membership $150/mo (all 9 IV Phases products) or a Partnership level (Businesses/Capital) → IV Omnidirectional tier (lifetime, 10 seats), apprentice seats, nonprofit giving, referrals.
+**The funnel is the four phases:** I Free Portal + free tools (People) → II Library Card $10/mo → III Membership $150/mo (every IV Phases product) or a Partnership level (Businesses/Capital) → IV Omnidirectional tier (lifetime, 10 seats), apprentice seats, nonprofit giving, referrals.
 
 | Node → | Phase I · Foundations | Phase II · Infrastructure Planning & Management | Phase III · Internal Operating Systems | Phase IV · Preservation | Home page |
 |---|---|---|---|---|---|

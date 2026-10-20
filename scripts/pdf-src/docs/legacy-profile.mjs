@@ -3,7 +3,7 @@ export const meta = {
   outFile: 'legacy-profile.pdf',
   docTitle: '.LLab Leadership Legacy Profile™',
   cover: {
-    eyebrow: 'Phase III · Internal Operating Systems — a .LLab™ Workbook',
+    eyebrow: 'Phase III · Internal Operating Systems — .LLab™ IP',
     title: '.LLab Leadership <strong>Legacy Profile</strong>™',
     subtitle: 'Connect your personal leadership strengths to organizational influence, infrastructure, and what outlasts you.',
     phase: 'III · Internal Operating Systems',

@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creator-identity-map.pdf',
   docTitle: '.LLab Creator Identity Map™',
   cover: {
-    eyebrow: 'Phase I · Foundations — a .LLab™ Workbook',
+    eyebrow: 'Phase I · Foundations — .LLab™ IP',
     title: '.LLab Creator Identity <strong>Map</strong>™',
     subtitle: 'Turn what you\'re already creating into a clear creative identity you can build infrastructure around.',
     phase: 'I · Foundations',
@@ -19,7 +19,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>CREATOR IDENTITY MAP™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><strong>Infrastructure has to be built around something specific. This workbook makes that something specific.</strong></p>
+<p><strong>Infrastructure has to be built around something specific. This IP makes that something specific.</strong></p>
 <p>The .LLab Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in .LLab Creators™ builds on.</p>
 
 <p><strong>STEP 1 — INVENTORY YOUR MEDIUMS AND METHODS</strong></p>

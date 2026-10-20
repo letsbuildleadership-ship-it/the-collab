@@ -48,7 +48,7 @@ The site now sells the tiers below (content/pricing.json). Paste these as
 the four product descriptions so checkout matches the page.
 
 **Partner ($5,000)**
-> One-time purchase. A license to all 9 products of The IV Phases™ and The .LLab Blueprint™ — Welcome, yours to keep using. 12 months of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, then renew yearly at regular prices. 1 seat. All Co.LLab™ IP is owned by Ashley E. Clasby and licensed for internal business use only. All sales final once access is unlocked, subject to applicable law.
+> One-time purchase. A license to every product of The IV Phases™ and The .LLab Blueprint™ — Welcome, yours to keep using. 12 months of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, then renew yearly at regular prices. 1 seat. All Co.LLab™ IP is owned by Ashley E. Clasby and licensed for internal business use only. All sales final once access is unlocked, subject to applicable law.
 
 **Strategic ($10,000)**
 > One-time purchase. Everything in Partner, plus a license to every issue of The .LLab Blueprint™, including the Complete Edition (All 5 Issues). 12 months of every membership, then renew yearly. 3 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.

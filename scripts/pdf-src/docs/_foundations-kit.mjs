@@ -1,6 +1,6 @@
-// Shared builder for the Phase I · Foundations workbooks: each doc is plain data (steps -> items)
-// rendered into the same markup the existing workbooks use (write-in lines, ☐ lists, 1-5 score dots),
-// so the fillable-PDF pass and the paid-quest parser treat them like every other workbook.
+// Shared builder for the Phase I · Foundations IP: each doc is plain data (steps -> items)
+// rendered into the same markup the existing IP use (write-in lines, ☐ lists, 1-5 score dots),
+// so the fillable-PDF pass and the paid-quest parser treat them like every other IP.
 import { licenseHtml } from './_license.mjs';
 
 const LINE = '<span class="worksheet-line" style="display:inline-block; width:100%;"></span>';
@@ -47,7 +47,7 @@ ${body}
 }
 
 export const cover = (extra) => ({
-  eyebrow: 'Phase I · Foundations — a .LLab™ Workbook',
+  eyebrow: 'Phase I · Foundations — .LLab™ IP',
   phase: 'I · Foundations',
   footerRight: 'The .LLab™ IV Phases Product Infrastructure',
   ...extra,

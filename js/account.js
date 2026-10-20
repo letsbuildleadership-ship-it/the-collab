@@ -551,10 +551,10 @@
       .map((p, i) => `<a class="pill ${i === 0 ? 'pill--solid' : 'pill--accent'}" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
       .join('');
     el.innerHTML = `<p class="offer-eyebrow">.LLab Membership™</p>
-      <h3 class="offer-title">Unlock all 9 quests</h3>
+      <h3 class="offer-title">Unlock every quest</h3>
       <p class="offer-body">${esc(offer.description)}</p>
       <ul class="offer-points">
-        <li>All 9 Four Phases products, open while you're a member</li>
+        <li>Every Four Phases product, open while you're a member</li>
         <li>Clear a TRIARCH™ level, win free loot: one product to keep, per level</li>
         <li>Your progress, XP, and levels tracked right here</li>
       </ul>
@@ -563,7 +563,7 @@
   }
 
   const SHOP_GROUPS = [
-    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. All nine come with .LLab Membership™, or buy one to keep.' },
+    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. Every one comes with .LLab Membership™, or buy one to keep.' },
     { line: 'creator', title: 'Creator Infrastructure™', lead: 'For creators turning a body of work into a lasting venture. Buy one, or win it as level loot.' },
     { line: 'blueprint', title: 'The .LLab Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
     { line: 'other', title: 'More from The Co.LLab™', lead: '' },
@@ -628,7 +628,7 @@
     const top = cleared[cleared.length - 1];
     tiles.push(active
       ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${tm(top.name)}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
-      : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools and their quests', cta: 'Unlock all 9 quests', href: '#offer-membership' });
+      : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools and their quests', cta: 'Unlock every quest', href: '#offer-membership' });
     const label = { founders: name('founders', 'Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
     el.innerHTML = tiles
       .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)

@@ -3,7 +3,7 @@ export const meta = {
   outFile: 'strength-map.pdf',
   docTitle: '.LLab Leadership Infrastructure Strength Map™',
   cover: {
-    eyebrow: 'Phase I · Foundations — a .LLab™ Workbook',
+    eyebrow: 'Phase I · Foundations — .LLab™ IP',
     title: '.LLab Leadership Infrastructure <strong>Strength Map</strong>™',
     subtitle: 'Identify one organizational strength and learn how to build infrastructure around it — instead of starting, as most do, with what\'s broken.',
     phase: 'I · Foundations',
