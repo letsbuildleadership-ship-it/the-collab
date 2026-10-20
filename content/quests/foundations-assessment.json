@@ -1,0 +1,356 @@
+{
+  "key": "foundations-assessment",
+  "title": "Leadership Foundations Assessment™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "A scored, thirty-statement assessment of how clear, shared and lived your foundations are.",
+  "pdfTitle": "Leadership Foundations Assessment™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "scaleHint": "1 = Rarely true  ·  2 = Sometimes true  ·  3 = Generally true  ·  4 = Consistently true  ·  5 = Strongly embedded",
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We can state why the organization exists in one sentence.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n2",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "The people we serve would recognize that purpose in how we work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n3",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our purpose has guided a hard decision in the past year.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n4",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our purpose is written down where people can find it.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n5",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "New people learn our purpose in their first weeks.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n6",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our leaders would describe our purpose in the same way.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n7",
+      "section": "Part 2 — Identity",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We can name the strength we build from.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n8",
+      "section": "Part 2 — Identity",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We know what we do differently from others who do similar work.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n9",
+      "section": "Part 2 — Identity",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our leadership style is described, not just assumed.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n10",
+      "section": "Part 2 — Identity",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our identity shows up the same way across teams and settings.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n11",
+      "section": "Part 2 — Identity",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We could explain our identity to a new partner in two minutes.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n12",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our values are written down and few enough to remember.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n13",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Leaders can describe the behavior each value looks like.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n14",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We have said no to something because of a value.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n15",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Values are used when we hire, promote and give feedback.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n16",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "People can tell us when a value is not being lived.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n17",
+      "section": "Part 3 — Values",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our values are revisited on a regular schedule.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n18",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our vision describes where we are going in plain words.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n19",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our priorities this year follow from our mission and vision.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n20",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "People understand how their work contributes to the direction.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n21",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We know what we will not pursue.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n22",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We review our direction at least once a year.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n23",
+      "section": "Part 4 — Direction",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our direction would be clear to someone outside the organization.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n24",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Our leaders agree on what matters most.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n25",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Foundations are discussed in leadership meetings, not just at retreats.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n26",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We write down the reasons for important decisions.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n27",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "Someone is accountable for keeping our foundations current.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n28",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "If a founder or key leader left, our foundations would still be clear.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n29",
+      "section": "Part 5 — Shared Understanding",
+      "phase": null,
+      "type": "scale",
+      "prompt": "We could hand our foundations to a successor in writing.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n30",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Purpose total:"
+    },
+    {
+      "id": "n31",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Identity total:"
+    },
+    {
+      "id": "n32",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Values total:"
+    },
+    {
+      "id": "n33",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Direction total:"
+    },
+    {
+      "id": "n34",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Shared understanding total:"
+    },
+    {
+      "id": "n35",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which part scored highest? What explains it?"
+    },
+    {
+      "id": "n36",
+      "section": "Step 6 — Read Your Results",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which part scored lowest? What is one reason?"
+    },
+    {
+      "id": "n37",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the one foundation to strengthen first?"
+    },
+    {
+      "id": "n38",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "What action will you take in the next 30 days?"
+    },
+    {
+      "id": "n39",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to be involved?"
+    },
+    {
+      "id": "n40",
+      "section": "Step 7 — Your Next Move",
+      "phase": null,
+      "type": "text",
+      "prompt": "How will you know it worked?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

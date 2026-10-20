@@ -7,19 +7,21 @@ test('every one-time product has a unique stripe_price_id, payment_link, and pdf
   const seenLinks = new Set();
   for (const p of pricing.registry.products) {
     assert.ok(p.key, `product missing key: ${JSON.stringify(p)}`);
+    assert.ok(p.pdf_file, `${p.key} missing pdf_file`);
+    // a new product can ship with its Stripe price and link still to be pasted in; flagged stripe_pending, never sold until set
+    if (p.stripe_pending) { assert.ok(!p.stripe_price_id && !p.payment_link, `${p.key}: remove stripe_pending once Stripe is set`); continue; }
     assert.ok(p.stripe_price_id, `${p.key} missing stripe_price_id`);
     assert.ok(p.payment_link, `${p.key} missing payment_link`);
-    assert.ok(p.pdf_file, `${p.key} missing pdf_file`);
     assert.ok(!seenPrices.has(p.stripe_price_id), `duplicate price id on ${p.key}`);
     assert.ok(!seenLinks.has(p.payment_link), `duplicate payment link on ${p.key}`);
     seenPrices.add(p.stripe_price_id);
     seenLinks.add(p.payment_link);
   }
-  assert.equal(pricing.registry.products.length, 20, 'expected 9 leadership phase products + 7 creator infrastructure products + 4 founders tiers');
+  assert.equal(pricing.registry.products.length, 25, 'expected 14 leadership phase products + 7 creator infrastructure products + 4 founders tiers');
 });
 
 test('keyForPriceId resolves every registered price back to its product/membership key', () => {
-  for (const p of pricing.registry.products) {
+  for (const p of pricing.registry.products.filter((x) => !x.stripe_pending)) {
     assert.equal(pricing.keyForPriceId(p.stripe_price_id), p.key);
   }
   for (const m of pricing.registry.memberships) {
@@ -49,9 +51,9 @@ test('Membership unlocks the full one-time catalog; Library Card and Journal do 
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
 
-test('allCatalogProductKeys returns all one-time products (9 leadership IV-phase + 7 creator infrastructure + 4 Founders tiers)', () => {
+test('allCatalogProductKeys returns all one-time products (14 leadership IV-phase + 7 creator infrastructure + 4 Founders tiers)', () => {
   const keys = pricing.allCatalogProductKeys();
-  assert.equal(keys.length, 20);
+  assert.equal(keys.length, 25);
   assert.ok(keys.includes('strength-map'));
   assert.ok(keys.includes('legacy-architecture'));
   assert.ok(keys.includes('friends-family'));

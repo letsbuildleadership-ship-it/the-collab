@@ -1,0 +1,185 @@
+{
+  "key": "values-charter",
+  "title": ".LLab Mission & Values Charter™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Put your mission, vision and values in writing as one charter your organization can lead from.",
+  "pdfTitle": ".LLab Mission & Values Charter™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — Why We Exist",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who do we serve, and what do they need from us?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — Why We Exist",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we do that would be missed if we stopped?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — Why We Exist",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our mission in one sentence:"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — Where We Are Going",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does the organization look like in five years if it goes well?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — Where We Are Going",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will be different for the people we serve?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 2 — Where We Are Going",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our vision in one sentence:"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — What We Value",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which values already show up in how we lead?",
+      "options": [
+        "Integrity",
+        "Accountability",
+        "Service",
+        "Excellence",
+        "Trust",
+        "Courage",
+        "Collaboration",
+        "Growth",
+        "Transparency",
+        "Stewardship"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — What We Value",
+      "phase": null,
+      "type": "text",
+      "prompt": "Value 1:"
+    },
+    {
+      "id": "n9",
+      "section": "Step 3 — What We Value",
+      "phase": null,
+      "type": "text",
+      "prompt": "Value 2:"
+    },
+    {
+      "id": "n10",
+      "section": "Step 3 — What We Value",
+      "phase": null,
+      "type": "text",
+      "prompt": "Value 3:"
+    },
+    {
+      "id": "n11",
+      "section": "Step 3 — What We Value",
+      "phase": null,
+      "type": "text",
+      "prompt": "Value 4:"
+    },
+    {
+      "id": "n12",
+      "section": "Step 4 — What Each Value Looks Like",
+      "phase": null,
+      "type": "text",
+      "prompt": "Choose your most important value. What does it look like when we lead?"
+    },
+    {
+      "id": "n13",
+      "section": "Step 4 — What Each Value Looks Like",
+      "phase": null,
+      "type": "text",
+      "prompt": "What behavior would contradict it?"
+    },
+    {
+      "id": "n14",
+      "section": "Step 4 — What Each Value Looks Like",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one decision we made that reflected it?"
+    },
+    {
+      "id": "n15",
+      "section": "Step 5 — Our Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We exist to …"
+    },
+    {
+      "id": "n16",
+      "section": "Step 5 — Our Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are building toward …"
+    },
+    {
+      "id": "n17",
+      "section": "Step 5 — Our Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We lead by …"
+    },
+    {
+      "id": "n18",
+      "section": "Step 5 — Our Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We will not trade …"
+    },
+    {
+      "id": "n19",
+      "section": "Step 5 — Our Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We will review this charter every …"
+    },
+    {
+      "id": "n20",
+      "section": "Step 6 — Put It to Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to see this charter first?"
+    },
+    {
+      "id": "n21",
+      "section": "Step 6 — Put It to Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where will it live so it is used, not filed?"
+    },
+    {
+      "id": "n22",
+      "section": "Step 6 — Put It to Work",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one action we will take in the next 30 days because of it?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

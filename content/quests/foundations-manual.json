@@ -1,0 +1,289 @@
+{
+  "key": "foundations-manual",
+  "title": "Leadership Foundations Manual™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "The full Phase I build: purpose, identity, values, principles and a charter in one guided manual.",
+  "pdfTitle": "Leadership Foundations Manual™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "scaleHint": "1 = Rarely true  ·  2 = Sometimes true  ·  3 = Generally true  ·  4 = Consistently true  ·  5 = Strongly embedded",
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who do we serve, and what do they need from us?"
+    },
+    {
+      "id": "n2",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the problem we exist to solve?"
+    },
+    {
+      "id": "n3",
+      "section": "Part 1 — Purpose",
+      "phase": null,
+      "type": "text",
+      "prompt": "Our purpose in one sentence:"
+    },
+    {
+      "id": "n4",
+      "section": "Part 2 — Strength",
+      "phase": null,
+      "type": "choose",
+      "prompt": "What does our organization already do particularly well?",
+      "options": [
+        "Leadership",
+        "Culture",
+        "Communication",
+        "Strategy",
+        "Decision-making",
+        "Collaboration",
+        "Execution",
+        "Innovation",
+        "People development",
+        "Customer relationships"
+      ],
+      "pickMin": 1,
+      "pickMax": 1
+    },
+    {
+      "id": "n5",
+      "section": "Part 2 — Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where does this strength show up today?"
+    },
+    {
+      "id": "n6",
+      "section": "Part 2 — Strength",
+      "phase": null,
+      "type": "text",
+      "prompt": "What makes it valuable to the people we serve?"
+    },
+    {
+      "id": "n7",
+      "section": "Part 3 — Identity",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we want to be known for?"
+    },
+    {
+      "id": "n8",
+      "section": "Part 3 — Identity",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we do differently from others who do similar work?"
+    },
+    {
+      "id": "n9",
+      "section": "Part 3 — Identity",
+      "phase": null,
+      "type": "text",
+      "prompt": "How would a new partner describe us in a sentence?"
+    },
+    {
+      "id": "n10",
+      "section": "Part 4 — Values",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which values should guide how we lead?",
+      "options": [
+        "Integrity",
+        "Accountability",
+        "Service",
+        "Excellence",
+        "Trust",
+        "Courage",
+        "Collaboration",
+        "Growth",
+        "Transparency",
+        "Stewardship"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n11",
+      "section": "Part 4 — Values",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does your most important value look like in behavior?"
+    },
+    {
+      "id": "n12",
+      "section": "Part 4 — Values",
+      "phase": null,
+      "type": "text",
+      "prompt": "What behavior would contradict it?"
+    },
+    {
+      "id": "n13",
+      "section": "Part 5 — Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we always put first when priorities conflict?"
+    },
+    {
+      "id": "n14",
+      "section": "Part 5 — Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will we refuse to sacrifice for speed?"
+    },
+    {
+      "id": "n15",
+      "section": "Part 5 — Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 1:"
+    },
+    {
+      "id": "n16",
+      "section": "Part 5 — Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 2:"
+    },
+    {
+      "id": "n17",
+      "section": "Part 5 — Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 3:"
+    },
+    {
+      "id": "n18",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our purpose is clear and written down.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n19",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our strength is named and we build from it.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n20",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our identity is consistent across teams.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n21",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our values are described in behavior.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n22",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our decision principles are used in real decisions.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n23",
+      "section": "Part 6 — Score Your Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "Our leaders share the same understanding of all five.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n24",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We exist to …"
+    },
+    {
+      "id": "n25",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are strongest at …"
+    },
+    {
+      "id": "n26",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We are known for …"
+    },
+    {
+      "id": "n27",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We lead by …"
+    },
+    {
+      "id": "n28",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "When priorities conflict we put first …"
+    },
+    {
+      "id": "n29",
+      "section": "Part 7 — Your Foundation Charter",
+      "phase": null,
+      "type": "text",
+      "prompt": "We will review this charter every …"
+    },
+    {
+      "id": "n30",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to receive this charter first?"
+    },
+    {
+      "id": "n31",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where will it live so it is used, not filed?"
+    },
+    {
+      "id": "n32",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one action we will take in the next 30 days?"
+    },
+    {
+      "id": "n33",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who will be accountable for keeping the foundations current?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

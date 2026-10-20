@@ -2130,3 +2130,5 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .shop-buy .pill { padding: 0.55rem 1.1rem; font-size: 0.8rem; }
 .shop-free { margin-top: 1.5rem; display: grid; gap: 0.6rem; }
 .shop-free .toc-subs { padding-left: 0; }
+
+.shop-soon { display:inline-block; padding:.5rem 1rem; border:1px solid rgba(255,96,46,.6); border-radius:999px; font-size:.8125rem; font-weight:700; color:#fff; letter-spacing:.04em; }

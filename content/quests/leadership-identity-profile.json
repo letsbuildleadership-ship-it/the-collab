@@ -1,0 +1,170 @@
+{
+  "key": "leadership-identity-profile",
+  "title": "Leadership Identity Profile™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Name how you lead, what you stand for and what you will not trade.",
+  "pdfTitle": "Leadership Identity Profile™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — How I Lead Today",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which describe how people experience your leadership?",
+      "options": [
+        "Clear direction",
+        "Steady under pressure",
+        "Relational",
+        "Strategic",
+        "Hands-on",
+        "Visionary",
+        "Disciplined",
+        "Encouraging",
+        "Decisive"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — How I Lead Today",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do people come to you for?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — How I Lead Today",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you do so naturally you rarely name it?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — What I Stand For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you believe about people and work that shapes your decisions?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — What I Stand For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What cause or purpose would you keep working on even when it was hard?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 2 — What I Stand For",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which of your convictions is the least negotiable?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — What I Will Not Trade",
+      "phase": null,
+      "type": "text",
+      "prompt": "What lines will you not cross for results, money or approval?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — What I Will Not Trade",
+      "phase": null,
+      "type": "text",
+      "prompt": "When did you last hold one of those lines, and what did it cost or protect?"
+    },
+    {
+      "id": "n9",
+      "section": "Step 4 — Where My Leadership Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would stop working if you were unavailable for a month?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 4 — Where My Leadership Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you hold in your head that others need written down?"
+    },
+    {
+      "id": "n11",
+      "section": "Step 4 — Where My Leadership Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one thing you could hand to someone else this quarter?"
+    },
+    {
+      "id": "n12",
+      "section": "Step 5 — the Legacy I Want From My Leadership",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do you want people to say your leadership made possible?"
+    },
+    {
+      "id": "n13",
+      "section": "Step 5 — the Legacy I Want From My Leadership",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who is likely to carry this work forward?"
+    },
+    {
+      "id": "n14",
+      "section": "Step 5 — the Legacy I Want From My Leadership",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would they need from you to do that well?"
+    },
+    {
+      "id": "n15",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I lead by …"
+    },
+    {
+      "id": "n16",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I stand for …"
+    },
+    {
+      "id": "n17",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I will not trade …"
+    },
+    {
+      "id": "n18",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My leadership is strongest when …"
+    },
+    {
+      "id": "n19",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I want my leadership to leave behind …"
+    },
+    {
+      "id": "n20",
+      "section": "Step 6 — My Leadership Identity Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "One action I will take in the next 30 days:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}
