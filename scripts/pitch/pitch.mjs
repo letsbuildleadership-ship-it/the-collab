@@ -143,10 +143,10 @@ const css2 = `
 `;
 
 let pn = 1;
-const TOTAL = 18;
+const TOTAL = 17;
 const SECTIONS = ["The model", "The idea", "The ecosystem", "Partnership", "What you license", "Start free", "The ladder", "Every page", ".LLab Collaborating Companies", "What’s next", "Your next step"];
 const K = (name) => `${String(SECTIONS.indexOf(name) + 1).padStart(2, '0')} · ${name}`;
-const foot = () => { pn += 1; const n = pn; const pad = (x) => String(x).padStart(2, '0'); return `<div class="ft"><span><a class="fl" href="#p2">Contents</a> · <a class="fl" href="${SITE}">The Co.LLab™</a></span><span><a class="fl" href="#p${n - 1}">‹ Back</a> &nbsp;&nbsp; <a class="fl" href="#p${n >= TOTAL ? 1 : n + 1}">${n >= TOTAL ? 'Start ›' : 'Next ›'}</a> &nbsp;&nbsp; ${pad(n)}</span></div>`; };
+const foot = () => { pn += 1; const n = pn; const pad = (x) => String(x).padStart(2, '0'); return `<div class="ft"><span><a class="fl" href="${SITE}">The Co.LLab™</a></span><span><a class="fl" href="#p${n - 1}">‹ Back</a> &nbsp;&nbsp; <a class="fl" href="#p${n >= TOTAL ? 1 : n + 1}">${n >= TOTAL ? 'Start ›' : 'Next ›'}</a> &nbsp;&nbsp; ${pad(n)}</span></div>`; };
 const pg = (kicker, title, inner, dark = false) => `<section class="g" id="p${pn + 1}" ${dark ? 'style="background:var(--hunter);color:#fff"' : ''}><div class="gi"><p class="k">${kicker}</p><h2 class="t" ${dark ? 'style="color:#fff"' : ''}>${title}</h2>${inner}</div>${foot()}</section>`;
 const brand = `<div class="page-brand"><a href="${SITE}" style="display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none"><img src="${logo}" alt="The Co.LLab™" /><span>The Co<span class="dot">.</span>LLab™</span></a></div>`;
 
@@ -154,12 +154,6 @@ const cover = `<section class="g cv" id="p1" style="padding:0"><div class="ph-ph
 <div class="top"><p class="k">Leadership Infrastructure™ · A pitch</p><h1>Every company starts<br/>with a vision.<br/><b>Most lose it.</b></h1><p class="sub">The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.</p></div>
 <div class="bot"><div class="logo"><img src="${logo}"/>The Co.LLab™</div><div style="text-align:right"><a href="${SITE}" style="color:inherit;text-decoration:none">Let’s Build Your Legacy<span>Through Omnidirectional Enterprise™</span></a></div></div></section>`;
 
-// Contents: the exact name of every page on the site, in revenue order, each jumping to where the pitch covers it.
-const PITCH_PAGE = { partnership: 6, products: 9, 'all-products': 12, creator: 12, founders: 12, library: 13, 'legacy-library': 13, journal: 13, think: 13, impact: 13, technology: 16, atelier: 16, community: 16, 'collaborating-companies': 15, about: 14 };
-const tocRows = () => [...SITE_ORDER.map((f, i) => [PITCH_PAGE[f], siteRows[i][0]]), [18, 'Let’s talk']];
-const contents = () => pg('Contents', 'Where would you like to <b>begin?</b>', `
-<p class="hint">Tap a section to jump to it. Tap any card, QR code or button to open it on the site.</p>
-<div class="toc grow">${tocRows().map(([n, t]) => `<a href="#p${n}"><span class="n">${String(n).padStart(2, '0')}</span><span>${t}</span><span class="ar">›</span></a>`).join('')}</div>`);
 const qrow = (img, p, nm, q) => `<div class="qrow"><div class="im" style="background-image:url(${ph(img)})"><div class="pp"><small>${p}</small><b>${nm}</b></div></div><div class="tx">${q}</div></div>`;
 const p1 = () => pg(K('The model'), 'Can you answer these <b>four questions?</b>', `
 <p class="lead">They are the four questions of The IV Phases™ of Leadership Infrastructure™. A company that can answer all four has a vision that does not depend on one person.</p>
@@ -312,7 +306,7 @@ const cardPage = () => `<section class="g" id="p${pn + 1}"><div class="gi"><p cl
 <div class="banner" style="margin-top:12px">Let’s Build Your Legacy Through Omnidirectional Enterprise™.</div></div>${foot()}</section>`;
 
 const _x = 0;
-let html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}${css2}${CSS3}${CSS4}</style></head><body>${brand}${cover}${contents()}${p1()}${p2()}${p3()}${p7()}${p7a()}${p7b()}${p4()}${p5()}${p6()}${pagesA()}${pagesB()}${pagesC()}${p8()}${pv1()}${p9()}${cardPage()}</body></html>`;
+let html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}${css2}${CSS3}${CSS4}</style></head><body>${brand}${cover}${p1()}${p2()}${p3()}${p7()}${p7a()}${p7b()}${p4()}${p5()}${p6()}${pagesA()}${pagesB()}${pagesC()}${p8()}${pv1()}${p9()}${cardPage()}</body></html>`;
 
 const L = { join: `${SITE}/pages/login.html`, products: `${SITE}/pages/products.html`, partner: `${SITE}/pages/partnership.html`, collab: `${SITE}/pages/collaborating-companies.html`, think: `${SITE}/pages/think.html`, card: `${SITE}/card/` };
 const byQr = new Map([[qJoin, L.join], [qProducts, L.products], [qPartner, L.partner], [qCollab, L.collab], [qCard, L.card]]);
