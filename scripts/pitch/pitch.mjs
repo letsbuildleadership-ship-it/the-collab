@@ -229,7 +229,7 @@ ${lb(68, P.tiers[1].price, P.tiers[1].label)}
 ${lb(80, P.tiers[2].price, P.tiers[2].label)}
 ${lb(96, P.tiers[3].price, P.tiers[3].label)}
 </div>
-<div class="note" style="margin-top:14px"><b>.LLab Library Card™</b> is ${P.libYr} or ${P.libMo}. <b>.LLab Membership™</b> is ${P.memYr} or ${P.memMo}. <b>The .LLab Journal™</b> is ${P.journalYr}. A license for internal business use. Results depend on how each business applies it.</div>`);
+<div class="note" style="margin-top:10px"><b>Partnership™ is the whole ladder in one purchase.</b> Every IV Phases™ product, plus Membership, Library Card and Journal for the term, and a partner-only product. Seats for ${P.tiers.map((t) => t.seats).join(', ')}. Internal-use license; results depend on how you apply it.</div>`);
 
 const T = P.tiers;
 const tc = (tn, pr, term, hl, items) => `<div class="tc"><div class="hd"><span class="tn2">${tn}</span><span class="pill">${term}</span></div><div class="pr">${pr}</div><div class="hl">${hl}</div><ul>${items.map((i) => `<li><span>${i}</span></li>`).join('')}</ul></div>`;
