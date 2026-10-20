@@ -28,6 +28,7 @@ export const P = {
   range: `${fmt(Math.min(...four))}–${fmt(Math.max(...four))}`,
   tiers: reg.partnerships.map((t, i) => ({
     verb: VERBS[i],
+    econ: i === 3 ? 'Capture the value you generate, with revenue reinvested across the portfolio.' : '',
     label: t.tier_label, price: t.price_display, line: t.headline, bestFor: t.legacy_line.replace(/'/g, '\u2019'), seats: t.seats,
     term: `${years(t.term_months)} · ${t.seats} seat${t.seats === 1 ? '' : 's'}`,
     termShort: years(t.term_months).toLowerCase(), partnerIp: partnerIp[i],
