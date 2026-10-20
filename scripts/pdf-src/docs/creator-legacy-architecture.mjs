@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creator-legacy-architecture.pdf',
   docTitle: '.LLab Creator Legacy Infrastructure Architecture™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — a .LLab™ Workbook',
+    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
     title: '.LLab Creator Legacy Infrastructure <strong>Architecture</strong>™',
     subtitle: 'The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.',
     phase: 'IV · Preservation',

@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creator-alignment-map.pdf',
   docTitle: '.LLab Creator Alignment Map™',
   cover: {
-    eyebrow: 'Phase II · Infrastructure Planning & Management — a .LLab™ Workbook',
+    eyebrow: 'Phase II · Infrastructure Planning & Management — .LLab™ IP',
     title: '.LLab Creator Alignment <strong>Map</strong>™',
     subtitle: 'Connect your creative practice, your audience, and your offer into one coherent picture.',
     phase: 'II · Infrastructure Planning & Management',
@@ -19,7 +19,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>CREATOR ALIGNMENT MAP™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p>A creative practice becomes a venture when three things line up: what you make, who it's for, and what they can actually buy or support. This workbook maps the gaps between the three.</p>
+<p>A creative practice becomes a venture when three things line up: what you make, who it's for, and what they can actually buy or support. This IP maps the gaps between the three.</p>
 
 <p><strong>STEP 1 — YOUR THREE POINTS</strong></p>
 <p><strong>Practice</strong> — what you make and how: <span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>

@@ -68,7 +68,7 @@ function catalog() {
     add({
       key: q.key,
       title: q.title,
-      kind: q.open ? 'Open quest' : free ? 'Free tool' : 'Paid workbook',
+      kind: q.open ? 'Open quest' : free ? 'Free tool' : 'Paid IP',
       line: entry.line || (free ? 'free' : q.open ? 'free' : 'core'),
       phase: q.phase,
       phaseIndex: Number.isInteger(PHASE_KEYS[entry.phase_key]) ? PHASE_KEYS[entry.phase_key] : phaseIndexOfQuest(q),

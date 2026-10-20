@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creator-operating-system.pdf',
   docTitle: 'The .LLab Creator Operating System™',
   cover: {
-    eyebrow: 'Phase III · Internal Operating Systems — a .LLab™ Workbook',
+    eyebrow: 'Phase III · Internal Operating Systems — .LLab™ IP',
     title: 'The .LLab Creator Operating <strong>System</strong>™',
     subtitle: 'Repeatable systems for running the creative venture day-to-day — without every decision depending on you.',
     phase: 'III · Internal Operating Systems',

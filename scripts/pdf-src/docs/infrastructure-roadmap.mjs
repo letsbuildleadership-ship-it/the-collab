@@ -15,7 +15,7 @@ export const meta = {
 export const contentHtml = `
 <section class="page">
   <p class="kicker">How to use this map</p>
-  <h1 class="doc-h1">Nine products. <strong>The IV Phases™.</strong> One path.</h1>
+  <h1 class="doc-h1">Every product. <strong>The IV Phases™.</strong> One path.</h1>
   <p class="lead">The .LLab™ IV Phases Product Infrastructure can be bought piece by piece, exactly where you need it — or worked through in order, each product building on real output from the last. This Roadmap is your orientation to the whole catalog, so you never have to guess where to start.</p>
 
   <div class="callout">

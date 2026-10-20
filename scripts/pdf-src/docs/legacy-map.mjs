@@ -3,7 +3,7 @@ export const meta = {
   outFile: 'legacy-map.pdf',
   docTitle: '.LLab Legacy Infrastructure Map™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — a .LLab™ Workbook',
+    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
     title: '.LLab Legacy <strong>Infrastructure Map</strong>™',
     subtitle: 'Identify what should be captured, embedded, transferred, and sustained — before it depends on memory.',
     phase: 'IV · Preservation',

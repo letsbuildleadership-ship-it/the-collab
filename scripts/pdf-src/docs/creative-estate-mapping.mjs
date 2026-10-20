@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creative-estate-mapping.pdf',
   docTitle: '.LLab Creative Estate Mapping™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — a .LLab™ Workbook',
+    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
     title: '.LLab Creative Estate <strong>Mapping</strong>™',
     subtitle: 'Identify what should be captured, embedded, transferred, and sustained in your creative estate.',
     phase: 'IV · Preservation',
@@ -19,7 +19,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>CREATIVE ESTATE MAPPING™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p>Your creative estate is everything of value your practice has produced or accumulated — the work itself, the rights to it, the relationships around it, and the systems that keep it running. This workbook maps all four so nothing depends on memory alone.</p>
+<p>Your creative estate is everything of value your practice has produced or accumulated — the work itself, the rights to it, the relationships around it, and the systems that keep it running. This IP maps all four so nothing depends on memory alone.</p>
 
 <p><strong>PART 1 — THE WORK</strong></p>
 <p>Using your Body of Work Inventory™ (or starting fresh), what is the full scope of what exists?</p>

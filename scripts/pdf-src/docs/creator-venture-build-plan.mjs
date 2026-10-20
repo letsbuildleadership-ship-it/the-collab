@@ -5,7 +5,7 @@ export const meta = {
   outFile: 'creator-venture-build-plan.pdf',
   docTitle: '.LLab Creator Venture Build Plan™',
   cover: {
-    eyebrow: 'Phase II · Infrastructure Planning & Management — a .LLab™ Workbook',
+    eyebrow: 'Phase II · Infrastructure Planning & Management — .LLab™ IP',
     title: '.LLab Creator Venture Build <strong>Plan</strong>™',
     subtitle: 'A practical 30-day plan for turning your creative practice into a venture.',
     phase: 'II · Infrastructure Planning & Management',

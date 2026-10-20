@@ -55,7 +55,7 @@ const buy = (href, label = 'Order') => !href ? '<span class="shop-soon">Availabl
 async function productCard(p) {
   const n = await pages(p.pdf_file);
   const line = FOUR.has(p.key) ? 'The IV Phases™' : isCreator(p) ? '.LLab Creators™' : 'The .LLab Blueprint™';
-  const meta = [`${/blueprint-/.test(p.key) ? 'PDF magazine' : 'Fillable PDF workbook'}${n ? ` · ${n} pages` : ''}`, 'Licensed to keep'];
+  const meta = [`${/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF'}${n ? ` · ${n} pages` : ''}`, 'Licensed to keep'];
   if (FOUR.has(p.key)) meta.push('Included with .LLab Membership™ and every Partnership™');
   return card({ line, name: p.name, tag: tagline(p.description), meta, price: p.price_display, buttons: buy(p.payment_link) });
 }
@@ -76,7 +76,7 @@ const extra = [];
 const blueprintAll = (reg.blueprint_series || []).filter((p) => !/blueprint-phase/.test(p.key));
 const planBtns = (m) => m.plans.map((pl) => `<a class="pill pill--solid" href="${esc(pl.payment_link)}" target="_blank" rel="noopener">${esc(pl.price_display)}</a>`).join('');
 extra.push({ id: 'memberships', title: 'Memberships', cards: reg.memberships.map((m) => card({ line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? ['Every IV Phases™ product, unlocked while you are a member'] : [], price: m.plans.map((pl) => pl.price_display).join(' · '), buttons: planBtns(m) })) });
-extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.map((p) => card({ line: 'Omnidirectional Enterprise™ Partnership', name: p.tier_label, tag: p.headline || tagline(p.description), meta: [`${p.seats} seat${p.seats === 1 ? '' : 's'}`, `${p.term_months >= 1200 ? 'Lifetime' : `${p.term_months / 12} year${p.term_months === 12 ? '' : 's'}`} of membership`, 'All nine IV Phases™ products, licensed to keep'], price: p.price_display, buttons: buy(p.payment_link) })) });
+extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.map((p) => card({ line: 'Omnidirectional Enterprise™ Partnership', name: p.tier_label, tag: p.headline || tagline(p.description), meta: [`${p.seats} seat${p.seats === 1 ? '' : 's'}`, `${p.term_months >= 1200 ? 'Lifetime' : `${p.term_months / 12} year${p.term_months === 12 ? '' : 's'}`} of membership`, 'Every IV Phases™ product, licensed to keep'], price: p.price_display, buttons: buy(p.payment_link) })) });
 extra.push({ id: 'founders', title: 'Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
 if (blueprintAll.length) extra.push({ id: 'blueprint', title: 'The .LLab Blueprint™ magazine', cards: await Promise.all(blueprintAll.map((p) => productCard(p))) });
 
