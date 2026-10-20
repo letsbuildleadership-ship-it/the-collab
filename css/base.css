@@ -2229,3 +2229,27 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .fx-mark { overflow-wrap: anywhere; }
 @media (max-width: 640px) { .fx-mark { font-size: clamp(0.95rem, 4.4vw, 1.35rem); } }
 .fx-tools { margin-top: 1.25rem; }
+
+/* The shop's three kinds of tile: Partnerships (dark premium bands), Memberships (light paper cards), Products (image tiles) */
+.fx-group { grid-column: 1 / -1; display: grid; gap: 0.25rem; padding: 1.6rem 0 0.2rem; border-top: 1px solid var(--hairline-strong); }
+.fx-group:first-child { border-top: 0; padding-top: 0; }
+.fx-group[hidden] { display: none; }
+.fx-group h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 300; color: var(--paper); }
+.fx-group p { margin: 0; font-size: 0.9rem; color: var(--paper); opacity: 0.85; }
+.fx-card--partner { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.5rem 1.75rem; border-radius: 16px; background: linear-gradient(120deg, #0b1a10 0%, #1a0f0a 100%); border: 1.5px solid #ff602e; box-shadow: inset 0 0 0 1px rgba(255, 96, 46, 0.25); }
+.fx-card--partner .fx-p-main { display: grid; gap: 0.35rem; min-width: 0; }
+.fx-card--partner h3 { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 200; letter-spacing: -0.01em; color: #fff; }
+.fx-card--partner .fx-tag { font-size: 1rem; -webkit-line-clamp: unset; display: block; }
+.fx-card--partner .fx-p-buy { display: grid; justify-items: end; gap: 0.6rem; flex: none; }
+.fx-card--partner .fx-price { font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 800; color: #ff602e; }
+.fx-card--member { grid-column: span 2; padding: 1.4rem 1.5rem; border-radius: 22px; background: #fdf6ec; color: #0f1d13; gap: 0.5rem; }
+.fx-card--member .fx-line { color: #b3290a; }
+.fx-card--member h3, .fx-card--member .fx-tag, .fx-card--member .fx-meta, .fx-card--member .fx-price { color: #0f1d13; }
+.fx-card--member h3 { font-size: 1.5rem; font-weight: 700; }
+.fx-card--member .fx-btn { background: #0f1d13; color: #fdf6ec; }
+.fx-card--member .fx-buy { margin-top: 0.4rem; border-top: 1px solid rgba(15, 29, 19, 0.18); }
+@media (max-width: 640px) {
+  .fx-card--partner { flex-direction: column; align-items: flex-start; padding: 1.2rem; }
+  .fx-card--partner .fx-p-buy { justify-items: start; width: 100%; }
+  .fx-card--member { grid-column: 1 / -1; }
+}
