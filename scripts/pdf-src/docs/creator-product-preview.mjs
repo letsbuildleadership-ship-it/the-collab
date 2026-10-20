@@ -5,12 +5,12 @@ export const meta = {
   outFile: 'creator-product-preview.pdf',
   docTitle: 'The Creator Operating System™ — Preview',
   cover: {
-    eyebrow: 'Creator Infrastructure™ — Free Product Preview',
+    eyebrow: '.LLab Creators™ — Free Product Preview',
     title: 'The Creator Operating System<strong>™</strong> — Preview',
     subtitle: 'Module 1 of the full product, so you can see exactly what it builds.',
     phase: 'III · Internal Operating Systems',
     price: 'Free preview · Full product $300',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 

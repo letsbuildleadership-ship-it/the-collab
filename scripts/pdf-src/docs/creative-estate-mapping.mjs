@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'Identify what should be captured, embedded, transferred, and sustained in your creative estate.',
     phase: 'IV · Preservation',
     price: '$200',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -53,6 +53,6 @@ ${licenseHtml}
 <p>This map is the foundation for the full <strong>Creator Legacy Infrastructure Architecture™</strong> ($750) — the comprehensive framework for designing infrastructure that preserves the whole body of work, its ownership, and its legacy.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

@@ -54,7 +54,7 @@ the four product descriptions so checkout matches the page.
 > One-time purchase. Everything in Partner, plus a license to every issue of The Blueprint™, including the Complete Edition (All 5 Issues). 12 months of every membership, then renew yearly. 3 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
 
 **Enterprise ($25,000)**
-> One-time purchase. Everything in Strategic, plus a license to all of Creator Infrastructure™ and every new Co.LLab™ release during your 12 months. 12 months of every membership, then renew yearly. 10 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
+> One-time purchase. Everything in Strategic, plus a license to all of .LLab Creators™ and every new Co.LLab™ release during your 12 months. 12 months of every membership, then renew yearly. 10 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.
 
 **Omnidirectional ($50,000)**
 > One-time purchase. Everything in Enterprise, plus lifetime .LLab Membership™, .LLab Library Card™ and The .LLab Journal™ (never renew) and every new Co.LLab™ release for 3 years. 25 seats. Internal business use only. All sales final once access is unlocked, subject to applicable law.

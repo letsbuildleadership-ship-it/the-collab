@@ -28,7 +28,7 @@ const P = {
   about: ['About · Corporate Identity & Strategic Positioning',
     'Unclear corporate positioning and disconnected organizational objectives can weaken stakeholder alignment, strategic execution, and communication of long-term economic value.',
     'About establishes The Co.LLab™ corporate identity, mission, strategic positioning, and operating philosophy around leadership infrastructure, proprietary intellectual property, and sustainable enterprise development.'],
-  creator: ['Creator™ · Creative Enterprise & IP Commercialization',
+  creator: ['.LLab Creators™ · Creative Enterprise & IP Commercialization',
     'Platform dependency, unequal bargaining power, fragmented distribution channels, and limited intellectual property control can prevent creators from capturing a fair share of the economic value their work generates.',
     'Creator develops creative enterprise infrastructure that strengthens intellectual property ownership, commercialization, revenue diversification, and creators’ ability to capture and retain economic value within the creative economy.'],
   impact: ['Impact™ · Community Sustainability & Institutional Governance',
@@ -63,7 +63,7 @@ const HOME_EXTRA = `
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem;">
         <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p></div>
         <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of businesses, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
-        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">Creator Infrastructure™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
+        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">.LLab Creators™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
       </div>`;
 
 const PAGES = [

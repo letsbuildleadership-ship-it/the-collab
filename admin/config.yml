@@ -490,12 +490,12 @@ collections:
 
           - { label: "Tax notice", name: "tax_notice", widget: "string" }
 
-          - { label: "Creator Infrastructure eyebrow", name: "creator_eyebrow", widget: "string" }
-          - { label: "Creator Infrastructure headline", name: "creator_headline", widget: "string" }
-          - { label: "Creator Infrastructure body", name: "creator_body", widget: "text" }
-          - { label: "Creator Infrastructure button label", name: "creator_cta_label", widget: "string" }
-          - { label: "Creator Infrastructure button link", name: "creator_cta_link", widget: "string" }
-          - label: "Creator Infrastructure teaser tags"
+          - { label: ".LLab Creators eyebrow", name: "creator_eyebrow", widget: "string" }
+          - { label: ".LLab Creators headline", name: "creator_headline", widget: "string" }
+          - { label: ".LLab Creators body", name: "creator_body", widget: "text" }
+          - { label: ".LLab Creators button label", name: "creator_cta_label", widget: "string" }
+          - { label: ".LLab Creators button link", name: "creator_cta_link", widget: "string" }
+          - label: ".LLab Creators teaser tags"
             name: "creator_teasers"
             widget: "list"
             summary: "{{fields.label}}"
@@ -503,7 +503,7 @@ collections:
               - { label: "Word", name: "label", widget: "string" }
 
       - name: "creator"
-        label: "Creator Infrastructure"
+        label: ".LLab Creators"
         file: "content/creator.json"
         fields:
           - { label: "Banner text", name: "banner_text", widget: "string" }

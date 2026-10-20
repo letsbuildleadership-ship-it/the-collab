@@ -3,14 +3,14 @@ import { licensePageHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-diagnostic',
   outFile: 'creator-diagnostic.pdf',
-  docTitle: '.LLab Creator Infrastructure Diagnostic™ (Free Edition)',
+  docTitle: '.LLab Creators Diagnostic™ (Free Edition)',
   cover: {
-    eyebrow: 'Creator Infrastructure™ — Free Diagnostic',
-    title: '.LLab Creator Infrastructure <strong>Diagnostic</strong>™',
+    eyebrow: '.LLab Creators™ — Free Diagnostic',
+    title: '.LLab Creators <strong>Diagnostic</strong>™',
     subtitle: 'A short self-assessment across all of The IV Phases™ — free edition.',
     phase: 'all of The IV Phases™',
     price: 'Free',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -34,7 +34,7 @@ ${licensePageHtml}
   <div class="content-header">
     <span class="page-index">01 · Score Phases I &amp; II</span>
     <h2 class="section-title">A Directional Score.<br/><strong>Not A Test You Can Fail.</strong></h2>
-    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all of The IV Phases™ of Creator Infrastructure™ — score honestly.</p>
+    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all of The IV Phases™ of .LLab Creators™ — score honestly.</p>
   </div>
   ${phasePanel('I', 'Foundations', 'Idea → Identity', [
     'I can describe what I make in one clear sentence, without hedging.',
@@ -86,9 +86,9 @@ ${licensePageHtml}
 
   <div class="callout">
     <p class="callout-label">Already Strong Across All Four?</p>
-    <p>If you want it all unlocked at once, <strong>.LLab Membership™</strong> includes the full Creator Infrastructure™ ladder — plus everything else in The .LLab™ ecosystem.</p>
+    <p>If you want it all unlocked at once, <strong>.LLab Membership™</strong> includes the full .LLab Creators™ ladder — plus everything else in The .LLab™ ecosystem.</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;
