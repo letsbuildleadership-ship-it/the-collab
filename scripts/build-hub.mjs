@@ -61,10 +61,10 @@ const add = (o) => items.push(o);
 const partnerLevels = (key) => reg.partnerships.filter((t) => (t.grants || []).includes(key)).map((t) => t.tier_label);
 
 for (const t of reg.partnerships) {
-  add({ cats: ['partnerships'], badge: 'Partnership™', line: 'Partnership™', name: t.tier_label, tag: `${t.headline || ''} ${t.legacy_line || ''}`.trim(), meta: `${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.term_months >= 1200 ? 'Lifetime' : `${t.term_months / 12} year${t.term_months === 12 ? '' : 's'}`} of membership`, price: t.price_display, sort: dollars(t.price_display), buttons: buy(t.payment_link), mark: t.tier_label });
+  add({ kind: 'partner', group: 'Partnerships', cats: ['partnerships'], badge: 'Partnership™', line: 'Partnership™', name: t.tier_label, tag: `${t.headline || ''} ${t.legacy_line || ''}`.trim(), meta: `${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.term_months >= 1200 ? 'Lifetime' : `${t.term_months / 12} year${t.term_months === 12 ? '' : 's'}`} of membership`, price: t.price_display, sort: dollars(t.price_display), buttons: buy(t.payment_link), mark: t.tier_label });
 }
 for (const m of reg.memberships) {
-  add({ cats: ['memberships'], badge: 'Membership', line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? 'Every IV Phases™ product, plus the Infrastructure Analysis™' : '', price: m.plans.map((pl) => pl.price_display).join(' · '), sort: dollars(m.plans[0].price_display), buttons: m.plans.map((pl) => buy(pl.payment_link, pl.price_display)).join(''), mark: m.name.replace(/™$/, '') });
+  add({ kind: 'member', group: 'Memberships', cats: ['memberships'], badge: 'Membership', line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? 'Every IV Phases™ product, plus the Infrastructure Analysis™' : '', price: m.plans.map((pl) => pl.price_display).join(' · '), sort: dollars(m.plans[0].price_display), buttons: m.plans.map((pl) => buy(pl.payment_link, pl.price_display)).join(''), mark: m.name.replace(/™$/, '') });
 }
 const productItem = async (p, extra = {}) => {
   const n = await pages(p.pdf_file);
@@ -72,7 +72,7 @@ const productItem = async (p, extra = {}) => {
   const creator = isCreator(p);
   const line = creator ? '.LLab Creators™' : FOUR.has(p.key) ? 'The IV Phases™' : 'The .LLab Blueprint™';
   return {
-    cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
+    kind: 'product', group: 'Products', cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
     line, name: p.name, tag: tagline(p.description),
     meta: [/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF', n ? `${n} pages` : null, 'Licensed to keep'].filter(Boolean).join(' · '),
     price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), img: cover(p.key, path.join(root, 'content/library', p.pdf_file || 'none')), mark: p.name, ...extra.override,
@@ -91,13 +91,31 @@ for (const p of reg.blueprint_series || []) {
 }
 for (const t of free) {
   const ph = phaseOfText(t.phase);
-  add({ cats: ['free', ph ? `phase-${ph.no.toLowerCase()}` : null].filter(Boolean), badge: 'Free', line: 'Free tool', name: t.name, tag: tagline(t.description), meta: 'Free PDF · No account needed', price: 'Free', sort: 0, buttons: `<a class="fx-btn fx-btn--ghost" href="..${esc(t.file)}" target="_blank" rel="noopener">Open</a>`, img: cover(t.key, path.join(root, t.file.replace(/^\//, ''))), mark: t.name });
+  add({ kind: 'product', group: 'Free tools', cats: ['free', ph ? `phase-${ph.no.toLowerCase()}` : null].filter(Boolean), badge: 'Free', line: 'Free tool', name: t.name, tag: tagline(t.description), meta: 'Free PDF · No account needed', price: 'Free', sort: 0, buttons: `<a class="fx-btn fx-btn--ghost" href="..${esc(t.file)}" target="_blank" rel="noopener">Open</a>`, img: cover(t.key, path.join(root, t.file.replace(/^\//, ''))), mark: t.name });
 }
 for (const p of reg.products.filter(isFounders)) {
-  add({ cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
+  add({ kind: 'product', group: 'Founders', cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
 }
 
-const tile = (o, i) => `<article class="fx-card" data-cat="${o.cats.join(' ')}" data-price="${o.sort}" data-order="${i}">
+const tile = (o, i) => {
+  const head = `data-cat="${o.cats.join(' ')}" data-price="${o.sort}" data-order="${i}" data-group="${esc(o.group)}"`;
+  if (o.kind === 'partner') return `<article class="fx-card fx-card--partner" ${head}>
+          <div class="fx-p-main">
+            <p class="fx-line">${esc(o.line)}</p>
+            <h3>${esc(o.name)}</h3>
+            <p class="fx-tag">${esc(o.tag)}</p>
+            ${o.meta ? `<p class="fx-meta">${esc(o.meta)}</p>` : ''}
+          </div>
+          <div class="fx-p-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
+        </article>`;
+  if (o.kind === 'member') return `<article class="fx-card fx-card--member" ${head}>
+          <p class="fx-line">${esc(o.line)}</p>
+          <h3>${esc(o.name)}</h3>
+          <p class="fx-tag">${esc(o.tag)}</p>
+          ${o.meta ? `<p class="fx-meta">${esc(o.meta)}</p>` : ''}
+          <div class="fx-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
+        </article>`;
+  return `<article class="fx-card" ${head}>
           <div class="fx-img${o.img ? '' : ' fx-img--brand'}">${o.img ? `<img src="${o.img}" alt="${esc(o.name)} cover" width="391" height="506" loading="lazy">` : `<span class="fx-mark">${esc(o.mark)}</span>`}<span class="fx-badge">${esc(o.badge)}</span>${o.isNew ? '<span class="fx-badge fx-badge--new">New</span>' : ''}</div>
           <div class="fx-body">
             <p class="fx-line">${esc(o.line)}</p>
@@ -107,6 +125,9 @@ const tile = (o, i) => `<article class="fx-card" data-cat="${o.cats.join(' ')}" 
             <div class="fx-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
           </div>
         </article>`;
+};
+const GROUP_NOTE = { Partnerships: 'One purchase, seats for your team, and a place in the Omnidirectional Enterprise™.', Memberships: 'Monthly or yearly access, with the Infrastructure Analysis™.', Products: 'Infrastructure planning IP, licensed to keep.', 'Free tools': 'Open to everyone. No account needed.', Founders: 'The Co.LLab Founders Organization™.' };
+const gridHtml = items.map((o, i) => ((i === 0 || items[i - 1].group !== o.group) ? `<div class="fx-group" data-heading="${esc(o.group)}"><h2>${esc(o.group)}</h2><p>${esc(GROUP_NOTE[o.group] || '')}</p></div>\n        ` : '') + tile(o, i)).join('\n        ');
 
 const FILTERS = [
   ['all', 'All'], ['phase-i', 'Phase I · Foundations'], ['phase-ii', 'Phase II · Planning'], ['phase-iii', 'Phase III · Operating'], ['phase-iv', 'Phase IV · Preservation'],
@@ -138,7 +159,7 @@ const main = `<main>
       </div>
       <p id="cat-count" class="fx-count" aria-live="polite">${items.length} products</p>
       <div class="fx-grid" id="fx-grid">
-        ${items.map(tile).join('\n        ')}
+        ${gridHtml}
       </div>
       <p id="cat-none" class="cat-none" hidden>Nothing matches. Clear the search or pick another filter.</p>
     </div>
@@ -172,13 +193,13 @@ t = t.replace(/(<div class="model-ribbon"[\s\S]*?<\/ul>)/, (r) => r.replace(/ cl
 t = t.replace(/<main>[\s\S]*<\/main>/, main);
 t = t.replace('<script>document.getElementById(\'year\')', `<script>(function () {
   var grid = document.getElementById('fx-grid'); if (!grid) return;
-  var cards = [].slice.call(grid.children), chips = [].slice.call(document.querySelectorAll('.fx-chip')), q = document.getElementById('cat-q'), sort = document.getElementById('fx-sort'), count = document.getElementById('cat-count'), none = document.getElementById('cat-none');
+  var cards = [].slice.call(grid.querySelectorAll('.fx-card')), heads = [].slice.call(grid.querySelectorAll('.fx-group')), chips = [].slice.call(document.querySelectorAll('.fx-chip')), q = document.getElementById('cat-q'), sort = document.getElementById('fx-sort'), count = document.getElementById('cat-count'), none = document.getElementById('cat-none');
   var filter = 'all';
   function apply() {
     var v = q.value.trim().toLowerCase(), n = 0;
     cards.forEach(function (c) { var hit = (filter === 'all' || c.getAttribute('data-cat').split(' ').indexOf(filter) > -1) && (!v || c.textContent.toLowerCase().indexOf(v) > -1); c.hidden = !hit; if (hit) n++; });
     var by = sort.value, list = cards.slice().sort(function (a, b) { return by === 'low' ? a.dataset.price - b.dataset.price : by === 'high' ? b.dataset.price - a.dataset.price : a.dataset.order - b.dataset.order; });
-    list.forEach(function (c) { grid.appendChild(c); });
+    if (by === 'featured') { list.forEach(function (c) { grid.appendChild(c); }); heads.forEach(function (h) { var g = h.getAttribute('data-heading'); var first = cards.filter(function (c) { return c.getAttribute('data-group') === g; })[0]; if (first) grid.insertBefore(h, first); h.hidden = !cards.some(function (c) { return c.getAttribute('data-group') === g && !c.hidden; }); }); } else { list.forEach(function (c) { grid.appendChild(c); }); heads.forEach(function (h) { h.hidden = true; }); }
     chips.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-filter') === filter); });
     count.textContent = n + (n === 1 ? ' product' : ' products'); none.hidden = n > 0;
   }
