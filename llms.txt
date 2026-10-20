@@ -13,3 +13,4 @@ Instagram: https://www.instagram.com/theco.llab_/
 - [.LLab R.A.T.™ · Research And Theory](https://wearethellab.netlify.app/pages/think.html): analysis of business, economic, political, and geopolitical systems.
 - [The Co.LLab Founders Organization™](https://wearethellab.netlify.app/pages/founders.html): a community-based nonprofit initiative intended to pursue 501(c)(3) status.
 - [About The Co.LLab™](https://wearethellab.netlify.app/pages/about.html): mission, vision, and enterprise identity.
+- [Glossary](https://wearethellab.netlify.app/pages/glossary.html): plain definitions of every Co.LLab™ term, from Omnidirectional Enterprise™ to .LLab Membership™.
