@@ -66,6 +66,9 @@ for (const t of reg.partnerships) {
 for (const m of reg.memberships) {
   add({ kind: 'member', group: 'Memberships', cats: ['memberships'], badge: 'Membership', line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? 'Every IV Phases™ product, plus the Infrastructure Analysis™' : '', price: m.plans.map((pl) => pl.price_display).join(' · '), sort: dollars(m.plans[0].price_display), buttons: m.plans.map((pl) => buy(pl.payment_link, pl.price_display)).join(''), mark: m.name.replace(/™$/, '') });
 }
+for (const p of reg.products.filter(isFounders)) {
+  add({ kind: 'product', group: 'Founders', cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
+}
 const productItem = async (p, extra = {}) => {
   const n = await pages(p.pdf_file);
   const pc = phaseCat(p.phase_key);
@@ -92,9 +95,6 @@ for (const p of reg.blueprint_series || []) {
 for (const t of free) {
   const ph = phaseOfText(t.phase);
   add({ kind: 'product', group: 'Free tools', cats: ['free', ph ? `phase-${ph.no.toLowerCase()}` : null].filter(Boolean), badge: 'Free', line: 'Free tool', name: t.name, tag: tagline(t.description), meta: 'Free PDF · No account needed', price: 'Free', sort: 0, buttons: `<a class="fx-btn fx-btn--ghost" href="..${esc(t.file)}" target="_blank" rel="noopener">Open</a>`, img: cover(t.key, path.join(root, t.file.replace(/^\//, ''))), mark: t.name });
-}
-for (const p of reg.products.filter(isFounders)) {
-  add({ kind: 'product', group: 'Founders', cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
 }
 
 const tile = (o, i) => {
