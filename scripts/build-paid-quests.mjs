@@ -212,6 +212,56 @@ function parse(key) {
   return { nodes, scaleHint };
 }
 
+
+// Quests for products that are manuals, guides and magazines rather than step-by-step workbooks. Their prompts
+// follow each document's own sections, reflection questions and The IV Phases™ guiding questions, one phase at a time.
+const IV = ['What should never be lost as we grow?', 'What depends on a person that should belong to the organization?', 'How do we make what matters part of how we operate?', 'What must exist for what we built to continue?'];
+const BP = {
+  welcome: [[0, 'Reflections As You Begin', 'What do you want your leadership infrastructure to make possible?'], [0, 'Reflections As You Begin', IV[0]], [1, 'Reflections As You Begin', IV[1]], [2, 'Reflections As You Begin', IV[2]], [3, 'Reflections As You Begin', IV[3]]],
+  phase1: [[0, 'Phase One · Foundations', 'How do my daily decisions reinforce or weaken the organizational mission?'], [0, 'Phase One · Foundations', 'Where have I allowed misalignment to persist?'], [0, 'Phase One · Foundations', 'How can I engage my team to close these gaps?'], [0, 'Phase One · Foundations', 'Where does current infrastructure support or hinder execution of the vision?'], [0, 'Phase One · Foundations', 'Which interventions will have the highest structural impact?'], [0, 'Phase One · Foundations', 'Who is underutilized in the infrastructure? Where do structural weaknesses exist?'], [0, 'Phase One · Foundations', IV[0]]],
+  phase2: [[1, 'Phase Two · Infrastructure Planning', 'Where is the organization one absence away from a bottleneck?'], [1, 'Phase Two · Infrastructure Planning', 'Where does ownership currently live only in someone’s head, not on paper?'], [1, 'Phase Two · Infrastructure Planning', 'If your best person left tomorrow, what would break first?'], [1, 'Phase Two · Infrastructure Planning', IV[1]]],
+  phase3: [[2, 'Phase Three · Internal Operating Systems', 'Which rhythms, decisions and commitments run on habit rather than on a written system today?'], [2, 'Phase Three · Internal Operating Systems', 'Where does the work depend on someone remembering how it is done?'], [2, 'Phase Three · Internal Operating Systems', IV[2]]],
+  phase4: [[3, 'Phase Four · Preservation', 'Where is the infrastructure most vulnerable?'], [3, 'Phase Four · Preservation', 'Which systems need reinforcement first?'], [3, 'Phase Four · Preservation', 'Is growth aligned with purpose? Are cultural norms being preserved?'], [3, 'Phase Four · Preservation', 'What did you build that you are proudest of?'], [3, 'Phase Four · Preservation', 'What almost broke, and what held it together?'], [3, 'Phase Four · Preservation', 'What do you need them to protect, no matter what changes?'], [3, 'Phase Four · Preservation', IV[3]]],
+};
+const FOUNDER_GUIDE = [[0, 'Getting Started', 'What are you building, and what infrastructure does it need to survive, perform, grow, and become legacy?'], [0, 'The IV Phases™', IV[0]], [1, 'The IV Phases™', IV[1]], [2, 'The IV Phases™', IV[2]], [3, 'The IV Phases™', IV[3]]];
+const HAND = {
+  'blueprint-welcome': BP.welcome, 'blueprint-phase1': BP.phase1, 'blueprint-phase2': BP.phase2, 'blueprint-phase3': BP.phase3, 'blueprint-phase4': BP.phase4,
+  'blueprint-complete': [...BP.welcome, ...BP.phase1, ...BP.phase2, ...BP.phase3, ...BP.phase4],
+  'friends-family': FOUNDER_GUIDE, 'premium-friends-family': FOUNDER_GUIDE, founder: FOUNDER_GUIDE,
+  'legacy-foundations-framework': [
+    [0, '01 · Founding Vision', 'The problem we were founded to solve:'], [0, '01 · Founding Vision', 'Who we exist to serve:'], [0, '01 · Founding Vision', 'What would be missing from the world if we were gone?'], [0, '01 · Founding Vision', 'Our founding vision statement in one sentence:'],
+    [0, '02 · Core Values & Non-Negotiables', 'Our core values, what each looks like here, and the line we never cross for each:'], [0, '02 · Core Values & Non-Negotiables', 'Our non-negotiables:'],
+    [0, '03 · Leadership Identity', 'The founder’s leadership in three words:'], [0, '03 · Leadership Identity', 'The leadership principles that built this company:'], [0, '03 · Leadership Identity', 'How decisions get made when it matters most:'], [0, '03 · Leadership Identity', 'What every future leader here must understand:'],
+    [0, '04 · Strengths Assessment', 'Our strongest foundation:'], [0, '04 · Strengths Assessment', 'Our greatest exposure:'],
+    [0, '05 · Legacy Definition', 'What our people will say about working here:'], [0, '05 · Legacy Definition', 'What our customers will say we gave them:'], [0, '05 · Legacy Definition', 'What our community will say we built:'], [0, '05 · Legacy Definition', 'Our legacy statement:'],
+  ],
+  'legacy-infrastructure-plan': [
+    [1, '01 · Legacy Priorities', 'Our legacy priorities in rank order, why each protects the legacy, and the measure of success for each:'], [1, '01 · Legacy Priorities', 'What we will stop doing:'],
+    [1, '02 · Decision Rights', 'For each type of decision: who decides, who is consulted, who is informed, and which value guides it?'],
+    [1, '03 · Ownership Map', 'For each area of the organization: the owner, the backup, and whether it is documented (yes or no):'],
+    [1, '04 · Dependency Map', 'What depends on one person, who that person is, how high the risk is (low, medium or high), and the plan to transfer it:'],
+    [1, '05 · Connections', 'Each priority, the value it serves, the team that carries it, and who it serves:'], [1, '05 · Connections', 'Where things break down:'],
+    [1, '06 · 12-Month Legacy Plan', 'For each quarter: what we build, who owns it, and what done looks like:'],
+  ],
+  'legacy-operating-systems-manual': [
+    [2, '01 · Operating Rhythm', 'Each rhythm (daily, weekly, monthly, quarterly), who attends, its purpose, and the legacy question asked:'], [2, '01 · Operating Rhythm', 'Our legacy question:'],
+    [2, '02 · Decision System', 'The decisions we have made, who decided, and the value that guided each:'], [2, '02 · Decision System', 'Our standard for a decision that must be written down:'],
+    [2, '03 · Accountability', 'Each commitment, its owner, the check-in cadence, and what happens if it slips:'], [2, '03 · Accountability', 'How we recognize people who keep their commitments:'],
+    [2, '04 · Culture Practices', 'For each core value: the practice, how often it happens, and who owns it:'],
+    [2, '05 · Department Systems', 'How each department serves the founding vision:'], [2, '05 · Department Systems', 'The standard operating practices that protect the legacy:'],
+    [2, '06 · Onboarding', 'For each week: what a new person learns and who teaches it:'],
+  ],
+  'legacy-preservation-vault': [
+    [3, 'Article I · Purpose', 'The purpose of the company, as intended by its founder:'], [3, 'Article I · Purpose', 'The values that shall govern its conduct:'], [3, 'Article I · Purpose', 'The commitments that shall not be changed without the approval set out in Article VI:'],
+    [3, 'Article II · Stakeholders', 'For each stakeholder: what the legacy gives them and what they give the legacy:'],
+    [3, 'Article III · Stewardship', 'Each stewardship seat, who holds it, how they are appointed, and the term:'], [3, 'Article III · Stewardship', 'The authority of the stewards: what they can approve, review, or stop:'],
+    [3, 'Article IV · Value Flow', 'Each value flow, the commitment, and how we measure it:'], [3, 'Article IV · Value Flow', 'Our profit priorities, in order:'],
+    [3, 'Article V · Succession and Sale', 'The conditions any new owner or controlling party must accept:'], [3, 'Article V · Succession and Sale', 'The provisions that protect the founder’s intent in a sale or merger:'], [3, 'Article V · Succession and Sale', 'Who holds authority if the founder is unable to serve:'],
+    [3, 'Article VI · Review and Amendment', 'Each review item, its owner, and the month it is reviewed:'], [3, 'Article VI · Review and Amendment', 'The approval required to amend Articles I to V:'], [3, 'Article VI · Review and Amendment', 'For each role or responsibility: the current holder, the successor, when they are ready, and the knowledge to transfer:'],
+    [3, 'Letter to the Next Leader', 'What this company is for:'], [3, 'Letter to the Next Leader', 'What I would want you to protect above all:'], [3, 'Letter to the Next Leader', 'What I would want you to change:'],
+  ],
+};
+
 const outDir = path.join(root, 'content/quests');
 {
   const nodes = EVENT.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
@@ -233,6 +283,20 @@ const outDir = path.join(root, 'content/quests');
     closing: { id: 'commit', type: 'text', prompt: 'The one change we will make next, who will own it, and by when:' },
   };
   fs.writeFileSync(path.join(outDir, `${entry.key}.json`), `${JSON.stringify(quest, null, 2)}\n`);
+}
+{
+  const ALL = [...pricing.products, ...(pricing.partner_ip || []), ...(pricing.blueprint_series || [])];
+  for (const [key, rows] of Object.entries(HAND)) {
+    const entry = ALL.find((p) => p.key === key);
+    const nodes = rows.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section, phase, type: 'text', prompt }));
+    const quest = {
+      key, title: entry.name, phase: PHASE_LABEL[entry.phase_key] || entry.phase || 'The IV Phases™', archetype: 'workbook',
+      intro: entry.description || `Work through ${entry.name} step by step.`, pdfTitle: entry.name, minAnswered: 0.6, upsell: null, nodes,
+      closing: { id: 'commit', type: 'text', prompt: 'The one change we will make next, who will own it, and by when:' },
+    };
+    fs.writeFileSync(path.join(outDir, `${key}.json`), `${JSON.stringify(quest, null, 2)}\n`);
+  }
+  console.log(`built ${Object.keys(HAND).length} guide, manual and magazine quests`);
 }
 let n = 0;
 for (const key of KEYS) {

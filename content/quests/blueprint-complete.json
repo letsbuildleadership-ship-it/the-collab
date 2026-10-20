@@ -1,0 +1,199 @@
+{
+  "key": "blueprint-complete",
+  "title": "The .LLab Blueprint™ — Complete Edition (All 5 Issues)",
+  "phase": "The IV Phases™",
+  "archetype": "workbook",
+  "intro": "The full Blueprint™ magazine series: Welcome + all of The IV Phases™, in one edition.",
+  "pdfTitle": "The .LLab Blueprint™ — Complete Edition (All 5 Issues)",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Reflections As You Begin",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What do you want your leadership infrastructure to make possible?"
+    },
+    {
+      "id": "n2",
+      "section": "Reflections As You Begin",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost as we grow?"
+    },
+    {
+      "id": "n3",
+      "section": "Reflections As You Begin",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What depends on a person that should belong to the organization?"
+    },
+    {
+      "id": "n4",
+      "section": "Reflections As You Begin",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How do we make what matters part of how we operate?"
+    },
+    {
+      "id": "n5",
+      "section": "Reflections As You Begin",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must exist for what we built to continue?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How do my daily decisions reinforce or weaken the organizational mission?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Where have I allowed misalignment to persist?"
+    },
+    {
+      "id": "n8",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How can I engage my team to close these gaps?"
+    },
+    {
+      "id": "n9",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Where does current infrastructure support or hinder execution of the vision?"
+    },
+    {
+      "id": "n10",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Which interventions will have the highest structural impact?"
+    },
+    {
+      "id": "n11",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Who is underutilized in the infrastructure? Where do structural weaknesses exist?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost as we grow?"
+    },
+    {
+      "id": "n13",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where is the organization one absence away from a bottleneck?"
+    },
+    {
+      "id": "n14",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where does ownership currently live only in someone’s head, not on paper?"
+    },
+    {
+      "id": "n15",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "If your best person left tomorrow, what would break first?"
+    },
+    {
+      "id": "n16",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What depends on a person that should belong to the organization?"
+    },
+    {
+      "id": "n17",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Which rhythms, decisions and commitments run on habit rather than on a written system today?"
+    },
+    {
+      "id": "n18",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Where does the work depend on someone remembering how it is done?"
+    },
+    {
+      "id": "n19",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How do we make what matters part of how we operate?"
+    },
+    {
+      "id": "n20",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Where is the infrastructure most vulnerable?"
+    },
+    {
+      "id": "n21",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Which systems need reinforcement first?"
+    },
+    {
+      "id": "n22",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Is growth aligned with purpose? Are cultural norms being preserved?"
+    },
+    {
+      "id": "n23",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What did you build that you are proudest of?"
+    },
+    {
+      "id": "n24",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What almost broke, and what held it together?"
+    },
+    {
+      "id": "n25",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What do you need them to protect, no matter what changes?"
+    },
+    {
+      "id": "n26",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must exist for what we built to continue?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

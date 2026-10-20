@@ -1,0 +1,129 @@
+{
+  "key": "legacy-foundations-framework",
+  "title": "The .LLab Legacy Foundations Framework™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Define it. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.",
+  "pdfTitle": "The .LLab Legacy Foundations Framework™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "01 · Founding Vision",
+      "phase": 0,
+      "type": "text",
+      "prompt": "The problem we were founded to solve:"
+    },
+    {
+      "id": "n2",
+      "section": "01 · Founding Vision",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Who we exist to serve:"
+    },
+    {
+      "id": "n3",
+      "section": "01 · Founding Vision",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What would be missing from the world if we were gone?"
+    },
+    {
+      "id": "n4",
+      "section": "01 · Founding Vision",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our founding vision statement in one sentence:"
+    },
+    {
+      "id": "n5",
+      "section": "02 · Core Values & Non-Negotiables",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our core values, what each looks like here, and the line we never cross for each:"
+    },
+    {
+      "id": "n6",
+      "section": "02 · Core Values & Non-Negotiables",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our non-negotiables:"
+    },
+    {
+      "id": "n7",
+      "section": "03 · Leadership Identity",
+      "phase": 0,
+      "type": "text",
+      "prompt": "The founder’s leadership in three words:"
+    },
+    {
+      "id": "n8",
+      "section": "03 · Leadership Identity",
+      "phase": 0,
+      "type": "text",
+      "prompt": "The leadership principles that built this company:"
+    },
+    {
+      "id": "n9",
+      "section": "03 · Leadership Identity",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How decisions get made when it matters most:"
+    },
+    {
+      "id": "n10",
+      "section": "03 · Leadership Identity",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What every future leader here must understand:"
+    },
+    {
+      "id": "n11",
+      "section": "04 · Strengths Assessment",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our strongest foundation:"
+    },
+    {
+      "id": "n12",
+      "section": "04 · Strengths Assessment",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our greatest exposure:"
+    },
+    {
+      "id": "n13",
+      "section": "05 · Legacy Definition",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What our people will say about working here:"
+    },
+    {
+      "id": "n14",
+      "section": "05 · Legacy Definition",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What our customers will say we gave them:"
+    },
+    {
+      "id": "n15",
+      "section": "05 · Legacy Definition",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What our community will say we built:"
+    },
+    {
+      "id": "n16",
+      "section": "05 · Legacy Definition",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Our legacy statement:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

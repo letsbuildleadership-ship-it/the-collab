@@ -1,0 +1,66 @@
+{
+  "key": "blueprint-phase1",
+  "title": "The .LLab Blueprint™ — Phase One: Foundations",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Issue 01 of The .LLab Blueprint™ magazine series — structural grounding and leadership identity.",
+  "pdfTitle": "The .LLab Blueprint™ — Phase One: Foundations",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How do my daily decisions reinforce or weaken the organizational mission?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Where have I allowed misalignment to persist?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "How can I engage my team to close these gaps?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Where does current infrastructure support or hinder execution of the vision?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Which interventions will have the highest structural impact?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Who is underutilized in the infrastructure? Where do structural weaknesses exist?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase One · Foundations",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost as we grow?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

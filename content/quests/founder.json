@@ -1,0 +1,52 @@
+{
+  "key": "founder",
+  "title": "The Co.LLab™ Founders Organization — Founder",
+  "phase": "Build · Founders Organization",
+  "archetype": "workbook",
+  "intro": "Full access to the Founders Organization: The IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
+  "pdfTitle": "The Co.LLab™ Founders Organization — Founder",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Getting Started",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What are you building, and what infrastructure does it need to survive, perform, grow, and become legacy?"
+    },
+    {
+      "id": "n2",
+      "section": "The IV Phases™",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What should never be lost as we grow?"
+    },
+    {
+      "id": "n3",
+      "section": "The IV Phases™",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What depends on a person that should belong to the organization?"
+    },
+    {
+      "id": "n4",
+      "section": "The IV Phases™",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How do we make what matters part of how we operate?"
+    },
+    {
+      "id": "n5",
+      "section": "The IV Phases™",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must exist for what we built to continue?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

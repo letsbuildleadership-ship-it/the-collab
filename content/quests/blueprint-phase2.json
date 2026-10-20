@@ -1,0 +1,45 @@
+{
+  "key": "blueprint-phase2",
+  "title": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Issue 02 of The .LLab Blueprint™ magazine series — load mapping, accountability, and capacity planning.",
+  "pdfTitle": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where is the organization one absence away from a bottleneck?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where does ownership currently live only in someone’s head, not on paper?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "If your best person left tomorrow, what would break first?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase Two · Infrastructure Planning",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What depends on a person that should belong to the organization?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}
