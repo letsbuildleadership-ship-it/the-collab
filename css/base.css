@@ -2112,3 +2112,21 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .hub-price { grid-row: 1; grid-column: 2; }
   .hub-plans { grid-column: 1 / -1; justify-content: flex-start; }
 }
+
+/* ---- Shop (all products) ---- */
+.shop-phase { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.phase-head { display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.75rem; }
+.phase-no { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1; color: var(--filament-2); min-width: 3.2rem; }
+.phase-tag { margin: 0.35rem 0 0; font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-weight: 300; color: var(--paper); }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.shop-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.25rem 1.25rem 1.1rem; border: 1px solid var(--hairline-strong); border-radius: 14px; background: rgba(var(--black-rgb), 0.55); min-width: 0; }
+.shop-line { margin: 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--filament-2); }
+.shop-card h3 { margin: 0; font-size: 1.25rem; font-weight: 600; line-height: 1.2; color: var(--paper); }
+.shop-tag { margin: 0; font-size: 0.98rem; line-height: 1.45; color: var(--paper); opacity: 0.92; }
+.shop-meta { list-style: none; margin: 0.2rem 0 0; padding: 0; display: grid; gap: 0.3rem; font-size: 0.85rem; font-weight: 600; color: var(--paper); }
+.shop-meta li::before { content: '✓ '; color: var(--filament-2); }
+.shop-buy { margin-top: auto; padding-top: 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; border-top: 1px solid var(--hairline); }
+.shop-price { font-size: 1.5rem; font-weight: 700; color: var(--paper); }
+.shop-buy .pill { padding: 0.55rem 1.1rem; font-size: 0.8rem; }
+.shop-free { margin-top: 1.5rem; display: grid; gap: 0.6rem; }
+.shop-free .toc-subs { padding-left: 0; }
