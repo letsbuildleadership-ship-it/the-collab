@@ -1148,8 +1148,8 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
    Navigation + readability alignment pass
    ========================================================================== */
 
-/* nine header items: switch to the menu button before they crowd */
-@media (max-width: 1320px) {
+/* header items carry the exact page titles: switch to the menu button before they crowd */
+@media (max-width: 1760px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .nav-links.is-open {
@@ -2169,3 +2169,13 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 /* Home: the Omnidirectional wheel stands alone above the economic case, centred */
 #model .oe-mid { display: block; }
 #model .oe-map { max-width: 780px; margin: 2rem auto 0; }
+
+/* header links read as the exact page titles, in title case so they fit */
+@media (min-width: 1761px) {
+  .nav-links { gap: 1.1rem; }
+  .nav-links a { text-transform: none; letter-spacing: 0.02em; font-size: 0.86rem; }
+}
+@media (min-width: 1761px) {
+  .site-header .wrap { max-width: 1680px; }
+  .nav-more-toggle { white-space: nowrap; }
+}

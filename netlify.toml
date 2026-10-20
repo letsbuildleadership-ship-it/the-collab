@@ -273,6 +273,24 @@
   force = true
 
 [[redirects]]
+  from = "/content/library/creator-audience-offer-map.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/creator-foundations-assessment.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/creator-foundations-manual.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/content/library/creator-identity-map.pdf"
   to = "/404"
   status = 404
@@ -291,7 +309,19 @@
   force = true
 
 [[redirects]]
+  from = "/content/library/creator-practice-profile.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/content/library/creator-venture-build-plan.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/creator-voice-values-map.pdf"
   to = "/404"
   status = 404
   force = true

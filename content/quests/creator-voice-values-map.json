@@ -1,0 +1,129 @@
+{
+  "key": "creator-voice-values-map",
+  "title": ".LLab Creator Voice & Values Map™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Name the voice in your work and the values you will not trade.",
+  "pdfTitle": ".LLab Creator Voice & Values Map™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I make, in the plainest words?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which mediums and methods do I come back to?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do people recognize in my work before they see my name?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — My Voice",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which words describe the voice of my work?",
+      "options": [
+        "Direct",
+        "Warm",
+        "Precise",
+        "Playful",
+        "Rigorous",
+        "Raw",
+        "Quiet",
+        "Bold",
+        "Handmade",
+        "Polished"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — My Voice",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does my work sound or look like when it is most itself?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 3 — What My Work Stands For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I believe about people, craft and culture that shows up in what I make?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — What My Work Stands For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I want my work to leave people with?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 4 — What I Will Not Make Or Trade",
+      "phase": null,
+      "type": "text",
+      "prompt": "What work, commissions or compromises will I turn down?"
+    },
+    {
+      "id": "n9",
+      "section": "Step 4 — What I Will Not Make Or Trade",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would I never trade for attention, money or approval?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 5 — My Voice and Values Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My work sounds like …"
+    },
+    {
+      "id": "n11",
+      "section": "Step 5 — My Voice and Values Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It stands for …"
+    },
+    {
+      "id": "n12",
+      "section": "Step 5 — My Voice and Values Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I will not trade …"
+    },
+    {
+      "id": "n13",
+      "section": "Step 5 — My Voice and Values Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I want people to leave with …"
+    },
+    {
+      "id": "n14",
+      "section": "Step 5 — My Voice and Values Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "One action I will take in the next 30 days:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "key": "creator-foundations-manual",
+  "title": ".LLab Creator Foundations Manual™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "The full Phase I build for a creative practice: voice, practice, audience, offer and a foundation statement.",
+  "pdfTitle": ".LLab Creator Foundations Manual™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "scaleHint": "1 = Rarely true  ·  2 = Sometimes true  ·  3 = Generally true  ·  4 = Consistently true  ·  5 = Strongly embedded",
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Part 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I make, in the plainest words?"
+    },
+    {
+      "id": "n2",
+      "section": "Part 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which mediums and methods do I come back to?"
+    },
+    {
+      "id": "n3",
+      "section": "Part 1 — What I Make",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is the thread that connects my work?"
+    },
+    {
+      "id": "n4",
+      "section": "Part 2 — My Voice",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Which words describe the voice of my work?",
+      "options": [
+        "Direct",
+        "Warm",
+        "Precise",
+        "Playful",
+        "Rigorous",
+        "Raw",
+        "Quiet",
+        "Bold",
+        "Handmade",
+        "Polished"
+      ],
+      "pickMin": 3,
+      "pickMax": 5
+    },
+    {
+      "id": "n5",
+      "section": "Part 2 — My Voice",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does my work sound or look like when it is most itself?"
+    },
+    {
+      "id": "n6",
+      "section": "Part 3 — What I Stand For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does my work stand for?"
+    },
+    {
+      "id": "n7",
+      "section": "Part 3 — What I Stand For",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will I not make or trade?"
+    },
+    {
+      "id": "n8",
+      "section": "Part 4 — My Practice",
+      "phase": null,
+      "type": "text",
+      "prompt": "How does a normal week of making run?"
+    },
+    {
+      "id": "n9",
+      "section": "Part 4 — My Practice",
+      "phase": null,
+      "type": "text",
+      "prompt": "What depends only on me?"
+    },
+    {
+      "id": "n10",
+      "section": "Part 4 — My Practice",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will I write down first?"
+    },
+    {
+      "id": "n11",
+      "section": "Part 5 — My Audience and Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who is my work for, and what do they need?"
+    },
+    {
+      "id": "n12",
+      "section": "Part 5 — My Audience and Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I offer them, in one sentence?"
+    },
+    {
+      "id": "n13",
+      "section": "Part 5 — My Audience and Offer",
+      "phase": null,
+      "type": "text",
+      "prompt": "How can someone support the work in one clear step?"
+    },
+    {
+      "id": "n14",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My voice is named and written down.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n15",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My values and limits are clear.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n16",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My practice runs without depending only on me.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n17",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My audience is named.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n18",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My offer is stated and matched to my audience.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n19",
+      "section": "Part 6 — Score My Foundations",
+      "phase": 0,
+      "type": "scale",
+      "prompt": "My rights, records and credits are in order.",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "n20",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My work is …"
+    },
+    {
+      "id": "n21",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It sounds like …"
+    },
+    {
+      "id": "n22",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It stands for …"
+    },
+    {
+      "id": "n23",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It is for …"
+    },
+    {
+      "id": "n24",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I offer …"
+    },
+    {
+      "id": "n25",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I will not trade …"
+    },
+    {
+      "id": "n26",
+      "section": "Part 7 — My Foundation Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I will review this every …"
+    },
+    {
+      "id": "n27",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who needs to see this statement first?"
+    },
+    {
+      "id": "n28",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where will it live so it is used, not filed?"
+    },
+    {
+      "id": "n29",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one action I will take in the next 30 days?"
+    },
+    {
+      "id": "n30",
+      "section": "Part 8 — Carry It Forward",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who would carry the work forward?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

@@ -64,10 +64,10 @@ function cell(key, t) {
 
 const products = reg.products.filter((p) => !p.founder_rank);
 const groups = [
-  { title: 'Leadership Infrastructure™ · Phase I · Foundations', sample: 'products.html#phase-1-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'foundations') },
-  { title: 'Leadership Infrastructure™ · Phase II · Infrastructure Planning & Management', sample: 'products.html#phase-2-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'infrastructure-planning') },
-  { title: 'Leadership Infrastructure™ · Phase III · Internal Operating Systems', sample: 'products.html#phase-3-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'operating-systems') },
-  { title: 'Leadership Infrastructure™ · Phase IV · Preservation', sample: 'products.html#phase-4-products', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'preservation') },
+  { title: 'Leadership Infrastructure™ · Phase I · Foundations', sample: 'all-products.html#phase-i', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'foundations') },
+  { title: 'Leadership Infrastructure™ · Phase II · Infrastructure Planning & Management', sample: 'all-products.html#phase-ii', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'infrastructure-planning') },
+  { title: 'Leadership Infrastructure™ · Phase III · Internal Operating Systems', sample: 'all-products.html#phase-iii', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'operating-systems') },
+  { title: 'Leadership Infrastructure™ · Phase IV · Preservation', sample: 'all-products.html#phase-iv', items: products.filter((p) => (p.line || 'leadership') === 'leadership' && p.phase_key === 'preservation') },
   { title: 'Partner-only IP · one per phase', sample: null, items: reg.partner_ip || [] },
   { title: 'Bonus', sample: null, items: reg.bonus_products },
 ];

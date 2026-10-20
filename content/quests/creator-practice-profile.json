@@ -1,0 +1,134 @@
+{
+  "key": "creator-practice-profile",
+  "title": ".LLab Creator Practice Profile™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Describe how your creative practice runs today and where it depends on you.",
+  "pdfTitle": ".LLab Creator Practice Profile™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — How My Practice Runs",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does a normal week of making look like?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — How My Practice Runs",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which tools, materials and spaces does the practice depend on?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 1 — How My Practice Runs",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who else helps the work happen?"
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — What I Already Do Well",
+      "phase": null,
+      "type": "choose",
+      "prompt": "Where is my practice strongest?",
+      "options": [
+        "Making",
+        "Finishing",
+        "Teaching",
+        "Collaborating",
+        "Showing the work",
+        "Selling the work",
+        "Documenting the work",
+        "Staying consistent"
+      ],
+      "pickMin": 1,
+      "pickMax": 3
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — What I Already Do Well",
+      "phase": null,
+      "type": "text",
+      "prompt": "Why does that strength matter to the work?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 3 — Where the Practice Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What would stop if I could not work for a month?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — Where the Practice Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do I know that is not written down anywhere?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Where the Practice Depends On Me",
+      "phase": null,
+      "type": "text",
+      "prompt": "What is one thing I could hand to someone else this quarter?"
+    },
+    {
+      "id": "n9",
+      "section": "Step 4 — What the Work Leaves Behind",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which work, records and rights would I want protected?"
+    },
+    {
+      "id": "n10",
+      "section": "Step 4 — What the Work Leaves Behind",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who would carry the practice or the body of work forward?"
+    },
+    {
+      "id": "n11",
+      "section": "Step 5 — My Practice Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "My practice is strongest in …"
+    },
+    {
+      "id": "n12",
+      "section": "Step 5 — My Practice Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "It depends on me for …"
+    },
+    {
+      "id": "n13",
+      "section": "Step 5 — My Practice Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I will write down …"
+    },
+    {
+      "id": "n14",
+      "section": "Step 5 — My Practice Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "I want the work to outlast me through …"
+    },
+    {
+      "id": "n15",
+      "section": "Step 5 — My Practice Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "One action I will take in the next 30 days:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}
