@@ -69,6 +69,7 @@ for (const m of reg.memberships) {
 for (const p of reg.products.filter(isFounders)) {
   add({ kind: 'product', group: 'Founders', cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
 }
+const hasQuest = (key) => fs.existsSync(path.join(root, 'content/quests', `${key}.json`));
 const productItem = async (p, extra = {}) => {
   const n = await pages(p.pdf_file);
   const pc = phaseCat(p.phase_key);
@@ -77,7 +78,7 @@ const productItem = async (p, extra = {}) => {
   return {
     kind: 'product', group: 'Products', cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
     line, name: p.name, tag: tagline(p.description),
-    meta: [/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF', n ? `${n} pages` : null, 'Licensed to keep'].filter(Boolean).join(' · '),
+    meta: [/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF', n ? `${n} pages` : null, hasQuest(p.key) ? 'Guided quest' : null, 'Licensed to keep'].filter(Boolean).join(' · '),
     price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), img: cover(p.key, path.join(root, 'content/library', p.pdf_file || 'none')), mark: p.name, ...extra.override,
   };
 };
@@ -86,7 +87,7 @@ for (const ph of PHASES) for (const p of prods.filter((x) => x.phase_key === ph.
 for (const ph of PHASES) for (const p of prods.filter((x) => x.phase_key === ph.key && isCreator(x))) add(await productItem(p));
 for (const p of reg.partner_ip || []) {
   const levels = partnerLevels(p.key);
-  add(await productItem(p, { badge: 'Partner-only IP', cats: ['partner-ip'], override: { line: 'Partner-only IP · a product', tag: p.description, meta: `Infrastructure planning IP · fillable PDF · Licensed to keep · Included with ${levels.join(', ').replace(/, ([^,]*)$/, ' and $1')}` } }));
+  add(await productItem(p, { badge: 'Partner-only IP', cats: ['partner-ip'], override: { line: 'Partner-only IP · a product', tag: p.description, meta: `Infrastructure planning IP · fillable PDF${hasQuest(p.key) ? ' · Guided quest' : ''} · Licensed to keep · Included with ${levels.join(', ').replace(/, ([^,]*)$/, ' and $1')}` } }));
 }
 for (const p of reg.blueprint_series || []) {
   const m = /^blueprint-phase(\d)$/.exec(p.key);
