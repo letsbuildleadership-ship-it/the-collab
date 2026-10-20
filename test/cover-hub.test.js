@@ -8,15 +8,14 @@ const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const pricing = require('../content/pricing.json');
 const freeTools = require('../content/free-tools.json').tools;
 
-test('the home page is a book cover: eight chapters, each a real page, no long copy', () => {
+test('the home contents are exactly the footer Navigate and More lists, as plain clickable links', () => {
   const html = read('index.html');
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
-  const rows = [...main.matchAll(/<a class="toc-main" href="([^"]+)"/g)].map((m) => m[1]);
-  assert.equal(rows.length, 8, 'eight chapters');
-  for (const href of [...rows, ...[...main.matchAll(/class="toc-chip" href="([^"#]+)/g)].map((m) => m[1])]) {
-    assert.ok(fs.existsSync(path.join(root, href)), `${href} exists`);
-  }
-  assert.ok(main.replace(/<[^>]+>/g, ' ').split(/\s+/).length < 520, 'the cover stays short');
+  const list = (h) => [...(new RegExp(`<h4>${h}</h4>\\s*<ul>([\\s\\S]*?)</ul>`).exec(html)[1]).matchAll(/<li><a href="([^"]+)"[^>]*>([^<]+)<\/a><\/li>/g)].map((m) => [m[1], m[2]]).filter(([h2]) => h2 !== '/');
+  const toc = [...main.matchAll(/<li><a href="([^"]+)">([^<]+)<span class="arrow">/g)].map((m) => [m[1], m[2]]);
+  assert.deepEqual(toc, [...list('Navigate'), ...list('More')], 'contents match Navigate + More (run scripts/sync-contents.mjs)');
+  for (const [href] of toc) assert.ok(fs.existsSync(path.join(root, href)), `${href} exists`);
+  assert.ok(!/class="toc-line"|class="toc-chip"|toc-back/.test(main), 'no descriptions, chips or back matter in the contents');
   assert.ok(!/class="ps-block"/.test(main) && !/id="model"/.test(main), 'the long sections moved off the cover');
 });
 

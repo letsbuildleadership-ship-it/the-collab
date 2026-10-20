@@ -2157,3 +2157,11 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .cat-row { grid-template-columns: 3.4rem minmax(0, 1fr); }
   .cat-buy { grid-column: 2; justify-content: space-between; }
 }
+
+/* Home contents: the footer's Navigate and More lists as plain clickable rows */
+.toc-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2.5rem 4rem; margin-top: 1.25rem; }
+.toc-group { display: grid; gap: 0.75rem; align-content: start; }
+.toc-links { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hairline-strong); }
+.toc-links a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--hairline-strong); font-size: clamp(1.15rem, 2.2vw, 1.6rem); font-weight: 300; line-height: 1.15; color: var(--paper); }
+.toc-links a .arrow { color: var(--filament-2); font-weight: 700; }
+.toc-links a:hover, .toc-links a:focus-visible { color: var(--filament-2); }
