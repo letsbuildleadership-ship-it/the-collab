@@ -22,7 +22,7 @@ test('every paid PDF is blocked from the public web (forced 404), so it is reach
   for (const f of files) assert.ok(blocked(`/content/library/${f}`), `${f} must be blocked in netlify.toml (run node scripts/block-paid-files.mjs)`);
 });
 
-test('function source and the server-only .LLab Legacy Library content are not public', () => {
+test('function source and the server-only .LLab Library content are not public', () => {
   assert.ok(blocked('/netlify/*'), '/netlify/* blocked');
   assert.ok(blocked('/content/library.json'), '/content/library.json blocked');
 });

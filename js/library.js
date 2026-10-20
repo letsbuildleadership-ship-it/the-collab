@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------ *
- * The .LLab Legacy Library™ — client for the TRIARCH™ member environment.
+ * The .LLab Library™ — client for the TRIARCH™ member environment.
  * Fetches /.netlify/functions/library (cookie-authed), renders the
  * onboarding sequence on first visit, then the Treasury / Forge / Legacy
  * Vault™ / Royal Archive™ / Legacy Archive. Every write goes through

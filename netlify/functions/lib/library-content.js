@@ -1,4 +1,4 @@
-// The .LLab Legacy Library™ — content loader plus the pure state-machine that
+// The .LLab Library™ — content loader plus the pure state-machine that
 // turns a customer record's library progress into: which month is open,
 // which Marks have been earned, which Phase Crowns and Cycle Rings have
 // been earned, and which Order of Distinction that adds up to.
@@ -55,7 +55,7 @@ function emptyCycle() {
   };
 }
 
-/** Lazily initializes record.library on first contact with the .LLab Legacy Library™. */
+/** Lazily initializes record.library on first contact with the .LLab Library™. */
 function ensureLibrary(record) {
   if (!record.library) {
     record.library = {

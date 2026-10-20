@@ -63,8 +63,8 @@ function buildPurchaseEmail(record, session) {
       const lines = [
         `Your products are in your account to keep: ${e.grant_scope === 'complete' ? 'the complete designated Co.LLab™ IP portfolio' : 'every product included in your tier'}.`,
         e.lifetime
-          ? 'Every membership is yours for life: .LLab Membership™, the Library Card™ and The .LLab Legacy Library™, and The .LLab Journal™. Nothing to renew.'
-          : `Every membership is active through ${p.expiresAt ? longDate(p.expiresAt) : 'the end of your term'}: .LLab Membership™, the Library Card™ and The .LLab Legacy Library™, and The .LLab Journal™.`,
+          ? 'Every membership is yours for life: .LLab Membership™, the Library Card™ and The .LLab Library™, and The .LLab Journal™. Nothing to renew.'
+          : `Every membership is active through ${p.expiresAt ? longDate(p.expiresAt) : 'the end of your term'}: .LLab Membership™, the Library Card™ and The .LLab Library™, and The .LLab Journal™.`,
       ];
       if ((e.seats || 1) > 1) lines.push(`Your Partnership includes ${e.seats} individual seats, including yours. Invite your team from the Partnership panel in your account; each invite link works once and expires after 14 days.`);
       if (e.engagement && e.engagement.label) lines.push(`Included session: ${e.engagement.label}. We'll be in touch to schedule it.`);
