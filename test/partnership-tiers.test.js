@@ -291,3 +291,14 @@ test('IP license page carries the license text verbatim from the product license
   const { licenseHtml } = await import('../scripts/pdf-src/docs/_license.mjs');
   assert.ok(lic.includes(licenseHtml.trim()), 'license copied exactly');
 });
+
+test('each partner-only IP card says which Partnership levels include it, matching the grants', () => {
+  const html = page;
+  const section = html.slice(html.indexOf('id="partner-ip"'), html.indexOf('</section>', html.indexOf('id="partner-ip"')));
+  for (const ip of pricing.registry.partner_ip) {
+    const levels = pricing.registry.partnerships.filter((t) => t.grants.includes(ip.key)).map((t) => t.tier_label);
+    const card = section.slice(section.indexOf(`<h3>${ip.name}</h3>`));
+    const said = (/Included with ([^.<]*)\./.exec(card) || [])[1] || '';
+    assert.equal(said.replace(/ and /, ', ').split(', ').join('|'), levels.join('|'), `${ip.key}: included-with line`);
+  }
+});
