@@ -39,5 +39,5 @@ test('the hub is in the More lists and the sitemap, and the cover chapters point
   }
   assert.match(read('sitemap.xml'), /pages\/all-products\.html/);
   const hub = read('pages/all-products.html');
-  for (const id of ['creators', 'founders']) assert.ok(hub.includes(`id="${id}"`), id);
+  for (const id of ['phase-i', 'phase-ii', 'phase-iii', 'phase-iv', 'founders']) assert.ok(hub.includes(`id="${id}"`), id);
 });
