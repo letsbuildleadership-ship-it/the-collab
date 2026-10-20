@@ -39,92 +39,110 @@ const tagline = (d) => {
   return text.split(/(?<=[.!?])\s/)[0].replace(/\s+—.*$/, '').trim();
 };
 
-const card = (o) => `<article class="cat-row" data-line="${esc(o.line)}">
-          <span class="cat-no">@@NO@@</span>
-          <div class="cat-body">
-            <p class="shop-line">${esc(o.line)}</p>
+import { execFileSync } from 'node:child_process';
+
+const IMG_DIR = path.join(root, 'assets/img/products');
+fs.mkdirSync(IMG_DIR, { recursive: true });
+// product cover: page 1 of the product PDF as a small JPEG (the cover only, never the content)
+function cover(key, pdfPath) {
+  if (!pdfPath || !fs.existsSync(pdfPath)) return null;
+  const out = path.join(IMG_DIR, `${key}.jpg`);
+  if (!fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(pdfPath).mtimeMs) {
+    try { execFileSync('pdftoppm', ['-jpeg', '-jpegopt', 'quality=76', '-r', '46', '-f', '1', '-l', '1', '-singlefile', pdfPath, out.replace(/\.jpg$/, '')], { stdio: 'ignore' }); } catch { return null; }
+  }
+  return `../assets/img/products/${key}.jpg`;
+}
+const dollars = (display) => { const m = String(display).replace(/,/g, '').match(/\$(\d+(?:\.\d+)?)/); return m ? Number(m[1]) : 0; };
+const buy = (href, label = 'Order') => !href ? '<span class="fx-soon">Available soon</span>' : `<a class="fx-btn" href="${esc(href)}" target="_blank" rel="noopener">${label}</a>`;
+const phaseCat = (key) => { const ph = PHASES.find((p) => p.key === key); return ph ? `phase-${ph.no.toLowerCase()}` : null; };
+
+const items = [];
+const add = (o) => items.push(o);
+const partnerLevels = (key) => reg.partnerships.filter((t) => (t.grants || []).includes(key)).map((t) => t.tier_label);
+
+for (const t of reg.partnerships) {
+  add({ cats: ['partnerships'], badge: 'Partnership™', line: 'Partnership™', name: t.tier_label, tag: `${t.headline || ''} ${t.legacy_line || ''}`.trim(), meta: `${t.seats} seat${t.seats === 1 ? '' : 's'} · ${t.term_months >= 1200 ? 'Lifetime' : `${t.term_months / 12} year${t.term_months === 12 ? '' : 's'}`} of membership`, price: t.price_display, sort: dollars(t.price_display), buttons: buy(t.payment_link), mark: t.tier_label });
+}
+for (const m of reg.memberships) {
+  add({ cats: ['memberships'], badge: 'Membership', line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? 'Every IV Phases™ product, plus the Infrastructure Analysis™' : '', price: m.plans.map((pl) => pl.price_display).join(' · '), sort: dollars(m.plans[0].price_display), buttons: m.plans.map((pl) => buy(pl.payment_link, pl.price_display)).join(''), mark: m.name.replace(/™$/, '') });
+}
+const productItem = async (p, extra = {}) => {
+  const n = await pages(p.pdf_file);
+  const pc = phaseCat(p.phase_key);
+  const creator = isCreator(p);
+  const line = creator ? '.LLab Creators™' : FOUR.has(p.key) ? 'The IV Phases™' : 'The .LLab Blueprint™';
+  return {
+    cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
+    line, name: p.name, tag: tagline(p.description),
+    meta: [/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF', n ? `${n} pages` : null, 'Licensed to keep'].filter(Boolean).join(' · '),
+    price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), img: cover(p.key, path.join(root, 'content/library', p.pdf_file || 'none')), mark: p.name, ...extra.override,
+  };
+};
+const prods = reg.products.filter((p) => !isFounders(p));
+for (const ph of PHASES) for (const p of prods.filter((x) => x.phase_key === ph.key && !isCreator(x))) add(await productItem(p));
+for (const ph of PHASES) for (const p of prods.filter((x) => x.phase_key === ph.key && isCreator(x))) add(await productItem(p));
+for (const p of reg.partner_ip || []) {
+  const levels = partnerLevels(p.key);
+  add(await productItem(p, { badge: 'Partner-only IP', cats: ['partner-ip'], override: { line: 'Partner-only IP · a product', tag: p.description, meta: `Infrastructure planning IP · fillable PDF · Licensed to keep · Included with ${levels.join(', ').replace(/, ([^,]*)$/, ' and $1')}` } }));
+}
+for (const p of reg.blueprint_series || []) {
+  const m = /^blueprint-phase(\d)$/.exec(p.key);
+  add(await productItem(p, { cats: ['blueprint', ...(m ? [`phase-${PHASES[Number(m[1]) - 1].no.toLowerCase()}`] : [])], badge: 'Magazine', override: { cats: ['blueprint', ...(m ? [`phase-${PHASES[Number(m[1]) - 1].no.toLowerCase()}`] : [])] } }));
+}
+for (const t of free) {
+  const ph = phaseOfText(t.phase);
+  add({ cats: ['free', ph ? `phase-${ph.no.toLowerCase()}` : null].filter(Boolean), badge: 'Free', line: 'Free tool', name: t.name, tag: tagline(t.description), meta: 'Free PDF · No account needed', price: 'Free', sort: 0, buttons: `<a class="fx-btn fx-btn--ghost" href="..${esc(t.file)}" target="_blank" rel="noopener">Open</a>`, img: cover(t.key, path.join(root, t.file.replace(/^\//, ''))), mark: t.name });
+}
+for (const p of reg.products.filter(isFounders)) {
+  add({ cats: ['founders'], badge: 'Founders', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
+}
+
+const tile = (o, i) => `<article class="fx-card" data-cat="${o.cats.join(' ')}" data-price="${o.sort}" data-order="${i}">
+          <div class="fx-img${o.img ? '' : ' fx-img--brand'}">${o.img ? `<img src="${o.img}" alt="${esc(o.name)} cover" width="391" height="506" loading="lazy">` : `<span class="fx-mark">${esc(o.mark)}</span>`}<span class="fx-badge">${esc(o.badge)}</span>${o.isNew ? '<span class="fx-badge fx-badge--new">New</span>' : ''}</div>
+          <div class="fx-body">
+            <p class="fx-line">${esc(o.line)}</p>
             <h3>${esc(o.name)}</h3>
-            <p class="shop-tag">${esc(o.tag)}</p>
-            ${o.meta.length ? `<p class="cat-facts">${o.meta.map(esc).join(' · ')}</p>` : ''}
+            <p class="fx-tag">${esc(o.tag)}</p>
+            ${o.meta ? `<p class="fx-meta">${esc(o.meta)}</p>` : ''}
+            <div class="fx-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
           </div>
-          <div class="cat-buy"><span class="shop-price">${esc(o.price)}</span>${o.buttons}</div>
         </article>`;
 
-const buy = (href, label = 'Order') => !href ? '<span class="shop-soon">Available soon</span>' : `<a class="pill pill--solid" href="${esc(href)}" target="_blank" rel="noopener">${label} <span class="arrow">→</span></a>`;
-
-async function productCard(p) {
-  const n = await pages(p.pdf_file);
-  const line = FOUR.has(p.key) ? 'The IV Phases™' : isCreator(p) ? '.LLab Creators™' : 'The .LLab Blueprint™';
-  const meta = [`${/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF'}${n ? ` · ${n} pages` : ''}`, 'Licensed to keep'];
-  if (FOUR.has(p.key)) meta.push('Included with .LLab Membership™ and every Partnership™');
-  return card({ line, name: p.name, tag: tagline(p.description), meta, price: p.price_display, buttons: buy(p.payment_link) });
-}
-
-const phaseSections = [];
-for (const ph of PHASES) {
-  const prods = reg.products.filter((p) => p.phase_key === ph.key && !isFounders(p));
-  const issue = (reg.blueprint_series || []).filter((p) => p.key === `blueprint-phase${PHASES.indexOf(ph) + 1}`);
-  const cards = [];
-  for (const p of [...prods, ...issue]) cards.push(await productCard(p));
-  const tools = free.filter((t) => (phaseOfText(t.phase) || {}).key === ph.key);
-  phaseSections.push({
-    id: `phase-${ph.no.toLowerCase()}`, no: ph.no, name: ph.name, tag: ph.tag, cards,
-    tools: tools.map((t) => card({ line: 'Free tool', name: t.name, tag: tagline(t.description), meta: ['Free PDF', 'No account needed'], price: 'Free', buttons: `<a class="pill" href="..${esc(t.file)}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>` })),
-  });
-}
-const extra = [];
-const blueprintAll = (reg.blueprint_series || []).filter((p) => !/blueprint-phase/.test(p.key));
-const planBtns = (m) => m.plans.map((pl) => `<a class="pill pill--solid" href="${esc(pl.payment_link)}" target="_blank" rel="noopener">${esc(pl.price_display)}</a>`).join('');
-extra.push({ id: 'memberships', title: 'Memberships', cards: reg.memberships.map((m) => card({ line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? ['Every IV Phases™ product, unlocked while you are a member', 'Infrastructure Analysis™ of the IP you license: what to build next'] : [], price: m.plans.map((pl) => pl.price_display).join(' · '), buttons: planBtns(m) })) });
-extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.map((p) => card({ line: 'Omnidirectional Enterprise™ Partnership', name: p.tier_label, tag: p.headline || tagline(p.description), meta: [`${p.seats} seat${p.seats === 1 ? '' : 's'}`, `${p.term_months >= 1200 ? 'Lifetime' : `${p.term_months / 12} year${p.term_months === 12 ? '' : 's'}`} of membership`, 'Every IV Phases™ product, licensed to keep'], price: p.price_display, buttons: buy(p.payment_link) })) });
-if (blueprintAll.length) extra.push({ id: 'blueprint', title: 'The .LLab Blueprint™ magazine', cards: await Promise.all(blueprintAll.map((p) => productCard(p))) });
-// the Founders Organization sits last, just above About
-extra.push({ id: 'founders', title: 'The Co.LLab Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
-
-const number = (cards, prefix) => cards.map((c, i) => c.replace('@@NO@@', `${prefix}-${String(i + 1).padStart(2, '0')}`));
-for (const p of phaseSections) { const all = number([...p.cards, ...p.tools], p.no); p.cards = all.slice(0, p.cards.length); p.tools = all.slice(p.cards.length); }
-extra.forEach((g, i) => { g.cards = number(g.cards, 'MPFB'[i] || String(i)); });
-const nav = [...phaseSections.map((p) => [`Phase ${p.no}`, p.id]), ...extra.map((g) => [g.title, g.id])];
+const FILTERS = [
+  ['all', 'All'], ['phase-i', 'Phase I · Foundations'], ['phase-ii', 'Phase II · Planning'], ['phase-iii', 'Phase III · Operating'], ['phase-iv', 'Phase IV · Preservation'],
+  ['creators', '.LLab Creators™'], ['partner-ip', 'Partner-only IP'], ['free', 'Free tools'], ['memberships', 'Memberships'], ['partnerships', 'Partnerships'], ['blueprint', 'Blueprint™ magazine'], ['founders', 'Founders'],
+];
+const count = (f) => (f === 'all' ? items.length : items.filter((o) => o.cats.includes(f)).length);
 
 const main = `<main>
 
   <section class="hero hub-hero" style="text-align:center;">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
-      <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · The Catalog</p>
+      <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · Shop</p>
       <h1 class="display" style="margin-top:1.5rem;"><strong>The .LLab products.</strong></h1>
-      <p class="subhead" style="margin:1.5rem auto 0;">Every product, numbered by department. Find it, read one line, order it.</p>
-      <div class="cat-search"><label class="cat-label" for="cat-q">Search the catalog</label><input id="cat-q" type="search" placeholder="Try “values”, “creator”, “free”" autocomplete="off"><p id="cat-count" class="cat-count" aria-live="polite"></p></div>
-      <div class="hub-jump" role="navigation" aria-label="Departments">${nav.map(([l, id]) => `<a class="toc-chip" href="#${id}">${esc(l)}</a>`).join('')}</div>
+      <p class="subhead" style="margin:1.5rem auto 0;">Infrastructure planning IP for every phase. Pick a phase, pick a product, order in one tap.</p>
     </div>
   </section>
-${phaseSections.map((p) => `
-  <section class="band shop-phase" id="${p.id}">
-    <div class="wrap">
-      <div class="phase-head"><span class="phase-no">${p.no}</span><div><p class="eyebrow">Department ${p.no} · Phase ${p.no} · ${esc(p.name)}</p><p class="phase-tag">${esc(p.tag || '')}</p></div></div>
-      <div class="cat-list">
-        ${p.cards.join('\n        ')}
-        ${p.tools.join('\n        ')}
-      </div>
-    </div>
-  </section>`).join('\n')}
-${extra.map((g) => `
-  <section class="band shop-phase" id="${g.id}">
-    <div class="wrap">
-      <p class="eyebrow">${esc(g.title)}</p>
-      <div class="cat-list">
-        ${g.cards.join('\n        ')}
-      </div>
-    </div>
-  </section>`).join('\n')}
 
-  <section class="band cat-order" aria-label="How to order">
+  <section class="fx" aria-label="Shop">
+    <div class="fx-bar" role="region" aria-label="Filter and sort">
+      <div class="wrap fx-bar-in">
+        <div class="fx-chips" role="tablist">${FILTERS.map(([id, label]) => `<button type="button" class="fx-chip${id === 'all' ? ' is-on' : ''}" data-filter="${id}" id="${id === 'all' ? 'shop-all' : id}">${esc(label)} <span>${count(id)}</span></button>`).join('')}</div>
+      </div>
+    </div>
     <div class="wrap">
-      <p class="eyebrow">How to order</p>
-      <ol class="cat-steps"><li><b>Choose</b> a product by its catalog number.</li><li><b>Order</b> through secure Stripe checkout.</li><li><b>Keep it.</b> Every product is licensed to keep, and appears in your library.</li></ol>
+      <div class="fx-tools">
+        <label class="fx-search"><span class="cat-label">Search</span><input id="cat-q" type="search" placeholder="Search products" autocomplete="off"></label>
+        <label class="fx-sort"><span class="cat-label">Sort</span><select id="fx-sort"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></label>
+      </div>
+      <p id="cat-count" class="fx-count" aria-live="polite">${items.length} products</p>
+      <div class="fx-grid" id="fx-grid">
+        ${items.map(tile).join('\n        ')}
+      </div>
+      <p id="cat-none" class="cat-none" hidden>Nothing matches. Clear the search or pick another filter.</p>
     </div>
   </section>
-  <p id="cat-none" class="wrap cat-none" hidden>Nothing matches. Clear the search to see the whole catalog.</p>
 
   <section class="next-links" aria-label="Continue">
     <div class="wrap">
@@ -134,7 +152,6 @@ ${extra.map((g) => `
   </section>
 </main>`;
 
-const groups = [...phaseSections, ...extra];
 let t = read('pages/legacy-library.html');
 t = t.replace(/ data-field(-href|-src)?="[^"]*"/g, '');
 const TITLE = 'The .LLab Products™ | The Co.LLab™';
@@ -154,16 +171,22 @@ t = t.replace('<a href="think.html" class="is-on" aria-current="true">Knowledge 
 t = t.replace(/(<div class="model-ribbon"[\s\S]*?<\/ul>)/, (r) => r.replace(/ class="is-on" aria-current="true"/g, '').replace(/<a href="all-products\.html">Products &amp; Services<\/a>/, '<a href="all-products.html" class="is-on" aria-current="true">Products &amp; Services</a>'));
 t = t.replace(/<main>[\s\S]*<\/main>/, main);
 t = t.replace('<script>document.getElementById(\'year\')', `<script>(function () {
-  var q = document.getElementById('cat-q'), rows = [].slice.call(document.querySelectorAll('.cat-row')), none = document.getElementById('cat-none'), count = document.getElementById('cat-count');
-  if (!q) return;
-  q.addEventListener('input', function () {
+  var grid = document.getElementById('fx-grid'); if (!grid) return;
+  var cards = [].slice.call(grid.children), chips = [].slice.call(document.querySelectorAll('.fx-chip')), q = document.getElementById('cat-q'), sort = document.getElementById('fx-sort'), count = document.getElementById('cat-count'), none = document.getElementById('cat-none');
+  var filter = 'all';
+  function apply() {
     var v = q.value.trim().toLowerCase(), n = 0;
-    rows.forEach(function (r) { var hit = !v || r.textContent.toLowerCase().indexOf(v) > -1; r.hidden = !hit; if (hit) n++; });
-    [].slice.call(document.querySelectorAll('.shop-phase')).forEach(function (sec) { sec.hidden = !!v && !sec.querySelector('.cat-row:not([hidden])'); });
-    count.textContent = v ? n + (n === 1 ? ' item' : ' items') : '';
-    none.hidden = !v || n > 0;
-  });
+    cards.forEach(function (c) { var hit = (filter === 'all' || c.getAttribute('data-cat').split(' ').indexOf(filter) > -1) && (!v || c.textContent.toLowerCase().indexOf(v) > -1); c.hidden = !hit; if (hit) n++; });
+    var by = sort.value, list = cards.slice().sort(function (a, b) { return by === 'low' ? a.dataset.price - b.dataset.price : by === 'high' ? b.dataset.price - a.dataset.price : a.dataset.order - b.dataset.order; });
+    list.forEach(function (c) { grid.appendChild(c); });
+    chips.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-filter') === filter); });
+    count.textContent = n + (n === 1 ? ' product' : ' products'); none.hidden = n > 0;
+  }
+  function fromHash() { var h = location.hash.slice(1); var hit = chips.filter(function (b) { return b.id === h; })[0]; if (hit) { filter = hit.getAttribute('data-filter'); apply(); } }
+  chips.forEach(function (b) { b.addEventListener('click', function () { filter = b.getAttribute('data-filter'); apply(); }); });
+  q.addEventListener('input', apply); sort.addEventListener('change', apply);
+  window.addEventListener('hashchange', fromHash); fromHash();
 })();</script>
 <script>document.getElementById('year')`);
 fs.writeFileSync(path.join(root, 'pages/all-products.html'), t);
-console.log(`all-products.html: ${phaseSections.map((p) => `Phase ${p.no} ${p.cards.length}`).join(' · ')} · ${extra.map((g) => `${g.title} ${g.cards.length}`).join(' · ')}`);
+console.log(`all-products.html: ${items.length} products · ${FILTERS.slice(1).map(([id, l]) => `${l} ${count(id)}`).join(' · ')}`);

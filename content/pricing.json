@@ -38,7 +38,8 @@
       "stripe_price_id": "price_1USebfAK6n3ctuR9XvgrXKZq",
       "payment_link": "https://buy.stripe.com/00w3cuerc2NL8xJ0uq9ws1p",
       "pdf_file": "values-charter.pdf",
-      "description": "Put your mission, vision and values in writing as one charter your organization can lead from."
+      "description": "Put your mission, vision and values in writing as one charter your organization can lead from.",
+      "new": true
     },
     {
       "key": "leadership-identity-profile",
@@ -49,7 +50,8 @@
       "stripe_price_id": "price_1USebfAK6n3ctuR9VeAaTaQZ",
       "payment_link": "https://buy.stripe.com/bJebJ00AmgEB9BNa509ws1q",
       "pdf_file": "leadership-identity-profile.pdf",
-      "description": "Name how you lead, what you stand for and what you will not trade."
+      "description": "Name how you lead, what you stand for and what you will not trade.",
+      "new": true
     },
     {
       "key": "decision-principles-playbook",
@@ -60,7 +62,8 @@
       "stripe_price_id": "price_1USebfAK6n3ctuR9sWs5qvR6",
       "payment_link": "https://buy.stripe.com/7sY8wO2Iubkhg0b90W9ws1n",
       "pdf_file": "decision-principles-playbook.pdf",
-      "description": "Turn what you believe into the rules your organization uses to decide."
+      "description": "Turn what you believe into the rules your organization uses to decide.",
+      "new": true
     },
     {
       "key": "foundations-assessment",
@@ -71,7 +74,8 @@
       "stripe_price_id": "price_1USebfAK6n3ctuR99UUOwp3T",
       "payment_link": "https://buy.stripe.com/14A28qfvg9c9bJVgto9ws1o",
       "pdf_file": "foundations-assessment.pdf",
-      "description": "A scored, thirty-statement assessment of how clear, shared and lived your foundations are."
+      "description": "A scored, thirty-statement assessment of how clear, shared and lived your foundations are.",
+      "new": true
     },
     {
       "key": "foundations-manual",
@@ -82,7 +86,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR9BUlKGO4b",
       "payment_link": "https://buy.stripe.com/6oU9AS5UG0FD15h5OK9ws1u",
       "pdf_file": "foundations-manual.pdf",
-      "description": "The full Phase I build: purpose, identity, values, principles and a charter in one guided manual."
+      "description": "The full Phase I build: purpose, identity, values, principles and a charter in one guided manual.",
+      "new": true
     },
     {
       "key": "alignment-map",
@@ -194,7 +199,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR90K7X4e7j",
       "payment_link": "https://buy.stripe.com/9B64gy1Eq3RP3dp1yu9ws1t",
       "pdf_file": "creator-voice-values-map.pdf",
-      "description": "Name the voice in your work and the values you will not trade."
+      "description": "Name the voice in your work and the values you will not trade.",
+      "new": true
     },
     {
       "key": "creator-practice-profile",
@@ -206,7 +212,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR9NJX0A3hd",
       "payment_link": "https://buy.stripe.com/28E4gy5UGfAx29l2Cy9ws1s",
       "pdf_file": "creator-practice-profile.pdf",
-      "description": "Describe how your creative practice runs today and where it depends on you."
+      "description": "Describe how your creative practice runs today and where it depends on you.",
+      "new": true
     },
     {
       "key": "creator-audience-offer-map",
@@ -218,7 +225,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR9eIHWd0iV",
       "payment_link": "https://buy.stripe.com/28E3cubf0gEB7tF2Cy9ws1r",
       "pdf_file": "creator-audience-offer-map.pdf",
-      "description": "Connect who your work is for with what you offer them."
+      "description": "Connect who your work is for with what you offer them.",
+      "new": true
     },
     {
       "key": "creator-foundations-assessment",
@@ -230,7 +238,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR9mvwdNo3g",
       "payment_link": "https://buy.stripe.com/6oU8wO0Am3RPg0bgto9ws1v",
       "pdf_file": "creator-foundations-assessment.pdf",
-      "description": "A scored, thirty-statement assessment of the foundations under a creative practice."
+      "description": "A scored, thirty-statement assessment of the foundations under a creative practice.",
+      "new": true
     },
     {
       "key": "creator-foundations-manual",
@@ -242,7 +251,8 @@
       "stripe_price_id": "price_1USebgAK6n3ctuR9DIKE3hIM",
       "payment_link": "https://buy.stripe.com/fZu7sKfvg0FD4ht4KG9ws1w",
       "pdf_file": "creator-foundations-manual.pdf",
-      "description": "The full Phase I build for a creative practice: voice, practice, audience, offer and a foundation statement."
+      "description": "The full Phase I build for a creative practice: voice, practice, audience, offer and a foundation statement.",
+      "new": true
     },
     {
       "key": "creator-alignment-map",
