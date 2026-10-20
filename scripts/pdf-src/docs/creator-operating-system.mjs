@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'Repeatable systems for running the creative venture day-to-day — without every decision depending on you.',
     phase: 'III · Internal Operating Systems',
     price: '$300',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -21,7 +21,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>THE CREATOR OPERATING SYSTEM™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p>Six systems that let a creative venture run on infrastructure instead of adrenaline. Work through each module in order, or jump to the one that matches your thinnest area from the Creator Infrastructure Diagnostic™.</p>
+<p>Six systems that let a creative venture run on infrastructure instead of adrenaline. Work through each module in order, or jump to the one that matches your thinnest area from the .LLab Creators Diagnostic™.</p>
 
 ${module_(1, 'The Weekly Operating Rhythm', `
 <p>Assign each day or half-day a mode — Make, Reach, or Run — instead of scheduling individual tasks in isolation.</p>
@@ -71,6 +71,6 @@ ${module_(6, 'The Review System', `
 <p>With operating systems in place, the venture is ready for Preservation-phase infrastructure: <strong>Creative Estate Mapping™</strong> ($200), building toward the full <strong>Creator Legacy Infrastructure Architecture™</strong> ($750).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

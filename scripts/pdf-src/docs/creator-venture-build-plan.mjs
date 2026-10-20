@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'A practical 30-day plan for turning your creative practice into a venture.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$100',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -59,6 +59,6 @@ ${week(4, 'Run it and record what happened', [
 <p>Once your venture has run at least once, the next infrastructure question is how to make it repeatable without reinventing it every time — that's <strong>The Creator Operating System™</strong> ($300).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

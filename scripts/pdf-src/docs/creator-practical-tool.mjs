@@ -5,12 +5,12 @@ export const meta = {
   outFile: 'creator-practical-tool.pdf',
   docTitle: 'The Body of Work Inventory™',
   cover: {
-    eyebrow: 'Creator Infrastructure™ — Free Practical Tool',
+    eyebrow: '.LLab Creators™ — Free Practical Tool',
     title: 'The Body of Work <strong>Inventory</strong>™',
     subtitle: "Catalogue what you've actually made — the first step toward Body of Work Architecture.",
     phase: 'IV · Preservation (starts here, useful anywhere)',
     price: 'Free',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -80,6 +80,6 @@ ${licensePageHtml}
     <p>A complete inventory is the raw material for real Preservation-phase infrastructure. When you're ready to turn it into an actual estate and succession plan, see <strong>Creative Estate Mapping™</strong> ($200).</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

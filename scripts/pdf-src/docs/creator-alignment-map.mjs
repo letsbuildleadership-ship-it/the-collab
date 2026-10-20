@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'Connect your creative practice, your audience, and your offer into one coherent picture.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$50',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -54,6 +54,6 @@ ${licenseHtml}
 <p>Once practice, audience, and offer are aligned, turn the gap you identified into a 30-day plan with the <strong>Creator Venture Build Plan™</strong> ($100).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

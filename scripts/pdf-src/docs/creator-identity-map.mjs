@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'Turn what you\'re already creating into a clear creative identity you can build infrastructure around.',
     phase: 'I · Foundations',
     price: '$20',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -20,7 +20,7 @@ ${licenseHtml}
 <p><strong>CREATOR IDENTITY MAP™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><strong>Infrastructure has to be built around something specific. This workbook makes that something specific.</strong></p>
-<p>The Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in Creator Infrastructure™ builds on.</p>
+<p>The Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in .LLab Creators™ builds on.</p>
 
 <p><strong>STEP 1 — INVENTORY YOUR MEDIUMS AND METHODS</strong></p>
 <p>List every format your creative work has taken, however minor.</p>
@@ -56,6 +56,6 @@ ${licenseHtml}
 <p>With a clear identity in hand, the next infrastructure question is how it connects to an actual venture — audience, offer, and reach. That's the <strong>Creator Alignment Map™</strong> ($50).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

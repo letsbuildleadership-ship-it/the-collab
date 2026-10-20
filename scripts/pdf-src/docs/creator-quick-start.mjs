@@ -5,12 +5,12 @@ export const meta = {
   outFile: 'creator-quick-start.pdf',
   docTitle: '.LLab Creator Quick Start Guide™',
   cover: {
-    eyebrow: 'Creator Infrastructure™ — Free Quick Start',
+    eyebrow: '.LLab Creators™ — Free Quick Start',
     title: '.LLab Creator Quick Start <strong>Guide</strong>™',
     subtitle: 'Five infrastructure moves you can make this week, whatever you\'re creating.',
     phase: 'all of The IV Phases™',
     price: 'Free',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -21,7 +21,7 @@ ${licensePageHtml}
   <div class="content-header">
     <span class="page-index">01 · The Four Moves</span>
     <h2 class="section-title">You don't need a business plan.<br/><strong>You need five moves.</strong></h2>
-    <p class="section-intro">One small, concrete move for each phase of Creator Infrastructure™ — plus a fifth that ties them together. Do them in order, or start wherever your creative practice needs it most.</p>
+    <p class="section-intro">One small, concrete move for each phase of .LLab Creators™ — plus a fifth that ties them together. Do them in order, or start wherever your creative practice needs it most.</p>
   </div>
 
   <div class="pathway">
@@ -100,9 +100,9 @@ ${licensePageHtml}
 
   <div class="callout">
     <p class="callout-label">What's Next</p>
-    <p>Take the free <strong>.LLab Creator Infrastructure Diagnostic™</strong> for a fuller picture across all of The IV Phases™, or go straight to the product that matches your thinnest phase in the Creator Infrastructure™ product ladder.</p>
+    <p>Take the free <strong>.LLab Creators Diagnostic™</strong> for a fuller picture across all of The IV Phases™, or go straight to the product that matches your thinnest phase in the .LLab Creators™ product ladder.</p>
   </div>
 
-  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

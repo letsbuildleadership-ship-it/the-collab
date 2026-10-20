@@ -1,5 +1,5 @@
 {
-  "banner_text": "The .LLab Creator Infrastructure™",
+  "banner_text": "The .LLab Creators™",
   "banner_highlight": "Now Open",
   "banner_cta_label": "See The Free Resources",
   "banner_cta_link": "#free",
@@ -44,13 +44,13 @@
   "pathway_eyebrow": "How people move through it",
   "pathway_headline": "Discover. Try something free. Buy what solves the real problem.",
   "pathway_steps": [
-    { "title": "Discover", "description": "Find Creator Infrastructure™ through The .LLab, a free resource, or a search." },
+    { "title": "Discover", "description": "Find .LLab Creators™ through The .LLab, a free resource, or a search." },
     { "title": "Free Resource", "description": "Start with real value — free." },
     { "title": "Identify Need", "description": "See exactly which phase of your creative infrastructure is thin." },
     { "title": "Individual Product", "description": "Buy the one product that solves that specific problem — no bundle required." },
     { "title": "Implement & Refine", "description": "Put it to work in your actual practice, then refine it." },
     { "title": "Advance Through The IV Phases™", "description": "Move from Foundations toward Preservation as your venture grows." },
-    { "title": ".LLab Membership™", "description": "Unlock the full Creator Infrastructure™ catalog, ongoing systems, and community." },
+    { "title": ".LLab Membership™", "description": "Unlock the full .LLab Creators™ catalog, ongoing systems, and community." },
     { "title": "Enterprise & Legacy", "description": "Deeper infrastructure for a creative enterprise built to outlast any one project." }
   ],
 
@@ -66,7 +66,7 @@
     },
     {
       "tag": "Free Diagnostic",
-      "title": ".LLab Creator Infrastructure Diagnostic™ (Free Edition)",
+      "title": ".LLab Creators Diagnostic™ (Free Edition)",
       "description": "Find where your creative infrastructure is thin.",
       "link": "/content/library/creator-diagnostic.pdf"
     },
@@ -84,14 +84,14 @@
     },
     {
       "tag": "Free Pathway Guide",
-      "title": ".LLab Creator Infrastructure Pathway Guide™",
+      "title": ".LLab Creators Pathway Guide™",
       "description": "See the full path and where you are on it.",
       "link": "/content/library/creator-pathway-guide.pdf"
     }
   ],
 
   "products_eyebrow": "Buy what you need, when you need it",
-  "products_headline": "The Creator Infrastructure™ product ladder",
+  "products_headline": "The .LLab Creators™ product ladder",
   "products_body": "Beginner-first. One phase, one problem per product — or unlock all with .LLab Membership™.",
   "creator_products": [
     { "phase": "Phase I · Foundations", "title": "Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },

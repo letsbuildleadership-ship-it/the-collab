@@ -6,12 +6,12 @@ export const meta = {
   outFile: 'creator-website-glossary.pdf',
   docTitle: 'The Website Glossary™',
   cover: {
-    eyebrow: 'Creator Infrastructure™ — Free Infographic',
+    eyebrow: '.LLab Creators™ — Free Infographic',
     title: 'The Website <strong>Glossary</strong>™',
     subtitle: `${GLOSSARY_COUNT} words, in plain English: the terms behind a luxury-style, ad-style website.`,
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -52,5 +52,5 @@ ${pageOf('03 · The Words, Continued', 'Name every piece<br/><strong>correctly.<
     <p class="callout-label">What's Next</p>
     <p>These words are the vocabulary. <strong>Creator Website Blueprint™</strong> ($100) puts them to work: a page pattern, a starter site you can put online, and a manual for building with Composio, GitHub, Netlify, Claude and ChatGPT, with an iPhone edition and a computer edition.</p>
   </div>
-  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>`)}
+  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>`)}
 `;

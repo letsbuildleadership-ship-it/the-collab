@@ -10,7 +10,7 @@ export const meta = {
     subtitle: 'The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.',
     phase: 'IV · Preservation',
     price: '$750',
-    footerRight: '.LLab Creator Infrastructure™',
+    footerRight: '.LLab Creators™',
   },
 };
 
@@ -19,7 +19,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>CREATOR LEGACY INFRASTRUCTURE ARCHITECTURE™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p>This is the top of the Creator Infrastructure™ ladder — the comprehensive architecture that takes everything built across Foundations, Infrastructure Planning, and Internal Operating Systems, and designs it to last beyond any single project, platform, or the creator themselves.</p>
+<p>This is the top of the .LLab Creators™ ladder — the comprehensive architecture that takes everything built across Foundations, Infrastructure Planning, and Internal Operating Systems, and designs it to last beyond any single project, platform, or the creator themselves.</p>
 <p>It assumes you've done (or will reference) a Creator Identity Map™, a Creator Alignment Map™, The Creator Operating System™, and Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
 
 <p><strong>PILLAR 1 — IDENTITY ARCHITECTURE</strong></p>
@@ -61,6 +61,6 @@ ${licenseHtml}
 <p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>.LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, .LLab Library™, and community that support the full Co.LLab™ ecosystem.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
 </section>
 `;

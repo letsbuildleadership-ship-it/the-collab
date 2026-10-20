@@ -11,7 +11,7 @@
 | **Partnerships** | Owners/leaders with capital, afraid the vision fades or they're forgotten | **Lead offer**, highest value | $5,000 · $10,000 · $25,000 · $50,000, one-time |
 | **.LLab** | Anyone starting out | **Marketing engine + recurring revenue**; every Partnership includes it | Free Portal → Library Card $10/mo · Membership $150/mo (or $1,500/yr) · Journal $150/yr |
 | **Founders Organization** | Founders / community supporters | Community economic development; supports partner nonprofits. *Not a membership tier* | $20 · $50 · $350 · $1,000 |
-| Creator™ | Creatives | Same infrastructure applied to creative IP | Product ladder on its page |
+| .LLab Creators™ | Creatives | Same infrastructure applied to creative IP | Product ladder on its page |
 | Impact™ · Technology · Atelier™ · Co.LLab+™ | Community / ventures | Supporting or coming soon | — |
 
 **Strengths:** owned IP, a clear 4-step system, a free front door, no-subscription clarity at the top tier. **Gaps:** no verified social proof yet; Partnership is self-serve at a high ticket, so trust must come from the page; Founders status is "being developed" (pursuing 501(c)(3)) and must stay worded that way.
@@ -28,7 +28,7 @@
 | **Businesses** | ads 01, 09 | ad 10 | ads 08, 11 | — | Partnerships |
 | **Capital** | — | ad 04 | ad 05 | ad 02 | Partnership tiers |
 | **People** | ad 06 (free join) | Library Card | Membership | — | The .LLab |
-| **Creators** | ad 12 | — | — | — | Creator™ |
+| **Creators** | ad 12 | — | — | — | .LLab Creators™ |
 | **Knowledge + IP** | — | ads 03, 15 | — | — | Think · Journal |
 | **Technology** | — | — | ad 14 | — | Technology |
 | **Communities** | — | — | — | ad 07 | Founders · Co.LLab+™ |
