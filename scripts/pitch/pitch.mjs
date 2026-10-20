@@ -143,7 +143,9 @@ const css2 = `
 `;
 
 let pn = 1;
-const TOTAL = 15;
+const TOTAL = 18;
+const SECTIONS = ["The model", "The idea", "The ecosystem", "Partnership", "What you license", "Start free", "The ladder", "Every page", ".LLab Collaborating Companies", "What’s next", "Your next step"];
+const K = (name) => `${String(SECTIONS.indexOf(name) + 1).padStart(2, '0')} · ${name}`;
 const foot = () => { pn += 1; const n = pn; const pad = (x) => String(x).padStart(2, '0'); return `<div class="ft"><span><a class="fl" href="#p2">Contents</a> · <a class="fl" href="${SITE}">The Co.LLab™</a></span><span><a class="fl" href="#p${n - 1}">‹ Back</a> &nbsp;&nbsp; <a class="fl" href="#p${n >= TOTAL ? 1 : n + 1}">${n >= TOTAL ? 'Start ›' : 'Next ›'}</a> &nbsp;&nbsp; ${pad(n)}</span></div>`; };
 const pg = (kicker, title, inner, dark = false) => `<section class="g" id="p${pn + 1}" ${dark ? 'style="background:var(--hunter);color:#fff"' : ''}><div class="gi"><p class="k">${kicker}</p><h2 class="t" ${dark ? 'style="color:#fff"' : ''}>${title}</h2>${inner}</div>${foot()}</section>`;
 const brand = `<div class="page-brand"><a href="${SITE}" style="display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none"><img src="${logo}" alt="The Co.LLab™" /><span>The Co<span class="dot">.</span>LLab™</span></a></div>`;
@@ -152,12 +154,12 @@ const cover = `<section class="g cv" id="p1" style="padding:0"><div class="ph-ph
 <div class="top"><p class="k">Leadership Infrastructure™ · A pitch</p><h1>Every company starts<br/>with a vision.<br/><b>Most lose it.</b></h1><p class="sub">The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.</p></div>
 <div class="bot"><div class="logo"><img src="${logo}"/>The Co.LLab™</div><div style="text-align:right"><a href="${SITE}" style="color:inherit;text-decoration:none">Let’s Build Your Legacy<span>Through Omnidirectional Enterprise™</span></a></div></div></section>`;
 
-const tocRows = [[3, 'The four questions'], [4, 'Leadership, made structural'], [5, 'The ecosystem'], [6, 'What you license'], [7, 'Start free'], [8, 'The ladder'], [9, 'Partnership levels'], [11, 'Included in every level'], [12, '.LLab Collaborating Companies'], [13, 'What’s next, A to Z'], [14, 'Your point of entry'], [15, 'Let’s talk']];
-const contents = pg('Contents', 'Where would you like to <b>begin?</b>', `
+const tocRows = [[3, 'The four questions'], [4, 'Leadership, made structural'], [5, 'The ecosystem'], [6, 'Partnership levels'], [8, 'Included in every level'], [9, 'What you license'], [10, 'Start free'], [11, 'The ladder'], [12, 'Every page, in order'], [15, '.LLab Collaborating Companies'], [16, 'What’s next, A to Z'], [17, 'Your point of entry'], [18, 'Let’s talk']];
+const contents = () => pg('Contents', 'Where would you like to <b>begin?</b>', `
 <p class="hint">Tap a section to jump to it. Tap any card, QR code or button to open it on the site.</p>
 <div class="toc grow">${tocRows.map(([n, t]) => `<a href="#p${n}"><span class="n">${String(n).padStart(2, '0')}</span><span>${t}</span><span class="ar">›</span></a>`).join('')}</div>`);
 const qrow = (img, p, nm, q) => `<div class="qrow"><div class="im" style="background-image:url(${ph(img)})"><div class="pp"><small>${p}</small><b>${nm}</b></div></div><div class="tx">${q}</div></div>`;
-const p1 = pg('01 · The model', 'Can you answer these <b>four questions?</b>', `
+const p1 = () => pg(K('The model'), 'Can you answer these <b>four questions?</b>', `
 <p class="lead">They are the four questions of The IV Phases™ of Leadership Infrastructure™. A company that can answer all four has a vision that does not depend on one person.</p>
 <div class="dq grow" style="grid-auto-rows:1fr">
 ${qrow('lake', 'Phase I', 'Foundations', 'What should never be lost as we grow?')}
@@ -167,7 +169,7 @@ ${qrow('arch', 'Phase IV', 'Preservation', 'What must exist for what we built to
 </div>`);
 
 const arw = (bg, a, i, b) => `<div class="a" style="background:${bg}"><div>${a}</div><div><i>${i}</i>${b}</div></div>`;
-const p2 = pg('02 · The idea', 'Leadership, made <b>structural.</b>', `
+const p2 = () => pg(K('The idea'), 'Leadership, made <b>structural.</b>', `
 <p class="defq">Leadership captured, documented, and embedded so it <b>outlasts the individuals who hold it.</b></p>
 <div class="arw grow">
 ${arw('#cc2a0a', 'Define it.', 'Phase I', 'Foundations')}
@@ -189,13 +191,13 @@ ${pts.map((p, i) => { const q = pts[(i + 1) % 8]; return `<line x1="${p.x.toFixe
 <text x="${cx}" y="${cy + 10}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Omnidirectional</text>
 <text x="${cx}" y="${cy + 26}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Enterprise™</text>
 ${pts.map((p) => `<g><rect x="${(p.x - 72).toFixed(1)}" y="${(p.y - 20).toFixed(1)}" width="144" height="40" rx="20" fill="#17301d" stroke="#ff602e" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y + 6).toFixed(1)}" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">${p.name}</text></g>`).join('')}</svg>`;
-const p3 = pg('03 · The ecosystem', 'Not a funnel. <b>A coordinated system.</b>', `
+const p3 = () => pg(K('The ecosystem'), 'Not a funnel. <b>A coordinated system.</b>', `
 <p class="lead">Value moves in every direction between people, ideas, products, organizations and community, with many ways in, all connected to Leadership Infrastructure™.</p>
 <div class="oew grow">${svg}</div>
 <div class="hero" style="margin:12px 0 0"><p class="big" style="font-size:20px">It links <b>contribution, ownership and return.</b> Built on ethics: how we treat people is part of the infrastructure.</p></div>`);
 
 const pb = (bg, n, v, nm, items) => `<div class="pbox" style="background:${bg}"><div class="n">${n}</div><div class="v">${v}</div><div class="nm">${nm}</div>${items.map((i) => `<div class="it">${i}</div>`).join('')}</div>`;
-const p4 = pg('04 · What you license', 'Infrastructure planning IP. <b>One for every step.</b>', `
+const p4 = () => pg(K('What you license'), 'Infrastructure planning IP. <b>One for every step.</b>', `
 <p class="lead">Every product is in the catalog, by phase. Licensed to keep. A license grants use, not ownership.</p>
 <div class="p2 grow">
 ${pb('#cc2a0a', 'Phase I', 'Define it', 'Foundations', [P.phaseLines[0]])}
@@ -205,7 +207,7 @@ ${pb('#0f1d13', 'Phase IV', 'Pass it on', 'Preservation', [P.phaseLines[3]])}
 </div>
 <div class="note" style="margin-top:6px;font-size:13px"><b>Creator™ line.</b> The same infrastructure for creative ventures. Creators keep ownership of their own work; The Co.LLab™ builds the infrastructure around it.</div>`);
 
-const p5 = pg('05 · Start free', 'See the method <b>before you pay.</b>', `
+const p5 = () => pg(K('Start free'), 'See the method <b>before you pay.</b>', `
 <p class="lead">The free tools are open to everyone. A free account gives you a guided quest and your Infrastructure Snapshot™ on each.</p>
 <div class="stps grow">
 <div class="sp"><div class="no">1</div><div><b>Use the free tools</b><span>Open to everyone, no account needed.</span></div></div>
@@ -217,7 +219,7 @@ const p5 = pg('05 · Start free', 'See the method <b>before you pay.</b>', `
 
 const tl = (t) => `<b>${t.label}</b> · ${t.verb}: ${t.bestFor.charAt(0).toLowerCase()}${t.bestFor.slice(1)}`;
 const lb = (h, pr, t) => `<div class="lr"><div class="lrb" style="width:${h}%">${pr}</div><div class="lrt">${t}</div></div>`;
-const p6 = pg('06 · The ladder', 'From a free door to a <b>lifetime Partnership.</b>', `
+const p6 = () => pg(K('The ladder'), 'From a free door to a <b>lifetime Partnership.</b>', `
 <p class="lead">Every Partnership already includes the .LLab™, so the free door leads straight to the paid one.</p>
 <div class="grow" style="margin-top:4px">
 ${lb(30, 'Free', 'Free tools · Infrastructure Snapshot™ with a free account')}
@@ -237,18 +239,18 @@ const tc = (tn, pr, term, hl, items) => `<div class="tc"><div class="hd"><span c
 const rel = (t) => `New Co.LLab™ releases, yours to keep, for ${t}`;
 const mem = (t) => `<b>.LLab Membership™, .LLab Library Card™ and The .LLab Journal™</b> for ${t}`;
 const all9 = '<b>Every IV Phases™ product</b>, licensed to keep';
-const p7 = pg('07 · Partnership', 'Four levels. <b>One legacy.</b>', `
+const p7 = () => pg(K('Partnership'), 'Four levels. <b>One legacy.</b>', `
 <p class="lead" style="margin-bottom:10px">One purchase, with seats for your team. Each level includes everything in the level before it.</p>
 <div class="stps grow" style="gap:10px">
 ${tc(T[0].label, T[0].price, T[0].term, T[0].line, [`<b>${T[0].partnerIp}</b>, partner-only, licensed to keep`, all9, '.LLab Infrastructure Roadmap™, a bonus product', mem(T[0].termShort), rel(T[0].termShort)])}
 ${tc(T[1].label, T[1].price, T[1].term, T[1].line, [`Everything in ${T[0].label}, plus <b>${T[1].partnerIp}</b>, partner-only, licensed to keep`, all9, mem(T[1].termShort), rel(T[1].termShort), `${T[1].seats} individual access seats`])}
 </div>`);
-const p7a = pg('07 · Partnership', 'Four levels. <b>One legacy.</b>', `
+const p7a = () => pg(K('Partnership'), 'Four levels. <b>One legacy.</b>', `
 <div class="stps grow" style="gap:10px">
 ${tc(T[2].label, T[2].price, T[2].term, T[2].line, [`Everything in ${T[1].label}, plus <b>${T[2].partnerIp}</b>, partner-only, licensed to keep`, all9, mem(T[2].termShort), rel(T[2].termShort), `${T[2].seats} individual access seats`])}
 ${tc(T[3].label, T[3].price, T[3].term, T[3].line, [`Everything in ${T[2].label}, plus <b>${T[3].partnerIp}</b>, partner-only, licensed to keep`, all9, mem('life, never expiring'), rel('life'), `${T[3].seats} individual access seats`, `Recognition in your account as an ${T[3].label} Partner™`])}
 </div>`);
-const p7b = pg('07 · Partnership', 'Included in <b>every level.</b>', `
+const p7b = () => pg(K('Partnership'), 'Included in <b>every level.</b>', `
 <div class="stps grow">
 <div class="sp"><div class="no">1</div><div><b>Every IV Phases™ IP</b><span>Every IV Phases™ product, licensed to keep.</span></div></div>
 <div class="sp"><div class="no">2</div><div><b>A partner-only framework</b><span>One for your level, found nowhere else.</span></div></div>
@@ -257,7 +259,7 @@ const p7b = pg('07 · Partnership', 'Included in <b>every level.</b>', `
 <div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal business use. Results depend on how each business applies it.</div>
 <div class="qb" style="margin-top:12px"><img src="${qPartner}"/><div><b>See Partnerships</b><span>Scan to open the Partnership page.</span></div></div>`);
 
-const p8 = pg('08 · .LLab Collaborating Companies', 'Companies we <b>collaborate with.</b>', `
+const p8 = () => pg(K('.LLab Collaborating Companies'), 'Companies we <b>collaborate with.</b>', `
 <p class="lead">Companies that license Co.LLab™ IP, or hold a Membership, collaborate through the Omnidirectional Enterprise™.</p>
 <div class="stps grow">
 <div class="sp"><div class="no">1</div><div><b>Who collaborates</b><span>Companies that license any .LLab™ product or hold a Membership. Anyone can browse.</span></div></div>
@@ -269,12 +271,30 @@ const p8 = pg('08 · .LLab Collaborating Companies', 'Companies we <b>collaborat
 const tw = (i, h, p, q) => `<div class="tw"><div><div class="i">${i}</div><h3>${h}</h3><p>${p}</p></div><img src="${q}"/></div>`;
 const SITEP = `${SITE}/pages`;
 const vc = (nm, st, line, href, sub = '') => `<div class="vc" data-href="${href}"><div class="hd"><span class="nm">${nm}</span><span class="pill">${st}</span></div><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`;
-const azRows = [["Co.LLab+™", "In development", "The e-commerce side of The Co.LLab™, where members list their website, highlight a product or service, and advertise.", "community.html", ""], ["The Intelligence Paradox Trilogy™", "Coming soon", "Three ideas. One paradox. Dropping soon. Under .LLab R.A.T.™, in The .LLab Legacy Library™ and The .LLab Journal™.", "think.html", ""], [".LLab Atelier™", "In development", "Where infrastructure meets craft and space.", "atelier.html", "Wearable workwear and accessories · Homes · Office spaces · Creative studio spaces"], [".LLab AV Productions™", "In development", "All things sound and video, for the occasions that bring people together and the people who create them. Includes home office integrations.", "technology.html", ""], [".LLab Communications™", "In development", "The original technology. Tools that bring people into the same room, not just onto a screen.", "technology.html", ""], [".LLab Edu™", "In development", "Sponsored learning and mentorship for partners, and future educational courses.", "community.html", ""], ["Renewable Energy Ecosystem™", "Vision", "Power that sustains community. Renewable energy so communities can sustain their culture for generations.", "technology.html", ""]];
-const pv1 = pg('10 · What’s next', 'What’s next, <b>A to Z.</b>', `
+// Every page of the site, as the site describes it, in the order the revenue flows: Partnership first, then
+// the .LLab products, then everything that follows. Names and descriptions are read from the pages themselves.
+const decode = (t) => t.replace(/&amp;/g, '&');
+const siteRow = (file) => {
+  const h = fs.readFileSync(`${repo}/pages/${file}.html`, 'utf8');
+  const title = decode(/<title>([^<]*)<\/title>/.exec(h)[1]);
+  const name = title.split(/ [—|] /)[0].trim();
+  const desc = decode(/name="description" content="([^"]*)"/.exec(h)[1]);
+  return [name, /In Development/.test(title) ? 'In development' : '', desc, `${file}.html`, ''];
+};
+const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'founders', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'community', 'collaborating-companies', 'about'];
+const siteRows = SITE_ORDER.map(siteRow);
+const rowsHtml = (rows) => `<div class="az grow">${rows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>`;
+const PAGE_TITLES = ['Every page, <b>in order.</b>', 'Every page, <b>continued.</b>', 'Every page, <b>and about us.</b>'];
+const pagesPg = (i) => () => pg(K('Every page'), PAGE_TITLES[i], `
+<p class="lead" style="margin-bottom:10px">${i === 0 ? 'The revenue flows down this list: Partnership first, then the .LLab products, then everything that grows from them. Tap any row to open the page.' : 'Each page is described here as it is on the website. Tap any row to open it.'}</p>
+${rowsHtml(siteRows.slice(i * 5, i * 5 + 5))}`);
+const pagesA = pagesPg(0), pagesB = pagesPg(1), pagesC = pagesPg(2);
+const azRows = [["Co.LLab+™", "In development", "The e-commerce side of The Co.LLab™, where members list their website, highlight a product or service, and advertise.", "community.html", ""], ["The Intelligence Paradox Trilogy™", "Coming soon", "Three ideas. One paradox. Dropping soon. Under .LLab R.A.T.™, in The .LLab Legacy Library™ and The .LLab Journal™.", "think.html", ""], [".LLab Atelier™", "In development", "Everything a person needs to live a good life.", "atelier.html", "Home · Office · Community spaces · Fashion · Home goods · Furniture"], [".LLab AV Productions™", "In development", "All things sound and video, for the occasions that bring people together and the people who create them. Includes home office integrations.", "technology.html", ""], [".LLab Communications™", "In development", "The original technology. Tools that bring people into the same room, not just onto a screen.", "technology.html", ""], [".LLab Edu™", "In development", "Sponsored learning and mentorship for partners, and future educational courses.", "community.html", ""], ["Renewable Energy Ecosystem™", "Vision", "Power that sustains community. Renewable energy so communities can sustain their culture for generations.", "technology.html", ""]];
+const pv1 = () => pg(K('What’s next'), 'What’s next, <b>A to Z.</b>', `
 <p class="lead" style="margin-bottom:10px">Every venture grows from the same foundation: The IV Phases™ and the Omnidirectional Enterprise™.</p>
 <div class="az grow">${azRows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>
 <div class="note" style="margin-top:10px;font-size:12.5px"><b>Not yet offered.</b> These ventures and .LLab Atelier™ Spaces are in development and are not currently offered for sale or lease. Nothing here is an offer of securities or a solicitation of investment.</div>`);
-const p9 = pg('09 · Your next step', 'Choose your <b>point of entry.</b>', `
+const p9 = () => pg(K('Your next step'), 'Choose your <b>point of entry.</b>', `
 <p class="words2">Build the infrastructure. Strengthen the practice. <b>Create the legacy.</b></p>
 <div class="three2 grow">
 ${tw('Starting free', 'Enter the Ecosystem', 'Join free to work a quest on any free tool. Membership gives the full analysis.', qJoin)}
@@ -282,7 +302,7 @@ ${tw('Licensed to keep', 'Own Your Framework', 'License the IV Phases™ IP for 
 ${tw('Full partnership', 'Build the Legacy', 'Define, plan, live and preserve your legacy through the Omnidirectional Enterprise™, with seats for your team.', qPartner)}
 </div>`);
 
-const cardPage = `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k">Let’s talk</p><h2 class="t">Ashley E. <b>Clasby</b></h2>
+const cardPage = () => `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k">Let’s talk</p><h2 class="t">Ashley E. <b>Clasby</b></h2>
 <p class="lead" style="margin-bottom:10px"><strong>Omnidirectional Enterprise™ Founder &amp; Strategist</strong><br/>The Co.LLab™: Building Leadership Infrastructure</p>
 <div class="cardp grow"><a href="${SITE}/card/"><img src="${front}" alt="Business card, front"/></a><a href="${SITE}/card/"><img src="${back}" alt="Business card, back"/></a></div>
 <div class="ct" style="margin-top:12px"><div><b>Website</b><a href="${SITE}">wearethellab.netlify.app</a></div><div><b>Email</b><a href="mailto:letsbuildleadership@gmail.com">letsbuildleadership@gmail.com</a></div></div>
@@ -290,7 +310,7 @@ const cardPage = `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k
 <div class="banner" style="margin-top:12px">Let’s Build Your Legacy Through Omnidirectional Enterprise™.</div></div>${foot()}</section>`;
 
 const _x = 0;
-let html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}${css2}${CSS3}${CSS4}</style></head><body>${brand}${cover}${contents}${p1}${p2}${p3}${p4}${p5}${p6}${p7}${p7a}${p7b}${p8}${pv1}${p9}${cardPage}</body></html>`;
+let html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}${css2}${CSS3}${CSS4}</style></head><body>${brand}${cover}${contents()}${p1()}${p2()}${p3()}${p7()}${p7a()}${p7b()}${p4()}${p5()}${p6()}${pagesA()}${pagesB()}${pagesC()}${p8()}${pv1()}${p9()}${cardPage()}</body></html>`;
 
 const L = { join: `${SITE}/pages/login.html`, products: `${SITE}/pages/products.html`, partner: `${SITE}/pages/partnership.html`, collab: `${SITE}/pages/collaborating-companies.html`, think: `${SITE}/pages/think.html`, card: `${SITE}/card/` };
 const byQr = new Map([[qJoin, L.join], [qProducts, L.products], [qPartner, L.partner], [qCollab, L.collab], [qCard, L.card]]);
