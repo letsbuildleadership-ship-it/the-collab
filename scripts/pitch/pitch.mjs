@@ -215,7 +215,7 @@ const p5 = pg('05 · Start free', 'See the method <b>before you pay.</b>', `
 <div class="rep" style="margin:16px 0 12px"><div class="stamp">Your report</div><div class="rt">Your Legacy Read</div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="bars"><div style="background:#ff5a1f;width:82%"></div><div style="background:#ff7a1f;width:64%"></div><div style="background:#4fae7b;width:48%"></div><div style="background:#fff;width:30%"></div></div><div class="rt">What’s working · How we’d build from here, together · Beyond your own walls</div></div>
 <div class="qb"><img src="${qJoin}"/><div><b>Join free</b><span>wearethellab.netlify.app<br/>Scan to open the member portal.</span></div></div>`);
 
-const tl = (t) => `<b>${t.label}</b>: ${t.line.charAt(0).toLowerCase()}${t.line.slice(1)} ${t.bestFor}`;
+const tl = (t) => `<b>${t.label}</b>: ${t.bestFor}`;
 const lb = (h, pr, t) => `<div class="lr"><div class="lrb" style="width:${h}%">${pr}</div><div class="lrt">${t}</div></div>`;
 const p6 = pg('06 · The ladder', 'From a free door to a <b>lifetime Partnership.</b>', `
 <p class="lead">Every Partnership already includes the .LLab™, so the free door leads straight to the paid one.</p>

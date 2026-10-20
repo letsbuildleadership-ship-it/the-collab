@@ -24,7 +24,7 @@ export const P = {
   journalYr: perYr('journal'),
   range: `${fmt(Math.min(...four))}–${fmt(Math.max(...four))}`,
   tiers: reg.partnerships.map((t, i) => ({
-    label: t.tier_label, price: t.price_display, line: t.headline, bestFor: `For ${t.best_for.charAt(0).toLowerCase()}${t.best_for.slice(1)}`, seats: t.seats,
+    label: t.tier_label, price: t.price_display, line: t.headline, bestFor: t.legacy_line.replace(/'/g, '\u2019'), seats: t.seats,
     term: `${years(t.term_months)} · ${t.seats} seat${t.seats === 1 ? '' : 's'}`,
     termShort: years(t.term_months).toLowerCase(), partnerIp: partnerIp[i],
   })),
