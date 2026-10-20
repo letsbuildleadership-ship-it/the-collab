@@ -54,7 +54,7 @@ async function buildQuestPdf({ quest, record, result }) {
   };
 
   para(quest.phase || 'The IV Phases', { f: bold, size: 9.5, color: ORANGE, gap: 14 });
-  para(`${quest.title} — Your Completed Quest`, { f: bold, size: 20, gap: 8 });
+  para(`${quest.title} — Infrastructure Analysis™`, { f: bold, size: 20, gap: 8 });
   const who = record.name || record.email;
   const when = new Date(result.completedAt).toISOString().slice(0, 10);
   para(`Completed by ${who} on ${when}`, { size: 10, color: MUTED, gap: 12 });
