@@ -123,7 +123,7 @@ async function upsertCommunityReflection(monthOrder, memberId, text) {
 }
 
 // Operations records the owner reviews: IP feedback, the improvement backlog's decisions and the
-// Collaborating Companies pages. Kept apart from customer records. Layout: {collection}/{id}.json
+// .LLab Collaborating Companies pages. Kept apart from customer records. Layout: {collection}/{id}.json
 function opsStore() {
   if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
     return getStore({ name: 'collab-ops', siteID: process.env.SITE_ID, token: process.env.NETLIFY_BLOBS_TOKEN });

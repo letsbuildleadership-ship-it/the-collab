@@ -76,7 +76,7 @@ test('nothing is public until approved; the public view hides account details; e
   assert.equal(rows.length, 1);
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'rejected' })).statusCode, 400, 'rejection needs a note');
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'approved' })).statusCode, 200);
-  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /joined the Collaborating Companies/.test(m.text)));
+  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /joined the .LLab Collaborating Companies/.test(m.text)));
 
   const pub = JSON.parse((await call(null, 'GET')).body);
   assert.equal(pub.listings.length, 1);

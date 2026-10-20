@@ -1,4 +1,4 @@
-// Collaborating Companies: companies that license Co.LLab™ IP (any paid .LLab™ product)
+// .LLab Collaborating Companies: companies that license Co.LLab™ IP (any paid .LLab™ product)
 // or hold a Membership collaborate through the Omnidirectional Enterprise™, and
 // show what they offer so others can work with them directly. Part of the license
 // and the Membership, opt-in, and reviewed before it appears. Founders purchases

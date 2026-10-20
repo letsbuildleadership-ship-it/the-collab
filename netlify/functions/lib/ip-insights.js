@@ -42,7 +42,7 @@ function computeInsights(customers) {
   if (completedTotal >= MIN_SAMPLE) {
     const top = phaseGaps.indexOf(Math.max(...phaseGaps));
     suggestions.push({ id: 'phase-gap', text: `Across ${completedTotal} completed quests, ${PHASES[top]} is the most common gap. Consider strengthening the IP and the free tools that support that phase.` });
-    Object.entries(omniSilent).filter(([, n]) => n / completedTotal >= 0.7).slice(0, 3).forEach(([name]) => suggestions.push({ id: `omni-${name}`, text: `Most members' answers never reach ${name} (${omniSilent[name]} of ${completedTotal}). Consider prompts or Collaborating Companies features that connect work to that direction of the Omnidirectional Enterprise™.` }));
+    Object.entries(omniSilent).filter(([, n]) => n / completedTotal >= 0.7).slice(0, 3).forEach(([name]) => suggestions.push({ id: `omni-${name}`, text: `Most members' answers never reach ${name} (${omniSilent[name]} of ${completedTotal}). Consider prompts or .LLab Collaborating Companies features that connect work to that direction of the Omnidirectional Enterprise™.` }));
   }
 
   return {

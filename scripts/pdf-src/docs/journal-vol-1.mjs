@@ -5,8 +5,8 @@ export const meta = {
   cover: {
     eyebrow: 'The .LLab Journal™ — Volume One',
     title: 'Ideas, <em>before</em> <strong>infrastructure.</strong>',
-    subtitle: 'Three essays on stewardship, systems, and succession — where R.A.T.™ research becomes the frameworks behind The Co.LLab™.',
-    phase: 'R.A.T.™ — Research And Theory',
+    subtitle: 'Three essays on stewardship, systems, and succession — where .LLab R.A.T.™ research becomes the frameworks behind The Co.LLab™.',
+    phase: '.LLab R.A.T.™ — Research And Theory',
     price: 'Subscriber Edition',
     footerRight: 'The .LLab Journal™',
   },

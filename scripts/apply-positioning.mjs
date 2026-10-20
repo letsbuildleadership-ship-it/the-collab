@@ -16,9 +16,9 @@ const P = {
   tools: ['Free Tools · Business & Strategic Resources',
     'Unequal access to practical business knowledge, analytical resources, and decision-making tools can create barriers to effective planning and commercial execution.',
     'Free Tools provides accessible resources that support business literacy, strategic analysis, organizational capability, and informed resource allocation.'],
-  think: ['R.A.T.™ · Research And Theory — Strategic Research & Analysis',
+  think: ['.LLab R.A.T.™ · Research And Theory — Strategic Research & Analysis',
     'Geopolitical realignment, trade policy shifts, market volatility, technological disruption, and regulatory change increase uncertainty for businesses, investors, and institutions.',
-    'R.A.T.™ analyzes business, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
+    '.LLab R.A.T.™ analyzes business, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
   journal: ['Journal · Business, Economics & Geopolitics Magazine',
     'Business, economic, and geopolitical developments are often examined in isolation, obscuring their interconnected effects on markets, industries, labor, technology, and everyday economic conditions.',
     'Journal publishes magazine-style analysis connecting business, economics, geopolitics, technology, culture, and society to explain market developments and their implications for enterprise strategy and economic participation.'],
@@ -31,7 +31,7 @@ const P = {
   creator: ['.LLab Creators™ · Creative Enterprise & IP Commercialization',
     'Platform dependency, unequal bargaining power, fragmented distribution channels, and limited intellectual property control can prevent creators from capturing a fair share of the economic value their work generates.',
     'Creator develops creative enterprise infrastructure that strengthens intellectual property ownership, commercialization, revenue diversification, and creators’ ability to capture and retain economic value within the creative economy.'],
-  impact: ['Impact™ · Community Sustainability & Institutional Governance',
+  impact: ['.LLab Impact™ · Community Sustainability & Institutional Governance',
     'Fragmented governance, misaligned incentives, inefficient resource allocation, and weak stakeholder communication can undermine institutional coordination, community sustainability, and measurable social and economic outcomes.',
     'Impact integrates strategic planning, communication, governance, and resource allocation to support community development, institutional coordination, sustainability, and measurable social and economic performance.'],
   atelier: ['.LLab Atelier™ · Design, Products & Creative Enterprise',
@@ -40,9 +40,9 @@ const P = {
   plus: ['Co.LLab+™ · Member E-Commerce',
     'A member’s products and services are only as useful as the people who can find them.',
     'Co.LLab+™ is intended to be the e-commerce side of The Co.LLab™, where members list their website, highlight a product or service, and advertise.'],
-  tech: ['Technology · Legacy Ventures™ · Technology Commercialization & Enterprise Development',
+  tech: ['Technology · .LLab Legacy Ventures™ · Technology Commercialization & Enterprise Development',
     'Gaps between technological innovation, intellectual property ownership, capital allocation, regulatory strategy, and commercialization can prevent emerging technologies from achieving market adoption, attracting investment, and generating durable enterprise value.',
-    'Technology · Legacy Ventures™ connects technology development, intellectual property strategy, capital pathways, and enterprise development to support commercialization, market competitiveness, and the long-term economic value of innovative assets.'],
+    'Technology · .LLab Legacy Ventures™ connects technology development, intellectual property strategy, capital pathways, and enterprise development to support commercialization, market competitiveness, and the long-term economic value of innovative assets.'],
   home: ['The Co.LLab™ · Corporate Positioning',
     'The global economy faces a structural coordination problem: capital, labor, intellectual property, technology, and decision-making authority operate through institutions and markets whose incentives do not always align with productive contribution. Market concentration, information asymmetry, unequal bargaining power, and fragmented governance can constrain competition, impede entrepreneurship, weaken regional economic development, and concentrate the financial returns from innovation.',
     'The Co.LLab™ develops proprietary products, intellectual property, and leadership infrastructure organized around the Omnidirectional Enterprise™ operating model — designed to improve resource coordination, strengthen organizational capability, connect intellectual assets with practical and commercial applications, and expand access to opportunities for economic participation.'],
@@ -63,7 +63,7 @@ const HOME_EXTRA = `
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem;">
         <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p></div>
         <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of businesses, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
-        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">.LLab Creators™</a>, <a href="pages/impact.html">Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
+        <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">.LLab R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">.LLab Creators™</a>, <a href="pages/impact.html">.LLab Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
       </div>`;
 
 const PAGES = [

@@ -12,7 +12,7 @@
 | **.LLab** | Anyone starting out | **Marketing engine + recurring revenue**; every Partnership includes it | Free Portal → Library Card $10/mo · Membership $150/mo (or $1,500/yr) · Journal $150/yr |
 | **Founders Organization** | Founders / community supporters | Community economic development; supports partner nonprofits. *Not a membership tier* | $20 · $50 · $350 · $1,000 |
 | .LLab Creators™ | Creatives | Same infrastructure applied to creative IP | Product ladder on its page |
-| Impact™ · Technology · Atelier™ · Co.LLab+™ | Community / ventures | Supporting or coming soon | — |
+| .LLab Impact™ · Technology · Atelier™ · Co.LLab+™ | Community / ventures | Supporting or coming soon | — |
 
 **Strengths:** owned IP, a clear 4-step system, a free front door, no-subscription clarity at the top tier. **Gaps:** no verified social proof yet; Partnership is self-serve at a high ticket, so trust must come from the page; Founders status is "being developed" (pursuing 501(c)(3)) and must stay worded that way.
 
@@ -33,7 +33,7 @@
 | **Knowledge + IP** | — | ad 15 | — | — | Think · Journal |
 | **Technology** | — | — | ad 14 | — | Technology |
 | **Communities** | — | — | — | ad 07 | Founders · Co.LLab+™ |
-| **Nonprofits** | — | — | — | ad 13 | Impact™ |
+| **Nonprofits** | — | — | — | ad 13 | .LLab Impact™ |
 
 **Media plan by phase:** I = cold reach (LinkedIn for owners, Meta lookalikes; Creators on image-led feeds) → II = retarget with framework and economic ads → III = conversion ads with price clarity → IV = lifetime/legacy, apprentice and nonprofit stories. **Search** captures intent (succession, legacy planning). **KPIs per phase:** I reach/CTR → II Home→free-join → III free→paid and tier mix → IV renewals, referrals, seats used.
 

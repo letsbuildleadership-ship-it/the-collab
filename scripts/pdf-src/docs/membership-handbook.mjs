@@ -54,8 +54,8 @@ export const contentHtml = `
   <h1 class="doc-h1">Membership is <strong>more than downloads.</strong></h1>
   <p class="lead">Leadership Infrastructure™ is one part of a larger ecosystem — the rest of it is available to you as a member, not locked behind a separate purchase.</p>
   <ul class="doc-list">
-    <li><strong>The .LLab Journal™</strong> — the intellectual-property and thought-leadership layer of The Co.LLab™, where R.A.T.™ research becomes the frameworks these products are built from.</li>
-    <li><strong>R.A.T.™ (Research And Theory)</strong> — the research and theory laboratory behind the whole ecosystem, including Metacognitive Infrastructure Thinking™ and the .LLab Intelligence Infrastructure™.</li>
+    <li><strong>The .LLab Journal™</strong> — the intellectual-property and thought-leadership layer of The Co.LLab™, where .LLab R.A.T.™ research becomes the frameworks these products are built from.</li>
+    <li><strong>.LLab R.A.T.™ (Research And Theory)</strong> — the research and theory laboratory behind the whole ecosystem, including Metacognitive Infrastructure Thinking™ and the .LLab Intelligence Infrastructure™.</li>
     <li><strong>The .LLab Infrastructure Roadmap™</strong> — included automatically with your membership, a guided map of the full product catalog and how to sequence it for your situation.</li>
   </ul>
 

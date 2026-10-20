@@ -1,4 +1,4 @@
-// Collaborating Companies: public list, plus the signed-in
+// .LLab Collaborating Companies: public list, plus the signed-in
 // member's own listing form. All member-written text is set with textContent
 // or .value, and outbound links are https only (re-checked here).
 (function () {
@@ -95,7 +95,7 @@
       return;
     }
     if (!state.eligible) {
-      box.appendChild(el('p', 'd-desc', 'Open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership. You can browse the Collaborating Companies now.'));
+      box.appendChild(el('p', 'd-desc', 'Open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership. You can browse the .LLab Collaborating Companies now.'));
       var p = el('a', 'pill pill--solid', 'See the .LLab™ products'); p.href = 'products.html'; box.appendChild(p);
       return;
     }
@@ -147,7 +147,7 @@
     if (l) {
       var rem = el('button', 'pill', 'Remove my company'); rem.type = 'button';
       rem.addEventListener('click', function () {
-        if (!confirm('Remove your company from the Collaborating Companies?')) return;
+        if (!confirm('Remove your company from the .LLab Collaborating Companies?')) return;
         fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'remove' }) }).then(function () { loadMine(); loadPublic(); });
       });
       actions.appendChild(rem);
@@ -179,7 +179,7 @@
     fetch(API)
       .then(function (r) { return r.json(); })
       .then(function (d) { DIRS = d.directions; listings = d.listings; renderFilters(); renderGrid(); })
-      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the Collaborating Companies. Please try again.'; });
+      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the .LLab Collaborating Companies. Please try again.'; });
   }
 
   loadPublic();
