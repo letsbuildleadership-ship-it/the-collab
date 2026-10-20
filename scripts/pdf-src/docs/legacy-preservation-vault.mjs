@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'IV · Preservation',
     'The Legacy <strong>Preservation</strong> Vault™',
-    'Preserve your legacy. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™: how the founder’s vision is upheld across generations.',
+    'Pass it on. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™: how the founder’s vision is upheld across generations.',
     '$5,000'
   ),
 };

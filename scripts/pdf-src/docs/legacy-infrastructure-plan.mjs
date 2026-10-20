@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'II · Infrastructure Planning & Management',
     'The Legacy <strong>Infrastructure</strong> Plan™',
-    'Plan your legacy. How your leadership team plans and manages what the company stands on: decision rights, priorities, ownership, and how it all connects.',
+    'Plan it. How your leadership team plans and manages what the company stands on: decision rights, priorities, ownership, and how it all connects.',
     '$1,500'
   ),
 };

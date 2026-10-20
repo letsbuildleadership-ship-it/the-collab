@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'III · Internal Operating Systems',
     'The Legacy <strong>Operating Systems</strong> Manual™',
-    'Live your legacy. How the whole company runs on what it stands on: the rhythms, standards, and practices that keep the legacy alive in every department, every day.',
+    'Live it. How the whole company runs on what it stands on: the rhythms, standards, and practices that keep the legacy alive in every department, every day.',
     '$2,500'
   ),
 };
