@@ -20,7 +20,7 @@ const RENAME = new Map([
   [/^Your identity is not "I make paintings"/, 'What are you actually doing through your medium? Complete: I use [your medium] to …'],
 ]);
 
-// The Creator Website Blueprint™ is a manual rather than a workbook, so its quest is written to follow
+// The .LLab Creator Website Blueprint™ is a manual rather than a workbook, so its quest is written to follow
 // the manual's Blueprint, Your First Site and Streamlined Loop™ parts, one phase at a time.
 const WEBSITE_QUEST = [
   [0, 'Foundations', 'What is the one sentence your website must say about you and your work?'],

@@ -1,12 +1,12 @@
 {
   "key": "free-foundation-strength-snapshot",
-  "title": "Foundation Strength Snapshot™",
+  "title": ".LLab Foundation Strength Snapshot™",
   "phase": "Phase I · Foundations",
   "archetype": "snapshot",
   "intro": "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.",
-  "pdfTitle": "Foundation Strength Snapshot™",
+  "pdfTitle": ".LLab Foundation Strength Snapshot™",
   "upsell": {
-    "name": "The Leadership Infrastructure Strength Map™",
+    "name": "The .LLab Leadership Infrastructure Strength Map™",
     "price": "$20",
     "copy": "builds infrastructure around your lowest-scoring dimension."
   },

@@ -4,7 +4,7 @@ import { header, field, box, callout, grid, checklist, signatures, close, partne
 export const meta = {
   key: 'legacy-foundations-framework',
   outFile: 'legacy-foundations-framework.pdf',
-  docTitle: 'The Legacy Foundations Framework™',
+  docTitle: 'The .LLab Legacy Foundations Framework™',
   cover: partnerCover(
     'I · Foundations',
     'The Legacy <strong>Foundations</strong> Framework™',
@@ -83,7 +83,7 @@ ${licensePageHtml}
   </div>
   ${signatures(['Founder / Owner', 'Leadership', 'Leadership', 'Witness'])}
   ${checklist(['Printed and displayed', 'Shared with every team member', 'Annual review date set'])}
-  ${callout('Next · Phase II', 'The Legacy Infrastructure Plan™ turns these foundations into decisions, priorities, and ownership your leadership team can manage.')}
-  ${close('The Legacy Foundations Framework™')}
+  ${callout('Next · Phase II', 'The .LLab Legacy Infrastructure Plan™ turns these foundations into decisions, priorities, and ownership your leadership team can manage.')}
+  ${close('The .LLab Legacy Foundations Framework™')}
 </section>
 `;

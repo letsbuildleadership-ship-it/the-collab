@@ -1,10 +1,10 @@
 {
   "key": "creator-legacy-architecture",
-  "title": "Creator Legacy Infrastructure Architecture™",
+  "title": ".LLab Creator Legacy Infrastructure Architecture™",
   "phase": "Phase IV · Preservation",
   "archetype": "workbook",
   "intro": "The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.",
-  "pdfTitle": "Creator Legacy Infrastructure Architecture™",
+  "pdfTitle": ".LLab Creator Legacy Infrastructure Architecture™",
   "minAnswered": 0.6,
   "upsell": null,
   "nodes": [
@@ -41,7 +41,7 @@
       "section": "Pillar 3 — Operating Architecture",
       "phase": null,
       "type": "text",
-      "prompt": "Which systems from The Creator Operating System™ are documented well enough that someone else could run them?"
+      "prompt": "Which systems from The .LLab Creator Operating System™ are documented well enough that someone else could run them?"
     },
     {
       "id": "n6",
@@ -119,6 +119,13 @@
       "phase": null,
       "type": "text",
       "prompt": "Explore .LLab Creators™ …"
+    },
+    {
+      "id": "n17",
+      "section": "Your Legacy Infrastructure Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "G LO S SA RY …"
     }
   ],
   "closing": {

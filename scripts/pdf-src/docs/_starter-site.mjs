@@ -1,4 +1,4 @@
-// The one-file starter website printed in the Creator Website Blueprint™ and
+// The one-file starter website printed in the .LLab Creator Website Blueprint™ and
 // tested in test/starter-site.test.js. It is the nine-part page pattern in the
 // Co.LLab™ red-orange glow style, with every link working inside one page.
 export const STARTER_SITE = `<!doctype html>

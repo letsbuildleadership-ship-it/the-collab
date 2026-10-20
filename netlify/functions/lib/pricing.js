@@ -26,7 +26,7 @@ function buildIndex() {
     byKey.set(b.key, { ...b, kind: 'bonus' });
   }
 
-  // The Blueprint™ magazine series: indexed so our webhook/download system
+  // The .LLab Blueprint™ magazine series: indexed so our webhook/download system
   // can grant self-serve access, but deliberately left out of
   // allCatalogProductKeys() below — it's a separate product line, not part
   // of the .LLab IV Phases catalog Membership unlocks or upsells.

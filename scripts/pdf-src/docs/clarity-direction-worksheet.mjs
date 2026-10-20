@@ -3,10 +3,10 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'clarity-direction-worksheet',
   outFile: 'free-tools/clarity-direction-worksheet.pdf',
-  docTitle: 'Clarity & Direction Worksheet™',
+  docTitle: '.LLab Clarity & Direction Worksheet™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Worksheet',
-    title: 'Clarity &amp; Direction <strong>Worksheet</strong>™',
+    title: '.LLab Clarity &amp; Direction <strong>Worksheet</strong>™',
     subtitle: 'Four short prompts to name your direction in plain language before you build anything on top of it.',
     phase: 'I · Foundations',
     price: 'Free',
@@ -30,5 +30,5 @@ export const contentHtml = renderWorksheetDoc({
     { kicker: 'Prompt 4', prompt: 'If I only had one strength to build from, it would be…' },
   ],
   synthesisPrompt: 'In one sentence, my direction right now is:',
-  upsell: { name: 'The Leadership Infrastructure Strength Map™', price: '$20', copy: 'is the next step once your direction is named.' },
+  upsell: { name: 'The .LLab Leadership Infrastructure Strength Map™', price: '$20', copy: 'is the next step once your direction is named.' },
 });

@@ -3,10 +3,10 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'knowledge-transfer-checklist',
   outFile: 'free-tools/knowledge-transfer-checklist.pdf',
-  docTitle: 'Knowledge Transfer Checklist™',
+  docTitle: '.LLab Knowledge Transfer Checklist™',
   cover: {
     eyebrow: 'Phase IV · Preservation — Free Checklist',
-    title: 'Knowledge Transfer <strong>Checklist</strong>™',
+    title: '.LLab Knowledge Transfer <strong>Checklist</strong>™',
     subtitle: "Make sure what's in your head is actually documented somewhere else too.",
     phase: 'IV · Preservation',
     price: 'Free',

@@ -3,10 +3,10 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'systems-health-snapshot',
   outFile: 'free-tools/systems-health-snapshot.pdf',
-  docTitle: 'Systems Health Snapshot™',
+  docTitle: '.LLab Systems Health Snapshot™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — Free Snapshot',
-    title: 'Systems Health <strong>Snapshot</strong>™',
+    title: '.LLab Systems Health <strong>Snapshot</strong>™',
     subtitle: 'A fast diagnostic snapshot of how well your internal systems are actually operating.',
     phase: 'III · Internal Operating Systems',
     price: 'Free',

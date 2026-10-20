@@ -4,7 +4,7 @@ import { header, field, box, callout, grid, checklist, close, partnerCover } fro
 export const meta = {
   key: 'legacy-operating-systems-manual',
   outFile: 'legacy-operating-systems-manual.pdf',
-  docTitle: 'The Legacy Operating Systems Manual™',
+  docTitle: 'The .LLab Legacy Operating Systems Manual™',
   cover: partnerCover(
     'III · Internal Operating Systems',
     'The Legacy <strong>Operating Systems</strong> Manual™',
@@ -26,7 +26,7 @@ export const contentHtml = `
 ${licensePageHtml}
 
 <section class="page">
-  ${header('00 · How To Use This Manual', 'A Legacy Lives', 'In How You Operate.', 'The Legacy Infrastructure Plan™ decided who carries what. This manual builds it into the systems the company runs on, so the legacy shows up in daily work, not just on the wall.')}
+  ${header('00 · How To Use This Manual', 'A Legacy Lives', 'In How You Operate.', 'The .LLab Legacy Infrastructure Plan™ decided who carries what. This manual builds it into the systems the company runs on, so the legacy shows up in daily work, not just on the wall.')}
   <div class="pathway">
     <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Operating Rhythm</span><p>When the company meets and reviews.</p></div>
     <span class="pathway-arrow">→</span>
@@ -76,7 +76,7 @@ ${dept('People & Culture')}
   ${header('06 · Onboarding', 'How New People', 'Inherit The Legacy.', 'Every new person should learn what the company stands on before they learn how to do the job.')}
   ${grid(['Week', 'What They Learn', 'Who Teaches It'], ['Week 1', 'Week 2', 'Week 3', 'Week 4'])}
   ${checklist(['Legacy Foundations Record shared on day one', 'Values and practices explained by a leader', 'Department page reviewed with their lead', 'First field note shared after 30 days'])}
-  ${callout('Next · Phase IV', 'The Legacy Preservation Vault™ makes sure all of this outlasts the people who built it.')}
-  ${close('The Legacy Operating Systems Manual™')}
+  ${callout('Next · Phase IV', 'The .LLab Legacy Preservation Vault™ makes sure all of this outlasts the people who built it.')}
+  ${close('The .LLab Legacy Operating Systems Manual™')}
 </section>
 `;

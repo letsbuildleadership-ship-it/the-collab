@@ -3,10 +3,10 @@ import { licensePageHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-product-preview',
   outFile: 'creator-product-preview.pdf',
-  docTitle: 'The Creator Operating System™ — Preview',
+  docTitle: 'The .LLab Creator Operating System™ — Preview',
   cover: {
     eyebrow: '.LLab Creators™ — Free Product Preview',
-    title: 'The Creator Operating System<strong>™</strong> — Preview',
+    title: 'The .LLab Creator Operating System<strong>™</strong> — Preview',
     subtitle: 'Module 1 of the full product, so you can see exactly what it builds.',
     phase: 'III · Internal Operating Systems',
     price: 'Free preview · Full product $300',

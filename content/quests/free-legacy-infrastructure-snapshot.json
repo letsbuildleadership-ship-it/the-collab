@@ -1,10 +1,10 @@
 {
   "key": "free-legacy-infrastructure-snapshot",
-  "title": "Legacy Infrastructure Snapshot™",
+  "title": ".LLab Legacy Infrastructure Snapshot™",
   "phase": "Phase IV · Preservation",
   "archetype": "snapshot",
   "intro": "The four tests every lasting piece of infrastructure has to pass.",
-  "pdfTitle": "Legacy Infrastructure Snapshot™",
+  "pdfTitle": ".LLab Legacy Infrastructure Snapshot™",
   "upsell": {
     "name": "The .LLab Legacy Infrastructure Architecture™",
     "price": "$1,000",

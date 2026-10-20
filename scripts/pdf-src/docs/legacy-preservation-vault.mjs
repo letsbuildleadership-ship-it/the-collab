@@ -4,7 +4,7 @@ import { header, field, box, callout, grid, checklist, signatures, close, partne
 export const meta = {
   key: 'legacy-preservation-vault',
   outFile: 'legacy-preservation-vault.pdf',
-  docTitle: 'The Legacy Preservation Vault™',
+  docTitle: 'The .LLab Legacy Preservation Vault™',
   cover: partnerCover(
     'IV · Preservation',
     'The Legacy <strong>Preservation</strong> Vault™',
@@ -78,6 +78,6 @@ ${licensePageHtml}
   ${box('What I Would Want You To Change', 'Where the company should grow beyond me:', 2)}
   ${field('Signed by the founder', 1)}
   ${callout('Omnidirectional Enterprise™', 'Your legacy now moves in every direction: through your people, your customers, your community, and the partners who build alongside you.')}
-  ${close('The Legacy Preservation Vault™')}
+  ${close('The .LLab Legacy Preservation Vault™')}
 </section>
 `;

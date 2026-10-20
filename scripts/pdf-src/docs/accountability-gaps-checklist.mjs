@@ -3,10 +3,10 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'accountability-gaps-checklist',
   outFile: 'free-tools/accountability-gaps-checklist.pdf',
-  docTitle: 'Accountability Gaps Checklist™',
+  docTitle: '.LLab Accountability Gaps Checklist™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Checklist',
-    title: 'Accountability Gaps <strong>Checklist</strong>™',
+    title: '.LLab Accountability Gaps <strong>Checklist</strong>™',
     subtitle: 'Spot where accountability quietly breaks down across your team or organization.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
@@ -37,5 +37,5 @@ export const contentHtml = renderChecklistDoc({
     { label: '7–8 Checked', copy: 'Accountability is strong. The Alignment Map™ below connects it to the rest of your infrastructure.' },
   ],
   commitPrompt: "The one commitment I'll assign a clear owner to this week is:",
-  upsell: { name: 'The Leadership Alignment Map™', price: '$50', copy: 'is the next step for closing the gaps you just found.' },
+  upsell: { name: 'The .LLab Leadership Alignment Map™', price: '$50', copy: 'is the next step for closing the gaps you just found.' },
 });

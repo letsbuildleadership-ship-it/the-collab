@@ -78,7 +78,7 @@
     },
     {
       "tag": "Free Product Preview",
-      "title": "The Creator Operating System™ — Preview",
+      "title": "The .LLab Creator Operating System™ — Preview",
       "description": "Try the first module of the Creator Operating System™.",
       "link": "/content/library/creator-product-preview.pdf"
     },
@@ -94,13 +94,13 @@
   "products_headline": "The .LLab Creators™ product ladder",
   "products_body": "Beginner-first. One phase, one problem per product — or unlock all with .LLab Membership™.",
   "creator_products": [
-    { "phase": "Phase I · Foundations", "title": "Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Venture Build Plan™", "price": "$100", "description": "A practical 30-day plan for turning your creative practice into a venture.", "link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": "Creator Website Blueprint™", "price": "$100", "description": "A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. An iPhone edition and a computer edition.", "link": "https://buy.stripe.com/fZudR8cj4gEB3dpgto9ws1m" },
-    { "phase": "Phase III · Internal Operating Systems", "title": "The Creator Operating System™", "price": "$300", "description": "Run your venture without every decision depending on you.", "link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12" },
-    { "phase": "Phase IV · Preservation", "title": "Creative Estate Mapping™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.", "link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13" },
-    { "phase": "Phase IV · Preservation", "title": "Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "Preserve your body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
+    { "phase": "Phase I · Foundations", "title": ".LLab Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Venture Build Plan™", "price": "$100", "description": "A practical 30-day plan for turning your creative practice into a venture.", "link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Website Blueprint™", "price": "$100", "description": "A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. An iPhone edition and a computer edition.", "link": "https://buy.stripe.com/fZudR8cj4gEB3dpgto9ws1m" },
+    { "phase": "Phase III · Internal Operating Systems", "title": "The .LLab Creator Operating System™", "price": "$300", "description": "Run your venture without every decision depending on you.", "link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Creative Estate Mapping™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.", "link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13" },
+    { "phase": "Phase IV · Preservation", "title": ".LLab Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "Preserve your body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
   ],
 
   "membership_note": "Every product here is included in .LLab Membership™.",

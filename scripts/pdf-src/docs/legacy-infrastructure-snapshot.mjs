@@ -3,10 +3,10 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'legacy-infrastructure-snapshot',
   outFile: 'free-tools/legacy-infrastructure-snapshot.pdf',
-  docTitle: 'Legacy Infrastructure Snapshot™',
+  docTitle: '.LLab Legacy Infrastructure Snapshot™',
   cover: {
     eyebrow: 'Phase IV · Preservation — Free Snapshot',
-    title: 'Legacy Infrastructure <strong>Snapshot</strong>™',
+    title: '.LLab Legacy Infrastructure <strong>Snapshot</strong>™',
     subtitle: 'A first look at how prepared your leadership infrastructure is to outlast you.',
     phase: 'IV · Preservation',
     price: 'Free',

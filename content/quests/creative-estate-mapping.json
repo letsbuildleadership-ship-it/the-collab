@@ -1,10 +1,10 @@
 {
   "key": "creative-estate-mapping",
-  "title": "Creative Estate Mapping™",
+  "title": ".LLab Creative Estate Mapping™",
   "phase": "Phase IV · Preservation",
   "archetype": "workbook",
   "intro": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.",
-  "pdfTitle": "Creative Estate Mapping™",
+  "pdfTitle": ".LLab Creative Estate Mapping™",
   "minAnswered": 0.6,
   "upsell": null,
   "nodes": [
@@ -55,7 +55,7 @@
       "section": "Part 4 — the Systems",
       "phase": null,
       "type": "text",
-      "prompt": "Which of your operating systems (from The Creator Operating System™, if you have it) would keep running without you actively managing them?"
+      "prompt": "Which of your operating systems (from The .LLab Creator Operating System™, if you have it) would keep running without you actively managing them?"
     },
     {
       "id": "n8",

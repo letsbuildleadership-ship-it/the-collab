@@ -3,10 +3,10 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-legacy-architecture',
   outFile: 'creator-legacy-architecture.pdf',
-  docTitle: 'Creator Legacy Infrastructure Architecture™',
+  docTitle: '.LLab Creator Legacy Infrastructure Architecture™',
   cover: {
     eyebrow: 'Phase IV · Preservation — a .LLab™ Workbook',
-    title: 'Creator Legacy Infrastructure <strong>Architecture</strong>™',
+    title: '.LLab Creator Legacy Infrastructure <strong>Architecture</strong>™',
     subtitle: 'The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.',
     phase: 'IV · Preservation',
     price: '$750',
@@ -20,7 +20,7 @@ ${licenseHtml}
 <p><strong>CREATOR LEGACY INFRASTRUCTURE ARCHITECTURE™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p>This is the top of the .LLab Creators™ ladder — the comprehensive architecture that takes everything built across Foundations, Infrastructure Planning, and Internal Operating Systems, and designs it to last beyond any single project, platform, or the creator themselves.</p>
-<p>It assumes you've done (or will reference) a Creator Identity Map™, a Creator Alignment Map™, The Creator Operating System™, and Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
+<p>It assumes you've done (or will reference) a .LLab Creator Identity Map™, a .LLab Creator Alignment Map™, The .LLab Creator Operating System™, and .LLab Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
 
 <p><strong>PILLAR 1 — IDENTITY ARCHITECTURE</strong></p>
 <p>How is the creative identity documented so it can be understood, applied, and carried forward by someone other than you?</p>
@@ -35,7 +35,7 @@ ${licenseHtml}
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 
 <p><strong>PILLAR 3 — OPERATING ARCHITECTURE</strong></p>
-<p>Which systems from The Creator Operating System™ are documented well enough that someone else could run them?</p>
+<p>Which systems from The .LLab Creator Operating System™ are documented well enough that someone else could run them?</p>
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 <p>What is the single point of failure in how this venture runs today — the one thing that stops if you stop?</p>
 <p><span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>

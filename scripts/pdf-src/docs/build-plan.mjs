@@ -1,10 +1,10 @@
 export const meta = {
   key: 'build-plan',
   outFile: 'build-plan.pdf',
-  docTitle: 'Leadership Infrastructure Build Plan™',
+  docTitle: '.LLab Leadership Infrastructure Build Plan™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — a .LLab™ Workbook',
-    title: 'Leadership Infrastructure <strong>Build Plan</strong>™',
+    title: '.LLab Leadership Infrastructure <strong>Build Plan</strong>™',
     subtitle: 'Turn one strength or opportunity into a practical 30-day infrastructure build — with a week-by-week rhythm, not a wish list.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$100',

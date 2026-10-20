@@ -50,7 +50,7 @@ ${pageOf('02 · The Words, Continued', 'Make the system<br/><strong>readable.</s
 ${pageOf('03 · The Words, Continued', 'Name every piece<br/><strong>correctly.</strong>', GLOSSARY_GROUPS.slice(4).map((g, i) => group(g, i + 4)).join(''), `
   <div class="callout">
     <p class="callout-label">What's Next</p>
-    <p>These words are the vocabulary. <strong>Creator Website Blueprint™</strong> ($100) puts them to work: a page pattern, a starter site you can put online, and a manual for building with Composio, GitHub, Netlify, Claude and ChatGPT, with an iPhone edition and a computer edition.</p>
+    <p>These words are the vocabulary. <strong>.LLab Creator Website Blueprint™</strong> ($100) puts them to work: a page pattern, a starter site you can put online, and a manual for building with Composio, GitHub, Netlify, Claude and ChatGPT, with an iPhone edition and a computer edition.</p>
   </div>
   <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>`)}
 `;

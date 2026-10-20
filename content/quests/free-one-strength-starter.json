@@ -1,12 +1,12 @@
 {
   "key": "free-one-strength-starter",
-  "title": "One Strength Starter™",
+  "title": ".LLab One Strength Starter™",
   "phase": "Phase I · Foundations",
   "archetype": "starter",
   "intro": "Pick the strength that's most load-bearing right now — the one everything else leans on.",
-  "pdfTitle": "One Strength Starter™",
+  "pdfTitle": ".LLab One Strength Starter™",
   "upsell": {
-    "name": "The Leadership Infrastructure Strength Map™",
+    "name": "The .LLab Leadership Infrastructure Strength Map™",
     "price": "$20",
     "copy": "turns this single strength into real infrastructure."
   },
