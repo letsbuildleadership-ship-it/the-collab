@@ -39,14 +39,18 @@ const tagline = (d) => {
   return text.split(/(?<=[.!?])\s/)[0].replace(/\s+—.*$/, '').trim();
 };
 
-const card = (o) => `<article class="shop-card">
-          <p class="shop-line">${esc(o.line)}</p>
-          <h3>${esc(o.name)}</h3>
-          <p class="shop-tag">${esc(o.tag)}</p>
-          <ul class="shop-meta">${o.meta.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
-          <div class="shop-buy"><span class="shop-price">${esc(o.price)}</span>${o.buttons}</div>
+const card = (o) => `<article class="cat-row" data-line="${esc(o.line)}">
+          <span class="cat-no">@@NO@@</span>
+          <div class="cat-body">
+            <p class="shop-line">${esc(o.line)}</p>
+            <h3>${esc(o.name)}</h3>
+            <p class="shop-tag">${esc(o.tag)}</p>
+            ${o.meta.length ? `<p class="cat-facts">${o.meta.map(esc).join(' · ')}</p>` : ''}
+          </div>
+          <div class="cat-buy"><span class="shop-price">${esc(o.price)}</span>${o.buttons}</div>
         </article>`;
-const buy = (href, label = 'Buy') => !href ? '<span class="shop-soon">Available soon</span>' : `<a class="pill pill--solid" href="${esc(href)}" target="_blank" rel="noopener">${label} <span class="arrow">→</span></a>`;
+
+const buy = (href, label = 'Order') => !href ? '<span class="shop-soon">Available soon</span>' : `<a class="pill pill--solid" href="${esc(href)}" target="_blank" rel="noopener">${label} <span class="arrow">→</span></a>`;
 
 async function productCard(p) {
   const n = await pages(p.pdf_file);
@@ -65,7 +69,7 @@ for (const ph of PHASES) {
   const tools = free.filter((t) => (phaseOfText(t.phase) || {}).key === ph.key);
   phaseSections.push({
     id: `phase-${ph.no.toLowerCase()}`, no: ph.no, name: ph.name, tag: ph.tag, cards,
-    tools: tools.map((t) => `<a class="toc-chip" href="..${esc(t.file)}" target="_blank" rel="noopener">${esc(t.name)}</a>`).join(''),
+    tools: tools.map((t) => card({ line: 'Free tool', name: t.name, tag: tagline(t.description), meta: ['Free PDF', 'No account needed'], price: 'Free', buttons: `<a class="pill" href="..${esc(t.file)}" target="_blank" rel="noopener">Open <span class="arrow">→</span></a>` })),
   });
 }
 const extra = [];
@@ -76,6 +80,9 @@ extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.
 extra.push({ id: 'founders', title: 'Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
 if (blueprintAll.length) extra.push({ id: 'blueprint', title: 'The Blueprint™ magazine', cards: await Promise.all(blueprintAll.map((p) => productCard(p))) });
 
+const number = (cards, prefix) => cards.map((c, i) => c.replace('@@NO@@', `${prefix}-${String(i + 1).padStart(2, '0')}`));
+for (const p of phaseSections) { const all = number([...p.cards, ...p.tools], p.no); p.cards = all.slice(0, p.cards.length); p.tools = all.slice(p.cards.length); }
+extra.forEach((g, i) => { g.cards = number(g.cards, 'MPFB'[i] || String(i)); });
 const nav = [...phaseSections.map((p) => [`Phase ${p.no}`, p.id]), ...extra.map((g) => [g.title, g.id])];
 
 const main = `<main>
@@ -83,31 +90,40 @@ const main = `<main>
   <section class="hero hub-hero" style="text-align:center;">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
-      <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · Shop</p>
+      <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · The Catalog</p>
       <h1 class="display" style="margin-top:1.5rem;"><strong>All products.</strong></h1>
-      <p class="subhead" style="margin:1.5rem auto 0;">Everything is organized under The IV Phases™. Pick a phase.</p>
-      <div class="hub-jump">${nav.map(([l, id]) => `<a class="toc-chip" href="#${id}">${esc(l)}</a>`).join('')}</div>
+      <p class="subhead" style="margin:1.5rem auto 0;">Every product, numbered by department. Find it, read one line, order it.</p>
+      <div class="cat-search"><label class="cat-label" for="cat-q">Search the catalog</label><input id="cat-q" type="search" placeholder="Try “values”, “creator”, “free”" autocomplete="off"><p id="cat-count" class="cat-count" aria-live="polite"></p></div>
+      <div class="hub-jump" role="navigation" aria-label="Departments">${nav.map(([l, id]) => `<a class="toc-chip" href="#${id}">${esc(l)}</a>`).join('')}</div>
     </div>
   </section>
 ${phaseSections.map((p) => `
   <section class="band shop-phase" id="${p.id}">
     <div class="wrap">
-      <div class="phase-head"><span class="phase-no">${p.no}</span><div><p class="eyebrow">Phase ${p.no} · ${esc(p.name)}</p><p class="phase-tag">${esc(p.tag || '')}</p></div></div>
-      <div class="shop-grid">
+      <div class="phase-head"><span class="phase-no">${p.no}</span><div><p class="eyebrow">Department ${p.no} · Phase ${p.no} · ${esc(p.name)}</p><p class="phase-tag">${esc(p.tag || '')}</p></div></div>
+      <div class="cat-list">
         ${p.cards.join('\n        ')}
+        ${p.tools.join('\n        ')}
       </div>
-      ${p.tools ? `<div class="shop-free"><p class="eyebrow">Free tools in this phase</p><div class="toc-subs">${p.tools}</div></div>` : ''}
     </div>
   </section>`).join('\n')}
 ${extra.map((g) => `
   <section class="band shop-phase" id="${g.id}">
     <div class="wrap">
       <p class="eyebrow">${esc(g.title)}</p>
-      <div class="shop-grid">
+      <div class="cat-list">
         ${g.cards.join('\n        ')}
       </div>
     </div>
   </section>`).join('\n')}
+
+  <section class="band cat-order" aria-label="How to order">
+    <div class="wrap">
+      <p class="eyebrow">How to order</p>
+      <ol class="cat-steps"><li><b>Choose</b> a product by its catalog number.</li><li><b>Order</b> through secure Stripe checkout.</li><li><b>Keep it.</b> Every product is licensed to keep, and appears in your library.</li></ol>
+    </div>
+  </section>
+  <p id="cat-none" class="wrap cat-none" hidden>Nothing matches. Clear the search to see the whole catalog.</p>
 
   <section class="next-links" aria-label="Continue">
     <div class="wrap">
@@ -134,5 +150,17 @@ t = t.replace(/<li><a href="all-products\.html">All Products · The \.LLab™<\/
 t = t.replace(/<li><a href="all-products\.html">The \.LLab Legacy Library™<\/a><\/li>/g, '<li><a href="legacy-library.html">The .LLab Legacy Library™</a></li>');
 t = t.replace('<a href="think.html" class="is-on" aria-current="true">Knowledge + IP</a>', '<a href="think.html">Knowledge + IP</a>');
 t = t.replace(/<main>[\s\S]*<\/main>/, main);
+t = t.replace('<script>document.getElementById(\'year\')', `<script>(function () {
+  var q = document.getElementById('cat-q'), rows = [].slice.call(document.querySelectorAll('.cat-row')), none = document.getElementById('cat-none'), count = document.getElementById('cat-count');
+  if (!q) return;
+  q.addEventListener('input', function () {
+    var v = q.value.trim().toLowerCase(), n = 0;
+    rows.forEach(function (r) { var hit = !v || r.textContent.toLowerCase().indexOf(v) > -1; r.hidden = !hit; if (hit) n++; });
+    [].slice.call(document.querySelectorAll('.shop-phase')).forEach(function (sec) { sec.hidden = !!v && !sec.querySelector('.cat-row:not([hidden])'); });
+    count.textContent = v ? n + (n === 1 ? ' item' : ' items') : '';
+    none.hidden = !v || n > 0;
+  });
+})();</script>
+<script>document.getElementById('year')`);
 fs.writeFileSync(path.join(root, 'pages/all-products.html'), t);
 console.log(`all-products.html: ${phaseSections.map((p) => `Phase ${p.no} ${p.cards.length}`).join(' · ')} · ${extra.map((g) => `${g.title} ${g.cards.length}`).join(' · ')}`);
