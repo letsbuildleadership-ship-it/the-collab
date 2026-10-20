@@ -175,18 +175,18 @@ ${arw('#0f1d13', 'Pass it on.', 'Phase IV', 'Preservation')}
 </div>
 <div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
 
-const nodes = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
-const cx = 250, cy = 250, R = 188;
-const pts = nodes.map((name, i) => { const a = (-90 + i * 45) * Math.PI / 180; return { name, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }; });
-const svg = `<svg viewBox="-30 0 560 500" xmlns="http://www.w3.org/2000/svg">
+const nodes = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+const cx = 250, cy = 250, R = 218;
+const pts = nodes.map((name, i) => { const a = (-90 + i * (360 / nodes.length)) * Math.PI / 180; return { name, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }; });
+const svg = `<svg viewBox="-50 -20 600 540" xmlns="http://www.w3.org/2000/svg">
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#ff602e" stroke-width="1.5" stroke-dasharray="4 6" opacity=".6"/>
 ${pts.map((p) => `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="#ff7a1f" stroke-width="2.2" opacity=".75"/>`).join('')}
-${pts.map((p, i) => { const q = pts[(i + 1) % 8]; return `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke="#ff602e" stroke-width="1" opacity=".35"/>`; }).join('')}
+${pts.map((p, i) => { const q = pts[(i + 1) % pts.length]; return `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke="#ff602e" stroke-width="1" opacity=".35"/>`; }).join('')}
 <circle cx="${cx}" cy="${cy}" r="74" fill="#0f1d13" stroke="#ff602e" stroke-width="2"/>
 <text x="${cx}" y="${cy - 10}" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">The Co.LLab™</text>
 <text x="${cx}" y="${cy + 10}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Omnidirectional</text>
 <text x="${cx}" y="${cy + 26}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Enterprise™</text>
-${pts.map((p) => `<g><rect x="${(p.x - 72).toFixed(1)}" y="${(p.y - 20).toFixed(1)}" width="144" height="40" rx="20" fill="#17301d" stroke="#ff602e" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y + 6).toFixed(1)}" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">${p.name}</text></g>`).join('')}</svg>`;
+${pts.map((p) => `<g><rect x="${(p.x - 67).toFixed(1)}" y="${(p.y - 18).toFixed(1)}" width="134" height="36" rx="20" fill="#17301d" stroke="#ff602e" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y + 6).toFixed(1)}" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">${p.name}</text></g>`).join('')}</svg>`;
 const p3 = () => pg(K('The ecosystem'), 'Not a funnel. <b>A coordinated system.</b>', `
 <p class="lead">Value moves in every direction between people, ideas, products, organizations and community, with many ways in, all connected to Leadership Infrastructure™.</p>
 <div class="oew grow">${svg}</div>
@@ -226,7 +226,7 @@ ${lb(46, P.range, 'IV Phases™ products')}
 ${lb(58, P.tiers[0].price, tl(P.tiers[0]))}
 ${lb(68, P.tiers[1].price, tl(P.tiers[1]))}
 ${lb(80, P.tiers[2].price, tl(P.tiers[2]))}
-${lb(96, P.tiers[3].price, `<b>${P.tiers[3].label}</b> · ${P.tiers[3].verb}: capture the value you generate, with revenue reinvested across the portfolio`)}
+${lb(96, P.tiers[3].price, `<b>${P.tiers[3].label}</b> · ${P.tiers[3].verb}: ${P.tiers[3].econ.charAt(0).toLowerCase()}${P.tiers[3].econ.slice(1, -1)}`)}
 </div>
 <div class="note" style="margin-top:10px"><b>Partnership™ is the whole ladder in one purchase.</b> Every IV Phases™ product, plus Membership, Library Card and Journal for the term, and a partner-only product. Seats for ${P.tiers.map((t) => t.seats).join(', ')}. Internal-use license; results depend on how you apply it.</div>`);
 
