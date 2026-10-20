@@ -277,7 +277,7 @@ const siteRow = (file) => {
   const desc = decode(/name="description" content="([^"]*)"/.exec(h)[1]);
   return [name, /In Development/.test(title) ? 'In development' : '', desc, `${file}.html`, ''];
 };
-const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'founders', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'community', 'collaborating-companies', 'about'];
+const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'community', 'collaborating-companies', 'founders', 'about'];
 const siteRows = SITE_ORDER.map(siteRow);
 const rowsHtml = (rows) => `<div class="az grow">${rows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>`;
 const PAGE_TITLES = ['Every page, <b>in order.</b>', 'Every page, <b>continued.</b>', 'Every page, <b>and about us.</b>'];
