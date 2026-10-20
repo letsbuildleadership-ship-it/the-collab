@@ -219,9 +219,10 @@ const lb = (h, pr, t) => `<div class="lr"><div class="lrb" style="width:${h}%">$
 const p6 = pg('06 · The ladder', 'From a free door to a <b>lifetime Partnership.</b>', `
 <p class="lead">Every Partnership already includes the .LLab™, so the free door leads straight to the paid one.</p>
 <div class="grow" style="margin-top:4px">
-${lb(30, 'Free', 'Free tools for everyone · an Infrastructure Snapshot™ with a free account')}
+${lb(30, 'Free', 'Free tools · Infrastructure Snapshot™ with a free account')}
 ${lb(34, P.libMo, '.LLab Library Card™')}
-${lb(46, P.memMo, '.LLab Membership™: every IV Phases™ product + the Infrastructure Analysis™ of your license')}
+${lb(40, P.journalYr, 'The .LLab Journal™')}
+${lb(46, P.memMo, '.LLab Membership™ + Infrastructure Analysis™')}
 ${lb(46, P.range, 'IV Phases™ products')}
 ${lb(58, P.tiers[0].price, P.tiers[0].label)}
 ${lb(68, P.tiers[1].price, P.tiers[1].label)}
