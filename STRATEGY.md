@@ -29,7 +29,7 @@
 | **Capital** | — | ad 04 | ad 05 | ad 02 | Partnership tiers |
 | **People** | ad 06 (free join) | Library Card | Membership | — | The .LLab |
 | **Creators** | ad 12 | — | — | — | .LLab Creators™ |
-| **Products & Services** | — | ad 03 | — | — | All Products (catalog) |
+| **Products & Services** | — | ad 03 | — | — | The .LLab Products (catalog) |
 | **Knowledge + IP** | — | ad 15 | — | — | Think · Journal |
 | **Technology** | — | — | ad 14 | — | Technology |
 | **Communities** | — | — | — | ad 07 | Founders · Co.LLab+™ |

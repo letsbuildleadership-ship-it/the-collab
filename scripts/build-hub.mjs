@@ -77,8 +77,9 @@ const blueprintAll = (reg.blueprint_series || []).filter((p) => !/blueprint-phas
 const planBtns = (m) => m.plans.map((pl) => `<a class="pill pill--solid" href="${esc(pl.payment_link)}" target="_blank" rel="noopener">${esc(pl.price_display)}</a>`).join('');
 extra.push({ id: 'memberships', title: 'Memberships', cards: reg.memberships.map((m) => card({ line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? ['Every IV Phases™ product, unlocked while you are a member', 'Infrastructure Analysis™ of the IP you license: what to build next'] : [], price: m.plans.map((pl) => pl.price_display).join(' · '), buttons: planBtns(m) })) });
 extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.map((p) => card({ line: 'Omnidirectional Enterprise™ Partnership', name: p.tier_label, tag: p.headline || tagline(p.description), meta: [`${p.seats} seat${p.seats === 1 ? '' : 's'}`, `${p.term_months >= 1200 ? 'Lifetime' : `${p.term_months / 12} year${p.term_months === 12 ? '' : 's'}`} of membership`, 'Every IV Phases™ product, licensed to keep'], price: p.price_display, buttons: buy(p.payment_link) })) });
-extra.push({ id: 'founders', title: 'The Co.LLab Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
 if (blueprintAll.length) extra.push({ id: 'blueprint', title: 'The .LLab Blueprint™ magazine', cards: await Promise.all(blueprintAll.map((p) => productCard(p))) });
+// the Founders Organization sits last, just above About
+extra.push({ id: 'founders', title: 'The Co.LLab Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
 
 const number = (cards, prefix) => cards.map((c, i) => c.replace('@@NO@@', `${prefix}-${String(i + 1).padStart(2, '0')}`));
 for (const p of phaseSections) { const all = number([...p.cards, ...p.tools], p.no); p.cards = all.slice(0, p.cards.length); p.tools = all.slice(p.cards.length); }
@@ -91,7 +92,7 @@ const main = `<main>
     <div class="glow"></div>
     <div class="wrap" style="position:relative;">
       <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · The Catalog</p>
-      <h1 class="display" style="margin-top:1.5rem;"><strong>All products.</strong></h1>
+      <h1 class="display" style="margin-top:1.5rem;"><strong>The .LLab products.</strong></h1>
       <p class="subhead" style="margin:1.5rem auto 0;">Every product, numbered by department. Find it, read one line, order it.</p>
       <div class="cat-search"><label class="cat-label" for="cat-q">Search the catalog</label><input id="cat-q" type="search" placeholder="Try “values”, “creator”, “free”" autocomplete="off"><p id="cat-count" class="cat-count" aria-live="polite"></p></div>
       <div class="hub-jump" role="navigation" aria-label="Departments">${nav.map(([l, id]) => `<a class="toc-chip" href="#${id}">${esc(l)}</a>`).join('')}</div>
@@ -136,17 +137,17 @@ ${extra.map((g) => `
 const groups = [...phaseSections, ...extra];
 let t = read('pages/legacy-library.html');
 t = t.replace(/ data-field(-href|-src)?="[^"]*"/g, '');
-const TITLE = 'All Products · The .LLab™ | The Co.LLab™';
+const TITLE = 'The .LLab Products™ | The Co.LLab™';
 const DESC = 'Every product from The Co.LLab™ on one page: memberships, The IV Phases™, .LLab Creators™, The Co.LLab Founders Organization™, partnerships and free tools.';
 t = t.replace(/<title>[\s\S]*?<\/title>/, `<title>${TITLE}</title>`);
 t = t.replace(/(<meta name="description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/(<meta property="og:title" content=")[^"]*/, `$1${TITLE}`).replace(/(<meta property="og:description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${TITLE}`).replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/legacy-library\.html/g, 'all-products.html');
-t = t.replace(/"name": "The \.LLab Legacy Library™ — The Co\.LLab™"/, `"name": "${TITLE}"`).replace(/"description": "The \.LLab Legacy Library™[^"]*"/, `"description": "${DESC}"`).replace(/"name": "The \.LLab Legacy Library"/, '"name": "All Products"');
+t = t.replace(/"name": "The \.LLab Legacy Library™ — The Co\.LLab™"/, `"name": "${TITLE}"`).replace(/"description": "The \.LLab Legacy Library™[^"]*"/, `"description": "${DESC}"`).replace(/"name": "The \.LLab Legacy Library"/, '"name": "The .LLab Products"');
 // the legacy-library entry in the lists goes back to a plain link; the hub entry is current
 t = t.replace(/<a href="all-products\.html" aria-current="page">The \.LLab Legacy Library™<\/a>/g, '<a href="legacy-library.html">The .LLab Legacy Library™</a>');
-t = t.replace(/<li><a href="all-products\.html">All Products · The \.LLab™<\/a><\/li>/g, '<li><a href="all-products.html" aria-current="page">All Products · The .LLab™</a></li>');
+t = t.replace(/<li><a href="all-products\.html">The \.LLab Products™<\/a><\/li>/g, '<li><a href="all-products.html" aria-current="page">The .LLab Products™</a></li>');
 t = t.replace(/<li><a href="all-products\.html">The \.LLab Legacy Library™<\/a><\/li>/g, '<li><a href="legacy-library.html">The .LLab Legacy Library™</a></li>');
 t = t.replace('<a href="think.html" class="is-on" aria-current="true">Knowledge + IP</a>', '<a href="think.html">Knowledge + IP</a>');
 // the catalog is its own branch of the model (Products & Services); no other branch is highlighted

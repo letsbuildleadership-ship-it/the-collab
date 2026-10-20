@@ -30,12 +30,12 @@ test('the product hub lists every product once, with its link from the pricing r
   ];
   for (const l of links) assert.equal(html.split(`href="${l}"`).length - 1, 1, `hub links ${l} once`);
   for (const t of freeTools) assert.ok(html.includes(`href="..${t.file}"`), t.key);
-  assert.match(html, /<h1[^>]*><strong>All products\.<\/strong>/);
+  assert.match(html, /<h1[^>]*><strong>The \.LLab products\.<\/strong>/);
 });
 
 test('the hub is in the More lists and the sitemap, and the cover chapters point at its sections', () => {
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
-    assert.match(read(f), /all-products\.html"[^>]*>All Products · The \.LLab™</, f);
+    assert.match(read(f), /all-products\.html"[^>]*>The \.LLab Products™</, f);
   }
   assert.match(read('sitemap.xml'), /pages\/all-products\.html/);
   const hub = read('pages/all-products.html');
