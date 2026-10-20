@@ -1,0 +1,27 @@
+name: Notify search engines
+
+# After a publish to main, tell Bing, Yandex and the other IndexNow engines which pages exist
+# (the key file in the site root proves the site is ours). Google is verified once in Search Console.
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - pages/**
+      - sitemap.xml
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Netlify to publish, then ping IndexNow
+        run: |
+          sleep 120
+          KEY=$(ls *.txt | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
+          HOST=wearethellab.netlify.app
+          URLS=$(grep -o 'https://[^<]*' sitemap.xml | grep -v sitemaps.org | python3 -c "import sys,json;print(json.dumps([l.strip() for l in sys.stdin]))")
+          curl -sS -o /dev/null -w "IndexNow: %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json' \
+            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":$URLS}"
