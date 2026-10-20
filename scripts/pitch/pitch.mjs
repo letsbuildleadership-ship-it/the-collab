@@ -277,13 +277,13 @@ const siteRow = (file) => {
   const desc = decode(/name="description" content="([^"]*)"/.exec(h)[1]);
   return [name, /In Development/.test(title) ? 'In development' : '', desc, `${file}.html`, ''];
 };
-const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'community', 'collaborating-companies', 'founders', 'about'];
+const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'agriculture', 'commercial-transport', 'community', 'collaborating-companies', 'founders', 'about'];
 const siteRows = SITE_ORDER.map(siteRow);
 const rowsHtml = (rows) => `<div class="az grow">${rows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>`;
 const PAGE_TITLES = ['Every page, <b>in order.</b>', 'Every page, <b>continued.</b>', 'Every page, <b>and about us.</b>'];
 const pagesPg = (i) => () => pg(K('Every page'), PAGE_TITLES[i], `
 <p class="lead" style="margin-bottom:10px">${i === 0 ? 'The revenue flows down this list: Partnership first, then the .LLab products, then everything that grows from them. Tap any row to open the page.' : 'Each page is described here as it is on the website. Tap any row to open it.'}</p>
-${rowsHtml(siteRows.slice(i * 5, i * 5 + 5))}`);
+${rowsHtml(siteRows.slice(i * 6, i * 6 + 6))}`);
 const pagesA = pagesPg(0), pagesB = pagesPg(1), pagesC = pagesPg(2);
 const azRows = [["Co.LLab+™", "In development", "The e-commerce side of The Co.LLab™, where members list their website, highlight a product or service, and advertise.", "community.html", ""], ["The Intelligence Paradox Trilogy™", "Coming soon", "Three ideas. One paradox. Dropping soon. Under .LLab R.A.T.™, in The .LLab Legacy Library™ and The .LLab Journal™.", "think.html", ""], [".LLab Atelier™", "In development", "Everything a person needs to live a good life.", "atelier.html", "Home · Office · Community spaces · Fashion · Home goods · Furniture"], [".LLab AV Productions™", "In development", "All things sound and video, for the occasions that bring people together and the people who create them. Includes home office integrations.", "technology.html", ""], [".LLab Communications™", "In development", "The original technology. Tools that bring people into the same room, not just onto a screen.", "technology.html", ""], [".LLab Edu™", "In development", "Sponsored learning and mentorship for partners, and future educational courses.", "community.html", ""], ["Renewable Energy Ecosystem™", "Vision", "Power that sustains community. Renewable energy so communities can sustain their culture for generations.", "technology.html", ""]];
 const pv1 = () => pg(K('What’s next'), 'What’s next, <b>A to Z.</b>', `
