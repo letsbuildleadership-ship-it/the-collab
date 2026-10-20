@@ -50,7 +50,7 @@ test('generated ad copy states the registry price range and seat counts', () => 
   assert.ok(!/guarantee|return on|roi|limited|hurry|last chance/i.test(all), 'no invented scarcity or claims');
   assert.equal(ads.length, 15);
   // every tactic is modeled under Omnidirectional Enterprise (node) x The IV Phases (1-4)
-  const NODES = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+  const NODES = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Products & Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
   for (const a of ads) { assert.ok(NODES.includes(a.node), `${a.id}: node`); assert.ok([1, 2, 3, 4].includes(a.phase), `${a.id}: phase`); assert.ok(a.lands, `${a.id}: landing`); }
   for (const n of NODES) assert.ok(ads.some((a) => a.node === n), `a tactic for node ${n}`);
   for (const ph of [1, 2, 3, 4]) assert.ok(ads.some((a) => a.phase === ph), `a tactic for phase ${ph}`);
@@ -80,14 +80,14 @@ test('text colour tokens keep AA contrast (4.5:1) on the site background', () =>
 function rgb(s) { return s.split(',').map((n) => parseInt(n, 10)); }
 
 test('canonical node links: every circle (full model, mini strips, mobile lists) and ribbon chip goes to its one aligned page', () => {
-  const CAN = { Businesses: 'partnership.html#tiers', Capital: 'partnership.html#tiers', Communities: 'founders.html', Nonprofits: 'impact.html', People: 'products.html', Technology: 'technology.html', 'Knowledge + IP': 'think.html', Creators: 'creator.html' };
-  const names = Object.keys(CAN).map((n) => n.replace(/[+]/g, '\\+')).join('|');
+  const CAN = { Businesses: 'partnership.html#tiers', Capital: 'partnership.html#tiers', Communities: 'founders.html', Nonprofits: 'impact.html', People: 'products.html', 'Products & Services': 'all-products.html', Technology: 'technology.html', 'Knowledge + IP': 'think.html', Creators: 'creator.html' };
+  const names = Object.keys(CAN).map((n) => n.replace(/[+]/g, '\\+').replace('&', '&amp;')).join('|');
   let checked = 0;
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
     const html = read(f), pre = f === 'index.html' ? 'pages/' : '';
-    for (const m of html.matchAll(new RegExp(`<a [^>]*href="([^"]+)"[^>]*aria-label="(${names})(?: —|")`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: circle ${m[2]}`); checked++; }
-    for (const m of html.matchAll(new RegExp(`<a href="([^"]+)"><span class="oe-node-title">(${names})</span>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: node list ${m[2]}`); checked++; }
-    for (const m of html.matchAll(new RegExp(`<li><a href="([^"]+)"[^>]*>(${names})</a></li>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2]], `${f}: ribbon ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<a [^>]*href="([^"]+)"[^>]*aria-label="(${names})(?: —|")`, 'g'))) { assert.equal(m[1], pre + CAN[m[2].replace('&amp;', '&')], `${f}: circle ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<a href="([^"]+)"><span class="oe-node-title">(${names})</span>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2].replace('&amp;', '&')], `${f}: node list ${m[2]}`); checked++; }
+    for (const m of html.matchAll(new RegExp(`<li><a href="([^"]+)"[^>]*>(${names})</a></li>`, 'g'))) { assert.equal(m[1], pre + CAN[m[2].replace('&amp;', '&')], `${f}: ribbon ${m[2]}`); checked++; }
   }
   assert.ok(checked > 150, 'maps found: ' + checked);
 });
