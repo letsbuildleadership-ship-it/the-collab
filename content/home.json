@@ -23,7 +23,7 @@
   "directory_eyebrow": "The ecosystem",
   "directory_cards": [
     {
-      "title": "Founders Organization™",
+      "title": "The Co.LLab Founders Organization™",
       "description": "Leadership and organizational infrastructure — The IV Phases™ model in practice.",
       "link": "/pages/founders.html"
     },
@@ -150,15 +150,15 @@
   ],
   "vision_body_prefix": "A world where infrastructure is built around people — not the other way around. Infrastructure that turns human potential into lasting",
   "vision_body_glow": "legacy.",
-  "offer_eyebrow": "Founders Organization™",
+  "offer_eyebrow": "The Co.LLab Founders Organization™",
   "offer_headline": [
     {
-      "text": "Four founding options. One Founders Organization™.",
+      "text": "Four founding options. One The Co.LLab Founders Organization™.",
       "style": "default",
       "break_before": false
     }
   ],
   "offer_body": "Back The Co.LLab™ as a Founder — from $20.",
-  "offer_cta_label": "Explore the Founders Organization™",
+  "offer_cta_label": "Explore The Co.LLab Founders Organization™",
   "offer_cta_link": "/pages/founders.html"
 }

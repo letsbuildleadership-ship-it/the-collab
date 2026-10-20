@@ -77,7 +77,7 @@ const blueprintAll = (reg.blueprint_series || []).filter((p) => !/blueprint-phas
 const planBtns = (m) => m.plans.map((pl) => `<a class="pill pill--solid" href="${esc(pl.payment_link)}" target="_blank" rel="noopener">${esc(pl.price_display)}</a>`).join('');
 extra.push({ id: 'memberships', title: 'Memberships', cards: reg.memberships.map((m) => card({ line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? ['Every IV Phases™ product, unlocked while you are a member', 'Infrastructure Analysis™ of the IP you license: what to build next'] : [], price: m.plans.map((pl) => pl.price_display).join(' · '), buttons: planBtns(m) })) });
 extra.push({ id: 'partnerships', title: 'Partnerships', cards: reg.partnerships.map((p) => card({ line: 'Omnidirectional Enterprise™ Partnership', name: p.tier_label, tag: p.headline || tagline(p.description), meta: [`${p.seats} seat${p.seats === 1 ? '' : 's'}`, `${p.term_months >= 1200 ? 'Lifetime' : `${p.term_months / 12} year${p.term_months === 12 ? '' : 's'}`} of membership`, 'Every IV Phases™ product, licensed to keep'], price: p.price_display, buttons: buy(p.payment_link) })) });
-extra.push({ id: 'founders', title: 'Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
+extra.push({ id: 'founders', title: 'The Co.LLab Founders Organization™', cards: reg.products.filter(isFounders).map((p) => card({ line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: [], price: p.price_display, buttons: buy(p.payment_link) })) });
 if (blueprintAll.length) extra.push({ id: 'blueprint', title: 'The .LLab Blueprint™ magazine', cards: await Promise.all(blueprintAll.map((p) => productCard(p))) });
 
 const number = (cards, prefix) => cards.map((c, i) => c.replace('@@NO@@', `${prefix}-${String(i + 1).padStart(2, '0')}`));
@@ -137,7 +137,7 @@ const groups = [...phaseSections, ...extra];
 let t = read('pages/legacy-library.html');
 t = t.replace(/ data-field(-href|-src)?="[^"]*"/g, '');
 const TITLE = 'All Products · The .LLab™ | The Co.LLab™';
-const DESC = 'Every product from The Co.LLab™ on one page: memberships, The IV Phases™, .LLab Creators™, Founders Organization™, partnerships and free tools.';
+const DESC = 'Every product from The Co.LLab™ on one page: memberships, The IV Phases™, .LLab Creators™, The Co.LLab Founders Organization™, partnerships and free tools.';
 t = t.replace(/<title>[\s\S]*?<\/title>/, `<title>${TITLE}</title>`);
 t = t.replace(/(<meta name="description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/(<meta property="og:title" content=")[^"]*/, `$1${TITLE}`).replace(/(<meta property="og:description" content=")[^"]*/, `$1${DESC}`);
