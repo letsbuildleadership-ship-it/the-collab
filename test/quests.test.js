@@ -125,19 +125,19 @@ test('scores are analysed: the gap between strongest and weakest is named', () =
   assert.match(o.legacyRead, /weakest link is Clarity/);
 });
 
-test('the nine Four Phases quests open to free members; other paid quests lock until the product is owned', async () => {
+test('paid IP quests are locked until the member owns the product or holds Membership', async () => {
   const token = await member('free@example.com');
-  const game = JSON.parse((await call(token, 'GET', { key: 'strength-map' })).body);
-  assert.ok(game.quest.nodes.length > 5);
-  assert.equal(game.canAnalyze, false, 'a free member works it but is not analysed');
-  const other = [...quests.values()].find((q) => q.archetype === 'workbook' && !q.open && !pricing.fourPhasesKeys().includes(q.key));
-  assert.equal((await call(token, 'GET', { key: other.key })).statusCode, 403);
+  assert.equal((await call(token, 'GET', { key: 'strength-map' })).statusCode, 403);
   const { fulfillCheckoutSession } = require('../netlify/functions/lib/fulfill');
   const product = pricing.registry.products.find((p) => p.key === 'strength-map');
   await fulfillCheckoutSession({ id: 'cs_q', customer_details: { email: 'free@example.com' }, amount_total: 1 }, [product.stripe_price_id]);
   const res = await call(await fakeStore.getTokenByEmail('free@example.com'), 'GET', { key: 'strength-map' });
   assert.equal(res.statusCode, 200);
-  assert.equal(JSON.parse(res.body).canAnalyze, true, 'owning the product covers its own analysis');
+  const g = JSON.parse(res.body);
+  assert.ok(g.quest.nodes.length > 5);
+  assert.equal(g.canAnalyze, true, 'owning the product covers its own analysis');
+  const mtoken = await paidMember('pm@example.com');
+  assert.equal((await call(mtoken, 'GET', { key: 'legacy-map' })).statusCode, 200, 'Membership opens the Four Phases quests');
 });
 
 test('workbook quests analyse coverage, scores and choices against the member\'s own words', () => {
@@ -194,6 +194,8 @@ test('free members work the whole quest, but analysis and outcomes need Membersh
   assert.equal(out.analysisLocked, true);
   assert.equal(out.saved.status, 'draft', 'answers are kept as a draft, not analysed');
   assert.equal(out.saved.outcome, undefined);
+  assert.ok(out.preview && out.preview.summary && typeof out.preview.working === 'number' && typeof out.preview.toBuild === 'number', 'a simple read is returned');
+  assert.equal(out.preview.improvements, undefined, 'the build list stays with Membership');
   assert.equal((await call(token, 'GET', { key: q.key, pdf: '1' })).statusCode, 404, 'no report without Membership');
 
   // The same answers are analysed once the member joins.

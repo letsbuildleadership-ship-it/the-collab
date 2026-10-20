@@ -8,9 +8,8 @@ const membershipStatus = require('./lib/membership-status');
 const { resolveAccess } = require('./lib/access');
 const freeToolKeys = new Set(require('../../content/free-tools.json').tools.map((t) => t.key));
 const { tokenFromEvent, json, CORS_HEADERS } = require('./lib/http');
-const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor } = require('./lib/quests');
+const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor } = require('./lib/quests');
 const { buildQuestPdf } = require('./lib/quest-pdf');
-const pricing = require('./lib/pricing');
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers: CORS_HEADERS, body: '' };
@@ -37,12 +36,11 @@ exports.handler = async (event) => {
   const isProductQuest = !quest.open && !freeToolKeys.has(key);
   const owned = new Set(membershipStatus.effectiveEntitlements(access));
   const ownsIt = owned.has(key) || membershipStatus.catalogUnlockKeys(access).includes(key);
-  // The nine Four Phases quests are the game every signed-in member can work through; the other
-  // product quests need the product (same entitlement check as its PDF download).
-  const isGame = pricing.fourPhasesKeys().includes(key);
-  if (isProductQuest && !isGame && !ownsIt) return json(403, { error: 'You do not have access to this quest.' });
-  // Free members work the whole quest. Analyzing their answers and delivering outcomes is a
-  // Membership benefit (owning the product behind a quest also covers its own analysis).
+  // Paid IP is only for paid members: a product's quest needs the product or Membership (same
+  // entitlement check as its PDF download).
+  if (isProductQuest && !ownsIt) return json(403, { error: 'You do not have access to this quest.' });
+  // Free members work the quests on the free tools and get a simple read. The full analysis,
+  // outcomes and report are a Membership benefit (owning a product covers its own quest).
   const canAnalyze = membershipStatus.hasFullCatalog(access) || (isProductQuest && ownsIt);
 
   record.quests = record.quests || {};
@@ -68,9 +66,10 @@ exports.handler = async (event) => {
 
   if (complete && !canAnalyze) {
     if (saved && saved.status === 'done') return json(200, { saved });
-    record.quests[key] = { status: 'draft', answers: v.answers, notes: cleanNotes(quest, body.notes), readyForAnalysis: true };
+    const preview = previewFor(outcomeFor(quest, v.answers));
+    record.quests[key] = { status: 'draft', answers: v.answers, notes: cleanNotes(quest, body.notes), readyForAnalysis: true, preview };
     await store.saveCustomer(record);
-    return json(200, { saved: record.quests[key], analysisLocked: true });
+    return json(200, { saved: record.quests[key], analysisLocked: true, preview });
   }
 
   if (complete) {
