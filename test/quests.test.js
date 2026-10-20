@@ -194,7 +194,7 @@ test('free members work the whole quest, but analysis and outcomes need Membersh
   assert.equal(out.analysisLocked, true);
   assert.equal(out.saved.status, 'draft', 'answers are kept as a draft, not analysed');
   assert.equal(out.saved.outcome, undefined);
-  assert.ok(out.preview && out.preview.summary && typeof out.preview.working === 'number' && typeof out.preview.toBuild === 'number', 'a quick infrastructure analysis is returned');
+  assert.ok(out.preview && out.preview.summary && typeof out.preview.working === 'number' && typeof out.preview.toBuild === 'number', 'an Infrastructure Snapshot™ is returned');
   assert.equal(out.preview.improvements, undefined, 'the build list stays with Membership');
   assert.equal((await call(token, 'GET', { key: q.key, pdf: '1' })).statusCode, 404, 'no report without Membership');
 
