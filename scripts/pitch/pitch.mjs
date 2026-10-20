@@ -154,10 +154,12 @@ const cover = `<section class="g cv" id="p1" style="padding:0"><div class="ph-ph
 <div class="top"><p class="k">Leadership Infrastructure™ · A pitch</p><h1>Every company starts<br/>with a vision.<br/><b>Most lose it.</b></h1><p class="sub">The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.</p></div>
 <div class="bot"><div class="logo"><img src="${logo}"/>The Co.LLab™</div><div style="text-align:right"><a href="${SITE}" style="color:inherit;text-decoration:none">Let’s Build Your Legacy<span>Through Omnidirectional Enterprise™</span></a></div></div></section>`;
 
-const tocRows = [[3, 'The four questions'], [4, 'Leadership, made structural'], [5, 'The ecosystem'], [6, 'Partnership levels'], [8, 'Included in every level'], [9, 'What you license'], [10, 'Start free'], [11, 'The ladder'], [12, 'Every page, in order'], [15, '.LLab Collaborating Companies'], [16, 'What’s next, A to Z'], [17, 'Your point of entry'], [18, 'Let’s talk']];
+// Contents: the exact name of every page on the site, in revenue order, each jumping to where the pitch covers it.
+const PITCH_PAGE = { partnership: 6, products: 9, 'all-products': 12, creator: 12, founders: 12, library: 13, 'legacy-library': 13, journal: 13, think: 13, impact: 13, technology: 16, atelier: 16, community: 16, 'collaborating-companies': 15, about: 14 };
+const tocRows = () => [...SITE_ORDER.map((f, i) => [PITCH_PAGE[f], siteRows[i][0]]), [18, 'Let’s talk']];
 const contents = () => pg('Contents', 'Where would you like to <b>begin?</b>', `
 <p class="hint">Tap a section to jump to it. Tap any card, QR code or button to open it on the site.</p>
-<div class="toc grow">${tocRows.map(([n, t]) => `<a href="#p${n}"><span class="n">${String(n).padStart(2, '0')}</span><span>${t}</span><span class="ar">›</span></a>`).join('')}</div>`);
+<div class="toc grow">${tocRows().map(([n, t]) => `<a href="#p${n}"><span class="n">${String(n).padStart(2, '0')}</span><span>${t}</span><span class="ar">›</span></a>`).join('')}</div>`);
 const qrow = (img, p, nm, q) => `<div class="qrow"><div class="im" style="background-image:url(${ph(img)})"><div class="pp"><small>${p}</small><b>${nm}</b></div></div><div class="tx">${q}</div></div>`;
 const p1 = () => pg(K('The model'), 'Can you answer these <b>four questions?</b>', `
 <p class="lead">They are the four questions of The IV Phases™ of Leadership Infrastructure™. A company that can answer all four has a vision that does not depend on one person.</p>
