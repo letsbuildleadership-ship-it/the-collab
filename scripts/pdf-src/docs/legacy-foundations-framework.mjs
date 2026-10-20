@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'I · Foundations',
     'The Legacy <strong>Foundations</strong> Framework™',
-    'Define your legacy. The complete framework for naming what your company stands on, what it will never compromise, and what it should be remembered for.',
+    'Define it. The complete framework for naming what your company stands on, what it will never compromise, and what it should be remembered for.',
     '$750'
   ),
 };
