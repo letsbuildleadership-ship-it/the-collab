@@ -4,7 +4,7 @@
 // while the purchaser's roster still lists them. So removing a seat (or the
 // purchaser's term ending) takes effect immediately, with nothing to undo.
 //
-// Every place that decides access (download, account view, .LLab Legacy Library)
+// Every place that decides access (download, account view, .LLab Library)
 // passes the stored record through resolveAccess() and checks the result.
 // The result is a view: never save it — save the original record.
 const store = require('./store');

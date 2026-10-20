@@ -2,7 +2,7 @@
 // pages/founders.html — every recognized Founder, grouped by level,
 // ordered by their permanent sequential Founder Number. Only ever
 // publishes name-or-Member-ID (Member ID is already treated as a public
-// handle elsewhere on the site, e.g. .LLab Legacy Library™ community
+// handle elsewhere on the site, e.g. .LLab Library™ community
 // reflections) — never email, Stripe ids, or purchase history.
 const store = require('./lib/store');
 const pricing = require('./lib/pricing');

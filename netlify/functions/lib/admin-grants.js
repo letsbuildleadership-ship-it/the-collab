@@ -17,7 +17,7 @@ function grantableKeys() {
 /**
  * Grant a key. A membership is set active as a complimentary membership
  * (no subscription, no end date) so it actually unlocks access — the
- * catalog, the .LLab Legacy Library — not just an entry in the entitlement list.
+ * catalog, the .LLab Library — not just an entry in the entitlement list.
  * A membership that's already active (paid or via Partnership) is left as is.
  */
 function grantKey(record, key, now) {

@@ -1,4 +1,4 @@
-// POST: record one unit of stewardship in The .LLab Legacy Library™ — marking a
+// POST: record one unit of stewardship in The .LLab Library™ — marking a
 // book read, submitting a research note on the Scholarly Reading,
 // completing the Reflective Practice™, submitting a personal reflection,
 // or contributing a Community Reflection. Each of these is a Mark; when
@@ -32,7 +32,7 @@ exports.handler = async (event) => {
   const access = await resolveAccess(record);
   const libraryCard = access.memberships && access.memberships['library-card'];
   if (!membershipStatus.isMembershipActive(libraryCard)) {
-    return json(403, { error: 'The .LLab Legacy Library™ is available with an active .LLab Library Card™.' });
+    return json(403, { error: 'The .LLab Library™ is available with an active .LLab Library Card™.' });
   }
 
   let body;

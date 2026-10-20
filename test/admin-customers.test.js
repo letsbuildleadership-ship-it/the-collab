@@ -55,7 +55,7 @@ test('granting a membership by hand makes it actually active (catalog + bonus)',
   assert.ok(record.entitlements.includes('infrastructure-roadmap'));
 });
 
-test('granting a Library Card by hand opens the .LLab Legacy Library', async () => {
+test('granting a Library Card by hand opens the .LLab Library', async () => {
   const library = require('../netlify/functions/library');
   const { token } = await fulfillCheckoutSession({ id: 'cs_g2', customer_details: { email: 'lib@example.com' } }, ['price_1U31dIAK6n3ctuR9P3oaWUqY']);
   const ev = { httpMethod: 'GET', headers: {}, queryStringParameters: { token } };

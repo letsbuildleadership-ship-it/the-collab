@@ -1,5 +1,5 @@
 {
-  "_readme": "Content registry for The .LLab Library Card™ / The .LLab Legacy Library™ — the 12-month perpetual cycle (SEE → KNOW → CHOOSE → POSITION → DESIGN → BUILD → MULTIPLY → CREATE → DISCERN → STEWARD → COMPOUND → LEAVE → repeat). Consumed by netlify/functions/lib/library-content.js and rendered by pages/library.html. Edit the reading list, scholarly readings, reflective practices, and community prompts here — no code changes needed. Each month belongs to one of the four TRIARCH™ phases (three months per phase).",
+  "_readme": "Content registry for The .LLab Library Card™ / The .LLab Library™ — the 12-month perpetual cycle (SEE → KNOW → CHOOSE → POSITION → DESIGN → BUILD → MULTIPLY → CREATE → DISCERN → STEWARD → COMPOUND → LEAVE → repeat). Consumed by netlify/functions/lib/library-content.js and rendered by pages/library.html. Edit the reading list, scholarly readings, reflective practices, and community prompts here — no code changes needed. Each month belongs to one of the four TRIARCH™ phases (three months per phase).",
 
   "triarch": {
     "name": "TRIARCH™",
@@ -39,7 +39,7 @@
       }
     ],
     "orders": [
-      { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The .LLab Legacy Library™.", "description": "You have taken up the Library Card™. The cycle is yours to steward." },
+      { "key": "initiate", "name": "INITIATE", "requires": "Enrolled in The .LLab Library™.", "description": "You have taken up the Library Card™. The cycle is yours to steward." },
       { "key": "curator", "name": "CURATOR", "requires": "CROWN™ fully stewarded.", "description": "You have curated your own foundations — sight, knowledge, and choice are now yours in practice, not just in principle." },
       { "key": "architect", "name": "ARCHITECT", "requires": "CROWN™ and SCEPTER™ fully stewarded.", "description": "You have designed structure atop your foundations. What you lead now has form." },
       { "key": "steward", "name": "STEWARD", "requires": "CROWN™, SCEPTER™, and SIGNET™ fully stewarded.", "description": "You have proven capability inside the structure you built. What you steward, works." },
