@@ -1,11 +1,18 @@
 {
   "eyebrow": "R.A.T.™ — Research And Theory",
   "hero_headline": [
-    { "text": "Some ideas begin as: ", "style": "default", "break_before": false },
-    { "text": "“Wait… what if?”", "style": "glow", "break_before": false }
+    {
+      "text": "Some ideas begin as: ",
+      "style": "default",
+      "break_before": false
+    },
+    {
+      "text": "“Wait… what if?”",
+      "style": "glow",
+      "break_before": false
+    }
   ],
   "hero_subhead": "Our research and theory lab. Curious. Scholarly. Weird. Provocative.",
-
   "model_eyebrow": "Omnidirectional Enterprise™",
   "model_headline": "Not a linear funnel. A coordinated system linking contribution, ownership, and return.",
   "model_body": "Not a single-purpose consulting business. Value moves between people, ideas, products, organizations, and community — with many ways in, all connected to Leadership Infrastructure™.",
@@ -35,29 +42,35 @@
   "trilogy_eyebrow": "The trilogy",
   "trilogy_headline": "Research → Theory → Infrastructure.",
   "trilogy_body": "R.A.T.™ explores the ideas. The Co.LLab™ turns them into infrastructure.",
-
   "meta_eyebrow": "A concept from The Co.LLab™",
   "meta_headline": "Metacognitive Infrastructure Thinking™",
   "meta_body": "Don't just ask \"how do we solve this?\" Ask \"what structure is shaping how we approach it — and what would let people think and lead differently?\"",
-
   "intel_eyebrow": "Bridging theory and technology",
   "intel_headline": ".LLab Intelligence Infrastructure™",
   "intel_body": "Intelligent systems should understand people, not demand compliance. Our approach designs them around how people actually behave.",
   "intel_domains": [
-    { "label": "AI" },
-    { "label": "Organizational systems" },
-    { "label": "Leadership" },
-    { "label": "Workflows" },
-    { "label": "Decision-making" },
-    { "label": "Knowledge systems" },
-    { "label": "Automation" }
+    {
+      "label": "AI"
+    },
+    {
+      "label": "Organizational systems"
+    },
+    {
+      "label": "Leadership"
+    },
+    {
+      "label": "Workflows"
+    },
+    {
+      "label": "Decision-making"
+    },
+    {
+      "label": "Knowledge systems"
+    },
+    {
+      "label": "Automation"
+    }
   ],
-
-  "paradox_eyebrow": "Coming Soon",
-  "paradox_headline": "The Intelligence Paradox Trilogy™.",
-  "paradox_body": "Three ideas. One paradox. Dropping soon.",
-  "paradox_drop_date": "2026-11-11T00:00:00Z",
-
   "closing_eyebrow": "Go deeper",
   "closing_headline": "See where the theory becomes infrastructure."
 }
