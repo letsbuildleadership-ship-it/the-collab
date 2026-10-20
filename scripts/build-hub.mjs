@@ -12,7 +12,7 @@ const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const reg = JSON.parse(read('content/pricing.json'));
 const free = JSON.parse(read('content/free-tools.json')).tools;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const FOUR = new Set(['strength-map', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture']);
+const FOUR = new Set(['strength-map', 'values-charter', 'leadership-identity-profile', 'decision-principles-playbook', 'foundations-assessment', 'foundations-manual', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture']);
 const isCreator = (p) => /^creator|^creative/.test(p.key);
 const isFounders = (p) => (p.phase || '').includes('Founders Organization');
 
@@ -46,7 +46,7 @@ const card = (o) => `<article class="shop-card">
           <ul class="shop-meta">${o.meta.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
           <div class="shop-buy"><span class="shop-price">${esc(o.price)}</span>${o.buttons}</div>
         </article>`;
-const buy = (href, label = 'Buy') => `<a class="pill pill--solid" href="${esc(href)}" target="_blank" rel="noopener">${label} <span class="arrow">→</span></a>`;
+const buy = (href, label = 'Buy') => !href ? '<span class="shop-soon">Available soon</span>' : `<a class="pill pill--solid" href="${esc(href)}" target="_blank" rel="noopener">${label} <span class="arrow">→</span></a>`;
 
 async function productCard(p) {
   const n = await pages(p.pdf_file);

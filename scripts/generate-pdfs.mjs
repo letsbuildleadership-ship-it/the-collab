@@ -17,6 +17,11 @@ const outDir = path.join(__dirname, '..', 'content', 'library');
 
 const ALL_DOCS = [
   'strength-map',
+  'values-charter',
+  'leadership-identity-profile',
+  'decision-principles-playbook',
+  'foundations-assessment',
+  'foundations-manual',
   'alignment-map',
   'build-plan',
   'legacy-profile',

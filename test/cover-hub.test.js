@@ -23,7 +23,7 @@ test('the home page is a book cover: eight chapters, each a real page, no long c
 test('the product hub lists every product once, with its link from the pricing registry', () => {
   const html = read('pages/all-products.html');
   const links = [
-    ...pricing.products.map((p) => p.payment_link),
+    ...pricing.products.map((p) => p.payment_link).filter(Boolean),
     ...(pricing.blueprint_series || []).map((p) => p.payment_link),
     ...pricing.partnerships.map((p) => p.payment_link),
     ...pricing.memberships.flatMap((m) => m.plans.map((pl) => pl.payment_link)),

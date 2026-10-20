@@ -43,7 +43,7 @@ const freeQuests = () => freeTools.map((t) => quests.get(t.key));
 test('every free tool has a quest, and every paid workbook has one', () => {
   for (const t of freeTools) assert.ok(quests.get(t.key), t.key);
   const paid = [...quests.values()].filter((q) => q.archetype === 'workbook' && !q.open);
-  assert.equal(paid.length, 16);
+  assert.equal(paid.length, 21);
   for (const q of paid) assert.ok(pricing.entryForKey(q.key), q.key);
 });
 

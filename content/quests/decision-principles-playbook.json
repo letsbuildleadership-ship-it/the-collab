@@ -1,0 +1,180 @@
+{
+  "key": "decision-principles-playbook",
+  "title": "Decision Principles Playbook™",
+  "phase": "Phase I · Foundations",
+  "archetype": "workbook",
+  "intro": "Turn what you believe into the rules your organization uses to decide.",
+  "pdfTitle": "Decision Principles Playbook™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Step 1 — What We Decide",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which of them get made inconsistently today?"
+    },
+    {
+      "id": "n2",
+      "section": "Step 1 — What We Decide",
+      "phase": null,
+      "type": "text",
+      "prompt": "Which are made by the wrong person or at the wrong level?"
+    },
+    {
+      "id": "n3",
+      "section": "Step 2 — Who Decides",
+      "phase": null,
+      "type": "choose",
+      "prompt": "For your most frequent decision, who should decide?",
+      "options": [
+        "Founder or executive",
+        "Leadership team together",
+        "Department lead",
+        "Anyone closest to the work",
+        "Board or governing group"
+      ],
+      "pickMin": 1,
+      "pickMax": 1
+    },
+    {
+      "id": "n4",
+      "section": "Step 2 — Who Decides",
+      "phase": null,
+      "type": "text",
+      "prompt": "Who must be consulted, and who only informed?"
+    },
+    {
+      "id": "n5",
+      "section": "Step 2 — Who Decides",
+      "phase": null,
+      "type": "text",
+      "prompt": "What should never be decided without our values in the room?"
+    },
+    {
+      "id": "n6",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we always put first when priorities conflict?"
+    },
+    {
+      "id": "n7",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "What do we refuse to sacrifice for speed?"
+    },
+    {
+      "id": "n8",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 1:"
+    },
+    {
+      "id": "n9",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 2:"
+    },
+    {
+      "id": "n10",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 3:"
+    },
+    {
+      "id": "n11",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 4:"
+    },
+    {
+      "id": "n12",
+      "section": "Step 3 — Our Decision Principles",
+      "phase": null,
+      "type": "text",
+      "prompt": "Principle 5:"
+    },
+    {
+      "id": "n13",
+      "section": "Step 4 — Test A Real Decision",
+      "phase": null,
+      "type": "text",
+      "prompt": "Describe one decision we must make soon:"
+    },
+    {
+      "id": "n14",
+      "section": "Step 4 — Test A Real Decision",
+      "phase": null,
+      "type": "text",
+      "prompt": "How does each principle apply to it?"
+    },
+    {
+      "id": "n15",
+      "section": "Step 4 — Test A Real Decision",
+      "phase": null,
+      "type": "text",
+      "prompt": "What does the decision look like if we follow them?"
+    },
+    {
+      "id": "n16",
+      "section": "Step 5 — How We Record and Review",
+      "phase": null,
+      "type": "text",
+      "prompt": "Where will decisions be written down, and by whom?"
+    },
+    {
+      "id": "n17",
+      "section": "Step 5 — How We Record and Review",
+      "phase": null,
+      "type": "text",
+      "prompt": "How often will we look back at past decisions?"
+    },
+    {
+      "id": "n18",
+      "section": "Step 5 — How We Record and Review",
+      "phase": null,
+      "type": "text",
+      "prompt": "What will we do when a decision turns out to be wrong?"
+    },
+    {
+      "id": "n19",
+      "section": "Step 6 — Our Decision Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We decide by …"
+    },
+    {
+      "id": "n20",
+      "section": "Step 6 — Our Decision Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "Decisions about … are made by …"
+    },
+    {
+      "id": "n21",
+      "section": "Step 6 — Our Decision Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We record decisions in …"
+    },
+    {
+      "id": "n22",
+      "section": "Step 6 — Our Decision Statement",
+      "phase": null,
+      "type": "text",
+      "prompt": "We review decisions every …"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

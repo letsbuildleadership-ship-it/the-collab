@@ -303,7 +303,25 @@
   force = true
 
 [[redirects]]
+  from = "/content/library/decision-principles-playbook.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/content/library/diagnostic.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/foundations-assessment.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/foundations-manual.pdf"
   to = "/404"
   status = 404
   force = true
@@ -328,6 +346,12 @@
 
 [[redirects]]
   from = "/content/library/journal-vol-1.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/leadership-identity-profile.pdf"
   to = "/404"
   status = 404
   force = true
@@ -394,6 +418,12 @@
 
 [[redirects]]
   from = "/content/library/strength-map.pdf"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/content/library/values-charter.pdf"
   to = "/404"
   status = 404
   force = true
