@@ -106,7 +106,7 @@ const stp = (no, b, s) => `<div class="step panel"><div class="no">${no}</div><d
 const s8 = slide(`<p class="k">Start now</p><h2 style="font-size:64px">Experience the method <b>before you invest.</b></h2><div class="try grow"><div>${stp(1, 'Use the free tools', 'Open to everyone. No account needed.')}${stp(2, 'Join free, work a quest', 'A guided quest on any free tool, with your Infrastructure Snapshot™.')}${stp(3, 'Membership goes deeper', 'The full Infrastructure Analysis™, your outcomes, and the paid IP.')}</div><a class="qrbig panel" href="${SITE}/pages/login.html"><img src="${qJoin}"/><b>Scan to join free</b><span>wearethellab.netlify.app</span></a></div>`);
 const tier = (tn, p, h, m, f) => `<div class="tier panel"><small>${tn}</small><div class="p">${p}</div><div class="h">${h}</div><div class="f">${f}</div><div class="m">${m}</div></div>`;
 const s9 = slide(`<p class="k">Partnership</p><h2 style="font-size:64px">Four levels. <b>One legacy.</b></h2><div class="tiers grow">
-${P.tiers.map((t) => tier(t.label, t.price, t.line, t.term, t.bestFor)).join('')}</div>
+${P.tiers.map((t) => tier(t.label, t.price, `${t.verb}.`, t.term, t.bestFor)).join('')}</div>
 <div class="entry panel"><b>Start free.</b> <b>.LLab Library Card™</b> ${P.libMo} · <b>The .LLab Journal™</b> ${P.journalYr} · <b>.LLab Membership™</b> ${P.memMo}, with the Infrastructure Analysis™</div>
 <p class="legal">IV Phases™ IP ${P.range}. One-time purchase. No subscription and no automatic charges. A license for internal business use. Results depend on how each business applies it.</p>`);
 const s10 = slide(`<p class="k">.LLab Collaborating Companies</p><h2 style="font-size:64px">Companies that <b>collaborate with us.</b></h2><div class="pts grow" style="align-content:center">

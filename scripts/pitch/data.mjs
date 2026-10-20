@@ -18,12 +18,16 @@ const four = pricing.fourPhasesKeys().map((k) => pricing.entryForKey(k)).map(dol
 const years = (m) => (m >= 1200 ? 'Lifetime' : `${m / 12} year${m === 12 ? '' : 's'}`);
 const partnerIp = reg.partner_ip.map((p) => p.name);
 
+// The four-step language used on the pitch's phase cards.
+const VERBS = ['Define it', 'Plan it', 'Live it', 'Pass it on'];
+
 export const P = {
   libMo: perMo('library-card'), libYr: perYr('library-card'),
   memMo: perMo('membership'), memYr: perYr('membership'),
   journalYr: perYr('journal'),
   range: `${fmt(Math.min(...four))}–${fmt(Math.max(...four))}`,
   tiers: reg.partnerships.map((t, i) => ({
+    verb: VERBS[i],
     label: t.tier_label, price: t.price_display, line: t.headline, bestFor: t.legacy_line.replace(/'/g, '\u2019'), seats: t.seats,
     term: `${years(t.term_months)} · ${t.seats} seat${t.seats === 1 ? '' : 's'}`,
     termShort: years(t.term_months).toLowerCase(), partnerIp: partnerIp[i],
