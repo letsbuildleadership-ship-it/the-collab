@@ -259,9 +259,9 @@
     var t = $('q-tier');
     if (t) {
       t.hidden = canAnalyze;
-      t.textContent = 'Finish this quest free for a simple read of where you stand. Membership gives the full analysis and your outcomes.';
+      t.textContent = 'Finish this quest free for a quick analysis of your infrastructure. Membership gives the full infrastructure analysis and your outcomes.';
     }
-    $('q-finish').firstChild.textContent = canAnalyze ? 'Finish quest ' : 'See my simple read ';
+    $('q-finish').firstChild.textContent = canAnalyze ? 'Finish quest ' : 'Run my infrastructure analysis ';
   }
 
   function showLocked(p) {

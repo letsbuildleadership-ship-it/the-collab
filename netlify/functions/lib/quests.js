@@ -108,7 +108,7 @@ function outcomeFor(q, answers) {
   };
 }
 
-// The simple read a free member gets on a free tool: where they stand and one thing that is working.
+// The quick infrastructure analysis a free member gets on a free tool: where they stand and one thing that is working.
 // The full analysis (the build list, the phase and Omnidirectional reads, the report) is Membership.
 function previewFor(o) {
   return {
