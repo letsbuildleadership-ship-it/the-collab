@@ -3,7 +3,7 @@
 const store = require('./store');
 const { sendMail } = require('./mailer');
 
-const SITE = (process.env.URL || 'https://wearethellab.netlify.app').replace(/\/$/, '');
+const SITE = (process.env.URL || 'https://wearethellab.com').replace(/\/$/, '');
 const CONTACT = 'letsbuildleadership@gmail.com';
 const DAY = 24 * 60 * 60 * 1000;
 

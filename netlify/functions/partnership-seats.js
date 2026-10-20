@@ -21,7 +21,7 @@ const { json, tokenFromEvent, setTokenCookie } = require('./lib/http');
 const INVITE_DAYS = 14;
 
 function siteOrigin(event) {
-  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.netlify.app';
+  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.com';
   return `https://${host}`;
 }
 

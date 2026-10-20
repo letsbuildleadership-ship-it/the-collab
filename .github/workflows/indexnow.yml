@@ -20,7 +20,7 @@ jobs:
         run: |
           sleep 120
           KEY=$(ls *.txt | grep -E '^[0-9a-f]{32}\.txt$' | head -1 | sed 's/\.txt$//')
-          HOST=wearethellab.netlify.app
+          HOST=wearethellab.com
           URLS=$(grep -o 'https://[^<]*' sitemap.xml | grep -v sitemaps.org | python3 -c "import sys,json;print(json.dumps([l.strip() for l in sys.stdin]))")
           curl -sS -o /dev/null -w "IndexNow: %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
             -H 'Content-Type: application/json' \

@@ -22,7 +22,7 @@ const TEST_CENTS = 100; // $1
 const { isAdmin: isAuthorized } = require('./lib/admin-auth');
 
 function siteOrigin(event) {
-  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.netlify.app';
+  const host = (event.headers && (event.headers.host || event.headers.Host)) || 'wearethellab.com';
   return `https://${host}`;
 }
 

@@ -2,15 +2,15 @@
 
 > The Co.LLab™ develops proprietary products, intellectual property, and leadership infrastructure organized around the Omnidirectional Enterprise™ operating model, an economic enterprise system that connects people, organizations, products, intellectual property, capital, and resources in one ecosystem.
 
-Site: https://wearethellab.netlify.app
+Site: https://wearethellab.com
 Instagram: https://www.instagram.com/theco.llab_/
 
 ## Pages
-- [Home](https://wearethellab.netlify.app/): Omnidirectional Enterprise™ and the economic case for it.
-- [Partnership™](https://wearethellab.netlify.app/pages/partnership.html): a structured opportunity for businesses to practice Omnidirectional Enterprise™ through licensed IP, products, leadership infrastructure, and cross-sector capabilities.
-- [The .LLab™](https://wearethellab.netlify.app/pages/products.html): research, theory, applied practices, and proprietary intellectual property as structured knowledge resources. Membership, .LLab Library Card™ and The IV Phases™ products.
-- [The .LLab Products™](https://wearethellab.netlify.app/pages/all-products.html): every product on one page: memberships, The IV Phases™, .LLab Creators™, partnerships and free tools.
-- [.LLab R.A.T.™ · Research And Theory](https://wearethellab.netlify.app/pages/think.html): analysis of business, economic, political, and geopolitical systems.
-- [The Co.LLab Founders Organization™](https://wearethellab.netlify.app/pages/founders.html): a community-based nonprofit initiative intended to pursue 501(c)(3) status.
-- [About The Co.LLab™](https://wearethellab.netlify.app/pages/about.html): mission, vision, and enterprise identity.
-- [Glossary](https://wearethellab.netlify.app/pages/glossary.html): plain definitions of every Co.LLab™ term, from Omnidirectional Enterprise™ to .LLab Membership™.
+- [Home](https://wearethellab.com/): Omnidirectional Enterprise™ and the economic case for it.
+- [Partnership™](https://wearethellab.com/pages/partnership.html): a structured opportunity for businesses to practice Omnidirectional Enterprise™ through licensed IP, products, leadership infrastructure, and cross-sector capabilities.
+- [The .LLab™](https://wearethellab.com/pages/products.html): research, theory, applied practices, and proprietary intellectual property as structured knowledge resources. Membership, .LLab Library Card™ and The IV Phases™ products.
+- [The .LLab Products™](https://wearethellab.com/pages/all-products.html): every product on one page: memberships, The IV Phases™, .LLab Creators™, partnerships and free tools.
+- [.LLab R.A.T.™ · Research And Theory](https://wearethellab.com/pages/think.html): analysis of business, economic, political, and geopolitical systems.
+- [The Co.LLab Founders Organization™](https://wearethellab.com/pages/founders.html): a community-based nonprofit initiative intended to pursue 501(c)(3) status.
+- [About The Co.LLab™](https://wearethellab.com/pages/about.html): mission, vision, and enterprise identity.
+- [Glossary](https://wearethellab.com/pages/glossary.html): plain definitions of every Co.LLab™ term, from Omnidirectional Enterprise™ to .LLab Membership™.
