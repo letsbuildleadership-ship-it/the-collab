@@ -58,7 +58,7 @@ ${licenseHtml}
 <p><strong>It can be carried forward by <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 <p><strong>What I want it to leave behind is <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 
-<p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>.LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, Legacy Library™, and community that support the full Co.LLab™ ecosystem.</p>
+<p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>.LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, .LLab Legacy Library™, and community that support the full Co.LLab™ ecosystem.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>

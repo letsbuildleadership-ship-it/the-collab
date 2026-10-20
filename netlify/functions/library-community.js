@@ -1,5 +1,5 @@
 // GET the Community Reflections other members have contributed for one
-// month of The Legacy Library™ cycle. Members-only (must be signed in with
+// month of The .LLab Legacy Library™ cycle. Members-only (must be signed in with
 // an active Library Card) — this is the shared wall behind Community
 // Mark™ contributions, keyed by Member ID rather than email.
 const store = require('./lib/store');
@@ -20,7 +20,7 @@ exports.handler = async (event) => {
   const access = await resolveAccess(record);
   const libraryCard = access.memberships && access.memberships['library-card'];
   if (!membershipStatus.isMembershipActive(libraryCard)) {
-    return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
+    return json(403, { error: 'The .LLab Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 
   const params = event.queryStringParameters || {};

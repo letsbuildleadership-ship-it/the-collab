@@ -1,8 +1,8 @@
-// GET the signed-in member's full Legacy Library™ view: which month is
+// GET the signed-in member's full .LLab Legacy Library™ view: which month is
 // open, the full 12-month syllabus merged with their own progress, their
 // Marks totals, Phase Crowns, Cycle Rings, and the Order of Distinction
 // that adds up to. Gated on an active `library-card` membership — holding
-// the Library Card is what enrolls a member in the Legacy Library™.
+// the Library Card is what enrolls a member in the .LLab Legacy Library™.
 const store = require('./lib/store');
 const { tokenFromEvent, json } = require('./lib/http');
 const membershipStatus = require('./lib/membership-status');
@@ -22,7 +22,7 @@ exports.handler = async (event) => {
   const access = await resolveAccess(record);
   const libraryCard = access.memberships && access.memberships['library-card'];
   if (!membershipStatus.isMembershipActive(libraryCard)) {
-    return json(403, { error: 'The Legacy Library™ is available with an active .LLab Library Card™.' });
+    return json(403, { error: 'The .LLab Legacy Library™ is available with an active .LLab Library Card™.' });
   }
 
   const library = lib.ensureLibrary(record);

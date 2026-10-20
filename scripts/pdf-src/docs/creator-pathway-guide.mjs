@@ -58,7 +58,7 @@ ${licensePageHtml}
     <div class="matrix-cell matrix-highlight" style="padding:12px 14px;"><span class="matrix-label">Signet</span><p>Proven capability</p></div>
     <div class="matrix-cell" style="padding:12px 14px;"><span class="matrix-label">Heirloom</span><p>Legacy</p></div>
   </div>
-  <p class="diagram-caption">TRIARCH™ — the same keystone behind .LLab Membership™ and Legacy Library™, applied here to creative infrastructure.</p>
+  <p class="diagram-caption">TRIARCH™ — the same keystone behind .LLab Membership™ and .LLab Legacy Library™, applied here to creative infrastructure.</p>
 </section>
 
 <section class="page">
@@ -74,7 +74,7 @@ ${licensePageHtml}
 
   <div class="callout">
     <p class="callout-label">When To Go To Membership</p>
-    <p>If you find yourself wanting more than one product on this ladder, <strong>.LLab Membership™</strong> unlocks the entire Creator Infrastructure™ catalog — plus the full Leadership Infrastructure™ catalog, the Legacy Library™, and the community — for one ongoing price.</p>
+    <p>If you find yourself wanting more than one product on this ladder, <strong>.LLab Membership™</strong> unlocks the entire Creator Infrastructure™ catalog — plus the full Leadership Infrastructure™ catalog, the .LLab Legacy Library™, and the community — for one ongoing price.</p>
   </div>
 
   <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creator Infrastructure™</a></p>

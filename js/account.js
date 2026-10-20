@@ -800,7 +800,7 @@
     const libraryLink = $('library-status-link');
     if (libraryLink) {
       libraryLink.innerHTML = libraryActive
-        ? '<a href="library.html" style="text-decoration:underline;">Enter the Legacy Library™ →</a>'
+        ? '<a href="library.html" style="text-decoration:underline;">Enter the .LLab Legacy Library™ →</a>'
         : '<a href="products.html#library-card" style="text-decoration:underline;">View Library Card</a>';
     }
 
