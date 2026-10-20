@@ -40,3 +40,17 @@ test('the hub is in the More lists and the sitemap, and the cover chapters point
   const hub = read('pages/all-products.html');
   for (const id of ['phase-i', 'phase-ii', 'phase-iii', 'phase-iv', 'founders']) assert.ok(hub.includes(`id="${id}"`), id);
 });
+
+test('every footer Navigate/More link, and so every contents row, uses the exact title of the page it opens', () => {
+  const decode = (t) => t.replace(/&amp;/g, '&');
+  const exact = (file) => decode(/<title>([^<]*)<\/title>/.exec(read(`pages/${file}.html`))[1]).split(/ [—|] /)[0].trim();
+  for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
+    const html = read(f);
+    for (const h of ['Navigate', 'More']) {
+      const block = (new RegExp(`<h4>${h}</h4>\\s*<ul>([\\s\\S]*?)</ul>`).exec(html) || [])[1] || '';
+      for (const m of block.matchAll(/<li><a href="(?:pages\/)?([\w-]+)\.html"[^>]*>([^<]+)<\/a><\/li>/g)) {
+        assert.equal(decode(m[2]), exact(m[1]), `${f}: ${h} link to ${m[1]}.html`);
+      }
+    }
+  }
+});
