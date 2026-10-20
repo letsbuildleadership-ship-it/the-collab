@@ -3,10 +3,10 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'leadership-foundations-checklist',
   outFile: 'free-tools/leadership-foundations-checklist.pdf',
-  docTitle: 'Leadership Foundations Checklist™',
+  docTitle: '.LLab Leadership Foundations Checklist™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Checklist',
-    title: 'Leadership Foundations <strong>Checklist</strong>™',
+    title: '.LLab Leadership Foundations <strong>Checklist</strong>™',
     subtitle: "A self-audit of what's already in place — before you build anything new on top of it.",
     phase: 'I · Foundations',
     price: 'Free',
@@ -37,5 +37,5 @@ export const contentHtml = renderChecklistDoc({
     { label: '7–8 Checked', copy: "A strong foundation. You're ready to go deeper with the paid Strength Map™ below." },
   ],
   commitPrompt: "The unchecked item I'll close first, and how, is:",
-  upsell: { name: 'The Leadership Infrastructure Strength Map™', price: '$20', copy: 'turns one identified strength into a plan for building infrastructure around it.' },
+  upsell: { name: 'The .LLab Leadership Infrastructure Strength Map™', price: '$20', copy: 'turns one identified strength into a plan for building infrastructure around it.' },
 });

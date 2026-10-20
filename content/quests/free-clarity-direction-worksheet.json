@@ -1,12 +1,12 @@
 {
   "key": "free-clarity-direction-worksheet",
-  "title": "Clarity & Direction Worksheet™",
+  "title": ".LLab Clarity & Direction Worksheet™",
   "phase": "Phase I · Foundations",
   "archetype": "worksheet",
   "intro": "Write in plain language. No prompt should take longer than a minute to answer.",
-  "pdfTitle": "Clarity & Direction Worksheet™",
+  "pdfTitle": ".LLab Clarity & Direction Worksheet™",
   "upsell": {
-    "name": "The Leadership Infrastructure Strength Map™",
+    "name": "The .LLab Leadership Infrastructure Strength Map™",
     "price": "$20",
     "copy": "is the next step once your direction is named."
   },

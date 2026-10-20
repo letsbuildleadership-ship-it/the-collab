@@ -1,4 +1,4 @@
-// Brings the designed (non-template) PDFs — The Blueprint™ issues — in line
+// Brings the designed (non-template) PDFs — The .LLab Blueprint™ issues — in line
 // with every other Co.LLab IP™ product: the website logo in the corner of
 // every page, "Page n of N" numbering, and the shared glossary and
 // appendices (fillable revision record) at the back. Sources are the

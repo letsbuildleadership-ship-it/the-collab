@@ -4,7 +4,7 @@ import { header, field, box, callout, grid, checklist, close, partnerCover } fro
 export const meta = {
   key: 'legacy-infrastructure-plan',
   outFile: 'legacy-infrastructure-plan.pdf',
-  docTitle: 'The Legacy Infrastructure Plan™',
+  docTitle: 'The .LLab Legacy Infrastructure Plan™',
   cover: partnerCover(
     'II · Infrastructure Planning & Management',
     'The Legacy <strong>Infrastructure</strong> Plan™',
@@ -17,7 +17,7 @@ export const contentHtml = `
 ${licensePageHtml}
 
 <section class="page">
-  ${header('00 · How To Use This Plan', 'A Legacy Needs', 'A Plan To Carry It.', 'The Legacy Foundations Framework™ defined what the company stands on. This plan decides who carries it, how decisions are made, and what gets built next.')}
+  ${header('00 · How To Use This Plan', 'A Legacy Needs', 'A Plan To Carry It.', 'The .LLab Legacy Foundations Framework™ defined what the company stands on. This plan decides who carries it, how decisions are made, and what gets built next.')}
   <div class="pathway">
     <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Legacy Priorities</span><p>What matters most now.</p></div>
     <span class="pathway-arrow">→</span>
@@ -66,7 +66,7 @@ ${licensePageHtml}
   ${header('06 · 12-Month Legacy Plan', 'What Gets Built,', 'And When.', 'Turn the plan into quarters. Review it at every quarter’s end.')}
   ${grid(['Quarter', 'What We Build', 'Owner', 'Done When'], ['Q1', 'Q2', 'Q3', 'Q4'])}
   ${checklist(['Plan shared with the leadership team', 'Owners confirmed', 'Quarterly review dates set', 'Field notes ready for the Partnership cohort'])}
-  ${callout('Next · Phase III', 'The Legacy Operating Systems Manual™ builds this plan into how the whole company runs, department by department.')}
-  ${close('The Legacy Infrastructure Plan™')}
+  ${callout('Next · Phase III', 'The .LLab Legacy Operating Systems Manual™ builds this plan into how the whole company runs, department by department.')}
+  ${close('The .LLab Legacy Infrastructure Plan™')}
 </section>
 `;

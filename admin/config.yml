@@ -147,7 +147,7 @@ collections:
                 name: "granted_by"
                 widget: "list"
                 field: { label: "Membership key", name: "key", widget: "string" }
-          - label: "The Blueprint™ series (separate product line, own webhook history)"
+          - label: "The .LLab Blueprint™ series (separate product line, own webhook history)"
             name: "blueprint_series"
             widget: "list"
             summary: "{{fields.name}} — {{fields.price_display}}"

@@ -3,9 +3,9 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'foundations-assessment',
   outFile: 'foundations-assessment.pdf',
-  docTitle: 'Leadership Foundations Assessment™',
+  docTitle: '.LLab Leadership Foundations Assessment™',
   cover: cover({
-    title: 'Leadership Foundations <strong>Assessment</strong>™',
+    title: '.LLab Leadership Foundations <strong>Assessment</strong>™',
     subtitle: 'A scored, thirty-statement assessment of how clear, shared and lived your foundations are.',
     price: '$200',
   }),
@@ -14,9 +14,9 @@ export const meta = {
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  title: 'Leadership Foundations Assessment™',
+  title: '.LLab Leadership Foundations Assessment™',
   tagline: 'See what your foundations already support, and where to build next.',
-  intro: 'The Leadership Foundations Assessment™ scores five areas of Phase I · Foundations: purpose, identity, values, direction and shared understanding. It is not a test of whether your organization is “good” or “bad.” It is a starting point for seeing what you have built and what to strengthen first.',
+  intro: 'The .LLab Leadership Foundations Assessment™ scores five areas of Phase I · Foundations: purpose, identity, values, direction and shared understanding. It is not a test of whether your organization is “good” or “bad.” It is a starting point for seeing what you have built and what to strengthen first.',
   steps: [
     { part: 'PART 1 — PURPOSE', items: [S([
       'We can state why the organization exists in one sentence.',

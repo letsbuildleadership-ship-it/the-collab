@@ -20,7 +20,7 @@
   "products": [
     {
       "key": "strength-map",
-      "name": "Leadership Infrastructure Strength Map™",
+      "name": ".LLab Leadership Infrastructure Strength Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$20",
@@ -43,7 +43,7 @@
     },
     {
       "key": "leadership-identity-profile",
-      "name": "Leadership Identity Profile™",
+      "name": ".LLab Leadership Identity Profile™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$75",
@@ -55,7 +55,7 @@
     },
     {
       "key": "decision-principles-playbook",
-      "name": "Decision Principles Playbook™",
+      "name": ".LLab Decision Principles Playbook™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$125",
@@ -67,7 +67,7 @@
     },
     {
       "key": "foundations-assessment",
-      "name": "Leadership Foundations Assessment™",
+      "name": ".LLab Leadership Foundations Assessment™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$200",
@@ -79,7 +79,7 @@
     },
     {
       "key": "foundations-manual",
-      "name": "Leadership Foundations Manual™",
+      "name": ".LLab Leadership Foundations Manual™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$300",
@@ -91,7 +91,7 @@
     },
     {
       "key": "alignment-map",
-      "name": "Leadership Alignment Map™",
+      "name": ".LLab Leadership Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$50",
@@ -102,7 +102,7 @@
     },
     {
       "key": "build-plan",
-      "name": "Leadership Infrastructure Build Plan™",
+      "name": ".LLab Leadership Infrastructure Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -180,7 +180,7 @@
     {
       "key": "creator-identity-map",
       "line": "creator",
-      "name": "Creator Identity Map™",
+      "name": ".LLab Creator Identity Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$20",
@@ -192,7 +192,7 @@
     {
       "key": "creator-alignment-map",
       "line": "creator",
-      "name": "Creator Alignment Map™",
+      "name": ".LLab Creator Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$50",
@@ -204,7 +204,7 @@
     {
       "key": "creator-venture-build-plan",
       "line": "creator",
-      "name": "Creator Venture Build Plan™",
+      "name": ".LLab Creator Venture Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -216,7 +216,7 @@
     {
       "key": "creator-website-blueprint",
       "line": "creator",
-      "name": "Creator Website Blueprint™",
+      "name": ".LLab Creator Website Blueprint™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -228,7 +228,7 @@
     {
       "key": "creator-operating-system",
       "line": "creator",
-      "name": "The Creator Operating System™",
+      "name": "The .LLab Creator Operating System™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
       "price_display": "$300",
@@ -240,7 +240,7 @@
     {
       "key": "creative-estate-mapping",
       "line": "creator",
-      "name": "Creative Estate Mapping™",
+      "name": ".LLab Creative Estate Mapping™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$200",
@@ -252,7 +252,7 @@
     {
       "key": "creator-legacy-architecture",
       "line": "creator",
-      "name": "Creator Legacy Infrastructure Architecture™",
+      "name": ".LLab Creator Legacy Infrastructure Architecture™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$750",
@@ -334,61 +334,61 @@
       "founder_discount_exempt": true
     }
   ],
-  "_blueprint_readme": "The Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
+  "_blueprint_readme": "The .LLab Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
   "blueprint_series": [
     {
       "key": "blueprint-welcome",
-      "name": "The Blueprint™ — Welcome",
+      "name": "The .LLab Blueprint™ — Welcome",
       "phase": null,
       "price_display": "$300",
       "stripe_price_id": "price_1U7aSuAK6n3ctuR9l90HwyP5",
       "payment_link": "https://buy.stripe.com/3cI3cu96S4VT15ha509ws0I",
       "pdf_file": "blueprint-welcome.pdf",
-      "description": "Issue 00 of The Blueprint™ magazine series — the foundation of The Co.LLab™, mission, vision, and the architecture of leadership."
+      "description": "Issue 00 of The .LLab Blueprint™ magazine series — the foundation of The Co.LLab™, mission, vision, and the architecture of leadership."
     },
     {
       "key": "blueprint-phase1",
-      "name": "The Blueprint™ — Phase One: Foundations",
+      "name": "The .LLab Blueprint™ — Phase One: Foundations",
       "phase": "Phase I · Foundations",
       "price_display": "$300",
       "stripe_price_id": "price_1U7aTAAK6n3ctuR99S4YmR56",
       "payment_link": "https://buy.stripe.com/aFaeVc2Iu4VTeW7elg9ws0J",
       "pdf_file": "blueprint-phase1.pdf",
-      "description": "Issue 01 of The Blueprint™ magazine series — structural grounding and leadership identity."
+      "description": "Issue 01 of The .LLab Blueprint™ magazine series — structural grounding and leadership identity."
     },
     {
       "key": "blueprint-phase2",
-      "name": "The Blueprint™ — Phase Two: Infrastructure Planning",
+      "name": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning",
       "phase": "Phase II · Infrastructure Planning & Management",
       "price_display": "$300",
       "stripe_price_id": "price_1U7aTPAK6n3ctuR97GWx9dmW",
       "payment_link": "https://buy.stripe.com/bJeeVc0Am3RP9BN4KG9ws0K",
       "pdf_file": "blueprint-phase2.pdf",
-      "description": "Issue 02 of The Blueprint™ magazine series — load mapping, accountability, and capacity planning."
+      "description": "Issue 02 of The .LLab Blueprint™ magazine series — load mapping, accountability, and capacity planning."
     },
     {
       "key": "blueprint-phase3",
-      "name": "The Blueprint™ — Phase Three: Internal Operating Systems",
+      "name": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems",
       "phase": "Phase III · Internal Operating Systems",
       "price_display": "$300",
       "stripe_price_id": "price_1U7aTdAK6n3ctuR9TlxJ4Mzf",
       "payment_link": "https://buy.stripe.com/5kQ9ASercfAxaFR7WS9ws0L",
       "pdf_file": "blueprint-phase3.pdf",
-      "description": "Issue 03 of The Blueprint™ magazine series — communication infrastructure, decision architecture, and culture."
+      "description": "Issue 03 of The .LLab Blueprint™ magazine series — communication infrastructure, decision architecture, and culture."
     },
     {
       "key": "blueprint-phase4",
-      "name": "The Blueprint™ — Phase Four: Preservation",
+      "name": "The .LLab Blueprint™ — Phase Four: Preservation",
       "phase": "Phase IV · Preservation",
       "price_display": "$300",
       "stripe_price_id": "price_1U7aTsAK6n3ctuR90SycsLmg",
       "payment_link": "https://buy.stripe.com/28E00i1Eq8857tFgto9ws0M",
       "pdf_file": "blueprint-phase4.pdf",
-      "description": "Issue 04 of The Blueprint™ magazine series — succession, resilience, and sustaining what's built."
+      "description": "Issue 04 of The .LLab Blueprint™ magazine series — succession, resilience, and sustaining what's built."
     },
     {
       "key": "blueprint-complete",
-      "name": "The Blueprint™ — Complete Edition (All 5 Issues)",
+      "name": "The .LLab Blueprint™ — Complete Edition (All 5 Issues)",
       "phase": null,
       "price_display": "$900",
       "stripe_price_id": "price_1U7aU7AK6n3ctuR9rxOzHC0A",
@@ -401,7 +401,7 @@
   "partner_ip": [
     {
       "key": "legacy-foundations-framework",
-      "name": "The Legacy Foundations Framework™",
+      "name": "The .LLab Legacy Foundations Framework™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$750",
@@ -413,7 +413,7 @@
     },
     {
       "key": "legacy-infrastructure-plan",
-      "name": "The Legacy Infrastructure Plan™",
+      "name": "The .LLab Legacy Infrastructure Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$1,500",
@@ -425,7 +425,7 @@
     },
     {
       "key": "legacy-operating-systems-manual",
-      "name": "The Legacy Operating Systems Manual™",
+      "name": "The .LLab Legacy Operating Systems Manual™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
       "price_display": "$2,500",
@@ -437,7 +437,7 @@
     },
     {
       "key": "legacy-preservation-vault",
-      "name": "The Legacy Preservation Vault™",
+      "name": "The .LLab Legacy Preservation Vault™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$5,000",
@@ -488,7 +488,7 @@
       "includes_eligible_releases": true,
       "engagement": null,
       "benefits": [
-        "The Legacy Foundations Framework™, licensed to keep (1 partner-only product)",
+        "The .LLab Legacy Foundations Framework™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep (9 products)",
         "1 year of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
@@ -534,7 +534,7 @@
       "includes_eligible_releases": true,
       "engagement": null,
       "benefits": [
-        "Everything in Partner, plus The Legacy Infrastructure Plan™, licensed to keep (1 partner-only product)",
+        "Everything in Partner, plus The .LLab Legacy Infrastructure Plan™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep (9 products)",
         "2 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
@@ -581,7 +581,7 @@
       "includes_eligible_releases": true,
       "engagement": null,
       "benefits": [
-        "Everything in Strategic, plus The Legacy Operating Systems Manual™, licensed to keep (1 partner-only product)",
+        "Everything in Strategic, plus The .LLab Legacy Operating Systems Manual™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep (9 products)",
         "3 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
@@ -629,7 +629,7 @@
       "includes_eligible_releases": true,
       "engagement": null,
       "benefits": [
-        "Everything in Enterprise, plus The Legacy Preservation Vault™, licensed to keep (1 partner-only product)",
+        "Everything in Enterprise, plus The .LLab Legacy Preservation Vault™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep (9 products)",
         "Lifetime of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],

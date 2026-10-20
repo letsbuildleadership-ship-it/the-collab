@@ -3,10 +3,10 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'alignment-quick-check',
   outFile: 'free-tools/alignment-quick-check.pdf',
-  docTitle: 'Alignment Quick-Check™',
+  docTitle: '.LLab Alignment Quick-Check™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Quick-Check',
-    title: 'Alignment <strong>Quick-Check</strong>™',
+    title: '.LLab Alignment <strong>Quick-Check</strong>™',
     subtitle: 'A five-minute check on whether your day-to-day work still matches your stated priorities.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
@@ -29,5 +29,5 @@ export const contentHtml = renderSnapshotDoc({
     { label: '16–20', copy: 'Strong alignment. The Alignment Map™ below connects it to strategy and culture too.' },
   ],
   reflectPrompt: 'The dimension furthest out of alignment is, and the fix I\'ll try first is:',
-  upsell: { name: 'The Leadership Alignment Map™', price: '$50', copy: 'closes the gaps this quick-check surfaces.' },
+  upsell: { name: 'The .LLab Leadership Alignment Map™', price: '$50', copy: 'closes the gaps this quick-check surfaces.' },
 });

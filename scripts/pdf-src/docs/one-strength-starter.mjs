@@ -3,10 +3,10 @@ import { renderStarterDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'one-strength-starter',
   outFile: 'free-tools/one-strength-starter.pdf',
-  docTitle: 'One Strength Starter™',
+  docTitle: '.LLab One Strength Starter™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Starter',
-    title: 'One Strength <strong>Starter</strong>™',
+    title: '.LLab One Strength <strong>Starter</strong>™',
     subtitle: 'A single-page starter for naming and building from one leadership strength — nothing more, nothing less.',
     phase: 'I · Foundations',
     price: 'Free',
@@ -23,5 +23,5 @@ export const contentHtml = renderStarterDoc({
     { label: 'Build On It', short: 'One small action', body: 'Choose one small action this week that uses it on purpose.' },
   ],
   closingPrompt: "The one action I'll take this week that uses this strength on purpose is:",
-  upsell: { name: 'The Leadership Infrastructure Strength Map™', price: '$20', copy: 'turns this single strength into real infrastructure.' },
+  upsell: { name: 'The .LLab Leadership Infrastructure Strength Map™', price: '$20', copy: 'turns this single strength into real infrastructure.' },
 });

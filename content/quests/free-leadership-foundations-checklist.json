@@ -1,12 +1,12 @@
 {
   "key": "free-leadership-foundations-checklist",
-  "title": "Leadership Foundations Checklist™",
+  "title": ".LLab Leadership Foundations Checklist™",
   "phase": "Phase I · Foundations",
   "archetype": "checklist",
   "intro": "Most leadership foundations are half-built and never checked. This audit checks them — quickly, and honestly.",
-  "pdfTitle": "Leadership Foundations Checklist™",
+  "pdfTitle": ".LLab Leadership Foundations Checklist™",
   "upsell": {
-    "name": "The Leadership Infrastructure Strength Map™",
+    "name": "The .LLab Leadership Infrastructure Strength Map™",
     "price": "$20",
     "copy": "turns one identified strength into a plan for building infrastructure around it."
   },

@@ -565,7 +565,7 @@
   const SHOP_GROUPS = [
     { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. All nine come with .LLab Membership™, or buy one to keep.' },
     { line: 'creator', title: 'Creator Infrastructure™', lead: 'For creators turning a body of work into a lasting venture. Buy one, or win it as level loot.' },
-    { line: 'blueprint', title: 'The Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
+    { line: 'blueprint', title: 'The .LLab Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
     { line: 'other', title: 'More from The Co.LLab™', lead: '' },
   ];
 

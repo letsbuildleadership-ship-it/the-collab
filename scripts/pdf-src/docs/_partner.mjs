@@ -1,6 +1,6 @@
 // Shared building blocks for the Omnidirectional Enterprise™ Partnership IP
-// (The Legacy Foundations Framework™, The Legacy Infrastructure Plan™,
-// The Legacy Operating Systems Manual™, The Legacy Preservation Vault™).
+// (The .LLab Legacy Foundations Framework™, The .LLab Legacy Infrastructure Plan™,
+// The .LLab Legacy Operating Systems Manual™, The .LLab Legacy Preservation Vault™).
 // Every blank line, empty cell, and checkbox becomes a fillable field in
 // scripts/generate-pdfs.mjs.
 

@@ -3,10 +3,10 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'mission-to-action-worksheet',
   outFile: 'free-tools/mission-to-action-worksheet.pdf',
-  docTitle: 'Mission-to-Action Worksheet™',
+  docTitle: '.LLab Mission-to-Action Worksheet™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Worksheet',
-    title: 'Mission-to-Action <strong>Worksheet</strong>™',
+    title: '.LLab Mission-to-Action <strong>Worksheet</strong>™',
     subtitle: 'Translate your mission into three concrete actions you can take this month.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
@@ -30,5 +30,5 @@ export const contentHtml = renderWorksheetDoc({
     { kicker: 'Prompt 4', prompt: 'The person who needs to know about this shift is…' },
   ],
   synthesisPrompt: "The one action from my list I'll start today is:",
-  upsell: { name: 'The Leadership Alignment Map™', price: '$50', copy: 'connects mission, vision, values, strategy, culture, and leadership in full.' },
+  upsell: { name: 'The .LLab Leadership Alignment Map™', price: '$50', copy: 'connects mission, vision, values, strategy, culture, and leadership in full.' },
 });

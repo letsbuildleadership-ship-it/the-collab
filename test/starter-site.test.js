@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 
-test('the Creator Website Blueprint™ starter site has the nine-part pattern and only working in-page links', async () => {
+test('the .LLab Creator Website Blueprint™ starter site has the nine-part pattern and only working in-page links', async () => {
   const { STARTER_SITE: html } = await import('../scripts/pdf-src/docs/_starter-site.mjs');
   for (const part of ['<header>', 'class="ribbon"', 'class="hero"', 'id="problem"', 'id="offer"', 'id="paths"', '<table>', 'class="next"', '<footer>']) {
     assert.ok(html.includes(part), `starter has ${part}`);

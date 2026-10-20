@@ -3,10 +3,10 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'continuity-quick-check',
   outFile: 'free-tools/continuity-quick-check.pdf',
-  docTitle: 'Continuity Quick-Check™',
+  docTitle: '.LLab Continuity Quick-Check™',
   cover: {
     eyebrow: 'Phase IV · Preservation — Free Quick-Check',
-    title: 'Continuity <strong>Quick-Check</strong>™',
+    title: '.LLab Continuity <strong>Quick-Check</strong>™',
     subtitle: 'Check whether your organization could keep running smoothly if you stepped away for a month.',
     phase: 'IV · Preservation',
     price: 'Free',

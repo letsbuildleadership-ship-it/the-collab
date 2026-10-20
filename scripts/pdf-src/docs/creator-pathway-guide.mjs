@@ -40,8 +40,8 @@ ${licensePageHtml}
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">4</span><span class="pathway-label">Preserve</span><p>Enterprise → Legacy</p></div>
   </div>
-  ${phaseCard('I', 'Foundations', 'Idea → Identity', 'Understanding what you\'re actually creating and who you are as its architect, before touching a business model.', '.LLab Creator Quick Start Guide™, .LLab Creators Diagnostic™', '<strong>Creator Identity Map™</strong> — $20')}
-  ${phaseCard('II', 'Infrastructure Planning & Management', 'Identity → Venture', 'Determining what systems a creative identity needs to become a venture, and how the pieces connect.', null, '<strong>Creator Alignment Map™</strong> — $50 &nbsp;|&nbsp; <strong>Creator Venture Build Plan™</strong> — $100')}
+  ${phaseCard('I', 'Foundations', 'Idea → Identity', 'Understanding what you\'re actually creating and who you are as its architect, before touching a business model.', '.LLab Creator Quick Start Guide™, .LLab Creators Diagnostic™', '<strong>.LLab Creator Identity Map™</strong> — $20')}
+  ${phaseCard('II', 'Infrastructure Planning & Management', 'Identity → Venture', 'Determining what systems a creative identity needs to become a venture, and how the pieces connect.', null, '<strong>.LLab Creator Alignment Map™</strong> — $50 &nbsp;|&nbsp; <strong>.LLab Creator Venture Build Plan™</strong> — $100')}
 </section>
 
 <section class="page">
@@ -49,8 +49,8 @@ ${licensePageHtml}
     <span class="page-index">02 · Operate &amp; Preserve</span>
     <h2 class="section-title">The Second Half<br/><strong>Of The Map.</strong></h2>
   </div>
-  ${phaseCard('III', 'Internal Operating Systems', 'Venture → Enterprise', 'The repeatable systems, offers, and operations that let the venture run and grow without every decision depending on you.', 'The Creator Operating System™ — Preview (Module 1)', '<strong>The Creator Operating System™</strong> — $300')}
-  ${phaseCard('IV', 'Preservation', 'Enterprise → Legacy', 'What gets documented, transferred, and sustained so the work outlives any one project — or its creator.', 'The Body of Work Inventory™', '<strong>Creative Estate Mapping™</strong> — $200 &nbsp;|&nbsp; <strong>Creator Legacy Infrastructure Architecture™</strong> — $750')}
+  ${phaseCard('III', 'Internal Operating Systems', 'Venture → Enterprise', 'The repeatable systems, offers, and operations that let the venture run and grow without every decision depending on you.', 'The .LLab Creator Operating System™ — Preview (Module 1)', '<strong>The .LLab Creator Operating System™</strong> — $300')}
+  ${phaseCard('IV', 'Preservation', 'Enterprise → Legacy', 'What gets documented, transferred, and sustained so the work outlives any one project — or its creator.', 'The Body of Work Inventory™', '<strong>.LLab Creative Estate Mapping™</strong> — $200 &nbsp;|&nbsp; <strong>.LLab Creator Legacy Infrastructure Architecture™</strong> — $750')}
 
   <div class="matrix-2x2" style="min-height:0;">
     <div class="matrix-cell" style="padding:12px 14px;"><span class="matrix-label">Crown</span><p>Authority, identity</p></div>

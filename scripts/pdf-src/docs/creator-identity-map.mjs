@@ -3,10 +3,10 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-identity-map',
   outFile: 'creator-identity-map.pdf',
-  docTitle: 'Creator Identity Map™',
+  docTitle: '.LLab Creator Identity Map™',
   cover: {
     eyebrow: 'Phase I · Foundations — a .LLab™ Workbook',
-    title: 'Creator Identity <strong>Map</strong>™',
+    title: '.LLab Creator Identity <strong>Map</strong>™',
     subtitle: 'Turn what you\'re already creating into a clear creative identity you can build infrastructure around.',
     phase: 'I · Foundations',
     price: '$20',
@@ -20,7 +20,7 @@ ${licenseHtml}
 <p><strong>CREATOR IDENTITY MAP™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><strong>Infrastructure has to be built around something specific. This workbook makes that something specific.</strong></p>
-<p>The Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in .LLab Creators™ builds on.</p>
+<p>The .LLab Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in .LLab Creators™ builds on.</p>
 
 <p><strong>STEP 1 — INVENTORY YOUR MEDIUMS AND METHODS</strong></p>
 <p>List every format your creative work has taken, however minor.</p>
@@ -53,7 +53,7 @@ ${licenseHtml}
 <p><strong>because <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>With a clear identity in hand, the next infrastructure question is how it connects to an actual venture — audience, offer, and reach. That's the <strong>Creator Alignment Map™</strong> ($50).</p>
+<p>With a clear identity in hand, the next infrastructure question is how it connects to an actual venture — audience, offer, and reach. That's the <strong>.LLab Creator Alignment Map™</strong> ($50).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>

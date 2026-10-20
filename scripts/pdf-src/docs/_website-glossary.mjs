@@ -1,5 +1,5 @@
 // Shared words-and-definitions data for the free Website Glossary infographic
-// and the glossary appendix inside the Creator Website Blueprint™.
+// and the glossary appendix inside the .LLab Creator Website Blueprint™.
 export const GLOSSARY_GROUPS = [
   { name: 'Layout and structure', terms: [
     ['Header / masthead', 'The top bar with the logo and main menu.', 'Orienting every visitor on every page.'],

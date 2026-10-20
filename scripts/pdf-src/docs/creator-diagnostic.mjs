@@ -78,10 +78,10 @@ ${licensePageHtml}
 
   <table class="doc-table">
     <tr><th>If This Phase Scored Lowest</th><th>Match It To</th></tr>
-    <tr><td>Foundations</td><td><strong>Creator Identity Map™</strong> — $20</td></tr>
-    <tr><td>Infrastructure Planning &amp; Management</td><td><strong>Creator Alignment Map™</strong> ($50) or <strong>Creator Venture Build Plan™</strong> ($100)</td></tr>
-    <tr><td>Internal Operating Systems</td><td><strong>The Creator Operating System™</strong> — $300</td></tr>
-    <tr><td>Preservation</td><td><strong>Creative Estate Mapping™</strong> ($200) or <strong>Creator Legacy Infrastructure Architecture™</strong> ($750)</td></tr>
+    <tr><td>Foundations</td><td><strong>.LLab Creator Identity Map™</strong> — $20</td></tr>
+    <tr><td>Infrastructure Planning &amp; Management</td><td><strong>.LLab Creator Alignment Map™</strong> ($50) or <strong>.LLab Creator Venture Build Plan™</strong> ($100)</td></tr>
+    <tr><td>Internal Operating Systems</td><td><strong>The .LLab Creator Operating System™</strong> — $300</td></tr>
+    <tr><td>Preservation</td><td><strong>.LLab Creative Estate Mapping™</strong> ($200) or <strong>.LLab Creator Legacy Infrastructure Architecture™</strong> ($750)</td></tr>
   </table>
 
   <div class="callout">

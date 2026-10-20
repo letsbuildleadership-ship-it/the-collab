@@ -4,10 +4,10 @@ import { STARTER_SITE } from './_starter-site.mjs';
 export const meta = {
   key: 'creator-website-blueprint',
   outFile: 'creator-website-blueprint.pdf',
-  docTitle: 'Creator Website Blueprint™',
+  docTitle: '.LLab Creator Website Blueprint™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — a .LLab Creators™ Manual',
-    title: 'Creator Website <strong>Blueprint</strong>™',
+    title: '.LLab Creator Website <strong>Blueprint</strong>™',
     subtitle: 'A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. One edition for iPhone. One for computer. Base level to ceiling.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$100',
@@ -529,7 +529,7 @@ ${call('Build the infrastructure. Strengthen the practice. Create the legacy.', 
 
 pages.push(`<section class="page">
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>Once your site is live and you are updating it with the loop, the next infrastructure question is how to run the whole creative venture without every decision depending on you. That is <strong>The Creator Operating System™</strong> ($300).</p>
+<p>Once your site is live and you are updating it with the loop, the next infrastructure question is how to run the whole creative venture without every decision depending on you. That is <strong>The .LLab Creator Operating System™</strong> ($300).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>

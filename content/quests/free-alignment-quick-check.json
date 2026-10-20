@@ -1,12 +1,12 @@
 {
   "key": "free-alignment-quick-check",
-  "title": "Alignment Quick-Check™",
+  "title": ".LLab Alignment Quick-Check™",
   "phase": "Phase II · Infrastructure Planning & Management",
   "archetype": "snapshot",
   "intro": "A five-minute check on whether your day-to-day work still matches your stated priorities. This is a mirror, not a report card.",
-  "pdfTitle": "Alignment Quick-Check™",
+  "pdfTitle": ".LLab Alignment Quick-Check™",
   "upsell": {
-    "name": "The Leadership Alignment Map™",
+    "name": "The .LLab Leadership Alignment Map™",
     "price": "$50",
     "copy": "closes the gaps this quick-check surfaces."
   },

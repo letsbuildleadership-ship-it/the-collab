@@ -3,10 +3,10 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-venture-build-plan',
   outFile: 'creator-venture-build-plan.pdf',
-  docTitle: 'Creator Venture Build Plan™',
+  docTitle: '.LLab Creator Venture Build Plan™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — a .LLab™ Workbook',
-    title: 'Creator Venture Build <strong>Plan</strong>™',
+    title: '.LLab Creator Venture Build <strong>Plan</strong>™',
     subtitle: 'A practical 30-day plan for turning your creative practice into a venture.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$100',
@@ -24,7 +24,7 @@ export const contentHtml = `
 ${licenseHtml}
 <p><strong>CREATOR VENTURE BUILD PLAN™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p>Turning a creative practice into a venture doesn't require a big leap — it requires four focused weeks. This plan assumes you already have a Creator Identity Map™ and, ideally, a Creator Alignment Map™ in hand.</p>
+<p>Turning a creative practice into a venture doesn't require a big leap — it requires four focused weeks. This plan assumes you already have a .LLab Creator Identity Map™ and, ideally, a .LLab Creator Alignment Map™ in hand.</p>
 
 ${week(1, 'Define the offer', [
   'What, exactly, is for sale or for support — name it in one sentence.',
@@ -56,7 +56,7 @@ ${week(4, 'Run it and record what happened', [
 <p><strong>and I will know <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>Once your venture has run at least once, the next infrastructure question is how to make it repeatable without reinventing it every time — that's <strong>The Creator Operating System™</strong> ($300).</p>
+<p>Once your venture has run at least once, the next infrastructure question is how to make it repeatable without reinventing it every time — that's <strong>The .LLab Creator Operating System™</strong> ($300).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>

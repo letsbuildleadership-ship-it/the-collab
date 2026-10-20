@@ -3,18 +3,18 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'decision-principles-playbook',
   outFile: 'decision-principles-playbook.pdf',
-  docTitle: 'Decision Principles Playbook™',
+  docTitle: '.LLab Decision Principles Playbook™',
   cover: cover({
-    title: 'Decision Principles <strong>Playbook</strong>™',
+    title: '.LLab Decision Principles <strong>Playbook</strong>™',
     subtitle: 'Turn what you believe into the rules your organization uses to decide.',
     price: '$125',
   }),
 };
 
 export const contentHtml = foundationsDoc({
-  title: 'Decision Principles Playbook™',
+  title: '.LLab Decision Principles Playbook™',
   tagline: 'When the right decision is written down, it does not depend on who is in the room.',
-  intro: 'The Decision Principles Playbook™ helps a leadership team agree on how decisions get made: what is decided where, what principles every decision is tested against, and how to review decisions afterward. It is built to be used in a meeting.',
+  intro: 'The .LLab Decision Principles Playbook™ helps a leadership team agree on how decisions get made: what is decided where, what principles every decision is tested against, and how to review decisions afterward. It is built to be used in a meeting.',
   steps: [
     { title: 'WHAT WE DECIDE', items: [
       { q: 'List the five kinds of decision that come up most often.', lines: 3 },

@@ -3,18 +3,18 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'foundations-manual',
   outFile: 'foundations-manual.pdf',
-  docTitle: 'Leadership Foundations Manual™',
+  docTitle: '.LLab Leadership Foundations Manual™',
   cover: cover({
-    title: 'Leadership Foundations <strong>Manual</strong>™',
+    title: '.LLab Leadership Foundations <strong>Manual</strong>™',
     subtitle: 'The full Phase I build: purpose, identity, values, principles and a charter in one guided manual.',
     price: '$300',
   }),
 };
 
 export const contentHtml = foundationsDoc({
-  title: 'Leadership Foundations Manual™',
+  title: '.LLab Leadership Foundations Manual™',
   tagline: 'Build the foundation once, in order, and write it down.',
-  intro: 'The Leadership Foundations Manual™ is the complete guided build for Phase I · Foundations. It takes you through six parts in order: purpose, strength, identity, values, decision principles and your foundation charter. Work through it over several sittings, alone or with your leadership team.',
+  intro: 'The .LLab Leadership Foundations Manual™ is the complete guided build for Phase I · Foundations. It takes you through six parts in order: purpose, strength, identity, values, decision principles and your foundation charter. Work through it over several sittings, alone or with your leadership team.',
   steps: [
     { part: 'PART 1 — PURPOSE', items: [
       { q: 'Who do we serve, and what do they need from us?', lines: 2 },

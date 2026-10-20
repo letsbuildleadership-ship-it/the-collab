@@ -37,8 +37,8 @@ export const contentHtml = `
 
   <table class="doc-table">
     <tr><th>Phase</th><th>What it's for</th><th>Start with</th></tr>
-    <tr><td>I · Foundations</td><td>Understanding what already exists before building anything new</td><td>Leadership Infrastructure Strength Map™</td></tr>
-    <tr><td>II · Infrastructure Planning &amp; Management</td><td>Determining what's needed and how it connects</td><td>Leadership Alignment Map™, Build Plan™</td></tr>
+    <tr><td>I · Foundations</td><td>Understanding what already exists before building anything new</td><td>.LLab Leadership Infrastructure Strength Map™</td></tr>
+    <tr><td>II · Infrastructure Planning &amp; Management</td><td>Determining what's needed and how it connects</td><td>.LLab Leadership Alignment Map™, Build Plan™</td></tr>
     <tr><td>III · Internal Operating Systems</td><td>Building the systems that let the organization run</td><td>Legacy Profile™, Operating System™</td></tr>
     <tr><td>IV · Preservation</td><td>Making it durable, transferable, and lasting</td><td>Legacy Infrastructure Map™, Diagnostic™, Blueprint™, Legacy Infrastructure Architecture™</td></tr>
   </table>

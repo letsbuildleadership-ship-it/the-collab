@@ -3,18 +3,18 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'leadership-identity-profile',
   outFile: 'leadership-identity-profile.pdf',
-  docTitle: 'Leadership Identity Profile™',
+  docTitle: '.LLab Leadership Identity Profile™',
   cover: cover({
-    title: 'Leadership Identity <strong>Profile</strong>™',
+    title: '.LLab Leadership Identity <strong>Profile</strong>™',
     subtitle: 'Name how you lead, what you stand for and what you will not trade.',
     price: '$75',
   }),
 };
 
 export const contentHtml = foundationsDoc({
-  title: 'Leadership Identity Profile™',
+  title: '.LLab Leadership Identity Profile™',
   tagline: 'Know who you are as a leader before you build anything around it.',
-  intro: 'The Leadership Identity Profile™ helps one leader put a clear description of their leadership on paper: strengths, convictions, boundaries and the legacy they want their leadership to leave. It is the personal foundation that organizational infrastructure is built on.',
+  intro: 'The .LLab Leadership Identity Profile™ helps one leader put a clear description of their leadership on paper: strengths, convictions, boundaries and the legacy they want their leadership to leave. It is the personal foundation that organizational infrastructure is built on.',
   steps: [
     { title: 'HOW I LEAD TODAY', items: [
       { pick: 'Which describe how people experience your leadership?', n: '3–5', options: ['Clear direction', 'Steady under pressure', 'Relational', 'Strategic', 'Hands-on', 'Visionary', 'Disciplined', 'Encouraging', 'Decisive'] },

@@ -3,10 +3,10 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'foundation-strength-snapshot',
   outFile: 'free-tools/foundation-strength-snapshot.pdf',
-  docTitle: 'Foundation Strength Snapshot™',
+  docTitle: '.LLab Foundation Strength Snapshot™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Snapshot',
-    title: 'Foundation Strength <strong>Snapshot</strong>™',
+    title: '.LLab Foundation Strength <strong>Snapshot</strong>™',
     subtitle: "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.",
     phase: 'I · Foundations',
     price: 'Free',
@@ -29,5 +29,5 @@ export const contentHtml = renderSnapshotDoc({
     { label: '16–20', copy: 'A strong foundation. The Strength Map™ below builds real infrastructure on top of it.' },
   ],
   reflectPrompt: 'My lowest-scoring dimension is, and one thing I\'ll do about it this week is:',
-  upsell: { name: 'The Leadership Infrastructure Strength Map™', price: '$20', copy: 'builds infrastructure around your lowest-scoring dimension.' },
+  upsell: { name: 'The .LLab Leadership Infrastructure Strength Map™', price: '$20', copy: 'builds infrastructure around your lowest-scoring dimension.' },
 });

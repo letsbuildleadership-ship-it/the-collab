@@ -3,10 +3,10 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'leadership-influence-worksheet',
   outFile: 'free-tools/leadership-influence-worksheet.pdf',
-  docTitle: 'Leadership Influence Worksheet™',
+  docTitle: '.LLab Leadership Influence Worksheet™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — Free Worksheet',
-    title: 'Leadership Influence <strong>Worksheet</strong>™',
+    title: '.LLab Leadership Influence <strong>Worksheet</strong>™',
     subtitle: "Map where your influence is strongest inside your organization — and where it isn't reaching yet.",
     phase: 'III · Internal Operating Systems',
     price: 'Free',
