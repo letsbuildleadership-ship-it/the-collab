@@ -489,7 +489,7 @@
       "engagement": null,
       "benefits": [
         "The .LLab Legacy Foundations Framework™, licensed to keep (1 partner-only product)",
-        "All IV Phases™, licensed to keep (9 products)",
+        "All IV Phases™, licensed to keep",
         "1 year of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase I · Foundations",
@@ -535,7 +535,7 @@
       "engagement": null,
       "benefits": [
         "Everything in Partner, plus The .LLab Legacy Infrastructure Plan™, licensed to keep (1 partner-only product)",
-        "All IV Phases™, licensed to keep (9 products)",
+        "All IV Phases™, licensed to keep",
         "2 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase II · Infrastructure Planning & Management",
@@ -582,7 +582,7 @@
       "engagement": null,
       "benefits": [
         "Everything in Strategic, plus The .LLab Legacy Operating Systems Manual™, licensed to keep (1 partner-only product)",
-        "All IV Phases™, licensed to keep (9 products)",
+        "All IV Phases™, licensed to keep",
         "3 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase III · Internal Operating Systems",
@@ -630,7 +630,7 @@
       "engagement": null,
       "benefits": [
         "Everything in Enterprise, plus The .LLab Legacy Preservation Vault™, licensed to keep (1 partner-only product)",
-        "All IV Phases™, licensed to keep (9 products)",
+        "All IV Phases™, licensed to keep",
         "Lifetime of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "lifetime": true,
@@ -642,7 +642,7 @@
     {
       "key": "membership",
       "name": ".LLab Membership™",
-      "description": "The IV Phases™ IP — every Phase I–IV .LLab™ product, unlocked while you're a member — plus ongoing access to the frameworks, systems, community, and research of Leadership Infrastructure™.",
+      "description": "The IV Phases™ IP — every Phase I–IV .LLab™ product, unlocked while you're a member — plus the Infrastructure Analysis™ of the IP you license — what to strengthen and build next — and ongoing access to the frameworks, systems, community, and research of Leadership Infrastructure™.",
       "pdf_file": "membership-handbook.pdf",
       "grants": [
         "infrastructure-roadmap"
