@@ -209,6 +209,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const open = links.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(open));
     });
+    const closeMenu = () => { links.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+    document.addEventListener('click', (e) => { if (!links.contains(e.target) && !toggle.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links.classList.contains('is-open')) { closeMenu(); toggle.focus(); } });
   }
 
   /* header "More" menu */
