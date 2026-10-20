@@ -1,0 +1,87 @@
+{
+  "key": "legacy-operating-systems-manual",
+  "title": "The .LLab Legacy Operating Systems Manual™",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "workbook",
+  "intro": "Live it. The rhythms, standards, and practices that run your legacy through every department.",
+  "pdfTitle": "The .LLab Legacy Operating Systems Manual™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "01 · Operating Rhythm",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Each rhythm (daily, weekly, monthly, quarterly), who attends, its purpose, and the legacy question asked:"
+    },
+    {
+      "id": "n2",
+      "section": "01 · Operating Rhythm",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Our legacy question:"
+    },
+    {
+      "id": "n3",
+      "section": "02 · Decision System",
+      "phase": 2,
+      "type": "text",
+      "prompt": "The decisions we have made, who decided, and the value that guided each:"
+    },
+    {
+      "id": "n4",
+      "section": "02 · Decision System",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Our standard for a decision that must be written down:"
+    },
+    {
+      "id": "n5",
+      "section": "03 · Accountability",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Each commitment, its owner, the check-in cadence, and what happens if it slips:"
+    },
+    {
+      "id": "n6",
+      "section": "03 · Accountability",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How we recognize people who keep their commitments:"
+    },
+    {
+      "id": "n7",
+      "section": "04 · Culture Practices",
+      "phase": 2,
+      "type": "text",
+      "prompt": "For each core value: the practice, how often it happens, and who owns it:"
+    },
+    {
+      "id": "n8",
+      "section": "05 · Department Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How each department serves the founding vision:"
+    },
+    {
+      "id": "n9",
+      "section": "05 · Department Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "The standard operating practices that protect the legacy:"
+    },
+    {
+      "id": "n10",
+      "section": "06 · Onboarding",
+      "phase": 2,
+      "type": "text",
+      "prompt": "For each week: what a new person learns and who teaches it:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

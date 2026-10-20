@@ -1,0 +1,66 @@
+{
+  "key": "blueprint-phase4",
+  "title": "The .LLab Blueprint™ — Phase Four: Preservation",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Issue 04 of The .LLab Blueprint™ magazine series — succession, resilience, and sustaining what's built.",
+  "pdfTitle": "The .LLab Blueprint™ — Phase Four: Preservation",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Where is the infrastructure most vulnerable?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Which systems need reinforcement first?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Is growth aligned with purpose? Are cultural norms being preserved?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What did you build that you are proudest of?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What almost broke, and what held it together?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What do you need them to protect, no matter what changes?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase Four · Preservation",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What must exist for what we built to continue?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "key": "legacy-infrastructure-plan",
+  "title": "The .LLab Legacy Infrastructure Plan™",
+  "phase": "Phase II · Infrastructure Planning & Management",
+  "archetype": "workbook",
+  "intro": "Plan it. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.",
+  "pdfTitle": "The .LLab Legacy Infrastructure Plan™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "01 · Legacy Priorities",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Our legacy priorities in rank order, why each protects the legacy, and the measure of success for each:"
+    },
+    {
+      "id": "n2",
+      "section": "01 · Legacy Priorities",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What we will stop doing:"
+    },
+    {
+      "id": "n3",
+      "section": "02 · Decision Rights",
+      "phase": 1,
+      "type": "text",
+      "prompt": "For each type of decision: who decides, who is consulted, who is informed, and which value guides it?"
+    },
+    {
+      "id": "n4",
+      "section": "03 · Ownership Map",
+      "phase": 1,
+      "type": "text",
+      "prompt": "For each area of the organization: the owner, the backup, and whether it is documented (yes or no):"
+    },
+    {
+      "id": "n5",
+      "section": "04 · Dependency Map",
+      "phase": 1,
+      "type": "text",
+      "prompt": "What depends on one person, who that person is, how high the risk is (low, medium or high), and the plan to transfer it:"
+    },
+    {
+      "id": "n6",
+      "section": "05 · Connections",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Each priority, the value it serves, the team that carries it, and who it serves:"
+    },
+    {
+      "id": "n7",
+      "section": "05 · Connections",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Where things break down:"
+    },
+    {
+      "id": "n8",
+      "section": "06 · 12-Month Legacy Plan",
+      "phase": 1,
+      "type": "text",
+      "prompt": "For each quarter: what we build, who owns it, and what done looks like:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

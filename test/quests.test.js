@@ -43,7 +43,7 @@ const freeQuests = () => freeTools.map((t) => quests.get(t.key));
 test('every free tool has a quest, and every paid IP has one', () => {
   for (const t of freeTools) assert.ok(quests.get(t.key), t.key);
   const paid = [...quests.values()].filter((q) => q.archetype === 'workbook' && !q.open);
-  assert.equal(paid.length, 26);
+  assert.equal(paid.length, 39);
   for (const q of paid) assert.ok(pricing.entryForKey(q.key), q.key);
 });
 
@@ -215,5 +215,16 @@ test('the free tool PDFs are open to everyone with no account', () => {
   for (const t of freeTools) {
     assert.ok(fs.existsSync(path.join(__dirname, '..', t.file)), t.file);
     assert.equal(toml.includes(`from = "${t.file}"`), false, `${t.file} must not be blocked`);
+  }
+});
+
+test('every free-tool PDF is fillable (it has real form fields)', async () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const { PDFDocument } = require('pdf-lib');
+  for (const t of freeTools) {
+    const bytes = fs.readFileSync(path.join(__dirname, '..', t.file));
+    const fields = (await PDFDocument.load(bytes)).getForm().getFields().length;
+    assert.ok(fields > 0, `${t.key} has fillable fields`);
   }
 });

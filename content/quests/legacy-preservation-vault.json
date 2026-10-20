@@ -1,0 +1,136 @@
+{
+  "key": "legacy-preservation-vault",
+  "title": "The .LLab Legacy Preservation Vault™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Pass it on. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.",
+  "pdfTitle": "The .LLab Legacy Preservation Vault™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Article I · Purpose",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The purpose of the company, as intended by its founder:"
+    },
+    {
+      "id": "n2",
+      "section": "Article I · Purpose",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The values that shall govern its conduct:"
+    },
+    {
+      "id": "n3",
+      "section": "Article I · Purpose",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The commitments that shall not be changed without the approval set out in Article VI:"
+    },
+    {
+      "id": "n4",
+      "section": "Article II · Stakeholders",
+      "phase": 3,
+      "type": "text",
+      "prompt": "For each stakeholder: what the legacy gives them and what they give the legacy:"
+    },
+    {
+      "id": "n5",
+      "section": "Article III · Stewardship",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Each stewardship seat, who holds it, how they are appointed, and the term:"
+    },
+    {
+      "id": "n6",
+      "section": "Article III · Stewardship",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The authority of the stewards: what they can approve, review, or stop:"
+    },
+    {
+      "id": "n7",
+      "section": "Article IV · Value Flow",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Each value flow, the commitment, and how we measure it:"
+    },
+    {
+      "id": "n8",
+      "section": "Article IV · Value Flow",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Our profit priorities, in order:"
+    },
+    {
+      "id": "n9",
+      "section": "Article V · Succession and Sale",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The conditions any new owner or controlling party must accept:"
+    },
+    {
+      "id": "n10",
+      "section": "Article V · Succession and Sale",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The provisions that protect the founder’s intent in a sale or merger:"
+    },
+    {
+      "id": "n11",
+      "section": "Article V · Succession and Sale",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Who holds authority if the founder is unable to serve:"
+    },
+    {
+      "id": "n12",
+      "section": "Article VI · Review and Amendment",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Each review item, its owner, and the month it is reviewed:"
+    },
+    {
+      "id": "n13",
+      "section": "Article VI · Review and Amendment",
+      "phase": 3,
+      "type": "text",
+      "prompt": "The approval required to amend Articles I to V:"
+    },
+    {
+      "id": "n14",
+      "section": "Article VI · Review and Amendment",
+      "phase": 3,
+      "type": "text",
+      "prompt": "For each role or responsibility: the current holder, the successor, when they are ready, and the knowledge to transfer:"
+    },
+    {
+      "id": "n15",
+      "section": "Letter to the Next Leader",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What this company is for:"
+    },
+    {
+      "id": "n16",
+      "section": "Letter to the Next Leader",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What I would want you to protect above all:"
+    },
+    {
+      "id": "n17",
+      "section": "Letter to the Next Leader",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What I would want you to change:"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}

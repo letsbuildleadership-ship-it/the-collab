@@ -1,0 +1,38 @@
+{
+  "key": "blueprint-phase3",
+  "title": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems",
+  "phase": "Phase III · Internal Operating Systems",
+  "archetype": "workbook",
+  "intro": "Issue 03 of The .LLab Blueprint™ magazine series — communication infrastructure, decision architecture, and culture.",
+  "pdfTitle": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Which rhythms, decisions and commitments run on habit rather than on a written system today?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Where does the work depend on someone remembering how it is done?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase Three · Internal Operating Systems",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How do we make what matters part of how we operate?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one change we will make next, who will own it, and by when:"
+  }
+}
