@@ -85,7 +85,7 @@ const groupRows = groups
 const all = (v) => tiers.map(() => `<td>${v}</td>`).join('');
 const per = (fn) => tiers.map((t) => `<td>${fn(t)}</td>`).join('');
 const membershipRows = `<tr class="group"><th colspan="${tiers.length + 1}" scope="rowgroup">Memberships, research &amp; publications <a href="journal-preview.html">Free Journal preview →</a></th></tr>
-${reg.memberships.map((m) => `<tr><th scope="row">${esc(m.name)}${m.key === 'library-card' ? ' + The Legacy Library™' : ''}</th>${per(short)}</tr>`).join('\n')}`;
+${reg.memberships.map((m) => `<tr><th scope="row">${esc(m.name)}${m.key === 'library-card' ? ' + The .LLab Legacy Library™' : ''}</th>${per(short)}</tr>`).join('\n')}`;
 const partnershipRows = `<tr class="group"><th colspan="${tiers.length + 1}" scope="rowgroup">Partnership</th></tr>
 <tr><th scope="row">Individual access seats</th>${per((t) => String(t.seats))}</tr>
 <tr><th scope="row">New Co.LLab™ releases, yours to keep</th>${per((t) => (!t.includes_eligible_releases ? '—' : short(t)))}</tr>

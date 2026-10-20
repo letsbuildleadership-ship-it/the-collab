@@ -30,7 +30,7 @@ function store() {
 }
 
 // A second, separate Blobs store for member-authored Community Reflections
-// on The Legacy Library™ — deliberately not mixed into collab-customers,
+// on The .LLab Legacy Library™ — deliberately not mixed into collab-customers,
 // since this data is shown to other members (by Member ID), not just to
 // its author. Layout: community/{monthOrder}.json -> { entries: [{ memberId, text, submittedAt }] }
 function communityStore() {
