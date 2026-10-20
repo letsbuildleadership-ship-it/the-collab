@@ -19,7 +19,7 @@
 .stps { gap:9px; } .sp { grid-template-columns:44px 1fr; padding:11px 14px; } .sp b { font-size:19px; } .sp span { font-size:15.5px; } .sp .no { width:38px; height:38px; font-size:18px; }
 .rep .rt { font-size:12px; }
 .qb b { font-size:19px; } .qb span { font-size:15px; } .qb img { width:1in; height:1in; }
-.lr { display:grid; gap:3px; margin-bottom:6px; } .lrb { height:32px; display:flex; align-items:center; padding-left:12px; font-size:17px; font-weight:800; color:#0f1d13; background:var(--flame); border-radius:6px; box-shadow:0 0 14px rgba(255,70,20,.3); } .lrt { font-size:15px; font-weight:700; color:#fff; }
+.lr { display:grid; gap:3px; margin-bottom:5px; } .lrb { height:28px; display:flex; align-items:center; padding-left:12px; font-size:17px; font-weight:800; color:#0f1d13; background:var(--flame); border-radius:6px; box-shadow:0 0 14px rgba(255,70,20,.3); } .lrt { font-size:15px; font-weight:700; color:#fff; }
 .cards4 { grid-template-columns:1fr !important; gap:9px !important; margin-top:6px; }
 .cards4 .pc { display:grid !important; grid-template-columns:1.5in 1fr; column-gap:12px; padding:10px 14px; }
 .cards4 .pc .tn { grid-column:1; font-size:12px; } .cards4 .pc .p { grid-column:1; font-size:27px; } .cards4 .pc .h { grid-column:2; grid-row:1; font-size:18px; margin:0; } .cards4 .pc .d { grid-column:2; grid-row:2; font-size:14.5px; } .cards4 .pc .m { grid-column:2; grid-row:3; font-size:14.5px; margin:4px 0 0 !important; padding-top:4px; }
