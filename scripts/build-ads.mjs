@@ -24,7 +24,7 @@ const EYE = 'Omnidirectional Enterprise™ Partnership';
 const ADS = [
   { id: '01-legacy',       lever: 'Loss aversion + identity',      eyebrow: EYE, hook: 'Every company starts with a vision. *Most lose it.*', support: 'The founder steps back, people change, the market shifts.', cta: 'Explore Partnerships', img: 'scaffolding', pos: '50% 40%', legal: true },
   { id: '02-succession',   lever: 'Mortality salience + legacy',   eyebrow: EYE, hook: '*Pass it on.*', support: 'Phase IV · Preservation: make it last beyond any one person.', cta: 'Preserve your legacy', img: 'track', pos: '50% 56%', legal: true },
-  { id: '03-four-phases',  lever: 'Cognitive ease (4-step ladder)', eyebrow: 'The IV Phases™', hook: 'Define it. Plan it. Live it. *Pass it on.*', support: 'Foundations. Infrastructure Planning & Management. Internal Operating Systems. Preservation.', cta: 'See the four phases', img: 'storefront', pos: '50% 45%', legal: false },
+  { id: '03-four-phases',  lever: 'Cognitive ease (4-step ladder)', eyebrow: 'The IV Phases™', hook: 'Define it. Plan it. Live it. *Pass it on.*', support: 'Foundations. Infrastructure Planning & Management. Internal Operating Systems. Preservation.', cta: 'Shop by phase', img: 'storefront', pos: '50% 45%', legal: false },
   { id: '04-economics',    lever: 'Authority + reframe',            eyebrow: 'The economic case', hook: 'Generating value and capturing value *are different processes.*', support: 'Practice Omnidirectional Enterprise™ with licensed Co.LLab IP™.', cta: 'Read the case', img: 'scaffolding', pos: '25% 50%', legal: true },
   { id: '05-one-payment',  lever: 'Risk reversal + price clarity',  eyebrow: EYE, hook: '*One payment.* Licensed to keep.', support: `No subscription. No automatic charges. Four levels, ${lo}–${hi}.`, cta: 'Choose your level', img: 'racks', pos: '40% 62%', legal: true },
   { id: '06-start-free',   lever: 'Foot-in-the-door + reciprocity', eyebrow: 'The .LLab', hook: '*Start free.* Build your legacy.', support: 'Join The .LLab — free, no card needed. Every free tool, by phase.', cta: 'Join The .LLab free', img: 'storefront', pos: '50% 40%', legal: false },
@@ -42,7 +42,7 @@ const ADS = [
 
 // Every tactic is modeled under Omnidirectional Enterprise (node = who/direction of value) x The IV Phases (1 Foundations, 2 Infrastructure Planning & Management, 3 Internal Operating Systems, 4 Preservation).
 const TAG = {
-  '01-legacy': ['Businesses', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Knowledge + IP', 2, '/pages/partnership.html#cohort'],
+  '01-legacy': ['Businesses', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Products & Services', 2, '/pages/all-products.html'],
   '04-economics': ['Capital', 2, '/pages/about.html#economic'], '05-one-payment': ['Capital', 3, '/pages/partnership.html#tiers'], '06-start-free': ['People', 1, '/pages/login.html#join'],
   '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Businesses', 3, '/pages/partnership.html#tiers'], '09-define': ['Businesses', 1, '/pages/partnership.html#cohort'],
   '10-plan': ['Businesses', 2, '/pages/partnership.html#cohort'], '11-live': ['Businesses', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],

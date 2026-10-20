@@ -149,6 +149,8 @@ t = t.replace(/<a href="all-products\.html" aria-current="page">The \.LLab Legac
 t = t.replace(/<li><a href="all-products\.html">All Products · The \.LLab™<\/a><\/li>/g, '<li><a href="all-products.html" aria-current="page">All Products · The .LLab™</a></li>');
 t = t.replace(/<li><a href="all-products\.html">The \.LLab Legacy Library™<\/a><\/li>/g, '<li><a href="legacy-library.html">The .LLab Legacy Library™</a></li>');
 t = t.replace('<a href="think.html" class="is-on" aria-current="true">Knowledge + IP</a>', '<a href="think.html">Knowledge + IP</a>');
+// the catalog is its own branch of the model (Products & Services); no other branch is highlighted
+t = t.replace(/(<div class="model-ribbon"[\s\S]*?<\/ul>)/, (r) => r.replace(/ class="is-on" aria-current="true"/g, '').replace(/<a href="all-products\.html">Products &amp; Services<\/a>/, '<a href="all-products.html" class="is-on" aria-current="true">Products &amp; Services</a>'));
 t = t.replace(/<main>[\s\S]*<\/main>/, main);
 t = t.replace('<script>document.getElementById(\'year\')', `<script>(function () {
   var q = document.getElementById('cat-q'), rows = [].slice.call(document.querySelectorAll('.cat-row')), none = document.getElementById('cat-none'), count = document.getElementById('cat-count');

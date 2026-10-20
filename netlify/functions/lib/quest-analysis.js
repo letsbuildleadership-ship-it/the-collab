@@ -35,7 +35,7 @@ const LEGACY_QUESTION = [
 // Mission chain: human potential, performance, sustainable enterprise value, lasting legacy.
 const CHAIN = ['human potential', 'performance', 'sustainable enterprise value', 'lasting legacy'];
 
-// The eight directions value moves in an Omnidirectional Enterprise™.
+// The nine directions value moves in an Omnidirectional Enterprise™.
 const OE_NODES = [
   ['Businesses', /\b(compan\w+|business\w*|clients?|customers?|vendors?|suppliers?|partners?|partnerships?|organizations?)\b/gi],
   ['Nonprofits', /\b(nonprofits?|non-profits?|charit\w+|volunteers?|donors?|giving|foundations? (?:grant|board)|mission-driven)\b/gi],

@@ -21,13 +21,13 @@
   },
   {
     "id": "03-four-phases",
-    "node": "Knowledge + IP",
+    "node": "Products & Services",
     "phase": 2,
-    "lands": "/pages/partnership.html#cohort",
+    "lands": "/pages/all-products.html",
     "lever": "Cognitive ease (4-step ladder)",
     "hook": "Define it. Plan it. Live it. Pass it on.",
     "support": "Foundations. Infrastructure Planning & Management. Internal Operating Systems. Preservation.",
-    "cta": "See the four phases"
+    "cta": "Shop by phase"
   },
   {
     "id": "04-economics",
