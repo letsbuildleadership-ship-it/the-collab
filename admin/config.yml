@@ -325,7 +325,7 @@ collections:
           - { label: "Founder Recognition empty-state text", name: "recognition_empty", widget: "string" }
 
       - name: "think"
-        label: "Think (R.A.T.™)"
+        label: "Think (.LLab R.A.T.™)"
         file: "content/think.json"
         fields:
           - { label: "Hero eyebrow", name: "eyebrow", widget: "string" }

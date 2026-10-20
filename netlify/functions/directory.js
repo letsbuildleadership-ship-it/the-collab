@@ -39,7 +39,7 @@ exports.handler = async (event) => {
     if (mine) await store.opsDelete(COLLECTION, stored.memberId);
     return json(200, { ok: true });
   }
-  if (!eligible) return json(403, { error: 'Collaborating Companies is open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership.' });
+  if (!eligible) return json(403, { error: '.LLab Collaborating Companies is open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership.' });
 
   const today = new Date().toISOString().slice(0, 10);
   const day = stored.directoryDay && stored.directoryDay.date === today ? stored.directoryDay : { date: today, count: 0 };
@@ -70,7 +70,7 @@ exports.handler = async (event) => {
       html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="https://wearethellab.netlify.app/admin/collaborating-companies.html">Review it</a></p>`,
     });
   } catch (err) {
-    console.error('Collaborating Companies review email failed:', err.message);
+    console.error('.LLab Collaborating Companies review email failed:', err.message);
   }
   return json(200, { listing: { ...listing, memberId: undefined } });
 };

@@ -112,7 +112,7 @@ function buildAccountView(record, now) {
     // Free tools: open to every member, free or paid.
     freeTools,
     // Guided quests: status per quest key (draft / done) for the portal cards and report list.
-    // Companies that license Co.LLab™ IP or hold a Membership can join the Collaborating Companies.
+    // Companies that license Co.LLab™ IP or hold a Membership can join the .LLab Collaborating Companies.
     directoryEligible: require('./directory').isEligible(record),
     // Quests open to every signed-in member that are not tied to a product (for example .LLab AV Productions™).
     openQuests: [...questLib.quests.values()].filter((q) => q.open).map((q) => ({ key: q.key, name: q.title, phase: q.phase, description: q.intro })),
