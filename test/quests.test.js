@@ -16,6 +16,14 @@ async function member(email) {
   await signup.handler({ httpMethod: 'POST', headers: {}, body: JSON.stringify({ email, password: 'free-pass-1' }) });
   return fakeStore.getTokenByEmail(email);
 }
+// A paying Membership holder: the analysis and outcomes are a Membership benefit.
+async function paidMember(email) {
+  const token = await member(email);
+  const record = await fakeStore.getCustomerByToken(token);
+  record.memberships = { membership: { status: 'active', interval: 'month', subscriptionId: 'sub_q', currentPeriodEnd: null } };
+  await fakeStore.saveCustomer(record);
+  return token;
+}
 const call = (token, method, qs, body) => quest.handler({
   httpMethod: method,
   headers: { cookie: `collab_token=${token}` },
@@ -62,7 +70,7 @@ test('quest endpoints need a signed-in member', async () => {
 });
 
 test('draft saves, finishing stores the outcome, report is a PDF, drafts never overwrite it', async () => {
-  const token = await member('quester@example.com');
+  const token = await paidMember('quester@example.com');
   const q = [...quests.values()].find((x) => x.archetype === 'checklist');
 
   let r = await call(token, 'POST', {}, { key: q.key, answers: { n1: true } });
@@ -117,15 +125,19 @@ test('scores are analysed: the gap between strongest and weakest is named', () =
   assert.match(o.legacyRead, /weakest link is Clarity/);
 });
 
-test('paid quests are locked until the member owns the product', async () => {
+test('the nine Four Phases quests open to free members; other paid quests lock until the product is owned', async () => {
   const token = await member('free@example.com');
-  assert.equal((await call(token, 'GET', { key: 'strength-map' })).statusCode, 403);
+  const game = JSON.parse((await call(token, 'GET', { key: 'strength-map' })).body);
+  assert.ok(game.quest.nodes.length > 5);
+  assert.equal(game.canAnalyze, false, 'a free member works it but is not analysed');
+  const other = [...quests.values()].find((q) => q.archetype === 'workbook' && !q.open && !pricing.fourPhasesKeys().includes(q.key));
+  assert.equal((await call(token, 'GET', { key: other.key })).statusCode, 403);
   const { fulfillCheckoutSession } = require('../netlify/functions/lib/fulfill');
   const product = pricing.registry.products.find((p) => p.key === 'strength-map');
   await fulfillCheckoutSession({ id: 'cs_q', customer_details: { email: 'free@example.com' }, amount_total: 1 }, [product.stripe_price_id]);
   const res = await call(await fakeStore.getTokenByEmail('free@example.com'), 'GET', { key: 'strength-map' });
   assert.equal(res.statusCode, 200);
-  assert.ok(JSON.parse(res.body).quest.nodes.length > 5);
+  assert.equal(JSON.parse(res.body).canAnalyze, true, 'owning the product covers its own analysis');
 });
 
 test('workbook quests analyse coverage, scores and choices against the member\'s own words', () => {
@@ -160,7 +172,7 @@ test('the Event Infrastructure Plan quest is open to every member and follows Th
   const q = quests.get('event-infrastructure');
   assert.ok(q && q.open);
   assert.deepEqual([...new Set(q.nodes.map((n) => n.phase))], [0, 1, 2, 3]);
-  const token = await member('live@example.com');
+  const token = await paidMember('live@example.com');
   const res = await call(token, 'GET', { key: 'event-infrastructure' });
   assert.equal(res.statusCode, 200);
   const a = {};
@@ -169,4 +181,37 @@ test('the Event Infrastructure Plan quest is open to every member and follows Th
   const out = await call(token, 'POST', {}, { key: 'event-infrastructure', answers: a, complete: true });
   assert.equal(out.statusCode, 200);
   assert.equal(JSON.parse(out.body).saved.outcome.phaseMap.length, 4);
+});
+
+test('free members work the whole quest, but analysis and outcomes need Membership', async () => {
+  const q = [...quests.values()].find((x) => x.archetype === 'checklist');
+  const token = await member('freeq@example.com');
+  const g = JSON.parse((await call(token, 'GET', { key: q.key })).body);
+  assert.equal(g.canAnalyze, false);
+  const r = await call(token, 'POST', {}, { key: q.key, answers: fullAnswers(q, true), complete: true });
+  assert.equal(r.statusCode, 200);
+  const out = JSON.parse(r.body);
+  assert.equal(out.analysisLocked, true);
+  assert.equal(out.saved.status, 'draft', 'answers are kept as a draft, not analysed');
+  assert.equal(out.saved.outcome, undefined);
+  assert.equal((await call(token, 'GET', { key: q.key, pdf: '1' })).statusCode, 404, 'no report without Membership');
+
+  // The same answers are analysed once the member joins.
+  const record = await fakeStore.getCustomerByToken(token);
+  record.memberships = { membership: { status: 'active', interval: 'month', subscriptionId: 'sub_up', currentPeriodEnd: null } };
+  await fakeStore.saveCustomer(record);
+  assert.equal(JSON.parse((await call(token, 'GET', { key: q.key })).body).canAnalyze, true);
+  const done = JSON.parse((await call(token, 'POST', {}, { key: q.key, answers: JSON.parse((await call(token, 'GET', { key: q.key })).body).saved.answers, complete: true })).body);
+  assert.equal(done.saved.status, 'done');
+  assert.ok(done.saved.outcome.improvements.length >= 3);
+});
+
+test('the free tool PDFs are open to everyone with no account', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const toml = fs.readFileSync(path.join(__dirname, '..', 'netlify.toml'), 'utf8');
+  for (const t of freeTools) {
+    assert.ok(fs.existsSync(path.join(__dirname, '..', t.file)), t.file);
+    assert.equal(toml.includes(`from = "${t.file}"`), false, `${t.file} must not be blocked`);
+  }
 });

@@ -628,7 +628,7 @@
     const top = cleared[cleared.length - 1];
     tiles.push(active
       ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${tm(top.name)}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
-      : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools included', cta: 'Unlock all 9 quests', href: '#offer-membership' });
+      : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Quests included · analysis with Membership', cta: 'Add Membership for analysis', href: '#offer-membership' });
     const label = { founders: name('founders', 'Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
     el.innerHTML = tiles
       .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)
@@ -688,11 +688,16 @@
       }
     } else {
       const plan = data.membershipOffer && (data.membershipOffer.plans || []).find((p) => p.payment_link);
+      const game = (data.gameQuests || []).map((g) => {
+        const qs = (data.quests || {})[g.key];
+        const label = qs && qs.status === 'done' ? '✓' : qs ? '◐' : '○';
+        return `<a class="pill" href="quest.html?key=${encodeURIComponent(g.key)}">${label} ${esc(shortName(g.name))}</a>`;
+      }).join(' ');
       q = {
         label: 'Start the game',
-        title: 'Unlock 9 quests',
-        body: '.LLab Membership™ opens 9 quests across 4 levels. Clear a level, win free loot. Free tools are ready now.',
-        cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">Free tools <span class="arrow">→</span></a>` : '',
+        title: 'Work the 9 quests, free',
+        body: 'Free members work through every quest across The IV Phases™. Membership analyzes your answers and delivers your outcomes, and opens the levels and loot.',
+        cta: `${game} ${plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join Membership · ${esc(plan.price_display)} <span class="arrow">→</span></a>` : ''}`,
       };
     }
     $('quest-label').textContent = q.label;

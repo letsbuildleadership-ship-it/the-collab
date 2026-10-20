@@ -159,10 +159,21 @@
     <div class="wrap q-wrap">
       <p id="q-error" class="q-err" hidden></p>
 
+      <div class="q-run" id="q-locked" hidden>
+        <p class="eyebrow">Your answers are saved</p>
+        <p class="subhead" style="max-width:40rem;">Membership analyzes the answers you gave and delivers your outcomes for your business, in the language of The IV Phases™ and the Omnidirectional Enterprise™.</p>
+        <div class="q-actions" style="margin-top:1.25rem;">
+          <a class="pill pill--solid" href="products.html#membership">See Membership <span class="arrow">→</span></a>
+          <a class="pill" href="account.html">Back to my portal</a>
+          <button type="button" class="pill" id="lk-edit">Review my answers</button>
+        </div>
+      </div>
+
       <div class="q-run" id="q-run" hidden>
         <div class="q-bar" aria-hidden="true"><span id="q-fill"></span></div>
         <p class="q-meta" id="q-count" aria-live="polite"></p>
         <p style="color:var(--white-dim);">Each step opens as you complete the one before it, following the progression of The IV Phases™: Define it, Plan it, Live it, Pass it on. Your progress saves as you go.</p>
+        <p class="q-meta" id="q-tier" hidden style="color:var(--white-dim);"></p>
         <p class="q-meta" id="q-hint" hidden></p>
         <div class="q-map" id="q-map"></div>
         <div id="q-close"></div>
