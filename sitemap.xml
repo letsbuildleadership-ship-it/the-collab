@@ -94,4 +94,9 @@
     <loc>https://wearethellab.com/pages/omnidirectional-enterprise.html</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
+  <url>
+    <loc>https://wearethellab.com/pages/contact.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>

@@ -2263,3 +2263,10 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   opacity: 1;
   margin-top: 0.15rem;
 }
+
+/* Contact Us page */
+.contact-card { display: flex; flex-direction: column; gap: 0.6rem; }
+.contact-card .contact-use { margin: 0; }
+.contact-card .contact-address { font-weight: 700; color: #fff; text-decoration: underline; overflow-wrap: anywhere; }
+.contact-cardart { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.contact-cardface svg { display: block; width: 100%; height: auto; border-radius: 6px; }
