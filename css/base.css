@@ -2253,3 +2253,13 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .fx-card--partner .fx-p-buy { justify-items: start; width: 100%; }
   .fx-card--member { grid-column: 1 / -1; }
 }
+
+/* Footer contact: what each address is for */
+.footer-col .contact-purpose {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  opacity: 1;
+  margin-top: 0.15rem;
+}

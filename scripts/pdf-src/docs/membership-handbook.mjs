@@ -75,7 +75,7 @@ export const contentHtml = `
   <p>Your access is tied to the email you purchased with. Save the access link shown on your account page after checkout — it's how you get back in on any device without a password.</p>
 
   <h2 class="doc-h2">Questions</h2>
-  <p>Reach us at <strong>letsbuildleadership@gmail.com</strong>. Purchases may be tax deductible for your business — speak with your tax strategist.</p>
+  <p>Reach us at <strong>support@wearethellab.com</strong>. Purchases may be tax deductible for your business — speak with your tax strategist.</p>
 
   <div class="callout">
     <div class="callout-label">Not sure where to start?</div>

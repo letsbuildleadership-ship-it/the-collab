@@ -56,6 +56,6 @@ export const contentHtml = `
   <div class="quote">Founding-rate members are the reason this ecosystem exists in its current form — thank you for being part of the earliest cohort.</div>
 
   <h2 class="doc-h2">Questions</h2>
-  <p>Reach us at <strong>letsbuildleadership@gmail.com</strong>.</p>
+  <p>Reach us at <strong>support@wearethellab.com</strong>.</p>
 </section>
 `;

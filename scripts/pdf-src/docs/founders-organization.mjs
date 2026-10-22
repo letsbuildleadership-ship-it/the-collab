@@ -100,6 +100,6 @@ export const contentHtml = `
   <p>If you joined at the Legacy Founder tier, you also have priority infrastructure planning support and the deepest founding-rate lock-in available in this cohort — use it. Reach out early rather than waiting until something is already on fire.</p>
 
   <h2 class="doc-h2">Questions</h2>
-  <p>Reach us directly at <strong>letsbuildleadership@gmail.com</strong> — a real person reads and replies to every message.</p>
+  <p>Reach us directly at <strong>founders@wearethellab.com</strong> — a real person reads and replies to every message.</p>
 </section>
 `;
