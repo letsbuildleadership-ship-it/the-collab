@@ -13,10 +13,11 @@
     }
   ],
   "hero_subhead": "The founder steps back, people change, the market shifts. The Co.LLab™ helps companies define their legacy, build it into how they work, and pass it on.",
+  "hero_offer_line": "Partnerships from $5,000, one-time. The .LLab™ products from $20.",
   "hero_cta_primary_label": "Explore Partnerships",
   "hero_cta_primary_link": "/pages/partnership.html#tiers",
-  "hero_cta_secondary_label": "Join The .LLab free",
-  "hero_cta_secondary_link": "/pages/login.html#join",
+  "hero_cta_secondary_label": "Shop The .LLab™",
+  "hero_cta_secondary_link": "/pages/products.html",
   "doorway_eyebrow": "What are you building?",
   "doorway_headline": "More ways in.",
   "doorway_body": "Creating something, or here for the research? Start here.",
