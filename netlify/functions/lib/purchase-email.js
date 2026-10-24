@@ -8,7 +8,7 @@ const store = require('./store');
 const { sendMail } = require('./mailer');
 
 const SITE = (process.env.URL || 'https://wearethellab.com').replace(/\/$/, '');
-const CONTACT = 'letsbuildleadership@gmail.com';
+const CONTACT = 'support@wearethellab.com';
 
 function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

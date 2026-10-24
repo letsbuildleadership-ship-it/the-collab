@@ -9,7 +9,7 @@ const { sendMail } = require('./lib/mailer');
 const { createResetLink, tokenForResetCode } = require('./lib/password-reset');
 const { json, setTokenCookie } = require('./lib/http');
 
-const CONTACT = 'letsbuildleadership@gmail.com';
+const CONTACT = 'support@wearethellab.com';
 
 function resetEmail(record, url) {
   const text = [

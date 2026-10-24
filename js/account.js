@@ -470,7 +470,7 @@
     const engagement = p.engagement
       ? `<div style="margin-top:1.25rem;"><span class="founder-card-label">Included session</span>
            <strong class="founder-card-value" style="display:block;">${esc(p.engagement.label)}</strong>
-           <p class="founder-card-copy" style="font-size:0.85rem;">${esc(p.engagement.format)} To schedule, email <a href="mailto:letsbuildleadership@gmail.com" style="text-decoration:underline;">letsbuildleadership@gmail.com</a>.</p></div>`
+           <p class="founder-card-copy" style="font-size:0.85rem;">${esc(p.engagement.format)} To schedule, <a href="https://calendly.com/letsbuildleadership/partnership-conversation" style="text-decoration:underline;">book a conversation</a> or email <a href="mailto:partnerships@wearethellab.com" style="text-decoration:underline;">partnerships@wearethellab.com</a>.</p></div>`
       : '';
 
     wrap.innerHTML = `<div class="founder-card" style="margin-top:2rem;">

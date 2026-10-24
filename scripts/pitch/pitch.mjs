@@ -211,7 +211,7 @@ const p5 = () => pg(K('Start free'), 'See the method <b>before you pay.</b>', `
 <div class="sp"><div class="no">3</div><div><b>Membership goes deeper</b><span>The Infrastructure Snapshot™ is free. Membership runs the full Infrastructure Analysis™ and opens the paid IP.</span></div></div>
 </div>
 <div class="rep" style="margin:16px 0 12px"><div class="stamp">Your report</div><div class="rt">Your Legacy Read</div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="bars"><div style="background:#ff5a1f;width:82%"></div><div style="background:#ff7a1f;width:64%"></div><div style="background:#4fae7b;width:48%"></div><div style="background:#fff;width:30%"></div></div><div class="rt">What’s working · How we’d build from here, together · Beyond your own walls</div></div>
-<div class="qb"><img src="${qJoin}"/><div><b>Join free</b><span>wearethellab.netlify.app<br/>Scan to open the member portal.</span></div></div>`);
+<div class="qb"><img src="${qJoin}"/><div><b>Join free</b><span>wearethellab.com<br/>Scan to open the member portal.</span></div></div>`);
 
 const tl = (t) => `<b>${t.label}</b> · ${t.verb}: ${t.bestFor.charAt(0).toLowerCase()}${t.bestFor.slice(1)}`;
 const lb = (h, pr, t) => `<div class="lr"><div class="lrb" style="width:${h}%">${pr}</div><div class="lrt">${t}</div></div>`;
@@ -301,7 +301,7 @@ ${tw('Full partnership', 'Build the Legacy', 'Define, plan, live and preserve yo
 const cardPage = () => `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k">Let’s talk</p><h2 class="t">Ashley E. <b>Clasby</b></h2>
 <p class="lead" style="margin-bottom:10px"><strong>Omnidirectional Enterprise™ Founder &amp; Strategist</strong><br/>The Co.LLab™: Building Leadership Infrastructure</p>
 <div class="cardp grow"><a href="${SITE}/card/"><img src="${front}" alt="Business card, front"/></a><a href="${SITE}/card/"><img src="${back}" alt="Business card, back"/></a></div>
-<div class="ct" style="margin-top:12px"><div><b>Website</b><a href="${SITE}">wearethellab.netlify.app</a></div><div><b>Email</b><a href="mailto:letsbuildleadership@gmail.com">letsbuildleadership@gmail.com</a></div></div>
+<div class="ct" style="margin-top:12px"><div><b>Website</b><a href="${SITE}">wearethellab.com</a></div><div><b>Email</b><a href="mailto:partnerships@wearethellab.com">partnerships@wearethellab.com</a></div></div>
 <div class="qb" style="margin-top:12px"><img src="${qCard}"/><div><b>Save the digital card</b><span>Scan on your phone, then Share → Add to Home Screen.</span></div></div>
 <div class="banner" style="margin-top:12px">Let’s Build Your Legacy Through Omnidirectional Enterprise™.</div></div>${foot()}</section>`;
 
