@@ -299,7 +299,7 @@ ${tw('Full partnership', 'Build the Legacy', 'Define, plan, live and preserve yo
 </div>`);
 
 const cardPage = () => `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k">Let’s talk</p><h2 class="t">Ashley E. <b>Clasby</b></h2>
-<p class="lead" style="margin-bottom:10px"><strong>Omnidirectional Enterprise™ Founder &amp; Strategist</strong><br/>The Co.LLab™: Building Leadership Infrastructure</p>
+<p class="lead" style="margin-bottom:10px"><strong>Economic Enterprise Systems Strategist</strong><br/>The Co.LLab™: Building Leadership Infrastructure</p>
 <div class="cardp grow"><a href="${SITE}/card/"><img src="${front}" alt="Business card, front"/></a><a href="${SITE}/card/"><img src="${back}" alt="Business card, back"/></a></div>
 <div class="ct" style="margin-top:12px"><div><b>Website</b><a href="${SITE}">wearethellab.com</a></div><div><b>Email</b><a href="mailto:partnerships@wearethellab.com">partnerships@wearethellab.com</a></div></div>
 <div class="qb" style="margin-top:12px"><img src="${qCard}"/><div><b>Save the digital card</b><span>Scan on your phone, then Share → Add to Home Screen.</span></div></div>
