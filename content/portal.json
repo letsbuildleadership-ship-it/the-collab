@@ -51,11 +51,11 @@
       "id": "atelier",
       "type": "program",
       "enabled": false,
-      "eyebrow": ".LLab Atelier™",
-      "title": ".LLab Atelier™",
+      "eyebrow": ".LLab Efficiency Architecture™",
+      "title": ".LLab Efficiency Architecture™",
       "title_highlight": "Spaces",
       "description": "Office studios, art studios, community spaces, and ergonomic efficiency homes. Coming soon.",
-      "link": "atelier.html#spaces",
+      "link": "efficiency-architecture.html",
       "link_label": "See the spaces"
     }
   ],
