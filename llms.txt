@@ -16,3 +16,5 @@ Instagram: https://www.instagram.com/theco.llab_/
 - [About The Co.LLab™](https://wearethellab.com/pages/about.html): mission, vision, and enterprise identity.
 - [Glossary](https://wearethellab.com/pages/glossary.html): plain definitions of every Co.LLab™ term, from Omnidirectional Enterprise™ to .LLab Membership™.
 - [Omnidirectional Enterprise™](https://wearethellab.com/pages/omnidirectional-enterprise.html): the operating model as an economic enterprise system, with the published research and economic ideas it builds on.
+- [.LLab Efficiency Architecture™](https://wearethellab.com/pages/efficiency-architecture.html): spaces designed as infrastructure: ergonomic efficiency homes, office studio spaces, art studio spaces and community spaces. In development.
+- [.LLab Atelier™](https://wearethellab.com/pages/atelier.html): a fashion house with home goods and furniture. In development.

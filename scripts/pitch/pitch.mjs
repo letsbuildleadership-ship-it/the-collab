@@ -277,7 +277,7 @@ const siteRow = (file) => {
   const desc = decode(/name="description" content="([^"]*)"/.exec(h)[1]);
   return [name, /In Development/.test(title) ? 'In development' : '', desc, `${file}.html`, ''];
 };
-const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'agriculture', 'commercial-transport', 'community', 'collaborating-companies', 'founders', 'about'];
+const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'efficiency-architecture', 'agriculture', 'commercial-transport', 'community', 'collaborating-companies', 'founders', 'about'];
 const siteRows = SITE_ORDER.map(siteRow);
 const rowsHtml = (rows) => `<div class="az grow">${rows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>`;
 const PAGE_TITLES = ['Every page, <b>in order.</b>', 'Every page, <b>continued.</b>', 'Every page, <b>and about us.</b>'];
@@ -289,7 +289,7 @@ const azRows = [["Co.LLab+™", "In development", "The e-commerce side of The Co
 const pv1 = () => pg(K('What’s next'), 'What’s next, <b>A to Z.</b>', `
 <p class="lead" style="margin-bottom:10px">Every venture grows from the same foundation: The IV Phases™ and the Omnidirectional Enterprise™.</p>
 <div class="az grow">${azRows.map(([nm, st, line, href, sub]) => `<div class="r" data-href="${SITE}/pages/${href}"><span class="nm">${nm}</span><span class="pill ${st === 'In development' ? 'dev' : st === 'Vision' ? 'vis' : ''}">${st}</span><p>${line}</p>${sub ? `<p class="sub">${sub}</p>` : ''}</div>`).join('')}</div>
-<div class="note" style="margin-top:10px;font-size:12.5px"><b>Not yet offered.</b> These ventures and .LLab Atelier™ Spaces are in development and are not currently offered for sale or lease. Nothing here is an offer of securities or a solicitation of investment.</div>`);
+<div class="note" style="margin-top:10px;font-size:12.5px"><b>Not yet offered.</b> These ventures and .LLab Efficiency Architecture™ spaces are in development and are not currently offered for sale or lease. Nothing here is an offer of securities or a solicitation of investment.</div>`);
 const p9 = () => pg(K('Your next step'), 'Choose your <b>point of entry.</b>', `
 <p class="words2">Build the infrastructure. Strengthen the practice. <b>Create the legacy.</b></p>
 <div class="three2 grow">
