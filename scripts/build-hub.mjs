@@ -176,12 +176,21 @@ const main = `<main>
 
 let t = read('pages/legacy-library.html');
 t = t.replace(/ data-field(-href|-src)?="[^"]*"/g, '');
-const TITLE = 'The .LLab Products™ | The Co.LLab™';
-const DESC = 'Every product from The Co.LLab™ on one page: memberships, The IV Phases™, .LLab Creators™, The Co.LLab Founders Organization™, partnerships and free tools.';
+const TITLE = 'The .LLab Products™ | Leadership Frameworks, Templates and Tools';
+const DESC = 'Shop leadership infrastructure tools: values charter, decision playbook, leadership assessments, operating systems and succession plans. From $20, plus 16 free tools.';
 t = t.replace(/<title>[\s\S]*?<\/title>/, `<title>${TITLE}</title>`);
 t = t.replace(/(<meta name="description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/(<meta property="og:title" content=")[^"]*/, `$1${TITLE}`).replace(/(<meta property="og:description" content=")[^"]*/, `$1${DESC}`);
 t = t.replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${TITLE}`).replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${DESC}`);
+// Product structured data (schema.org ItemList of Product/Offer) from pricing.json, for search results.
+{
+  const ldItems = [...reg.products, ...reg.blueprint_series, ...reg.partner_ip]
+    .filter((x) => x.payment_link && String(x.price_display || '').replace(/[^\d.]/g, ''))
+    .map((x, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'Product', name: x.name, description: x.description || '', brand: { '@type': 'Brand', name: 'The Co.LLab™' }, offers: { '@type': 'Offer', price: String(x.price_display).replace(/[^\d.]/g, ''), priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: x.payment_link } } }));
+  const ld = { '@context': 'https://schema.org', '@type': 'ItemList', name: TITLE, itemListElement: ldItems };
+  t = t.replace(/<script type="application\/ld\+json" id="product-list-ld">[\s\S]*?<\/script>\n?/, '');
+  t = t.replace('</head>', `<script type="application/ld+json" id="product-list-ld">${JSON.stringify(ld)}</script>\n</head>`);
+}
 t = t.replace(/legacy-library\.html/g, 'all-products.html');
 t = t.replace(/"name": "The \.LLab Legacy Library™ — The Co\.LLab™"/, `"name": "${TITLE}"`).replace(/"description": "The \.LLab Legacy Library™[^"]*"/, `"description": "${DESC}"`).replace(/"name": "The \.LLab Legacy Library"/, '"name": "The .LLab Products"');
 // the legacy-library entry in the lists goes back to a plain link; the hub entry is current
