@@ -85,6 +85,18 @@ test('sign-up sends a confirmation email and starts unconfirmed; the link confir
   assert.equal((await call(verifyEmail, { code })).statusCode, 400, 'the link works once');
 });
 
+test('confirming the email sends one welcome email with the free tools link', async () => {
+  await call(signup, { email: 'hello@example.com', password: 'free-pass-1', name: 'Ada Lee' });
+  const code = decodeURIComponent(/verify=([^\s"&]+)/.exec(sent[0].text)[1]);
+  assert.equal((await call(verifyEmail, { code })).statusCode, 200);
+  assert.equal(sent.length, 2);
+  assert.equal(sent[1].to, 'hello@example.com');
+  assert.match(sent[1].subject, /Welcome/);
+  assert.match(sent[1].text, /all-products\.html/);
+  const record = await fakeStore.getCustomerByToken(await fakeStore.getTokenByEmail('hello@example.com'));
+  assert.ok(record.welcomeSentAt);
+});
+
 test('an expired or made-up confirmation link is refused', async () => {
   await call(signup, { email: 'old@example.com', password: 'free-pass-1' });
   const token = await fakeStore.getTokenByEmail('old@example.com');

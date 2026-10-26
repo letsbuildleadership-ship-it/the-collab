@@ -1,7 +1,7 @@
 // Confirms a free member's email. POST { code } finishes the confirmation from the emailed link;
 // POST { action: 'resend' } (signed in) sends a fresh link, at most once every 5 minutes.
 const store = require('./lib/store');
-const { sendVerificationEmail } = require('./lib/account-emails');
+const { sendVerificationEmail, sendWelcomeEmail } = require('./lib/account-emails');
 const { json, tokenFromEvent, setTokenCookie } = require('./lib/http');
 
 const RESEND_MS = 5 * 60 * 1000;
@@ -42,5 +42,14 @@ exports.handler = async (event) => {
   record.emailVerifiedAt = new Date().toISOString();
   await store.saveCustomer(record);
   await store.deleteVerifyCode(code);
+  if (!record.welcomeSentAt) {
+    try {
+      await sendWelcomeEmail(record);
+      record.welcomeSentAt = new Date().toISOString();
+      await store.saveCustomer(record);
+    } catch (err) {
+      console.error('welcome email failed', err.message);
+    }
+  }
   return json(200, { ok: true, memberId: record.memberId }, { 'Set-Cookie': setTokenCookie(record.token) });
 };
