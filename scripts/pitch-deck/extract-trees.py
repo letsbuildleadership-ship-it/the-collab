@@ -3,7 +3,7 @@
     python3 scripts/pitch-deck/extract-trees.py <plate.png>
 
 For each tree it writes scripts/pitch-deck/trees/<name>.png (the drawing on a transparent background) and
-<name>-silhouette.png (the same shape, filled flat in the site's ember orange). The background is the plate's
+<name>-silhouette.png (the same shape, filled flat in forest green). The background is the plate's
 cream paper; only the largest connected shape in each crop is kept, so labels and ground marks drop out.
 """
 import sys
@@ -15,7 +15,7 @@ from PIL import Image, ImageFilter
 
 PLATE = Path(sys.argv[1])
 OUT = Path(__file__).resolve().parent / 'trees'
-EMBER = (255, 90, 36)
+FILL = (95, 143, 69)  # forest green; the slide adds an orange glow behind each tree
 # (name, crop box on the 1254x1254 plate: left, top, right, bottom) — each box holds one tree, trunk to tip.
 TREES = [
     ('ponderosa', (10, 5, 370, 600)),
@@ -70,7 +70,7 @@ def main():
         drawing = crop.convert('RGBA')
         drawing.putalpha(alpha)
         drawing.crop(bbox).save(OUT / f'{name}.png')
-        sil = Image.new('RGBA', crop.size, EMBER + (0,))
+        sil = Image.new('RGBA', crop.size, FILL + (0,))
         sil.putalpha(alpha)
         sil.crop(bbox).save(OUT / f'{name}-silhouette.png')
         print(name, 'size', bbox[2] - bbox[0], 'x', bbox[3] - bbox[1])
