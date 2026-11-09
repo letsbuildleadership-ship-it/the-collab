@@ -298,11 +298,13 @@
     <style>
       #founder .mast{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-top:2px solid var(--filament-2);border-bottom:1px solid var(--hairline-strong);font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--paper)}
       #founder .mast span:last-child{color:var(--filament-2)}
-      #founder .ttl{text-align:center;margin:clamp(2rem,5vw,3.5rem) auto 0;max-width:18ch;font-size:clamp(2.6rem,7vw,5.6rem);line-height:.98;font-weight:200;letter-spacing:-.035em}
-      #founder .dek{text-align:center;max-width:46ch;margin:1.5rem auto 0;font-size:clamp(1.05rem,1.6vw,1.3rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--paper)}
-      #founder .by{text-align:center;margin:1.25rem 0 clamp(2.5rem,5vw,4rem);font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--filament-2)}
-      #founder .spread{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-      #founder .spread figure{margin:0;position:sticky;top:6rem}
+      #founder .ttl{margin:0;max-width:none;font-size:clamp(2.6rem,5.6vw,5rem);line-height:.98;font-weight:200;letter-spacing:-.035em}
+      #founder .dek{max-width:none;margin:1.25rem 0 0;font-size:clamp(1.05rem,1.5vw,1.25rem);font-style:italic;font-weight:300;line-height:1.5;color:var(--paper)}
+      #founder .by{margin:1rem 0 2.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--hairline-strong);font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--filament-2)}
+      #founder .spread{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,4.5vw,4.5rem);align-items:center;margin-top:clamp(2rem,4vw,3rem)}
+      #founder .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3.5vw,3.5rem)}
+      #founder .cols .q{margin-top:0}
+      #founder .spread figure{margin:0}
       #founder .spread img{width:100%;height:auto;display:block;border-radius:2px;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 70px rgba(var(--filament-2-rgb),.16)}
       #founder figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--hairline-strong);font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper)}
       #founder .qa{color:var(--paper);font-size:1.06rem;line-height:1.8}
@@ -312,39 +314,43 @@
       #founder .a{display:flex;gap:.9rem;align-items:baseline}
       #founder .a p{margin:0}
       #founder .cap::first-letter{float:left;font-size:4.6rem;line-height:.82;font-weight:800;color:var(--filament-2);margin:.3rem .6rem 0 0}
-      #founder .pull{margin:3rem 0;padding:2rem 0;border-top:1px solid var(--filament-2);border-bottom:1px solid var(--filament-2);text-align:center;font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:200;line-height:1.25;letter-spacing:-.015em;color:var(--paper)}
+      #founder .pull{margin:clamp(2.5rem,5vw,4rem) 0;padding:2rem 0;border-top:1px solid var(--filament-2);border-bottom:1px solid var(--filament-2);text-align:center;font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:200;line-height:1.25;letter-spacing:-.015em;color:var(--paper)}
       #founder .pull strong{font-weight:800;color:var(--filament-2)}
       #founder .pull small{display:block;margin-top:1rem;font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--filament-2)}
       #founder .edu{list-style:none;margin:.2rem 0 0;padding:0}
       #founder .edu li{padding:.55rem 0;border-bottom:1px solid var(--hairline)}
       #founder .end{display:inline-block;width:.6em;height:.6em;margin-left:.4em;background:var(--filament-2)}
-      @media (max-width:860px){#founder .spread{grid-template-columns:1fr}#founder .spread figure{position:static}}
+      @media (max-width:960px){#founder .cols{grid-template-columns:1fr 1fr}} @media (max-width:860px){#founder .spread,#founder .cols{grid-template-columns:1fr}}
     </style>
     <div class="wrap">
       <div class="mast"><span>The .LLab Journal™ · Profile</span><span>In conversation</span></div>
-      <h2 class="headline ttl">Value moves in <strong>every direction.</strong></h2>
-      <p class="dek">Ashley E. Clasby, founder of The Co.LLab™, on small-town roots, the economics of culture, and building Leadership Infrastructure™.</p>
-      <p class="by">The founder · Economic Enterprise Systems Strategist</p>
       <div class="spread">
         <figure>
           <img src="../assets/img/founder/ashley-e-clasby.jpg" width="900" height="1017" loading="lazy" alt="Ashley E. Clasby, founder of The Co.LLab™, in black and white, holding a pencil, above The Co.LLab™ Building Leadership Infrastructure mark.">
           <figcaption><span>Ashley E. Clasby</span><span>Founder, The Co.LLab™</span></figcaption>
         </figure>
-        <div class="qa">
-          <p class="q"><b>Q</b><span>Where did it start?</span></p>
-          <div class="a"><b class="m">A</b><p class="cap">I grew up in Jacksonville, Oregon, a small town where people supported each other. Neighbors showed up for neighbors, and businesses, artists and families kept the community running together. That is where I first saw value move in every direction.</p></div>
-          <p class="q"><b>Q</b><span>What have you seen since?</span></p>
-          <div class="a"><b class="m">A</b><p>Through years in the arts, nonprofits and education, I have watched how the economics around an organization shape its culture and climate: who has access to resources, who carries the load, and how much depends on a few people. The same patterns show up in companies and communities.</p></div>
-          <blockquote class="pull">“The same patterns show up in <strong>companies and communities.</strong>”<small>Ashley E. Clasby</small></blockquote>
-          <p class="q"><b>Q</b><span>And what comes next?</span></p>
-          <div class="a"><b class="m">A</b><p>The Co.LLab™ is how I answer them: Leadership Infrastructure™ and the Omnidirectional Enterprise™, built so that people and organizations can transform human potential into performance, sustainable enterprise value, and lasting legacy.</p></div>
-          <p class="q"><b>Q</b><span>What grounds the work?</span></p>
-          <div class="a"><b class="m">A</b><ul class="edu">
-            <li><strong>M.A., Education Policy and Leadership Studies</strong> · University of Iowa, expected June 2026</li>
-            <li><strong>M.A. in Teaching, Curriculum Design</strong> · Southern Oregon University, 2018</li>
-            <li><strong>B.A., Fine Art</strong> · University of Oregon, 2011<span class="end" aria-hidden="true"></span></li>
-          </ul></div>
+        <div class="lead-col">
+          <h2 class="headline ttl">Value moves in <strong>every direction.</strong></h2>
+          <p class="dek">Ashley E. Clasby, founder of The Co.LLab™, on small-town roots, the economics of culture, and building Leadership Infrastructure™.</p>
+          <p class="by">The founder · Economic Enterprise Systems Strategist</p>
+          <div class="qa">
+            <p class="q"><b>Q</b><span>Where did it start?</span></p>
+            <div class="a"><b class="m">A</b><p class="cap">I grew up in Jacksonville, Oregon, a small town where people supported each other. Neighbors showed up for neighbors, and businesses, artists and families kept the community running together. That is where I first saw value move in every direction.</p></div>
+          </div>
         </div>
+      </div>
+      <blockquote class="pull">“The same patterns show up in <strong>companies and communities.</strong>”<small>Ashley E. Clasby</small></blockquote>
+      <div class="qa cols">
+        <div><p class="q"><b>Q</b><span>What have you seen since?</span></p>
+        <div class="a"><b class="m">A</b><p>Through years in the arts, nonprofits and education, I have watched how the economics around an organization shape its culture and climate: who has access to resources, who carries the load, and how much depends on a few people. The same patterns show up in companies and communities.</p></div></div>
+        <div><p class="q"><b>Q</b><span>And what comes next?</span></p>
+        <div class="a"><b class="m">A</b><p>The Co.LLab™ is how I answer them: Leadership Infrastructure™ and the Omnidirectional Enterprise™, built so that people and organizations can transform human potential into performance, sustainable enterprise value, and lasting legacy.</p></div></div>
+        <div><p class="q"><b>Q</b><span>What grounds the work?</span></p>
+        <div class="a"><b class="m">A</b><ul class="edu">
+          <li><strong>M.A., Education Policy and Leadership Studies</strong> · University of Iowa, expected June 2026</li>
+          <li><strong>M.A. in Teaching, Curriculum Design</strong> · Southern Oregon University, 2018</li>
+          <li><strong>B.A., Fine Art</strong> · University of Oregon, 2011<span class="end" aria-hidden="true"></span></li>
+        </ul></div></div>
       </div>
     </div>
   </section>
