@@ -3,7 +3,8 @@
     python3 scripts/pitch-deck/extract-trees.py <plate.png>
 
 For each tree it writes scripts/pitch-deck/trees/<name>.png (the drawing on a transparent background) and
-<name>-silhouette.png (the same shape, filled flat in forest green). The background is the plate's
+<name>-silhouette.png (the same shape, filled flat in forest green) and <name>-glow.png (an orange glow
+in the tree's shape, 40px larger on every side, to sit behind it). The background is the plate's
 cream paper; only the largest connected shape in each crop is kept, so labels and ground marks drop out.
 """
 import sys
@@ -15,7 +16,8 @@ from PIL import Image, ImageFilter
 
 PLATE = Path(sys.argv[1])
 OUT = Path(__file__).resolve().parent / 'trees'
-FILL = (95, 143, 69)  # forest green; the slide adds an orange glow behind each tree
+FILL = (104, 158, 74)  # forest green
+GLOW = (255, 84, 30)  # ember orange, for the glow behind each tree
 # (name, crop box on the 1254x1254 plate: left, top, right, bottom) — each box holds one tree, trunk to tip.
 TREES = [
     ('ponderosa', (10, 5, 370, 600)),
@@ -73,6 +75,15 @@ def main():
         sil = Image.new('RGBA', crop.size, FILL + (0,))
         sil.putalpha(alpha)
         sil.crop(bbox).save(OUT / f'{name}-silhouette.png')
+        # an orange glow in the tree's own shape, padded so the blur has room; the slide puts it behind the tree
+        pad = 40
+        big = Image.new('L', (crop.size[0] + 2 * pad, crop.size[1] + 2 * pad), 0)
+        big.paste(Image.fromarray((tree * 255).astype('uint8')), (pad, pad))
+        halo = big.filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.GaussianBlur(20))
+        halo = halo.point(lambda v: min(255, int(v * 1.25)))
+        glow = Image.new('RGBA', big.size, GLOW + (0,))
+        glow.putalpha(halo)
+        glow.crop((bbox[0], bbox[1], bbox[2] + 2 * pad, bbox[3] + 2 * pad)).save(OUT / f'{name}-glow.png')
         print(name, 'size', bbox[2] - bbox[0], 'x', bbox[3] - bbox[1])
 
 
