@@ -19,6 +19,10 @@ const freeTools = JSON.parse(fs.readFileSync(`${repo}/content/free-tools.json`, 
 const ipCount = reg.products.length + reg.blueprint_series.length + reg.partner_ip.length + reg.bonus_products.length;
 const b64 = (f, t) => `data:${t};base64,${fs.readFileSync(f).toString('base64')}`;
 const logo = b64(`${repo}/assets/img/logo-mark.png`, 'image/png');
+// Tree silhouettes for the Partnership slide, traced from the botanical plate (see extract-trees.py).
+const TREES = ['ponderosa', 'sugar', 'sequoia', 'douglas'];
+const SPECIES = ['Ponderosa Pine · Pinus ponderosa', 'Sugar Pine · Pinus lambertiana', 'Giant Sequoia · Sequoiadendron giganteum', 'Douglas Fir · Pseudotsuga menziesii'];
+const tree = (n) => b64(`${here}/trees/${n}-silhouette.png`, 'image/png');
 const ph = (n) => b64(`${here}/photos/${n}.jpg`, 'image/jpeg');
 const card = (n) => b64(`${repo}/scripts/pitch/assets/card-${n}.png`, 'image/png');
 const T = 'The Co.LLab™';
@@ -88,6 +92,9 @@ p.lead { font-size:24px; line-height:1.45; color:#fdf6ec; max-width:7in; }
 .rat .pt { padding:9px 16px; } .rat .pt p { font-size:14px; line-height:1.35; } .rat .pt b { font-size:17px; }
 .axis em { display:block; font-size:12.5px; font-style:italic; color:#ffb08a; margin-top:3px; white-space:nowrap; }
 .tiers4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch; } .tiers4 .panel { padding:22px 22px 18px; display:flex; flex-direction:column; border-top:4px solid #ff602e; } .tiers4 .eyebrow { font-size:12px; letter-spacing:.14em; white-space:nowrap; } .tiers4 .pr { font-size:46px; font-weight:800; color:#fff; line-height:1; margin:10px 0 8px; letter-spacing:-.01em; } .tiers4 .vb { font-size:26px; font-weight:800; color:#ff3a14; } .tiers4 .ln { font-size:16px; color:#fff; margin:4px 0 10px; } .tiers4 .bf { font-size:14.5px; color:#fdf6ec; } .tiers4 .pip { margin-top:auto; padding-top:12px; border-top:1px solid rgba(255,96,46,.35); font-size:14px; font-weight:800; color:#ff6a2e; line-height:1.3; } .tiers4 .mt { font-size:13.5px; font-weight:700; color:#fff; margin-top:6px; }
+
+.grove { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; align-items:end; border-bottom:2px solid rgba(255,106,46,.6); padding:0 .3in; min-height:0; } .grove .g { height:100%; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-height:0; } .grove .pr { font-size:34px; font-weight:800; color:#fff; margin-bottom:6px; } .grove img { display:block; max-width:100%; object-fit:contain; min-height:0; }
+.axis em { display:block; font-size:12px; font-style:italic; color:#ffb08a; margin-top:3px; white-space:nowrap; }
 
 `;
 
@@ -169,7 +176,7 @@ const slides = [
 
   slide(`<div style="width:8.2in" class="grow"><p class="k">.LLab Membership™ · The Infrastructure Analysis™</p><h2 style="font-size:50px">Membership analyzes <b>the IP you license.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">The Infrastructure Analysis™ names what to strengthen and build next, maps your answers across The IV Phases™ and the Omnidirectional Enterprise™, and gives you a report for your business to build from.</p><div class="c2" style="gap:12px">${pt('.LLab Membership™', `${P.memMo} or ${P.memYr}`, 'Every product of The IV Phases™, unlocked while you’re a member. Includes the Infrastructure Analysis™.')}${pt('.LLab Library Card™', `${P.libMo} or ${P.libYr}`, 'The $10 on-ramp to The .LLab.')}${pt('The .LLab Journal™', P.journalYr, 'Research and essays on building legacy.')}${pt('Omnidirectional Enterprise™ Portal', 'Free', 'Free to join — no card needed.')}</div></div>`, { photo: 'lodge', area: 'right', w: 4.4, pos: '50% 50%' }),
 
-  slide(`<p class="k">The Co.LLab™ Omnidirectional Enterprise™ Partnership</p><h2 style="margin-bottom:6px;font-size:54px">Four phases. <b>Four levels of partnership.</b></h2><p class="lead" style="max-width:11.4in;font-size:16px;color:#fff;margin:0 0 18px">Every tier includes all IV Phases™, the .LLab Library Card™, and The .LLab Journal™, with every new release while you’re a member. Each tier adds one partner-only product for its phase, more seats, and a longer membership.</p><div class="tiers4 grow">${tiers.map((t, i) => `<div class="panel"><span class="eyebrow">${t.label} · Phase ${['I', 'II', 'III', 'IV'][i]}</span><div class="pr">${t.price}</div><div class="vb">${t.verb}.</div><p class="ln">${P.phaseLines[i]}</p><p class="bf">${BEST[i]}</p><div class="pip">${reg.partner_ip[i].name}</div><p class="mt">${META[i]}</p></div>`).join('')}</div>`, { photo: 'forest', scrim: 'H', pos: '50% 35%' }),
+  slide(`<p class="k">The Co.LLab™ Omnidirectional Enterprise™ Partnership</p><h2 style="margin-bottom:6px;font-size:52px">Four phases. <b>Four levels of partnership.</b></h2><p class="lead" style="max-width:11.4in;font-size:15px;color:#fff;margin:0 0 6px">Every tier includes all IV Phases™, the .LLab Library Card™, and The .LLab Journal™, with every new release while you’re a member. Each tier adds one partner-only product for its phase, more seats, and a longer membership.</p><div class="grove grow">${tiers.map((t, i) => `<div class="g"><div class="pr">${t.price}</div><img src="${tree(TREES[i])}" style="height:${Math.round(228 * [0.7, 0.8, 0.9, 1][i])}px"/></div>`).join('')}</div><div class="axis">${tiers.map((t, i) => `<div><b>${t.label}</b><span>${t.verb}</span><i>${BEST[i].replace('Best for: ', '')}</i><i>${META[i]}</i><em>${SPECIES[i]}</em></div>`).join('')}</div>`),
 
   slide(`<div style="width:8.2in" class="grow"><p class="k">How partners drive the ecosystem</p><h2 style="font-size:50px">Your legacy, <b>in four phases.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">Partners use the IP, share what they learn each quarter, and make it stronger. Partner revenue funds new Co.LLab IP™, creator work, and community programs, and every new release returns to each partner while their membership is active.</p><div class="c2" style="gap:10px">${reg.partner_ip.map((p, i) => pt('Partner-only IP', p.name, ['Define it. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.', 'Plan it. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.', 'Live it. The rhythms, standards, and practices that run your legacy through every department.', 'Pass it on. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.'][i], 'padding:10px 18px')).join('')}</div></div>`, { photo: 'path', area: 'right', w: 4.4, pos: '15% 60%' }),
 
@@ -197,7 +204,7 @@ const count = await page.$$eval('.s', (s) => s.length);
 for (let i = 0; i < count; i++) {
   await page.evaluate((i) => {
     const s = document.querySelectorAll('.s')[i], bg = s.querySelector('.bg'), R = s.getBoundingClientRect();
-    s.querySelectorAll('.bar svg').forEach((t) => { const q = t.getBoundingClientRect();
+    s.querySelectorAll('.bar svg, .grove img').forEach((t) => { const q = t.getBoundingClientRect();
       const g = document.createElement('div');
       g.style.cssText = `position:absolute;left:${q.left - R.left - q.width * 0.35}px;top:${q.top - R.top + q.height * 0.15}px;width:${q.width * 1.7}px;height:${q.height * 0.9}px;border-radius:50%;background:rgba(255,60,20,.30);filter:blur(${Math.max(14, q.width * 0.35)}px)`;
       bg.appendChild(g); });
