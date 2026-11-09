@@ -13,6 +13,9 @@ const repo = path.resolve(here, '../..');
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pitch-deck-'));
 const require = createRequire(`${repo}/package.json`);
 const { chromium } = require('playwright');
+const { conifer, SPECIES } = await import(pathToFileURL(`${here}/conifers.mjs`).href);
+// The Partnership levels, drawn as old-growth conifers: pine at the base, Douglas fir at the top.
+const TREES = ['ponderosa', 'sugar', 'sequoia', 'douglas'];
 const { P } = await import(pathToFileURL(`${repo}/scripts/pitch/data.mjs`).href);
 const reg = JSON.parse(fs.readFileSync(`${repo}/content/pricing.json`, 'utf8'));
 const freeTools = JSON.parse(fs.readFileSync(`${repo}/content/free-tools.json`, 'utf8')).tools.length;
@@ -86,25 +89,8 @@ p.lead { font-size:24px; line-height:1.45; color:#fdf6ec; max-width:7in; }
 .endline { display:flex; flex-wrap:wrap; gap:28px; margin-top:22px; font-size:18px; font-weight:700; color:#fff; } .endline b { color:#ff602e; font-weight:800; }
 
 .rat .pt { padding:9px 16px; } .rat .pt p { font-size:14px; line-height:1.35; } .rat .pt b { font-size:17px; }
+.axis em { display:block; font-size:12.5px; font-style:italic; color:#ffb08a; margin-top:3px; white-space:nowrap; }
 `;
-
-// Douglas fir silhouette: narrow spire, layered drooping branch tiers with upturned tips, short trunk.
-const fir = (H, seed = 1) => {
-  const W = H * 0.58, cx = W / 2, trunk = H * 0.06, crown = H - trunk, n = Math.max(5, Math.round(3 + H / 34));
-  let r = seed * 7 + 3; const rnd = () => ((r = (r * 9301 + 49297) % 233280) / 233280);
-  // one side of one tier, as points: notch at the trunk, drooping bough out to an upturned tip, back under it
-  const side = (sgn, y, st) => { const w = (W / 2) * Math.pow(y / crown, 0.78) * (0.78 + rnd() * 0.34), nt = w * (0.22 + rnd() * 0.14), dr = 0.25 + rnd() * 0.2, X = (k) => cx + sgn * k;
-    return { P0: [X(nt), y - st * 0.6], C1: [X(w * 0.7), y + st * dr], P1: [X(w), y - st * 0.05], P2: [X(w * 0.94), y + st * 0.12], C2: [X(w * 0.55), y + st * 0.26], P3: [X(w * 0.4), y + st * 0.1] }; };
-  const R = [], L = [];
-  for (let i = 1; i <= n; i++) {
-    const st = crown / n, y = crown * Math.pow(i / n, 0.95), a = side(1, y, st), b = side(-1, y, st), p = (q) => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
-    R.push(`L${p(a.P0)} Q${p(a.C1)} ${p(a.P1)} L${p(a.P2)} Q${p(a.C2)} ${p(a.P3)}`);
-    L.unshift(`L${p(b.P3)} Q${p(b.C2)} ${p(b.P2)} L${p(b.P1)} Q${p(b.C1)} ${p(b.P0)}`);
-  }
-  const tw = Math.max(3, W * 0.07);
-  const d = `M${cx} 0 ${R.join(' ')} L${cx + tw / 2} ${crown} L${cx + tw / 2} ${H} L${cx - tw / 2} ${H} L${cx - tw / 2} ${crown} ${L.join(' ')} Z`;
-  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs><linearGradient id="fg${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a4a"/><stop offset=".45" stop-color="#ff5a24"/><stop offset="1" stop-color="#e3240e"/></linearGradient><clipPath id="fc${seed}"><rect x="0" y="0" width="${cx}" height="${H}"/></clipPath></defs><path d="${d}" fill="url(#fg${seed})"/><path d="${d}" fill="#5a0d04" fill-opacity=".26" clip-path="url(#fc${seed})"/></svg>`;
-};
 
 // Diagrams (top-down vs omnidirectional), drawn in the site's ribbon style.
 const defs = `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff6a2e"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" fill="#ff6a2e"/></marker></defs>`;
@@ -184,7 +170,7 @@ const slides = [
 
   slide(`<div style="width:8.2in" class="grow"><p class="k">.LLab Membership™ · The Infrastructure Analysis™</p><h2 style="font-size:50px">Membership analyzes <b>the IP you license.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">The Infrastructure Analysis™ names what to strengthen and build next, maps your answers across The IV Phases™ and the Omnidirectional Enterprise™, and gives you a report for your business to build from.</p><div class="c2" style="gap:12px">${pt('.LLab Membership™', `${P.memMo} or ${P.memYr}`, 'Every product of The IV Phases™, unlocked while you’re a member. Includes the Infrastructure Analysis™.')}${pt('.LLab Library Card™', `${P.libMo} or ${P.libYr}`, 'The $10 on-ramp to The .LLab.')}${pt('The .LLab Journal™', P.journalYr, 'Research and essays on building legacy.')}${pt('Omnidirectional Enterprise™ Portal', 'Free', 'Free to join — no card needed.')}</div></div>`, { photo: 'lodge', area: 'right', w: 4.4, pos: '50% 50%' }),
 
-  slide(`<p class="k">The Co.LLab™ Omnidirectional Enterprise™ Partnership</p><h2 style="margin-bottom:4px;font-size:50px">Four phases. <b>Four levels of partnership.</b></h2><p class="lead" style="max-width:11.4in;font-size:15px;color:#fff;margin:0 0 4px">Every tier includes all IV Phases™, the .LLab Library Card™, and The .LLab Journal™, with every new release while you’re a member. Each tier adds one partner-only product for its phase, more seats, and a longer membership.</p><div class="chart" style="height:3.7in">${tiers.map((t, i) => { const v = Number(t.price.replace(/[^\d]/g, '')); const H = Math.round(338 * v / 50000); return `<div class="bar"><div class="v">${t.price}</div>${fir(H, i + 3)}</div>`; }).join('')}</div><div class="axis">${tiers.map((t, i) => `<div><b>${t.label}</b><span>${t.verb}</span><i>${BEST[i].replace('Best for: ', '')}</i><i>${META[i]}</i></div>`).join('')}</div>`),
+  slide(`<p class="k">The Co.LLab™ Omnidirectional Enterprise™ Partnership</p><h2 style="margin-bottom:4px;font-size:50px">Four phases. <b>Four levels of partnership.</b></h2><p class="lead" style="max-width:11.4in;font-size:15px;color:#fff;margin:0 0 4px">Every tier includes all IV Phases™, the .LLab Library Card™, and The .LLab Journal™, with every new release while you’re a member. Each tier adds one partner-only product for its phase, more seats, and a longer membership.</p><div class="chart" style="height:3.7in">${tiers.map((t, i) => { const v = Number(t.price.replace(/[^\d]/g, '')); const H = Math.round(292 * [0.66, 0.76, 0.88, 1][i]); return `<div class="bar"><div class="v">${t.price}</div>${conifer(TREES[i], H, i + 3)}</div>`; }).join('')}</div><div class="axis">${tiers.map((t, i) => `<div><b>${t.label}</b><span>${t.verb}</span><i>${META[i]}</i><em>${SPECIES[TREES[i]].name} · ${SPECIES[TREES[i]].latin}</em></div>`).join('')}</div>`),
 
   slide(`<div style="width:8.2in" class="grow"><p class="k">How partners drive the ecosystem</p><h2 style="font-size:50px">Your legacy, <b>in four phases.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">Partners use the IP, share what they learn each quarter, and make it stronger. Partner revenue funds new Co.LLab IP™, creator work, and community programs, and every new release returns to each partner while their membership is active.</p><div class="c2" style="gap:10px">${reg.partner_ip.map((p, i) => pt('Partner-only IP', p.name, ['Define it. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.', 'Plan it. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.', 'Live it. The rhythms, standards, and practices that run your legacy through every department.', 'Pass it on. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.'][i], 'padding:10px 18px')).join('')}</div></div>`, { photo: 'path', area: 'right', w: 4.4, pos: '15% 60%' }),
 
