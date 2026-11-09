@@ -1,0 +1,239 @@
+// The Co.LLab™ pitch deck (assets/pitch/The-CoLLab-Pitch-Economic-Enterprise-Systems.pdf, short link /pitch-deck).
+// Every line is the website's own copy; prices and counts come from content/pricing.json. The look follows the site:
+// black-and-white photographs under the site's green overlay, glowing ember headlines, the Omnidirectional ribbon,
+// and Douglas fir silhouettes as the bars of the Partnership chart.
+//   node scripts/pitch-deck/build.mjs            (add --png to also write slide previews to a temp folder)
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import os from 'node:os';
+import { pathToFileURL, fileURLToPath } from 'node:url';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const repo = path.resolve(here, '../..');
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pitch-deck-'));
+const require = createRequire(`${repo}/package.json`);
+const { chromium } = require('playwright');
+const { P } = await import(pathToFileURL(`${repo}/scripts/pitch/data.mjs`).href);
+const reg = JSON.parse(fs.readFileSync(`${repo}/content/pricing.json`, 'utf8'));
+const freeTools = JSON.parse(fs.readFileSync(`${repo}/content/free-tools.json`, 'utf8')).tools.length;
+const ipCount = reg.products.length + reg.blueprint_series.length + reg.partner_ip.length + reg.bonus_products.length;
+const b64 = (f, t) => `data:${t};base64,${fs.readFileSync(f).toString('base64')}`;
+const logo = b64(`${repo}/assets/img/logo-mark.png`, 'image/png');
+const ph = (n) => b64(`${here}/photos/${n}.jpg`, 'image/jpeg');
+const card = (n) => b64(`${repo}/scripts/pitch/assets/card-${n}.png`, 'image/png');
+const T = 'The Co.LLab™';
+const tiers = P.tiers;
+const RIBBON = ['Businesses', 'Knowledge + IP', 'Communities', 'Creators', 'Nonprofits', 'People', 'Products & Services', 'Technology', 'Capital'];
+
+const css = `
+@page { size: 13.3333in 7.5in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background:#0f1d13; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { font-family:'Inter',-apple-system,'Helvetica Neue',Arial,sans-serif; color:#f6ead9; }
+.s { width:13.3333in; height:7.5in; position:relative; overflow:hidden; page-break-after:always; padding:1.05in .85in .85in; background-color:#0f1d13; display:flex; flex-direction:column; }
+.s:last-child { page-break-after:auto; }
+.s > * { position:relative; z-index:2; }
+/* background layer: photo + the site's scrim + grid; baked into one flat image before printing */
+.s > .bg { position:absolute; inset:0; z-index:0; }
+.bg .grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,106,46,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,106,46,.10) 1px,transparent 1px); background-size:64px 64px; }
+.bg .ph { position:absolute; background-size:cover; background-position:center; }
+.bg .scrimL { position:absolute; inset:0; background:linear-gradient(90deg,rgba(15,29,19,.94) 0%,rgba(15,29,19,.8) 40%,rgba(15,29,19,.25) 75%,rgba(15,29,19,.05) 100%),linear-gradient(to top,rgba(15,29,19,.9) 0%,transparent 35%); }
+.bg .scrimH { position:absolute; inset:0; background:rgba(15,29,19,.86); }
+.bg .fade { position:absolute; inset:0; }
+/* header lockup like the site */
+.hd { position:absolute !important; top:.38in; left:.85in; right:.85in; display:flex; align-items:center; justify-content:space-between; }
+.lock { display:flex; align-items:center; gap:12px; } .lock img { height:34px; } .lock b { display:block; font-size:16px; font-weight:800; color:#fff; } .lock span { display:block; font-size:10.5px; font-weight:700; color:#fff; line-height:1.2; }
+.pg { background:rgba(15,29,19,.88); font-size:13px; font-weight:800; letter-spacing:.16em; color:#ff6a2e; border:1px solid rgba(255,106,46,.5); border-radius:999px; padding:6px 14px; }
+.k { display:flex; align-items:center; gap:14px; font-size:16px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#ff6a2e; margin-bottom:14px; } .k::before { content:''; width:36px; height:2px; background:#ff6a2e; }
+h1, h2 { color:#ff602e; font-weight:200; letter-spacing:-.035em; line-height:1.02; } h1 b, h2 b { font-weight:800; color:#ff3a14; }
+h1 { font-size:92px; } h2 { font-size:64px; margin-bottom:22px; max-width:11in; }
+p.lead { font-size:24px; line-height:1.45; color:#fdf6ec; max-width:7in; }
+.panel { background:rgba(15,29,19,.88); border:1px solid rgba(255,96,46,.34); border-radius:16px; }
+.eyebrow { font-size:14px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#ff6a2e; }
+.fine { font-size:14px; font-weight:700; color:#fff; margin-top:12px; }
+.grow { flex:1; min-height:0; }
+.ribbon { display:flex; flex-wrap:wrap; gap:8px; } .ribbon { flex-wrap:nowrap; } .ribbon span { white-space:nowrap; font-size:11.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#fff; border:1.5px solid rgba(255,96,46,.75); border-radius:999px; padding:6px 11px; background:rgba(15,29,19,.75); }
+.cta { display:inline-block; background:linear-gradient(90deg,#ff2e12,#ff6a2e); color:#0f1d13; font-weight:800; font-size:15px; border-radius:999px; padding:9px 18px; }
+/* layouts */
+.left { width:6.4in; }
+.pts { display:grid; gap:14px; } .pt { padding:14px 22px; } .pt b { display:block; font-size:22px; color:#fff; margin:4px 0 4px; } .pt p { font-size:17.5px; line-height:1.4; }
+.c2 { display:grid; grid-template-columns:1fr 1fr; gap:22px; } .c3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; } .c4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.tile { position:relative; border-radius:16px; overflow:hidden; border:1px solid rgba(255,96,46,.34); background-size:cover; background-position:center; display:flex; flex-direction:column; justify-content:flex-end; }
+.tile .cap { margin:12px; padding:16px 18px; } .tile h3 { font-size:30px; font-weight:800; color:#ff3a14; margin:4px 0 2px; } .tile .nm { font-size:16px; font-weight:800; color:#fff; } .tile p { font-size:16px; line-height:1.35; margin-top:6px; }
+.card { padding:24px 26px; } .card h3 { font-size:28px; font-weight:300; color:#ff602e; margin:6px 0 8px; line-height:1.1; } .card h3 b { font-weight:800; color:#ff3a14; } .card p { font-size:18px; line-height:1.4; }
+.big { white-space:nowrap; font-size:46px; font-weight:800; color:#fff; line-height:1; margin:10px 0; }
+.stat { padding:20px 22px; } .stat .n { font-size:64px; font-weight:200; color:#ff602e; line-height:1; } .stat .l { font-size:18px; font-weight:700; color:#fff; margin-top:8px; line-height:1.3; }
+.ladder { display:grid; gap:10px; } .rung { display:grid; grid-template-columns:52px 1.9in 1fr 1.75in; align-items:center; padding:9px 20px; gap:16px; } .rung .no { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#ff2e12,#ff6a2e); color:#0f1d13; font-weight:800; font-size:20px; display:grid; place-items:center; } .rung b { font-size:21px; color:#fff; } .rung span { font-size:16.5px; line-height:1.35; } .rung i { font-style:normal; font-size:19px; font-weight:800; color:#ff6a2e; text-align:right; }
+/* fir chart */
+.chart { display:grid; grid-template-columns:repeat(4,1fr); align-items:end; gap:20px; border-bottom:2px solid rgba(255,106,46,.6); padding:0 .3in; height:3.95in; }
+.bar { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; } .bar .v { font-size:38px; font-weight:800; color:#fff; margin-bottom:8px; } .bar svg { display:block; }
+.axis { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:12px .3in 0; text-align:center; } .axis b { display:block; font-size:16px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#ff6a2e; } .axis span { display:block; font-size:16px; color:#fff; font-weight:700; margin-top:4px; } .axis i { display:block; font-style:normal; font-size:13.5px; color:#fdf6ec; margin-top:2px; }
+.forty .n { font-size:250px; font-weight:800; color:#ff3a14; line-height:.85; letter-spacing:-.06em; }
+.who { display:grid; grid-template-columns:4.2in 1fr; gap:.6in; align-items:center; } .who img { width:100%; border-radius:12px; border:1px solid rgba(255,96,46,.42); display:block; } .who h3 { font-size:64px; font-weight:200; color:#ff602e; line-height:1.02; letter-spacing:-.03em; } .who h3 b { font-weight:800; color:#ff3a14; } .who .r { font-size:22px; font-weight:800; color:#fff; margin:14px 0 16px; }
+.amt { padding:28px 32px; border:2px solid #ff602e; } .amt .line { font-size:96px; font-weight:800; color:#fff; border-bottom:4px solid #ff602e; height:1.25in; display:flex; align-items:flex-end; padding-bottom:6px; } .use { padding:24px 30px; } .use .row { display:grid; grid-template-columns:1fr 1.5in; gap:16px; font-size:20px; padding:14px 0; border-bottom:1px solid rgba(255,96,46,.35); } .use .row u { text-decoration:none; border-bottom:2px solid rgba(253,246,236,.55); }
+.contact { margin-top:18px; display:flex; gap:36px; font-size:18px; font-weight:700; color:#fff; } .contact span { color:#ff6a2e; }
+.chain { display:flex; flex-wrap:wrap; align-items:center; gap:10px; } .chain { flex-wrap:nowrap; gap:6px; } .chain span { white-space:nowrap; font-size:13px; font-weight:800; color:#0f1d13; background:linear-gradient(90deg,#ff2e12,#ff6a2e); border-radius:999px; padding:8px 16px; } .chain i { font-style:normal; color:#ff6a2e; font-weight:800; font-size:16px; }
+.map { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:1fr 1fr; gap:12px; } .map .panel { padding:14px 16px; display:flex; flex-direction:column; } .map b { font-size:17px; color:#ff3a14; font-weight:800; line-height:1.15; } .map span { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#ff6a2e; margin:6px 0; } .map p { font-size:14.5px; line-height:1.35; color:#fdf6ec; }
+.vgrid { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:1fr 1fr; gap:12px; } .vgrid .panel { padding:12px 15px; } .vgrid .eyebrow { font-size:10.5px; } .vgrid b { display:block; font-size:16px; color:#ff3a14; font-weight:800; margin:4px 0; line-height:1.15; } .vgrid p { font-size:13.5px; line-height:1.35; }
+.g3 { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr); gap:10px; } .g3 .panel { padding:12px 18px; display:flex; flex-direction:column; justify-content:center; } .g3 b { font-size:20px; color:#ff3a14; font-weight:800; } .g3 p { font-size:15.5px; color:#fff; font-weight:600; margin:2px 0 4px; } .g3 span { font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#ff6a2e; }
+.res { display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:1fr 1fr; gap:10px; } .res .panel { padding:12px 16px; } .res b { display:block; font-size:17px; color:#fff; font-weight:800; margin:4px 0; line-height:1.2; } .res p { font-size:14px; line-height:1.35; }
+.pt .eyebrow + b, .pt .eyebrow + p { margin-top:4px; }
+
+.glance { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr; gap:14px; } .glance .panel { padding:18px 22px; display:flex; flex-direction:column; } .glance .g { font-size:34px; font-weight:800; color:#fff; line-height:1.05; margin:8px 0 8px; letter-spacing:-.01em; } .glance p { font-size:15.5px; line-height:1.4; }
+
+.econ .pt { padding:10px 20px; } .econ .pt p { font-size:16px; }
+`;
+
+// Douglas fir silhouette: narrow spire, layered drooping branch tiers with upturned tips, short trunk.
+const fir = (H, seed = 1) => {
+  const W = H * 0.52, cx = W / 2, trunk = H * 0.06, crown = H - trunk, n = Math.max(5, Math.round(3 + H / 34));
+  let r = seed * 7 + 3; const rnd = () => ((r = (r * 9301 + 49297) % 233280) / 233280);
+  // one side of one tier, as points: notch at the trunk, drooping bough out to an upturned tip, back under it
+  const side = (sgn, y, st) => { const w = (W / 2) * Math.pow(y / crown, 0.78) * (0.78 + rnd() * 0.34), nt = w * (0.22 + rnd() * 0.14), dr = 0.25 + rnd() * 0.2, X = (k) => cx + sgn * k;
+    return { P0: [X(nt), y - st * 0.6], C1: [X(w * 0.7), y + st * dr], P1: [X(w), y - st * 0.05], P2: [X(w * 0.94), y + st * 0.12], C2: [X(w * 0.55), y + st * 0.26], P3: [X(w * 0.4), y + st * 0.1] }; };
+  const R = [], L = [];
+  for (let i = 1; i <= n; i++) {
+    const st = crown / n, y = crown * Math.pow(i / n, 0.95), a = side(1, y, st), b = side(-1, y, st), p = (q) => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+    R.push(`L${p(a.P0)} Q${p(a.C1)} ${p(a.P1)} L${p(a.P2)} Q${p(a.C2)} ${p(a.P3)}`);
+    L.unshift(`L${p(b.P3)} Q${p(b.C2)} ${p(b.P2)} L${p(b.P1)} Q${p(b.C1)} ${p(b.P0)}`);
+  }
+  const tw = Math.max(3, W * 0.07);
+  const d = `M${cx} 0 ${R.join(' ')} L${cx + tw / 2} ${crown} L${cx + tw / 2} ${H} L${cx - tw / 2} ${H} L${cx - tw / 2} ${crown} ${L.join(' ')} Z`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs><linearGradient id="fg${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6a2e"/><stop offset="1" stop-color="#ff2e12"/></linearGradient></defs><path d="${d}" fill="url(#fg${seed})"/></svg>`;
+};
+
+// Diagrams (top-down vs omnidirectional), drawn in the site's ribbon style.
+const defs = `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#ff6a2e"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" fill="#ff6a2e"/></marker></defs>`;
+const pill = (x, y, l, w = 104, hot = false) => `<rect x="${x - w / 2}" y="${y - 15}" width="${w}" height="30" rx="15" fill="${hot ? '#ff3a14' : '#0f1d13'}" stroke="#ff602e" stroke-width="1.5"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-family="Inter" font-size="11.5" font-weight="800" letter-spacing=".06em" fill="${hot ? '#0f1d13' : '#fff'}">${l.toUpperCase()}</text>`;
+const ar = (x1, y1, x2, y2, both) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ff6a2e" stroke-width="2.2" marker-end="url(#ah)"${both ? ' marker-start="url(#ah2)"' : ''}/>`;
+const topDown = `<svg viewBox="0 0 520 300" width="100%" height="100%">${defs}${pill(260, 40, 'The top', 110, true)}${ar(240, 58, 160, 112)}${ar(280, 58, 360, 112)}${pill(150, 130, 'Middle')}${pill(370, 130, 'Middle')}${[[150, 75], [150, 205], [370, 315], [370, 445]].map(([f, t]) => ar(f + (t - f) * .25, 148, t, 200)).join('')}${[75, 205, 315, 445].map((x) => pill(x, 220, 'Base', 92)).join('')}<text x="260" y="285" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#fdf6ec">Value flows one way and pools at the top.</text></svg>`;
+const omni = (() => { const cx = 260, cy = 140, rx = 180, ry = 105; const pts = RIBBON.slice(0, 8).map((l, i) => { const a = -Math.PI / 2 + i * Math.PI / 4; return [cx + rx * Math.cos(a), cy + ry * Math.sin(a), l]; });
+  let s = `<svg viewBox="-20 0 560 300" width="100%" height="100%">${defs}`;
+  pts.forEach(([x, y], i) => { const [x2, y2] = pts[(i + 1) % 8]; s += `<line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="rgba(255,106,46,.35)" stroke-width="1.2"/>`; });
+  pts.forEach(([x, y]) => { const dx = x - cx, dy = y - cy, d = Math.hypot(dx, dy); s += ar(cx + dx / d * 50, cy + dy / d * 36, x - dx / d * 58, y - dy / d * 18, true); });
+  s += `<ellipse cx="${cx}" cy="${cy}" rx="62" ry="32" fill="#ff3a14"/><text x="${cx}" y="${cy - 3}" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#0f1d13">LEADERSHIP</text><text x="${cx}" y="${cy + 11}" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#0f1d13">INFRASTRUCTURE™</text>`;
+  pts.forEach(([x, y, l]) => { s += pill(x, y, l, l.length > 12 ? 150 : 112); });
+  return `${s}<text x="260" y="285" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#fdf6ec">Value moves in every direction.</text></svg>`; })();
+
+let n = 0;
+// bg: { photo, pos, area: 'full'|'right'|'left', w, scrim: 'L'|'H'|'none' }
+const bgLayer = ({ photo, pos = 'center', area = 'full', w = 6, scrim = 'L', fade } = {}) => {
+  if (!photo) return '<div class="bg"><div class="grid"></div></div>';
+  const box = area === 'full' ? 'inset:0' : area === 'right' ? `top:0;bottom:0;right:0;width:${w}in` : `top:0;bottom:0;left:0;width:${w}in`;
+  const edge = area === 'right' ? `<div class="fade" style="background:linear-gradient(90deg,#0f1d13 0%,rgba(15,29,19,.75) calc(100% - ${w}in + .1in),rgba(15,29,19,0) calc(100% - ${w}in + 2.4in))"></div>` : area === 'left' ? `<div class="fade" style="background:linear-gradient(270deg,#0f1d13 0%,rgba(15,29,19,.8) calc(100% - ${w}in + .1in),rgba(15,29,19,0) calc(100% - ${w}in + 2.2in))"></div>` : '';
+  return `<div class="bg"><div class="grid"></div><div class="ph" style="${box};background-image:url(${ph(photo)});background-position:${pos}"></div>${area === 'full' && scrim === 'L' ? '<div class="scrimL"></div>' : ''}${scrim === 'H' ? '<div class="scrimH"></div>' : ''}${edge}${fade ? `<div class="fade" style="background:${fade}"></div>` : ''}</div>`;
+};
+const slide = (inner, bg = {}) => { n += 1; return `<section class="s">${bgLayer(bg)}<div class="hd"><div class="lock"><img src="${logo}"/><div><b>${T}</b><span>Building Leadership<br/>Infrastructure™</span></div></div>${n > 1 ? `<div class="pg">${String(n - 1).padStart(2, '0')}</div>` : ''}</div>${inner}</section>`; };
+
+const QR = require('qrcode');
+const SITE = 'https://wearethellab.com';
+const qr = async (u) => QR.toDataURL(u, { margin: 1, width: 360, color: { dark: '#0f1d13', light: '#ffffff' } });
+const qJoin = await qr(`${SITE}/pages/login.html`), qProducts = await qr(`${SITE}/pages/all-products.html`), qPartner = await qr(`${SITE}/pages/partnership.html`);
+const isCreator = (p) => /Creat/.test(p.name), isFounders = (p) => /Founders Organization/.test(p.name);
+const nLead = reg.products.filter((p) => !isCreator(p) && !isFounders(p)).length, nCreator = reg.products.filter(isCreator).length;
+const nPartnerIp = reg.partner_ip.length, nBlueprint = reg.blueprint_series.length;
+const founders = reg.products.filter(isFounders).map((p) => [p.name.split('— ')[1], p.price_display]);
+const FOUNDER_LINE = { 'Community Founder': 'Your entry into Omnidirectional Enterprise™.', 'Premium Community Founder': 'Build more, give more back.', 'Founder': 'Founding level for organizations.', 'Legacy Founder': 'Our highest founding level — build a legacy with us.' };
+// The IV Phases™, as the site's Think page describes them.
+const PHASES = [['Foundations', 'Know who you are and what you stand on.'], ['Infrastructure Planning & Management', 'Decide what to build and how it connects.'], ['Internal Operating Systems', 'Build the systems that make it run.'], ['Preservation', 'Make it last beyond any one person.']];
+const BEST = ['Best for: Owners leading on their own.', 'Best for: Leadership teams.', 'Best for: The whole company.', 'Best for: Companies building beyond their founder.'];
+const META = ['1 seat · 1 year of membership', '3 seats · 2 years of membership', '5 seats · 3 years of membership', '10 seats · Lifetime of membership'];
+const BRANCHES = [['Businesses', 'Create products. Generate wealth. Build solutions.', ''], ['Nonprofits', 'Address needs. Create change. Build stronger communities.', ''], ['Communities', 'Support people. Create opportunity. Drive productivity.', 'The Co.LLab Founders Organization™'], ['People', 'Bring talent. Build skills. Create value.', ''], ['Products & Services', 'Every .LLab product, shopped by phase. Licensed to keep.', ''], ['Technology', 'Amplifies impact. Connects resources. Expands access.', 'Technology · .LLab Legacy Ventures™'], ['Capital', 'Fuels ideas. Scales solutions. Builds legacy.', ''], ['Knowledge + IP', 'Sparks innovation. Builds ownership. Creates long-term value.', '.LLab R.A.T.™ · Research And Theory'], ['Creators', 'Bring ideas. Create culture. Build brands.', '']];
+const RESEARCH = [['Ronald Coase', 'The Nature of the Firm', 'Organizations exist because using markets has costs.'], ['Oliver Williamson', 'The Economic Institutions of Capitalism', 'How an activity is governed affects its economic result. Williamson shared the 2009 Nobel Prize in Economics for this line of work.'], ['Elinor Ostrom', 'Governing the Commons', 'Shared resources can be managed well by the people who use them, when rules, roles and monitoring are clear and the rules fit local conditions. Ostrom shared the 2009 Nobel Prize in Economics.'], ['David Teece', 'Profiting from Innovation', 'Creating an innovation and capturing its returns are different problems.'], ['Paul Romer', 'Endogenous Technological Change', 'Investment in new ideas drives long-run growth. Romer received the 2018 Nobel Prize in Economics for work on this.'], ['Jonathan Haskel and Stian Westlake', 'Capitalism without Capital', 'Investment in intangible assets is a large and growing part of how modern economies create value.'], ['James Moore', 'Predators and Prey: A New Ecology of Competition', 'Companies can be understood as members of business ecosystems, where participants from different sectors coevolve around shared capabilities.']];
+const SECTORS = [['Co.LLab+™ Agriculture', 'From the land to the table, and to the next generation.', 'Farmers, cattle and the food products industry, for people and animals.'], ['.LLab Transport™', 'Built to move, built to last.', 'Trucking, planes and boats. Infrastructure for the businesses that keep goods and people moving.'], ['.LLab Efficiency Architecture™', 'Spaces for a good life, made to work.', 'Spaces designed as infrastructure: homes, offices, studios and community spaces built for how people live, work and gather.'], ['.LLab Atelier™', 'A fashion house, made to be worn and lived in.', 'A fashion house: clothing, workwear and accessories, with home goods and furniture, designed for how people live and work.'], ['Technology · .LLab Legacy Ventures™', 'Technology that preserves what matters.', 'Technology isn’t the point — people are. .LLab Legacy Ventures™ build tools for community and culture.'], ['Co.LLab+™', 'The e-commerce side of The Co.LLab™.', 'Where members list their website, highlight a product or service, and advertise.']];
+const pt = (e, b, p, st = '') => `<div class="pt panel" style="${st}">${e ? `<span class="eyebrow">${e}</span>` : ''}${b ? `<b>${b}</b>` : ''}${p ? `<p>${p}</p>` : ''}</div>`;
+const slides = [
+  slide(`<div class="grow" style="display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:.1in"><p class="k">About The Co.LLab™</p><h1 style="font-size:96px">Not a company.<br/><b>An ecosystem.</b></h1><p class="lead" style="margin:20px 0 10px;max-width:7.8in">An IP and leadership-infrastructure ecosystem — where ideas become infrastructure, and infrastructure becomes legacy.</p><p class="lead" style="font-size:18px;margin-bottom:22px;max-width:7.8in;color:#fff">The Co.LLab™ — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p><div class="ribbon">${RIBBON.map((r) => `<span>${r}</span>`).join('')}</div></div>`, { photo: 'crater', pos: '50% 62%' }),
+
+  slide(`<p class="k">The Co.LLab™ · Omnidirectional Enterprise™</p><h2 style="font-size:60px">Multiple pathways. <b>One ecosystem.</b></h2><div class="glance grow">
+  <div class="panel"><span class="eyebrow">The operating model</span><div class="g">Omnidirectional Enterprise™</div><p>An economic enterprise system that connects people, organizations, products, intellectual property, capital, and resources in one ecosystem.</p></div>
+  <div class="panel"><span class="eyebrow">The .LLab Products™</span><div class="g">From ${P.range.split('–')[0]}</div><p>Every product from The Co.LLab™ on one page: memberships, The IV Phases™, .LLab Creators™, partnerships and free tools.</p></div>
+  <div class="panel"><span class="eyebrow">.LLab Membership™</span><div class="g">${P.memMo}</div><p>Every Phase I–IV .LLab™ product, unlocked while you are a member, plus the Infrastructure Analysis™.</p></div>
+  <div class="panel"><span class="eyebrow">Partnership™</span><div class="g">From ${tiers[0].price}</div><p>Partnerships from ${tiers[0].price}, one-time. One purchase, seats for your team, and a place in the Omnidirectional Enterprise™.</p></div>
+  <div class="panel"><span class="eyebrow">Free tools</span><div class="g">${freeTools} free tools</div><p>Get all ${freeTools} free Leadership Infrastructure™ tools in your Member Portal™, organized by phase, plus a snapshot of every product. No card needed.</p></div>
+  <div class="panel"><span class="eyebrow">Omnidirectional Enterprise™</span><div class="g">One operating model</div><p>Not a single-purpose consultancy. One operating model coordinating IP, products, capital, and capability, all connected to Leadership Infrastructure™.</p></div></div>`, { photo: 'doorway', scrim: 'H' }),
+
+  slide(`<div class="left" style="width:7in"><p class="k">Omnidirectional Enterprise™ · The economic case</p><h2 style="font-size:42px;margin-bottom:16px">Generating value and capturing value <b>are different processes.</b></h2><div class="pts econ" style="gap:8px">
+  ${pt('The central economic proposition', '', 'Economic performance depends not only on creating value, but on the systems governing how resources are coordinated, intellectual property is owned, decisions are made, innovations reach markets, and returns are captured and reinvested.')}
+  ${pt('The problem', '', 'The global economy faces a structural coordination problem: capital, labor, intellectual property, technology, and decision-making authority operate through institutions and markets whose incentives do not always align with productive contribution.')}
+  ${pt('Market conditions', '', 'These pressures intersect with geopolitical realignment, supply-chain restructuring, automation, changing investment patterns, and the growing economic importance of intangible assets.')}</div></div>`, { photo: 'wing', area: 'right', w: 5.4, pos: '40% 50%' }),
+
+  slide(`<p class="k">The Co.LLab™ · The operating model</p><h2 style="font-size:50px;margin-bottom:12px">Omnidirectional Enterprise™ is an <b>economic enterprise system.</b></h2><p class="lead" style="max-width:11.4in;margin:0 0 14px;font-size:19px">Businesses support businesses and nonprofits; communities create opportunity. Not a ladder — a network of value moving in every direction, because nobody builds alone.</p><div class="grow" style="display:grid;grid-template-columns:6.1in 1fr;gap:18px;min-height:0"><div class="panel" style="padding:8px 12px;border:2px solid #ff602e">${omni}</div><div class="pts" style="gap:8px;align-content:start">${[['Shared IP', 'Intellectual property licensed across participants.'], ['One governance model', 'A common way to decide and organize: The IV Phases™.'], ['A cross-sector network', 'Businesses, nonprofits, creators, and communities in one ecosystem.'], ['Revenue reinvested', 'Returns reinvested across the portfolio.']].map(([h, p], i) => `<div class="pt panel" style="padding:8px 18px"><span class="eyebrow" style="font-size:12px">0${i + 1}</span><b style="font-size:18px;margin:2px 0">${h}</b><p style="font-size:14.5px">${p}</p></div>`).join('')}</div></div>`, { photo: 'forest', scrim: 'H', pos: '50% 40%' }),
+
+  slide(`<p class="k">How the system works</p><h2 style="font-size:52px;margin-bottom:12px">Not a ladder. <b>A network.</b></h2><p class="lead" style="max-width:11.4in;margin:0 0 14px;font-size:19px">Each branch has a page where you can act on it. Every branch uses The IV Phases™ as its common way to decide and organize.</p><div class="g3 grow">${BRANCHES.map(([b, l, pg]) => `<div class="panel"><b>${b}</b><p>${l}</p>${pg ? `<span>${pg} →</span>` : ''}</div>`).join('')}</div>`),
+
+  slide(`<p class="k">Research and economic foundations</p><h2 style="font-size:52px;margin-bottom:12px">The published ideas <b>the model builds on.</b></h2><div class="res grow">${RESEARCH.map(([a, t2, l]) => `<div class="panel"><span class="eyebrow">${a}</span><b>${t2}</b><p>${l}</p></div>`).join('')}</div><p class="fine" style="font-size:13px">These are independent, published works in economics and management. The summaries are our own plain-language readings. The authors and publishers have not endorsed The Co.LLab™, and the works are not evidence that the model produces any particular result.</p>`, { photo: 'doorway', scrim: 'H' }),
+
+  slide(`<p class="k">The IV Phases™ · One governance model</p><h2>The infrastructure behind <b>the ecosystem.</b></h2><div class="c4 grow">
+  ${[['rocks', 0], ['road', 1], ['meadow', 2], ['cabin', 3]].map(([p, i]) => `<div class="tile" style="background-image:url(${ph(p)})"><div class="cap panel"><span class="eyebrow">Phase ${['I', 'II', 'III', 'IV'][i]} · ${tiers[i].verb}</span><div class="nm" style="margin-top:4px;font-size:18px">${PHASES[i][0]}</div><p style="font-size:17px;color:#fff;margin-top:6px">${PHASES[i][1]}</p></div></div>`).join('')}</div><p class="fine">Foundations, Planning, Operating, and Preservation: a common way to decide and organize.</p>`),
+
+  slide(`<p class="k">The .LLab™ · Shop</p><h2 style="font-size:58px">Enter <b>The .LLab.</b></h2><p class="lead" style="max-width:11.4in;margin:-8px 0 16px;font-size:20px">Frameworks, research, tools, and community — everything you need to build your legacy.</p><div class="c4" style="margin-bottom:14px">
+  <div class="stat panel"><div class="n">${nLead}</div><div class="l">The IV Phases™ products</div></div>
+  <div class="stat panel"><div class="n">${nCreator}</div><div class="l">.LLab Creators™ products</div></div>
+  <div class="stat panel"><div class="n">${nPartnerIp + nBlueprint}</div><div class="l">Partner-only IP and The .LLab Blueprint™ issues</div></div>
+  <div class="stat panel"><div class="n">${freeTools}</div><div class="l">Free tools · No account needed</div></div></div>
+  <div class="c3 grow" style="align-content:start">${pt('The .LLab products', 'Infrastructure planning IP for every phase.', 'Pick a phase, pick a product, order in one tap.')}${pt('Delivered', '', 'Every product is delivered digitally to your .LLab account immediately after purchase.')}${pt('Co.LLab IP™', 'Infrastructure planning IP, licensed to keep.', `Products ${P.range}.`)}</div>`, { photo: 'texture', scrim: 'H' }),
+
+  slide(`<div style="width:8.2in" class="grow"><p class="k">.LLab Membership™ · The Infrastructure Analysis™</p><h2 style="font-size:50px">Membership analyzes <b>the IP you license.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">The Infrastructure Analysis™ names what to strengthen and build next, maps your answers across The IV Phases™ and the Omnidirectional Enterprise™, and gives you a report for your business to build from.</p><div class="c2" style="gap:12px">${pt('.LLab Membership™', `${P.memMo} or ${P.memYr}`, 'Every product of The IV Phases™, unlocked while you’re a member. Includes the Infrastructure Analysis™.')}${pt('.LLab Library Card™', `${P.libMo} or ${P.libYr}`, 'The $10 on-ramp to The .LLab.')}${pt('The .LLab Journal™', P.journalYr, 'Research and essays on building legacy.')}${pt('Omnidirectional Enterprise™ Portal', 'Free', 'Free to join — no card needed.')}</div></div>`, { photo: 'lodge', area: 'right', w: 4.4, pos: '50% 50%' }),
+
+  slide(`<p class="k">The Co.LLab™ Omnidirectional Enterprise™ Partnership</p><h2 style="margin-bottom:12px;font-size:56px">Four phases. <b>Four levels of partnership.</b></h2><div class="chart" style="height:3.55in">${tiers.map((t, i) => { const v = Number(t.price.replace(/[^\d]/g, '')); const H = Math.round(290 * v / 50000); return `<div class="bar"><div class="v">${t.price}</div>${fir(H, i + 3)}</div>`; }).join('')}</div><div class="axis">${tiers.map((t, i) => `<div><b>${t.label}</b><span>${t.verb}</span><i>${BEST[i]}</i><i>${META[i]}</i></div>`).join('')}</div><p class="fine" style="text-align:center">Every tier includes all IV Phases™, the .LLab Library Card™, and The .LLab Journal™, with every new release while you’re a member. Each tier adds one partner-only product for its phase, more seats, and a longer membership.</p>`),
+
+  slide(`<div style="width:8.2in" class="grow"><p class="k">How partners drive the ecosystem</p><h2 style="font-size:50px">Your legacy, <b>in four phases.</b></h2><p class="lead" style="max-width:none;margin:-6px 0 16px;font-size:19px">Partners use the IP, share what they learn each quarter, and make it stronger. Partner revenue funds new Co.LLab IP™, creator work, and community programs, and every new release returns to each partner while their membership is active.</p><div class="c2" style="gap:10px">${reg.partner_ip.map((p, i) => pt('Partner-only IP', p.name, ['Define it. The complete framework for what your company stands on, what it will never compromise, and what it should be remembered for.', 'Plan it. Decision rights, priorities, ownership, and a 12-month plan your leadership team manages.', 'Live it. The rhythms, standards, and practices that run your legacy through every department.', 'Pass it on. The Omnidirectional Legacy Plan™, the Succession Map™, and the Steward’s Guide™.'][i], 'padding:10px 18px')).join('')}</div></div>`, { photo: 'path', area: 'right', w: 4.4, pos: '15% 60%' }),
+
+  slide(`<div style="width:7.8in" class="grow"><p class="k">.LLab Creators™ · Creative Enterprise & IP Commercialization</p><h2 style="font-size:46px">You were already creating. <b>We help you build what your creation can become.</b></h2><div class="pts" style="gap:9px">${pt('The problem', '', 'Platform dependency, unequal bargaining power, fragmented distribution channels, and limited intellectual property control can prevent creators from capturing a fair share of the economic value their work generates.')}${pt('.LLab Creators™ · Creative Enterprise', 'Creators keep ownership of their IP; The Co.LLab™ builds the infrastructure around it.', '')}${pt('Start free. Build the rest.', 'Five free Creator tools', 'Every Creators product is in The .LLab Products™.')}</div></div>`, { photo: 'rocks', area: 'right', w: 4.8, pos: '30% 50%' }),
+
+  slide(`<p class="k">Knowledge + IP</p><h2 style="font-size:52px">Ideas, <b>before infrastructure.</b></h2><p class="lead" style="max-width:11in;margin:-6px 0 16px;font-size:20px">Where research becomes frameworks — and frameworks become products.</p><div class="c4 grow" style="align-content:start">${pt('.LLab R.A.T.™ · Research And Theory', 'Some ideas begin as: “Wait… what if?”', 'Our research and theory lab. Curious. Scholarly. Weird. Provocative.')}${pt('The .LLab Journal™', 'Volume One is out', 'On Stewardship as Infrastructure · Systems Before Scale · Succession Is a Design Problem.')}${pt('The .LLab Legacy Library™', 'Books · Scholarly Publications', 'The books and scholarly publications of The Co.LLab™ founder.')}${pt('Coming soon', 'The Intelligence Paradox Trilogy™', 'Three ideas. One paradox. Dropping soon.')}</div>`, { photo: 'sunburst', scrim: 'H', pos: '50% 45%' }),
+
+  slide(`<div style="width:8.2in" class="grow"><p class="k">.LLab Impact™ · The Co.LLab Founders Organization™</p><h2 style="font-size:46px;margin-bottom:16px">Value flows back out — <b>to every community.</b></h2><div class="c2" style="gap:12px;margin-bottom:12px">${pt('The Co.LLab Founders Organization™', 'Local builders, local investment, one community initiative.', 'Being developed as a community-based nonprofit initiative intended to pursue 501(c)(3) status, with the aim of expanding access to entrepreneurial education, business resources, and leadership infrastructure.')}${pt('.LLab Impact™', 'Building leadership, building good.', 'Every Impact Product™ supports a partner nonprofit — tracked openly. Current partners: Blazing Smiles and Wavecraft Oceans Project.')}</div><div class="c4" style="gap:10px">${founders.map(([nm, pr]) => `<div class="panel" style="padding:8px 14px"><div style="font-size:14px;font-weight:800;color:#fff">${nm}</div><div style="font-size:20px;font-weight:800;color:#ff602e">${pr}</div></div>`).join('')}</div><p class="fine" style="font-size:13px">Every founding option is an investment in that legacy — it carries no ownership stake or financial return.</p></div>`, { photo: 'moon', area: 'right', w: 4.4, pos: '50% 45%' }),
+
+  slide(`<p class="k">Omnidirectional Enterprise™</p><h2 style="font-size:46px;margin-bottom:8px">Not a single-purpose consultancy. <b>One operating model.</b></h2><p class="lead" style="max-width:11.4in;margin:0 0 12px;font-size:17px">One operating model coordinating IP, products, capital, and capability, all connected to Leadership Infrastructure™.</p><div class="c3 grow" style="gap:10px">${SECTORS.map(([h, l, p]) => `<div class="panel" style="padding:10px 16px"><span class="eyebrow" style="font-size:11px">${h.startsWith('Technology') ? 'Technology · .LLab Legacy Ventures™' : 'In Development'}</span><div style="font-size:19px;font-weight:800;color:#ff3a14;margin:4px 0 2px">${h}</div><div style="font-size:15.5px;font-weight:700;color:#fff;margin-bottom:4px">${l}</div><p style="font-size:14px;line-height:1.35">${p}</p></div>`).join('')}</div><p class="fine" style="font-size:13px">In development and not currently offered for sale or lease. Nothing here is an offer of securities or a solicitation of investment.</p>`, { photo: 'crater', scrim: 'H', pos: '50% 50%' }),
+
+  slide(`<div style="width:7.8in" class="grow"><p class="k">Built to perform, on schedule</p><h2 style="font-size:52px">Infrastructure isn’t glamorous. <b>It’s reliable.</b></h2><div class="pts" style="gap:10px">${pt('', '', 'The measure of a system isn’t whether it can perform once — it’s whether it performs again, predictably, long after the people who built it have moved on.')}${pt('Mission', '', 'To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.')}${pt('Vision', '', 'A world where infrastructure is built around human potential — rather than people being forced to conform to infrastructure that was never designed for them.')}</div><div class="chain" style="margin-top:14px">${['Human Potential', 'Intelligence', 'Infrastructure', 'Enterprise Value', 'Legacy'].map((x) => `<span>${x}</span>`).join('<i>→</i>')}</div></div>`, { photo: 'forest', area: 'right', w: 4.6, pos: '50% 40%' }),
+
+  slide(`<p class="k">Contact</p><h2 style="font-size:58px">Let’s build <b>your legacy.</b></h2><p class="lead" style="max-width:11in;margin:-8px 0 16px;font-size:19px">Write to the address for what you need, or book a 30-minute Partnership conversation.</p><div class="c3" style="margin-bottom:14px">
+  ${[['Omnidirectional Enterprise™ Portal', 'Start free, no card needed →', 'Join free to work a guided quest on any free tool and get your Infrastructure Snapshot™.', qJoin], ['The .LLab Products™', 'Shop The .LLab™ →', 'The .LLab™ products from $20.', qProducts], ['Partnership™', 'Explore Partnerships →', `Partnerships from ${tiers[0].price}, one-time.`, qPartner]].map(([i, h, p, q]) => `<div class="card panel" style="display:grid;grid-template-columns:1fr 1.25in;gap:14px;align-items:center;padding:16px 20px"><div><span class="eyebrow">${i}</span><h3 style="font-size:22px"><b>${h}</b></h3><p style="font-size:15px">${p}</p></div><img src="${q}" style="width:1.25in;border-radius:10px;background:#fff;padding:6px"/></div>`).join('')}</div>
+  <div class="panel" style="display:grid;grid-template-columns:2.5in 1fr;gap:26px;align-items:center;padding:14px 22px"><img src="${card('front')}" style="width:100%;border-radius:8px;display:block"/><div><div style="font-size:32px;font-weight:200;color:#ff602e">Ashley E. <b style="font-weight:800;color:#ff3a14">Clasby</b></div><div class="contact" style="margin-top:8px;flex-direction:column;gap:4px;font-size:16px"><div><span>Partnerships and scheduling</span> partnerships@wearethellab.com</div><div><span>General questions</span> hello@wearethellab.com</div><div><span>Website</span> wearethellab.com</div></div></div></div>`, { photo: 'road', scrim: 'H', pos: '50% 70%' }),
+];
+
+const html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>${T} — The Pitch</title><style>${css}</style></head><body>${slides.join('')}</body></html>`;
+fs.writeFileSync(`${tmp}/deck.html`, html);
+
+const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH || undefined });
+const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.6 });
+await page.goto(pathToFileURL(`${tmp}/deck.html`).href);
+await page.evaluate(() => document.fonts.ready);
+// Bake each slide's background (photo, scrim, grid and the glow behind the bold headline words) into one
+// opaque image, so the PDF carries no blur or transparency (some viewers draw those as boxes).
+const count = await page.$$eval('.s', (s) => s.length);
+for (let i = 0; i < count; i++) {
+  await page.evaluate((i) => {
+    const s = document.querySelectorAll('.s')[i], bg = s.querySelector('.bg'), R = s.getBoundingClientRect();
+    s.querySelectorAll('h1 b, h2 b, .who h3 b').forEach((b) => {
+      const r = document.createRange(); r.selectNodeContents(b);
+      [...r.getClientRects()].forEach((q) => { if (q.width < 2) return;
+        const g = document.createElement('div');
+        g.style.cssText = `position:absolute;left:${q.left - R.left - 20}px;top:${q.top - R.top}px;width:${q.width + 40}px;height:${q.height}px;border-radius:60px;background:rgba(255,40,20,.42);filter:blur(26px)`;
+        bg.appendChild(g); });
+    });
+    [...s.children].forEach((c) => { if (c !== bg) c.style.visibility = 'hidden'; });
+  }, i);
+  const el = (await page.$$('.s'))[i];
+  const buf = await el.screenshot({ type: 'jpeg', quality: 80 });
+  await page.evaluate(({ i, url }) => {
+    const s = document.querySelectorAll('.s')[i];
+    s.querySelector('.bg').remove();
+    [...s.children].forEach((c) => { c.style.visibility = ''; });
+    s.style.backgroundImage = `url(${url})`; s.style.backgroundSize = '100% 100%';
+  }, { i, url: `data:image/jpeg;base64,${buf.toString('base64')}` });
+}
+const over = await page.$$eval('.s', (ss) => ss.map((s, i) => { const R = s.getBoundingClientRect(); return [...s.querySelectorAll('*')].some((e) => { const r = e.getBoundingClientRect(); return r.height > 0 && (r.bottom > R.bottom - 20 || r.right > R.right - 20); }) ? i + 1 : 0; }).filter(Boolean));
+console.log('slides', count, 'too close to the edge:', over);
+await page.pdf({ path: `${repo}/assets/pitch/The-CoLLab-Pitch-Economic-Enterprise-Systems.pdf`, width: '13.3333in', height: '7.5in', printBackground: true });
+const shots = process.argv.includes('--png');
+if (shots) fs.mkdirSync(`${tmp}/png`, { recursive: true });
+const els = await page.$$('.s');
+for (let i = 0; i < els.length; i++) if (shots) await els[i].screenshot({ path: `${tmp}/png/${String(i + 1).padStart(2, '0')}.png`, scale: 'css' });
+if (shots) console.log(`slide previews: ${tmp}/png`);
+// The cover, shown on the About page.
+await els[0].screenshot({ path: `${repo}/assets/pitch/pitch-deck-cover.jpg`, type: 'jpeg', quality: 82, scale: 'css' });
+await browser.close();
