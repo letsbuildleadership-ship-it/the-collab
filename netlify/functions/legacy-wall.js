@@ -21,7 +21,7 @@ function buildWall(people) {
   const founderLevels = pricing.recognitionLevels().slice().reverse();
   const memberships = reg.memberships || [];
   const nodes = [
-    { node: 'Businesses', page: 'partnership.html', where: 'Partnership™', groups: partnerTiers.map((t) => ({ label: `${t.tier_label} Partners`, members: named(people.filter((p) => p.partnershipKey === t.key)) })) },
+    { node: 'Enterprises', page: 'partnership.html', where: 'Partnership™', groups: partnerTiers.map((t) => ({ label: `${t.tier_label} Partners`, members: named(people.filter((p) => p.partnershipKey === t.key)) })) },
     { node: 'Communities', page: 'founders.html', where: 'The Co.LLab Founders Organization™', groups: founderLevels.map((l) => ({ label: l.label, members: named(people.filter((p) => p.founderLevel === l.key)) })) },
     { node: 'Nonprofits', page: 'impact.html', where: 'The .LLab Impact™', groups: [{ label: 'Charity partners', members: (pricing.impactPartners() || []).map((n) => ({ displayName: n.name, url: n.website || null })) }] },
     { node: 'People', page: 'products.html', where: 'The .LLab™ Membership', groups: [

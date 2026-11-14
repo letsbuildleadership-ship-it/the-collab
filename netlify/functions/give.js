@@ -23,7 +23,8 @@ function slug(name) {
 function parseGift(params) {
   const amount = Math.round(Number(String((params && params.amount) || '').replace(/[$,\s]/g, '')) * 100) / 100;
   if (!Number.isFinite(amount) || amount < MIN || amount > MAX) return { error: `Choose an amount from $${MIN} to $${MAX.toLocaleString('en-US')}.` };
-  const direct = params && params.direct ? slug(params.direct) : '';
+  let direct = params && params.direct ? slug(params.direct) : '';
+  if (direct === 'businesses') direct = 'enterprises';
   const node = pricing.designationNodes().find((n) => slug(n) === direct) || null;
   return { amount, cents: Math.round(amount * 100), direct: node ? slug(node) : '', node, level: pricing.founderLevelForAmount(amount) };
 }

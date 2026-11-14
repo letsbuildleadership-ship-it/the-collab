@@ -6,7 +6,7 @@
 const membershipStatus = require('./membership-status');
 const pricing = require('./pricing');
 
-const DIRECTIONS = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+const DIRECTIONS = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const KINDS = ['product', 'service'];
 
 const clean = (s, n) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, n);
@@ -40,7 +40,7 @@ function validateListing(raw) {
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) return { error: 'That contact email does not look right.' };
   if (!website && !contactEmail) return { error: 'Add a website or a contact email so members can reach you.' };
 
-  const directions = [...new Set((Array.isArray(input.directions) ? input.directions : []).filter((d) => DIRECTIONS.includes(d)))].slice(0, 3);
+  const directions = [...new Set((Array.isArray(input.directions) ? input.directions : []).map((d) => (d === 'Businesses' ? 'Enterprises' : d)).filter((d) => DIRECTIONS.includes(d)))].slice(0, 3);
   if (!directions.length) return { error: 'Choose one to three directions your company serves.' };
 
   const offerings = [];

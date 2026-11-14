@@ -23,8 +23,8 @@ test('one Omnidirectional Legacy Wall, organized by area; people appear wherever
   await fulfillCheckoutSession({ id: 'cs_n', customer_details: { email: 'n@example.com' } }, [pricing.entryForKey('strength-map').stripe_price_id]);
   s.record.memberships = {};
   const body = await wall();
-  assert.deepEqual(body.nodes.map((n) => n.node), ['Businesses', 'Communities', 'Nonprofits', 'People', 'Products & Services', 'Creators', 'Capital', 'Knowledge + IP', 'Technology']);
-  assert.deepEqual(names(body, 'Businesses', 'Partner Partners'), ['Partner Co.']);
+  assert.deepEqual(body.nodes.map((n) => n.node), ['Enterprises', 'Communities', 'Nonprofits', 'People', 'Products & Services', 'Creators', 'Capital', 'Knowledge + IP', 'Technology']);
+  assert.deepEqual(names(body, 'Enterprises', 'Partner Partners'), ['Partner Co.']);
   assert.deepEqual(names(body, 'Communities', 'Legacy Founder'), ['Founder Co.']);
   assert.deepEqual(names(body, 'Nonprofits', 'Charity partners'), ['Blazing Smiles', 'Wavecraft Oceans Project']);
   assert.ok(names(body, 'Products & Services', 'The .LLab product owners').includes('Shopper'));

@@ -1,7 +1,7 @@
 [
   {
     "id": "01-legacy",
-    "node": "Businesses",
+    "node": "Enterprises",
     "phase": 1,
     "lands": "/",
     "lever": "Loss aversion + identity",
@@ -66,12 +66,12 @@
     "lands": "/pages/think.html#model",
     "lever": "Unity + belonging",
     "hook": "Nobody builds alone.",
-    "support": "Value moves between businesses, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.",
+    "support": "Value moves between enterprises, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.",
     "cta": "See the model"
   },
   {
     "id": "08-team",
-    "node": "Businesses",
+    "node": "Enterprises",
     "phase": 3,
     "lands": "/pages/partnership.html#tiers",
     "lever": "Status + internal buy-in",
@@ -81,7 +81,7 @@
   },
   {
     "id": "09-define",
-    "node": "Businesses",
+    "node": "Enterprises",
     "phase": 1,
     "lands": "/pages/partnership.html#cohort",
     "lever": "Phase I · identity (booth, sign, table)",
@@ -91,7 +91,7 @@
   },
   {
     "id": "10-plan",
-    "node": "Businesses",
+    "node": "Enterprises",
     "phase": 2,
     "lands": "/pages/partnership.html#cohort",
     "lever": "Phase II · structure (scaffolding)",
@@ -101,7 +101,7 @@
   },
   {
     "id": "11-live",
-    "node": "Businesses",
+    "node": "Enterprises",
     "phase": 3,
     "lands": "/pages/partnership.html#cohort",
     "lever": "Phase III · standards in daily use (racks)",
@@ -114,7 +114,7 @@
     "node": "Creators",
     "phase": 1,
     "lands": "/pages/creator.html",
-    "lever": "Creators · identity (.LLab Creators™)",
+    "lever": "Creators · identity (The .LLab Creators™)",
     "hook": "You were already creating.",
     "support": "We help you build what your creation can become.",
     "cta": "Start with a free resource"
@@ -124,7 +124,7 @@
     "node": "Nonprofits",
     "phase": 4,
     "lands": "/pages/impact.html",
-    "lever": "Nonprofits · prosocial legacy (.LLab Impact™)",
+    "lever": "Nonprofits · prosocial legacy (The .LLab Impact™)",
     "hook": "Building leadership, building good.",
     "support": "Select The Co.LLab Founders Organization™ products support partner nonprofits — tracked openly in a public ledger.",
     "cta": "See the partners"

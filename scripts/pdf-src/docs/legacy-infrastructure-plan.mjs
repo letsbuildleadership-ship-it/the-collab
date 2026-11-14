@@ -47,7 +47,7 @@ ${licensePageHtml}
 </section>
 
 <section class="page">
-  ${header('03 · Ownership Map', 'Who Carries', 'Each Area?', 'Every area of the business needs one owner, and a second person who could step in.')}
+  ${header('03 · Ownership Map', 'Who Carries', 'Each Area?', 'Every area of the enterprise needs one owner, and a second person who could step in.')}
   ${grid(['Area', 'Owner', 'Backup', 'Documented? (Y/N)'], ['Leadership & vision', 'Operations', 'Finance', 'Sales & customers', 'People & culture', 'Product or service quality', 'Community & partners'])}
 </section>
 

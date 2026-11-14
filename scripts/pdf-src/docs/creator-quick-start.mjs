@@ -20,7 +20,7 @@ ${licensePageHtml}
 <section class="page">
   <div class="content-header">
     <span class="page-index">01 · The Four Moves</span>
-    <h2 class="section-title">You don't need a business plan.<br/><strong>You need five moves.</strong></h2>
+    <h2 class="section-title">You don't need an enterprise plan.<br/><strong>You need five moves.</strong></h2>
     <p class="section-intro">One small, concrete move for each phase of The .LLab Creators™ — plus a fifth that ties them together. Do them in order, or start wherever your creative practice needs it most.</p>
   </div>
 

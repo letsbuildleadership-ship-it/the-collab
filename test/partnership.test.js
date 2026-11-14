@@ -215,7 +215,7 @@ test('partnership page lists every tier link, states IP ownership and results te
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
   assert.match(html, /owned by Ashley E\. Clasby and licensed through The Co\.LLab™/);
-  assert.match(html, /Results depend on how each business applies it/);
+  assert.match(html, /Results depend on how each enterprise applies it/);
   assert.ok(/founders\.html/.test(content(html)), 'partnership page links to the Founders Organization');
 });
 

@@ -40,7 +40,7 @@ ${licensePageHtml}
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">4</span><span class="pathway-label">Preserve</span><p>Enterprise → Legacy</p></div>
   </div>
-  ${phaseCard('I', 'Foundations', 'Idea → Identity', 'Understanding what you\'re actually creating and who you are as its architect, before touching a business model.', 'The .LLab Creator Quick Start Guide™, The .LLab Creators Diagnostic™', '<strong>The .LLab Creator Identity Map™</strong> — $20')}
+  ${phaseCard('I', 'Foundations', 'Idea → Identity', 'Understanding what you\'re actually creating and who you are as its architect, before touching an enterprise model.', 'The .LLab Creator Quick Start Guide™, The .LLab Creators Diagnostic™', '<strong>The .LLab Creator Identity Map™</strong> — $20')}
   ${phaseCard('II', 'Infrastructure Planning & Management', 'Identity → Venture', 'Determining what systems a creative identity needs to become a venture, and how the pieces connect.', null, '<strong>The .LLab Creator Alignment Map™</strong> — $50 &nbsp;|&nbsp; <strong>The .LLab Creator Venture Build Plan™</strong> — $100')}
 </section>
 

@@ -175,7 +175,7 @@ ${arw('#0f1d13', 'Pass it on.', 'Phase IV', 'Preservation')}
 </div>
 <div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
 
-const nodes = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+const nodes = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const cx = 250, cy = 250, R = 218;
 const pts = nodes.map((name, i) => { const a = (-90 + i * (360 / nodes.length)) * Math.PI / 180; return { name, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }; });
 const svg = `<svg viewBox="-50 -20 600 540" xmlns="http://www.w3.org/2000/svg">
@@ -252,7 +252,7 @@ const p7b = () => pg(K('Partnership'), 'Included in <b>every level.</b>', `
 <div class="sp"><div class="no">2</div><div><b>A partner-only framework</b><span>One for your level, found nowhere else.</span></div></div>
 <div class="sp"><div class="no">3</div><div><b>The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™</b><span>For the term, with every new release while you are a member.</span></div></div>
 </div>
-<div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal business use. Results depend on how each business applies it.</div>
+<div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal enterprise use. Results depend on how each enterprise applies it.</div>
 <div class="qb" style="margin-top:12px"><img src="${qPartner}"/><div><b>See Partnerships</b><span>Scan to open the Partnership page.</span></div></div>`);
 
 const p8 = () => pg(K('The .LLab Collaborating Companies'), 'Companies we <b>collaborate with.</b>', `

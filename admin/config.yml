@@ -339,7 +339,7 @@ collections:
           - { label: "Omnidirectional Enterprise™ eyebrow", name: "model_eyebrow", widget: "string" }
           - { label: "Omnidirectional Enterprise™ headline", name: "model_headline", widget: "string" }
           - { label: "Omnidirectional Enterprise™ body", name: "model_body", widget: "text" }
-          - { label: "Ethical business body", name: "ethics_body", widget: "text" }
+          - { label: "Ethical enterprise body", name: "ethics_body", widget: "text" }
           - label: "Audiences"
             name: "audiences"
             widget: "list"

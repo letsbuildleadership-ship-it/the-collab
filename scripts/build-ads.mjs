@@ -18,7 +18,7 @@ const fmt = (n) => '$' + n.toLocaleString('en-US');
 const lo = fmt(Math.min(...tiers.map(money))), hi = fmt(Math.max(...tiers.map(money)));
 const seats = tiers.map((t) => t.seats).join(', ').replace(/, (\d+)$/, ', or $1');
 
-const LEGAL = 'A license for internal business use. Results depend on how each business applies it.';
+const LEGAL = 'A license for internal enterprise use. Results depend on how each enterprise applies it.';
 const EYE = 'Omnidirectional Enterprise™ Partnership';
 // *word* = emphasis (fire gradient, bold)
 const ADS = [
@@ -28,7 +28,7 @@ const ADS = [
   { id: '04-economics',    lever: 'Authority + reframe',            eyebrow: 'The economic case', hook: 'Generating value and capturing value *are different processes.*', support: 'Practice Omnidirectional Enterprise™ with licensed Co.LLab IP™.', cta: 'Read the case', img: 'scaffolding', pos: '25% 50%', legal: true },
   { id: '05-one-payment',  lever: 'Risk reversal + price clarity',  eyebrow: EYE, hook: '*One payment.* Licensed to keep.', support: `No subscription. No automatic charges. Four levels, ${lo}–${hi}.`, cta: 'Choose your level', img: 'racks', pos: '40% 62%', legal: true },
   { id: '06-start-free',   lever: 'Foot-in-the-door + reciprocity', eyebrow: 'The .LLab', hook: '*Start free.* Build your legacy.', support: 'Test drive Membership free — no card needed. Every free tool, by phase.', cta: 'Test drive Membership free', img: 'storefront', pos: '50% 40%', legal: false },
-  { id: '07-unity',        lever: 'Unity + belonging',              eyebrow: 'Omnidirectional Enterprise™', hook: '*Nobody builds alone.*', support: 'Value moves between businesses, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.', cta: 'See the model', img: 'stage', pos: '60% 40%', legal: false },
+  { id: '07-unity',        lever: 'Unity + belonging',              eyebrow: 'Omnidirectional Enterprise™', hook: '*Nobody builds alone.*', support: 'Value moves between enterprises, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.', cta: 'See the model', img: 'stage', pos: '60% 40%', legal: false },
   { id: '08-team',         lever: 'Status + internal buy-in',       eyebrow: EYE, hook: 'Your legacy. *Your whole team.*', support: `Seats for ${seats} people. One account each, added by invite.`, cta: 'See the seat levels', img: 'booth', pos: '50% 58%', legal: true },
 
   { id: '09-define',        lever: 'Phase I · identity (booth, sign, table)',     eyebrow: 'The IV Phases™ · Phase I · Foundations', hook: '*Define* it.', support: 'Who you are and what you stand on.', cta: 'See the Partner level', img: 'booth', pos: '50% 58%', legal: true },
@@ -42,10 +42,10 @@ const ADS = [
 
 // Every tactic is modeled under Omnidirectional Enterprise (node = who/direction of value) x The IV Phases (1 Foundations, 2 Infrastructure Planning & Management, 3 Internal Operating Systems, 4 Preservation).
 const TAG = {
-  '01-legacy': ['Businesses', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Products & Services', 2, '/pages/all-products.html'],
+  '01-legacy': ['Enterprises', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Products & Services', 2, '/pages/all-products.html'],
   '04-economics': ['Capital', 2, '/pages/about.html#economic'], '05-one-payment': ['Capital', 3, '/pages/partnership.html#tiers'], '06-start-free': ['People', 1, '/pages/login.html#join'],
-  '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Businesses', 3, '/pages/partnership.html#tiers'], '09-define': ['Businesses', 1, '/pages/partnership.html#cohort'],
-  '10-plan': ['Businesses', 2, '/pages/partnership.html#cohort'], '11-live': ['Businesses', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],
+  '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Enterprises', 3, '/pages/partnership.html#tiers'], '09-define': ['Enterprises', 1, '/pages/partnership.html#cohort'],
+  '10-plan': ['Enterprises', 2, '/pages/partnership.html#cohort'], '11-live': ['Enterprises', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],
   '13-nonprofits': ['Nonprofits', 4, '/pages/impact.html'], '14-technology': ['Technology', 3, '/pages/technology.html'], '15-knowledge': ['Knowledge + IP', 2, '/pages/journal.html'],
 };
 for (const a of ADS) { const t = TAG[a.id]; if (!t) throw new Error('ad without node/phase: ' + a.id); [a.node, a.phase, a.lands] = t; }
