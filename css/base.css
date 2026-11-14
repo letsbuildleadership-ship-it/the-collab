@@ -2275,3 +2275,16 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .fo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
 .fo-grid .founder-offer p:not(.offer-promise) { margin: 0; color: var(--white-dim); }
 @media (max-width: 860px) { .fo-grid { grid-template-columns: 1fr; } }
+.fo-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.fo-pillar p:not(.offer-promise) { margin: 0; color: var(--white-dim); }
+.fo-facts { margin: 0.5rem 0 0; }
+.fo-facts dt { margin-top: 1rem; font-size: var(--label-size); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+.fo-facts dd { margin: 0.35rem 0 0; color: var(--white-dim); }
+.fo-cycle { margin-top: 3rem; }
+.fo-steps { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; counter-reset: fo; }
+.fo-cycle .fo-steps { max-width: none; }
+.fo-steps li { counter-increment: fo; border-top: 2px solid var(--filament-1); padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem; }
+.fo-steps li b::before { content: counter(fo) ". "; }
+.fo-steps li span { color: var(--white-dim); font-size: 0.95rem; }
+@media (max-width: 1100px) { .fo-pillars { grid-template-columns: 1fr; } .fo-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .fo-steps { grid-template-columns: 1fr; } }
