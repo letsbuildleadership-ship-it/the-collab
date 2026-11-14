@@ -8,7 +8,7 @@ const pricing = require('./lib/pricing');
 const { json, tokenFromEvent } = require('./lib/http');
 
 const KEY = 'founder-give';
-const MIN = 1;
+const MIN = 20;
 const MAX = 999999;
 
 function getStripe() {

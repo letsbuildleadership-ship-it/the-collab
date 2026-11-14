@@ -860,7 +860,7 @@
       "name": "The Co.LLab™ Founders Organization — Give Any Amount",
       "phase": "Build · Founders Organization",
       "phase_key": "founders",
-      "price_display": "$1+",
+      "price_display": "$20+",
       "custom_amount": true,
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Give any amount to build the infrastructure of Omnidirectional Enterprise™ and become a Founder.",
@@ -868,20 +868,6 @@
     }
   ],
   "giving_levels": [
-    {
-      "key": "foundations-founder",
-      "min": 1,
-      "phase": "I",
-      "label": "Foundations Founder",
-      "rank": 0.5,
-      "grants": [
-        "infrastructure-roadmap"
-      ],
-      "impact": {
-        "partner_key": "blazing-smiles",
-        "percent": 10
-      }
-    },
     {
       "key": "friends-family",
       "min": 20,
