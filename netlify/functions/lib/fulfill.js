@@ -39,6 +39,11 @@ function addMonths(date, months) {
  * derived from this record at read time (lib/access.js), so removing a
  * seat holder takes effect immediately.
  */
+/** Dropdown value for an Omnidirectional Enterprise™ area (Stripe allows letters and digits only). */
+function slug(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 function applyPartnership(record, entry, session) {
   const purchasedAt = session.created ? new Date(session.created * 1000) : new Date();
   const termMonths = entry.term_months || 12;
@@ -119,6 +124,7 @@ async function fulfillCheckoutSession(session, priceIds) {
 
   const grantedKeys = [];
   const recognitionKeys = [];
+  const contributions = [];
   let foundingPaid = 0;
 
   for (const priceId of priceIds) {
@@ -158,8 +164,13 @@ async function fulfillCheckoutSession(session, priceIds) {
     // recognized at the fixed level it reaches and gets that level's grants.
     if (entry.kind === 'product' && entry.custom_amount) {
       const paid = Math.round(Number(session.amount_total || 0)) / 100;
-      const levelKey = pricing.founderLevelForAmount(paid);
+      // Level reflects everything this person has put in, so repeat contributions can raise it.
+      const levelKey = pricing.founderLevelForAmount(pricing.founderPaidTotal(record.founder) + foundingPaid + paid);
       foundingPaid += paid;
+      const field = (session.custom_fields || []).find((c) => c.key === 'direct_to');
+      const value = field && field.dropdown && field.dropdown.value;
+      const node = pricing.designationNodes().find((n) => slug(n) === value) || null;
+      contributions.push({ key, amount: paid, node, at: new Date().toISOString(), sessionId: session.id || null });
       if (levelKey) {
         recognitionKeys.push(levelKey);
         for (const k of pricing.grantsForKey(levelKey)) grantedKeys.push(k);
@@ -235,6 +246,9 @@ async function fulfillCheckoutSession(session, priceIds) {
       }
       if (record.name && !record.founder.name) record.founder.name = record.name;
     }
+  }
+  if (contributions.length) {
+    record.contributions = [...(record.contributions || []).filter((c) => !contributions.some((n) => n.sessionId && n.sessionId === c.sessionId)), ...contributions];
   }
   if (record.founder && foundingPaid > 0) {
     const before = record.founder.paid;

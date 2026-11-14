@@ -306,6 +306,9 @@
           </div>
         </div>
         <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future products from The Co.LLab™, applied automatically at checkout whenever you're signed in.</p>
+        ${founder.partnershipCredit ? `<p class="founder-card-benefit">Partnership credit: <strong>$${Number(founder.partnershipCredit).toLocaleString('en-US')}</strong>, applied automatically when you buy a <a href="partnership.html">Partnership™</a> while signed in.</p>` : ''}
+        ${(founder.contributions || []).length ? `<p class="founder-card-benefit">Your contributions: ${founder.contributions.map((c) => `$${Number(c.amount).toLocaleString('en-US')}${c.node ? ` to ${esc(c.node)}` : ''}`).join(' · ')}</p>` : ''}
+        <p class="founder-card-benefit">${founder.contributeLink ? `<a class="pill pill--solid" href="${esc(founder.contributeLink)}">Contribute any amount <span class="arrow">→</span></a>` : 'Founder Contributions, any amount, any time: available soon.'}</p>
         <p class="founder-card-copy">Founder participation supports The Co.LLab™'s Omnidirectional Enterprise™ model — value, authority, intelligence, IP, and opportunity moving in multiple directions rather than purely top-down. As a Founder, you help strengthen Leadership Infrastructure™ and the ecosystem connecting creators, businesses, nonprofits, organizations, and enterprise — turning human potential into performance, sustainable enterprise value, and lasting legacy.</p>
       </div>`;
   }

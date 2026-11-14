@@ -17,7 +17,7 @@ const KEY_META = 'collab_key';
 function pendingItems(registry) {
   return (registry.products || [])
     .filter((p) => p.stripe_pending)
-    .map((p) => ({ key: p.key, name: p.name, description: p.description, cents: Math.round(pricing.priceDollars(p) * 100), price_display: p.price_display, custom: !!p.custom_amount }));
+    .map((p) => ({ key: p.key, name: p.name, description: p.description, cents: Math.round(pricing.priceDollars(p) * 100), price_display: p.price_display, custom: !!p.custom_amount, designate: !!p.designate }));
 }
 
 async function findProduct(stripe, key) {
@@ -61,6 +61,17 @@ async function createLinks(stripe, items, { origin, dry = false } = {}) {
       link = await stripe.paymentLinks.create({
         line_items: [{ price: price.id, quantity: 1 }],
         allow_promotion_codes: !it.custom,
+        ...(it.designate
+          ? {
+              custom_fields: [{
+                key: 'direct_to',
+                label: { type: 'custom', custom: 'Direct it to (Omnidirectional Enterprise™)' },
+                type: 'dropdown',
+                optional: true,
+                dropdown: { options: pricing.designationNodes().map((n) => ({ label: n, value: n.toLowerCase().replace(/[^a-z0-9]/g, '') })) },
+              }],
+            }
+          : {}),
         customer_creation: 'always',
         after_completion: { type: 'redirect', redirect: { url: `${origin}/pages/account.html` } },
         metadata: { [KEY_META]: it.key },

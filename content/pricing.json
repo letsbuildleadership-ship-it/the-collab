@@ -414,6 +414,20 @@
       "stripe_pending": true,
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Choose how much you invest, from $20. Your amount sets your founding level and is credited in full toward a Partnership.",
+      "founder_discount_exempt": true,
+      "designate": true
+    },
+    {
+      "key": "founder-contribution",
+      "name": "The Co.LLab™ Founders Organization — Founder Contribution",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$1+",
+      "custom_amount": true,
+      "designate": true,
+      "stripe_pending": true,
+      "pdf_file": "founders-legacy-member.pdf",
+      "description": "Contribute any amount, any time, and direct it to an area of Omnidirectional Enterprise™. Every contribution adds to your Partnership credit and can raise your founding level.",
       "founder_discount_exempt": true
     }
   ],
@@ -800,5 +814,17 @@
         "library-card"
       ]
     }
+  ],
+  "_designation_readme": "Chosen-amount founding items with `designate: true` ask the buyer (a dropdown on the Stripe Payment Link) which Omnidirectional Enterprise™ area to direct their money to; the choice is stored on record.founder.contributions.",
+  "designation_nodes": [
+    "Businesses",
+    "Nonprofits",
+    "Communities",
+    "People",
+    "Products & Services",
+    "Technology",
+    "Capital",
+    "Knowledge + IP",
+    "Creators"
   ]
 }

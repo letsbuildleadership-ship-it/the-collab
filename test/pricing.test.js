@@ -17,7 +17,7 @@ test('every one-time product has a unique stripe_price_id, payment_link, and pdf
     seenPrices.add(p.stripe_price_id);
     seenLinks.add(p.payment_link);
   }
-  assert.equal(pricing.registry.products.length, 31, 'expected 14 leadership phase products + 12 creator infrastructure products + 4 founders tiers + choose-your-amount');
+  assert.equal(pricing.registry.products.length, 32, 'expected 14 leadership phase products + 12 creator infrastructure products + 4 founders tiers + choose-your-amount + contribution');
 });
 
 test('keyForPriceId resolves every registered price back to its product/membership key', () => {
@@ -51,9 +51,9 @@ test('Membership unlocks the full one-time catalog; Library Card and Journal do 
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
 
-test('allCatalogProductKeys returns all one-time products (14 leadership IV-phase + 12 creator infrastructure + 4 Founders tiers + choose-your-amount)', () => {
+test('allCatalogProductKeys returns all one-time products (14 leadership IV-phase + 12 creator infrastructure + 4 Founders tiers + choose-your-amount + contribution)', () => {
   const keys = pricing.allCatalogProductKeys();
-  assert.equal(keys.length, 31);
+  assert.equal(keys.length, 32);
   assert.ok(keys.includes('strength-map'));
   assert.ok(keys.includes('legacy-architecture'));
   assert.ok(keys.includes('friends-family'));

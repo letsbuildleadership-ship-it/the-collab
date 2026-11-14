@@ -54,5 +54,5 @@ test('pendingItems lists every stripe_pending product with its price in cents', 
   const items = pendingItems(pricing.registry);
   const pending = pricing.registry.products.filter((p) => p.stripe_pending);
   assert.equal(items.length, pending.length);
-  for (const it of items) assert.ok(it.cents >= 2000 && it.cents <= 30000, `${it.key} ${it.cents}`);
+  for (const it of items) assert.ok(it.custom ? it.cents >= 50 : it.cents >= 2000 && it.cents <= 30000, `${it.key} ${it.cents}`);
 });

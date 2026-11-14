@@ -151,3 +151,27 @@ test('fixed founding levels record what was paid, and upgrades add up', async ()
   assert.equal(r.record.founder.paid, 370);
   assert.equal(pricing.founderPartnershipCredit(r.record), 370);
 });
+
+test('a Founder Contribution of any amount adds to the credit, can raise the level, and records its Omnidirectional area', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const email = 'contrib@example.com';
+  await fulfillCheckoutSession({ id: 'cs_c1', customer_details: { email } }, [pricing.entryForKey('founder').stripe_price_id]);
+  const raw = pricing.registry.products.find((p) => p.key === 'founder-contribution');
+  raw.stripe_price_id = 'price_test_contrib';
+  pricing._resetIndex();
+  let r;
+  try {
+    r = await fulfillCheckoutSession({
+      id: 'cs_c2', amount_total: 70000, customer_details: { email },
+      custom_fields: [{ key: 'direct_to', type: 'dropdown', dropdown: { value: 'nonprofits' } }],
+    }, ['price_test_contrib']);
+  } finally {
+    delete raw.stripe_price_id;
+    pricing._resetIndex();
+  }
+  assert.equal(r.record.founder.paid, 1050);
+  assert.equal(r.record.founder.level, 'legacy-founder', '$350 + $700 reaches Legacy Founder');
+  assert.ok(r.grantedKeys.includes('legacy-map'));
+  assert.deepEqual(r.record.contributions.map((c) => [c.amount, c.node]), [[700, 'Nonprofits']]);
+  assert.equal(pricing.founderPartnershipCredit(r.record), 1050);
+});

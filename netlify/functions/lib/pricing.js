@@ -303,6 +303,11 @@ function founderPaidTotal(founder) {
   return [...new Set(levels)].reduce((sum, k) => sum + (founderRankForKey(k) ? priceDollars(entryForKey(k)) || 0 : 0), 0);
 }
 
+/** Omnidirectional Enterprise™ areas a Founder can direct a chosen amount to. */
+function designationNodes() {
+  return registry.designation_nodes || [];
+}
+
 /** The fixed founding level a chosen amount reaches (highest level priced at or below it). */
 function founderLevelForAmount(dollars) {
   let best = null;
@@ -339,6 +344,7 @@ module.exports = {
   founderPaidTotal,
   _resetIndex,
   founderLevelForAmount,
+  designationNodes,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,
