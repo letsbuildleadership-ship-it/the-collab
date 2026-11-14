@@ -62,13 +62,20 @@ test('registry has the 4 partnership tiers at the right prices, fully separate f
   assert.equal(allPrices.size, 4);
 });
 
-test('partnerships never get the Founder discount and stay out of the Founder link rewrite', () => {
-  const founderRecord = { founder: { founderNumber: 'F-00001' } };
+test('partnerships never get the 20% Founder discount; Founder and Legacy Founder get their Partnership discount', () => {
+  const { _partnershipDiscountFor } = require('../netlify/functions/checkout-create');
+  const rec = (level) => ({ founder: { founderNumber: 'F-00001', level, levels: [level] } });
   const linkMap = pricing.paymentLinkMap();
   for (const key of pricing.partnershipKeys()) {
-    assert.equal(_shouldApplyFounderDiscount(founderRecord, key), false);
-    assert.ok(!(pricing.entryForKey(key).payment_link in linkMap));
+    assert.equal(_shouldApplyFounderDiscount(rec('legacy-founder'), key), false);
+    assert.ok(pricing.entryForKey(key).payment_link in linkMap, 'founder checkout rewrite covers partnerships');
+    assert.equal(_partnershipDiscountFor(rec('friends-family'), key), 0);
+    assert.equal(_partnershipDiscountFor(rec('premium-friends-family'), key), 0);
+    assert.equal(_partnershipDiscountFor(rec('founder'), key), 10);
+    assert.equal(_partnershipDiscountFor(rec('legacy-founder'), key), 15);
+    assert.equal(_partnershipDiscountFor(null, key), 0);
   }
+  assert.equal(_partnershipDiscountFor(rec('legacy-founder'), 'strength-map'), 0);
 });
 
 test('partnershipGrantKeys = every product except Founders tiers + every Blueprint issue + every bonus product', () => {
@@ -197,20 +204,20 @@ test('subscription memberships (no currentPeriodEnd) are unaffected by expiry ch
 const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 // Page content without the shared site header and footer: the primary nav links
-// every offer, while Founders and Partnership content never cross-promote.
+// every offer; Founders and Partnership content link to each other (Omnidirectional flow).
 const content = (html) => html.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>[\s\S]*?<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
 
-test('partnership page lists every tier link, states IP ownership and results terms, and never links to Founders', () => {
+test('partnership page lists every tier link, states IP ownership and results terms, and links to the Founders Organization', () => {
   const html = read('pages/partnership.html');
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
   assert.match(html, /owned by Ashley E\. Clasby and licensed through The Co\.LLab™/);
   assert.match(html, /Results depend on how each business applies it/);
-  assert.ok(!/founders\.html/.test(content(html)), 'partnership page content must not link to the Founders page');
+  assert.ok(/founders\.html/.test(content(html)), 'partnership page links to the Founders Organization');
 });
 
-test('Founders page content never links to the partnership page; sitemap and every primary nav include both', () => {
-  assert.ok(!/partnership\.html/.test(content(read('pages/founders.html'))));
+test('Founders page content links to the partnership page; sitemap and every primary nav include both', () => {
+  assert.ok(/partnership\.html/.test(content(read('pages/founders.html'))));
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
     const html = read(f);
     for (const cls of ['nav-links', 'nav-more', 'nav-signin']) {

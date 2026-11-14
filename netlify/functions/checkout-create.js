@@ -63,7 +63,25 @@ async function ensureFounderCoupon(stripe) {
   }
 }
 
+/** Founder → Partnership discount (Founder / Legacy Founder levels), applied once. */
+function partnershipDiscountFor(record, key) {
+  const entry = pricing.entryForKey(key);
+  return entry && entry.kind === 'partnership' ? pricing.founderPartnershipDiscount(record) : 0;
+}
+
+async function ensurePartnershipCoupon(stripe, pct) {
+  const id = `collab-founder-partnership-${pct}`;
+  try {
+    await stripe.coupons.retrieve(id);
+  } catch (err) {
+    if (!(err && err.code === 'resource_missing')) throw err;
+    await stripe.coupons.create({ id, percent_off: pct, duration: 'once', name: `Founder — ${pct}% off a Partnership`, metadata: { purpose: 'founder_partnership_discount' } });
+  }
+  return id;
+}
+
 exports._shouldApplyFounderDiscount = shouldApplyFounderDiscount;
+exports._partnershipDiscountFor = partnershipDiscountFor;
 exports._FOUNDER_COUPON_ID = FOUNDER_COUPON_ID;
 
 exports.handler = async (event) => {
@@ -86,6 +104,7 @@ exports.handler = async (event) => {
   const token = tokenFromEvent(event);
   const record = token ? await store.getCustomerByToken(token) : null;
   const applyFounderDiscount = shouldApplyFounderDiscount(record, key);
+  const partnershipPct = partnershipDiscountFor(record, key);
 
   const origin = siteOrigin(event);
   const cancelPath = safeReturnPath(params.from) || '/pages/products.html';
@@ -106,6 +125,7 @@ exports.handler = async (event) => {
         purpose: 'founder_aware_checkout',
         key,
         founder_discount_applied: applyFounderDiscount ? 'true' : 'false',
+        founder_partnership_discount: String(partnershipPct),
       },
     };
 
@@ -121,9 +141,11 @@ exports.handler = async (event) => {
 
     if (applyFounderDiscount) {
       sessionParams.discounts = [{ coupon: FOUNDER_COUPON_ID }];
+    } else if (partnershipPct > 0) {
+      sessionParams.discounts = [{ coupon: await ensurePartnershipCoupon(stripe, partnershipPct) }];
     } else if (pricing.entryForKey(key).kind !== 'partnership') {
-      // Partnerships are sold at their stated price only — no promo codes,
-      // no Founder discount (they're separate from the Founders Organization).
+      // Partnerships take no promo codes and no 20% Founder discount; only the
+      // Founder-level Partnership discount above applies.
       sessionParams.allow_promotion_codes = true;
     }
 

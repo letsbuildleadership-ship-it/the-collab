@@ -274,7 +274,18 @@ function paymentLinkMap() {
       if (plan.payment_link) map[plan.payment_link] = { key: m.key, interval: plan.interval };
     }
   }
+  // Partnerships too, so a signed-in Founder gets their Partnership discount.
+  for (const p of registry.partnerships || []) {
+    if (p.payment_link) map[p.payment_link] = { key: p.key, interval: null };
+  }
   return map;
+}
+
+/** Percent off a Partnership for this customer's highest Founder level (0 if none). */
+function founderPartnershipDiscount(record) {
+  if (!record || !record.founder) return 0;
+  const levels = record.founder.levels || [record.founder.level];
+  return Math.max(0, ...levels.map((k) => (entryForKey(k) || {}).partnership_discount_percent || 0));
 }
 
 module.exports = {
@@ -298,6 +309,7 @@ module.exports = {
   founderTierKeys,
   isFounderDiscountExempt,
   paymentLinkMap,
+  founderPartnershipDiscount,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,
