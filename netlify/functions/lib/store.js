@@ -200,7 +200,7 @@ const { memberStanding } = require('./member-standing');
 async function listMembers() {
   return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
     .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
-    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null }));
+    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null }));
 }
 
 async function listFounders() {

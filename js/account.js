@@ -290,7 +290,7 @@
           <div><span class="founder-card-label">Standing</span><strong class="founder-card-value">${esc(standing.replace(/ Members$/, ' Member'))}</strong></div>
           <div><span class="founder-card-label">Member since</span><strong class="founder-card-value">${since}</strong></div>
         </div>
-        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="login.html#member-wall">Membership Legacy Wall</a>.</p>
+        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="products.html#member-wall">.LLab™ Membership Legacy Wall</a>${data.partnership ? ' and the <a href="partnership.html#partner-wall">Partnership™ Legacy Wall</a>' : ''}.</p>
       </div>`;
   }
 

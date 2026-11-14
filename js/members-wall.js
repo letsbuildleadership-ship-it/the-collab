@@ -1,4 +1,4 @@
-/* The Membership Legacy Wall on pages/login.html: names only, by highest standing ever held. */
+/* Legacy Walls (.LLab Membership on products.html, Partnership on partnership.html): names only, by highest standing ever held. */
 (function () {
   function esc(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -7,7 +7,7 @@
     const box = document.getElementById('member-wall-lists');
     if (!box) return;
     try {
-      const res = await fetch('/.netlify/functions/members-wall');
+      const res = await fetch('/.netlify/functions/members-wall?wall=' + encodeURIComponent(box.dataset.wall || 'llab'));
       if (!res.ok) return;
       const data = await res.json();
       if (!data.total) return;

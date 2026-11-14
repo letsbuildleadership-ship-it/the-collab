@@ -19,8 +19,14 @@ test('Membership Legacy Wall: named members by highest standing ever, never remo
   r.record.memberships = {};
   const body = JSON.parse((await handler({ httpMethod: 'GET' })).body);
   const by = Object.fromEntries(body.groups.map((g) => [g.key, g.members.map((m) => m.displayName)]));
-  assert.deepEqual(by.partnership, ['Partner Co.']);
   assert.deepEqual(by.llab, ['Shopper']);
+  assert.ok(!('partnership' in by), 'Partners have their own wall');
+  const pw = JSON.parse((await handler({ httpMethod: 'GET', queryStringParameters: { wall: 'partnership' } })).body);
+  assert.equal(pw.groups[0].label, 'Omnidirectional Partners', 'highest tier first');
+  assert.deepEqual(pw.groups.find((g) => g.key === partner.key).members.map((m) => m.displayName), ['Partner Co.']);
+  const fs = require('fs');
+  assert.ok(fs.readFileSync('pages/products.html', 'utf8').includes('data-wall="llab"'));
+  assert.ok(fs.readFileSync('pages/partnership.html', 'utf8').includes('data-wall="partnership"'));
   assert.ok(!JSON.stringify(body).includes('Owner Test'));
   assert.ok(!/[A-Z]+-\d{5}/.test(JSON.stringify(body)), 'no Member Numbers on the wall');
   assert.ok(!JSON.stringify(body).includes('@'), 'no emails');
