@@ -52,6 +52,13 @@ async function nextFounderNumber() {
   return `F-${String(founderSeq).padStart(5, '0')}`;
 }
 
+/** Givers recognized as Omnidirectional Benefactors™ (not Founders), public-safe fields only. */
+async function listBenefactors() {
+  return Array.from(customers.values())
+    .filter((r) => r && r.benefactor && !r.founder)
+    .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since, test: !!r.ownerTest }));
+}
+
 async function listFounders() {
   return Array.from(customers.values())
     .filter((r) => r.founder)
@@ -62,6 +69,7 @@ async function listFounders() {
       name: r.founder.name || null,
       memberId: r.memberId || null,
       recognizedAt: r.founder.recognizedAt,
+      test: !!r.ownerTest,
     }));
 }
 
@@ -185,8 +193,8 @@ async function getSubscriptionLink(subscriptionId) {
   return bySubscription.get(subscriptionId) || null;
 }
 
-async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency }) {
-  const id = `${sessionId}-${priceKey}`;
+async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency, split = false }) {
+  const id = `${sessionId}-${priceKey}${split ? `-${partnerKey}` : ''}`;
   if (impactLedger.has(id)) return impactLedger.get(id);
   const entry = {
     id,
@@ -255,6 +263,7 @@ module.exports = {
   hashEmail,
   nextFounderNumber,
   listFounders,
+  listBenefactors,
   listCustomers,
   opsPut,
   opsGet,

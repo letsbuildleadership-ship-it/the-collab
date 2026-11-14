@@ -3,22 +3,12 @@
   "banner_highlight": "Now Open",
   "banner_cta_label": "Become a Founder",
   "banner_cta_link": "#apply",
-  "eyebrow": "The Co.LLab Founders Organization™ · BUILD",
+  "eyebrow": "The Co.LLab Founders Organization™ · Omnidirectional Enterprise™",
   "hero_headline": [
     {
-      "text": "The Co.LLab",
-      "style": "white",
-      "break_before": false
-    },
-    {
-      "text": "™",
-      "style": "default",
-      "break_before": false
-    },
-    {
-      "text": "The Co.LLab Founders Organization™.",
+      "text": "The Co.LLab Founders Organization™",
       "style": "glow",
-      "break_before": true
+      "break_before": false
     }
   ],
   "hero_subhead_prefix": "Become a Founder.",
@@ -58,9 +48,9 @@
       "description": "Make it last beyond any one person."
     }
   ],
-  "apply_tag": "Introductory Founder Offer",
-  "apply_headline": "Four ways into Omnidirectional Enterprise™. One legacy.",
-  "apply_body": "Every option builds Leadership Infrastructure™ — and flows back out to the ecosystem.",
+  "apply_tag": "Introductory Founder Offer · The IV Phases™",
+  "apply_headline": "Give at any level. Every giver is a Founder.",
+  "apply_body": "Every level includes .LLab™ products from its phase, free to keep, supports a charity partner, and is credited in full toward a Partnership™.",
   "tiers": [
     {
       "tag": "Community Founder",
@@ -91,10 +81,10 @@
       "impact_label": "Supports Wavecraft Oceans Project"
     }
   ],
-  "founder_benefits": "Every founding option includes a permanent Founder Number, a digital Founder Card, and 20% off eligible future products from The Co.LLab™ while signed in.",
+  "founder_benefits": "Every founding level includes a permanent Founder Number, a digital Founder Card, a place on the Legacy Wall, 20% off eligible future products from The Co.LLab™ while signed in, and everything you paid credited once toward a Partnership™, applied automatically at checkout while signed in. Every level adds free .LLab™ products from its phase, delivered to your library at checkout, and 10% of every gift supports Blazing Smiles or Wavecraft Oceans Project.",
   "founder_not_investment": "Let’s Build Your Legacy Through Omnidirectional Enterprise™. Every founding option is an investment in that legacy — it carries no ownership stake or financial return.",
-  "recognition_eyebrow": "Founder Recognition",
-  "recognition_headline": "Every Founder, permanently recognized.",
-  "recognition_body": "Every Founder gets a permanent Founder Number and a place here.",
-  "recognition_empty": "Founder Numbers are issued the moment a Founder purchase completes — check back soon."
+  "recognition_eyebrow": "Founder Recognition · The Co.LLab Founders Organization™ Legacy Wall",
+  "recognition_headline": "Your name, on the Legacy Wall. Permanently.",
+  "recognition_body": "The moment your founding purchase completes, your name, or your company’s, goes up on The Co.LLab Founders Organization™ Legacy Wall under your founding level, for good. Only real Founders appear here, by giving level: every name on this wall helped build The Co.LLab™.",
+  "recognition_empty": "The Co.LLab Founders Organization™ Legacy Wall is ready. The first name goes up the moment the first founding purchase completes."
 }

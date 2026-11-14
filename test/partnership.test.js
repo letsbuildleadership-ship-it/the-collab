@@ -51,24 +51,34 @@ test('registry has the 4 partnership tiers at the right prices, fully separate f
     assert.ok(t.stripe_price_id.startsWith('price_'), `${t.key} price id`);
     assert.ok(t.payment_link.startsWith('https://buy.stripe.com/'), `${t.key} payment link`);
     assert.equal(t.founder_rank, undefined, `${t.key} must not have a founder_rank`);
-    assert.equal(t.impact, undefined, `${t.key} must not have an impact allocation`);
+    assert.deepEqual(pricing.impactsForKey(t.key).map((i) => [i.partner_key, i.percent]), [['blazing-smiles', 5], ['wavecraft-oceans', 5]], `${t.key} supports both charities`);
     assert.equal(t.founder_discount_exempt, true);
     assert.equal(pricing.keyForPriceId(t.stripe_price_id), t.key);
     assert.equal(pricing.entryForKey(t.key).kind, 'partnership');
     assert.equal(pricing.founderRankForKey(t.key), null);
-    assert.equal(pricing.impactForKey(t.key), null);
+    assert.equal(pricing.impactForKey(t.key).partner_key, 'blazing-smiles');
     allPrices.add(t.stripe_price_id);
   }
   assert.equal(allPrices.size, 4);
 });
 
-test('partnerships never get the Founder discount and stay out of the Founder link rewrite', () => {
-  const founderRecord = { founder: { founderNumber: 'F-00001' } };
+test('partnerships never get the 20% Founder discount; every Founder gets what they paid as a one-time Partnership credit', () => {
+  const { _partnershipCreditFor } = require('../netlify/functions/checkout-create');
+  const rec = (...levels) => ({ founder: { founderNumber: 'F-00001', level: levels[levels.length - 1], levels } });
   const linkMap = pricing.paymentLinkMap();
   for (const key of pricing.partnershipKeys()) {
-    assert.equal(_shouldApplyFounderDiscount(founderRecord, key), false);
-    assert.ok(!(pricing.entryForKey(key).payment_link in linkMap));
+    assert.equal(_shouldApplyFounderDiscount(rec('legacy-founder'), key), false);
+    assert.ok(pricing.entryForKey(key).payment_link in linkMap, 'founder checkout rewrite covers partnerships');
+    assert.equal(_partnershipCreditFor(rec('friends-family'), key), 20);
+    assert.equal(_partnershipCreditFor(rec('premium-friends-family'), key), 50);
+    assert.equal(_partnershipCreditFor(rec('founder'), key), 350);
+    assert.equal(_partnershipCreditFor(rec('legacy-founder'), key), 1000);
+    assert.equal(_partnershipCreditFor(rec('friends-family', 'legacy-founder'), key), 1020, 'upgrades add up');
+    const used = rec('legacy-founder'); used.founder.partnershipCreditUsed = { amount: 1000 };
+    assert.equal(_partnershipCreditFor(used, key), 0, 'credit is used once');
+    assert.equal(_partnershipCreditFor(null, key), 0);
   }
+  assert.equal(_partnershipCreditFor(rec('legacy-founder'), 'strength-map'), 0);
 });
 
 test('partnershipGrantKeys = every product except Founders tiers + every Blueprint issue + every bonus product', () => {
@@ -99,7 +109,7 @@ test('Partner purchase grants its designated products (not the complete portfoli
   }
 
   assert.equal(record.founder, null, 'no Founder recognition');
-  assert.equal((await fakeStore.listImpactLedger()).length, 0, 'no impact allocation');
+  assert.deepEqual((await fakeStore.listImpactLedger()).map((l) => l.partnerKey).sort(), ['blazing-smiles', 'wavecraft-oceans'], 'charity support carries over: 5% each');
   assert.equal(record.partnership.key, 'partnership-partner');
   assert.equal(record.partnership.seats, 1);
   assert.equal(record.partnership.expiresAt, EXPECTED_END);
@@ -197,20 +207,20 @@ test('subscription memberships (no currentPeriodEnd) are unaffected by expiry ch
 const root = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 // Page content without the shared site header and footer: the primary nav links
-// every offer, while Founders and Partnership content never cross-promote.
+// every offer; Founders and Partnership content link to each other (Omnidirectional flow).
 const content = (html) => html.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>[\s\S]*?<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
 
-test('partnership page lists every tier link, states IP ownership and results terms, and never links to Founders', () => {
+test('partnership page lists every tier link, states IP ownership and results terms, and links to the Founders Organization', () => {
   const html = read('pages/partnership.html');
   for (const t of pricing.registry.partnerships) assert.ok(html.includes(t.payment_link), t.key);
   assert.match(html, /Clear Terms/);
   assert.match(html, /owned by Ashley E\. Clasby and licensed through The Co\.LLab™/);
   assert.match(html, /Results depend on how each business applies it/);
-  assert.ok(!/founders\.html/.test(content(html)), 'partnership page content must not link to the Founders page');
+  assert.ok(/founders\.html/.test(content(html)), 'partnership page links to the Founders Organization');
 });
 
-test('Founders page content never links to the partnership page; sitemap and every primary nav include both', () => {
-  assert.ok(!/partnership\.html/.test(content(read('pages/founders.html'))));
+test('Founders page content links to the partnership page; sitemap and every primary nav include both', () => {
+  assert.ok(/partnership\.html/.test(content(read('pages/founders.html'))));
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
     const html = read(f);
     for (const cls of ['nav-links', 'nav-more', 'nav-signin']) {

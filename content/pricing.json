@@ -1,18 +1,18 @@
 {
   "_readme": "Canonical product/pricing registry consumed by Netlify Functions (webhook fulfillment, entitlement grants, PDF delivery) and by the account dashboard. Edit prices, links, and PDF filenames here via /admin (Decap CMS) — no code changes needed for price updates. Each `stripe_price_id` MUST match a live Stripe Price on The Co.LLab's Stripe account, since the webhook maps incoming Stripe price IDs back to a product key by scanning this file.",
-  "_impact_readme": "Impact Products designate a percentage of the purchase price to a partner nonprofit. Allocations are computed and recorded in an internal Netlify Blobs ledger at fulfillment time (netlify/functions/lib/fulfill.js) for later remittance/reconciliation. Money is NOT automatically transferred to the nonprofit via Stripe unless that partner's `stripe_connect_account_id` is set below and Stripe Connect is actually configured for that account — until then this is bookkeeping only, not a live payment split.",
+  "_impact_readme": "Impact Products designate a percentage of the purchase price to a partner nonprofit. Allocations are computed and recorded in an internal Netlify Blobs ledger at fulfillment time (netlify/functions/lib/fulfill.js) for later remittance/reconciliation. Money is NOT automatically transferred to the nonprofit via Stripe unless that partner's `stripe_connect_account_id` is set below and Stripe Connect is actually configured for that account — until then this is bookkeeping only, not a live payment split. Every giving level and every Partnership carries an `impact` (one partner at 10%, or both at 5% each); gifts through give.js use the impact of the level reached.",
   "impact_partners": [
     {
       "key": "blazing-smiles",
       "name": "Blazing Smiles",
-      "description": "A nonprofit supported by every Founders Organization — Community Founder and Founder purchase.",
+      "description": "A nonprofit supported by The Co.LLab Founders Organization™ (10% of gifts at its giving levels) and by every Partnership (5%).",
       "website": null,
       "stripe_connect_account_id": null
     },
     {
       "key": "wavecraft-oceans",
       "name": "Wavecraft Oceans Project",
-      "description": "A nonprofit supported by every Founders Organization — Premium Community Founder and Legacy Founder purchase.",
+      "description": "A nonprofit supported by The Co.LLab Founders Organization™ (10% of gifts at its giving levels) and by every Partnership (5%).",
       "website": null,
       "stripe_connect_account_id": null
     }
@@ -342,7 +342,12 @@
         "partner_key": "blazing-smiles",
         "percent": 10
       },
-      "founder_discount_exempt": true
+      "founder_discount_exempt": true,
+      "grants": [
+        "infrastructure-roadmap",
+        "strength-map"
+      ],
+      "retired_from_sale": true
     },
     {
       "key": "premium-friends-family",
@@ -360,7 +365,11 @@
         "partner_key": "wavecraft-oceans",
         "percent": 10
       },
-      "founder_discount_exempt": true
+      "founder_discount_exempt": true,
+      "grants": [
+        "infrastructure-roadmap",
+        "values-charter"
+      ]
     },
     {
       "key": "founder",
@@ -378,7 +387,12 @@
       },
       "founder_rank": 3,
       "founder_level_label": "Founder",
-      "founder_discount_exempt": true
+      "founder_discount_exempt": true,
+      "grants": [
+        "infrastructure-roadmap",
+        "legacy-profile",
+        "alignment-map"
+      ]
     },
     {
       "key": "legacy-founder",
@@ -396,7 +410,12 @@
       },
       "founder_rank": 4,
       "founder_level_label": "Legacy Founder",
-      "founder_discount_exempt": true
+      "founder_discount_exempt": true,
+      "grants": [
+        "infrastructure-roadmap",
+        "legacy-map",
+        "diagnostic"
+      ]
     }
   ],
   "_blueprint_readme": "The .LLab Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
@@ -558,7 +577,17 @@
         "1 year of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase I · Foundations",
-      "legacy_line": "Who you are and what you stand on."
+      "legacy_line": "Who you are and what you stand on.",
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ]
     },
     {
       "key": "partnership-strategic",
@@ -604,7 +633,17 @@
         "2 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase II · Infrastructure Planning & Management",
-      "legacy_line": "Where it's going and how it connects."
+      "legacy_line": "Where it's going and how it connects.",
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ]
     },
     {
       "key": "partnership-enterprise",
@@ -651,7 +690,17 @@
         "3 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase III · Internal Operating Systems",
-      "legacy_line": "In every decision, every day."
+      "legacy_line": "In every decision, every day.",
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ]
     },
     {
       "key": "partnership-omnidirectional",
@@ -700,7 +749,17 @@
       ],
       "lifetime": true,
       "phase_label": "Phase IV · Preservation",
-      "legacy_line": "So it outlasts you."
+      "legacy_line": "So it outlasts you.",
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ]
     }
   ],
   "memberships": [
@@ -781,6 +840,212 @@
         "membership",
         "library-card"
       ]
+    }
+  ],
+  "_designation_readme": "Chosen-amount founding items with `designate: true` ask the buyer (a dropdown on the Stripe Payment Link) which Omnidirectional Enterprise™ area to direct their money to; the choice is stored on record.founder.contributions.",
+  "designation_nodes": [
+    "Businesses",
+    "Nonprofits",
+    "Communities",
+    "People",
+    "Products & Services",
+    "Technology",
+    "Capital",
+    "Knowledge + IP",
+    "Creators"
+  ],
+  "_giving_readme": "Give any amount: pages/founders.html posts to netlify/functions/give.js, which opens a Stripe Checkout for the chosen amount (no Payment Link needed). Every giver becomes a Founder. Their level is the highest giving level whose `min` their running total has reached; levels that are also fixed Stripe products (friends-family, premium-friends-family, founder, legacy-founder) take label, rank and grants from the product. Modeled on museum and gallery giving; the top five mirror the Partnership tiers (Partner, Strategic, Enterprise, Omnidirectional) and show amount ranges.",
+  "giving": [
+    {
+      "key": "founder-give",
+      "name": "The Co.LLab™ Founders Organization — Give Any Amount",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$50+",
+      "custom_amount": true,
+      "pdf_file": "founders-legacy-member.pdf",
+      "description": "Give any amount to build the infrastructure of Omnidirectional Enterprise™ and become a Founder.",
+      "founder_discount_exempt": true
+    }
+  ],
+  "giving_levels": [
+    {
+      "key": "premium-friends-family",
+      "min": 50,
+      "phase": "I"
+    },
+    {
+      "key": "infrastructure-founder",
+      "min": 100,
+      "phase": "II",
+      "label": "Infrastructure Founder",
+      "rank": 2.3,
+      "grants": [
+        "infrastructure-roadmap",
+        "build-plan"
+      ],
+      "impact": {
+        "partner_key": "wavecraft-oceans",
+        "percent": 10
+      }
+    },
+    {
+      "key": "operating-systems-founder",
+      "min": 250,
+      "phase": "III",
+      "label": "Operating Systems Founder",
+      "rank": 2.6,
+      "grants": [
+        "infrastructure-roadmap",
+        "legacy-profile"
+      ],
+      "impact": {
+        "partner_key": "blazing-smiles",
+        "percent": 10
+      }
+    },
+    {
+      "key": "founder",
+      "min": 350,
+      "phase": "III"
+    },
+    {
+      "key": "preservation-founder",
+      "min": 500,
+      "phase": "IV",
+      "label": "Preservation Founder",
+      "rank": 3.5,
+      "grants": [
+        "infrastructure-roadmap",
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "impact": {
+        "partner_key": "wavecraft-oceans",
+        "percent": 10
+      }
+    },
+    {
+      "key": "legacy-founder",
+      "min": 1000,
+      "phase": "IV"
+    },
+    {
+      "key": "benefactor-founder",
+      "min": 2500,
+      "phase": "IV",
+      "label": "Benefactor Founder",
+      "rank": 5,
+      "grants": [
+        "infrastructure-roadmap",
+        "legacy-map",
+        "diagnostic",
+        "blueprint"
+      ],
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ],
+      "range": true
+    },
+    {
+      "key": "partner-founder",
+      "min": 5000,
+      "phase": "All",
+      "label": "Partner Founder",
+      "rank": 6,
+      "grants": [
+        "infrastructure-roadmap",
+        "@four-phases"
+      ],
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ],
+      "range": true
+    },
+    {
+      "key": "strategic-founder",
+      "min": 10000,
+      "phase": "All",
+      "label": "Strategic Founder",
+      "rank": 7,
+      "grants": [
+        "infrastructure-roadmap",
+        "@four-phases",
+        "@creator"
+      ],
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ],
+      "range": true
+    },
+    {
+      "key": "enterprise-founder",
+      "min": 25000,
+      "phase": "All",
+      "label": "Enterprise Founder",
+      "rank": 8,
+      "grants": [
+        "infrastructure-roadmap",
+        "@four-phases",
+        "@creator",
+        "@blueprint"
+      ],
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ],
+      "range": true
+    },
+    {
+      "key": "omnidirectional-founder",
+      "min": 50000,
+      "phase": "All",
+      "label": "Omnidirectional Founder",
+      "rank": 9,
+      "grants": [
+        "infrastructure-roadmap",
+        "@four-phases",
+        "@creator",
+        "@blueprint"
+      ],
+      "impact": [
+        {
+          "partner_key": "blazing-smiles",
+          "percent": 5
+        },
+        {
+          "partner_key": "wavecraft-oceans",
+          "percent": 5
+        }
+      ],
+      "range": true
     }
   ]
 }

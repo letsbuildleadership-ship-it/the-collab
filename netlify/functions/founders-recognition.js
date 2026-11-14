@@ -1,9 +1,8 @@
 // Public, unauthenticated: the Founder Recognition list shown on
 // pages/founders.html — every recognized Founder, grouped by level,
 // ordered by their permanent sequential Founder Number. Only ever
-// publishes name-or-Member-ID (Member ID is already treated as a public
-// handle elsewhere on the site, e.g. .LLab Library™ community
-// reflections) — never email, Stripe ids, or purchase history.
+// publishes the name given at checkout, and only for real buyers (no test
+// purchases, no placeholders) — never email, Stripe ids, or purchase history.
 const store = require('./lib/store');
 const pricing = require('./lib/pricing');
 const { json } = require('./lib/http');
@@ -16,18 +15,20 @@ exports.handler = async (event) => {
   if (event.httpMethod !== 'GET') return json(405, { error: 'Method Not Allowed' });
 
   try {
-    const founders = await store.listFounders();
-    const levels = pricing.founderTierKeys(); // ascending rank order
+    // Only real people or companies: a name given at checkout, never a test purchase or a placeholder.
+    const real = (x) => x.name && String(x.name).trim() && !x.test;
+    const founders = (await store.listFounders()).filter(real);
+    const levels = pricing.recognitionLevels(); // ascending rank order
 
-    const groups = levels.map((key) => ({
+    const groups = levels.map(({ key, label }) => ({
       level: key,
-      levelLabel: pricing.founderLevelLabelForKey(key),
+      levelLabel: label,
       founders: founders
         .filter((f) => f.level === key)
         .sort(founderNumberSort)
         .map((f) => ({
           founderNumber: f.founderNumber,
-          displayName: f.name || f.memberId || 'A Founder of The Co.LLab™',
+          displayName: String(f.name).trim(),
           recognizedAt: f.recognizedAt,
         })),
     }));

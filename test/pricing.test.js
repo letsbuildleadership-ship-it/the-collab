@@ -51,7 +51,7 @@ test('Membership unlocks the full one-time catalog; Library Card and Journal do 
   assert.equal(pricing.unlocksCatalog('journal'), false);
 });
 
-test('allCatalogProductKeys returns all one-time products (14 leadership IV-phase + 12 creator infrastructure + 4 Founders tiers)', () => {
+test('allCatalogProductKeys returns all one-time products (14 leadership IV-phase + 12 creator infrastructure + 4 Founders tiers )', () => {
   const keys = pricing.allCatalogProductKeys();
   assert.equal(keys.length, 30);
   assert.ok(keys.includes('strength-map'));

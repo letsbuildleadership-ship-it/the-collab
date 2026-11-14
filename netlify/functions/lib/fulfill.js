@@ -39,6 +39,11 @@ function addMonths(date, months) {
  * derived from this record at read time (lib/access.js), so removing a
  * seat holder takes effect immediately.
  */
+/** Dropdown value for an Omnidirectional Enterprise™ area (Stripe allows letters and digits only). */
+function slug(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 function applyPartnership(record, entry, session) {
   const purchasedAt = session.created ? new Date(session.created * 1000) : new Date();
   const termMonths = entry.term_months || 12;
@@ -117,10 +122,21 @@ async function fulfillCheckoutSession(session, priceIds) {
     record.name = sessionName;
   }
 
+  // Owner test purchases (Stripe test mode or the owner test tool) never appear on the Legacy Wall.
+  if (session.livemode === false || (session.metadata || {}).purpose === 'owner_test_purchase') record.ownerTest = true;
+
   const grantedKeys = [];
+  const recognitionKeys = [];
+  const contributions = [];
+  let foundingPaid = 0;
+  let wallName = null;
+  let giftLevelKey = null;
 
   for (const priceId of priceIds) {
-    const key = pricing.keyForPriceId(priceId);
+    // A "give any amount" checkout (give.js) uses an inline price; its key travels in the session metadata.
+    const meta = session.metadata || {};
+    const giveKey = meta.purpose === 'founder_give' && priceIds.length === 1 && (pricing.entryForKey(meta.key) || {}).custom_amount ? meta.key : null;
+    const key = pricing.keyForPriceId(priceId) || giveKey;
     if (!key) continue; // price belongs to an unrelated product on the same Stripe account
     const entry = pricing.entryForKey(key);
     grantedKeys.push(key);
@@ -141,6 +157,38 @@ async function fulfillCheckoutSession(session, priceIds) {
 
     if (entry.kind === 'partnership') {
       for (const k of applyPartnership(record, entry, session)) grantedKeys.push(k);
+      const credit = Number((session.metadata || {}).founder_partnership_credit || 0);
+      if (credit > 0 && record.founder) {
+        record.founder.partnershipCreditUsed = { amount: credit, sessionId: session.id || null, at: new Date().toISOString() };
+      }
+    }
+
+    // One-time products (e.g. a Founder level) can include free .LLab products.
+    if (entry.kind === 'product') {
+      for (const k of pricing.grantsForKey(key)) grantedKeys.push(k);
+    }
+
+    // Founding money in this session: a chosen amount (custom price) is
+    // recognized at the fixed level it reaches and gets that level's grants.
+    if (entry.kind === 'product' && entry.custom_amount) {
+      const paid = Math.round(Number(session.amount_total || 0)) / 100;
+      // Level reflects everything this person has put in, so repeat contributions can raise it.
+      const levelKey = pricing.founderLevelForAmount(pricing.founderPaidTotal(record.founder) + foundingPaid + paid);
+      foundingPaid += paid;
+      giftLevelKey = levelKey;
+      const field = (session.custom_fields || []).find((c) => c.key === 'direct_to');
+      const value = (field && field.dropdown && field.dropdown.value) || (session.metadata || {}).direct_to;
+      const node = pricing.designationNodes().find((n) => slug(n) === value) || null;
+      const nameField = (session.custom_fields || []).find((c) => c.key === 'wall_name');
+      if (nameField && nameField.text && nameField.text.value && nameField.text.value.trim()) wallName = nameField.text.value.trim().slice(0, 80);
+      contributions.push({ key, amount: paid, node, at: new Date().toISOString(), sessionId: session.id || null });
+      if (levelKey) {
+        recognitionKeys.push(levelKey);
+        for (const k of pricing.grantsForKey(levelKey)) grantedKeys.push(k);
+      }
+    } else if (pricing.founderRankForKey(key)) {
+      foundingPaid += pricing.priceDollars(entry) || 0;
+      recognitionKeys.push(key);
     }
 
     // Impact Products: if this key is flagged with a nonprofit partner,
@@ -148,17 +196,20 @@ async function fulfillCheckoutSession(session, priceIds) {
     // auditable ledger. Assumes one line item per checkout session, which
     // holds for every Payment Link on this site today (same assumption the
     // purchases.push amount below already makes).
-    const impact = pricing.impactForKey(key);
-    if (impact && impact.partner_key && session.amount_total != null) {
+    const impactKey = entry.custom_amount ? giftLevelKey || key : key;
+    const impacts = pricing.impactsForKey(impactKey);
+    for (const impact of impacts) {
+      if (!impact.partner_key || session.amount_total == null) continue;
       const impactAmount = Math.round((session.amount_total * (impact.percent || 10)) / 100);
       await store.recordImpactAllocation({
         sessionId: session.id,
-        priceKey: key,
+        priceKey: impactKey,
         partnerKey: impact.partner_key,
         percent: impact.percent || 10,
         grossAmount: session.amount_total,
         impactAmount,
         currency: session.currency || 'usd',
+        split: impacts.length > 1,
       });
     }
 
@@ -181,7 +232,7 @@ async function fulfillCheckoutSession(session, priceIds) {
   // it only records recognition after payment has already completed.
   let highestNewRank = 0;
   let highestNewKey = null;
-  for (const key of grantedKeys) {
+  for (const key of recognitionKeys) {
     const rank = pricing.founderRankForKey(key);
     if (rank && rank > highestNewRank) {
       highestNewRank = rank;
@@ -209,6 +260,26 @@ async function fulfillCheckoutSession(session, priceIds) {
       }
       if (record.name && !record.founder.name) record.founder.name = record.name;
     }
+  }
+  // The name a giver chose for the Legacy Wall (a person or a company) wins over the card name.
+  if (wallName && record.founder) record.founder.name = wallName;
+
+  if (contributions.length) {
+    // Anyone who gives is recognized: below a founding level, as an Omnidirectional Benefactor™.
+    const given = contributions.reduce((sum, c) => sum + c.amount, 0);
+    const prior = record.benefactor || {};
+    const already = (record.contributions || []).some((c) => contributions.some((n) => n.sessionId && n.sessionId === c.sessionId));
+    record.benefactor = {
+      since: prior.since || new Date().toISOString(),
+      name: prior.name || record.name || null,
+      total: (prior.total || 0) + (already ? 0 : given),
+    };
+
+    record.contributions = [...(record.contributions || []).filter((c) => !contributions.some((n) => n.sessionId && n.sessionId === c.sessionId)), ...contributions];
+  }
+  if (record.founder && foundingPaid > 0) {
+    const before = record.founder.paid;
+    record.founder.paid = (typeof before === 'number' ? before : pricing.founderPaidTotal({ ...record.founder, levels: (record.founder.levels || []).filter((k) => !recognitionKeys.includes(k)) })) + foundingPaid;
   }
 
   record.entitlements = uniq([...(record.entitlements || []), ...grantedKeys]);

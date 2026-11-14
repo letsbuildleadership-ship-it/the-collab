@@ -22,6 +22,11 @@ function buildIndex() {
     }
   }
 
+  // Give any amount (custom amount, sold through give.js rather than a Payment Link).
+  for (const g of registry.giving || []) {
+    byKey.set(g.key, { ...g, kind: 'product' });
+  }
+
   for (const b of registry.bonus_products || []) {
     byKey.set(b.key, { ...b, kind: 'bonus' });
   }
@@ -55,6 +60,11 @@ function buildIndex() {
 }
 
 let cached = null;
+/** Tests only: rebuild the lookup index after changing the registry. */
+function _resetIndex() {
+  cached = null;
+}
+
 function index() {
   if (!cached) cached = buildIndex();
   return cached;
@@ -73,7 +83,20 @@ function entryForKey(key) {
 /** Bonus product keys automatically granted alongside a membership purchase. */
 function grantsForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.grants) || [];
+  const level = entry ? null : givingLevelByKey(key);
+  return expandGrants((entry ? entry.grants : level && level.grants) || []);
+}
+
+/** Grant lists may name whole groups: @four-phases, @creator (the creator line), @blueprint (every issue). */
+function expandGrants(list) {
+  const out = [];
+  for (const k of list) {
+    if (k === '@four-phases') out.push(...fourPhasesKeys());
+    else if (k === '@creator') out.push(...(registry.products || []).filter((p) => p.line === 'creator').map((p) => p.key));
+    else if (k === '@blueprint') out.push(...(registry.blueprint_series || []).map((p) => p.key));
+    else out.push(k);
+  }
+  return [...new Set(out)];
 }
 
 /** Does this membership key unlock the full one-time .LLab product catalog? */
@@ -224,20 +247,60 @@ function impactPartnerForKey(partnerKey) {
 
 /** { partner_key, percent } if this product/membership key is a designated Impact Product, else null. */
 function impactForKey(key) {
+  return impactsForKey(key)[0] || null;
+}
+
+/** Every charity allocation for a key (a product, a Partnership or a giving level): [{ partner_key, percent }]. */
+function impactsForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.impact) || null;
+  const level = entry ? null : givingLevelByKey(key);
+  const raw = (entry ? entry.impact : level && level.impact) || null;
+  return raw ? (Array.isArray(raw) ? raw : [raw]) : [];
 }
 
 /** Numeric Founder tier rank (higher = higher tier) if this key is a Founder-level product, else null. */
 function founderRankForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.founder_rank) || null;
+  if (entry && entry.founder_rank) return entry.founder_rank;
+  const level = entry ? null : givingLevelByKey(key);
+  return (level && level.rank) || null;
+}
+
+/** Giving levels, lowest first: { key, label, min, rank, grants, circle }. Product-backed levels read the product. */
+function givingLevels() {
+  return (registry.giving_levels || [])
+    .map((l) => {
+      const p = (registry.products || []).find((x) => x.key === l.key);
+      return {
+        key: l.key,
+        label: l.label || (p && (p.founder_level_label || p.name)) || l.key,
+        min: l.min,
+        rank: l.rank || (p && p.founder_rank) || 0,
+        grants: l.grants || (p && p.grants) || [],
+        impact: l.impact || (p && p.impact) || null,
+        phase: l.phase || null,
+        range: !!l.range,
+      };
+    })
+    .sort((a, b) => a.min - b.min);
+}
+
+function givingLevelByKey(key) {
+  return givingLevels().find((l) => l.key === key) || null;
+}
+
+/** Every recognized level, lowest rank first (for the Legacy Wall). */
+function recognitionLevels() {
+  return givingLevels().slice().sort((a, b) => a.rank - b.rank);
 }
 
 /** Short display label for a Founder tier ("Founder", "Legacy Founder"), falling back to the product name. */
 function founderLevelLabelForKey(key) {
   const entry = entryForKey(key);
-  if (!entry) return key;
+  if (!entry) {
+    const level = givingLevelByKey(key);
+    return level ? level.label : key;
+  }
   return entry.founder_level_label || entry.name;
 }
 
@@ -274,7 +337,39 @@ function paymentLinkMap() {
       if (plan.payment_link) map[plan.payment_link] = { key: m.key, interval: plan.interval };
     }
   }
+  // Partnerships too, so a signed-in Founder gets their Partnership discount.
+  for (const p of registry.partnerships || []) {
+    if (p.payment_link) map[p.payment_link] = { key: p.key, interval: null };
+  }
   return map;
+}
+
+/**
+ * Founder Partnership credit, in dollars: everything this customer paid for
+ * founding levels, credited once toward a Partnership (0 if none or used).
+ */
+function founderPartnershipCredit(record) {
+  if (!record || !record.founder || record.founder.partnershipCreditUsed) return 0;
+  return founderPaidTotal(record.founder);
+}
+
+/** Dollars a Founder has paid for founding (recorded, or derived from the fixed levels held). */
+function founderPaidTotal(founder) {
+  if (!founder) return 0;
+  if (typeof founder.paid === 'number') return founder.paid;
+  const levels = founder.levels || [founder.level];
+  return [...new Set(levels)].reduce((sum, k) => sum + (founderRankForKey(k) ? priceDollars(entryForKey(k)) || 0 : 0), 0);
+}
+
+/** Omnidirectional Enterprise™ areas a Founder can direct a chosen amount to. */
+function designationNodes() {
+  return registry.designation_nodes || [];
+}
+
+/** The giving level a running total reaches (highest level whose minimum it meets). */
+function founderLevelForAmount(dollars) {
+  const reached = givingLevels().filter((l) => dollars >= l.min);
+  return reached.length ? reached[reached.length - 1].key : null;
 }
 
 module.exports = {
@@ -292,12 +387,22 @@ module.exports = {
   impactPartners,
   impactPartnerForKey,
   impactForKey,
+  impactsForKey,
+  expandGrants,
   resolvePurchasable,
   founderRankForKey,
   founderLevelLabelForKey,
   founderTierKeys,
   isFounderDiscountExempt,
   paymentLinkMap,
+  founderPartnershipCredit,
+  founderPaidTotal,
+  _resetIndex,
+  founderLevelForAmount,
+  givingLevels,
+  givingLevelByKey,
+  recognitionLevels,
+  designationNodes,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,

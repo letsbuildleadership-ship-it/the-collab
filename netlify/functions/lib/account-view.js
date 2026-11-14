@@ -159,7 +159,7 @@ function buildAccountView(record, now) {
     // the up-to-date name (e.g. after a level is renamed) without rewriting
     // their stored record. Founder Number and recognition date are untouched.
     founder: record.founder
-      ? { ...record.founder, levelLabel: pricing.founderLevelLabelForKey(record.founder.level) || record.founder.levelLabel }
+      ? { ...record.founder, levelLabel: pricing.founderLevelLabelForKey(record.founder.level) || record.founder.levelLabel, partnershipCredit: pricing.founderPartnershipCredit(record), contributions: (record.contributions || []).map((c) => ({ amount: c.amount, node: c.node, at: c.at })), contributeLink: 'founders.html#give' }
       : null,
   };
 }

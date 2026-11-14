@@ -280,7 +280,7 @@ test('partnership page: refund policy, license link, Founders separation, and no
   assert.match(page, /All sales are final once access is unlocked, subject to applicable law/);
   assert.ok(page.includes('href="ip-license.html"'));
   const body = page.replace(/<header class="site-header">[\s\S]*?<\/header>/, '').replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, '').replace(/<div class="model-ribbon"[\s\S]*?<\/ul>[\s\S]*?<\/div>\s*<\/div>/, '').replace(/<section class="fits"[\s\S]*?<\/section>/, '');
-  assert.ok(!/founders\.html/.test(body), 'no Founders cross-promotion in partnership content');
+  assert.ok(/founders\.html/.test(body), 'partnership content links to the Founders Organization');
   assert.match(page, /no Founders product is included in any partnership/);
   assert.ok(!/testimonial|limited spots|only \d+ (left|available)|guaranteed (results|return)/i.test(page));
   assert.ok(!/Each partnership currently covers the purchaser/.test(page), 'old one-seat copy removed');
