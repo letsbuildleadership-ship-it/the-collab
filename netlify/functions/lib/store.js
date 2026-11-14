@@ -188,6 +188,13 @@ async function nextFounderNumber() {
  * full scan of the customers/ prefix is fine. Returns only public-safe
  * fields: never email, password, Stripe ids, or raw purchase history.
  */
+/** Givers recognized as Omnidirectional Benefactors™ (not Founders), public-safe fields only. */
+async function listBenefactors() {
+  return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
+    .filter((r) => r && r.benefactor && !r.founder)
+    .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since }));
+}
+
 async function listFounders() {
   const page = await store().list({ prefix: 'customers/' });
   const records = await Promise.all(page.blobs.map((b) => store().get(b.key, { type: 'json' })));
@@ -393,6 +400,7 @@ module.exports = {
   nextMemberId,
   nextFounderNumber,
   listFounders,
+  listBenefactors,
   listCustomers,
   getCustomerByToken,
   saveCustomer,

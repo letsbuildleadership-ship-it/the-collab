@@ -32,7 +32,11 @@ exports.handler = async (event) => {
         })),
     }));
 
-    return json(200, { total: founders.length, groups }, { 'Cache-Control': 'public, max-age=60' });
+    const benefactors = (await store.listBenefactors())
+      .sort((a, b) => String(a.since).localeCompare(String(b.since)))
+      .map((b) => ({ displayName: b.name || b.memberId || 'An Omnidirectional Benefactor™', recognizedAt: b.since }));
+    groups.unshift({ level: 'benefactor', levelLabel: pricing.registry.benefactor_label || 'Omnidirectional Benefactor™', founders: benefactors });
+    return json(200, { total: founders.length + benefactors.length, groups }, { 'Cache-Control': 'public, max-age=60' });
   } catch (err) {
     console.error('founders-recognition error', err);
     return json(500, { error: 'Could not load Founder recognition.' });

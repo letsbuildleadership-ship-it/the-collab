@@ -419,7 +419,7 @@
     },
     {
       "key": "founder-contribution",
-      "name": "The Co.LLab™ Founders Organization — Founder Contribution",
+      "name": "The Co.LLab™ Founders Organization — Omnidirectional Benefactor™",
       "phase": "Build · Founders Organization",
       "phase_key": "founders",
       "price_display": "$1+",
@@ -427,7 +427,7 @@
       "designate": true,
       "stripe_pending": true,
       "pdf_file": "founders-legacy-member.pdf",
-      "description": "Contribute any amount, any time, and direct it to an area of Omnidirectional Enterprise™. Every contribution adds to your Partnership credit and can raise your founding level.",
+      "description": "Anyone can give any amount, any time, and direct it to an area of Omnidirectional Enterprise™. Givers are recognized as Omnidirectional Benefactors™; Founders add it to their Partnership credit and level.",
       "founder_discount_exempt": true
     }
   ],
@@ -826,5 +826,6 @@
     "Capital",
     "Knowledge + IP",
     "Creators"
-  ]
+  ],
+  "benefactor_label": "Omnidirectional Benefactor™"
 }

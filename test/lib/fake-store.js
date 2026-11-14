@@ -52,6 +52,13 @@ async function nextFounderNumber() {
   return `F-${String(founderSeq).padStart(5, '0')}`;
 }
 
+/** Givers recognized as Omnidirectional Benefactors™ (not Founders), public-safe fields only. */
+async function listBenefactors() {
+  return Array.from(customers.values())
+    .filter((r) => r && r.benefactor && !r.founder)
+    .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since }));
+}
+
 async function listFounders() {
   return Array.from(customers.values())
     .filter((r) => r.founder)
@@ -255,6 +262,7 @@ module.exports = {
   hashEmail,
   nextFounderNumber,
   listFounders,
+  listBenefactors,
   listCustomers,
   opsPut,
   opsGet,

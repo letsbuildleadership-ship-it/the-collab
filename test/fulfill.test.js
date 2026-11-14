@@ -175,3 +175,23 @@ test('a Founder Contribution of any amount adds to the credit, can raise the lev
   assert.deepEqual(r.record.contributions.map((c) => [c.amount, c.node]), [[700, 'Nonprofits']]);
   assert.equal(pricing.founderPartnershipCredit(r.record), 1050);
 });
+
+test('anyone can give any amount and is recognized as an Omnidirectional Benefactor; $20+ total makes them a Founder', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const raw = pricing.registry.products.find((p) => p.key === 'founder-contribution');
+  raw.stripe_price_id = 'price_test_give';
+  pricing._resetIndex();
+  try {
+    const email = 'giver@example.com';
+    const r1 = await fulfillCheckoutSession({ id: 'cs_g1', amount_total: 500, customer_details: { email, name: 'A Giver' } }, ['price_test_give']);
+    assert.ok(!r1.record.founder);
+    assert.equal(r1.record.benefactor.total, 5);
+    assert.deepEqual((await fakeStore.listBenefactors()).map((b) => b.name), ['A Giver']);
+    const r2 = await fulfillCheckoutSession({ id: 'cs_g2', amount_total: 2000, customer_details: { email } }, ['price_test_give']);
+    assert.equal(r2.record.founder.level, 'friends-family', '$5 + $20 reaches Community Founder');
+    assert.equal((await fakeStore.listBenefactors()).length, 0, 'now shown as a Founder instead');
+  } finally {
+    delete raw.stripe_price_id;
+    pricing._resetIndex();
+  }
+});

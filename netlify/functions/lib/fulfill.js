@@ -248,6 +248,16 @@ async function fulfillCheckoutSession(session, priceIds) {
     }
   }
   if (contributions.length) {
+    // Anyone who gives is recognized: below a founding level, as an Omnidirectional Benefactor™.
+    const given = contributions.reduce((sum, c) => sum + c.amount, 0);
+    const prior = record.benefactor || {};
+    const already = (record.contributions || []).some((c) => contributions.some((n) => n.sessionId && n.sessionId === c.sessionId));
+    record.benefactor = {
+      since: prior.since || new Date().toISOString(),
+      name: prior.name || record.name || null,
+      total: (prior.total || 0) + (already ? 0 : given),
+    };
+
     record.contributions = [...(record.contributions || []).filter((c) => !contributions.some((n) => n.sessionId && n.sessionId === c.sessionId)), ...contributions];
   }
   if (record.founder && foundingPaid > 0) {
