@@ -142,3 +142,16 @@ test('a Community Founder purchase recognizes the purchaser at the bottom Founde
   assert.equal(result.record.founder.level, 'friends-family');
   assert.equal(result.record.founder.levelLabel, 'Community Founder');
 });
+
+test('the Legacy Wall shows only real, named people or companies: no placeholders, no Member IDs, no test purchases', async () => {
+  const handler = require('../netlify/functions/founders-recognition').handler;
+  await fulfillCheckoutSession({ id: 'cs_named', customer_details: { email: 'named@example.com', name: 'Real Company LLC' } }, [FOUNDER_PRICE]);
+  await fulfillCheckoutSession({ id: 'cs_noname', customer_details: { email: 'noname@example.com' } }, [FOUNDER_PRICE]);
+  await fulfillCheckoutSession({ id: 'cs_test', livemode: false, customer_details: { email: 'test@example.com', name: 'Owner Test' } }, [FOUNDER_PRICE]);
+  const res = await handler({ httpMethod: 'GET' });
+  const names = JSON.parse(res.body).groups.flatMap((g) => g.founders.map((f) => f.displayName));
+  assert.ok(names.includes('Real Company LLC'));
+  assert.ok(!names.includes('Owner Test'), 'test purchases stay off the wall');
+  assert.equal(names.length, names.filter((n) => n && n !== 'A Founder of The Co.LLab™').length);
+  assert.ok(!names.some((n) => /^[A-Z]{2,}-?\d/.test(n)), 'no Member IDs');
+});

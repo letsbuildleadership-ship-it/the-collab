@@ -192,7 +192,7 @@ async function nextFounderNumber() {
 async function listBenefactors() {
   return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
     .filter((r) => r && r.benefactor && !r.founder)
-    .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since }));
+    .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since, test: !!r.ownerTest }));
 }
 
 async function listFounders() {
@@ -207,6 +207,7 @@ async function listFounders() {
       name: r.founder.name || null,
       memberId: r.memberId || null,
       recognizedAt: r.founder.recognizedAt,
+      test: !!r.ownerTest,
     }));
 }
 

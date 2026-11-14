@@ -122,6 +122,9 @@ async function fulfillCheckoutSession(session, priceIds) {
     record.name = sessionName;
   }
 
+  // Owner test purchases (Stripe test mode or the owner test tool) never appear on the Legacy Wall.
+  if (session.livemode === false || (session.metadata || {}).purpose === 'owner_test_purchase') record.ownerTest = true;
+
   const grantedKeys = [];
   const recognitionKeys = [];
   const contributions = [];

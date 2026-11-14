@@ -1,4 +1,4 @@
-/* The Founders Wall on pages/founders.html — every recognized Founder,
+/* The Co.LLab Founders Organization™ Legacy Wall on pages/founders.html — every recognized Founder,
  * shown permanently by name under their Founder level (highest level
  * first), in the order they joined. No numbers are shown.
  * Read-only, no sign-in required. */
@@ -12,7 +12,7 @@
     if (!container) return;
 
     if (!data || !data.total) {
-      container.innerHTML = '<p class="subhead">The wall is ready. The first name goes up the moment the first founding purchase completes.</p>';
+      container.innerHTML = '<p class="subhead">The Co.LLab Founders Organization™ Legacy Wall is ready. The first name goes up the moment the first founding purchase completes.</p>';
       return;
     }
 
