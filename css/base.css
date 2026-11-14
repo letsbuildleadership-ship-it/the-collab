@@ -2270,3 +2270,8 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .contact-card .contact-address { font-weight: 700; color: #fff; text-decoration: underline; overflow-wrap: anywhere; }
 .contact-cardart { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 .contact-cardface svg { display: block; width: 100%; height: auto; border-radius: 6px; }
+
+/* ---------- founders page: purpose + future ---------- */
+.fo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.fo-grid .founder-offer p:not(.offer-promise) { margin: 0; color: var(--white-dim); }
+@media (max-width: 860px) { .fo-grid { grid-template-columns: 1fr; } }
