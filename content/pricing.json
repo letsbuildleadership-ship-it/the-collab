@@ -403,32 +403,6 @@
       "grants": [
         "legacy-map"
       ]
-    },
-    {
-      "key": "founder-your-amount",
-      "name": "The Co.LLab™ Founders Organization — Your Amount",
-      "phase": "Build · Founders Organization",
-      "phase_key": "founders",
-      "price_display": "$20+",
-      "custom_amount": true,
-      "stripe_pending": true,
-      "pdf_file": "founders-legacy-member.pdf",
-      "description": "Choose how much you invest, from $20. Your amount sets your founding level and is credited in full toward a Partnership.",
-      "founder_discount_exempt": true,
-      "designate": true
-    },
-    {
-      "key": "founder-contribution",
-      "name": "The Co.LLab™ Founders Organization — Omnidirectional Benefactor™",
-      "phase": "Build · Founders Organization",
-      "phase_key": "founders",
-      "price_display": "$1+",
-      "custom_amount": true,
-      "designate": true,
-      "stripe_pending": true,
-      "pdf_file": "founders-legacy-member.pdf",
-      "description": "Anyone can give any amount, any time, and direct it to an area of Omnidirectional Enterprise™. Givers are recognized as Omnidirectional Benefactors™; Founders add it to their Partnership credit and level.",
-      "founder_discount_exempt": true
     }
   ],
   "_blueprint_readme": "The .LLab Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",
@@ -827,5 +801,115 @@
     "Knowledge + IP",
     "Creators"
   ],
-  "benefactor_label": "Omnidirectional Benefactor™"
+  "_giving_readme": "Give any amount: pages/founders.html posts to netlify/functions/give.js, which opens a Stripe Checkout for the chosen amount (no Payment Link needed). Every giver becomes a Founder. Their level is the highest giving level whose `min` their running total has reached; levels that are also fixed Stripe products (friends-family, premium-friends-family, founder, legacy-founder) take label, rank and grants from the product. Modeled on museum and gallery giving: membership levels plus giving circles.",
+  "giving": [
+    {
+      "key": "founder-give",
+      "name": "The Co.LLab™ Founders Organization — Give Any Amount",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$1+",
+      "custom_amount": true,
+      "pdf_file": "founders-legacy-member.pdf",
+      "description": "Give any amount to build the infrastructure of Omnidirectional Enterprise™ and become a Founder.",
+      "founder_discount_exempt": true
+    }
+  ],
+  "giving_levels": [
+    {
+      "key": "omnidirectional-founder",
+      "label": "Omnidirectional Founder",
+      "min": 1,
+      "rank": 0.5,
+      "circle": "Founders"
+    },
+    {
+      "key": "friends-family",
+      "min": 20,
+      "circle": "Founders"
+    },
+    {
+      "key": "premium-friends-family",
+      "min": 50,
+      "circle": "Founders"
+    },
+    {
+      "key": "supporting-founder",
+      "label": "Supporting Founder",
+      "min": 100,
+      "rank": 2.3,
+      "circle": "Founders"
+    },
+    {
+      "key": "builder-founder",
+      "label": "Builder Founder",
+      "min": 250,
+      "rank": 2.6,
+      "circle": "Founders"
+    },
+    {
+      "key": "founder",
+      "min": 350,
+      "circle": "Founders"
+    },
+    {
+      "key": "patron-founder",
+      "label": "Patron Founder",
+      "min": 500,
+      "rank": 3.5,
+      "grants": [
+        "legacy-profile"
+      ],
+      "circle": "Founders"
+    },
+    {
+      "key": "legacy-founder",
+      "min": 1000,
+      "circle": "Founders"
+    },
+    {
+      "key": "benefactor-circle",
+      "label": "Omnidirectional Benefactor™ Circle",
+      "min": 2500,
+      "rank": 5,
+      "grants": [
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "circle": "Circles"
+    },
+    {
+      "key": "infrastructure-circle",
+      "label": "Infrastructure Circle",
+      "min": 5000,
+      "rank": 6,
+      "grants": [
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "circle": "Circles"
+    },
+    {
+      "key": "leadership-circle",
+      "label": "Leadership Circle",
+      "min": 10000,
+      "rank": 7,
+      "grants": [
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "circle": "Circles"
+    },
+    {
+      "key": "visionary-circle",
+      "label": "Visionary Circle",
+      "min": 25000,
+      "rank": 8,
+      "grants": [
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "circle": "Circles"
+    }
+  ]
 }

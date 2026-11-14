@@ -18,11 +18,11 @@ exports.handler = async (event) => {
     // Only real people or companies: a name given at checkout, never a test purchase or a placeholder.
     const real = (x) => x.name && String(x.name).trim() && !x.test;
     const founders = (await store.listFounders()).filter(real);
-    const levels = pricing.founderTierKeys(); // ascending rank order
+    const levels = pricing.recognitionLevels(); // ascending rank order
 
-    const groups = levels.map((key) => ({
+    const groups = levels.map(({ key, label }) => ({
       level: key,
-      levelLabel: pricing.founderLevelLabelForKey(key),
+      levelLabel: label,
       founders: founders
         .filter((f) => f.level === key)
         .sort(founderNumberSort)
@@ -33,12 +33,7 @@ exports.handler = async (event) => {
         })),
     }));
 
-    const benefactors = (await store.listBenefactors())
-      .filter(real)
-      .sort((a, b) => String(a.since).localeCompare(String(b.since)))
-      .map((b) => ({ displayName: String(b.name).trim(), recognizedAt: b.since }));
-    groups.unshift({ level: 'benefactor', levelLabel: pricing.registry.benefactor_label || 'Omnidirectional Benefactor™', founders: benefactors });
-    return json(200, { total: founders.length + benefactors.length, groups }, { 'Cache-Control': 'public, max-age=60' });
+    return json(200, { total: founders.length, groups }, { 'Cache-Control': 'public, max-age=60' });
   } catch (err) {
     console.error('founders-recognition error', err);
     return json(500, { error: 'Could not load Founder recognition.' });

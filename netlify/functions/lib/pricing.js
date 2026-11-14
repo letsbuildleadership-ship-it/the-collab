@@ -22,6 +22,11 @@ function buildIndex() {
     }
   }
 
+  // Give any amount (custom amount, sold through give.js rather than a Payment Link).
+  for (const g of registry.giving || []) {
+    byKey.set(g.key, { ...g, kind: 'product' });
+  }
+
   for (const b of registry.bonus_products || []) {
     byKey.set(b.key, { ...b, kind: 'bonus' });
   }
@@ -78,7 +83,9 @@ function entryForKey(key) {
 /** Bonus product keys automatically granted alongside a membership purchase. */
 function grantsForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.grants) || [];
+  if (entry) return entry.grants || [];
+  const level = givingLevelByKey(key);
+  return (level && level.grants) || [];
 }
 
 /** Does this membership key unlock the full one-time .LLab product catalog? */
@@ -236,13 +243,44 @@ function impactForKey(key) {
 /** Numeric Founder tier rank (higher = higher tier) if this key is a Founder-level product, else null. */
 function founderRankForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.founder_rank) || null;
+  if (entry && entry.founder_rank) return entry.founder_rank;
+  const level = entry ? null : givingLevelByKey(key);
+  return (level && level.rank) || null;
+}
+
+/** Giving levels, lowest first: { key, label, min, rank, grants, circle }. Product-backed levels read the product. */
+function givingLevels() {
+  return (registry.giving_levels || [])
+    .map((l) => {
+      const p = (registry.products || []).find((x) => x.key === l.key);
+      return {
+        key: l.key,
+        label: l.label || (p && (p.founder_level_label || p.name)) || l.key,
+        min: l.min,
+        rank: l.rank || (p && p.founder_rank) || 0,
+        grants: l.grants || (p && p.grants) || [],
+        circle: l.circle || 'Founders',
+      };
+    })
+    .sort((a, b) => a.min - b.min);
+}
+
+function givingLevelByKey(key) {
+  return givingLevels().find((l) => l.key === key) || null;
+}
+
+/** Every recognized level, lowest rank first (for the Legacy Wall). */
+function recognitionLevels() {
+  return givingLevels().slice().sort((a, b) => a.rank - b.rank);
 }
 
 /** Short display label for a Founder tier ("Founder", "Legacy Founder"), falling back to the product name. */
 function founderLevelLabelForKey(key) {
   const entry = entryForKey(key);
-  if (!entry) return key;
+  if (!entry) {
+    const level = givingLevelByKey(key);
+    return level ? level.label : key;
+  }
   return entry.founder_level_label || entry.name;
 }
 
@@ -308,15 +346,10 @@ function designationNodes() {
   return registry.designation_nodes || [];
 }
 
-/** The fixed founding level a chosen amount reaches (highest level priced at or below it). */
+/** The giving level a running total reaches (highest level whose minimum it meets). */
 function founderLevelForAmount(dollars) {
-  let best = null;
-  for (const p of registry.products || []) {
-    if (!p.founder_rank || p.custom_amount) continue;
-    const price = priceDollars(p);
-    if (price != null && price <= dollars && (!best || p.founder_rank > best.founder_rank)) best = p;
-  }
-  return best ? best.key : null;
+  const reached = givingLevels().filter((l) => dollars >= l.min);
+  return reached.length ? reached[reached.length - 1].key : null;
 }
 
 module.exports = {
@@ -344,6 +377,9 @@ module.exports = {
   founderPaidTotal,
   _resetIndex,
   founderLevelForAmount,
+  givingLevels,
+  givingLevelByKey,
+  recognitionLevels,
   designationNodes,
   partnershipKeys,
   partnershipGrantKeys,

@@ -79,8 +79,8 @@ function buildPurchaseEmail(record, session) {
         ],
       });
     } else {
-      const founderLabel = pricing.founderRankForKey(e.key) ? pricing.founderLevelLabelForKey(e.key) : null;
-      const lines = ['Ready in your library now. Sign in to download it any time.'];
+      const founderLabel = pricing.founderRankForKey(e.key) ? pricing.founderLevelLabelForKey(e.key) : e.custom_amount && record.founder ? record.founder.levelLabel : null;
+      const lines = [e.custom_amount ? 'Thank you for building the infrastructure of Omnidirectional Enterprise™. Your gift is recorded in your account.' : 'Ready in your library now. Sign in to download it any time.'];
       if (founderLabel && record.founder) {
         lines.push(`You're recognized as a ${founderLabel}${record.founder.founderNumber ? `, Founder Number ${record.founder.founderNumber}` : ''}.`);
       }

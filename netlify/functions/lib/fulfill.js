@@ -129,9 +129,13 @@ async function fulfillCheckoutSession(session, priceIds) {
   const recognitionKeys = [];
   const contributions = [];
   let foundingPaid = 0;
+  let wallName = null;
 
   for (const priceId of priceIds) {
-    const key = pricing.keyForPriceId(priceId);
+    // A "give any amount" checkout (give.js) uses an inline price; its key travels in the session metadata.
+    const meta = session.metadata || {};
+    const giveKey = meta.purpose === 'founder_give' && priceIds.length === 1 && (pricing.entryForKey(meta.key) || {}).custom_amount ? meta.key : null;
+    const key = pricing.keyForPriceId(priceId) || giveKey;
     if (!key) continue; // price belongs to an unrelated product on the same Stripe account
     const entry = pricing.entryForKey(key);
     grantedKeys.push(key);
@@ -171,8 +175,10 @@ async function fulfillCheckoutSession(session, priceIds) {
       const levelKey = pricing.founderLevelForAmount(pricing.founderPaidTotal(record.founder) + foundingPaid + paid);
       foundingPaid += paid;
       const field = (session.custom_fields || []).find((c) => c.key === 'direct_to');
-      const value = field && field.dropdown && field.dropdown.value;
+      const value = (field && field.dropdown && field.dropdown.value) || (session.metadata || {}).direct_to;
       const node = pricing.designationNodes().find((n) => slug(n) === value) || null;
+      const nameField = (session.custom_fields || []).find((c) => c.key === 'wall_name');
+      if (nameField && nameField.text && nameField.text.value && nameField.text.value.trim()) wallName = nameField.text.value.trim().slice(0, 80);
       contributions.push({ key, amount: paid, node, at: new Date().toISOString(), sessionId: session.id || null });
       if (levelKey) {
         recognitionKeys.push(levelKey);
@@ -250,6 +256,9 @@ async function fulfillCheckoutSession(session, priceIds) {
       if (record.name && !record.founder.name) record.founder.name = record.name;
     }
   }
+  // The name a giver chose for the Legacy Wall (a person or a company) wins over the card name.
+  if (wallName && record.founder) record.founder.name = wallName;
+
   if (contributions.length) {
     // Anyone who gives is recognized: below a founding level, as an Omnidirectional Benefactor™.
     const given = contributions.reduce((sum, c) => sum + c.amount, 0);

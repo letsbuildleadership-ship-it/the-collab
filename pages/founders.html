@@ -4,21 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Co.LLab Founders Organization™ | Become a Founder</title>
-<meta name="description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder from $20, or choose your own amount." />
+<meta name="description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder at any amount, from $1." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://wearethellab.com/pages/founders.html" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="The Co.LLab™" />
 <meta property="og:title" content="The Co.LLab Founders Organization™ | Become a Founder" />
-<meta property="og:description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder from $20, or choose your own amount." />
+<meta property="og:description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder at any amount, from $1." />
 <meta property="og:url" content="https://wearethellab.com/pages/founders.html" />
 <meta property="og:image" content="https://wearethellab.com/assets/img/og-cover.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="The Co.LLab Founders Organization™ | Become a Founder" />
-<meta name="twitter:description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder from $20, or choose your own amount." />
+<meta name="twitter:description" content="The Co.LLab Founders Organization™ is part of Omnidirectional Enterprise™: benefactor partnerships that build The Co.LLab™ and help sustain community. Become a Founder at any amount, from $1." />
 <meta name="twitter:image" content="https://wearethellab.com/assets/img/og-cover.png" />
 <script type="application/ld+json">
 {
@@ -375,7 +375,7 @@
   <section id="apply" style="text-align:center;">
     <div class="wrap">
       <p class="tag" data-field="apply_tag">Introductory Founder Offer · The IV Phases™</p>
-      <h2 class="headline" data-field="apply_headline" style="margin-top:1.5rem;">Four founding levels, or your own amount. One legacy, built early.</h2>
+      <h2 class="headline" data-field="apply_headline" style="margin-top:1.5rem;">Give at any level. Every giver is a Founder.</h2>
       <p class="subhead" data-field="apply_body" style="margin:1.5rem auto 0;">
         Each level follows one of The IV Phases™ of Leadership Infrastructure™. Whatever you pay is credited in full toward a Partnership™, and Founder and Legacy Founder also include a .LLab™ product, free to keep.
       </p>
@@ -417,23 +417,31 @@
           <a class="price-btn price-btn--solid" href="https://buy.stripe.com/5kQ7sK3My3RP15helg9ws0i">Join for $1,000 →</a>
         </article>
       </div>
-      <article class="founder-offer fo-custom" style="text-align:left;">
+      <article class="founder-offer fo-custom fo-give" id="give" style="text-align:left;">
         <span class="ip-badge">05</span>
-        <p class="fo-phase">Every phase · Your choice</p>
-        <h3>Choose Your Amount</h3>
-        <p class="founder-price">From $20</p>
-        <p class="offer-promise">Invest exactly what you want to give.</p>
-        <ul class="offer-list"><li class="fo-free"><b>Credit:</b> the full amount you choose toward a <a href="partnership.html">Partnership™</a></li><li class="fo-free"><b>Direct it:</b> choose the area of Omnidirectional Enterprise™ it supports</li><li>Recognized at the founding level your amount reaches ($20 Community Founder, $50 Premium Community Founder, $350 Founder, $1,000 Legacy Founder), with that level&rsquo;s free .LLab™ product</li><li>Permanent Founder Number</li><li>Digital Founder Card</li><li>20% off eligible future products</li></ul>
-        <span class="price-btn" aria-disabled="true">Available soon</span>
-      </article>
-      <article class="founder-offer fo-custom" id="contribute" style="text-align:left;">
-        <span class="ip-badge">06</span>
-        <p class="fo-phase">Open to everyone · Any amount, any time</p>
-        <h3>Omnidirectional Benefactor™</h3>
-        <p class="founder-price">Give any amount</p>
-        <p class="offer-promise">Anyone can move value through Omnidirectional Enterprise™. You decide how much, and where it goes.</p>
-        <ul class="offer-list"><li class="fo-free"><b>Direct it:</b> choose an area of Omnidirectional Enterprise™: Businesses · Nonprofits · Communities · People · Products &amp; Services · Technology · Capital · Knowledge + IP · Creators</li><li class="fo-free"><b>Recognized:</b> your name on the Legacy Wall as an Omnidirectional Benefactor™</li><li>Reach $20 in total and you become a Founder, with every founding benefit</li><li>Already a Founder? It adds to your <a href="partnership.html">Partnership™</a> credit and can raise your founding level</li><li>Shown in your Member Portal™</li></ul>
-        <span class="price-btn" aria-disabled="true">Available soon</span>
+        <p class="fo-phase">Open to everyone · Any amount · Every giver becomes a Founder</p>
+        <h3>Give Any Amount</h3>
+        <p class="offer-promise">Build the infrastructure of Omnidirectional Enterprise™ at the level that fits you. Every gift, from $1, makes you a Founder, and your running total sets your giving level.</p>
+        <form class="give-form" action="/.netlify/functions/give" method="post">
+          <label class="give-field"><span>Your amount (USD)</span><input name="amount" type="number" inputmode="decimal" min="1" max="999999" step="any" required placeholder="250" /></label>
+          <label class="give-field"><span>Direct it to (Omnidirectional Enterprise™)</span><select name="direct"><option value="">Wherever it builds most</option>
+            <option value="Businesses">Businesses</option>
+            <option value="Nonprofits">Nonprofits</option>
+            <option value="Communities">Communities</option>
+            <option value="People">People</option>
+            <option value="Products & Services">Products &amp; Services</option>
+            <option value="Technology">Technology</option>
+            <option value="Capital">Capital</option>
+            <option value="Knowledge + IP">Knowledge + IP</option>
+            <option value="Creators">Creators</option>
+          </select></label>
+          <button class="price-btn price-btn--solid" type="submit">Give &amp; become a Founder →</button>
+        </form>
+        <p class="give-note">Secure checkout by Stripe. At checkout, add the name you want on the Legacy Wall: yours or your company&rsquo;s. Every gift also counts toward your <a href="partnership.html">Partnership™</a> credit.</p>
+        <p class="eyebrow" style="margin-top:2rem;">Giving levels · tap one to fill in the amount</p>
+        <ol class="giving-levels">
+          <li class="gl-row"><button type="button" class="gl-pick" data-amount="1"><span class="gl-amt">$1</span><span class="gl-name">Omnidirectional Founder</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="20"><span class="gl-amt">$20</span><span class="gl-name">Community Founder</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="50"><span class="gl-amt">$50</span><span class="gl-name">Premium Community Founder</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="100"><span class="gl-amt">$100</span><span class="gl-name">Supporting Founder</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="250"><span class="gl-amt">$250</span><span class="gl-name">Builder Founder</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="350"><span class="gl-amt">$350</span><span class="gl-name">Founder</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="500"><span class="gl-amt">$500</span><span class="gl-name">Patron Founder</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™</span></button></li><li class="gl-row"><button type="button" class="gl-pick" data-amount="1000"><span class="gl-amt">$1,000</span><span class="gl-name">Legacy Founder</span><span class="gl-perk">Free: .LLab Legacy Infrastructure Map™</span></button></li><li class="gl-row gl-circle"><button type="button" class="gl-pick" data-amount="2500"><span class="gl-amt">$2,500</span><span class="gl-name">Omnidirectional Benefactor™ Circle</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™ + .LLab Legacy Infrastructure Map™</span></button></li><li class="gl-row gl-circle"><button type="button" class="gl-pick" data-amount="5000"><span class="gl-amt">$5,000</span><span class="gl-name">Infrastructure Circle</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™ + .LLab Legacy Infrastructure Map™</span></button></li><li class="gl-row gl-circle"><button type="button" class="gl-pick" data-amount="10000"><span class="gl-amt">$10,000</span><span class="gl-name">Leadership Circle</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™ + .LLab Legacy Infrastructure Map™</span></button></li><li class="gl-row gl-circle"><button type="button" class="gl-pick" data-amount="25000"><span class="gl-amt">$25,000+</span><span class="gl-name">Visionary Circle</span><span class="gl-perk">Free: .LLab Leadership Legacy Profile™ + .LLab Legacy Infrastructure Map™</span></button></li>
+        </ol>
       </article>
  style="margin:1.75rem auto 0; font-size:0.85rem;">
         Every founding level includes a permanent Founder Number, a digital Founder Card, a place on the Legacy Wall, 20% off eligible future products from The Co.LLab™ while signed in, and everything you paid credited once toward a Partnership™, applied automatically at checkout while signed in. Founder and Legacy Founder add a free .LLab™ product, delivered to your library at checkout.
@@ -441,7 +449,7 @@
       <p class="subhead" data-field="founder_not_investment" style="margin:0.5rem auto 0; font-size:0.8rem; opacity:0.75;">
         Let’s Build Your Legacy Through Omnidirectional Enterprise™. Every founding option is an investment in that legacy — it carries no ownership stake or financial return.
       </p>
-      <p class="subhead" style="margin:1.25rem auto 0;">Choose Your Amount takes any amount from $20 up. Planning a larger investment? <a href="contact.html">Contact us</a> and we will build it with you.</p>
+      <p class="subhead" style="margin:1.25rem auto 0;">Give any amount, from $1, with the form above. Planning a larger investment? <a href="contact.html">Contact us</a> and we will build it with you.</p>
       <p class="trust">Secure checkout by Stripe</p>
     </div>
   </section>
@@ -451,7 +459,7 @@
       <p class="eyebrow" data-field="recognition_eyebrow">Founder Recognition · The Co.LLab Founders Organization™ Legacy Wall</p>
       <h2 class="headline" data-field="recognition_headline" style="margin-top:1.5rem;">Your name, on the Legacy Wall. Permanently.</h2>
       <p class="subhead" data-field="recognition_body" style="margin:1.5rem 0 0; max-width:68ch;">
-        The moment your founding purchase completes, your name, or your company’s, goes up on The Co.LLab Founders Organization™ Legacy Wall under your founding level, for good. Only real Founders and Omnidirectional Benefactors™ appear here: every name on this wall helped build The Co.LLab™.
+        The moment your founding purchase completes, your name, or your company’s, goes up on The Co.LLab Founders Organization™ Legacy Wall under your founding level, for good. Only real Founders appear here, by giving level: every name on this wall helped build The Co.LLab™.
       </p>
       <div id="founder-recognition-lists" style="margin-top:2.5rem;"></div>
     </div>
@@ -531,6 +539,7 @@
 
 <script src="../js/main.js"></script>
 <script src="../js/founders-recognition.js"></script>
+<script>document.querySelectorAll('.gl-pick').forEach(function (b) { b.addEventListener('click', function () { var i = document.querySelector('.give-form input[name=amount]'); i.value = b.dataset.amount; i.focus(); }); });</script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0325a788fee24cb58fab9f72f1056bb7"}'></script>
 </body>

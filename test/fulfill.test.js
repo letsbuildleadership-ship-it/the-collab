@@ -119,29 +119,6 @@ test('a Partnership bought with the Founder credit marks the credit used', async
   assert.equal(pricing.founderPartnershipCredit(r.record), 0);
 });
 
-test('a chosen founding amount is recognized at the level it reaches and credited in full', async () => {
-  const pricing = require('../netlify/functions/lib/pricing');
-  const entry = pricing.entryForKey('founder-your-amount');
-  assert.ok(entry && entry.custom_amount);
-  assert.equal(pricing.founderLevelForAmount(20), 'friends-family');
-  assert.equal(pricing.founderLevelForAmount(349), 'premium-friends-family');
-  assert.equal(pricing.founderLevelForAmount(500), 'founder');
-  assert.equal(pricing.founderLevelForAmount(2500), 'legacy-founder');
-  // Simulate the Stripe price the owner's setup creates, then restore.
-  const raw = pricing.registry.products.find((p) => p.key === 'founder-your-amount');
-  raw.stripe_price_id = 'price_test_custom';
-  pricing._resetIndex();
-  let r;
-  try {
-    r = await fulfillCheckoutSession({ id: 'cs_custom', amount_total: 250000, customer_details: { email: 'custom@example.com' } }, ['price_test_custom']);
-  } finally {
-    delete raw.stripe_price_id;
-    pricing._resetIndex();
-  }
-  assert.equal(r.record.founder.level, 'legacy-founder');
-  assert.ok(r.grantedKeys.includes('legacy-map'));
-  assert.equal(pricing.founderPartnershipCredit(r.record), 2500);
-});
 
 test('fixed founding levels record what was paid, and upgrades add up', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
@@ -152,46 +129,41 @@ test('fixed founding levels record what was paid, and upgrades add up', async ()
   assert.equal(pricing.founderPartnershipCredit(r.record), 370);
 });
 
-test('a Founder Contribution of any amount adds to the credit, can raise the level, and records its Omnidirectional area', async () => {
+
+
+const give = (id, cents, email, extra = {}) => fulfillCheckoutSession({ id, amount_total: cents, customer_details: { email, ...(extra.name ? { name: extra.name } : {}) }, metadata: { purpose: 'founder_give', key: 'founder-give', direct_to: extra.direct || '' }, custom_fields: extra.wall ? [{ key: 'wall_name', type: 'text', text: { value: extra.wall } }] : [] }, ['price_inline_' + id]);
+
+test('every giver becomes a Founder at any amount, at the giving level their total reaches', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
-  const email = 'contrib@example.com';
-  await fulfillCheckoutSession({ id: 'cs_c1', customer_details: { email } }, [pricing.entryForKey('founder').stripe_price_id]);
-  const raw = pricing.registry.products.find((p) => p.key === 'founder-contribution');
-  raw.stripe_price_id = 'price_test_contrib';
-  pricing._resetIndex();
-  let r;
-  try {
-    r = await fulfillCheckoutSession({
-      id: 'cs_c2', amount_total: 70000, customer_details: { email },
-      custom_fields: [{ key: 'direct_to', type: 'dropdown', dropdown: { value: 'nonprofits' } }],
-    }, ['price_test_contrib']);
-  } finally {
-    delete raw.stripe_price_id;
-    pricing._resetIndex();
-  }
-  assert.equal(r.record.founder.paid, 1050);
-  assert.equal(r.record.founder.level, 'legacy-founder', '$350 + $700 reaches Legacy Founder');
-  assert.ok(r.grantedKeys.includes('legacy-map'));
-  assert.deepEqual(r.record.contributions.map((c) => [c.amount, c.node]), [[700, 'Nonprofits']]);
-  assert.equal(pricing.founderPartnershipCredit(r.record), 1050);
+  const r1 = await give('g1', 500, 'five@example.com', { wall: 'Five Dollar Co.' });
+  assert.equal(r1.record.founder.level, 'omnidirectional-founder');
+  assert.equal(r1.record.founder.levelLabel, 'Omnidirectional Founder');
+  assert.equal(r1.record.founder.name, 'Five Dollar Co.');
+  assert.ok(r1.record.founder.founderNumber);
+  const r2 = await give('g2', 50000, 'five@example.com', { direct: 'nonprofits' });
+  assert.equal(r2.record.founder.level, 'patron-founder', '$5 + $500 reaches Patron Founder');
+  assert.ok(r2.grantedKeys.includes('legacy-profile'));
+  assert.equal(r2.record.founder.paid, 505);
+  assert.equal(r2.record.contributions.at(-1).node, 'Nonprofits');
+  assert.equal(pricing.founderPartnershipCredit(r2.record), 505);
 });
 
-test('anyone can give any amount and is recognized as an Omnidirectional Benefactor; $20+ total makes them a Founder', async () => {
+test('giving levels: twelve, lowest first, circles above Legacy Founder', () => {
   const pricing = require('../netlify/functions/lib/pricing');
-  const raw = pricing.registry.products.find((p) => p.key === 'founder-contribution');
-  raw.stripe_price_id = 'price_test_give';
-  pricing._resetIndex();
-  try {
-    const email = 'giver@example.com';
-    const r1 = await fulfillCheckoutSession({ id: 'cs_g1', amount_total: 500, customer_details: { email, name: 'A Giver' } }, ['price_test_give']);
-    assert.ok(!r1.record.founder);
-    assert.equal(r1.record.benefactor.total, 5);
-    assert.deepEqual((await fakeStore.listBenefactors()).map((b) => b.name), ['A Giver']);
-    const r2 = await fulfillCheckoutSession({ id: 'cs_g2', amount_total: 2000, customer_details: { email } }, ['price_test_give']);
-    assert.equal(r2.record.founder.level, 'friends-family', '$5 + $20 reaches Community Founder');
-    assert.equal((await fakeStore.listBenefactors()).length, 0, 'now shown as a Founder instead');
-  } finally {
-    delete raw.stripe_price_id;
-    pricing._resetIndex();
-  }
+  const levels = pricing.givingLevels();
+  assert.equal(levels.length, 12);
+  assert.deepEqual([1, 20, 50, 100, 250, 350, 500, 1000, 2500, 5000, 10000, 25000], levels.map((l) => l.min));
+  assert.equal(pricing.founderLevelForAmount(30000), 'visionary-circle');
+  assert.equal(pricing.founderLevelLabelForKey('legacy-founder'), 'Legacy Founder');
+  for (let i = 1; i < levels.length; i++) assert.ok(levels[i].rank > levels[i - 1].rank, levels[i].key);
+});
+
+test('give.js validates the amount and the Omnidirectional area', () => {
+  const { parseGift } = require('../netlify/functions/give');
+  assert.ok(parseGift({ amount: '0.5' }).error);
+  assert.ok(parseGift({ amount: 'abc' }).error);
+  assert.equal(parseGift({ amount: '$2,500' }).level, 'benefactor-circle');
+  assert.equal(parseGift({ amount: '75', direct: 'Knowledge + IP' }).node, 'Knowledge + IP');
+  assert.equal(parseGift({ amount: '75', direct: 'nowhere' }).node, null);
+  assert.equal(parseGift({ amount: '12.345' }).cents, 1235);
 });
