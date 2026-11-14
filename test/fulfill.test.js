@@ -102,7 +102,7 @@ test('every fixed founding level includes its phase-matched .LLab products', asy
   const priceOf = (k) => pricing.entryForKey(k).stripe_price_id;
   const cases = {
     'friends-family': ['infrastructure-roadmap', 'strength-map'],
-    'premium-friends-family': ['infrastructure-roadmap', 'alignment-map'],
+    'premium-friends-family': ['infrastructure-roadmap', 'values-charter'],
     founder: ['infrastructure-roadmap', 'legacy-profile', 'alignment-map'],
     'legacy-founder': ['infrastructure-roadmap', 'legacy-map', 'diagnostic'],
   };
@@ -140,27 +140,28 @@ const give = (id, cents, email, extra = {}) => fulfillCheckoutSession({ id, amou
 
 test('every giver becomes a Founder at any amount, at the giving level their total reaches', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
-  const r1 = await give('g1', 2500, 'five@example.com', { wall: 'Five Dollar Co.' });
-  assert.equal(r1.record.founder.level, 'friends-family');
-  assert.equal(r1.record.founder.levelLabel, 'Community Founder');
+  const r1 = await give('g1', 5000, 'five@example.com', { wall: 'Fifty Dollar Co.' });
+  assert.equal(r1.record.founder.level, 'premium-friends-family');
+  assert.equal(r1.record.founder.levelLabel, 'Premium Community Founder');
+  assert.ok(r1.grantedKeys.includes('values-charter'));
   assert.ok(r1.grantedKeys.includes('infrastructure-roadmap'));
-  assert.equal(r1.record.founder.name, 'Five Dollar Co.');
+  assert.equal(r1.record.founder.name, 'Fifty Dollar Co.');
   assert.ok(r1.record.founder.founderNumber);
   const r2 = await give('g2', 50000, 'five@example.com', { direct: 'nonprofits' });
-  assert.equal(r2.record.founder.level, 'preservation-founder', '$25 + $500 reaches Preservation Founder');
+  assert.equal(r2.record.founder.level, 'preservation-founder', '$50 + $500 reaches Preservation Founder');
   assert.ok(r2.grantedKeys.includes('legacy-map'));
   const ledger = await fakeStore.listImpactLedger();
   assert.ok(ledger.some((l) => l.sessionId === 'g2' && l.partnerKey === 'wavecraft-oceans' && l.impactAmount === 5000), 'charity support carries over to gifts');
-  assert.equal(r2.record.founder.paid, 525);
+  assert.equal(r2.record.founder.paid, 550);
   assert.equal(r2.record.contributions.at(-1).node, 'Nonprofits');
-  assert.equal(pricing.founderPartnershipCredit(r2.record), 525);
+  assert.equal(pricing.founderPartnershipCredit(r2.record), 550);
 });
 
-test('giving levels: twelve from $20, lowest first, Partnership-aligned levels above Legacy Founder', () => {
+test('giving levels: eleven from $50, lowest first, Partnership-aligned levels above Legacy Founder', () => {
   const pricing = require('../netlify/functions/lib/pricing');
   const levels = pricing.givingLevels();
-  assert.equal(levels.length, 12);
-  assert.deepEqual([20, 50, 100, 250, 350, 500, 1000, 2500, 5000, 10000, 25000, 50000], levels.map((l) => l.min));
+  assert.equal(levels.length, 11);
+  assert.deepEqual([50, 100, 250, 350, 500, 1000, 2500, 5000, 10000, 25000, 50000], levels.map((l) => l.min));
   assert.equal(pricing.founderLevelForAmount(30000), 'enterprise-founder');
   assert.equal(pricing.founderLevelForAmount(75000), 'omnidirectional-founder');
   assert.ok(!levels.some((l) => /circle/i.test(l.label)));
@@ -176,10 +177,10 @@ test('giving levels: twelve from $20, lowest first, Partnership-aligned levels a
 test('give.js validates the amount and the Omnidirectional area', () => {
   const { parseGift } = require('../netlify/functions/give');
   assert.ok(parseGift({ amount: '0.5' }).error);
-  assert.ok(parseGift({ amount: '19' }).error, 'nothing below $20');
+  assert.ok(parseGift({ amount: '49' }).error, 'nothing below $50');
   assert.ok(parseGift({ amount: 'abc' }).error);
   assert.equal(parseGift({ amount: '$2,500' }).level, 'benefactor-founder');
   assert.equal(parseGift({ amount: '75', direct: 'Knowledge + IP' }).node, 'Knowledge + IP');
   assert.equal(parseGift({ amount: '75', direct: 'nowhere' }).node, null);
-  assert.equal(parseGift({ amount: '25.345' }).cents, 2535);
+  assert.equal(parseGift({ amount: '55.345' }).cents, 5535);
 });

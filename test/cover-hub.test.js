@@ -23,13 +23,14 @@ test('the home page has no contents list; the Omnidirectional wheel sits above t
 test('the product hub lists every product once, with its link from the pricing registry', () => {
   const html = read('pages/all-products.html');
   const links = [
-    ...pricing.products.map((p) => p.payment_link).filter(Boolean),
+    ...pricing.products.filter((p) => !p.retired_from_sale).map((p) => p.payment_link).filter(Boolean),
     ...(pricing.blueprint_series || []).map((p) => p.payment_link),
     ...(pricing.partner_ip || []).map((p) => p.payment_link),
     ...pricing.partnerships.map((p) => p.payment_link),
     ...pricing.memberships.flatMap((m) => m.plans.map((pl) => pl.payment_link)),
   ];
   for (const l of links) assert.equal(html.split(`href="${l}"`).length - 1, 1, `hub links ${l} once`);
+  for (const p of pricing.products.filter((x) => x.retired_from_sale)) assert.ok(!html.includes(p.payment_link), `retired ${p.key} is not sold`);
   for (const t of freeTools) assert.ok(html.includes(`href="..${t.file}"`), t.key);
   assert.match(html, /<h1[^>]*><strong>The \.LLab products\.<\/strong>/);
 });

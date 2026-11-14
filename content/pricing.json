@@ -346,7 +346,8 @@
       "grants": [
         "infrastructure-roadmap",
         "strength-map"
-      ]
+      ],
+      "retired_from_sale": true
     },
     {
       "key": "premium-friends-family",
@@ -367,7 +368,7 @@
       "founder_discount_exempt": true,
       "grants": [
         "infrastructure-roadmap",
-        "alignment-map"
+        "values-charter"
       ]
     },
     {
@@ -860,7 +861,7 @@
       "name": "The Co.LLab™ Founders Organization — Give Any Amount",
       "phase": "Build · Founders Organization",
       "phase_key": "founders",
-      "price_display": "$20+",
+      "price_display": "$50+",
       "custom_amount": true,
       "pdf_file": "founders-legacy-member.pdf",
       "description": "Give any amount to build the infrastructure of Omnidirectional Enterprise™ and become a Founder.",
@@ -869,14 +870,9 @@
   ],
   "giving_levels": [
     {
-      "key": "friends-family",
-      "min": 20,
-      "phase": "I"
-    },
-    {
       "key": "premium-friends-family",
       "min": 50,
-      "phase": "II"
+      "phase": "I"
     },
     {
       "key": "infrastructure-founder",

@@ -14,7 +14,7 @@ const free = JSON.parse(read('content/free-tools.json')).tools;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const FOUR = new Set(['strength-map', 'values-charter', 'leadership-identity-profile', 'decision-principles-playbook', 'foundations-assessment', 'foundations-manual', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture']);
 const isCreator = (p) => /^creator|^creative/.test(p.key);
-const isFounders = (p) => (p.phase || '').includes('Founders Organization');
+const isFounders = (p) => (p.phase || '').includes('Founders Organization') && !p.retired_from_sale;
 
 import { PDFDocument } from 'pdf-lib';
 
@@ -185,7 +185,7 @@ t = t.replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${TITLE}`).repla
 // Product structured data (schema.org ItemList of Product/Offer) from pricing.json, for search results.
 {
   const ldItems = [...reg.products, ...reg.blueprint_series, ...reg.partner_ip]
-    .filter((x) => x.payment_link && String(x.price_display || '').replace(/[^\d.]/g, ''))
+    .filter((x) => !x.retired_from_sale && x.payment_link && String(x.price_display || '').replace(/[^\d.]/g, ''))
     .map((x, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'Product', name: x.name, description: x.description || '', brand: { '@type': 'Brand', name: 'The Co.LLab™' }, offers: { '@type': 'Offer', price: String(x.price_display).replace(/[^\d.]/g, ''), priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: x.payment_link } } }));
   const ld = { '@context': 'https://schema.org', '@type': 'ItemList', name: TITLE, itemListElement: ldItems };
   t = t.replace(/<script type="application\/ld\+json" id="product-list-ld">[\s\S]*?<\/script>\n?/, '');
