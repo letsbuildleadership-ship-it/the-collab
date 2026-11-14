@@ -14,7 +14,7 @@ const LLAB = [
 ];
 
 const bySince = (a, b) => String(a.since).localeCompare(String(b.since));
-const plaque = (m) => ({ displayName: String(m.name).trim() });
+const plaque = (m) => ({ displayName: String(m.name).trim(), url: m.url || null });
 
 function wallGroups(members, wall) {
   if (wall === 'partnership') {

@@ -290,8 +290,28 @@
           <div><span class="founder-card-label">Standing</span><strong class="founder-card-value">${esc(standing.replace(/ Members$/, ' Member'))}</strong></div>
           <div><span class="founder-card-label">Member since</span><strong class="founder-card-value">${since}</strong></div>
         </div>
+        ${data.canLinkOnWall ? `<form class="wall-url-form" id="wall-url-form"><label class="founder-card-label" for="wall-url" style="flex-basis:100%;">Advertise on the Legacy Walls: link your name to your website (optional)</label><input id="wall-url" name="url" type="text" inputmode="url" placeholder="yourcompany.com" value="${esc(data.wallUrl || '')}" maxlength="200" /><button class="pill pill--solid" type="submit">Save link</button><span id="wall-url-msg" class="founder-card-label" role="status"></span></form>` : ''}
         <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="products.html#member-wall">.LLab™ Membership Legacy Wall</a>${data.partnership ? ' and the <a href="partnership.html#partner-wall">Partnership™ Legacy Wall</a>' : ''}.</p>
       </div>`;
+  }
+
+  function wireWallLink() {
+    const form = $('wall-url-form');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = $('wall-url-msg');
+      msg.textContent = 'Saving…';
+      try {
+        const res = await fetch('/.netlify/functions/wall-link', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: $('wall-url').value }) });
+        const out = await res.json();
+        if (!res.ok) throw new Error(out.error || 'Could not save.');
+        $('wall-url').value = out.url || '';
+        msg.textContent = out.url ? 'Saved. Your name now links to your website.' : 'Link removed.';
+      } catch (err) {
+        msg.textContent = err.message;
+      }
+    });
   }
 
   function renderFounderCard(data) {
@@ -804,6 +824,7 @@
     if (verifyNote) verifyNote.hidden = data.emailVerified !== false || data.emailEnabled === false;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
     renderMemberCard(data);
+    wireWallLink();
     renderFounderCard(data);
     renderPartnership(data);
 

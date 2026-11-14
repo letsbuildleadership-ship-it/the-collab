@@ -64,7 +64,7 @@ const { memberStanding } = require('../../netlify/functions/lib/member-standing'
 async function listMembers() {
   return (Array.from(customers.values()))
     .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
-    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null }));
+    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null, url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null }));
 }
 
 async function listFounders() {
@@ -78,6 +78,7 @@ async function listFounders() {
       memberId: r.memberId || null,
       recognizedAt: r.founder.recognizedAt,
       test: !!r.ownerTest,
+      url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
     }));
 }
 

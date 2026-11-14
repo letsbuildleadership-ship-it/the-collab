@@ -40,3 +40,17 @@ test('every member has a permanent Member Number and standing on their card', as
   assert.equal(view.memberStanding.label, '.LLab Members');
   assert.ok(view.memberSince);
 });
+
+test('after a purchase, a member can link their wall name to their website; free members cannot', async () => {
+  const { cleanWallUrl, canLinkOnWall } = require('../netlify/functions/lib/wall-link');
+  assert.equal(cleanWallUrl('yourcompany.com'), 'https://yourcompany.com/');
+  assert.equal(cleanWallUrl('http://a.co/x'), 'https://a.co/x');
+  assert.equal(cleanWallUrl(''), null);
+  for (const bad of ['javascript:alert(1)', 'not a site', 'https://user:pw@a.co', 'ftp://a.co']) assert.ok(cleanWallUrl(bad) && cleanWallUrl(bad).error, bad);
+  assert.equal(canLinkOnWall({ signupSource: 'free', emailVerified: true }), false);
+  const r = await fulfillCheckoutSession({ id: 'cs_ad', customer_details: { email: 'ad@example.com', name: 'Ad Co.' } }, [pricing.entryForKey('strength-map').stripe_price_id]);
+  assert.equal(canLinkOnWall(r.record), true);
+  r.record.wallUrl = 'https://adco.example/';
+  const body = JSON.parse((await handler({ httpMethod: 'GET' })).body);
+  assert.equal(body.groups.find((g) => g.key === 'llab').members[0].url, 'https://adco.example/');
+});

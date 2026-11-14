@@ -14,7 +14,7 @@
       box.innerHTML = data.groups
         .filter((g) => g.members.length)
         .map((g) => `<div class="wall-level"><h3 class="wall-level-title">${esc(g.label)}</h3><ul class="wall-grid">${g.members
-          .map((m) => `<li class="wall-plaque"><strong class="wall-name">${esc(m.displayName)}</strong></li>`)
+          .map((m) => `<li class="wall-plaque"><strong class="wall-name">${(m.url ? `<a class="wall-link" href="${esc(m.url)}" target="_blank" rel="sponsored noopener">${esc(m.displayName)} <span aria-hidden="true">↗</span></a>` : esc(m.displayName))}</strong></li>`)
           .join('')}</ul></div>`)
         .join('');
     } catch (err) {
