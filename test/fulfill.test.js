@@ -108,3 +108,13 @@ test('Founder levels include their free .LLab product; Community levels do not',
     assert.ok(r.record.founder && r.record.founder.founderNumber, `${tier} gets a Founder Number`);
   }
 });
+
+test('a Partnership bought with the Founder credit marks the credit used', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const email = 'credit@example.com';
+  await fulfillCheckoutSession({ id: 'cs_f', customer_details: { email } }, [pricing.entryForKey('legacy-founder').stripe_price_id]);
+  const tier = pricing.registry.partnerships[0];
+  const r = await fulfillCheckoutSession({ id: 'cs_p', customer_details: { email }, metadata: { founder_partnership_credit: '1000' } }, [tier.stripe_price_id]);
+  assert.equal(r.record.founder.partnershipCreditUsed.amount, 1000);
+  assert.equal(pricing.founderPartnershipCredit(r.record), 0);
+});

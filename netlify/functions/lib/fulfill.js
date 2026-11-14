@@ -141,6 +141,10 @@ async function fulfillCheckoutSession(session, priceIds) {
 
     if (entry.kind === 'partnership') {
       for (const k of applyPartnership(record, entry, session)) grantedKeys.push(k);
+      const credit = Number((session.metadata || {}).founder_partnership_credit || 0);
+      if (credit > 0 && record.founder) {
+        record.founder.partnershipCreditUsed = { amount: credit, sessionId: session.id || null, at: new Date().toISOString() };
+      }
     }
 
     // One-time products (e.g. a Founder level) can include free .LLab products.

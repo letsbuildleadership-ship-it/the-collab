@@ -381,8 +381,7 @@
       "founder_discount_exempt": true,
       "grants": [
         "legacy-profile"
-      ],
-      "partnership_discount_percent": 10
+      ]
     },
     {
       "key": "legacy-founder",
@@ -403,8 +402,7 @@
       "founder_discount_exempt": true,
       "grants": [
         "legacy-map"
-      ],
-      "partnership_discount_percent": 15
+      ]
     }
   ],
   "_blueprint_readme": "The .LLab Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",

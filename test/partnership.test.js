@@ -62,20 +62,23 @@ test('registry has the 4 partnership tiers at the right prices, fully separate f
   assert.equal(allPrices.size, 4);
 });
 
-test('partnerships never get the 20% Founder discount; Founder and Legacy Founder get their Partnership discount', () => {
-  const { _partnershipDiscountFor } = require('../netlify/functions/checkout-create');
-  const rec = (level) => ({ founder: { founderNumber: 'F-00001', level, levels: [level] } });
+test('partnerships never get the 20% Founder discount; every Founder gets what they paid as a one-time Partnership credit', () => {
+  const { _partnershipCreditFor } = require('../netlify/functions/checkout-create');
+  const rec = (...levels) => ({ founder: { founderNumber: 'F-00001', level: levels[levels.length - 1], levels } });
   const linkMap = pricing.paymentLinkMap();
   for (const key of pricing.partnershipKeys()) {
     assert.equal(_shouldApplyFounderDiscount(rec('legacy-founder'), key), false);
     assert.ok(pricing.entryForKey(key).payment_link in linkMap, 'founder checkout rewrite covers partnerships');
-    assert.equal(_partnershipDiscountFor(rec('friends-family'), key), 0);
-    assert.equal(_partnershipDiscountFor(rec('premium-friends-family'), key), 0);
-    assert.equal(_partnershipDiscountFor(rec('founder'), key), 10);
-    assert.equal(_partnershipDiscountFor(rec('legacy-founder'), key), 15);
-    assert.equal(_partnershipDiscountFor(null, key), 0);
+    assert.equal(_partnershipCreditFor(rec('friends-family'), key), 20);
+    assert.equal(_partnershipCreditFor(rec('premium-friends-family'), key), 50);
+    assert.equal(_partnershipCreditFor(rec('founder'), key), 350);
+    assert.equal(_partnershipCreditFor(rec('legacy-founder'), key), 1000);
+    assert.equal(_partnershipCreditFor(rec('friends-family', 'legacy-founder'), key), 1020, 'upgrades add up');
+    const used = rec('legacy-founder'); used.founder.partnershipCreditUsed = { amount: 1000 };
+    assert.equal(_partnershipCreditFor(used, key), 0, 'credit is used once');
+    assert.equal(_partnershipCreditFor(null, key), 0);
   }
-  assert.equal(_partnershipDiscountFor(rec('legacy-founder'), 'strength-map'), 0);
+  assert.equal(_partnershipCreditFor(rec('legacy-founder'), 'strength-map'), 0);
 });
 
 test('partnershipGrantKeys = every product except Founders tiers + every Blueprint issue + every bonus product', () => {

@@ -281,11 +281,14 @@ function paymentLinkMap() {
   return map;
 }
 
-/** Percent off a Partnership for this customer's highest Founder level (0 if none). */
-function founderPartnershipDiscount(record) {
-  if (!record || !record.founder) return 0;
+/**
+ * Founder Partnership credit, in dollars: everything this customer paid for
+ * founding levels, credited once toward a Partnership (0 if none or used).
+ */
+function founderPartnershipCredit(record) {
+  if (!record || !record.founder || record.founder.partnershipCreditUsed) return 0;
   const levels = record.founder.levels || [record.founder.level];
-  return Math.max(0, ...levels.map((k) => (entryForKey(k) || {}).partnership_discount_percent || 0));
+  return [...new Set(levels)].reduce((sum, k) => sum + (founderRankForKey(k) ? priceDollars(entryForKey(k)) || 0 : 0), 0);
 }
 
 module.exports = {
@@ -309,7 +312,7 @@ module.exports = {
   founderTierKeys,
   isFounderDiscountExempt,
   paymentLinkMap,
-  founderPartnershipDiscount,
+  founderPartnershipCredit,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,
