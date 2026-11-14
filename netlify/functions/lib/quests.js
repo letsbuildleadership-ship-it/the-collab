@@ -6,9 +6,18 @@ const fs = require('fs');
 const { analyze } = require('./quest-analysis');
 const path = require('path');
 
-const dir = path.join(__dirname, '../../../content/quests');
+// content/quests ships via netlify.toml `included_files`; where it lands differs between
+// the repo (lib/ is three levels deep) and the bundled function (one file in netlify/functions),
+// so try each known location, like lib/pdf-path.js does for PDFs.
+const dir = [
+  path.join(__dirname, '../../../content/quests'),
+  path.join(__dirname, '../../content/quests'),
+  path.join(process.cwd(), 'content/quests'),
+  process.env.LAMBDA_TASK_ROOT ? path.join(process.env.LAMBDA_TASK_ROOT, 'content/quests') : null,
+].filter(Boolean).find((d) => fs.existsSync(d));
 const quests = new Map();
-for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.json'))) {
+if (!dir) console.error('quests: content/quests not found; quests are unavailable');
+for (const f of dir ? fs.readdirSync(dir).filter((n) => n.endsWith('.json')) : []) {
   const q = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
   quests.set(q.key, q);
 }
