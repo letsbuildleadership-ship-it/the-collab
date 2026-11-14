@@ -84,6 +84,10 @@ function buildPurchaseEmail(record, session) {
       if (founderLabel && record.founder) {
         lines.push(`You're recognized as a ${founderLabel}${record.founder.founderNumber ? `, Founder Number ${record.founder.founderNumber}` : ''}.`);
       }
+      for (const g of pricing.grantsForKey(e.key)) {
+        const ge = pricing.entryForKey(g);
+        if (ge) lines.push(`Included free with your founding level: ${ge.name}, licensed to keep and ready in your library now.`);
+      }
       sections.push({ title: e.name, lines });
     }
   }

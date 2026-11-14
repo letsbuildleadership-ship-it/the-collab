@@ -96,3 +96,15 @@ test('a bonus grant shared by two memberships survives cancelling just one', asy
   assert.ok(afterCancel.entitlements.includes('infrastructure-roadmap'), 'roadmap should survive: membership still active');
   assert.ok(!afterCancel.entitlements.includes('library-card'));
 });
+
+test('Founder levels include their free .LLab product; Community levels do not', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const priceOf = (k) => pricing.entryForKey(k).stripe_price_id;
+  const cases = { founder: ['legacy-profile'], 'legacy-founder': ['legacy-map'], 'friends-family': [], 'premium-friends-family': [] };
+  for (const [tier, free] of Object.entries(cases)) {
+    fakeStore.reset();
+    const r = await fulfillCheckoutSession({ id: `cs_${tier}`, customer_details: { email: `${tier}@example.com` } }, [priceOf(tier)]);
+    assert.deepEqual(r.grantedKeys, [tier, ...free], tier);
+    assert.ok(r.record.founder && r.record.founder.founderNumber, `${tier} gets a Founder Number`);
+  }
+});

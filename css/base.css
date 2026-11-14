@@ -2288,3 +2288,9 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .fo-steps li span { color: var(--white-dim); font-size: 0.95rem; }
 @media (max-width: 1100px) { .fo-pillars { grid-template-columns: 1fr; } .fo-steps { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .fo-steps { grid-template-columns: 1fr; } }
+.fo-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.fo-grid--4 .founder-offer p { margin: 0; color: var(--white-dim); }
+@media (max-width: 1100px) { .fo-grid--4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .fo-grid--4 { grid-template-columns: 1fr; } }
+.fo-phase { margin: 0; font-size: var(--label-size); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+.offer-list li.fo-free { color: var(--white); }

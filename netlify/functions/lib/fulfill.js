@@ -143,6 +143,11 @@ async function fulfillCheckoutSession(session, priceIds) {
       for (const k of applyPartnership(record, entry, session)) grantedKeys.push(k);
     }
 
+    // One-time products (e.g. a Founder level) can include free .LLab products.
+    if (entry.kind === 'product') {
+      for (const k of pricing.grantsForKey(key)) grantedKeys.push(k);
+    }
+
     // Impact Products: if this key is flagged with a nonprofit partner,
     // record the 10% (or whatever percent is configured) allocation in the
     // auditable ledger. Assumes one line item per checkout session, which
