@@ -120,7 +120,7 @@ const FOUR_PHASES = [
 /**
  * The Four Phases products: the Leadership Infrastructure™ products in
  * Phases I–IV (not the Creator line, not the Founders tiers). This is what
- * .LLab Membership™ opens while it's active.
+ * The .LLab Membership™ opens while it's active.
  */
 function fourPhasesKeys() {
   return (registry.products || []).filter((p) => FOUR_PHASES.includes(p.phase) && p.line !== 'creator').map((p) => p.key);

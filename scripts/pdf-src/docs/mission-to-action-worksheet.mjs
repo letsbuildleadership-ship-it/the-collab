@@ -3,14 +3,14 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'mission-to-action-worksheet',
   outFile: 'free-tools/mission-to-action-worksheet.pdf',
-  docTitle: '.LLab Mission-to-Action Worksheet™',
+  docTitle: 'The .LLab Mission-to-Action Worksheet™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Worksheet',
-    title: '.LLab Mission-to-Action <strong>Worksheet</strong>™',
+    title: 'The .LLab Mission-to-Action <strong>Worksheet</strong>™',
     subtitle: 'Translate your mission into three concrete actions you can take this month.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

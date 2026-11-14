@@ -3,14 +3,14 @@ import { renderStarterDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'one-strength-starter',
   outFile: 'free-tools/one-strength-starter.pdf',
-  docTitle: '.LLab One Strength Starter™',
+  docTitle: 'The .LLab One Strength Starter™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Starter',
-    title: '.LLab One Strength <strong>Starter</strong>™',
+    title: 'The .LLab One Strength <strong>Starter</strong>™',
     subtitle: 'A single-page starter for naming and building from one leadership strength — nothing more, nothing less.',
     phase: 'I · Foundations',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

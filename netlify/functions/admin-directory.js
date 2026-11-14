@@ -1,4 +1,4 @@
-// Owner-only review of .LLab Collaborating Companies pages: approve or reject, with a note the
+// Owner-only review of The .LLab Collaborating Companies pages: approve or reject, with a note the
 // member sees. Approving or rejecting emails the member.
 const store = require('./lib/store');
 const { json } = require('./lib/http');
@@ -36,7 +36,7 @@ exports.handler = async (event) => {
         await sendMail({ to: record.email, subject: status === 'approved' ? 'Welcome to the .LLab Collaborating Companies' : 'Your .LLab Collaborating Companies page needs a change', text, html: `<pre style="font-family:inherit;white-space:pre-wrap">${text.replace(/</g, '&lt;')}</pre>` });
       }
     } catch (err) {
-      console.error('.LLab Collaborating Companies decision email failed:', err.message);
+      console.error('The .LLab Collaborating Companies decision email failed:', err.message);
     }
   }
   return json(200, { ok: true });

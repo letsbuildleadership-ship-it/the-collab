@@ -1,10 +1,10 @@
 export const meta = {
   key: 'membership-handbook',
   outFile: 'membership-handbook.pdf',
-  docTitle: '.LLab Membership™ Handbook',
+  docTitle: 'The .LLab Membership™ Handbook',
   cover: {
     eyebrow: 'Welcome — a .LLab™ Membership Guide',
-    title: '.LLab <strong>Membership</strong>™ Handbook',
+    title: 'The .LLab <strong>Membership</strong>™ Handbook',
     subtitle: 'Welcome to ongoing access to Leadership Infrastructure™ — the frameworks, systems, community, and research behind everything The Co.LLab™ builds.',
     phase: 'Full IV Phases Catalog',
     price: '$150/mo · $1,500/yr',
@@ -37,8 +37,8 @@ export const contentHtml = `
 
   <table class="doc-table">
     <tr><th>Phase</th><th>What it's for</th><th>Start with</th></tr>
-    <tr><td>I · Foundations</td><td>Understanding what already exists before building anything new</td><td>.LLab Leadership Infrastructure Strength Map™</td></tr>
-    <tr><td>II · Infrastructure Planning &amp; Management</td><td>Determining what's needed and how it connects</td><td>.LLab Leadership Alignment Map™, Build Plan™</td></tr>
+    <tr><td>I · Foundations</td><td>Understanding what already exists before building anything new</td><td>The .LLab Leadership Infrastructure Strength Map™</td></tr>
+    <tr><td>II · Infrastructure Planning &amp; Management</td><td>Determining what's needed and how it connects</td><td>The .LLab Leadership Alignment Map™, Build Plan™</td></tr>
     <tr><td>III · Internal Operating Systems</td><td>Building the systems that let the organization run</td><td>Legacy Profile™, Operating System™</td></tr>
     <tr><td>IV · Preservation</td><td>Making it durable, transferable, and lasting</td><td>Legacy Infrastructure Map™, Diagnostic™, Blueprint™, Legacy Infrastructure Architecture™</td></tr>
   </table>
@@ -54,8 +54,8 @@ export const contentHtml = `
   <h1 class="doc-h1">Membership is <strong>more than downloads.</strong></h1>
   <p class="lead">Leadership Infrastructure™ is one part of a larger ecosystem — the rest of it is available to you as a member, not locked behind a separate purchase.</p>
   <ul class="doc-list">
-    <li><strong>The .LLab Journal™</strong> — the intellectual-property and thought-leadership layer of The Co.LLab™, where .LLab R.A.T.™ research becomes the frameworks these products are built from.</li>
-    <li><strong>.LLab R.A.T.™ (Research And Theory)</strong> — the research and theory laboratory behind the whole ecosystem, including Metacognitive Infrastructure Thinking™ and the .LLab Intelligence Infrastructure™.</li>
+    <li><strong>The .LLab Journal™</strong> — the intellectual-property and thought-leadership layer of The Co.LLab™, where The .LLab R.A.T.™ research becomes the frameworks these products are built from.</li>
+    <li><strong>The .LLab R.A.T.™ (Research And Theory)</strong> — the research and theory laboratory behind the whole ecosystem, including Metacognitive Infrastructure Thinking™ and the .LLab Intelligence Infrastructure™.</li>
     <li><strong>The .LLab Infrastructure Roadmap™</strong> — included automatically with your membership, a guided map of the full product catalog and how to sequence it for your situation.</li>
   </ul>
 
@@ -79,7 +79,7 @@ export const contentHtml = `
 
   <div class="callout">
     <div class="callout-label">Not sure where to start?</div>
-    <p>Open your <strong>.LLab Infrastructure Roadmap™</strong> first — it's included with your membership and walks through exactly this question.</p>
+    <p>Open your <strong>The .LLab Infrastructure Roadmap™</strong> first — it's included with your membership and walks through exactly this question.</p>
   </div>
 </section>
 `;

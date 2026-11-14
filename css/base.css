@@ -2342,3 +2342,9 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .wall-node-title a { color: var(--filament-1); }
 .wall-node-title span { display: block; margin-top: 0.25rem; font-size: var(--label-size); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
 .wall-open { margin: 0; color: var(--white-dim); }
+
+/* Menu groups: The Co.LLab+™, The .LLab™ and About Us open and close inside the menu, so it stays short. */
+.nav-links.is-open .nav-more-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0.7rem 0; background: none; border: 0; color: var(--white); font: inherit; font-size: 1rem; text-transform: none; letter-spacing: 0.02em; text-align: left; cursor: pointer; }
+.nav-links.is-open .nav-more-menu { display: none; padding: 0 0 0.5rem 1rem; border-left: 1px solid var(--hairline); }
+.nav-links.is-open .nav-more.is-open .nav-more-menu { display: flex; }
+.nav-links.is-open .nav-more-menu a { font-size: 0.95rem; padding: 0.5rem 0; }

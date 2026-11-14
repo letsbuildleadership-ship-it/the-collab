@@ -61,7 +61,7 @@
     <button type="button" class="pill mini" id="dl-json">Download full analysis (JSON)</button>
     <span class="meta" id="stamp"></span>
   </div>
-  <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="ip-feedback.html">Feedback &amp; ideas</a> <a class="pill mini" href="collaborating-companies.html">.LLab Collaborating Companies</a></p>
+  <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="ip-feedback.html">Feedback &amp; ideas</a> <a class="pill mini" href="collaborating-companies.html">The .LLab Collaborating Companies</a></p>
 
   <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">The portfolio</h2>
   <p class="why">How the IP as a whole is balanced.</p>
@@ -192,7 +192,7 @@
     const head = $('matrix-head'); head.textContent = '';
     const hr = el('tr'); hr.appendChild(el('th', null, 'Line')); PHASES.forEach((p) => hr.appendChild(el('th', null, p))); head.appendChild(hr);
     const mb = $('matrix-body'); mb.textContent = '';
-    Object.entries(data.portfolio.matrix).forEach(([line, counts]) => { const tr = el('tr'); tr.appendChild(el('td', null, line === 'core' ? '.LLab (core)' : line)); counts.forEach((c) => tr.appendChild(el('td', null, String(c)))); mb.appendChild(tr); });
+    Object.entries(data.portfolio.matrix).forEach(([line, counts]) => { const tr = el('tr'); tr.appendChild(el('td', null, line === 'core' ? 'The .LLab (core)' : line)); counts.forEach((c) => tr.appendChild(el('td', null, String(c)))); mb.appendChild(tr); });
     $('usage-note').textContent = 'Member activity: ' + data.insights.note;
     renderRecs();
     renderCatalog();

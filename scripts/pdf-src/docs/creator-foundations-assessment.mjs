@@ -3,19 +3,19 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'creator-foundations-assessment',
   outFile: 'creator-foundations-assessment.pdf',
-  docTitle: '.LLab Creator Foundations Assessment™',
+  docTitle: 'The .LLab Creator Foundations Assessment™',
   cover: cover({
-    title: '.LLab Creator Foundations <strong>Assessment</strong>™',
+    title: 'The .LLab Creator Foundations <strong>Assessment</strong>™',
     subtitle: 'A scored, thirty-statement assessment of the foundations under a creative practice.',
     price: '$200',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   }),
 };
 
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  "title": ".LLab Creator Foundations Assessment™",
+  "title": "The .LLab Creator Foundations Assessment™",
   "tagline": "See what your creative foundations already support, and where to build next.",
   "intro": "The Creator Foundations Assessment™ scores five areas of Phase I · Foundations for creators: voice, practice, audience, offer and ownership. It is a starting point for seeing what you have built, not a test of your work.",
   "steps": [

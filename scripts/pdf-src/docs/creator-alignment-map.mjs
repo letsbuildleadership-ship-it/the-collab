@@ -3,14 +3,14 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-alignment-map',
   outFile: 'creator-alignment-map.pdf',
-  docTitle: '.LLab Creator Alignment Map™',
+  docTitle: 'The .LLab Creator Alignment Map™',
   cover: {
-    eyebrow: 'Phase II · Infrastructure Planning & Management — .LLab™ IP',
-    title: '.LLab Creator Alignment <strong>Map</strong>™',
+    eyebrow: 'Phase II · Infrastructure Planning & Management — The .LLab™ IP',
+    title: 'The .LLab Creator Alignment <strong>Map</strong>™',
     subtitle: 'Connect your creative practice, your audience, and your offer into one coherent picture.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$50',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   },
 };
 
@@ -51,9 +51,9 @@ ${licenseHtml}
 <p><strong>The gap I'm closing first is <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>Once practice, audience, and offer are aligned, turn the gap you identified into a 30-day plan with the <strong>.LLab Creator Venture Build Plan™</strong> ($100).</p>
+<p>Once practice, audience, and offer are aligned, turn the gap you identified into a 30-day plan with the <strong>The .LLab Creator Venture Build Plan™</strong> ($100).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

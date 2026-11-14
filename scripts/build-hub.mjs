@@ -74,7 +74,7 @@ const productItem = async (p, extra = {}) => {
   const n = await pages(p.pdf_file);
   const pc = phaseCat(p.phase_key);
   const creator = isCreator(p);
-  const line = creator ? '.LLab Creators™' : FOUR.has(p.key) ? 'The IV Phases™' : 'The .LLab Blueprint™';
+  const line = creator ? 'The .LLab Creators™' : FOUR.has(p.key) ? 'The IV Phases™' : 'The .LLab Blueprint™';
   return {
     kind: 'product', group: 'Products', cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
     line, name: p.name, tag: tagline(p.description),
@@ -132,7 +132,7 @@ const gridHtml = items.map((o, i) => ((i === 0 || items[i - 1].group !== o.group
 
 const FILTERS = [
   ['all', 'All'], ['phase-i', 'Phase I · Foundations'], ['phase-ii', 'Phase II · Planning'], ['phase-iii', 'Phase III · Operating'], ['phase-iv', 'Phase IV · Preservation'],
-  ['creators', '.LLab Creators™'], ['partner-ip', 'Partner-only IP'], ['free', 'Free tools'], ['memberships', 'Memberships'], ['partnerships', 'Partnerships'], ['blueprint', 'Blueprint™ magazine'], ['founders', 'The Co.LLab Founders Organization™'],
+  ['creators', 'The .LLab Creators™'], ['partner-ip', 'Partner-only IP'], ['free', 'Free tools'], ['memberships', 'Memberships'], ['partnerships', 'Partnerships'], ['blueprint', 'Blueprint™ magazine'], ['founders', 'The Co.LLab Founders Organization™'],
 ];
 const count = (f) => (f === 'all' ? items.length : items.filter((o) => o.cats.includes(f)).length);
 

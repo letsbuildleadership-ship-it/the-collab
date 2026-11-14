@@ -3,14 +3,14 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'alignment-quick-check',
   outFile: 'free-tools/alignment-quick-check.pdf',
-  docTitle: '.LLab Alignment Quick-Check™',
+  docTitle: 'The .LLab Alignment Quick-Check™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Quick-Check',
-    title: '.LLab Alignment <strong>Quick-Check</strong>™',
+    title: 'The .LLab Alignment <strong>Quick-Check</strong>™',
     subtitle: 'A five-minute check on whether your day-to-day work still matches your stated priorities.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

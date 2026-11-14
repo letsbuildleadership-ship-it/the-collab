@@ -3,14 +3,14 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'operating-rhythm-checklist',
   outFile: 'free-tools/operating-rhythm-checklist.pdf',
-  docTitle: '.LLab Operating Rhythm Checklist™',
+  docTitle: 'The .LLab Operating Rhythm Checklist™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — Free Checklist',
-    title: '.LLab Operating Rhythm <strong>Checklist</strong>™',
+    title: 'The .LLab Operating Rhythm <strong>Checklist</strong>™',
     subtitle: 'Check your meeting, communication, and decision rhythms against what healthy systems actually need.',
     phase: 'III · Internal Operating Systems',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

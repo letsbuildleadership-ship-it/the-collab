@@ -5,12 +5,12 @@ export const meta = {
   outFile: 'creator-operating-system.pdf',
   docTitle: 'The .LLab Creator Operating System™',
   cover: {
-    eyebrow: 'Phase III · Internal Operating Systems — .LLab™ IP',
+    eyebrow: 'Phase III · Internal Operating Systems — The .LLab™ IP',
     title: 'The .LLab Creator Operating <strong>System</strong>™',
     subtitle: 'Repeatable systems for running the creative venture day-to-day — without every decision depending on you.',
     phase: 'III · Internal Operating Systems',
     price: '$300',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   },
 };
 
@@ -68,9 +68,9 @@ ${module_(6, 'The Review System', `
 `)}
 
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>With operating systems in place, the venture is ready for Preservation-phase infrastructure: <strong>.LLab Creative Estate Mapping™</strong> ($200), building toward the full <strong>.LLab Creator Legacy Infrastructure Architecture™</strong> ($750).</p>
+<p>With operating systems in place, the venture is ready for Preservation-phase infrastructure: <strong>The .LLab Creative Estate Mapping™</strong> ($200), building toward the full <strong>The .LLab Creator Legacy Infrastructure Architecture™</strong> ($750).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

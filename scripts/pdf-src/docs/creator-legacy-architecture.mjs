@@ -3,14 +3,14 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-legacy-architecture',
   outFile: 'creator-legacy-architecture.pdf',
-  docTitle: '.LLab Creator Legacy Infrastructure Architecture™',
+  docTitle: 'The .LLab Creator Legacy Infrastructure Architecture™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
-    title: '.LLab Creator Legacy Infrastructure <strong>Architecture</strong>™',
+    eyebrow: 'Phase IV · Preservation — The .LLab™ IP',
+    title: 'The .LLab Creator Legacy Infrastructure <strong>Architecture</strong>™',
     subtitle: 'The comprehensive framework for infrastructure that preserves a body of work, its ownership, and its legacy.',
     phase: 'IV · Preservation',
     price: '$750',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   },
 };
 
@@ -20,7 +20,7 @@ ${licenseHtml}
 <p><strong>CREATOR LEGACY INFRASTRUCTURE ARCHITECTURE™</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
 <p>This is the top of the .LLab Creators™ ladder — the comprehensive architecture that takes everything built across Foundations, Infrastructure Planning, and Internal Operating Systems, and designs it to last beyond any single project, platform, or the creator themselves.</p>
-<p>It assumes you've done (or will reference) a .LLab Creator Identity Map™, a .LLab Creator Alignment Map™, The .LLab Creator Operating System™, and .LLab Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
+<p>It assumes you've done (or will reference) a .LLab Creator Identity Map™, a .LLab Creator Alignment Map™, The .LLab Creator Operating System™, and The .LLab Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
 
 <p><strong>PILLAR 1 — IDENTITY ARCHITECTURE</strong></p>
 <p>How is the creative identity documented so it can be understood, applied, and carried forward by someone other than you?</p>
@@ -58,9 +58,9 @@ ${licenseHtml}
 <p><strong>It can be carried forward by <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 <p><strong>What I want it to leave behind is <span class="worksheet-line" style="display:inline-block; width:100%;"></span></strong></p>
 
-<p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>.LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, .LLab Library™, and community that support the full Co.LLab™ ecosystem.</p>
+<p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>The .LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, The .LLab Library™, and community that support the full Co.LLab™ ecosystem.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

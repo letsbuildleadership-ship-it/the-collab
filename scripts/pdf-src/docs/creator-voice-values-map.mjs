@@ -3,19 +3,19 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'creator-voice-values-map',
   outFile: 'creator-voice-values-map.pdf',
-  docTitle: '.LLab Creator Voice & Values Map™',
+  docTitle: 'The .LLab Creator Voice & Values Map™',
   cover: cover({
-    title: '.LLab Creator Voice &amp; Values <strong>Map</strong>™',
+    title: 'The .LLab Creator Voice &amp; Values <strong>Map</strong>™',
     subtitle: 'Name the voice in your work and the values you will not trade.',
     price: '$40',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   }),
 };
 
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  "title": ".LLab Creator Voice & Values Map™",
+  "title": "The .LLab Creator Voice & Values Map™",
   "tagline": "A creative practice is easier to build around once its voice is named.",
   "intro": "The Creator Voice & Values Map™ helps you describe how your work sounds and looks, what it stands for, and what you will not make or trade, so the rest of your infrastructure can be built around something specific.",
   "steps": [

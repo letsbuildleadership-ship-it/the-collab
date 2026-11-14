@@ -3,14 +3,14 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'systems-health-snapshot',
   outFile: 'free-tools/systems-health-snapshot.pdf',
-  docTitle: '.LLab Systems Health Snapshot™',
+  docTitle: 'The .LLab Systems Health Snapshot™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — Free Snapshot',
-    title: '.LLab Systems Health <strong>Snapshot</strong>™',
+    title: 'The .LLab Systems Health <strong>Snapshot</strong>™',
     subtitle: 'A fast diagnostic snapshot of how well your internal systems are actually operating.',
     phase: 'III · Internal Operating Systems',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

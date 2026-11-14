@@ -3,14 +3,14 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'culture-practice-audit',
   outFile: 'free-tools/culture-practice-audit.pdf',
-  docTitle: '.LLab Culture & Practice Audit™',
+  docTitle: 'The .LLab Culture & Practice Audit™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — Free Audit',
-    title: '.LLab Culture &amp; Practice <strong>Audit</strong>™',
+    title: 'The .LLab Culture &amp; Practice <strong>Audit</strong>™',
     subtitle: "A candid audit of the everyday practices actually shaping your culture — not just the ones on paper.",
     phase: 'III · Internal Operating Systems',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

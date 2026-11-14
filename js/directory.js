@@ -1,4 +1,4 @@
-// .LLab Collaborating Companies: public list, plus the signed-in
+// The .LLab Collaborating Companies: public list, plus the signed-in
 // member's own listing form. All member-written text is set with textContent
 // or .value, and outbound links are https only (re-checked here).
 (function () {

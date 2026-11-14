@@ -1,10 +1,10 @@
 export const meta = {
   key: 'strength-map',
   outFile: 'strength-map.pdf',
-  docTitle: '.LLab Leadership Infrastructure Strength Map™',
+  docTitle: 'The .LLab Leadership Infrastructure Strength Map™',
   cover: {
-    eyebrow: 'Phase I · Foundations — .LLab™ IP',
-    title: '.LLab Leadership Infrastructure <strong>Strength Map</strong>™',
+    eyebrow: 'Phase I · Foundations — The .LLab™ IP',
+    title: 'The .LLab Leadership Infrastructure <strong>Strength Map</strong>™',
     subtitle: 'Identify one organizational strength and learn how to build infrastructure around it — instead of starting, as most do, with what\'s broken.',
     phase: 'I · Foundations',
     price: '$20',

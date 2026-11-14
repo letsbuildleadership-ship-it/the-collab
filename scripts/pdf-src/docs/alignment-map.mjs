@@ -1,10 +1,10 @@
 export const meta = {
   key: 'alignment-map',
   outFile: 'alignment-map.pdf',
-  docTitle: '.LLab Leadership Alignment Map™',
+  docTitle: 'The .LLab Leadership Alignment Map™',
   cover: {
-    eyebrow: 'Phase II · Infrastructure Planning & Management — .LLab™ IP',
-    title: '.LLab Leadership <strong>Alignment Map</strong>™',
+    eyebrow: 'Phase II · Infrastructure Planning & Management — The .LLab™ IP',
+    title: 'The .LLab Leadership <strong>Alignment Map</strong>™',
     subtitle: 'Connect mission, vision, values, strategy, and culture — and find exactly where they stop lining up.',
     phase: 'II · Infrastructure Planning & Management',
     price: '$50',

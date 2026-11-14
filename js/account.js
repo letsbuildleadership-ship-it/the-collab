@@ -349,7 +349,7 @@
         <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future products from The Co.LLab™, applied automatically at checkout whenever you're signed in.</p>
         ${founder.partnershipCredit ? `<p class="founder-card-benefit">Partnership credit: <strong>$${Number(founder.partnershipCredit).toLocaleString('en-US')}</strong>, applied automatically when you buy a <a href="partnership.html">Partnership™</a> while signed in.</p>` : ''}
         ${(founder.contributions || []).length ? `<p class="founder-card-benefit">Your contributions: ${founder.contributions.map((c) => `$${Number(c.amount).toLocaleString('en-US')}${c.node ? ` to ${esc(c.node)}` : ''}`).join(' · ')}</p>` : ''}
-        <p class="founder-card-benefit">${founder.contributeLink ? `<a class="pill pill--solid" href="${esc(founder.contributeLink)}">Give any amount <span class="arrow">→</span></a> <a class="pill" href="all-products.html">Shop .LLab™ products <span class="arrow">→</span></a>` : ''}</p>
+        <p class="founder-card-benefit">${founder.contributeLink ? `<a class="pill pill--solid" href="${esc(founder.contributeLink)}">Give any amount <span class="arrow">→</span></a> <a class="pill" href="all-products.html">Shop The .LLab™ products <span class="arrow">→</span></a>` : ''}</p>
         <p class="founder-card-copy">Founder participation supports The Co.LLab™'s Omnidirectional Enterprise™ model — value, authority, intelligence, IP, and opportunity moving in multiple directions rather than purely top-down. As a Founder, you help strengthen Leadership Infrastructure™ and the ecosystem connecting creators, businesses, nonprofits, organizations, and enterprise — turning human potential into performance, sustainable enterprise value, and lasting legacy.</p>
       </div>`;
   }
@@ -585,7 +585,7 @@
     if (note) note.hidden = !(mem && mem.status === 'active' && mem.subscriptionId);
   }
 
-  /* .LLab Membership offer, for anyone without an active Membership. */
+  /* The .LLab Membership offer, for anyone without an active Membership. */
   function renderMembershipOffer(data) {
     const el = $('offer-membership');
     const offer = data.membershipOffer;
@@ -594,7 +594,7 @@
       .filter((p) => p.payment_link)
       .map((p, i) => `<a class="pill ${i === 0 ? 'pill--solid' : 'pill--accent'}" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
       .join('');
-    el.innerHTML = `<p class="offer-eyebrow">.LLab Membership™</p>
+    el.innerHTML = `<p class="offer-eyebrow">The .LLab Membership™</p>
       <h3 class="offer-title">Unlock every quest</h3>
       <p class="offer-body">${esc(offer.description)}</p>
       <ul class="offer-points">
@@ -607,7 +607,7 @@
   }
 
   const SHOP_GROUPS = [
-    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. Every one comes with .LLab Membership™, or buy one to keep.' },
+    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. Every one comes with The .LLab Membership™, or buy one to keep.' },
     { line: 'creator', title: 'Creator Infrastructure™', lead: 'For creators turning a body of work into a lasting venture. Buy one, or win it as level loot.' },
     { line: 'blueprint', title: 'The .LLab Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
     { line: 'other', title: 'More from The Co.LLab™', lead: '' },
@@ -673,7 +673,7 @@
     tiles.push(active
       ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${tm(top.name)}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
       : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools and their quests', cta: 'Unlock every quest', href: '#offer-membership' });
-    const label = { founders: name('founders', 'The Co.LLab Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
+    const label = { founders: name('founders', 'The Co.LLab Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', 'The .LLab Membership™') };
     el.innerHTML = tiles
       .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)
       .join('');
@@ -735,7 +735,7 @@
       q = {
         label: 'Start the game',
         title: 'Unlock 9 quests',
-        body: '.LLab Membership™ opens 9 quests across 4 levels, analyzes your answers and delivers your outcomes. Clear a level, win free loot. The free tools and their quests are ready now.',
+        body: 'The .LLab Membership™ opens 9 quests across 4 levels, analyzes your answers and delivers your outcomes. Clear a level, win free loot. The free tools and their quests are ready now.',
         cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">Free tools <span class="arrow">→</span></a>` : '',
       };
     }

@@ -3,14 +3,14 @@ import { licensePageHtml } from './_license.mjs';
 export const meta = {
   key: 'creator-diagnostic',
   outFile: 'creator-diagnostic.pdf',
-  docTitle: '.LLab Creators Diagnostic™ (Free Edition)',
+  docTitle: 'The .LLab Creators Diagnostic™ (Free Edition)',
   cover: {
-    eyebrow: '.LLab Creators™ — Free Diagnostic',
-    title: '.LLab Creators <strong>Diagnostic</strong>™',
+    eyebrow: 'The .LLab Creators™ — Free Diagnostic',
+    title: 'The .LLab Creators <strong>Diagnostic</strong>™',
     subtitle: 'A short self-assessment across all of The IV Phases™ — free edition.',
     phase: 'all of The IV Phases™',
     price: 'Free',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   },
 };
 
@@ -34,7 +34,7 @@ ${licensePageHtml}
   <div class="content-header">
     <span class="page-index">01 · Score Phases I &amp; II</span>
     <h2 class="section-title">A Directional Score.<br/><strong>Not A Test You Can Fail.</strong></h2>
-    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all of The IV Phases™ of .LLab Creators™ — score honestly.</p>
+    <p class="section-intro">Score each statement 0 (not true yet) to 3 (fully true). This free edition gives you a directional read across all of The IV Phases™ of The .LLab Creators™ — score honestly.</p>
   </div>
   ${phasePanel('I', 'Foundations', 'Idea → Identity', [
     'I can describe what I make in one clear sentence, without hedging.',
@@ -78,17 +78,17 @@ ${licensePageHtml}
 
   <table class="doc-table">
     <tr><th>If This Phase Scored Lowest</th><th>Match It To</th></tr>
-    <tr><td>Foundations</td><td><strong>.LLab Creator Identity Map™</strong> — $20</td></tr>
-    <tr><td>Infrastructure Planning &amp; Management</td><td><strong>.LLab Creator Alignment Map™</strong> ($50) or <strong>.LLab Creator Venture Build Plan™</strong> ($100)</td></tr>
+    <tr><td>Foundations</td><td><strong>The .LLab Creator Identity Map™</strong> — $20</td></tr>
+    <tr><td>Infrastructure Planning &amp; Management</td><td><strong>The .LLab Creator Alignment Map™</strong> ($50) or <strong>The .LLab Creator Venture Build Plan™</strong> ($100)</td></tr>
     <tr><td>Internal Operating Systems</td><td><strong>The .LLab Creator Operating System™</strong> — $300</td></tr>
-    <tr><td>Preservation</td><td><strong>.LLab Creative Estate Mapping™</strong> ($200) or <strong>.LLab Creator Legacy Infrastructure Architecture™</strong> ($750)</td></tr>
+    <tr><td>Preservation</td><td><strong>The .LLab Creative Estate Mapping™</strong> ($200) or <strong>The .LLab Creator Legacy Infrastructure Architecture™</strong> ($750)</td></tr>
   </table>
 
   <div class="callout">
     <p class="callout-label">Already Strong Across All Four?</p>
-    <p>If you want it all unlocked at once, <strong>.LLab Membership™</strong> includes the full .LLab Creators™ ladder — plus everything else in The .LLab™ ecosystem.</p>
+    <p>If you want it all unlocked at once, <strong>The .LLab Membership™</strong> includes the full .LLab Creators™ ladder — plus everything else in The .LLab™ ecosystem.</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

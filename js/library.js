@@ -96,7 +96,7 @@
   }
 
   /* ---------------------------------------------------------------- *
-   * .LLab Treasury™
+   * The .LLab Treasury™
    * ---------------------------------------------------------------- */
   function renderTreasury(data) {
     const libraryActive = data.memberships && data.memberships['library-card'] && data.memberships['library-card'].status === 'active';

@@ -27,8 +27,8 @@ test('one Omnidirectional Legacy Wall, organized by area; people appear wherever
   assert.deepEqual(names(body, 'Businesses', 'Partner Partners'), ['Partner Co.']);
   assert.deepEqual(names(body, 'Communities', 'Legacy Founder'), ['Founder Co.']);
   assert.deepEqual(names(body, 'Nonprofits', 'Charity partners'), ['Blazing Smiles', 'Wavecraft Oceans Project']);
-  assert.ok(names(body, 'Products & Services', '.LLab product owners').includes('Shopper'));
-  assert.ok(names(body, 'People', '.LLab Membership™ Members').includes('Partner Co.'), 'a Partnership includes Membership, so the Partner is also a member');
+  assert.ok(names(body, 'Products & Services', 'The .LLab product owners').includes('Shopper'));
+  assert.ok(names(body, 'People', 'The .LLab Membership™ Members').includes('Partner Co.'), 'a Partnership includes Membership, so the Partner is also a member');
   const text = JSON.stringify(body);
   assert.ok(!text.includes('Owner Test') && !text.includes('@') && !/[A-Z]+-\d{5}/.test(text), 'no tests, emails or numbers');
 });
@@ -37,7 +37,7 @@ test('every member has a permanent Member Number and standing on their card', as
   const r = await fulfillCheckoutSession({ id: 'cs_c', customer_details: { email: 'card@example.com', name: 'Card Holder' } }, [pricing.entryForKey('strength-map').stripe_price_id]);
   const view = buildAccountView(r.record);
   assert.match(view.memberId, /^[A-Z]+-\d{5}$/);
-  assert.equal(view.memberStanding.label, '.LLab Members');
+  assert.equal(view.memberStanding.label, 'The .LLab Members');
   assert.ok(view.memberSince);
 });
 

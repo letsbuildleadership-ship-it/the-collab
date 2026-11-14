@@ -6,7 +6,7 @@
 function memberStanding(r) {
   if (!r) return null;
   if (r.partnership || r.seat) return { key: 'partnership', label: 'Partnership Members', rank: 3 };
-  if (Object.keys(r.memberships || {}).length || (r.purchases || []).length) return { key: 'llab', label: '.LLab Members', rank: 2 };
+  if (Object.keys(r.memberships || {}).length || (r.purchases || []).length) return { key: 'llab', label: 'The .LLab Members', rank: 2 };
   if (r.signupSource !== 'free' || r.emailVerified === true) return { key: 'community', label: 'Community Members', rank: 1 };
   return null;
 }
