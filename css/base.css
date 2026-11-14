@@ -1904,7 +1904,7 @@ main > section:not(.hero):not(.factbar-wrap):not(.next-links) { padding-top: cla
 @media (max-width: 860px) { .model-ribbon .ribbon-join { align-self: flex-start; white-space: nowrap; font-size: 0.7rem; padding: 0.35em 0.85em; max-width: 100%; } }
 
 
-/* Phones: smaller chips so Businesses, Knowledge + IP and Communities all show on first view */
+/* Phones: smaller chips so Enterprises, Knowledge + IP and Communities all show on first view */
 @media (max-width: 860px) {
   .model-ribbon ul { gap: 0.3rem; }
   .model-ribbon li a { font-size: 0.68rem; letter-spacing: 0.04em; padding: 0.4em 0.65em; }

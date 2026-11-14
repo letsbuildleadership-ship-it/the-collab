@@ -18,7 +18,7 @@ const fmt = (n) => '$' + n.toLocaleString('en-US');
 const lo = fmt(Math.min(...tiers.map(money))), hi = fmt(Math.max(...tiers.map(money)));
 const seats = tiers.map((t) => t.seats).join(', ').replace(/, (\d+)$/, ', or $1');
 
-const LEGAL = 'A license for internal business use. Results depend on how each business applies it.';
+const LEGAL = 'A license for internal enterprise use. Results depend on how each enterprise applies it.';
 const EYE = 'Omnidirectional Enterprise™ Partnership';
 // *word* = emphasis (fire gradient, bold)
 const ADS = [
@@ -28,7 +28,7 @@ const ADS = [
   { id: '04-economics',    lever: 'Authority + reframe',            eyebrow: 'The economic case', hook: 'Generating value and capturing value *are different processes.*', support: 'Practice Omnidirectional Enterprise™ with licensed Co.LLab IP™.', cta: 'Read the case', img: 'scaffolding', pos: '25% 50%', legal: true },
   { id: '05-one-payment',  lever: 'Risk reversal + price clarity',  eyebrow: EYE, hook: '*One payment.* Licensed to keep.', support: `No subscription. No automatic charges. Four levels, ${lo}–${hi}.`, cta: 'Choose your level', img: 'racks', pos: '40% 62%', legal: true },
   { id: '06-start-free',   lever: 'Foot-in-the-door + reciprocity', eyebrow: 'The .LLab', hook: '*Start free.* Build your legacy.', support: 'Test drive Membership free — no card needed. Every free tool, by phase.', cta: 'Test drive Membership free', img: 'storefront', pos: '50% 40%', legal: false },
-  { id: '07-unity',        lever: 'Unity + belonging',              eyebrow: 'Omnidirectional Enterprise™', hook: '*Nobody builds alone.*', support: 'Value moves between businesses, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.', cta: 'See the model', img: 'stage', pos: '60% 40%', legal: false },
+  { id: '07-unity',        lever: 'Unity + belonging',              eyebrow: 'Omnidirectional Enterprise™', hook: '*Nobody builds alone.*', support: 'Value moves between enterprises, nonprofits, communities, people, technology, capital, knowledge + IP, and creators.', cta: 'See the model', img: 'stage', pos: '60% 40%', legal: false },
   { id: '08-team',         lever: 'Status + internal buy-in',       eyebrow: EYE, hook: 'Your legacy. *Your whole team.*', support: `Seats for ${seats} people. One account each, added by invite.`, cta: 'See the seat levels', img: 'booth', pos: '50% 58%', legal: true },
 
   { id: '09-define',        lever: 'Phase I · identity (booth, sign, table)',     eyebrow: 'The IV Phases™ · Phase I · Foundations', hook: '*Define* it.', support: 'Who you are and what you stand on.', cta: 'See the Partner level', img: 'booth', pos: '50% 58%', legal: true },

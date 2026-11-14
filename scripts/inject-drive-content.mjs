@@ -1,5 +1,5 @@
 // Replaces the hand-authored contentHtml in each ladder-product doc module
-// with the real content converted from the business owner's actual .docx
+// with the real content converted from the enterprise owner's actual .docx
 // files in Google Drive (via convert-drive-docx.py). Keeps each module's
 // `meta` (cover copy, price, phase) exactly as-is — only the interior
 // content changes, from authored-by-Claude to sourced-from-Drive.

@@ -1,4 +1,4 @@
-// Lightweight ops console for the business owner: list customers, inspect
+// Lightweight ops console for the enterprise owner: list customers, inspect
 // entitlements, and manually grant/revoke access (comps, support fixes)
 // without touching code. Gated by an ADMIN_TOKEN environment variable set
 // in the Netlify dashboard — never checked into git. Paired with

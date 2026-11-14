@@ -109,7 +109,7 @@ const tier = (tn, p, h, m, f) => `<div class="tier panel"><small>${tn}</small><d
 const s9 = () => slide(`<p class="k">Partnership</p><h2 style="font-size:64px">Four levels. <b>One legacy.</b></h2><div class="tiers grow">
 ${P.tiers.map((t) => tier(t.label, t.price, `${t.verb}.`, t.term, t.econ ? `${t.bestFor} ${t.econ}` : t.bestFor)).join('')}</div>
 <div class="entry panel"><b>Start free.</b> <b>The .LLab Library Card™</b> ${P.libMo} · <b>The .LLab Journal™</b> ${P.journalYr} · <b>The .LLab Membership™</b> ${P.memMo}, with the Infrastructure Analysis™</div>
-<p class="legal">IV Phases™ IP ${P.range}. One-time purchase. No subscription and no automatic charges. A license for internal business use. Results depend on how each business applies it.</p>`);
+<p class="legal">IV Phases™ IP ${P.range}. One-time purchase. No subscription and no automatic charges. A license for internal enterprise use. Results depend on how each enterprise applies it.</p>`);
 const s10 = () => slide(`<p class="k">The .LLab Collaborating Companies</p><h2 style="font-size:64px">Companies that <b>collaborate with us.</b></h2><div class="pts grow" style="align-content:center">
 <div class="pt panel"><b>Who collaborates</b>Companies that license any .LLab™ product or hold a Membership.</div><div class="pt panel"><b>What is shown</b>Only what each company writes, so companies work with each other directly.</div><div class="pt panel"><b>How it stays true</b>The Co.LLab™ reads each page, and each change to it, before it appears.</div></div>`);
 const opt = (i, h, p, q, u) => `<div class="opt panel"><small>${i}</small><h3>${h}</h3><p>${p}</p><img src="${q}"/></div>`;

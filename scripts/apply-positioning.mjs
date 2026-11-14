@@ -5,7 +5,7 @@ import fs from 'node:fs';
 
 const P = {
   founders: ['The Co.LLab Founders Organization™ · Community Economic Development',
-    'Unequal access to entrepreneurial education, business infrastructure, capital networks, and professional relationships can constrain small-business formation, local investment, economic mobility, and regional development.',
+    'Unequal access to entrepreneurial education, enterprise infrastructure, capital networks, and professional relationships can constrain small-enterprise formation, local investment, economic mobility, and regional development.',
     'The Co.LLab Founders Organization™ is where investors fund the continued building of The Co.LLab™ and its Leadership Infrastructure™, and are permanently recognized. Next, it invests back out through scholarships, angel investment and charitable donations, opening access to entrepreneurial education, capital and Leadership Infrastructure™ for community-based enterprise.'],
   llab: ['The .LLab · Research & Intellectual Property Development',
     'Fragmented research and weak connections between theory, applied practice, and implementation can slow innovation and prevent intellectual assets from becoming practically useful or commercially applicable.',
@@ -13,18 +13,18 @@ const P = {
   phases: ['The IV Phases™ · Leadership & Organizational Infrastructure',
     'Weak organizational foundations, fragmented operations, inadequate governance, and insufficient succession planning can increase execution risk, reduce productivity, and expose organizations to operational and financial instability.',
     'The IV Phases™ provides a four-phase leadership infrastructure model—Foundations, Infrastructure Planning &amp; Management, Internal Operating Systems, and Preservation—to support organizational alignment, operational continuity, risk management, and long-term enterprise value.'],
-  tools: ['Free Tools · Business & Strategic Resources',
-    'Unequal access to practical business knowledge, analytical resources, and decision-making tools can create barriers to effective planning and commercial execution.',
-    'Free Tools provides accessible resources that support business literacy, strategic analysis, organizational capability, and informed resource allocation.'],
+  tools: ['Free Tools · Enterprise & Strategic Resources',
+    'Unequal access to practical enterprise knowledge, analytical resources, and decision-making tools can create barriers to effective planning and commercial execution.',
+    'Free Tools provides accessible resources that support enterprise literacy, strategic analysis, organizational capability, and informed resource allocation.'],
   think: ['The .LLab R.A.T.™ · Research And Theory — Strategic Research & Analysis',
-    'Geopolitical realignment, trade policy shifts, market volatility, technological disruption, and regulatory change increase uncertainty for businesses, investors, and institutions.',
-    'The .LLab R.A.T.™ analyzes business, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
-  journal: ['Journal · Business, Economics & Geopolitics Magazine',
-    'Business, economic, and geopolitical developments are often examined in isolation, obscuring their interconnected effects on markets, industries, labor, technology, and everyday economic conditions.',
-    'Journal publishes magazine-style analysis connecting business, economics, geopolitics, technology, culture, and society to explain market developments and their implications for enterprise strategy and economic participation.'],
+    'Geopolitical realignment, trade policy shifts, market volatility, technological disruption, and regulatory change increase uncertainty for enterprises, investors, and institutions.',
+    'The .LLab R.A.T.™ analyzes enterprise, economic, political, and geopolitical systems to identify structural shifts, evaluate strategic risks, assess market exposure, and interpret emerging commercial opportunities.'],
+  journal: ['Journal · Enterprise, Economics & Geopolitics Magazine',
+    'Enterprise, economic, and geopolitical developments are often examined in isolation, obscuring their interconnected effects on markets, industries, labor, technology, and everyday economic conditions.',
+    'Journal publishes magazine-style analysis connecting enterprise, economics, geopolitics, technology, culture, and society to explain market developments and their implications for enterprise strategy and economic participation.'],
   preview: ['Free Journal Preview · Editorial Access',
     'Financial and information barriers can restrict access to analysis connecting economic policy, market developments, technological change, and commercial strategy.',
-    'Free Journal Preview offers selected magazine content introducing readers to The Co.LLab™ analysis of business, economics, geopolitics, and emerging market conditions.'],
+    'Free Journal Preview offers selected magazine content introducing readers to The Co.LLab™ analysis of enterprise, economics, geopolitics, and emerging market conditions.'],
   about: ['About · Corporate Identity & Strategic Positioning',
     'Unclear corporate positioning and disconnected organizational objectives can weaken stakeholder alignment, strategic execution, and communication of long-term economic value.',
     'About establishes The Co.LLab™ corporate identity, mission, strategic positioning, and operating philosophy around leadership infrastructure, proprietary intellectual property, and sustainable enterprise development.'],
@@ -61,8 +61,8 @@ const HOME_EXTRA = `
         <div><p class="eyebrow">The central economic proposition</p><p class="subhead" style="max-width:none; margin-top:1rem;">Economic performance depends not only on creating value, but on the systems governing how resources are coordinated, intellectual property is owned, decisions are made, innovations reach markets, and returns are captured and reinvested. <strong>Generating value and capturing value are different processes.</strong></p></div>
       </div>
       <div class="grid-3" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2.5rem;">
-        <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, business models, leadership infrastructure, research, and commercial ventures.</p></div>
-        <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of businesses, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
+        <div><p class="eyebrow">The company</p><p style="margin-top:0.75rem;"><strong>The Co.LLab™</strong> — an enterprise infrastructure and intellectual property company developing proprietary products, enterprise models, leadership infrastructure, research, and commercial ventures.</p></div>
+        <div><p class="eyebrow">The operating model</p><p style="margin-top:0.75rem;"><strong>Omnidirectional Enterprise™</strong> — connects people, organizations, products, intellectual property, capital, and resources in one ecosystem. Mechanisms: shared IP licensed across participants; a common governance model (The IV Phases™); a cross-sector network of enterprises, nonprofits, creators, and communities; and revenue reinvested across the portfolio.</p></div>
         <div><p class="eyebrow">The portfolio</p><p style="margin-top:0.75rem;">Distinct products, IP, research, resources, and ventures — <a href="pages/founders.html">The Co.LLab Founders Organization™</a>, <a href="pages/products.html">The .LLab™</a>, <a href="pages/think.html">The .LLab R.A.T.™</a>, <a href="pages/journal.html">The .LLab Journal™</a>, <a href="pages/partnership.html">Partnership™</a>, <a href="pages/creator.html">The .LLab Creators™</a>, <a href="pages/impact.html">The .LLab Impact™</a> — each applying this infrastructure to a specific market or function.</p></div>
       </div>`;
 

@@ -37,7 +37,7 @@ const CHAIN = ['human potential', 'performance', 'sustainable enterprise value',
 
 // The nine directions value moves in an Omnidirectional Enterprise™.
 const OE_NODES = [
-  ['Enterprises', /\b(compan\w+|business\w*|clients?|customers?|vendors?|suppliers?|partners?|partnerships?|organizations?)\b/gi],
+  ['Enterprises', /\b(compan\w+|business\w*|enterprise\w*|clients?|customers?|vendors?|suppliers?|partners?|partnerships?|organizations?)\b/gi],
   ['Nonprofits', /\b(nonprofits?|non-profits?|charit\w+|volunteers?|donors?|giving|foundations? (?:grant|board)|mission-driven)\b/gi],
   ['Communities', /\b(communit\w+|neighbou?rhoods?|local|public|members?|families|families|network\w*)\b/gi],
   ['People', /\b(people|employees?|staff|team\w*|leaders?|mentor\w*|apprentic\w+|successors?|talent|colleagues?)\b/gi],

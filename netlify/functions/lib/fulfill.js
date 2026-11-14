@@ -178,7 +178,7 @@ async function fulfillCheckoutSession(session, priceIds) {
       giftLevelKey = levelKey;
       const field = (session.custom_fields || []).find((c) => c.key === 'direct_to');
       const value = (field && field.dropdown && field.dropdown.value) || (session.metadata || {}).direct_to;
-      const node = pricing.designationNodes().find((n) => slug(n) === value) || null;
+      const node = pricing.designationNodes().find((n) => slug(n) === (value === 'businesses' ? 'enterprises' : value)) || null;
       const nameField = (session.custom_fields || []).find((c) => c.key === 'wall_name');
       if (nameField && nameField.text && nameField.text.value && nameField.text.value.trim()) wallName = nameField.text.value.trim().slice(0, 80);
       contributions.push({ key, amount: paid, node, at: new Date().toISOString(), sessionId: session.id || null });

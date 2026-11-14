@@ -252,7 +252,7 @@ const p7b = () => pg(K('Partnership'), 'Included in <b>every level.</b>', `
 <div class="sp"><div class="no">2</div><div><b>A partner-only framework</b><span>One for your level, found nowhere else.</span></div></div>
 <div class="sp"><div class="no">3</div><div><b>The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™</b><span>For the term, with every new release while you are a member.</span></div></div>
 </div>
-<div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal business use. Results depend on how each business applies it.</div>
+<div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal enterprise use. Results depend on how each enterprise applies it.</div>
 <div class="qb" style="margin-top:12px"><img src="${qPartner}"/><div><b>See Partnerships</b><span>Scan to open the Partnership page.</span></div></div>`);
 
 const p8 = () => pg(K('The .LLab Collaborating Companies'), 'Companies we <b>collaborate with.</b>', `
