@@ -274,6 +274,26 @@
     }
   }
 
+  // Membership card: every member has one, with a permanent Member Number. Once a member, always a member.
+  function renderMemberCard(data) {
+    const wrap = $('member-card-group');
+    if (!wrap || !data.memberId) return;
+    const standing = (data.memberStanding && data.memberStanding.label) || 'Member';
+    const since = data.memberSince ? new Date(data.memberSince).getFullYear() : '';
+    wrap.hidden = false;
+    wrap.innerHTML = `
+      <div class="founder-card member-card">
+        <div class="founder-card-badge">The Co.LLab™ Membership Card</div>
+        <div class="founder-card-grid">
+          <div><span class="founder-card-label">Member</span><strong class="founder-card-value">${esc(data.name || '—')}</strong></div>
+          <div><span class="founder-card-label">Member Number</span><strong class="founder-card-value">${esc(data.memberId)}</strong></div>
+          <div><span class="founder-card-label">Standing</span><strong class="founder-card-value">${esc(standing.replace(/ Members$/, ' Member'))}</strong></div>
+          <div><span class="founder-card-label">Member since</span><strong class="founder-card-value">${since}</strong></div>
+        </div>
+        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="login.html#member-wall">Membership Legacy Wall</a>.</p>
+      </div>`;
+  }
+
   function renderFounderCard(data) {
     const wrap = $('founder-card-group');
     if (!wrap) return;
@@ -783,6 +803,7 @@
     const verifyNote = $('email-verify-note');
     if (verifyNote) verifyNote.hidden = data.emailVerified !== false || data.emailEnabled === false;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
+    renderMemberCard(data);
     renderFounderCard(data);
     renderPartnership(data);
 

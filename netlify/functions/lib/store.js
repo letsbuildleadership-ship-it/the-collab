@@ -195,6 +195,14 @@ async function listBenefactors() {
     .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since, test: !!r.ownerTest }));
 }
 
+const { memberStanding } = require('./member-standing');
+/** The Membership Legacy Wall: every member with a name, by highest standing ever held. Public-safe fields only. */
+async function listMembers() {
+  return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null }));
+}
+
 async function listFounders() {
   const page = await store().list({ prefix: 'customers/' });
   const records = await Promise.all(page.blobs.map((b) => store().get(b.key, { type: 'json' })));
@@ -401,6 +409,8 @@ module.exports = {
   nextMemberId,
   nextFounderNumber,
   listFounders,
+  listMembers,
+  memberStanding,
   listBenefactors,
   listCustomers,
   getCustomerByToken,
