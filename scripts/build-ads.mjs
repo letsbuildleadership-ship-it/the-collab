@@ -42,10 +42,10 @@ const ADS = [
 
 // Every tactic is modeled under Omnidirectional Enterprise (node = who/direction of value) x The IV Phases (1 Foundations, 2 Infrastructure Planning & Management, 3 Internal Operating Systems, 4 Preservation).
 const TAG = {
-  '01-legacy': ['Businesses', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Products & Services', 2, '/pages/all-products.html'],
+  '01-legacy': ['Enterprises', 1, '/'], '02-succession': ['Capital', 4, '/pages/partnership.html#tiers'], '03-four-phases': ['Products & Services', 2, '/pages/all-products.html'],
   '04-economics': ['Capital', 2, '/pages/about.html#economic'], '05-one-payment': ['Capital', 3, '/pages/partnership.html#tiers'], '06-start-free': ['People', 1, '/pages/login.html#join'],
-  '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Businesses', 3, '/pages/partnership.html#tiers'], '09-define': ['Businesses', 1, '/pages/partnership.html#cohort'],
-  '10-plan': ['Businesses', 2, '/pages/partnership.html#cohort'], '11-live': ['Businesses', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],
+  '07-unity': ['Communities', 4, '/pages/think.html#model'], '08-team': ['Enterprises', 3, '/pages/partnership.html#tiers'], '09-define': ['Enterprises', 1, '/pages/partnership.html#cohort'],
+  '10-plan': ['Enterprises', 2, '/pages/partnership.html#cohort'], '11-live': ['Enterprises', 3, '/pages/partnership.html#cohort'], '12-creators': ['Creators', 1, '/pages/creator.html'],
   '13-nonprofits': ['Nonprofits', 4, '/pages/impact.html'], '14-technology': ['Technology', 3, '/pages/technology.html'], '15-knowledge': ['Knowledge + IP', 2, '/pages/journal.html'],
 };
 for (const a of ADS) { const t = TAG[a.id]; if (!t) throw new Error('ad without node/phase: ' + a.id); [a.node, a.phase, a.lands] = t; }

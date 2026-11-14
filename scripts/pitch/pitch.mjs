@@ -175,7 +175,7 @@ ${arw('#0f1d13', 'Pass it on.', 'Phase IV', 'Preservation')}
 </div>
 <div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
 
-const nodes = ['Businesses', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+const nodes = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const cx = 250, cy = 250, R = 218;
 const pts = nodes.map((name, i) => { const a = (-90 + i * (360 / nodes.length)) * Math.PI / 180; return { name, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }; });
 const svg = `<svg viewBox="-50 -20 600 540" xmlns="http://www.w3.org/2000/svg">
