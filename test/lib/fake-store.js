@@ -67,6 +67,22 @@ async function listMembers() {
     .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null, url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null }));
 }
 
+/** Everyone who has ever participated, public-safe fields only (for the Omnidirectional Legacy Wall). */
+async function listParticipants() {
+  return (Array.from(customers.values()))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({
+      name: (r.founder && r.founder.name) || r.name || null,
+      url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
+      since: r.createdAt || null,
+      partnershipKey: (r.partnership && r.partnership.key) || null,
+      founderLevel: (r.founder && r.founder.level) || null,
+      membershipKeys: Object.keys(r.memberships || {}),
+      purchasedKeys: [...new Set((r.purchases || []).map((p) => p.key))],
+      free: memberStanding(r).key === 'community',
+    }));
+}
+
 async function listFounders() {
   return Array.from(customers.values())
     .filter((r) => r.founder)
@@ -273,6 +289,7 @@ module.exports = {
   nextFounderNumber,
   listFounders,
   listMembers,
+  listParticipants,
   memberStanding,
   listBenefactors,
   listCustomers,

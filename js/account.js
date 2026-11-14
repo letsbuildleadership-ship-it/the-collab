@@ -291,7 +291,7 @@
           <div><span class="founder-card-label">Member since</span><strong class="founder-card-value">${since}</strong></div>
         </div>
         ${data.canLinkOnWall ? `<form class="wall-url-form" id="wall-url-form"><label class="founder-card-label" for="wall-url" style="flex-basis:100%;">Advertise on the Legacy Walls: link your name to your website (optional)</label><input id="wall-url" name="url" type="text" inputmode="url" placeholder="yourcompany.com" value="${esc(data.wallUrl || '')}" maxlength="200" /><button class="pill pill--solid" type="submit">Save link</button><span id="wall-url-msg" class="founder-card-label" role="status"></span></form>` : ''}
-        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="products.html#member-wall">.LLab™ Membership Legacy Wall</a>${data.partnership ? ' and the <a href="partnership.html#partner-wall">Partnership™ Legacy Wall</a>' : ''}.</p>
+        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="omnidirectional-enterprise.html#legacy-wall">Omnidirectional Legacy Wall</a>.</p>
       </div>`;
   }
 
