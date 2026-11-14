@@ -6,19 +6,9 @@
   "eyebrow": "The Co.LLab Founders Organization™ · BUILD",
   "hero_headline": [
     {
-      "text": "The Co.LLab",
-      "style": "white",
-      "break_before": false
-    },
-    {
-      "text": "™",
-      "style": "default",
-      "break_before": false
-    },
-    {
-      "text": "The Co.LLab Founders Organization™.",
+      "text": "The Co.LLab Founders Organization™",
       "style": "glow",
-      "break_before": true
+      "break_before": false
     }
   ],
   "hero_subhead_prefix": "Become a Founder.",
