@@ -127,7 +127,7 @@ const tile = (o, i) => {
           </div>
         </article>`;
 };
-const GROUP_NOTE = { Partnerships: 'One purchase, seats for your team, and a place in the Omnidirectional Enterprise™.', Memberships: 'Monthly or yearly access, with the Infrastructure Analysis™.', Products: 'Infrastructure planning IP, licensed to keep.', 'Free tools': 'Open to everyone. No account needed.', 'The Co.LLab Founders Organization™': 'Angel investors funding the continued building of The Co.LLab™, permanently recognized. Planned to become a nonprofit.' };
+const GROUP_NOTE = { Partnerships: 'One purchase, seats for your team, and a place in the Omnidirectional Enterprise™.', Memberships: 'Monthly or yearly access, with the Infrastructure Analysis™.', Products: 'Infrastructure planning IP, licensed to keep.', 'Free tools': 'Open to everyone. No account needed.', 'The Co.LLab Founders Organization™': 'Angel investors funding the continued building of The Co.LLab™, permanently recognized. Let’s Build Your Legacy.' };
 const gridHtml = items.map((o, i) => ((i === 0 || items[i - 1].group !== o.group) ? `<div class="fx-group" data-heading="${esc(o.group)}"><h2>${esc(o.group)}</h2><p>${esc(GROUP_NOTE[o.group] || '')}</p></div>\n        ` : '') + tile(o, i)).join('\n        ');
 
 const FILTERS = [
