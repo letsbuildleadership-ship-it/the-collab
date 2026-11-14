@@ -136,8 +136,8 @@ const give = (id, cents, email, extra = {}) => fulfillCheckoutSession({ id, amou
 test('every giver becomes a Founder at any amount, at the giving level their total reaches', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
   const r1 = await give('g1', 500, 'five@example.com', { wall: 'Five Dollar Co.' });
-  assert.equal(r1.record.founder.level, 'omnidirectional-founder');
-  assert.equal(r1.record.founder.levelLabel, 'Omnidirectional Founder');
+  assert.equal(r1.record.founder.level, 'contributing-founder');
+  assert.equal(r1.record.founder.levelLabel, 'Contributing Founder');
   assert.equal(r1.record.founder.name, 'Five Dollar Co.');
   assert.ok(r1.record.founder.founderNumber);
   const r2 = await give('g2', 50000, 'five@example.com', { direct: 'nonprofits' });
@@ -148,12 +148,14 @@ test('every giver becomes a Founder at any amount, at the giving level their tot
   assert.equal(pricing.founderPartnershipCredit(r2.record), 505);
 });
 
-test('giving levels: twelve, lowest first, circles above Legacy Founder', () => {
+test('giving levels: thirteen, lowest first, Partnership-aligned levels above Legacy Founder', () => {
   const pricing = require('../netlify/functions/lib/pricing');
   const levels = pricing.givingLevels();
-  assert.equal(levels.length, 12);
-  assert.deepEqual([1, 20, 50, 100, 250, 350, 500, 1000, 2500, 5000, 10000, 25000], levels.map((l) => l.min));
-  assert.equal(pricing.founderLevelForAmount(30000), 'visionary-circle');
+  assert.equal(levels.length, 13);
+  assert.deepEqual([1, 20, 50, 100, 250, 350, 500, 1000, 2500, 5000, 10000, 25000, 50000], levels.map((l) => l.min));
+  assert.equal(pricing.founderLevelForAmount(30000), 'enterprise-founder');
+  assert.equal(pricing.founderLevelForAmount(75000), 'omnidirectional-founder');
+  assert.ok(!levels.some((l) => /circle/i.test(l.label)));
   assert.equal(pricing.founderLevelLabelForKey('legacy-founder'), 'Legacy Founder');
   for (let i = 1; i < levels.length; i++) assert.ok(levels[i].rank > levels[i - 1].rank, levels[i].key);
 });
@@ -162,7 +164,7 @@ test('give.js validates the amount and the Omnidirectional area', () => {
   const { parseGift } = require('../netlify/functions/give');
   assert.ok(parseGift({ amount: '0.5' }).error);
   assert.ok(parseGift({ amount: 'abc' }).error);
-  assert.equal(parseGift({ amount: '$2,500' }).level, 'benefactor-circle');
+  assert.equal(parseGift({ amount: '$2,500' }).level, 'benefactor-founder');
   assert.equal(parseGift({ amount: '75', direct: 'Knowledge + IP' }).node, 'Knowledge + IP');
   assert.equal(parseGift({ amount: '75', direct: 'nowhere' }).node, null);
   assert.equal(parseGift({ amount: '12.345' }).cents, 1235);

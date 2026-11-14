@@ -2323,5 +2323,5 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .gl-amt { font-size: 1.25rem; font-weight: 700; color: var(--filament-1); }
 .gl-name { font-weight: 700; }
 .gl-perk { font-size: 0.82rem; color: var(--white-dim); }
-.gl-circle .gl-pick { border-top: 3px solid var(--filament-1); }
+.gl-high .gl-pick { border-top: 3px solid var(--filament-1); }
 @media (max-width: 760px) { .give-form { grid-template-columns: 1fr; } }

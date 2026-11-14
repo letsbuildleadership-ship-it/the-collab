@@ -801,7 +801,7 @@
     "Knowledge + IP",
     "Creators"
   ],
-  "_giving_readme": "Give any amount: pages/founders.html posts to netlify/functions/give.js, which opens a Stripe Checkout for the chosen amount (no Payment Link needed). Every giver becomes a Founder. Their level is the highest giving level whose `min` their running total has reached; levels that are also fixed Stripe products (friends-family, premium-friends-family, founder, legacy-founder) take label, rank and grants from the product. Modeled on museum and gallery giving: membership levels plus giving circles.",
+  "_giving_readme": "Give any amount: pages/founders.html posts to netlify/functions/give.js, which opens a Stripe Checkout for the chosen amount (no Payment Link needed). Every giver becomes a Founder. Their level is the highest giving level whose `min` their running total has reached; levels that are also fixed Stripe products (friends-family, premium-friends-family, founder, legacy-founder) take label, rank and grants from the product. Modeled on museum and gallery giving; the top five mirror the Partnership tiers (Partner, Strategic, Enterprise, Omnidirectional) and show amount ranges.",
   "giving": [
     {
       "key": "founder-give",
@@ -817,40 +817,34 @@
   ],
   "giving_levels": [
     {
-      "key": "omnidirectional-founder",
-      "label": "Omnidirectional Founder",
+      "key": "contributing-founder",
+      "label": "Contributing Founder",
       "min": 1,
-      "rank": 0.5,
-      "circle": "Founders"
+      "rank": 0.5
     },
     {
       "key": "friends-family",
-      "min": 20,
-      "circle": "Founders"
+      "min": 20
     },
     {
       "key": "premium-friends-family",
-      "min": 50,
-      "circle": "Founders"
+      "min": 50
     },
     {
       "key": "supporting-founder",
       "label": "Supporting Founder",
       "min": 100,
-      "rank": 2.3,
-      "circle": "Founders"
+      "rank": 2.3
     },
     {
       "key": "builder-founder",
       "label": "Builder Founder",
       "min": 250,
-      "rank": 2.6,
-      "circle": "Founders"
+      "rank": 2.6
     },
     {
       "key": "founder",
-      "min": 350,
-      "circle": "Founders"
+      "min": 350
     },
     {
       "key": "patron-founder",
@@ -859,57 +853,66 @@
       "rank": 3.5,
       "grants": [
         "legacy-profile"
-      ],
-      "circle": "Founders"
+      ]
     },
     {
       "key": "legacy-founder",
-      "min": 1000,
-      "circle": "Founders"
+      "min": 1000
     },
     {
-      "key": "benefactor-circle",
-      "label": "Omnidirectional Benefactor™ Circle",
+      "key": "benefactor-founder",
+      "label": "Benefactor Founder",
       "min": 2500,
       "rank": 5,
       "grants": [
         "legacy-profile",
         "legacy-map"
       ],
-      "circle": "Circles"
+      "range": true
     },
     {
-      "key": "infrastructure-circle",
-      "label": "Infrastructure Circle",
+      "key": "partner-founder",
+      "label": "Partner Founder",
       "min": 5000,
       "rank": 6,
       "grants": [
         "legacy-profile",
         "legacy-map"
       ],
-      "circle": "Circles"
+      "range": true
     },
     {
-      "key": "leadership-circle",
-      "label": "Leadership Circle",
+      "key": "strategic-founder",
+      "label": "Strategic Founder",
       "min": 10000,
       "rank": 7,
       "grants": [
         "legacy-profile",
         "legacy-map"
       ],
-      "circle": "Circles"
+      "range": true
     },
     {
-      "key": "visionary-circle",
-      "label": "Visionary Circle",
+      "key": "enterprise-founder",
+      "label": "Enterprise Founder",
       "min": 25000,
       "rank": 8,
       "grants": [
         "legacy-profile",
         "legacy-map"
       ],
-      "circle": "Circles"
+      "range": true
+    },
+    {
+      "key": "omnidirectional-founder",
+      "label": "Omnidirectional Founder",
+      "min": 50000,
+      "rank": 9,
+      "grants": [
+        "legacy-profile",
+        "legacy-map"
+      ],
+      "range": true
     }
   ]
 }
