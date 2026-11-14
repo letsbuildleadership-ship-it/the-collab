@@ -193,8 +193,8 @@ async function getSubscriptionLink(subscriptionId) {
   return bySubscription.get(subscriptionId) || null;
 }
 
-async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency }) {
-  const id = `${sessionId}-${priceKey}`;
+async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency, split = false }) {
+  const id = `${sessionId}-${priceKey}${split ? `-${partnerKey}` : ''}`;
   if (impactLedger.has(id)) return impactLedger.get(id);
   const entry = {
     id,

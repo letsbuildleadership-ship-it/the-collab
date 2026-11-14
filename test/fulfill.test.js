@@ -97,10 +97,15 @@ test('a bonus grant shared by two memberships survives cancelling just one', asy
   assert.ok(!afterCancel.entitlements.includes('library-card'));
 });
 
-test('Founder levels include their free .LLab product; Community levels do not', async () => {
+test('every fixed founding level includes its phase-matched .LLab products', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
   const priceOf = (k) => pricing.entryForKey(k).stripe_price_id;
-  const cases = { founder: ['legacy-profile'], 'legacy-founder': ['legacy-map'], 'friends-family': [], 'premium-friends-family': [] };
+  const cases = {
+    'friends-family': ['infrastructure-roadmap', 'strength-map'],
+    'premium-friends-family': ['infrastructure-roadmap', 'alignment-map'],
+    founder: ['infrastructure-roadmap', 'legacy-profile', 'alignment-map'],
+    'legacy-founder': ['infrastructure-roadmap', 'legacy-map', 'diagnostic'],
+  };
   for (const [tier, free] of Object.entries(cases)) {
     fakeStore.reset();
     const r = await fulfillCheckoutSession({ id: `cs_${tier}`, customer_details: { email: `${tier}@example.com` } }, [priceOf(tier)]);
@@ -136,13 +141,16 @@ const give = (id, cents, email, extra = {}) => fulfillCheckoutSession({ id, amou
 test('every giver becomes a Founder at any amount, at the giving level their total reaches', async () => {
   const pricing = require('../netlify/functions/lib/pricing');
   const r1 = await give('g1', 500, 'five@example.com', { wall: 'Five Dollar Co.' });
-  assert.equal(r1.record.founder.level, 'contributing-founder');
-  assert.equal(r1.record.founder.levelLabel, 'Contributing Founder');
+  assert.equal(r1.record.founder.level, 'foundations-founder');
+  assert.equal(r1.record.founder.levelLabel, 'Foundations Founder');
+  assert.ok(r1.grantedKeys.includes('infrastructure-roadmap'));
   assert.equal(r1.record.founder.name, 'Five Dollar Co.');
   assert.ok(r1.record.founder.founderNumber);
   const r2 = await give('g2', 50000, 'five@example.com', { direct: 'nonprofits' });
-  assert.equal(r2.record.founder.level, 'patron-founder', '$5 + $500 reaches Patron Founder');
-  assert.ok(r2.grantedKeys.includes('legacy-profile'));
+  assert.equal(r2.record.founder.level, 'preservation-founder', '$5 + $500 reaches Preservation Founder');
+  assert.ok(r2.grantedKeys.includes('legacy-map'));
+  const ledger = await fakeStore.listImpactLedger();
+  assert.ok(ledger.some((l) => l.sessionId === 'g2' && l.partnerKey === 'wavecraft-oceans' && l.impactAmount === 5000), 'charity support carries over to gifts');
   assert.equal(r2.record.founder.paid, 505);
   assert.equal(r2.record.contributions.at(-1).node, 'Nonprofits');
   assert.equal(pricing.founderPartnershipCredit(r2.record), 505);
@@ -158,6 +166,11 @@ test('giving levels: thirteen, lowest first, Partnership-aligned levels above Le
   assert.ok(!levels.some((l) => /circle/i.test(l.label)));
   assert.equal(pricing.founderLevelLabelForKey('legacy-founder'), 'Legacy Founder');
   for (let i = 1; i < levels.length; i++) assert.ok(levels[i].rank > levels[i - 1].rank, levels[i].key);
+  for (const l of levels) {
+    assert.ok(pricing.grantsForKey(l.key).length, `${l.key} has a product incentive`);
+    assert.ok(pricing.impactsForKey(l.key).length, `${l.key} supports a charity`);
+  }
+  assert.equal(pricing.grantsForKey('partner-founder').filter((k) => pricing.fourPhasesKeys().includes(k)).length, pricing.fourPhasesKeys().length);
 });
 
 test('give.js validates the amount and the Omnidirectional area', () => {

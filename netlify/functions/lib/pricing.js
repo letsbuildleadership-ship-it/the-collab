@@ -83,9 +83,20 @@ function entryForKey(key) {
 /** Bonus product keys automatically granted alongside a membership purchase. */
 function grantsForKey(key) {
   const entry = entryForKey(key);
-  if (entry) return entry.grants || [];
-  const level = givingLevelByKey(key);
-  return (level && level.grants) || [];
+  const level = entry ? null : givingLevelByKey(key);
+  return expandGrants((entry ? entry.grants : level && level.grants) || []);
+}
+
+/** Grant lists may name whole groups: @four-phases, @creator (the creator line), @blueprint (every issue). */
+function expandGrants(list) {
+  const out = [];
+  for (const k of list) {
+    if (k === '@four-phases') out.push(...fourPhasesKeys());
+    else if (k === '@creator') out.push(...(registry.products || []).filter((p) => p.line === 'creator').map((p) => p.key));
+    else if (k === '@blueprint') out.push(...(registry.blueprint_series || []).map((p) => p.key));
+    else out.push(k);
+  }
+  return [...new Set(out)];
 }
 
 /** Does this membership key unlock the full one-time .LLab product catalog? */
@@ -236,8 +247,15 @@ function impactPartnerForKey(partnerKey) {
 
 /** { partner_key, percent } if this product/membership key is a designated Impact Product, else null. */
 function impactForKey(key) {
+  return impactsForKey(key)[0] || null;
+}
+
+/** Every charity allocation for a key (a product, a Partnership or a giving level): [{ partner_key, percent }]. */
+function impactsForKey(key) {
   const entry = entryForKey(key);
-  return (entry && entry.impact) || null;
+  const level = entry ? null : givingLevelByKey(key);
+  const raw = (entry ? entry.impact : level && level.impact) || null;
+  return raw ? (Array.isArray(raw) ? raw : [raw]) : [];
 }
 
 /** Numeric Founder tier rank (higher = higher tier) if this key is a Founder-level product, else null. */
@@ -259,7 +277,9 @@ function givingLevels() {
         min: l.min,
         rank: l.rank || (p && p.founder_rank) || 0,
         grants: l.grants || (p && p.grants) || [],
-        circle: l.circle || 'Founders',
+        impact: l.impact || (p && p.impact) || null,
+        phase: l.phase || null,
+        range: !!l.range,
       };
     })
     .sort((a, b) => a.min - b.min);
@@ -367,6 +387,8 @@ module.exports = {
   impactPartners,
   impactPartnerForKey,
   impactForKey,
+  impactsForKey,
+  expandGrants,
   resolvePurchasable,
   founderRankForKey,
   founderLevelLabelForKey,

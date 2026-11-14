@@ -67,8 +67,8 @@ function impactStore() {
  * verify-session.js's fallback fulfillment races the webhook, since both
  * would otherwise try to record the same sale twice.
  */
-async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency }) {
-  const id = `${sessionId}-${priceKey}`;
+async function recordImpactAllocation({ sessionId, priceKey, partnerKey, percent, grossAmount, impactAmount, currency, split = false }) {
+  const id = `${sessionId}-${priceKey}${split ? `-${partnerKey}` : ''}`;
   const key = `ledger/${id}.json`;
   const existing = await impactStore().get(key, { type: 'json' });
   if (existing) return existing;

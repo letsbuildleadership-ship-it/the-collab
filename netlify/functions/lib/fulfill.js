@@ -130,6 +130,7 @@ async function fulfillCheckoutSession(session, priceIds) {
   const contributions = [];
   let foundingPaid = 0;
   let wallName = null;
+  let giftLevelKey = null;
 
   for (const priceId of priceIds) {
     // A "give any amount" checkout (give.js) uses an inline price; its key travels in the session metadata.
@@ -174,6 +175,7 @@ async function fulfillCheckoutSession(session, priceIds) {
       // Level reflects everything this person has put in, so repeat contributions can raise it.
       const levelKey = pricing.founderLevelForAmount(pricing.founderPaidTotal(record.founder) + foundingPaid + paid);
       foundingPaid += paid;
+      giftLevelKey = levelKey;
       const field = (session.custom_fields || []).find((c) => c.key === 'direct_to');
       const value = (field && field.dropdown && field.dropdown.value) || (session.metadata || {}).direct_to;
       const node = pricing.designationNodes().find((n) => slug(n) === value) || null;
@@ -194,17 +196,20 @@ async function fulfillCheckoutSession(session, priceIds) {
     // auditable ledger. Assumes one line item per checkout session, which
     // holds for every Payment Link on this site today (same assumption the
     // purchases.push amount below already makes).
-    const impact = pricing.impactForKey(key);
-    if (impact && impact.partner_key && session.amount_total != null) {
+    const impactKey = entry.custom_amount ? giftLevelKey || key : key;
+    const impacts = pricing.impactsForKey(impactKey);
+    for (const impact of impacts) {
+      if (!impact.partner_key || session.amount_total == null) continue;
       const impactAmount = Math.round((session.amount_total * (impact.percent || 10)) / 100);
       await store.recordImpactAllocation({
         sessionId: session.id,
-        priceKey: key,
+        priceKey: impactKey,
         partnerKey: impact.partner_key,
         percent: impact.percent || 10,
         grossAmount: session.amount_total,
         impactAmount,
         currency: session.currency || 'usd',
+        split: impacts.length > 1,
       });
     }
 
