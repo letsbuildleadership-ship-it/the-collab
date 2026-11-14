@@ -28,7 +28,7 @@
               .map(
                 (f) => `
               <li class="wall-plaque">
-                <strong class="wall-name">${escapeHtml(f.displayName)}</strong>
+                <strong class="wall-name">${(f.url ? `<a class="wall-link" href="${escapeHtml(f.url)}" target="_blank" rel="sponsored noopener">${escapeHtml(f.displayName)} <span aria-hidden="true">↗</span></a>` : escapeHtml(f.displayName))}</strong>
               </li>`
               )
               .join('')}

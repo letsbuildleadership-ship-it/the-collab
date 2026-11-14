@@ -3,14 +3,14 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'accountability-gaps-checklist',
   outFile: 'free-tools/accountability-gaps-checklist.pdf',
-  docTitle: '.LLab Accountability Gaps Checklist™',
+  docTitle: 'The .LLab Accountability Gaps Checklist™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Checklist',
-    title: '.LLab Accountability Gaps <strong>Checklist</strong>™',
+    title: 'The .LLab Accountability Gaps <strong>Checklist</strong>™',
     subtitle: 'Spot where accountability quietly breaks down across your team or organization.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

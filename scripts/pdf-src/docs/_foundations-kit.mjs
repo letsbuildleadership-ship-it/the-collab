@@ -47,7 +47,7 @@ ${body}
 }
 
 export const cover = (extra) => ({
-  eyebrow: 'Phase I · Foundations — .LLab™ IP',
+  eyebrow: 'Phase I · Foundations — The .LLab™ IP',
   phase: 'I · Foundations',
   footerRight: 'The .LLab™ IV Phases Product Infrastructure',
   ...extra,

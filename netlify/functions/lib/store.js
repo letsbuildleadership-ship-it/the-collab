@@ -123,7 +123,7 @@ async function upsertCommunityReflection(monthOrder, memberId, text) {
 }
 
 // Operations records the owner reviews: IP feedback, the improvement backlog's decisions and the
-// .LLab Collaborating Companies pages. Kept apart from customer records. Layout: {collection}/{id}.json
+// The .LLab Collaborating Companies pages. Kept apart from customer records. Layout: {collection}/{id}.json
 function opsStore() {
   if (!process.env.NETLIFY_BLOBS_CONTEXT && process.env.NETLIFY_BLOBS_TOKEN && process.env.SITE_ID) {
     return getStore({ name: 'collab-ops', siteID: process.env.SITE_ID, token: process.env.NETLIFY_BLOBS_TOKEN });
@@ -195,6 +195,30 @@ async function listBenefactors() {
     .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since, test: !!r.ownerTest }));
 }
 
+const { memberStanding } = require('./member-standing');
+/** The Membership Legacy Wall: every member with a name, by highest standing ever held. Public-safe fields only. */
+async function listMembers() {
+  return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null, url: (r.wallUrl && require('./wall-link').canLinkOnWall(r)) ? r.wallUrl : null }));
+}
+
+/** Everyone who has ever participated, public-safe fields only (for the Omnidirectional Legacy Wall). */
+async function listParticipants() {
+  return (await Promise.all((await store().list({ prefix: 'customers/' })).blobs.map((b) => store().get(b.key, { type: 'json' }))))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({
+      name: (r.founder && r.founder.name) || r.name || null,
+      url: (r.wallUrl && require('./wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
+      since: r.createdAt || null,
+      partnershipKey: (r.partnership && r.partnership.key) || null,
+      founderLevel: (r.founder && r.founder.level) || null,
+      membershipKeys: Object.keys(r.memberships || {}),
+      purchasedKeys: [...new Set((r.purchases || []).map((p) => p.key))],
+      free: memberStanding(r).key === 'community',
+    }));
+}
+
 async function listFounders() {
   const page = await store().list({ prefix: 'customers/' });
   const records = await Promise.all(page.blobs.map((b) => store().get(b.key, { type: 'json' })));
@@ -208,6 +232,7 @@ async function listFounders() {
       memberId: r.memberId || null,
       recognizedAt: r.founder.recognizedAt,
       test: !!r.ownerTest,
+      url: (r.wallUrl && require('./wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
     }));
 }
 
@@ -401,6 +426,9 @@ module.exports = {
   nextMemberId,
   nextFounderNumber,
   listFounders,
+  listMembers,
+  listParticipants,
+  memberStanding,
   listBenefactors,
   listCustomers,
   getCustomerByToken,

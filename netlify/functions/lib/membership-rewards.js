@@ -1,4 +1,4 @@
-// TRIARCH™ tier rewards for .LLab Membership™. Membership opens the Four
+// TRIARCH™ tier rewards for The .LLab Membership™. Membership opens the Four
 // Phases products while active; each time a member completes a TRIARCH™
 // tier (every Four Phases product in that phase has all three mission
 // steps done), they choose one extra product at no charge, theirs to keep.

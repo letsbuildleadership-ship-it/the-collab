@@ -20,7 +20,7 @@
   "products": [
     {
       "key": "strength-map",
-      "name": ".LLab Leadership Infrastructure Strength Map™",
+      "name": "The .LLab Leadership Infrastructure Strength Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$20",
@@ -31,7 +31,7 @@
     },
     {
       "key": "values-charter",
-      "name": ".LLab Mission & Values Charter™",
+      "name": "The .LLab Mission & Values Charter™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$40",
@@ -43,7 +43,7 @@
     },
     {
       "key": "leadership-identity-profile",
-      "name": ".LLab Leadership Identity Profile™",
+      "name": "The .LLab Leadership Identity Profile™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$75",
@@ -55,7 +55,7 @@
     },
     {
       "key": "decision-principles-playbook",
-      "name": ".LLab Decision Principles Playbook™",
+      "name": "The .LLab Decision Principles Playbook™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$125",
@@ -67,7 +67,7 @@
     },
     {
       "key": "foundations-assessment",
-      "name": ".LLab Leadership Foundations Assessment™",
+      "name": "The .LLab Leadership Foundations Assessment™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$200",
@@ -79,7 +79,7 @@
     },
     {
       "key": "foundations-manual",
-      "name": ".LLab Leadership Foundations Manual™",
+      "name": "The .LLab Leadership Foundations Manual™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$300",
@@ -91,7 +91,7 @@
     },
     {
       "key": "alignment-map",
-      "name": ".LLab Leadership Alignment Map™",
+      "name": "The .LLab Leadership Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$50",
@@ -102,7 +102,7 @@
     },
     {
       "key": "build-plan",
-      "name": ".LLab Leadership Infrastructure Build Plan™",
+      "name": "The .LLab Leadership Infrastructure Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -113,7 +113,7 @@
     },
     {
       "key": "legacy-profile",
-      "name": ".LLab Leadership Legacy Profile™",
+      "name": "The .LLab Leadership Legacy Profile™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
       "price_display": "$150",
@@ -124,7 +124,7 @@
     },
     {
       "key": "operating-system",
-      "name": ".LLab Leadership Operating System™",
+      "name": "The .LLab Leadership Operating System™",
       "phase": "Phase III · Internal Operating Systems",
       "phase_key": "operating-systems",
       "price_display": "$750",
@@ -135,7 +135,7 @@
     },
     {
       "key": "legacy-map",
-      "name": ".LLab Legacy Infrastructure Map™",
+      "name": "The .LLab Legacy Infrastructure Map™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$200",
@@ -146,7 +146,7 @@
     },
     {
       "key": "diagnostic",
-      "name": ".LLab Leadership Infrastructure Diagnostic™",
+      "name": "The .LLab Leadership Infrastructure Diagnostic™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$300",
@@ -157,7 +157,7 @@
     },
     {
       "key": "blueprint",
-      "name": ".LLab Infrastructure Blueprint™",
+      "name": "The .LLab Infrastructure Blueprint™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$500",
@@ -168,7 +168,7 @@
     },
     {
       "key": "legacy-architecture",
-      "name": ".LLab Legacy Infrastructure Architecture™",
+      "name": "The .LLab Legacy Infrastructure Architecture™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$1,000",
@@ -180,7 +180,7 @@
     {
       "key": "creator-identity-map",
       "line": "creator",
-      "name": ".LLab Creator Identity Map™",
+      "name": "The .LLab Creator Identity Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$20",
@@ -192,7 +192,7 @@
     {
       "key": "creator-voice-values-map",
       "line": "creator",
-      "name": ".LLab Creator Voice & Values Map™",
+      "name": "The .LLab Creator Voice & Values Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$40",
@@ -205,7 +205,7 @@
     {
       "key": "creator-practice-profile",
       "line": "creator",
-      "name": ".LLab Creator Practice Profile™",
+      "name": "The .LLab Creator Practice Profile™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$75",
@@ -218,7 +218,7 @@
     {
       "key": "creator-audience-offer-map",
       "line": "creator",
-      "name": ".LLab Creator Audience & Offer Map™",
+      "name": "The .LLab Creator Audience & Offer Map™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$125",
@@ -231,7 +231,7 @@
     {
       "key": "creator-foundations-assessment",
       "line": "creator",
-      "name": ".LLab Creator Foundations Assessment™",
+      "name": "The .LLab Creator Foundations Assessment™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$200",
@@ -244,7 +244,7 @@
     {
       "key": "creator-foundations-manual",
       "line": "creator",
-      "name": ".LLab Creator Foundations Manual™",
+      "name": "The .LLab Creator Foundations Manual™",
       "phase": "Phase I · Foundations",
       "phase_key": "foundations",
       "price_display": "$300",
@@ -257,7 +257,7 @@
     {
       "key": "creator-alignment-map",
       "line": "creator",
-      "name": ".LLab Creator Alignment Map™",
+      "name": "The .LLab Creator Alignment Map™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$50",
@@ -269,7 +269,7 @@
     {
       "key": "creator-venture-build-plan",
       "line": "creator",
-      "name": ".LLab Creator Venture Build Plan™",
+      "name": "The .LLab Creator Venture Build Plan™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -281,7 +281,7 @@
     {
       "key": "creator-website-blueprint",
       "line": "creator",
-      "name": ".LLab Creator Website Blueprint™",
+      "name": "The .LLab Creator Website Blueprint™",
       "phase": "Phase II · Infrastructure Planning & Management",
       "phase_key": "infrastructure-planning",
       "price_display": "$100",
@@ -305,7 +305,7 @@
     {
       "key": "creative-estate-mapping",
       "line": "creator",
-      "name": ".LLab Creative Estate Mapping™",
+      "name": "The .LLab Creative Estate Mapping™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$200",
@@ -317,7 +317,7 @@
     {
       "key": "creator-legacy-architecture",
       "line": "creator",
-      "name": ".LLab Creator Legacy Infrastructure Architecture™",
+      "name": "The .LLab Creator Legacy Infrastructure Architecture™",
       "phase": "Phase IV · Preservation",
       "phase_key": "preservation",
       "price_display": "$750",
@@ -328,8 +328,8 @@
     },
     {
       "key": "friends-family",
-      "name": "The Co.LLab™ Founders Organization — Community Founder",
-      "phase": "Build · Founders Organization",
+      "name": "The Co.LLab Founders Organization™ — Community Founder",
+      "phase": "Build · The Co.LLab Founders Organization™",
       "phase_key": "founders",
       "price_display": "$20",
       "stripe_price_id": "price_1UFiCZAK6n3ctuR9t5qojYuv",
@@ -351,8 +351,8 @@
     },
     {
       "key": "premium-friends-family",
-      "name": "The Co.LLab™ Founders Organization — Premium Community Founder",
-      "phase": "Build · Founders Organization",
+      "name": "The Co.LLab Founders Organization™ — Premium Community Founder",
+      "phase": "Build · The Co.LLab Founders Organization™",
       "phase_key": "founders",
       "price_display": "$50",
       "stripe_price_id": "price_1UFiCZAK6n3ctuR9naGNNhBw",
@@ -373,14 +373,14 @@
     },
     {
       "key": "founder",
-      "name": "The Co.LLab™ Founders Organization — Founder",
-      "phase": "Build · Founders Organization",
+      "name": "The Co.LLab Founders Organization™ — Founder",
+      "phase": "Build · The Co.LLab Founders Organization™",
       "phase_key": "founders",
       "price_display": "$350",
       "stripe_price_id": "price_1TjpMwAK6n3ctuR9UEPmFzwk",
       "payment_link": "https://buy.stripe.com/dRm9AS1Eq1JH7tF90W9ws0h",
       "pdf_file": "founders-organization.pdf",
-      "description": "Full access to the Founders Organization: The IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
+      "description": "Full access to The Co.LLab Founders Organization™: The IV Phases™ infrastructure model, the founder community, and every resource in the introductory cohort.",
       "impact": {
         "partner_key": "blazing-smiles",
         "percent": 10
@@ -396,8 +396,8 @@
     },
     {
       "key": "legacy-founder",
-      "name": "The Co.LLab™ Founders Organization — Legacy Founder",
-      "phase": "Build · Founders Organization",
+      "name": "The Co.LLab Founders Organization™ — Legacy Founder",
+      "phase": "Build · The Co.LLab Founders Organization™",
       "phase_key": "founders",
       "price_display": "$1,000",
       "stripe_price_id": "price_1TjpktAK6n3ctuR9GTGot6Be",
@@ -481,7 +481,7 @@
       "description": "The full Blueprint™ magazine series: Welcome + all of The IV Phases™, in one edition."
     }
   ],
-  "_partner_ip_readme": "Partner-only IP for the Omnidirectional Enterprise™ Partnership: one product per phase, granted cumulatively by tier (see each tier's grants). Also sold on its own once a stripe_price_id and payment_link are added. Never opened by .LLab Membership™.",
+  "_partner_ip_readme": "Partner-only IP for the Omnidirectional Enterprise™ Partnership: one product per phase, granted cumulatively by tier (see each tier's grants). Also sold on its own once a stripe_price_id and payment_link are added. Never opened by The .LLab Membership™.",
   "partner_ip": [
     {
       "key": "legacy-foundations-framework",
@@ -532,7 +532,7 @@
       "payment_link": "https://buy.stripe.com/eVqeVc1Eq0FD4ht7WS9ws1l"
     }
   ],
-  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from the Founders Organization: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase (a tier with \"lifetime\": true never expires) with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier. Tiers with releases_months keep eligible releases only within that many months of purchase.",
+  "_partnerships_readme": "The Co.LLab™ Omnidirectional Enterprise™ Partnership — a one-time PURCHASE (not an investment, no equity, no return), fully separate from The Co.LLab Founders Organization™: no founder_rank, no Founder discount, no impact allocation, and Founders products are never included. Each tier grants, permanently, the keys in `grants` (grant_scope 'designated') or every non-Founders product, Blueprint™ issue and bonus product (grant_scope 'complete'), plus Membership, Library Card, and Journal for term_months from purchase (a tier with \"lifetime\": true never expires) with no subscription (netlify/functions/lib/fulfill.js). Tiers with includes_eligible_releases also keep any product later added here with \"partnership_release\": true and a \"released_at\" date inside their term. `seats` counts the purchaser; extra seats are claimed through single-use invite links (netlify/functions/partnership-seats.js). After the term, memberships renew at regular prices. All sales final once access is unlocked, subject to applicable law. The standard Co.LLab IP license applies at every tier. Tiers with releases_months keep eligible releases only within that many months of purchase.",
   "partnerships": [
     {
       "key": "partnership-partner",
@@ -574,7 +574,7 @@
       "benefits": [
         "The .LLab Legacy Foundations Framework™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep",
-        "1 year of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+        "1 year of The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase I · Foundations",
       "legacy_line": "Who you are and what you stand on.",
@@ -630,7 +630,7 @@
       "benefits": [
         "Everything in Partner, plus The .LLab Legacy Infrastructure Plan™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep",
-        "2 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+        "2 years of The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase II · Infrastructure Planning & Management",
       "legacy_line": "Where it's going and how it connects.",
@@ -687,7 +687,7 @@
       "benefits": [
         "Everything in Strategic, plus The .LLab Legacy Operating Systems Manual™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep",
-        "3 years of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+        "3 years of The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "phase_label": "Phase III · Internal Operating Systems",
       "legacy_line": "In every decision, every day.",
@@ -745,7 +745,7 @@
       "benefits": [
         "Everything in Enterprise, plus The .LLab Legacy Preservation Vault™, licensed to keep (1 partner-only product)",
         "All IV Phases™, licensed to keep",
-        "Lifetime of .LLab Membership™, .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
+        "Lifetime of The .LLab Membership™, The .LLab Library Card™ and The .LLab Journal™, with every new release while you’re a member"
       ],
       "lifetime": true,
       "phase_label": "Phase IV · Preservation",
@@ -765,7 +765,7 @@
   "memberships": [
     {
       "key": "membership",
-      "name": ".LLab Membership™",
+      "name": "The .LLab Membership™",
       "description": "The IV Phases™ IP — every Phase I–IV .LLab™ product, unlocked while you're a member — plus the Infrastructure Analysis™ of the IP you license — what to strengthen and build next — and ongoing access to the frameworks, systems, community, and research of Leadership Infrastructure™.",
       "pdf_file": "membership-handbook.pdf",
       "grants": [
@@ -789,7 +789,7 @@
     },
     {
       "key": "library-card",
-      "name": ".LLab Library Card™",
+      "name": "The .LLab Library Card™",
       "description": "Founding access to The .LLab Library Card™ — the digital library and curated resource stream inside The Co.LLab™ ecosystem.",
       "pdf_file": "library-card-welcome.pdf",
       "grants": [
@@ -833,7 +833,7 @@
   "bonus_products": [
     {
       "key": "infrastructure-roadmap",
-      "name": ".LLab Infrastructure Roadmap™",
+      "name": "The .LLab Infrastructure Roadmap™",
       "description": "A guided map of the full .LLab™ The IV Phases™ Product Infrastructure and how to move through it — included free with Membership and the Library Card.",
       "pdf_file": "infrastructure-roadmap.pdf",
       "granted_by": [
@@ -858,8 +858,8 @@
   "giving": [
     {
       "key": "founder-give",
-      "name": "The Co.LLab™ Founders Organization — Give Any Amount",
-      "phase": "Build · Founders Organization",
+      "name": "The Co.LLab Founders Organization™ — Give Any Amount",
+      "phase": "Build · The Co.LLab Founders Organization™",
       "phase_key": "founders",
       "price_display": "$50+",
       "custom_amount": true,

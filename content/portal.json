@@ -1,7 +1,7 @@
 {
-  "_readme": "Member Portal™ (Omnidirectional Enterprise™ Membership) settings. The portal shows these sections in this order. Built-in types (founders, partnerships, llab) keep their special content; add a new part of The Co.LLab™ later with type \"program\" (a heading, description, and link). Set enabled to false to hide a section without deleting it. Reward tiers set the TRIARCH™ tier reward price caps for .LLab Membership™.",
+  "_readme": "Member Portal™ (Omnidirectional Enterprise™ Membership) settings. The portal shows these sections in this order. Built-in types (founders, partnerships, llab) keep their special content; add a new part of The Co.LLab™ later with type \"program\" (a heading, description, and link). Set enabled to false to hide a section without deleting it. Reward tiers set the TRIARCH™ tier reward price caps for The .LLab Membership™.",
   "eyebrow": "Omnidirectional Enterprise™ Membership",
-  "intro": "The Co.LLab Founders Organization™, Partnerships, and .LLab Membership™, in one place. The TRIARCH™ is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.",
+  "intro": "The Co.LLab Founders Organization™, Partnerships, and The .LLab Membership™, in one place. The TRIARCH™ is the legend behind the legacy of the Co.LLab™ Omnidirectional Enterprise™ model.",
   "sections": [
     {
       "id": "founders",
@@ -29,9 +29,9 @@
       "id": "llab",
       "type": "llab",
       "enabled": true,
-      "eyebrow": ".LLab Membership™",
+      "eyebrow": "The .LLab Membership™",
       "title": "The",
-      "title_highlight": ".LLab Membership™",
+      "title_highlight": "The .LLab Membership™",
       "description": "Membership opens every product in The IV Phases™ while it's active. Each time you complete a TRIARCH™ tier, you choose one more product at no charge, yours to keep.",
       "link": "products.html#membership",
       "link_label": "View membership"
@@ -51,8 +51,8 @@
       "id": "atelier",
       "type": "program",
       "enabled": false,
-      "eyebrow": ".LLab Efficiency Architecture™",
-      "title": ".LLab Efficiency Architecture™",
+      "eyebrow": "The .LLab Efficiency Architecture™",
+      "title": "The .LLab Efficiency Architecture™",
       "title_highlight": "Spaces",
       "description": "Office studios, art studios, community spaces, and ergonomic efficiency homes. Coming soon.",
       "link": "efficiency-architecture.html",

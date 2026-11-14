@@ -1,10 +1,10 @@
 export const meta = {
   key: 'legacy-architecture',
   outFile: 'legacy-architecture.pdf',
-  docTitle: '.LLab Legacy Infrastructure Architecture™',
+  docTitle: 'The .LLab Legacy Infrastructure Architecture™',
   cover: {
     eyebrow: 'Phase IV · Preservation — the .LLab™ Flagship Framework',
-    title: '.LLab Legacy Infrastructure <strong>Architecture</strong>™',
+    title: 'The .LLab Legacy Infrastructure <strong>Architecture</strong>™',
     subtitle: 'The comprehensive .LLab™ framework for designing infrastructure that preserves leadership, culture, knowledge, organizational identity, and legacy.',
     phase: 'IV · Preservation — Complete Framework',
     price: '$1,000',

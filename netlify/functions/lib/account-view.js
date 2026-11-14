@@ -2,6 +2,8 @@
 // record. Shared by me.js (cookie/token sign-in) and login.js (Member ID +
 // password sign-in) so both return the exact same data.
 const pricing = require('./pricing');
+const { memberStanding } = require('./member-standing');
+const { canLinkOnWall } = require('./wall-link');
 const membershipStatus = require('./membership-status');
 const { isConfigured: emailConfigured } = require('./mailer');
 const questLib = require('./quests');
@@ -125,6 +127,10 @@ function buildAccountView(record, now) {
         : null,
     name: record.name || null,
     memberId: record.memberId || null,
+    memberSince: record.createdAt || null,
+    memberStanding: memberStanding(record),
+    wallUrl: record.wallUrl || null,
+    canLinkOnWall: canLinkOnWall(record),
     hasPassword: !!record.passwordHash,
     // false only for free sign-ups that have not confirmed their email yet
     emailVerified: record.signupSource === 'free' ? record.emailVerified === true : true,

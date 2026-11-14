@@ -1,10 +1,10 @@
 export const meta = {
   key: 'blueprint',
   outFile: 'blueprint.pdf',
-  docTitle: '.LLab Infrastructure Blueprint™',
+  docTitle: 'The .LLab Infrastructure Blueprint™',
   cover: {
     eyebrow: 'Phase IV · Preservation — a .LLab™ Framework',
-    title: '.LLab Infrastructure <strong>Blueprint</strong>™',
+    title: 'The .LLab Infrastructure <strong>Blueprint</strong>™',
     subtitle: 'Turn Diagnostic insights into an intentional, sequenced infrastructure-building plan across 90 days, six months, and a year.',
     phase: 'IV · Preservation',
     price: '$500',

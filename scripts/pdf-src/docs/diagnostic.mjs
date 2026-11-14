@@ -1,10 +1,10 @@
 export const meta = {
   key: 'diagnostic',
   outFile: 'diagnostic.pdf',
-  docTitle: '.LLab Leadership Infrastructure Diagnostic™',
+  docTitle: 'The .LLab Leadership Infrastructure Diagnostic™',
   cover: {
     eyebrow: 'Phase IV · Preservation — a .LLab™ Assessment',
-    title: '.LLab Leadership Infrastructure <strong>Diagnostic</strong>™',
+    title: 'The .LLab Leadership Infrastructure <strong>Diagnostic</strong>™',
     subtitle: "A comprehensive, scored assessment of your organization's leadership infrastructure across all of The IV Phases™.",
     phase: 'IV · Preservation',
     price: '$300',

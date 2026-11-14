@@ -1,10 +1,10 @@
 export const meta = {
   key: 'operating-system',
   outFile: 'operating-system.pdf',
-  docTitle: '.LLab Leadership Operating System™',
+  docTitle: 'The .LLab Leadership Operating System™',
   cover: {
     eyebrow: 'Phase III · Internal Operating Systems — a .LLab™ Framework',
-    title: '.LLab Leadership <strong>Operating System</strong>™',
+    title: 'The .LLab Leadership <strong>Operating System</strong>™',
     subtitle: 'Translate leadership principles into repeatable organizational practices — five subsystems, one operating model.',
     phase: 'III · Internal Operating Systems',
     price: '$750',

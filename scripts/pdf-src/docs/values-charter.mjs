@@ -3,16 +3,16 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'values-charter',
   outFile: 'values-charter.pdf',
-  docTitle: '.LLab Mission & Values Charter™',
+  docTitle: 'The .LLab Mission & Values Charter™',
   cover: cover({
-    title: '.LLab Mission & Values <strong>Charter</strong>™',
+    title: 'The .LLab Mission & Values <strong>Charter</strong>™',
     subtitle: 'Put your mission, vision and values in writing as one charter your organization can lead from.',
     price: '$40',
   }),
 };
 
 export const contentHtml = foundationsDoc({
-  title: '.LLab Mission & Values Charter™',
+  title: 'The .LLab Mission & Values Charter™',
   tagline: 'Write down what you stand on, so everyone can stand on it with you.',
   intro: 'The Mission & Values Charter™ walks you through writing one page your organization can point to: why it exists, where it is going, and the values that guide how it leads. Complete it alone or with your leadership team.',
   steps: [

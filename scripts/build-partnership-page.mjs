@@ -53,7 +53,7 @@ ${tiers.map(card).join('\n')}
       <p class="tier-license" style="margin-top:1.5rem;">All Co.LLab™ IP is owned by Ashley E. Clasby and licensed through The Co.LLab™. Every tier is a <a href="ip-license.html">license for internal business use</a>: no resale, sharing, teaching, or client use without written authorization.</p>`;
 
 const grants = Object.fromEntries(tiers.map((t) => [t.key, new Set(pricing.partnershipGrantKeysFor(t.key))]));
-// .LLab Membership™ opens The IV Phases™ products during the term.
+// The .LLab Membership™ opens The IV Phases™ products during the term.
 const catalog = new Set(pricing.fourPhasesKeys());
 
 function cell(key, t) {

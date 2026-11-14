@@ -214,21 +214,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links.classList.contains('is-open')) { closeMenu(); toggle.focus(); } });
   }
 
-  /* header "More" menu */
-  const more = document.querySelector('.nav-more');
-  const moreToggle = more && more.querySelector('.nav-more-toggle');
-  if (moreToggle) {
+  /* header dropdowns: The Co.LLab+, The .LLab, About Us */
+  const groups = document.querySelectorAll('.nav-more');
+  groups.forEach((more) => {
+    const moreToggle = more.querySelector('.nav-more-toggle');
+    if (!moreToggle) return;
     const setMore = (open) => {
       more.classList.toggle('is-open', open);
       moreToggle.setAttribute('aria-expanded', String(open));
     };
-    moreToggle.addEventListener('click', () => setMore(!more.classList.contains('is-open')));
+    moreToggle.addEventListener('click', () => {
+      const open = !more.classList.contains('is-open');
+      groups.forEach((g) => { if (g !== more) { g.classList.remove('is-open'); const t = g.querySelector('.nav-more-toggle'); if (t) t.setAttribute('aria-expanded', 'false'); } });
+      setMore(open);
+    });
     document.addEventListener('click', (e) => { if (!more.contains(e.target)) setMore(false); });
     more.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && more.classList.contains('is-open')) { setMore(false); moreToggle.focus(); }
     });
     more.addEventListener('focusout', (e) => { if (!more.contains(e.relatedTarget)) setMore(false); });
-  }
+  });
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

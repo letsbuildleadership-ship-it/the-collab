@@ -44,13 +44,13 @@
   "pathway_eyebrow": "How people move through it",
   "pathway_headline": "Discover. Try something free. Buy what solves the real problem.",
   "pathway_steps": [
-    { "title": "Discover", "description": "Find .LLab Creators™ through The .LLab, a free resource, or a search." },
+    { "title": "Discover", "description": "Find The .LLab Creators™ through The .LLab, a free resource, or a search." },
     { "title": "Free Resource", "description": "Start with real value — free." },
     { "title": "Identify Need", "description": "See exactly which phase of your creative infrastructure is thin." },
     { "title": "Individual Product", "description": "Buy the one product that solves that specific problem — no bundle required." },
     { "title": "Implement & Refine", "description": "Put it to work in your actual practice, then refine it." },
     { "title": "Advance Through The IV Phases™", "description": "Move from Foundations toward Preservation as your venture grows." },
-    { "title": ".LLab Membership™", "description": "Unlock the full .LLab Creators™ catalog, ongoing systems, and community." },
+    { "title": "The .LLab Membership™", "description": "Unlock the full .LLab Creators™ catalog, ongoing systems, and community." },
     { "title": "Enterprise & Legacy", "description": "Deeper infrastructure for a creative enterprise built to outlast any one project." }
   ],
 
@@ -60,13 +60,13 @@
   "free_resources": [
     {
       "tag": "Free Quick Start",
-      "title": ".LLab Creator Quick Start Guide™",
+      "title": "The .LLab Creator Quick Start Guide™",
       "description": "Five infrastructure moves you can make this week, whatever you're creating.",
       "link": "/content/library/creator-quick-start.pdf"
     },
     {
       "tag": "Free Diagnostic",
-      "title": ".LLab Creators Diagnostic™ (Free Edition)",
+      "title": "The .LLab Creators Diagnostic™ (Free Edition)",
       "description": "Find where your creative infrastructure is thin.",
       "link": "/content/library/creator-diagnostic.pdf"
     },
@@ -84,7 +84,7 @@
     },
     {
       "tag": "Free Pathway Guide",
-      "title": ".LLab Creators Pathway Guide™",
+      "title": "The .LLab Creators Pathway Guide™",
       "description": "See the full path and where you are on it.",
       "link": "/content/library/creator-pathway-guide.pdf"
     }
@@ -92,19 +92,19 @@
 
   "products_eyebrow": "Buy what you need, when you need it",
   "products_headline": "The .LLab Creators™ product ladder",
-  "products_body": "Beginner-first. One phase, one problem per product — or unlock all with .LLab Membership™.",
+  "products_body": "Beginner-first. One phase, one problem per product — or unlock all with The .LLab Membership™.",
   "creator_products": [
-    { "phase": "Phase I · Foundations", "title": ".LLab Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Venture Build Plan™", "price": "$100", "description": "A practical 30-day plan for turning your creative practice into a venture.", "link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11" },
-    { "phase": "Phase II · Infrastructure Planning & Management", "title": ".LLab Creator Website Blueprint™", "price": "$100", "description": "A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. An iPhone edition and a computer edition.", "link": "https://buy.stripe.com/fZudR8cj4gEB3dpgto9ws1m" },
+    { "phase": "Phase I · Foundations", "title": "The .LLab Creator Identity Map™", "price": "$20", "description": "Turn your work into a clear creative identity.", "link": "https://buy.stripe.com/aFa9AS0Am1JHeW790W9ws0Z" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": "The .LLab Creator Alignment Map™", "price": "$50", "description": "Connect your creative practice, your audience, and your offer into one coherent picture.", "link": "https://buy.stripe.com/8x2eVc96SdspeW7b949ws10" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": "The .LLab Creator Venture Build Plan™", "price": "$100", "description": "A practical 30-day plan for turning your creative practice into a venture.", "link": "https://buy.stripe.com/14AfZg5UG5ZX29l2Cy9ws11" },
+    { "phase": "Phase II · Infrastructure Planning & Management", "title": "The .LLab Creator Website Blueprint™", "price": "$100", "description": "A manual for building and running a luxury-style website with Composio, GitHub, Netlify, Claude and ChatGPT. An iPhone edition and a computer edition.", "link": "https://buy.stripe.com/fZudR8cj4gEB3dpgto9ws1m" },
     { "phase": "Phase III · Internal Operating Systems", "title": "The .LLab Creator Operating System™", "price": "$300", "description": "Run your venture without every decision depending on you.", "link": "https://buy.stripe.com/9B67sKfvg2NL3dp6SO9ws12" },
-    { "phase": "Phase IV · Preservation", "title": ".LLab Creative Estate Mapping™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.", "link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13" },
-    { "phase": "Phase IV · Preservation", "title": ".LLab Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "Preserve your body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
+    { "phase": "Phase IV · Preservation", "title": "The .LLab Creative Estate Mapping™", "price": "$200", "description": "Identify what should be captured, embedded, transferred, and sustained in your creative estate.", "link": "https://buy.stripe.com/9B64gy2Iu885aFR5OK9ws13" },
+    { "phase": "Phase IV · Preservation", "title": "The .LLab Creator Legacy Infrastructure Architecture™", "price": "$750", "description": "Preserve your body of work, its ownership, and its legacy.", "link": "https://buy.stripe.com/3cI6oG0Amdsp3dp90W9ws14" }
   ],
 
-  "membership_note": "Every product here is included in .LLab Membership™.",
-  "membership_cta_label": "See .LLab Membership™",
+  "membership_note": "Every product here is included in The .LLab Membership™.",
+  "membership_cta_label": "See The .LLab Membership™",
   "membership_cta_link": "products.html#membership",
 
   "tax_notice": "Commonly purchased as a business expense. Ask your tax professional how it applies to you."

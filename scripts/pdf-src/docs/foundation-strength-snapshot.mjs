@@ -3,14 +3,14 @@ import { renderSnapshotDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'foundation-strength-snapshot',
   outFile: 'free-tools/foundation-strength-snapshot.pdf',
-  docTitle: '.LLab Foundation Strength Snapshot™',
+  docTitle: 'The .LLab Foundation Strength Snapshot™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Snapshot',
-    title: '.LLab Foundation Strength <strong>Snapshot</strong>™',
+    title: 'The .LLab Foundation Strength <strong>Snapshot</strong>™',
     subtitle: "A quick self-score across four foundational dimensions — where you're strong, and where it's thin.",
     phase: 'I · Foundations',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

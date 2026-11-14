@@ -3,19 +3,19 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'creator-audience-offer-map',
   outFile: 'creator-audience-offer-map.pdf',
-  docTitle: '.LLab Creator Audience & Offer Map™',
+  docTitle: 'The .LLab Creator Audience & Offer Map™',
   cover: cover({
-    title: '.LLab Creator Audience &amp; Offer <strong>Map</strong>™',
+    title: 'The .LLab Creator Audience &amp; Offer <strong>Map</strong>™',
     subtitle: 'Connect who your work is for with what you offer them.',
     price: '$125',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   }),
 };
 
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  "title": ".LLab Creator Audience & Offer Map™",
+  "title": "The .LLab Creator Audience & Offer Map™",
   "tagline": "Know who the work is for before you decide how to offer it.",
   "intro": "The Creator Audience & Offer Map™ helps you define the people your work serves and match each one to something specific you can offer.",
   "steps": [

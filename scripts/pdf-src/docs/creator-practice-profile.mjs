@@ -3,19 +3,19 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'creator-practice-profile',
   outFile: 'creator-practice-profile.pdf',
-  docTitle: '.LLab Creator Practice Profile™',
+  docTitle: 'The .LLab Creator Practice Profile™',
   cover: cover({
-    title: '.LLab Creator Practice <strong>Profile</strong>™',
+    title: 'The .LLab Creator Practice <strong>Profile</strong>™',
     subtitle: 'Describe how your creative practice runs today and where it depends on you.',
     price: '$75',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   }),
 };
 
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  "title": ".LLab Creator Practice Profile™",
+  "title": "The .LLab Creator Practice Profile™",
   "tagline": "See your practice as a system, not just a body of work.",
   "intro": "The Creator Practice Profile™ helps you describe the rhythms, tools and people behind your work, and find what only lives in your head.",
   "steps": [

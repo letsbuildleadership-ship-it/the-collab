@@ -3,19 +3,19 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'creator-foundations-manual',
   outFile: 'creator-foundations-manual.pdf',
-  docTitle: '.LLab Creator Foundations Manual™',
+  docTitle: 'The .LLab Creator Foundations Manual™',
   cover: cover({
-    title: '.LLab Creator Foundations <strong>Manual</strong>™',
+    title: 'The .LLab Creator Foundations <strong>Manual</strong>™',
     subtitle: 'The full Phase I build for a creative practice: voice, practice, audience, offer and a foundation statement.',
     price: '$300',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   }),
 };
 
 const S = (arr) => ({ scale: arr });
 
 export const contentHtml = foundationsDoc({
-  "title": ".LLab Creator Foundations Manual™",
+  "title": "The .LLab Creator Foundations Manual™",
   "tagline": "Build the foundation under your creative practice once, in order, and write it down.",
   "intro": "The Creator Foundations Manual™ is the complete guided build for Phase I · Foundations for creators. Work through its parts in order over several sittings: what you make, your voice, your values, your audience and offer, and your foundation statement.",
   "steps": [

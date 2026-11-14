@@ -3,14 +3,14 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'clarity-direction-worksheet',
   outFile: 'free-tools/clarity-direction-worksheet.pdf',
-  docTitle: '.LLab Clarity & Direction Worksheet™',
+  docTitle: 'The .LLab Clarity & Direction Worksheet™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Worksheet',
-    title: '.LLab Clarity &amp; Direction <strong>Worksheet</strong>™',
+    title: 'The .LLab Clarity &amp; Direction <strong>Worksheet</strong>™',
     subtitle: 'Four short prompts to name your direction in plain language before you build anything on top of it.',
     phase: 'I · Foundations',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

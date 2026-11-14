@@ -1,10 +1,10 @@
 // Owner-only, idempotent (safe to call more than once) setup for the private
 // discount codes:
-//   LLABORIGINAL  -> OG Co.LLab Collaborator: .LLab Membership (annual) at $100/yr
+//   LLABORIGINAL  -> OG Co.LLab Collaborator: The .LLab Membership (annual) at $100/yr
 //   LLABFRIEND    -> 90% off any product, site-wide
-//   LLABINITIATE  -> Friends & Family: Founders Organization (Founder tier) at $20
-//   LLABFOUNDING  -> .LLab Founding Circle: .LLab Membership (annual) at $100/yr
-//   LLABSOVEREIGN -> .LLab Membership (annual) at $500/yr
+//   LLABINITIATE  -> Friends & Family: The Co.LLab Founders Organization™ (Founder tier) at $20
+//   LLABFOUNDING  -> The .LLab Founding Circle: The .LLab Membership (annual) at $100/yr
+//   LLABSOVEREIGN -> The .LLab Membership (annual) at $500/yr
 //
 // LLABORIGINAL and LLABFOUNDING both discount the same annual Membership
 // price to the same $100/yr -- they're two different codes for two different

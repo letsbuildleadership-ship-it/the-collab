@@ -3,14 +3,14 @@ import { renderChecklistDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'leadership-foundations-checklist',
   outFile: 'free-tools/leadership-foundations-checklist.pdf',
-  docTitle: '.LLab Leadership Foundations Checklist™',
+  docTitle: 'The .LLab Leadership Foundations Checklist™',
   cover: {
     eyebrow: 'Phase I · Foundations — Free Checklist',
-    title: '.LLab Leadership Foundations <strong>Checklist</strong>™',
+    title: 'The .LLab Leadership Foundations <strong>Checklist</strong>™',
     subtitle: "A self-audit of what's already in place — before you build anything new on top of it.",
     phase: 'I · Foundations',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

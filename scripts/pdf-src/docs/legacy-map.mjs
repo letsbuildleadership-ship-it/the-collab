@@ -1,10 +1,10 @@
 export const meta = {
   key: 'legacy-map',
   outFile: 'legacy-map.pdf',
-  docTitle: '.LLab Legacy Infrastructure Map™',
+  docTitle: 'The .LLab Legacy Infrastructure Map™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
-    title: '.LLab Legacy <strong>Infrastructure Map</strong>™',
+    eyebrow: 'Phase IV · Preservation — The .LLab™ IP',
+    title: 'The .LLab Legacy <strong>Infrastructure Map</strong>™',
     subtitle: 'Identify what should be captured, embedded, transferred, and sustained — before it depends on memory.',
     phase: 'IV · Preservation',
     price: '$200',

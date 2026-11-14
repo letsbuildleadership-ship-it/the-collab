@@ -3,16 +3,16 @@ import { foundationsDoc, cover } from './_foundations-kit.mjs';
 export const meta = {
   key: 'decision-principles-playbook',
   outFile: 'decision-principles-playbook.pdf',
-  docTitle: '.LLab Decision Principles Playbook™',
+  docTitle: 'The .LLab Decision Principles Playbook™',
   cover: cover({
-    title: '.LLab Decision Principles <strong>Playbook</strong>™',
+    title: 'The .LLab Decision Principles <strong>Playbook</strong>™',
     subtitle: 'Turn what you believe into the rules your organization uses to decide.',
     price: '$125',
   }),
 };
 
 export const contentHtml = foundationsDoc({
-  title: '.LLab Decision Principles Playbook™',
+  title: 'The .LLab Decision Principles Playbook™',
   tagline: 'When the right decision is written down, it does not depend on who is in the room.',
   intro: 'The .LLab Decision Principles Playbook™ helps a leadership team agree on how decisions get made: what is decided where, what principles every decision is tested against, and how to review decisions afterward. It is built to be used in a meeting.',
   steps: [

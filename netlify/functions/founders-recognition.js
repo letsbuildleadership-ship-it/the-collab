@@ -29,6 +29,7 @@ exports.handler = async (event) => {
         .map((f) => ({
           founderNumber: f.founderNumber,
           displayName: String(f.name).trim(),
+          url: f.url || null,
           recognizedAt: f.recognizedAt,
         })),
     }));

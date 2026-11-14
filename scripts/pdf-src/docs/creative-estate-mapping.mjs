@@ -3,14 +3,14 @@ import { licenseHtml } from './_license.mjs';
 export const meta = {
   key: 'creative-estate-mapping',
   outFile: 'creative-estate-mapping.pdf',
-  docTitle: '.LLab Creative Estate Mapping™',
+  docTitle: 'The .LLab Creative Estate Mapping™',
   cover: {
-    eyebrow: 'Phase IV · Preservation — .LLab™ IP',
-    title: '.LLab Creative Estate <strong>Mapping</strong>™',
+    eyebrow: 'Phase IV · Preservation — The .LLab™ IP',
+    title: 'The .LLab Creative Estate <strong>Mapping</strong>™',
     subtitle: 'Identify what should be captured, embedded, transferred, and sustained in your creative estate.',
     phase: 'IV · Preservation',
     price: '$200',
-    footerRight: '.LLab Creators™',
+    footerRight: 'The .LLab Creators™',
   },
 };
 
@@ -50,9 +50,9 @@ ${licenseHtml}
 <p><strong>SUSTAINED</strong> — what needs ongoing maintenance (renewals, backups, relationships) to keep working: <span class="worksheet-line" style="display:inline-block; width:100%;"></span></p>
 
 <p><strong>YOUR NEXT MOVE</strong></p>
-<p>This map is the foundation for the full <strong>.LLab Creator Legacy Infrastructure Architecture™</strong> ($750) — the comprehensive framework for designing infrastructure that preserves the whole body of work, its ownership, and its legacy.</p>
+<p>This map is the foundation for the full <strong>The .LLab Creator Legacy Infrastructure Architecture™</strong> ($750) — the comprehensive framework for designing infrastructure that preserves the whole body of work, its ownership, and its legacy.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
 <p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
-<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore .LLab Creators™</a></p>
+<p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

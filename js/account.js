@@ -10,7 +10,7 @@
     'Phase II · Infrastructure Planning & Management',
     'Phase III · Internal Operating Systems',
     'Phase IV · Preservation',
-    'Build · Founders Organization',
+    'Build · The Co.LLab Founders Organization™',
   ];
 
   // Display-only ™ on the TRIARCH™ level names (data keeps the plain names).
@@ -24,7 +24,7 @@
     'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER™ — Infrastructure Planning & Management',
     'Phase III · Internal Operating Systems': '💍 SIGNET™ — Internal Operating Systems',
     'Phase IV · Preservation': '🏛️ HEIRLOOM™ — Preservation',
-    'Build · Founders Organization': 'The Co.LLab Founders Organization™',
+    'Build · The Co.LLab Founders Organization™': 'The Co.LLab Founders Organization™',
   };
 
   // The progression track shown above the dashboard: Welcome, then the
@@ -274,6 +274,46 @@
     }
   }
 
+  // Membership card: every member has one, with a permanent Member Number. Once a member, always a member.
+  function renderMemberCard(data) {
+    const wrap = $('member-card-group');
+    if (!wrap || !data.memberId) return;
+    const standing = (data.memberStanding && data.memberStanding.label) || 'Member';
+    const since = data.memberSince ? new Date(data.memberSince).getFullYear() : '';
+    wrap.hidden = false;
+    wrap.innerHTML = `
+      <div class="founder-card member-card">
+        <div class="founder-card-badge">The Co.LLab™ Membership Card</div>
+        <div class="founder-card-grid">
+          <div><span class="founder-card-label">Member</span><strong class="founder-card-value">${esc(data.name || '—')}</strong></div>
+          <div><span class="founder-card-label">Member Number</span><strong class="founder-card-value">${esc(data.memberId)}</strong></div>
+          <div><span class="founder-card-label">Standing</span><strong class="founder-card-value">${esc(standing.replace(/ Members$/, ' Member'))}</strong></div>
+          <div><span class="founder-card-label">Member since</span><strong class="founder-card-value">${since}</strong></div>
+        </div>
+        ${data.canLinkOnWall ? `<form class="wall-url-form" id="wall-url-form"><label class="founder-card-label" for="wall-url" style="flex-basis:100%;">Advertise on the Legacy Walls: link your name to your website (optional)</label><input id="wall-url" name="url" type="text" inputmode="url" placeholder="yourcompany.com" value="${esc(data.wallUrl || '')}" maxlength="200" /><button class="pill pill--solid" type="submit">Save link</button><span id="wall-url-msg" class="founder-card-label" role="status"></span></form>` : ''}
+        <p class="founder-card-benefit">Once a member, always a member: your number is yours for good, and your name stays on the <a href="omnidirectional-enterprise.html#legacy-wall">Omnidirectional Legacy Wall</a>.</p>
+      </div>`;
+  }
+
+  function wireWallLink() {
+    const form = $('wall-url-form');
+    if (!form) return;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = $('wall-url-msg');
+      msg.textContent = 'Saving…';
+      try {
+        const res = await fetch('/.netlify/functions/wall-link', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: $('wall-url').value }) });
+        const out = await res.json();
+        if (!res.ok) throw new Error(out.error || 'Could not save.');
+        $('wall-url').value = out.url || '';
+        msg.textContent = out.url ? 'Saved. Your name now links to your website.' : 'Link removed.';
+      } catch (err) {
+        msg.textContent = err.message;
+      }
+    });
+  }
+
   function renderFounderCard(data) {
     const wrap = $('founder-card-group');
     if (!wrap) return;
@@ -309,7 +349,7 @@
         <p class="founder-card-benefit">Permanent thank-you benefit: <strong>20% off</strong> all eligible future products from The Co.LLab™, applied automatically at checkout whenever you're signed in.</p>
         ${founder.partnershipCredit ? `<p class="founder-card-benefit">Partnership credit: <strong>$${Number(founder.partnershipCredit).toLocaleString('en-US')}</strong>, applied automatically when you buy a <a href="partnership.html">Partnership™</a> while signed in.</p>` : ''}
         ${(founder.contributions || []).length ? `<p class="founder-card-benefit">Your contributions: ${founder.contributions.map((c) => `$${Number(c.amount).toLocaleString('en-US')}${c.node ? ` to ${esc(c.node)}` : ''}`).join(' · ')}</p>` : ''}
-        <p class="founder-card-benefit">${founder.contributeLink ? `<a class="pill pill--solid" href="${esc(founder.contributeLink)}">Give any amount <span class="arrow">→</span></a> <a class="pill" href="all-products.html">Shop .LLab™ products <span class="arrow">→</span></a>` : ''}</p>
+        <p class="founder-card-benefit">${founder.contributeLink ? `<a class="pill pill--solid" href="${esc(founder.contributeLink)}">Give any amount <span class="arrow">→</span></a> <a class="pill" href="all-products.html">Shop The .LLab™ products <span class="arrow">→</span></a>` : ''}</p>
         <p class="founder-card-copy">Founder participation supports The Co.LLab™'s Omnidirectional Enterprise™ model — value, authority, intelligence, IP, and opportunity moving in multiple directions rather than purely top-down. As a Founder, you help strengthen Leadership Infrastructure™ and the ecosystem connecting creators, businesses, nonprofits, organizations, and enterprise — turning human potential into performance, sustainable enterprise value, and lasting legacy.</p>
       </div>`;
   }
@@ -503,7 +543,7 @@
     return card;
   }
 
-  /* Founders Organization: what they have (Yours) or the offer (Explore). */
+  /* The Co.LLab Founders Organization™: what they have (Yours) or the offer (Explore). */
   function renderFoundersSection(data, ownedFounders) {
     const ownedList = $('founders-owned-list');
     ownedList.innerHTML = '';
@@ -517,7 +557,7 @@
     const joinList = $('founders-join-list');
     joinList.innerHTML = '';
     const tiers = data.founderSnapshots || [];
-    tiers.forEach((item) => joinList.appendChild(snapshotCard({ ...item, name: item.name.replace(/^The Co\.LLab™ Founders Organization — /, '') }, 'Join')));
+    tiers.forEach((item) => joinList.appendChild(snapshotCard({ ...item, name: item.name.replace(/^The Co\.LLab Founders Organization™ — /, '') }, 'Join')));
     $('founders-join').hidden = !!data.founder || !tiers.length;
   }
 
@@ -545,7 +585,7 @@
     if (note) note.hidden = !(mem && mem.status === 'active' && mem.subscriptionId);
   }
 
-  /* .LLab Membership offer, for anyone without an active Membership. */
+  /* The .LLab Membership offer, for anyone without an active Membership. */
   function renderMembershipOffer(data) {
     const el = $('offer-membership');
     const offer = data.membershipOffer;
@@ -554,7 +594,7 @@
       .filter((p) => p.payment_link)
       .map((p, i) => `<a class="pill ${i === 0 ? 'pill--solid' : 'pill--accent'}" href="${p.payment_link}" target="_blank" rel="noopener">${esc(p.price_display)} <span class="arrow">→</span></a>`)
       .join('');
-    el.innerHTML = `<p class="offer-eyebrow">.LLab Membership™</p>
+    el.innerHTML = `<p class="offer-eyebrow">The .LLab Membership™</p>
       <h3 class="offer-title">Unlock every quest</h3>
       <p class="offer-body">${esc(offer.description)}</p>
       <ul class="offer-points">
@@ -567,7 +607,7 @@
   }
 
   const SHOP_GROUPS = [
-    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. Every one comes with .LLab Membership™, or buy one to keep.' },
+    { line: 'four-phases', title: 'Four Phases products', lead: 'The core Leadership Infrastructure™ products. Every one comes with The .LLab Membership™, or buy one to keep.' },
     { line: 'creator', title: 'Creator Infrastructure™', lead: 'For creators turning a body of work into a lasting venture. Buy one, or win it as level loot.' },
     { line: 'blueprint', title: 'The .LLab Blueprint™ series', lead: 'The magazine series behind The Co.LLab™: mission, vision, and the architecture of leadership. Buy an issue, or win it as level loot.' },
     { line: 'other', title: 'More from The Co.LLab™', lead: '' },
@@ -633,7 +673,7 @@
     tiles.push(active
       ? { type: 'llab', on: true, status: 'Active', sub: `${viaPartnership ? 'Included with your Partnership · ' : ''}${top ? `Level ${top.tier} · ${tm(top.name)}` : 'Level 0 · start your first quest'}`, cta: 'Play your quests', href: '#journey-panel' }
       : { type: 'llab', on: false, status: data.memberType === 'free' ? 'Free member' : 'Not active', sub: 'Free tools and their quests', cta: 'Unlock every quest', href: '#offer-membership' });
-    const label = { founders: name('founders', 'The Co.LLab Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', '.LLab Membership™') };
+    const label = { founders: name('founders', 'The Co.LLab Founders Organization™'), partnerships: name('partnerships', 'Partnerships'), llab: name('llab', 'The .LLab Membership™') };
     el.innerHTML = tiles
       .map((t) => `<a class="program-tile${t.on ? ' is-active' : ''}" href="${t.href}"><span class="pt-name">${esc(label[t.type])}</span><span class="pt-status">${t.status}</span><span class="pt-sub">${t.sub}</span><span class="pt-cta">${t.cta} →</span></a>`)
       .join('');
@@ -695,7 +735,7 @@
       q = {
         label: 'Start the game',
         title: 'Unlock 9 quests',
-        body: '.LLab Membership™ opens 9 quests across 4 levels, analyzes your answers and delivers your outcomes. Clear a level, win free loot. The free tools and their quests are ready now.',
+        body: 'The .LLab Membership™ opens 9 quests across 4 levels, analyzes your answers and delivers your outcomes. Clear a level, win free loot. The free tools and their quests are ready now.',
         cta: plan ? `<a class="pill pill--solid" href="${plan.payment_link}" target="_blank" rel="noopener">Join · ${esc(plan.price_display)} <span class="arrow">→</span></a> <a class="pill" href="#portal-llab">Free tools <span class="arrow">→</span></a>` : '',
       };
     }
@@ -783,6 +823,8 @@
     const verifyNote = $('email-verify-note');
     if (verifyNote) verifyNote.hidden = data.emailVerified !== false || data.emailEnabled === false;
     $('account-member-id').textContent = `Member ID: ${data.memberId || '—'}`;
+    renderMemberCard(data);
+    wireWallLink();
     renderFounderCard(data);
     renderPartnership(data);
 
@@ -847,7 +889,7 @@
 
     const phaseGroups = $('phase-groups');
     phaseGroups.innerHTML = '';
-    const FOUNDERS_PHASE = 'Build · Founders Organization';
+    const FOUNDERS_PHASE = 'Build · The Co.LLab Founders Organization™';
     renderFoundersSection(data, byPhase.get(FOUNDERS_PHASE) || []);
     renderPartnershipJoin(data);
     renderRewards(data);

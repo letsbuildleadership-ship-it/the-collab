@@ -3,14 +3,14 @@ import { renderStarterDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: '30-day-infrastructure-starter',
   outFile: 'free-tools/30-day-infrastructure-starter.pdf',
-  docTitle: '.LLab 30-Day Infrastructure Starter™',
+  docTitle: 'The .LLab 30-Day Infrastructure Starter™',
   cover: {
     eyebrow: 'Phase II · Infrastructure Planning & Management — Free Starter',
-    title: '.LLab 30-Day Infrastructure <strong>Starter</strong>™',
+    title: 'The .LLab 30-Day Infrastructure <strong>Starter</strong>™',
     subtitle: 'A simple 30-day plan for putting your first piece of infrastructure in place.',
     phase: 'II · Infrastructure Planning & Management',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 

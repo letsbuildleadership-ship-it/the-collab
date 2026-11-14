@@ -1,10 +1,10 @@
 export const meta = {
   key: 'library-card-welcome',
   outFile: 'library-card-welcome.pdf',
-  docTitle: '.LLab Library Card™ Welcome Guide',
+  docTitle: 'The .LLab Library Card™ Welcome Guide',
   cover: {
     eyebrow: 'Welcome — a .LLab™ Library Card Guide',
-    title: '.LLab Library <strong>Card</strong>™',
+    title: 'The .LLab Library <strong>Card</strong>™',
     subtitle: 'Founding access to the digital library — the curated resource stream and infrastructure roadmap underneath every .LLab™ product.',
     phase: 'Digital Library Access',
     price: '$10/mo · $100/yr (Founding Rate)',
@@ -20,7 +20,7 @@ export const contentHtml = `
 
   <div class="callout">
     <div class="callout-label">What's included</div>
-    <p>Your <strong>.LLab Infrastructure Roadmap™</strong> — a guided map of the full IV Phases product catalog — plus the curated resource stream added to the library over time, all unlocked in your account.</p>
+    <p>Your <strong>The .LLab Infrastructure Roadmap™</strong> — a guided map of the full IV Phases product catalog — plus the curated resource stream added to the library over time, all unlocked in your account.</p>
   </div>
 
   <h2 class="doc-h2">How to access it</h2>
@@ -46,7 +46,7 @@ export const contentHtml = `
 <section class="page">
   <p class="kicker">Getting the most from it</p>
   <h1 class="doc-h1">Start with the <strong>Roadmap.</strong></h1>
-  <p class="lead">Your <strong>.LLab Infrastructure Roadmap™</strong> is the fastest way to understand what the rest of the ecosystem offers — the full IV Phases catalog, how The IV Phases™ connect, and which product to consider first based on what you're actually facing right now.</p>
+  <p class="lead">Your <strong>The .LLab Infrastructure Roadmap™</strong> is the fastest way to understand what the rest of the ecosystem offers — the full IV Phases catalog, how The IV Phases™ connect, and which product to consider first based on what you're actually facing right now.</p>
 
   <div class="worksheet-field">
     <div class="field-label">What made you curious about The .LLab™ in the first place?</div>

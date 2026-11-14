@@ -1,10 +1,10 @@
 export const meta = {
   key: 'infrastructure-roadmap',
   outFile: 'infrastructure-roadmap.pdf',
-  docTitle: '.LLab Infrastructure Roadmap™',
+  docTitle: 'The .LLab Infrastructure Roadmap™',
   cover: {
     eyebrow: 'Included with Membership & the Library Card',
-    title: '.LLab Infrastructure <strong>Roadmap</strong>™',
+    title: 'The .LLab Infrastructure <strong>Roadmap</strong>™',
     subtitle: 'A guided map of the full .LLab™ IV Phases Product Infrastructure — what each product does, and where to start.',
     phase: 'all of The IV Phases™',
     price: 'Included',
@@ -30,15 +30,15 @@ export const contentHtml = `
 
   <table class="doc-table">
     <tr><th>Product</th><th>Phase</th><th>Price</th></tr>
-    <tr><td>.LLab Leadership Infrastructure Strength Map™</td><td>I · Foundations</td><td>$20</td></tr>
-    <tr><td>.LLab Leadership Alignment Map™</td><td>II · Infrastructure Planning</td><td>$50</td></tr>
-    <tr><td>.LLab Leadership Infrastructure Build Plan™</td><td>II · Infrastructure Planning</td><td>$100</td></tr>
-    <tr><td>.LLab Leadership Legacy Profile™</td><td>III · Operating Systems</td><td>$150</td></tr>
-    <tr><td>.LLab Leadership Operating System™</td><td>III · Operating Systems</td><td>$750</td></tr>
-    <tr><td>.LLab Legacy Infrastructure Map™</td><td>IV · Preservation</td><td>$200</td></tr>
-    <tr><td>.LLab Leadership Infrastructure Diagnostic™</td><td>IV · Preservation</td><td>$300</td></tr>
-    <tr><td>.LLab Infrastructure Blueprint™</td><td>IV · Preservation</td><td>$500</td></tr>
-    <tr><td>.LLab Legacy Infrastructure Architecture™</td><td>IV · Preservation</td><td>$1,000</td></tr>
+    <tr><td>The .LLab Leadership Infrastructure Strength Map™</td><td>I · Foundations</td><td>$20</td></tr>
+    <tr><td>The .LLab Leadership Alignment Map™</td><td>II · Infrastructure Planning</td><td>$50</td></tr>
+    <tr><td>The .LLab Leadership Infrastructure Build Plan™</td><td>II · Infrastructure Planning</td><td>$100</td></tr>
+    <tr><td>The .LLab Leadership Legacy Profile™</td><td>III · Operating Systems</td><td>$150</td></tr>
+    <tr><td>The .LLab Leadership Operating System™</td><td>III · Operating Systems</td><td>$750</td></tr>
+    <tr><td>The .LLab Legacy Infrastructure Map™</td><td>IV · Preservation</td><td>$200</td></tr>
+    <tr><td>The .LLab Leadership Infrastructure Diagnostic™</td><td>IV · Preservation</td><td>$300</td></tr>
+    <tr><td>The .LLab Infrastructure Blueprint™</td><td>IV · Preservation</td><td>$500</td></tr>
+    <tr><td>The .LLab Legacy Infrastructure Architecture™</td><td>IV · Preservation</td><td>$1,000</td></tr>
   </table>
   <p style="font-size:10.5px; color:var(--ink-dim);">Full Membership unlocks every product above. The Library Card unlocks this Roadmap and the resource stream — the catalog itself is available a la carte, or fully included with Membership.</p>
 </section>
@@ -49,15 +49,15 @@ export const contentHtml = `
 
   <table class="doc-table">
     <tr><th>If you're facing this...</th><th>Start here</th></tr>
-    <tr><td>"I'm not sure what we're actually good at."</td><td>.LLab Leadership Infrastructure Strength Map™ — Phase I</td></tr>
-    <tr><td>"Our strategy and our stated values keep contradicting each other."</td><td>.LLab Leadership Alignment Map™ — Phase II</td></tr>
-    <tr><td>"I know what to fix, I just haven't built it yet."</td><td>.LLab Leadership Infrastructure Build Plan™ — Phase II</td></tr>
-    <tr><td>"I'm not sure what of my leadership actually survives without me."</td><td>.LLab Leadership Legacy Profile™ — Phase III</td></tr>
-    <tr><td>"We need real systems, not just good instincts."</td><td>.LLab Leadership Operating System™ — Phase III</td></tr>
-    <tr><td>"I don't know what's at risk if a key person leaves."</td><td>.LLab Legacy Infrastructure Map™ — Phase IV</td></tr>
-    <tr><td>"I want a full, honest picture before I decide anything."</td><td>.LLab Leadership Infrastructure Diagnostic™ — Phase IV</td></tr>
-    <tr><td>"I have the diagnosis. I need the sequenced plan."</td><td>.LLab Infrastructure Blueprint™ — Phase IV</td></tr>
-    <tr><td>"I'm ready to build the whole thing, deliberately."</td><td>.LLab Legacy Infrastructure Architecture™ — Phase IV</td></tr>
+    <tr><td>"I'm not sure what we're actually good at."</td><td>The .LLab Leadership Infrastructure Strength Map™ — Phase I</td></tr>
+    <tr><td>"Our strategy and our stated values keep contradicting each other."</td><td>The .LLab Leadership Alignment Map™ — Phase II</td></tr>
+    <tr><td>"I know what to fix, I just haven't built it yet."</td><td>The .LLab Leadership Infrastructure Build Plan™ — Phase II</td></tr>
+    <tr><td>"I'm not sure what of my leadership actually survives without me."</td><td>The .LLab Leadership Legacy Profile™ — Phase III</td></tr>
+    <tr><td>"We need real systems, not just good instincts."</td><td>The .LLab Leadership Operating System™ — Phase III</td></tr>
+    <tr><td>"I don't know what's at risk if a key person leaves."</td><td>The .LLab Legacy Infrastructure Map™ — Phase IV</td></tr>
+    <tr><td>"I want a full, honest picture before I decide anything."</td><td>The .LLab Leadership Infrastructure Diagnostic™ — Phase IV</td></tr>
+    <tr><td>"I have the diagnosis. I need the sequenced plan."</td><td>The .LLab Infrastructure Blueprint™ — Phase IV</td></tr>
+    <tr><td>"I'm ready to build the whole thing, deliberately."</td><td>The .LLab Legacy Infrastructure Architecture™ — Phase IV</td></tr>
   </table>
 
   <div class="worksheet-field">

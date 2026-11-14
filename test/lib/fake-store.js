@@ -59,6 +59,30 @@ async function listBenefactors() {
     .map((r) => ({ name: r.benefactor.name || r.name || null, memberId: r.memberId || null, since: r.benefactor.since, test: !!r.ownerTest }));
 }
 
+const { memberStanding } = require('../../netlify/functions/lib/member-standing');
+/** The Membership Legacy Wall: every member with a name, by highest standing ever held. Public-safe fields only. */
+async function listMembers() {
+  return (Array.from(customers.values()))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({ name: (r.founder && r.founder.name) || r.name || null, standing: memberStanding(r).key, since: r.createdAt || null, partnershipKey: (r.partnership && r.partnership.key) || null, url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null }));
+}
+
+/** Everyone who has ever participated, public-safe fields only (for the Omnidirectional Legacy Wall). */
+async function listParticipants() {
+  return (Array.from(customers.values()))
+    .filter((r) => r && !r.supersededAt && !r.ownerTest && memberStanding(r))
+    .map((r) => ({
+      name: (r.founder && r.founder.name) || r.name || null,
+      url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
+      since: r.createdAt || null,
+      partnershipKey: (r.partnership && r.partnership.key) || null,
+      founderLevel: (r.founder && r.founder.level) || null,
+      membershipKeys: Object.keys(r.memberships || {}),
+      purchasedKeys: [...new Set((r.purchases || []).map((p) => p.key))],
+      free: memberStanding(r).key === 'community',
+    }));
+}
+
 async function listFounders() {
   return Array.from(customers.values())
     .filter((r) => r.founder)
@@ -70,6 +94,7 @@ async function listFounders() {
       memberId: r.memberId || null,
       recognizedAt: r.founder.recognizedAt,
       test: !!r.ownerTest,
+      url: (r.wallUrl && require('../../netlify/functions/lib/wall-link').canLinkOnWall(r)) ? r.wallUrl : null,
     }));
 }
 
@@ -263,6 +288,9 @@ module.exports = {
   hashEmail,
   nextFounderNumber,
   listFounders,
+  listMembers,
+  listParticipants,
+  memberStanding,
   listBenefactors,
   listCustomers,
   opsPut,

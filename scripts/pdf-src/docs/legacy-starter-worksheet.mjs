@@ -3,14 +3,14 @@ import { renderWorksheetDoc } from './_free-tool-templates.mjs';
 export const meta = {
   key: 'legacy-starter-worksheet',
   outFile: 'free-tools/legacy-starter-worksheet.pdf',
-  docTitle: '.LLab Legacy Starter Worksheet™',
+  docTitle: 'The .LLab Legacy Starter Worksheet™',
   cover: {
     eyebrow: 'Phase IV · Preservation — Free Worksheet',
-    title: '.LLab Legacy Starter <strong>Worksheet</strong>™',
+    title: 'The .LLab Legacy Starter <strong>Worksheet</strong>™',
     subtitle: 'Begin naming what you want to leave behind — and who needs to carry it forward.',
     phase: 'IV · Preservation',
     price: 'Free',
-    footerRight: '.LLab™ Leadership Infrastructure™',
+    footerRight: 'The .LLab™ Leadership Infrastructure™',
   },
 };
 
