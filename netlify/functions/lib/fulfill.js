@@ -118,6 +118,8 @@ async function fulfillCheckoutSession(session, priceIds) {
   }
 
   const grantedKeys = [];
+  const recognitionKeys = [];
+  let foundingPaid = 0;
 
   for (const priceId of priceIds) {
     const key = pricing.keyForPriceId(priceId);
@@ -150,6 +152,21 @@ async function fulfillCheckoutSession(session, priceIds) {
     // One-time products (e.g. a Founder level) can include free .LLab products.
     if (entry.kind === 'product') {
       for (const k of pricing.grantsForKey(key)) grantedKeys.push(k);
+    }
+
+    // Founding money in this session: a chosen amount (custom price) is
+    // recognized at the fixed level it reaches and gets that level's grants.
+    if (entry.kind === 'product' && entry.custom_amount) {
+      const paid = Math.round(Number(session.amount_total || 0)) / 100;
+      const levelKey = pricing.founderLevelForAmount(paid);
+      foundingPaid += paid;
+      if (levelKey) {
+        recognitionKeys.push(levelKey);
+        for (const k of pricing.grantsForKey(levelKey)) grantedKeys.push(k);
+      }
+    } else if (pricing.founderRankForKey(key)) {
+      foundingPaid += pricing.priceDollars(entry) || 0;
+      recognitionKeys.push(key);
     }
 
     // Impact Products: if this key is flagged with a nonprofit partner,
@@ -190,7 +207,7 @@ async function fulfillCheckoutSession(session, priceIds) {
   // it only records recognition after payment has already completed.
   let highestNewRank = 0;
   let highestNewKey = null;
-  for (const key of grantedKeys) {
+  for (const key of recognitionKeys) {
     const rank = pricing.founderRankForKey(key);
     if (rank && rank > highestNewRank) {
       highestNewRank = rank;
@@ -218,6 +235,10 @@ async function fulfillCheckoutSession(session, priceIds) {
       }
       if (record.name && !record.founder.name) record.founder.name = record.name;
     }
+  }
+  if (record.founder && foundingPaid > 0) {
+    const before = record.founder.paid;
+    record.founder.paid = (typeof before === 'number' ? before : pricing.founderPaidTotal({ ...record.founder, levels: (record.founder.levels || []).filter((k) => !recognitionKeys.includes(k)) })) + foundingPaid;
   }
 
   record.entitlements = uniq([...(record.entitlements || []), ...grantedKeys]);

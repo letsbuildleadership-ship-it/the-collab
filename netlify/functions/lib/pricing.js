@@ -55,6 +55,11 @@ function buildIndex() {
 }
 
 let cached = null;
+/** Tests only: rebuild the lookup index after changing the registry. */
+function _resetIndex() {
+  cached = null;
+}
+
 function index() {
   if (!cached) cached = buildIndex();
   return cached;
@@ -287,8 +292,26 @@ function paymentLinkMap() {
  */
 function founderPartnershipCredit(record) {
   if (!record || !record.founder || record.founder.partnershipCreditUsed) return 0;
-  const levels = record.founder.levels || [record.founder.level];
+  return founderPaidTotal(record.founder);
+}
+
+/** Dollars a Founder has paid for founding (recorded, or derived from the fixed levels held). */
+function founderPaidTotal(founder) {
+  if (!founder) return 0;
+  if (typeof founder.paid === 'number') return founder.paid;
+  const levels = founder.levels || [founder.level];
   return [...new Set(levels)].reduce((sum, k) => sum + (founderRankForKey(k) ? priceDollars(entryForKey(k)) || 0 : 0), 0);
+}
+
+/** The fixed founding level a chosen amount reaches (highest level priced at or below it). */
+function founderLevelForAmount(dollars) {
+  let best = null;
+  for (const p of registry.products || []) {
+    if (!p.founder_rank || p.custom_amount) continue;
+    const price = priceDollars(p);
+    if (price != null && price <= dollars && (!best || p.founder_rank > best.founder_rank)) best = p;
+  }
+  return best ? best.key : null;
 }
 
 module.exports = {
@@ -313,6 +336,9 @@ module.exports = {
   isFounderDiscountExempt,
   paymentLinkMap,
   founderPartnershipCredit,
+  founderPaidTotal,
+  _resetIndex,
+  founderLevelForAmount,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,

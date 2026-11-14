@@ -118,3 +118,36 @@ test('a Partnership bought with the Founder credit marks the credit used', async
   assert.equal(r.record.founder.partnershipCreditUsed.amount, 1000);
   assert.equal(pricing.founderPartnershipCredit(r.record), 0);
 });
+
+test('a chosen founding amount is recognized at the level it reaches and credited in full', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const entry = pricing.entryForKey('founder-your-amount');
+  assert.ok(entry && entry.custom_amount);
+  assert.equal(pricing.founderLevelForAmount(20), 'friends-family');
+  assert.equal(pricing.founderLevelForAmount(349), 'premium-friends-family');
+  assert.equal(pricing.founderLevelForAmount(500), 'founder');
+  assert.equal(pricing.founderLevelForAmount(2500), 'legacy-founder');
+  // Simulate the Stripe price the owner's setup creates, then restore.
+  const raw = pricing.registry.products.find((p) => p.key === 'founder-your-amount');
+  raw.stripe_price_id = 'price_test_custom';
+  pricing._resetIndex();
+  let r;
+  try {
+    r = await fulfillCheckoutSession({ id: 'cs_custom', amount_total: 250000, customer_details: { email: 'custom@example.com' } }, ['price_test_custom']);
+  } finally {
+    delete raw.stripe_price_id;
+    pricing._resetIndex();
+  }
+  assert.equal(r.record.founder.level, 'legacy-founder');
+  assert.ok(r.grantedKeys.includes('legacy-map'));
+  assert.equal(pricing.founderPartnershipCredit(r.record), 2500);
+});
+
+test('fixed founding levels record what was paid, and upgrades add up', async () => {
+  const pricing = require('../netlify/functions/lib/pricing');
+  const email = 'paid@example.com';
+  await fulfillCheckoutSession({ id: 'cs_1', customer_details: { email } }, [pricing.entryForKey('friends-family').stripe_price_id]);
+  const r = await fulfillCheckoutSession({ id: 'cs_2', customer_details: { email } }, [pricing.entryForKey('founder').stripe_price_id]);
+  assert.equal(r.record.founder.paid, 370);
+  assert.equal(pricing.founderPartnershipCredit(r.record), 370);
+});

@@ -403,6 +403,18 @@
       "grants": [
         "legacy-map"
       ]
+    },
+    {
+      "key": "founder-your-amount",
+      "name": "The Co.LLab™ Founders Organization — Your Amount",
+      "phase": "Build · Founders Organization",
+      "phase_key": "founders",
+      "price_display": "$20+",
+      "custom_amount": true,
+      "stripe_pending": true,
+      "pdf_file": "founders-legacy-member.pdf",
+      "description": "Choose how much you invest, from $20. Your amount sets your founding level and is credited in full toward a Partnership.",
+      "founder_discount_exempt": true
     }
   ],
   "_blueprint_readme": "The .LLab Blueprint™ 5-issue magazine series is a separate product line from the IV Phases ladder above, already sold via its own live Stripe products/prices and fulfilled today by a pre-existing Google Apps Script + Gmail automation (unrelated to this site). These entries let our webhook/account system ALSO grant self-serve download access as a backup path — they are intentionally excluded from allCatalogProductKeys() so Membership does not auto-unlock them and they never appear in the .LLab IV Phases upsell list.",

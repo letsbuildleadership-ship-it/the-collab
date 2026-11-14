@@ -2294,3 +2294,7 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 @media (max-width: 560px) { .fo-grid--4 { grid-template-columns: 1fr; } }
 .fo-phase { margin: 0; font-size: var(--label-size); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
 .offer-list li.fo-free { color: var(--white); }
+.fo-custom { margin-top: 1rem; }
+.fo-custom .offer-list { columns: 2; column-gap: 2rem; }
+.fo-custom .offer-list li { break-inside: avoid; }
+@media (max-width: 760px) { .fo-custom .offer-list { columns: 1; } }

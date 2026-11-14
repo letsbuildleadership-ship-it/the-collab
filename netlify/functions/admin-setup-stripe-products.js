@@ -17,7 +17,7 @@ const KEY_META = 'collab_key';
 function pendingItems(registry) {
   return (registry.products || [])
     .filter((p) => p.stripe_pending)
-    .map((p) => ({ key: p.key, name: p.name, description: p.description, cents: Math.round(pricing.priceDollars(p) * 100), price_display: p.price_display }));
+    .map((p) => ({ key: p.key, name: p.name, description: p.description, cents: Math.round(pricing.priceDollars(p) * 100), price_display: p.price_display, custom: !!p.custom_amount }));
 }
 
 async function findProduct(stripe, key) {
@@ -25,9 +25,9 @@ async function findProduct(stripe, key) {
   return found.data[0] || null;
 }
 
-async function findPrice(stripe, productId, cents) {
+async function findPrice(stripe, productId, cents, custom = false) {
   const prices = await stripe.prices.list({ product: productId, active: true, limit: 100 });
-  return prices.data.find((p) => p.type === 'one_time' && p.currency === 'usd' && p.unit_amount === cents) || null;
+  return prices.data.find((p) => p.type === 'one_time' && p.currency === 'usd' && (custom ? p.custom_unit_amount && p.custom_unit_amount.minimum === cents : p.unit_amount === cents)) || null;
 }
 
 async function findLink(stripe, key) {
@@ -49,14 +49,18 @@ async function createLinks(stripe, items, { origin, dry = false } = {}) {
     if (dry) { results.push({ ...r, status: 'would_create', amount_cents: it.cents }); continue; }
     let product = await findProduct(stripe, it.key);
     if (!product) product = await stripe.products.create({ name: it.name, description: it.description, metadata: { [KEY_META]: it.key } });
-    let price = await findPrice(stripe, product.id, it.cents);
-    if (!price) price = await stripe.prices.create({ product: product.id, unit_amount: it.cents, currency: 'usd', metadata: { [KEY_META]: it.key } });
+    let price = await findPrice(stripe, product.id, it.cents, it.custom);
+    if (!price) {
+      // A chosen-amount founding level uses Stripe's "customer chooses what to pay" price, with the listed amount as the minimum.
+      const amount = it.custom ? { custom_unit_amount: { enabled: true, minimum: it.cents } } : { unit_amount: it.cents };
+      price = await stripe.prices.create({ product: product.id, ...amount, currency: 'usd', metadata: { [KEY_META]: it.key } });
+    }
     let link = await findLink(stripe, it.key);
     const reused = Boolean(link);
     if (!link) {
       link = await stripe.paymentLinks.create({
         line_items: [{ price: price.id, quantity: 1 }],
-        allow_promotion_codes: true,
+        allow_promotion_codes: !it.custom,
         customer_creation: 'always',
         after_completion: { type: 'redirect', redirect: { url: `${origin}/pages/account.html` } },
         metadata: { [KEY_META]: it.key },
