@@ -2,7 +2,7 @@
 // discount codes:
 //   LLABORIGINAL  -> OG Co.LLab Collaborator: The .LLab Membership (annual) at $100/yr
 //   LLABFRIEND    -> 90% off any product, site-wide
-//   LLABINITIATE  -> Friends & Family: Founders Organization (Founder tier) at $20
+//   LLABINITIATE  -> Friends & Family: The Co.LLab Founders Organization™ (Founder tier) at $20
 //   LLABFOUNDING  -> The .LLab Founding Circle: The .LLab Membership (annual) at $100/yr
 //   LLABSOVEREIGN -> The .LLab Membership (annual) at $500/yr
 //

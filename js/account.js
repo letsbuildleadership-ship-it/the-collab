@@ -10,7 +10,7 @@
     'Phase II · Infrastructure Planning & Management',
     'Phase III · Internal Operating Systems',
     'Phase IV · Preservation',
-    'Build · Founders Organization',
+    'Build · The Co.LLab Founders Organization™',
   ];
 
   // Display-only ™ on the TRIARCH™ level names (data keeps the plain names).
@@ -24,7 +24,7 @@
     'Phase II · Infrastructure Planning & Management': '⚜️ SCEPTER™ — Infrastructure Planning & Management',
     'Phase III · Internal Operating Systems': '💍 SIGNET™ — Internal Operating Systems',
     'Phase IV · Preservation': '🏛️ HEIRLOOM™ — Preservation',
-    'Build · Founders Organization': 'The Co.LLab Founders Organization™',
+    'Build · The Co.LLab Founders Organization™': 'The Co.LLab Founders Organization™',
   };
 
   // The progression track shown above the dashboard: Welcome, then the
@@ -543,7 +543,7 @@
     return card;
   }
 
-  /* Founders Organization: what they have (Yours) or the offer (Explore). */
+  /* The Co.LLab Founders Organization™: what they have (Yours) or the offer (Explore). */
   function renderFoundersSection(data, ownedFounders) {
     const ownedList = $('founders-owned-list');
     ownedList.innerHTML = '';
@@ -557,7 +557,7 @@
     const joinList = $('founders-join-list');
     joinList.innerHTML = '';
     const tiers = data.founderSnapshots || [];
-    tiers.forEach((item) => joinList.appendChild(snapshotCard({ ...item, name: item.name.replace(/^The Co\.LLab™ Founders Organization — /, '') }, 'Join')));
+    tiers.forEach((item) => joinList.appendChild(snapshotCard({ ...item, name: item.name.replace(/^The Co\.LLab Founders Organization™ — /, '') }, 'Join')));
     $('founders-join').hidden = !!data.founder || !tiers.length;
   }
 
@@ -889,7 +889,7 @@
 
     const phaseGroups = $('phase-groups');
     phaseGroups.innerHTML = '';
-    const FOUNDERS_PHASE = 'Build · Founders Organization';
+    const FOUNDERS_PHASE = 'Build · The Co.LLab Founders Organization™';
     renderFoundersSection(data, byPhase.get(FOUNDERS_PHASE) || []);
     renderPartnershipJoin(data);
     renderRewards(data);

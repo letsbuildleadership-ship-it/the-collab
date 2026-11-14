@@ -54,7 +54,7 @@ test('Founders tier: recognizes the Founder level and number', async () => {
   const s = session('cs_founder', 'c@example.com');
   const result = await fulfillCheckoutSession(s, [FOUNDER.stripe_price_id]);
   const msg = buildPurchaseEmail(result.record, s);
-  assert.match(msg.subject, /Founders Organization/);
+  assert.match(msg.subject, /The Co.LLab Founders Organization™/);
   assert.match(msg.text, /Founder Number F-\d{5}/);
 });
 

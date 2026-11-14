@@ -14,7 +14,7 @@ const free = JSON.parse(read('content/free-tools.json')).tools;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const FOUR = new Set(['strength-map', 'values-charter', 'leadership-identity-profile', 'decision-principles-playbook', 'foundations-assessment', 'foundations-manual', 'alignment-map', 'build-plan', 'legacy-profile', 'operating-system', 'legacy-map', 'diagnostic', 'blueprint', 'legacy-architecture']);
 const isCreator = (p) => /^creator|^creative/.test(p.key);
-const isFounders = (p) => (p.phase || '').includes('Founders Organization') && !p.retired_from_sale;
+const isFounders = (p) => (p.phase || '').includes('The Co.LLab Founders Organization™') && !p.retired_from_sale;
 
 import { PDFDocument } from 'pdf-lib';
 
@@ -67,7 +67,7 @@ for (const m of reg.memberships) {
   add({ kind: 'member', group: 'Memberships', cats: ['memberships'], badge: 'Membership', line: 'Membership', name: m.name, tag: tagline(m.description), meta: m.unlocks_catalog ? 'Every IV Phases™ product, plus the Infrastructure Analysis™' : '', price: m.plans.map((pl) => pl.price_display).join(' · '), sort: dollars(m.plans[0].price_display), buttons: m.plans.map((pl) => buy(pl.payment_link, pl.price_display)).join(''), mark: m.name.replace(/™$/, '') });
 }
 for (const p of reg.products.filter(isFounders)) {
-  add({ kind: 'product', group: 'The Co.LLab Founders Organization™', cats: ['founders'], badge: 'Founders Organization', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab™ Founders Organization — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab™ Founders Organization — /, '') });
+  add({ kind: 'product', group: 'The Co.LLab Founders Organization™', cats: ['founders'], badge: 'The Co.LLab Founders Organization™', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab Founders Organization™ — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab Founders Organization™ — /, '') });
 }
 const hasQuest = (key) => fs.existsSync(path.join(root, 'content/quests', `${key}.json`));
 const productItem = async (p, extra = {}) => {

@@ -52,7 +52,7 @@ function buildPurchaseEmail(record, session) {
   const subject = partnershipEntry
     ? `Welcome, Partner. Your ${partnershipEntry.tier_label || 'Co.LLab™'} Partnership is active`
     : isFounder
-      ? 'Welcome to the Founders Organization. Your purchase is confirmed'
+      ? 'Welcome to The Co.LLab Founders Organization™. Your purchase is confirmed'
       : 'Your Co.LLab™ purchase is confirmed';
 
   // "What happens next" — one block per kind of purchase in this session.

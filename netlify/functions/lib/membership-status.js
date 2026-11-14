@@ -162,7 +162,7 @@ function hasFullCatalog(record, now) {
  * One-time products an active membership opens for this customer: the Four
  * Phases products (Leadership Infrastructure™ Phases I–IV). The Creator line
  * and Blueprint™ issues are bought separately or chosen as TRIARCH™ tier
- * rewards (lib/membership-rewards.js); Founders Organization materials come
+ * rewards (lib/membership-rewards.js); The Co.LLab Founders Organization™ materials come
  * only with a Founders purchase.
  */
 function catalogUnlockKeys(record, now) {

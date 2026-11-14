@@ -48,7 +48,7 @@ function buildIndex() {
   }
 
   // Omnidirectional Enterprise™ Partnerships: one-time purchases, fully
-  // separate from the Founders Organization (no founder_rank, no impact,
+  // separate from The Co.LLab Founders Organization™ (no founder_rank, no impact,
   // founder_discount_exempt). Left out of paymentLinkMap() so the Founder
   // checkout rewrite never touches these links.
   for (const p of registry.partnerships || []) {

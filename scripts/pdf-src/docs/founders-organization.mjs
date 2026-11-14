@@ -1,14 +1,14 @@
 export const meta = {
   key: 'founders-organization',
   outFile: 'founders-organization.pdf',
-  docTitle: 'The Co.LLab™ Founders Organization — Welcome Guide',
+  docTitle: 'The Co.LLab Founders Organization™ — Welcome Guide',
   cover: {
     eyebrow: 'Build — for founders',
     title: 'The Co.LLab™ Founders <strong>Organization</strong>',
     subtitle: 'Welcome. This is the infrastructure behind your enterprise — The IV Phases™ model, applied to you and what you’re building.',
-    phase: 'Build · Founders Organization',
+    phase: 'Build · The Co.LLab Founders Organization™',
     price: 'Founder / Legacy Founder',
-    footerRight: 'The Co.LLab™ Founders Organization',
+    footerRight: 'The Co.LLab Founders Organization™',
   },
 };
 
@@ -16,11 +16,11 @@ export const contentHtml = `
 <section class="page">
   <p class="kicker">Welcome</p>
   <h1 class="doc-h1">You have the momentum. <strong>Now the infrastructure.</strong></h1>
-  <p class="lead">Most founders don't fail from lack of talent, vision, or effort. They stall because the enterprise around them was never built to carry what they're asking it to carry — no decision infrastructure, no operating systems, no plan for anything to run without the founder personally in every room. The Founders Organization exists to fix exactly that, using the same model — The IV Phases™ behind everything in The Co.LLab™ ecosystem.</p>
+  <p class="lead">Most founders don't fail from lack of talent, vision, or effort. They stall because the enterprise around them was never built to carry what they're asking it to carry — no decision infrastructure, no operating systems, no plan for anything to run without the founder personally in every room. The Co.LLab Founders Organization™ exists to fix exactly that, using the same model — The IV Phases™ behind everything in The Co.LLab™ ecosystem.</p>
 
   <div class="callout">
     <div class="callout-label">Why this is separate from The .LLab™</div>
-    <p>The Founders Organization has its own journey. Founders face a specific problem — significant talent and momentum without the leadership infrastructure required to make it durable — and this program is built around that problem specifically, not as a generic membership.</p>
+    <p>The Co.LLab Founders Organization™ has its own journey. Founders face a specific problem — significant talent and momentum without the leadership infrastructure required to make it durable — and this program is built around that problem specifically, not as a generic membership.</p>
   </div>
 
   <h2 class="doc-h2">What's included</h2>
@@ -70,7 +70,7 @@ export const contentHtml = `
 <section class="page">
   <p class="kicker">Getting started</p>
   <h1 class="doc-h1">Your first <strong>30 days.</strong></h1>
-  <p class="lead">The Founders Organization works best when you engage with it in order — don't skip straight to systems before you've done the Foundations work.</p>
+  <p class="lead">The Co.LLab Founders Organization™ works best when you engage with it in order — don't skip straight to systems before you've done the Foundations work.</p>
 
   <table class="doc-table">
     <tr><th>Week</th><th>Focus</th></tr>

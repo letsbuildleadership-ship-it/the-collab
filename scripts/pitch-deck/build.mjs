@@ -120,7 +120,7 @@ const QR = require('qrcode');
 const SITE = 'https://wearethellab.com';
 const qr = async (u) => QR.toDataURL(u, { margin: 1, width: 360, color: { dark: '#0f1d13', light: '#ffffff' } });
 const qJoin = await qr(`${SITE}/pages/login.html`), qProducts = await qr(`${SITE}/pages/all-products.html`), qPartner = await qr(`${SITE}/pages/partnership.html`);
-const isCreator = (p) => /Creat/.test(p.name), isFounders = (p) => /Founders Organization/.test(p.name);
+const isCreator = (p) => /Creat/.test(p.name), isFounders = (p) => /The Co.LLab Founders Organization™/.test(p.name);
 const nLead = reg.products.filter((p) => !isCreator(p) && !isFounders(p)).length, nCreator = reg.products.filter(isCreator).length;
 const nPartnerIp = reg.partner_ip.length, nBlueprint = reg.blueprint_series.length;
 const founders = reg.products.filter(isFounders).map((p) => [p.name.split('— ')[1], p.price_display]);

@@ -24,7 +24,7 @@ function addMonths(date, months) {
 
 /**
  * Omnidirectional Enterprise™ Partnership grant. Fully separate from the
- * Founders Organization: no Founder recognition, no Founder discount, no
+ * The Co.LLab Founders Organization™: no Founder recognition, no Founder discount, no
  * impact allocation. Grants the tier's products permanently
  * (pricing.partnershipGrantKeysFor — never the Founders tiers), and sets
  * every membership active for term_months (12) from purchase with no
