@@ -316,6 +316,30 @@
     </div>
   </section>
 
+  <section class="band" id="figures">
+    <div class="wrap oef">
+      <p class="eyebrow">The Omnidirectional Enterprise Model™, figure by figure</p>
+      <h2 class="headline" style="max-width:26ch;">One Source, nine branches, <strong>and the lines between them.</strong></h2>
+      <p class="subhead" style="margin-top:1.5rem; max-width:66ch;">Figure 1 is the foundation above. Figure 2 shows The Co.LLab™ running the model as an enterprise. Figure 3 shows how the model keeps branching into a web. Hover over or tap any circle or line to see its name and what it does.</p>
+      <div class="oef-tabs" role="tablist" aria-label="Figures">
+        <button class="oef-tab" role="tab" id="oef-t1" data-fig="1" aria-selected="true">Figure 1 · Foundation</button>
+        <button class="oef-tab" role="tab" id="oef-t2" data-fig="2" aria-selected="false">Figure 2 · The Co.LLab™</button>
+        <button class="oef-tab" role="tab" id="oef-t3" data-fig="3" aria-selected="false">Figure 3 · The web</button>
+      </div>
+      <div class="oef-controls">
+        <label class="oef-ctrl"><input type="checkbox" id="oef-flow" checked> Show Currents flowing</label>
+        <label class="oef-ctrl"><input type="checkbox" id="oef-labels" checked> Label every line</label>
+      </div>
+      <div class="oef-grid">
+        <div class="oef-stage"><div id="oef-fig"></div><div class="oef-caption" id="oef-caption"></div></div>
+        <aside>
+          <div class="oef-panel" aria-live="polite"><div class="oef-kind" id="oef-kind">Select a part</div><h2 id="oef-name">The Source</h2><p id="oef-fn">Hover over or tap any circle or line in the figure.</p></div>
+          <div class="oef-panel oef-parts"><h3>Every part in this figure</h3><div id="oef-parts"></div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="blueprint">
     <div class="wrap">
       <p class="eyebrow">The blueprint</p>
@@ -439,6 +463,7 @@
 
 <script src="../js/main.js"></script>
 <script src="../js/legacy-wall.js"></script>
+<script src="../js/oe-figures.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0325a788fee24cb58fab9f72f1056bb7"}'></script>
 </body>
