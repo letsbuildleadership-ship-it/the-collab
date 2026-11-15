@@ -67,7 +67,7 @@ test('the footer menu matches the top menu: same groups, same order, same pages'
     const heads = [...footer.matchAll(/<h4>([^<]+)<\/h4>/g)].map((m) => m[1].replace(/&amp;/g, '&'));
     assert.deepEqual(heads, MENU.filter((m) => m.href !== '/').map((m) => m.label), f);
     const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>\s*<\/li>\s*<li class="nav-signin">|<ul class="nav-links">[\s\S]*?nav-signin/)[0];
-    for (const m of MENU) for (const [p] of m.items || [[m.page]]) if (p) {
+    for (const m of MENU) for (const [p0] of m.items || [[m.page]]) if (p0) { const p = p0.split('#')[0];
       assert.ok(nav.includes(`${p}.html"`), `${f}: top menu has ${p}`);
       assert.ok(footer.includes(`${p}.html"`), `${f}: footer has ${p}`);
     }
