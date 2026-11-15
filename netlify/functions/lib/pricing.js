@@ -80,8 +80,7 @@ function entryForKey(key) {
   return index().byKey.get(key) || null;
 }
 
-/** Founders Organization payments are ACH (US bank account) only. */
-const FOUNDERS_PAYMENT_METHODS = ['us_bank_account'];
+/** Founders Organization keys (paid like Partnerships: card or ACH, from Stripe payment method settings). */
 function isFoundersKey(key) {
   if (key === 'founder-give') return true;
   const entry = entryForKey(key);
@@ -412,7 +411,6 @@ module.exports = {
   recognitionLevels,
   designationNodes,
   isFoundersKey,
-  FOUNDERS_PAYMENT_METHODS,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,

@@ -1,8 +1,9 @@
-// Owner-only, idempotent Stripe setup for ACH-only Founders Organization payments:
+// Owner-only, idempotent Stripe setup so Founders Organization payments work like
+// Partnership payments (card or ACH, from the account's payment method settings):
 //  1. turns on ACH Direct Debit (us_bank_account) in the default payment method configuration,
 //  2. adds checkout.session.async_payment_succeeded/failed to this site's webhook endpoint,
-//  3. switches every existing Founders Payment Link to ACH only.
-// New links get ACH from admin-setup-stripe-products; on-site checkouts already request it.
+//  3. clears the ACH-only restriction from every existing Founders Payment Link.
+// On-site checkouts and new links set no payment_method_types, same as Partnerships.
 //
 //   curl -H "X-Admin-Token: <ADMIN_TOKEN>" https://<site>/.netlify/functions/admin-founders-ach?dry=1
 //   (drop ?dry=1 to apply)
@@ -28,9 +29,10 @@ async function applyAch(stripe, targets, { dry = false } = {}) {
       if (!t) continue;
       byUrl.delete(link.url);
       const current = link.payment_method_types || null;
-      if (current && current.length === 1 && current[0] === 'us_bank_account') { results.push({ key: t.key, status: 'already_ach' }); continue; }
-      if (dry) { results.push({ key: t.key, status: 'would_update', from: current || 'automatic' }); continue; }
-      await stripe.paymentLinks.update(link.id, { payment_method_types: pricing.FOUNDERS_PAYMENT_METHODS });
+      if (!current || !current.length) { results.push({ key: t.key, status: 'already_automatic' }); continue; }
+      if (dry) { results.push({ key: t.key, status: 'would_update', from: current }); continue; }
+      // Empty string unsets the list: Stripe then uses the payment method settings (card + ACH).
+      await stripe.paymentLinks.update(link.id, { payment_method_types: '' });
       results.push({ key: t.key, status: 'updated' });
     }
     startingAfter = page.has_more ? page.data[page.data.length - 1].id : null;

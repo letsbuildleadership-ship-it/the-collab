@@ -1,6 +1,6 @@
 // Stripe webhook: the source of truth for fulfillment. Configured in the
 // live Stripe account to receive checkout.session.completed,
-// checkout.session.async_payment_succeeded/failed (ACH Founders payments),
+// checkout.session.async_payment_succeeded/failed (ACH payments),
 // customer.subscription.updated/deleted, and invoice.payment_failed for
 // every .LLab product, Membership, Library Card, Journal, and Founders
 // tier. Runs independently of the pre-existing Blueprint (Google Apps
