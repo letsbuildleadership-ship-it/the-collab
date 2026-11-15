@@ -11,7 +11,10 @@ const { json } = require('./lib/http');
 
 const bySince = (a, b) => String(a.since).localeCompare(String(b.since));
 const plaque = (m) => ({ displayName: String(m.name).trim(), url: m.url || null });
-const named = (list) => list.filter((m) => m.name && String(m.name).trim()).sort(bySince).map(plaque);
+// Names kept off the wall for now (delete a name here to show it again).
+const HIDDEN_NAMES = ['ashley e. clasby', 'ashley clasby'];
+const shown = (m) => m.name && String(m.name).trim() && !HIDDEN_NAMES.includes(String(m.name).trim().toLowerCase());
+const named = (list) => list.filter(shown).sort(bySince).map(plaque);
 
 function buildWall(people) {
   const reg = pricing.registry;
@@ -38,6 +41,7 @@ function buildWall(people) {
   return nodes;
 }
 
+exports.HIDDEN_NAMES = HIDDEN_NAMES;
 exports.buildWall = buildWall;
 
 exports.handler = async (event) => {
