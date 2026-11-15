@@ -658,7 +658,7 @@
     const f = data.founder;
     tiles.push(f
       ? { type: 'founders', on: true, status: esc(f.levelLabel || 'Founder'), sub: f.founderNumber ? `Founder Number ${esc(f.founderNumber)}` : 'Recognized Founder', cta: 'Your Founder card', href: '#portal-founders' }
-      : { type: 'founders', on: false, status: 'Not a Founder yet', sub: 'Founding options from $20', cta: 'See Founder options', href: '#founders-join' });
+      : { type: 'founders', on: false, status: 'Not a Founder yet', sub: 'Founding levels from $50', cta: 'See Founder options', href: '#founders-join' });
     const p = data.partnership;
     tiles.push(p
       ? { type: 'partnerships', on: true, status: esc(p.tierLabel), sub: `${p.seats || 1} seat${(p.seats || 1) === 1 ? '' : 's'}${p.lifetime ? ' · Lifetime' : p.expiresAt ? ` · through ${formatShortDate(p.expiresAt)}` : ''}`, cta: 'Your Partnership', href: '#portal-partnerships' }
