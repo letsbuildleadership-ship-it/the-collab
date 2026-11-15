@@ -2399,3 +2399,19 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .source-name { font-size: clamp(1.5rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
 .source-sub { font-size: .9rem; font-weight: 700; color: var(--white); }
 @media (prefers-reduced-motion: reduce) { .source-plaque { transition: none; } .source-plaque:hover { transform: none; } }
+
+/* Menu colors: each item takes its own step along the fire gradient
+   (red-orange to warm light orange, all AA on the dark ground). Hover and
+   the current page stay white. */
+.nav-links { --g-from: #ff4d2e; --g-to: #ffd08a; }
+.nav-links > li:nth-child(1) { --i: 0; } .nav-links > li:nth-child(2) { --i: 1; } .nav-links > li:nth-child(3) { --i: 2; } .nav-links > li:nth-child(4) { --i: 3; }
+.nav-links > li:nth-child(5) { --i: 4; } .nav-links > li:nth-child(6) { --i: 5; } .nav-links > li:nth-child(7) { --i: 6; }
+.site-header .nav-links > li > a, .site-header .nav-links > li > .nav-more-toggle { color: color-mix(in oklab, var(--g-from), var(--g-to) calc(var(--i, 0) * 16%)); }
+.nav-more-menu > li:nth-child(1) { --j: 0; } .nav-more-menu > li:nth-child(2) { --j: 1; } .nav-more-menu > li:nth-child(3) { --j: 2; } .nav-more-menu > li:nth-child(4) { --j: 3; }
+.nav-more-menu > li:nth-child(5) { --j: 4; } .nav-more-menu > li:nth-child(6) { --j: 5; } .nav-more-menu > li:nth-child(7) { --j: 6; } .nav-more-menu > li:nth-child(8) { --j: 7; }
+.nav-more-menu > li:nth-child(9) { --j: 8; } .nav-more-menu > li:nth-child(10) { --j: 9; } .nav-more-menu > li:nth-child(11) { --j: 10; } .nav-more-menu > li:nth-child(12) { --j: 11; }
+.nav-more-menu > li:nth-child(13) { --j: 12; } .nav-more-menu > li:nth-child(14) { --j: 13; }
+.site-header .nav-links .nav-more-menu > li > a { color: color-mix(in oklab, var(--g-from), var(--g-to) calc(var(--j, 0) * 7.5%)); }
+.site-header .nav-links > li > a:hover, .site-header .nav-links > li > a[aria-current='page'], .site-header .nav-links .nav-more-menu > li > a:hover, .site-header .nav-links .nav-more-menu > li > a[aria-current='page'],
+.site-header .nav-links > li > .nav-more-toggle:hover { color: #fff; }
+.site-header .nav-links > li.nav-signin > a { color: var(--white); }
