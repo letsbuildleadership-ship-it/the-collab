@@ -16,7 +16,7 @@ test('the home page has no contents list; the Omnidirectional wheel sits above t
   assert.equal((main.match(/class="oe-link"/g) || []).length, 18, 'nine branches in the wheel and in its mobile version');
   assert.ok(main.indexOf('id="model"') < main.indexOf('id="economic"'), 'the wheel is above the economic case');
   assert.match(main, /id="economic"/);
-  assert.match(main, /Generating value and capturing value/);
+  assert.match(main, /Creating value is half the work/);
   assert.ok(!/class="ps-block"/.test(main) && !/oe-phases/.test(main), 'the long sections stay off the cover');
 });
 
