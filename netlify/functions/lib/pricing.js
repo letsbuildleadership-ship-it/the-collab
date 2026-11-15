@@ -80,7 +80,8 @@ function entryForKey(key) {
   return index().byKey.get(key) || null;
 }
 
-/** Founders Organization keys (paid like Partnerships: card or ACH, from Stripe payment method settings). */
+/** Founders Organization payments take card or ACH, the same list as the Partnership Payment Links. */
+const FOUNDERS_PAYMENT_METHODS = ['card', 'us_bank_account'];
 function isFoundersKey(key) {
   if (key === 'founder-give') return true;
   const entry = entryForKey(key);
@@ -411,6 +412,7 @@ module.exports = {
   recognitionLevels,
   designationNodes,
   isFoundersKey,
+  FOUNDERS_PAYMENT_METHODS,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,
