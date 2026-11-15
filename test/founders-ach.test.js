@@ -37,3 +37,17 @@ test('admin-founders-ach turns on ACH and adds the async webhook events once', a
   assert.equal(wh.status, 'added');
   assert.deepEqual(calls.at(-1)[2].enabled_events, ['checkout.session.completed', 'checkout.session.async_payment_succeeded', 'checkout.session.async_payment_failed']);
 });
+
+test('deploy-succeeded resets ACH-only Founders links automatically', async () => {
+  const { run } = require('../netlify/functions/deploy-succeeded');
+  const targets = foundersLinks(pricing.registry);
+  const updates = [];
+  const stripe = {
+    paymentMethodConfigurations: { list: async () => ({ data: [{ id: 'pmc_1', is_default: true, parent: null, us_bank_account: { available: true } }] }) },
+    webhookEndpoints: { list: async () => ({ data: [] }) },
+    paymentLinks: { list: async () => ({ data: targets.map((t, i) => ({ id: `plink_${i}`, url: t.url, payment_method_types: ['us_bank_account'] })), has_more: false }), update: async (id, p) => updates.push([id, p]) },
+  };
+  const r = await run(stripe);
+  assert.equal(updates.length, targets.length);
+  assert.ok(r.links.every((x) => x.status === 'updated'));
+});
