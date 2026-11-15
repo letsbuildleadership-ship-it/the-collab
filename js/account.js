@@ -1076,6 +1076,15 @@
       // doesn't re-run checkout verification.
       history.replaceState({}, '', location.pathname);
 
+      const bankPending = !result.ok && result.status === 202;
+      if (bankPending) {
+        const note = document.createElement('p');
+        note.className = 'subhead';
+        note.setAttribute('role', 'status');
+        note.style.cssText = 'margin:1rem auto;max-width:62ch;padding:0 1rem;';
+        note.textContent = 'Your bank payment (ACH) is processing. Stripe confirms it when the transfer clears, usually within 4 business days, and your access and receipt arrive then.';
+        (document.querySelector('main') || document.body).prepend(note);
+      }
       if (!result.ok && result.status !== 202) {
         $('account-error-message').textContent = 'We could not confirm your purchase yet. If you were just charged, refresh this page in a minute — it usually resolves on its own.';
         show('account-error');

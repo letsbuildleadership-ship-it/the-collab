@@ -1,5 +1,6 @@
 // Stripe webhook: the source of truth for fulfillment. Configured in the
 // live Stripe account to receive checkout.session.completed,
+// checkout.session.async_payment_succeeded/failed (ACH Founders payments),
 // customer.subscription.updated/deleted, and invoice.payment_failed for
 // every .LLab product, Membership, Library Card, Journal, and Founders
 // tier. Runs independently of the pre-existing Blueprint (Google Apps
@@ -39,7 +40,14 @@ exports.handler = async (event) => {
 
   try {
     switch (stripeEvent.type) {
-      case 'checkout.session.completed': {
+      // ACH (bank) payments complete as 'unpaid' and are fulfilled when the
+      // money clears: checkout.session.async_payment_succeeded.
+      case 'checkout.session.async_payment_failed':
+        console.warn('Bank payment failed for checkout session', stripeEvent.data.object.id);
+        break;
+
+      case 'checkout.session.completed':
+      case 'checkout.session.async_payment_succeeded': {
         const session = stripeEvent.data.object;
         if (!COMPLETED.has(session.payment_status) && session.mode !== 'subscription') break;
         const stripe = getStripe();

@@ -48,6 +48,7 @@ exports.handler = async (event) => {
   try {
     const sessionParams = {
       mode: 'payment',
+      payment_method_types: pricing.FOUNDERS_PAYMENT_METHODS,
       line_items: [{
         quantity: 1,
         price_data: {

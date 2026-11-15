@@ -80,6 +80,14 @@ function entryForKey(key) {
   return index().byKey.get(key) || null;
 }
 
+/** Founders Organization payments are ACH (US bank account) only. */
+const FOUNDERS_PAYMENT_METHODS = ['us_bank_account'];
+function isFoundersKey(key) {
+  if (key === 'founder-give') return true;
+  const entry = entryForKey(key);
+  return Boolean(entry && entry.phase_key === 'founders');
+}
+
 /** Bonus product keys automatically granted alongside a membership purchase. */
 function grantsForKey(key) {
   const entry = entryForKey(key);
@@ -403,6 +411,8 @@ module.exports = {
   givingLevelByKey,
   recognitionLevels,
   designationNodes,
+  isFoundersKey,
+  FOUNDERS_PAYMENT_METHODS,
   partnershipKeys,
   partnershipGrantKeys,
   partnershipGrantKeysFor,
