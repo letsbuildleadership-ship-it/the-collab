@@ -113,6 +113,25 @@ ${P.tiers.map((t) => tier(t.label, t.price, `${t.verb}.`, t.term, t.econ ? `${t.
 const fl = (l) => `<div class="fl"><small>${l.price}</small><b>${l.label}</b></div>`;
 const sF = () => slide(`<p class="k">The Co.LLab Founders Organization™</p><h2 style="font-size:50px">Give at any level. <b>Every giver is a Founder.</b></h2><div class="flv grow">${P.founders.map(fl).join('')}</div>
 <p class="legal">Every level includes free .LLab™ products from its phase, supports a charity partner and is credited in full toward a Partnership™. Card or ACH. No ownership stake or financial return.</p>`);
+const fig = (n) => `data:image/jpeg;base64,${fs.readFileSync(`${assets}/oe-figure-${n}.jpg`).toString('base64')}`;
+const figSlide = (k, h, img, side) => slide(`<p class="k">${k}</p><div style="display:grid;grid-template-columns:520px 1fr;gap:40px;align-items:center;flex:1;min-height:0"><img src="${img}" alt="" style="width:520px;max-height:540px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,96,46,.42)"><div>${h}${side}</div></div>`);
+const li = (b, t) => `<div style="padding:9px 0;border-top:1px solid rgba(255,96,46,.35);font-size:19px;line-height:1.32;color:#ecdcc8"><b style="display:block;font-size:21px;color:#fff;margin-bottom:2px">${b}</b>${t}</div>`;
+const sModel = () => figSlide('The Omnidirectional Enterprise Model™', '<h2 style="font-size:42px;margin-bottom:14px">One Source. <b>Nine branches.</b></h2>', fig(2),
+  li('The Co.LLab™ runs the model itself', 'The same nine branches, each run by a part of The Co.LLab™: Partnership™, The .LLab™ products, the Founders Organization, R.A.T., Creators, Impact, Legacy Ventures.')
+  + li('Seven Currents move the value', 'Investment, Licensing, Living IP, Infrastructure, Creative, Sponsorship and Impact.')
+  + li('Built on ethics', 'How we treat people is part of the infrastructure.'));
+const sScale = () => figSlide('Scalability', '<h2 style="font-size:42px;margin-bottom:14px">Built to <b>branch.</b></h2>', fig(3),
+  li('Licensed IP, self-serve', 'Licensed tools people buy, keep and use themselves. No hands-on programs to staff.')
+  + li('One method, every branch', 'Each Conductor runs the same model and branches again.')
+  + li('Revenue at every entry point', `Library Card ${P.libMo} · Journal ${P.journalYr} · Membership ${P.memMo} · IV Phases™ IP ${P.range} · Founders from $50 · Partnerships ${P.tiers[0].price}–${P.tiers[P.tiers.length - 1].price}`)
+  + li('New ventures on the same foundation', 'Every .LLab™ page is a future company, built on The IV Phases™.'));
+const pil = (n, h, t) => `<div class="panel" style="padding:24px 26px"><p style="font-size:18px;font-weight:800;letter-spacing:.18em;color:#ff9a6e;margin:0">${n}</p><b style="display:block;font-size:30px;color:#fff;margin:6px 0 8px">${h}</b><span style="font-size:21px;line-height:1.4;color:#ecdcc8">${t}</span></div>`;
+const sImpact = () => slide(`<p class="k">Future economic impact</p><h2 style="font-size:52px">Revenue that <b>moves back out.</b></h2><div class="grow" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-content:center">
+${pil('01 · People', 'Scholarships', 'Open The IV Phases™ to people who could not otherwise pay, building the next founders, operators and board members.')}
+${pil('02 · Enterprises', 'Angel investment', 'Early, mission-aligned capital for community-based companies building with Leadership Infrastructure™.')}
+${pil('03 · Nonprofits', 'Charitable donations', 'Backing nonprofits that serve communities, as Founders already do today through Blazing Smiles and Wavecraft Oceans Project.')}
+</div><p style="font-size:24px;color:#fff;font-weight:700;margin:14px 0 0">Partner revenue funds new Co.LLab IP™, creator work and community programs. Returns are reinvested across the portfolio, renewing the funds for the next round.</p>
+<p class="legal">The investment strategy describes intentions, not commitments. Nothing here is an offer of securities. Founders take no ownership stake or financial return.</p>`);
 const s10 = () => slide(`<p class="k">The .LLab Collaborating Companies</p><h2 style="font-size:64px">Companies that <b>collaborate with us.</b></h2><div class="pts grow" style="align-content:center">
 <div class="pt panel"><b>Who collaborates</b>Companies that license any .LLab™ product or hold a Membership.</div><div class="pt panel"><b>What is shown</b>Only what each company writes, so companies work with each other directly.</div><div class="pt panel"><b>How it stays true</b>The Co.LLab™ reads each page, and each change to it, before it appears.</div></div>`);
 const opt = (i, h, p, q, u) => `<div class="opt panel"><small>${i}</small><h3>${h}</h3><p>${p}</p><img src="${q}"/></div>`;
@@ -128,7 +147,7 @@ const decodeT = (t) => t.replace(/&amp;/g, '&');
 const SITE_ORDER = ['partnership', 'products', 'all-products', 'creator', 'library', 'legacy-library', 'journal', 'think', 'impact', 'technology', 'atelier', 'efficiency-architecture', 'agriculture', 'commercial-transport', 'community', 'collaborating-companies', 'founders', 'founders-purpose', 'founders-strategy', 'about', 'contact'];
 const siteTiles = SITE_ORDER.map((f) => { const h = fs.readFileSync(`${repo}/pages/${f}.html`, 'utf8'); const title = decodeT(/<title>([^<]*)<\/title>/.exec(h)[1]); return { name: title.split(/ [—|] /)[0].trim(), dev: /In Development/.test(title), href: `${SITE}/pages/${f}.html` }; });
 const sPages = () => slide(`<p class="k">Every page</p><h2 style="font-size:56px;margin-bottom:10px">Every page, <b>in order.</b></h2><p class="vfine" style="margin:0 0 12px">The revenue flows down this list: Partnership first, then the .LLab products, then everything that grows from them. Tap a name to open it.</p><div class="pgrid grow">${siteTiles.map((t, i) => `<a class="ptile panel" href="${t.href}"><b>${String(i + 1).padStart(2, '0')}</b><span>${t.name}</span>${t.dev ? '<i>In development</i>' : ''}</a>`).join('')}</div>`);
-const html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}</style></head><body>${s1}${s2()}${s4()}${s5()}${s6()}${s9()}${sF()}${s7()}${s8()}${sPages()}${s10()}${s10a()}${s11()}${s12()}</body></html>`;
+const html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}</style></head><body>${s1}${s2()}${s5()}${sModel()}${s9()}${sF()}${s7()}${sScale()}${sImpact()}${s10a()}${s11()}${s12()}</body></html>`;
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const page = await browser.newPage();
 await page.setContent(html, { waitUntil: 'load' });
