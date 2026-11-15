@@ -33,5 +33,13 @@ export const P = {
     term: `${years(t.term_months)} · ${t.seats} seat${t.seats === 1 ? '' : 's'}`,
     termShort: years(t.term_months).toLowerCase(), partnerIp: partnerIp[i],
   })),
+  founders: (() => {
+    const lv = pricing.givingLevels();
+    return lv.map((l, i) => {
+      const next = lv[i + 1];
+      const price = i === lv.length - 1 ? `${fmt(l.min)}+` : (reg.giving_levels.find((g) => g.key === l.key) || {}).range ? `${fmt(l.min)}–${fmt(next.min - 1)}` : fmt(l.min);
+      return { label: l.label, price };
+    });
+  })(),
   phaseLines: reg.partnerships.map((t) => t.legacy_line.replace(/'/g, '\u2019')),
 };
