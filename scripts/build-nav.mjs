@@ -41,7 +41,10 @@ export const MENU = [
     ['omnidirectional-enterprise', 'Omnidirectional Enterprise™'],
     ['glossary', 'Glossary'],
   ] },
-  { label: 'Contact Us', page: 'contact' },
+  { label: 'Contact Us', id: 'nav-menu-contact', cls: 'nav-more nav-group', items: [
+    ['contact', 'Contact Us'],
+    ['contact#founder', 'Meet the Founder'],
+  ] },
 ];
 
 // Extra footer-only links under the Contact Us column.
@@ -54,6 +57,7 @@ function hrefFor(page, isRoot) {
 }
 
 function link(page, label, here, isRoot, hash = '') {
+  if (page.includes('#')) { [page, hash] = [page.split('#')[0], '#' + page.split('#')[1]]; }
   const cur = page === here && !hash ? ' aria-current="page"' : '';
   return `<a href="${hrefFor(page, isRoot)}${hash}"${cur}>${esc(label)}</a>`;
 }
@@ -86,13 +90,12 @@ export function footerHtml(here, isRoot, brandCol) {
   const col = (h, lis) => `      <div class="footer-col">\n        <h4>${esc(h)}</h4>\n        <ul>\n${lis.map((l) => `          <li>${l}</li>`).join('\n')}\n        </ul>\n      </div>`;
   for (const m of MENU) {
     if (m.href === '/') continue;
-    if (m.page === 'contact') {
-      cols.push(col(m.label, [link('contact', 'Contact Us', here, isRoot), ...CONTACT_EXTRA.map(([p, l, h]) => link(p, l, here, isRoot, h || ''))]));
-    } else if (m.page) {
+    if (m.page) {
       cols.push(col(m.label, [link(m.page, m.label, here, isRoot)]));
     } else {
       const lis = m.items.map(([p, l]) => link(p, l, here, isRoot));
       if (m.label === 'About Us') lis.unshift(homeLink(here));
+      if (m.label === 'Contact Us') lis.push(...CONTACT_EXTRA.map(([p, l, h]) => link(p, l, here, isRoot, h || '')));
       cols.push(col(m.label, lis));
     }
   }
