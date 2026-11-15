@@ -23,7 +23,7 @@ export const contentHtml = `
     <p>The complete .LLab™ product catalog across all of The IV Phases™ — Strength Map, Alignment Map, Build Plan, Legacy Profile, Operating System, Legacy Infrastructure Map, Diagnostic, Blueprint, and Legacy Infrastructure Architecture — plus this Infrastructure Roadmap, unlocked automatically in your account.</p>
   </div>
 
-  <div class="quote">"The Co.LLab: Building Leadership Infrastructure™ empowers organizations to transform potential into performance by building leadership infrastructure that drives results, culture, and sustainable growth."</div>
+  <div class="quote">"The Co.LLab™: Building Leadership Infrastructure empowers organizations to transform potential into performance by building leadership infrastructure that drives results, culture, and sustainable growth."</div>
   <p style="font-size:10.5px; color:var(--ink-dim);">— Our mission, and the standard everything in your membership is built to.</p>
 
   <h2 class="doc-h2">How to access everything</h2>

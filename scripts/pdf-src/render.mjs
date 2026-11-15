@@ -13,7 +13,7 @@ export function renderCover({ eyebrow, title, subtitle, phase, price, footerRigh
   return `
   <section class="cover">
     <div class="cover-inner">
-      <div class="cover-brand"><img src="${logoSrc}" alt="The Co.LLab™" class="cover-logo" /><span class="cover-brand-text"><span class="cover-brand-name">The Co<span class="dot">.</span>LLab™</span><span class="cover-brand-tagline">Building Leadership Infrastructure™</span></span></div>
+      <div class="cover-brand"><img src="${logoSrc}" alt="The Co.LLab™" class="cover-logo" /><span class="cover-brand-text"><span class="cover-brand-name">The Co<span class="dot">.</span>LLab™</span><span class="cover-brand-tagline">Building Leadership Infrastructure</span></span></div>
       <p class="cover-eyebrow">${eyebrow}</p>
       <h1 class="cover-title">${title}</h1>
       <p class="cover-subtitle">${subtitle}</p>
@@ -22,7 +22,7 @@ export function renderCover({ eyebrow, title, subtitle, phase, price, footerRigh
         ${price ? `<div>List Price<strong>${/^\$/.test(price) ? `${price} USD` : price}</strong></div>` : ''}
       </div>
       <div class="cover-footer">
-        <span>The Co.LLab: Building Leadership Infrastructure™<br/>Let’s Build Your Legacy Through Omnidirectional Enterprise™</span>
+        <span>The Co.LLab™: Building Leadership Infrastructure<br/>Let’s Build Your Legacy Through Omnidirectional Enterprise™</span>
         <span>${footerRight || ''}</span>
       </div>
     </div>

@@ -7,7 +7,7 @@
 // files in this folder just supply their own text into these functions.
 import { licensePageHtml } from './_license.mjs';
 
-const brandFooter = `<p style="margin-top:22px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/products.html">Explore The .LLab™ IV Phases Product Infrastructure</a></p>`;
+const brandFooter = `<p style="margin-top:22px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/products.html">Explore The .LLab™ IV Phases Product Infrastructure</a></p>`;
 
 // Records each doc's source data so scripts/build-quests.mjs can turn the same
 // content into an interactive quest (no second copy of the text to keep in sync).

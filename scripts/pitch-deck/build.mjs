@@ -114,7 +114,7 @@ const bgLayer = ({ photo, pos = 'center', area = 'full', w = 6, scrim = 'L', fad
   const edge = area === 'right' ? `<div class="fade" style="background:linear-gradient(90deg,#0f1d13 0%,rgba(15,29,19,.75) calc(100% - ${w}in + .1in),rgba(15,29,19,0) calc(100% - ${w}in + 2.4in))"></div>` : area === 'left' ? `<div class="fade" style="background:linear-gradient(270deg,#0f1d13 0%,rgba(15,29,19,.8) calc(100% - ${w}in + .1in),rgba(15,29,19,0) calc(100% - ${w}in + 2.2in))"></div>` : '';
   return `<div class="bg"><div class="grid"></div><div class="ph" style="${box};background-image:url(${ph(photo)});background-position:${pos}"></div>${area === 'full' && scrim === 'L' ? '<div class="scrimL"></div>' : ''}${scrim === 'H' ? '<div class="scrimH"></div>' : ''}${edge}${fade ? `<div class="fade" style="background:${fade}"></div>` : ''}</div>`;
 };
-const slide = (inner, bg = {}) => { n += 1; return `<section class="s">${bgLayer(bg)}<div class="hd"><div class="lock"><img src="${logo}"/><div><b>${T}</b><span>Building Leadership<br/>Infrastructure™</span></div></div>${n > 1 ? `<div class="pg">${String(n - 1).padStart(2, '0')}</div>` : ''}</div>${inner}</section>`; };
+const slide = (inner, bg = {}) => { n += 1; return `<section class="s">${bgLayer(bg)}<div class="hd"><div class="lock"><img src="${logo}"/><div><b>${T}</b><span>Building Leadership<br/>Infrastructure</span></div></div>${n > 1 ? `<div class="pg">${String(n - 1).padStart(2, '0')}</div>` : ''}</div>${inner}</section>`; };
 
 const QR = require('qrcode');
 const SITE = 'https://wearethellab.com';

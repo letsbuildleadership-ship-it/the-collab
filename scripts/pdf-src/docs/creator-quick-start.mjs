@@ -103,6 +103,6 @@ ${licensePageHtml}
     <p>Take the free <strong>The .LLab Creators Diagnostic™</strong> for a fuller picture across all of The IV Phases™, or go straight to the product that matches your thinnest phase in the .LLab Creators™ product ladder.</p>
   </div>
 
-  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
+  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

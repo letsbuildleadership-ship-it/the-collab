@@ -74,8 +74,8 @@ function workbookLines(key) {
   const lines = txt.split('\n')
     .map((l) => l.replace(/\s+/g, ' ').replace(/ The Co\.LLab™$/, '').replace(/(PAGE\s*)?\d+ OF \d+/g, '').trim())
     .filter((l) => l && l !== 'The Co.LLab™' && l !== 'PAGE');
-  // The workbook starts at the first "The Co.LLab: Building Leadership Infrastructure™" line after the license page.
-  const start = lines.findIndex((l) => l === 'The Co.LLab: Building Leadership Infrastructure™');
+  // The workbook starts at the first "The Co.LLab™: Building Leadership Infrastructure" line after the license page.
+  const start = lines.findIndex((l) => l === 'The Co.LLab™: Building Leadership Infrastructure');
   const out = [];
   for (const l of lines.slice(start + 1)) {
     if (/^(Explore The Co\.LLab|G L O SS A RY|Glossary Of Terms|APPENDIX A)/.test(l)) break;

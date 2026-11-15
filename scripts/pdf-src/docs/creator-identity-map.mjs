@@ -18,7 +18,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>CREATOR IDENTITY MAP™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><strong>Infrastructure has to be built around something specific. This IP makes that something specific.</strong></p>
 <p>The .LLab Creator Identity Map™ helps you name the thread that connects your work — the IDEA → IDENTITY move that everything else in The .LLab Creators™ builds on.</p>
 
@@ -55,7 +55,7 @@ ${licenseHtml}
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>With a clear identity in hand, the next infrastructure question is how it connects to an actual venture — audience, offer, and reach. That's the <strong>The .LLab Creator Alignment Map™</strong> ($50).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

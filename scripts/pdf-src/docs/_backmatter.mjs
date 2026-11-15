@@ -52,8 +52,8 @@ export function backmatterHtml(docTitle) {
     <span class="page-index">Appendix B</span>
     <h2 class="section-title">Citation <strong>&amp; Edition.</strong></h2>
   </div>
-  <p style="font-size:10px; line-height:1.55;"><strong>Suggested citation:</strong> Clasby, A. E. (2026). <em>${title}</em>. The Co.LLab: Building Leadership Infrastructure™.</p>
-  <p style="font-size:10px; line-height:1.55;"><strong>Edition:</strong> First edition, 2026. © 2026 The Co.LLab™ Building Leadership Infrastructure™. All rights reserved. Licensed for internal use under The Co.LLab IP™ License &amp; Terms of Use.</p>
+  <p style="font-size:10px; line-height:1.55;"><strong>Suggested citation:</strong> Clasby, A. E. (2026). <em>${title}</em>. The Co.LLab™: Building Leadership Infrastructure.</p>
+  <p style="font-size:10px; line-height:1.55;"><strong>Edition:</strong> First edition, 2026. © 2026 The Co.LLab™: Building Leadership Infrastructure. All rights reserved. Licensed for internal use under The Co.LLab IP™ License &amp; Terms of Use.</p>
 
   <div class="content-header" style="margin-top:26px;">
     <span class="page-index">Appendix C</span>
