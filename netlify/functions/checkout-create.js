@@ -129,6 +129,9 @@ exports.handler = async (event) => {
       },
     };
 
+    // Founders Organization payments: card or ACH, same as Partnerships.
+    if (pricing.isFoundersKey(key)) sessionParams.payment_method_types = pricing.FOUNDERS_PAYMENT_METHODS;
+
     if (record && record.stripeCustomerId) {
       sessionParams.customer = record.stripeCustomerId;
     } else if (record) {

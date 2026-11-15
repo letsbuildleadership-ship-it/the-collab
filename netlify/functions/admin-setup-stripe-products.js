@@ -72,6 +72,7 @@ async function createLinks(stripe, items, { origin, dry = false } = {}) {
               }],
             }
           : {}),
+        ...(pricing.isFoundersKey(it.key) ? { payment_method_types: pricing.FOUNDERS_PAYMENT_METHODS } : {}),
         customer_creation: 'always',
         after_completion: { type: 'redirect', redirect: { url: `${origin}/pages/account.html` } },
         metadata: { [KEY_META]: it.key },

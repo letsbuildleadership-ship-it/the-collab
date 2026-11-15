@@ -4,7 +4,7 @@ const pricing = require('../netlify/functions/lib/pricing');
 const { foundersLinks, applyAch, enableAch, addWebhookEvents } = require('../netlify/functions/admin-founders-ach');
 
 test('Founders keys are recognized and pay like Partnerships (no payment method override)', () => {
-  assert.equal(pricing.FOUNDERS_PAYMENT_METHODS, undefined);
+  assert.deepEqual(pricing.FOUNDERS_PAYMENT_METHODS, ['card', 'us_bank_account']);
   for (const k of ['founder-give', 'founder', 'legacy-founder', 'friends-family', 'premium-friends-family']) assert.ok(pricing.isFoundersKey(k), k);
   assert.ok(!pricing.isFoundersKey('strength-map'));
 });
@@ -20,7 +20,7 @@ test('admin-founders-ach updates only Founders Payment Links, and dry runs chang
   assert.ok(dry.every((r) => r.status === 'would_update'));
   await applyAch(stripe, targets);
   assert.equal(updates.length, targets.length);
-  assert.ok(updates.every(([id, p]) => id !== 'plink_other' && p.payment_method_types === ''));
+  assert.ok(updates.every(([id, p]) => id !== 'plink_other' && p.payment_method_types.join() === 'card,us_bank_account'));
 });
 
 test('admin-founders-ach turns on ACH and adds the async webhook events once', async () => {
