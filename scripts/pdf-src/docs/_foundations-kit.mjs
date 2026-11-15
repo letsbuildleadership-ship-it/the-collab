@@ -31,7 +31,7 @@ export function foundationsDoc({ title, tagline, intro, steps, principle, closin
 <section class="page">
 ${licenseHtml}
 <p><strong>${title.toUpperCase()}</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><strong>${tagline}</strong></p>
 <p>${intro}</p>
 ${respond}
@@ -40,7 +40,7 @@ ${body}
 <p><strong>${principle}</strong></p>
 <p>${closing}</p>
 <p><strong>Build the infrastructure. Strengthen the organization. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app">Explore The Co.LLab</a></p>
 </section>
 `;

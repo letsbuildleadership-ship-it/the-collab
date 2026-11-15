@@ -80,6 +80,6 @@ ${licensePageHtml}
     <p>The complete Creator Operating System™ takes this same treatment through five more systems — pricing and packaging offers, building a repeatable path from stranger to buyer, delivering work without last-minute scrambling, deciding under uncertainty, and a simple monthly review that keeps all of it honest.</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Get the full Creator Operating System™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Get the full Creator Operating System™</a></p>
 </section>
 `;

@@ -20,7 +20,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>THE CREATOR OPERATING SYSTEM™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p>Six systems that let a creative venture run on infrastructure instead of adrenaline. Work through each module in order, or jump to the one that matches your thinnest area from the .LLab Creators Diagnostic™.</p>
 
 ${module_(1, 'The Weekly Operating Rhythm', `
@@ -70,7 +70,7 @@ ${module_(6, 'The Review System', `
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>With operating systems in place, the venture is ready for Preservation-phase infrastructure: <strong>The .LLab Creative Estate Mapping™</strong> ($200), building toward the full <strong>The .LLab Creator Legacy Infrastructure Architecture™</strong> ($750).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

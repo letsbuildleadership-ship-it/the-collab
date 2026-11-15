@@ -21,7 +21,7 @@ async function buildQuestPdf({ quest, record, result }) {
   const newPage = () => {
     page = pdf.addPage([W, H]);
     page.drawRectangle({ x: 0, y: H - 46, width: W, height: 46, color: INK });
-    page.drawText(safe('The Co.LLab™  ·  Building Leadership Infrastructure™'), { x: M, y: H - 29, size: 9.5, font: bold, color: rgb(1, 1, 1) });
+    page.drawText(safe('The Co.LLab™: Building Leadership Infrastructure'), { x: M, y: H - 29, size: 9.5, font: bold, color: rgb(1, 1, 1) });
     y = H - 46 - 34;
   };
   newPage();

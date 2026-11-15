@@ -18,7 +18,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>CREATOR LEGACY INFRASTRUCTURE ARCHITECTURE™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p>This is the top of the .LLab Creators™ ladder — the comprehensive architecture that takes everything built across Foundations, Infrastructure Planning, and Internal Operating Systems, and designs it to last beyond any single project, platform, or the creator themselves.</p>
 <p>It assumes you've done (or will reference) a .LLab Creator Identity Map™, a .LLab Creator Alignment Map™, The .LLab Creator Operating System™, and The .LLab Creative Estate Mapping™. This document is where those pieces become one architecture.</p>
 
@@ -60,7 +60,7 @@ ${licenseHtml}
 
 <p>Building, transferring, or organizational-legacy work isn't confined to leadership infrastructure — <strong>The .LLab Membership™</strong> connects this architecture to the same TRIARCH™ system, The .LLab Library™, and community that support the full Co.LLab™ ecosystem.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

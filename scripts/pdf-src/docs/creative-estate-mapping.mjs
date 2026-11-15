@@ -18,7 +18,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>CREATIVE ESTATE MAPPING™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p>Your creative estate is everything of value your practice has produced or accumulated — the work itself, the rights to it, the relationships around it, and the systems that keep it running. This IP maps all four so nothing depends on memory alone.</p>
 
 <p><strong>PART 1 — THE WORK</strong></p>
@@ -52,7 +52,7 @@ ${licenseHtml}
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>This map is the foundation for the full <strong>The .LLab Creator Legacy Infrastructure Architecture™</strong> ($750) — the comprehensive framework for designing infrastructure that preserves the whole body of work, its ownership, and its legacy.</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

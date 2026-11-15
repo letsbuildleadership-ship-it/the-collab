@@ -106,7 +106,7 @@ const pages = [];
 /* How to use this manual */
 pages.push(sec('START HERE', 'How to use <strong>this manual</strong>', `
 <p><strong>CREATOR WEBSITE BLUEPRINT™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p class="lead">This manual shows you how to build a luxury-style, ad-style website and keep it running with five tools: ChatGPT, Claude, GitHub, Netlify and Composio. You do not need to write code. You need to give clear instructions, check the result, and approve it.</p>
 ${call('The Streamlined Loop™', 'One short loop, repeated for every change. <strong>Brief</strong> it (ChatGPT) → <strong>Build</strong> it (Claude) → <strong>Hold</strong> it (GitHub) → <strong>Publish</strong> it (Netlify) → <strong>Connect</strong> it (Composio) → <strong>Check</strong> the live page. Then start the next change.')}
 ${h3('Two editions, five levels')}
@@ -531,7 +531,7 @@ pages.push(`<section class="page">
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>Once your site is live and you are updating it with the loop, the next infrastructure question is how to run the whole creative venture without every decision depending on you. That is <strong>The .LLab Creator Operating System™</strong> ($300).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>`);
 

@@ -77,7 +77,7 @@ ${licensePageHtml}
     <p>If you find yourself wanting more than one product on this ladder, <strong>The .LLab Membership™</strong> unlocks the entire .LLab Creators™ catalog — plus the full Leadership Infrastructure™ catalog, the .LLab Library™, and the community — for one ongoing price.</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
   <div class="activity-box">
     <span class="activity-kicker">Your Next Step</span>
     <p class="activity-prompt">Which phase are you in right now, and what is the one next step you will take?</p>

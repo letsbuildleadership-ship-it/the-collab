@@ -18,7 +18,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>CREATOR ALIGNMENT MAP™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p>A creative practice becomes a venture when three things line up: what you make, who it's for, and what they can actually buy or support. This IP maps the gaps between the three.</p>
 
 <p><strong>STEP 1 — YOUR THREE POINTS</strong></p>
@@ -53,7 +53,7 @@ ${licenseHtml}
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>Once practice, audience, and offer are aligned, turn the gap you identified into a 30-day plan with the <strong>The .LLab Creator Venture Build Plan™</strong> ($100).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

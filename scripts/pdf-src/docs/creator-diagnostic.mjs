@@ -89,6 +89,6 @@ ${licensePageHtml}
     <p>If you want it all unlocked at once, <strong>The .LLab Membership™</strong> includes the full .LLab Creators™ ladder — plus everything else in The .LLab™ ecosystem.</p>
   </div>
 
-  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
+  <p style="margin-top:18px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;

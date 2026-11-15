@@ -52,5 +52,5 @@ ${pageOf('03 · The Words, Continued', 'Name every piece<br/><strong>correctly.<
     <p class="callout-label">What's Next</p>
     <p>These words are the vocabulary. <strong>The .LLab Creator Website Blueprint™</strong> ($100) puts them to work: a page pattern, a starter site you can put online, and a manual for building with Composio, GitHub, Netlify, Claude and ChatGPT, with an iPhone edition and a computer edition.</p>
   </div>
-  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab: Building Leadership Infrastructure™<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>`)}
+  <p style="margin-top:24px;"><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong><br/>The Co.LLab™: Building Leadership Infrastructure<br/><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>`)}
 `;

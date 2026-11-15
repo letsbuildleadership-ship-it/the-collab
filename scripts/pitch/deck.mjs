@@ -19,7 +19,7 @@ const qr = async (url) => QR.toDataURL(url, { margin: 1, width: 360, color: { da
 const qJoin = await qr(`${SITE}/pages/login.html`); const qProducts = await qr(`${SITE}/pages/products.html`); const qPartner = await qr(`${SITE}/pages/partnership.html`); const qFounders = await qr(`${SITE}/pages/founders.html`); const qCollab = await qr(`${SITE}/pages/collaborating-companies.html`); const qCard = await qr(`${SITE}/card/`);
 const back = `data:image/png;base64,${fs.readFileSync(`${assets}/card-back.png`).toString('base64')}`;
 import { bakeGlow } from './glow.mjs';
-const EVENT = 'Building Leadership Infrastructure™';
+const EVENT = 'Building Leadership Infrastructure';
 const css = `
 @page { size: 13.3333in 7.5in; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,7 +78,7 @@ h2 { font-size: 56px; }
 .azgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; } .azcol { display: grid; gap: 9px; } .azc { padding: 8px 18px; } .azc .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; } .azc h3 { font-size: 21px; font-weight: 400; color: #ff602e; line-height: 1.1; } .azc .chip { font-size: 11px; padding: 3px 10px; white-space: nowrap; letter-spacing: .1em; } .azc p { font-size: 15.5px; line-height: 1.25; color: #f6ead9; margin-top: 3px; }
 `;
 let n = 0;
-const ft = () => { n += 1; return `<div class="ft"><span><b>The Co.LLab™</b> · ${EVENT}</span><span>${String(n).padStart(2, '0')}</span></div>`; };
+const ft = () => { n += 1; return `<div class="ft"><span><b>The Co.LLab™:</b> ${EVENT}</span><span>${String(n).padStart(2, '0')}</span></div>`; };
 const slide = (inner, cls = '', photo = '') => `<section class="s ${cls}${photo ? ' has-ph' : ''}">${photo ? `<div class="bgph" style="background-image:url(${ph(photo)})"></div>` : ''}<div class="brand"><img src="${logo}"/><span>The Co.LLab™</span></div>${inner}${ft()}</section>`;
 
 const s1 = `<section class="s cover"><div class="cover-photo" style="background-image:url(${ph('scaffolding')})"></div><div class="brand"><img src="${logo}"/><span>The Co.LLab™</span></div>

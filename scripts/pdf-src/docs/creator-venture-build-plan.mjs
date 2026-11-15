@@ -23,7 +23,7 @@ export const contentHtml = `
 <section class="page">
 ${licenseHtml}
 <p><strong>CREATOR VENTURE BUILD PLAN™</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p>Turning a creative practice into a venture doesn't require a big leap — it requires four focused weeks. This plan assumes you already have a .LLab Creator Identity Map™ and, ideally, a .LLab Creator Alignment Map™ in hand.</p>
 
 ${week(1, 'Define the offer', [
@@ -58,7 +58,7 @@ ${week(4, 'Run it and record what happened', [
 <p><strong>YOUR NEXT MOVE</strong></p>
 <p>Once your venture has run at least once, the next infrastructure question is how to make it repeatable without reinventing it every time — that's <strong>The .LLab Creator Operating System™</strong> ($300).</p>
 <p><strong>Build the infrastructure. Strengthen the practice. Create the legacy.</strong></p>
-<p><strong>The Co.LLab: Building Leadership Infrastructure™</strong></p>
+<p><strong>The Co.LLab™: Building Leadership Infrastructure</strong></p>
 <p><a href="https://wearethellab.netlify.app/pages/creator.html">Explore The .LLab Creators™</a></p>
 </section>
 `;
