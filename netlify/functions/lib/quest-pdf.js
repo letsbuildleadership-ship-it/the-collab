@@ -122,7 +122,7 @@ async function buildQuestPdf({ quest, record, result }) {
   need(40);
   y -= 6;
   para('Build the infrastructure. Strengthen the practice. Create the legacy.', { f: bold, size: 9.5, color: MUTED, gap: 2 });
-  para('© The Co.LLab™ Building Leadership Infrastructure™. For your personal or organizational use under The Co.LLab IP™ License.', { size: 8.5, color: MUTED });
+  para('© The Co.LLab™: Building Leadership Infrastructure. For your personal or organizational use under The Co.LLab IP™ License.', { size: 8.5, color: MUTED });
 
   return Buffer.from(await pdf.save());
 }
