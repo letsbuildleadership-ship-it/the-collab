@@ -10,6 +10,10 @@
 [functions."ip-digest"]
   schedule = "0 14 * * 1"
 
+# Commitment check-ins 30, 90 and 365 days after a quest is finished (daily, 15:00 UTC).
+[functions."quest-checkins"]
+  schedule = "0 15 * * *"
+
 # Required environment variables (set in Netlify: Site configuration ->
 # Environment variables — never commit real values):
 #   STRIPE_SECRET_KEY     live secret key for the Co.LLab™ Stripe account

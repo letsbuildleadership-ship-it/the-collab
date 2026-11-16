@@ -71,6 +71,19 @@ const revFile = dir ? path.join(dir, '_revisions.json') : null;
 const revisions = revFile && fs.existsSync(revFile) ? JSON.parse(fs.readFileSync(revFile, 'utf8')).quests || {} : {};
 Object.entries(revisions).forEach(([key, rev]) => { if (quests.has(key)) quests.set(key, applyRevisions(quests.get(key), rev)); });
 
+// Industry editions (content/quests/_editions.json): the same quest and steps, in an audience's language.
+const edFile = dir ? path.join(dir, '_editions.json') : null;
+const editions = edFile && fs.existsSync(edFile) ? JSON.parse(fs.readFileSync(edFile, 'utf8')) : {};
+function editionsFor(key) {
+  const e = editions[key];
+  return e ? Object.entries(e).map(([id, v]) => ({ id, name: v.name, serves: v.serves })) : [];
+}
+function withEdition(q, edition) {
+  const e = editions[q.key] && editions[q.key][edition];
+  if (!e) return q;
+  return { ...q, edition, editionName: e.name, intro: e.intro || q.intro, nodes: q.nodes.map((n) => (e.prompts[n.id] ? { ...n, prompt: e.prompts[n.id] } : n)) };
+}
+
 const MAX_TEXT = 1000;
 
 // Every quest ends by looking outward: an Omnidirectional Enterprise™ moves value in every direction.
@@ -85,9 +98,10 @@ const OMNI = {
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 const lowerFirst = (s) => (s ? s[0].toLowerCase() + s.slice(1) : s);
 
-function publicQuest(q) {
+function publicQuest(base, edition) {
+  const q = withEdition(base, edition);
   const { key, title, phase, archetype, intro, nodes, closing, upsell, minAnswered, scaleHint, shortPath } = q;
-  return { key, title, phase, archetype, intro, nodes, closing, omni: OMNI, upsell, minAnswered, scaleHint, shortPath };
+  return { key, title, phase, archetype, intro, nodes, closing, omni: OMNI, upsell, minAnswered, scaleHint, shortPath, editions: editionsFor(key), edition: q.edition || null };
 }
 
 /** @returns {{ ok: true, answers: object } | { ok: false, error: string }} */
@@ -181,4 +195,4 @@ function previewFor(o) {
   };
 }
 
-module.exports = { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor };
+module.exports = { quests, publicQuest, withEdition, editionsFor, validateAnswers, cleanNotes, outcomeFor, previewFor };

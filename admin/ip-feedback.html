@@ -77,15 +77,19 @@
     const note = el('textarea'); note.placeholder = 'Note (required if declined)'; note.value = item.note || '';
     const save = el('button', 'pill mini', 'Save decision'); save.type = 'button';
     const msg = el('span', 'meta');
+    let pub = null;
+    if (kind === 'feedback') { pub = el('textarea'); pub.placeholder = 'Public changelog line, when done (optional): what changed, in a sentence. No member names.'; pub.value = item.publicNote || ''; }
     save.addEventListener('click', async () => {
       msg.textContent = 'Saving…';
       try {
-        const r = await api('POST', { kind, id: item.id, status: sel.value, note: note.value });
+        const r = await api('POST', { kind, id: item.id, status: sel.value, note: note.value, publicNote: pub ? pub.value : undefined });
         msg.textContent = r.error ? r.error : 'Saved';
         if (!r.error) load();
       } catch (e) { msg.textContent = 'Failed'; }
     });
-    box.append(sel, note, save, msg);
+    box.append(sel, note);
+    if (pub) box.append(pub);
+    box.append(save, msg);
     return box;
   }
 

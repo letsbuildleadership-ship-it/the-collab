@@ -1,0 +1,102 @@
+{
+  "key": "succession",
+  "open": true,
+  "title": "Succession Infrastructure Plan™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "Make sure what you built can continue without you, through The IV Phases™: what must continue, what depends on you, how it is carried day to day, and how it is handed on.",
+  "pdfTitle": "Succession Infrastructure Plan™",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I — What must continue",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What have you built that must continue if you step away, and why does it matter to the people it serves?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase I — What must continue",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Which values and standards should the next leader keep, even if everything else changes?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase II — What depends on you",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Imagine you are unreachable for thirty days. Which decisions, relationships and systems would stop moving?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase II — What depends on you",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Which key decisions and their reasoning are written down, and which live only in your head?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase II — What depends on you",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Who could explain your priorities in your absence today, and who should be able to?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase III — How it is carried day to day",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Which important documents, accounts and systems can only you open, and who else should have access?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase III — How it is carried day to day",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Which critical relationships (partners, clients, funders, community) need a second person who knows them?"
+    },
+    {
+      "id": "n8",
+      "section": "Phase III — How it is carried day to day",
+      "phase": 2,
+      "type": "text",
+      "prompt": "What regular practice will move knowledge out of informal conversation and into writing?"
+    },
+    {
+      "id": "n9",
+      "section": "Phase IV — Handing it on",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Who could carry this work forward: a successor, a team member, an apprentice, or a partner organization?"
+    },
+    {
+      "id": "n10",
+      "section": "Phase IV — Handing it on",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What would they need from you first, and how will you bring them up to speed?"
+    },
+    {
+      "id": "n11",
+      "section": "Phase IV — Handing it on",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What happens to unfinished work if you step away tomorrow?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase IV — Handing it on",
+      "phase": 3,
+      "type": "text",
+      "prompt": "When will you review this plan again, and who will hold you to it?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The one piece of this work I will hand on or write down first, to whom, and by when:"
+  }
+}

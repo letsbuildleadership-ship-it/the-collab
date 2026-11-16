@@ -90,6 +90,7 @@
   .q-choices { display: flex; gap: .5rem; flex-wrap: wrap; }
   .q-path { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 .5rem; }
   .q-choice { cursor: pointer; border: 1px solid var(--hairline-strong); background: transparent; color: #fdf6ec; border-radius: 999px; padding: .6em 1.2em; font: inherit; font-weight: 700; min-width: 3em; }
+  a.q-choice { display: inline-block; text-decoration: none; }
   .q-choice[aria-pressed="true"] { background: rgba(255,46,18,.18); border-color: #ff6a2e; color: #fff; }
   .q-text { width: 100%; box-sizing: border-box; min-height: 5.5em; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 14px; padding: .8em 1em; color: #fdf6ec; font: inherit; line-height: 1.5; resize: vertical; }
   .q-feed { margin: .8rem 0 0; font-size: .9rem; font-weight: 700; color: #ff8a5c; min-height: 1.2em; }
@@ -250,14 +251,24 @@
           <label class="q-label" for="fb-eco" style="margin-top:.8rem; display:block;">How could it better support the enterprises in the Omnidirectional Enterprise™ ecosystem?</label>
           <textarea class="q-text" id="fb-eco" maxlength="800"></textarea>
           <div class="q-actions"><button type="button" class="pill" id="fb-send">Send to The Co.LLab™</button><span class="q-meta" id="fb-msg" aria-live="polite"></span></div>
+          <p class="q-meta" style="margin-top:.8rem;"><a href="changelog.html" style="color:#ff8a5c;">See what has changed because of member feedback</a></p>
           <p class="q-meta" style="margin-top:.8rem;">Transparency: we send nothing you wrote here to anyone outside The Co.LLab™. We also look at anonymous counts, such as which steps members skip, to improve the IP. We never read your quest answers unless you send them here.</p>
         </div>
         <div class="q-actions">
           <a class="pill pill--solid" id="r-pdf" href="#">Download your report (PDF) <span class="arrow">→</span></a>
+          <a class="pill" href="legacy-statement.html">Your Legacy Statement <span class="arrow">→</span></a>
           <a class="pill" href="account.html">Back to my portal</a>
           <button type="button" class="pill" id="r-retake">Retake this quest</button>
         </div>
         <p style="color:var(--white-faint); margin-top:1rem;">Your report is saved in your member portal under Quests.</p>
+      </div>
+
+      <div class="q-close" id="q-team" hidden style="margin-top:2rem;">
+        <h3 class="q-label">Team mode: several leaders, one quest</h3>
+        <p class="q-prompt" id="t-intro">Alignment gaps show up when leaders answer separately and then compare. Invite colleagues to this quest: each answers on their own, and the team view shows where you align and where you differ.</p>
+        <div id="t-invite"></div>
+        <div id="t-view"></div>
+        <p class="q-meta" style="margin-top:.8rem;"><a href="facilitator-guide.html" style="color:#ff8a5c;">Running it in a meeting? Read the facilitator guide</a></p>
       </div>
     </div>
   </section>

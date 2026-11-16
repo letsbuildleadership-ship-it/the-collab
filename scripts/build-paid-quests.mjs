@@ -55,6 +55,22 @@ const EVENT = [
   [3, 'Continuity and legacy', 'Document for continuity: contacts, contracts, run sheets and setup plans, in enough detail for another leader to run the next one.'],
   [3, 'Continuity and legacy', 'Build the legacy: what would make this event a lasting series, collective or institution that someone else could carry on?'],
 ];
+// A free member quest for succession, drafted from the .LLab Knowledge Transfer Checklist™ and the
+// Continuity Quick Check™: the starting point into Preservation, the phase members most often leave thin.
+const SUCCESSION = [
+  [0, 'What must continue', 'What have you built that must continue if you step away, and why does it matter to the people it serves?'],
+  [0, 'What must continue', 'Which values and standards should the next leader keep, even if everything else changes?'],
+  [1, 'What depends on you', 'Imagine you are unreachable for thirty days. Which decisions, relationships and systems would stop moving?'],
+  [1, 'What depends on you', 'Which key decisions and their reasoning are written down, and which live only in your head?'],
+  [1, 'What depends on you', 'Who could explain your priorities in your absence today, and who should be able to?'],
+  [2, 'How it is carried day to day', 'Which important documents, accounts and systems can only you open, and who else should have access?'],
+  [2, 'How it is carried day to day', 'Which critical relationships (partners, clients, funders, community) need a second person who knows them?'],
+  [2, 'How it is carried day to day', 'What regular practice will move knowledge out of informal conversation and into writing?'],
+  [3, 'Handing it on', 'Who could carry this work forward: a successor, a team member, an apprentice, or a partner organization?'],
+  [3, 'Handing it on', 'What would they need from you first, and how will you bring them up to speed?'],
+  [3, 'Handing it on', 'What happens to unfinished work if you step away tomorrow?'],
+  [3, 'Handing it on', 'When will you review this plan again, and who will hold you to it?'],
+];
 const PHASE_LABEL = { foundations: 'Phase I · Foundations', 'infrastructure-planning': 'Phase II · Infrastructure Planning & Management', 'operating-systems': 'Phase III · Internal Operating Systems', preservation: 'Phase IV · Preservation' };
 
 const SKIP_SECTIONS = /^(THE CO\.LLAB PRINCIPLE|THE NEXT STEP|YOUR NEXT STEP|HOW TO RESPOND|BUILD FROM STRENGTH|YOUR CO\.LLAB™ INFRASTRUCTURE PROFILE|YOUR INFRASTRUCTURE ROADMAP|THE CO\.LLAB™? OPERATING RHYTHM|YOUR NEXT MOVE|THE LEGACY INFRASTRUCTURE MODEL|THE FINAL OUTPUT)/;
@@ -272,6 +288,16 @@ const outDir = path.join(root, 'content/quests');
     closing: { id: 'commit', type: 'text', prompt: 'The one infrastructure commitment for this event, its owner and its date:' },
   };
   fs.writeFileSync(path.join(outDir, 'event-infrastructure.json'), `${JSON.stringify(quest, null, 2)}\n`);
+}
+{
+  const nodes = SUCCESSION.map(([phase, section, prompt], i) => ({ id: `n${i + 1}`, section: `Phase ${['I', 'II', 'III', 'IV'][phase]} — ${section}`, phase, type: 'text', prompt }));
+  const quest = {
+    key: 'succession', open: true, title: 'Succession Infrastructure Plan™', phase: 'Phase IV · Preservation', archetype: 'workbook',
+    intro: 'Make sure what you built can continue without you, through The IV Phases™: what must continue, what depends on you, how it is carried day to day, and how it is handed on.',
+    pdfTitle: 'Succession Infrastructure Plan™', minAnswered: 0.6, upsell: null, nodes,
+    closing: { id: 'commit', type: 'text', prompt: 'The one piece of this work I will hand on or write down first, to whom, and by when:' },
+  };
+  fs.writeFileSync(path.join(outDir, 'succession.json'), `${JSON.stringify(quest, null, 2)}\n`);
 }
 {
   const entry = pricing.products.find((p) => p.key === 'creator-website-blueprint');

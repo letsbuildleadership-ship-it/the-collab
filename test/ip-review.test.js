@@ -13,6 +13,7 @@ const adminIp = require('../netlify/functions/admin-ip');
 const digest = require('../netlify/functions/ip-digest');
 const { quests } = require('../netlify/functions/lib/quests');
 const backlog = require('../content/ip-backlog.json').items;
+const undecided = backlog.filter((b) => !b.built).length;
 
 let sent = [];
 test.beforeEach(() => {
@@ -45,7 +46,7 @@ test('member feedback is recorded for the owner, emailed, and stays new until de
   const data = JSON.parse((await admin('GET')).body);
   assert.equal(data.feedback.length, 1);
   assert.equal(data.feedback[0].status, 'new');
-  assert.equal(data.awaiting, backlog.length + 1);
+  assert.equal(data.awaiting, undecided + 1);
 });
 
 test('a decision is recorded; declining needs a note; nothing is lost', async () => {
@@ -60,15 +61,24 @@ test('a decision is recorded; declining needs a note; nothing is lost', async ()
   assert.equal(data.feedback[0].status, 'declined');
   assert.equal(data.feedback[0].note, 'Out of scope for now');
   assert.equal(data.backlog.find((b) => b.id === backlog[0].id).status, 'planned');
-  assert.equal(data.awaiting, backlog.length - 1);
+  assert.equal(data.awaiting, undecided - (backlog[0].built ? 0 : 1));
 });
 
-test('the weekly digest lists what is still undecided', async () => {
+test('the weekly digest lists what is still undecided, and built ideas are no longer in it', async () => {
+  const token = await member('m9@example.com');
+  await post(feedback, token, { questKey: [...quests.keys()][0], unclear: 'The last step needs an example' });
+  sent = [];
   await digest.handler();
   assert.equal(sent.length, 1);
   assert.match(sent[0].subject, /awaiting your decision/);
   assert.match(sent[0].text, /ip-feedback\.html/);
-  assert.match(sent[0].text, new RegExp(backlog[0].title.slice(0, 20)));
+  assert.match(sent[0].text, /The last step needs an example/);
+  backlog.filter((b) => b.built).forEach((b) => assert.ok(!sent[0].text.includes(`- ${b.title} (`), b.id));
+});
+
+test('every idea in the backlog has been built and ships as done with what was built', async () => {
+  const data = JSON.parse((await admin('GET')).body);
+  data.backlog.forEach((b) => { assert.equal(b.status, 'done', b.id); assert.ok(b.note, b.id); });
 });
 
 test('backlog covers both the IP and the Omnidirectional Enterprise ecosystem', () => {

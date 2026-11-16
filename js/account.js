@@ -586,6 +586,36 @@
   }
 
   /* The .LLab Membership offer, for anyone without an active Membership. */
+  // Phase Readiness across every finished quest, with the way into the Legacy Statement.
+  function renderLegacy(count) {
+    const group = $('legacy-group');
+    if (!group) return;
+    group.hidden = !count;
+    if (!count) return;
+    fetch('/.netlify/functions/legacy', { credentials: 'same-origin' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d) return;
+        const box = $('legacy-panel');
+        box.textContent = '';
+        d.readiness.phases.forEach((p) => {
+          const row = document.createElement('p');
+          row.style.margin = '0 0 .4rem';
+          const b = document.createElement('strong');
+          b.textContent = p.name + (p.strongest ? ' · strongest' : p.thinnest ? ' · thinnest' : '') + ': ';
+          row.append(b, document.createTextNode(`${p.strengths} strong · ${p.gaps} to build · ${p.mentions} mention${p.mentions === 1 ? '' : 's'} in your words`));
+          box.appendChild(row);
+        });
+        const a = document.createElement('a');
+        a.className = 'pill pill--solid';
+        a.href = 'legacy-statement.html';
+        a.innerHTML = 'Open your Legacy Statement <span class="arrow">→</span>';
+        a.style.marginTop = '.8rem';
+        box.appendChild(a);
+      })
+      .catch(() => {});
+  }
+
   function renderMembershipOffer(data) {
     const el = $('offer-membership');
     const offer = data.membershipOffer;
@@ -988,6 +1018,7 @@
       reportList.appendChild(card);
     });
     $('quest-reports-group').hidden = !reports.length;
+    renderLegacy(reports.length);
     $('directory-link').hidden = !data.directoryEligible;
     $('quest-reports-count').textContent = reports.length ? `${reports.length}` : '';
     $('free-tools-count').textContent = toolCount ? `${toolCount}` : '';
