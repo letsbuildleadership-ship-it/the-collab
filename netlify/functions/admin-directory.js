@@ -11,7 +11,11 @@ exports.handler = async (event) => {
   if (event.httpMethod === 'GET') {
     const rows = await store.opsList('directory');
     rows.sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
-    return json(200, { listings: rows });
+    // Anonymous counts for the yearly Omnidirectional Enterprise™ report: real numbers only.
+    const events = await store.opsList('eco-events');
+    const byYear = {};
+    events.forEach((e) => { const y = String(e.date).slice(0, 4); byYear[y] = byYear[y] || { intro: 0, offer: 0 }; if (byYear[y][e.type] !== undefined) byYear[y][e.type] += 1; });
+    return json(200, { listings: rows, ecosystem: { byYear, listed: rows.filter((r) => r.status === 'approved').length, withOffers: rows.filter((r) => r.status === 'approved' && r.offer).length } });
   }
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method Not Allowed' });
   let body;

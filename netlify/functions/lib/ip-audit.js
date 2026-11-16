@@ -45,10 +45,17 @@ function auditQuest(q) {
   const push = (id, severity, text2, evidence) => findings.push({ id: `content-${q.key}-${id}`, ip: q.key, severity, source: 'content', text: text2, evidence });
   const emptyPhases = PHASES.filter((_, i) => !counts[i]);
   if (emptyPhases.length && q.archetype === 'workbook') push('phase-gap', 'high', `${q.title} has no prompts for ${emptyPhases.join(' or ')}. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.`, `Prompts per phase: ${counts.join(' / ')}`);
-  else if (q.archetype === 'workbook' && q.nodes.length >= 8 && Math.max(...counts) >= 3 * Math.max(1, Math.min(...counts.filter((c) => c > 0)))) push('phase-balance', 'medium', `${q.title} is heavily weighted to ${PHASES[counts.indexOf(Math.max(...counts))]}. Consider balancing the other phases.`, `Prompts per phase: ${counts.join(' / ')}`);
+  else if (q.archetype === 'workbook' && q.nodes.length >= 8) {
+    // A product is meant to weigh most in its own phase; balance is judged across the other three.
+    const home = /Phase (I|II|III|IV)\b/.test(q.phase || '') ? phaseIndexOfQuest(q) : null;
+    const others = counts.map((c, i) => [c, i]).filter(([, i]) => i !== home);
+    const top = others.reduce((a, b) => (b[0] > a[0] ? b : a));
+    const low = Math.max(1, Math.min(...others.map(([c]) => c).filter((c) => c > 0)));
+    if (top[0] >= 3 * low) push('phase-balance', 'medium', `${q.title} is heavily weighted to ${PHASES[top[1]]}${home === null ? '' : `, beyond its own phase (${PHASES[home]})`}. Consider balancing the other phases.`, `Prompts per phase: ${counts.join(' / ')}`);
+  }
   if (labels.length >= 3) push('labels', 'medium', `${q.title} has ${labels.length} prompts that are bare labels (for example "${labels[0]}"). Add a guiding question so members know what a strong answer looks like.`, labels.slice(0, 4).join(' | '));
   if (longPrompts.length) push('long', 'low', `${longPrompts.length} prompt${longPrompts.length === 1 ? '' : 's'} in ${q.title} run past 220 characters. Consider splitting each into one question.`, longPrompts[0].slice(0, 160));
-  if (q.nodes.length > 40) push('length', 'medium', `${q.title} asks ${q.nodes.length} questions. Long quests risk drop-off; consider a short path and a full path.`, `${q.nodes.length} questions`);
+  if (q.nodes.length > 40 && !(Array.isArray(q.shortPath) && q.shortPath.length && q.shortPath.length <= 25)) push('length', 'medium', `${q.title} asks ${q.nodes.length} questions. Long quests risk drop-off; consider a short path and a full path.`, `${q.nodes.length} questions`);
   if (duplicates.length) push('duplicates', 'medium', `${q.title} repeats ${duplicates.length} prompt${duplicates.length === 1 ? '' : 's'}: "${duplicates[0].slice(0, 90)}".`, duplicates.join(' | ').slice(0, 200));
   const reached = oe.filter((o) => o.prompts).length;
   if (reached < 3 && q.archetype === 'workbook' && !q.open) push('omni-reach', 'low', `The questions in ${q.title} speak to only ${reached} of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.`, `Directions reached: ${oe.filter((o) => o.prompts).map((o) => o.name).join(', ') || 'none'}`);

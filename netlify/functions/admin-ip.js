@@ -13,7 +13,8 @@ const { isAdmin: authorized } = require('./lib/admin-auth');
 async function load() {
   const [feedback, statuses, customers] = await Promise.all([store.opsList('ip-feedback'), store.opsList('ip-backlog-status'), store.listCustomers()]);
   const byId = new Map(statuses.map((s) => [s.id, s]));
-  const items = backlog.map((b) => ({ ...b, status: (byId.get(b.id) || {}).status || 'new', note: (byId.get(b.id) || {}).note || null, decidedAt: (byId.get(b.id) || {}).decidedAt || null }));
+  // An idea that has been built ships as done (with what was built) unless the owner decided otherwise.
+  const items = backlog.map((b) => { const s = byId.get(b.id) || {}; return { ...b, status: s.status || (b.built ? 'done' : 'new'), note: s.note || (b.built ? b.built.note : null), decidedAt: s.decidedAt || (b.built ? b.built.date : null) }; });
   feedback.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
   return { backlog: items, feedback, insights: computeInsights(customers) };
 }
@@ -40,7 +41,9 @@ exports.handler = async (event) => {
   } else if (body.kind === 'feedback') {
     const item = await store.opsGet('ip-feedback', body.id);
     if (!item) return json(404, { error: 'Not found.' });
-    await store.opsPut('ip-feedback', body.id, { ...item, status, note, decidedAt });
+    // A public note on a done item is published on the changelog (what changed because of member feedback).
+    const publicNote = status === 'done' ? String(body.publicNote || '').replace(/\s+/g, ' ').trim().slice(0, 400) || null : null;
+    await store.opsPut('ip-feedback', body.id, { ...item, status, note, decidedAt, publicNote });
   } else {
     return json(400, { error: 'Unknown kind.' });
   }

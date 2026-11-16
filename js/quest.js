@@ -4,12 +4,16 @@
 // textContent / .value.
 (function () {
   var API = '/.netlify/functions/quest';
-  var key = new URLSearchParams(location.search).get('key') || '';
+  var params = new URLSearchParams(location.search);
+  var key = params.get('key') || '';
+  var editionParam = params.get('edition') || '';
+  var teamParam = params.get('team') || '';
   var quest = null;
   var answers = {};
   var notes = {};
   var saveTimer = null;
   var canAnalyze = true;
+  var path = 'full';
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -25,14 +29,25 @@
     e.textContent = msg;
   }
 
-  function allNodes() { return quest.nodes.concat([quest.closing]); }
+  // Long quests offer a short path (quest.shortPath) and the full path; the choice is remembered on this device.
+  function hasShort() { return Array.isArray(quest.shortPath) && quest.shortPath.length > 0; }
+  function steps() { return path === 'short' && hasShort() ? quest.nodes.filter(function (n) { return quest.shortPath.indexOf(n.id) >= 0; }) : quest.nodes; }
+  function pickPath() {
+    if (!hasShort()) { path = 'full'; return; }
+    var stored = null;
+    try { stored = localStorage.getItem('qpath:' + key); } catch (e) {}
+    if (stored === 'short' || stored === 'full') { path = stored; return; }
+    var offShort = quest.nodes.some(function (n) { return quest.shortPath.indexOf(n.id) < 0 && answered(n); });
+    path = offShort ? 'full' : 'short';
+  }
+  function allNodes() { return steps().concat([quest.closing]); }
   function answered(n) {
     var v = answers[n.id];
     return n.type === 'text' ? typeof v === 'string' && v.trim() !== '' : v !== undefined;
   }
-  function requiredCount() { return Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
+  function requiredCount() { return path === 'short' && hasShort() ? steps().length : Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
   function canFinish() {
-    return quest.nodes.filter(answered).length >= requiredCount() && answered(quest.closing);
+    return steps().filter(answered).length >= requiredCount() && answered(quest.closing);
   }
 
   function feedback(n) {
@@ -48,8 +63,8 @@
   // has no sections and needs every answer) opens once the one before it is met.
   function groups() {
     var out = [];
-    var every = !(quest.minAnswered && quest.minAnswered < 1);
-    quest.nodes.forEach(function (n) {
+    var every = path === 'short' || !(quest.minAnswered && quest.minAnswered < 1);
+    steps().forEach(function (n) {
       var last = out[out.length - 1];
       if (n.section && last && last.section === n.section) { last.nodes.push(n); return; }
       if (!n.section && !every && last && !last.section) { last.nodes.push(n); return; }
@@ -86,7 +101,7 @@
     var done = nodes.filter(answered).length;
     $('q-fill').style.width = Math.round((done / nodes.length) * 100) + '%';
     var need = requiredCount();
-    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
+    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (path === 'short' ? ' (short path)' : quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
     $('q-finish').disabled = !canFinish();
     applyLocks();
     nodes.forEach(function (n) {
@@ -102,7 +117,7 @@
   function queueSave() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
-      fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes }) }).catch(function () {});
+      fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, edition: quest.edition, team: teamParam || undefined }) }).catch(function () {});
     }, 600);
   }
 
@@ -234,8 +249,40 @@
     $('q-run').hidden = false;
     var map = $('q-map');
     map.textContent = '';
+    if (quest.editions && quest.editions.length) {
+      var eb = el('div', 'q-path');
+      eb.setAttribute('role', 'group');
+      eb.setAttribute('aria-label', 'Choose your edition');
+      [{ id: '', name: 'Standard edition' }].concat(quest.editions).forEach(function (e) {
+        var b = el('a', 'q-choice', e.name);
+        b.href = 'quest.html?key=' + encodeURIComponent(key) + (e.id ? '&edition=' + encodeURIComponent(e.id) : '&edition=standard');
+        b.setAttribute('aria-pressed', (quest.edition || '') === e.id ? 'true' : 'false');
+        eb.appendChild(b);
+      });
+      map.appendChild(eb);
+      var cur = quest.editions.filter(function (e) { return e.id === quest.edition; })[0];
+      map.appendChild(el('p', 'q-meta', cur ? 'Same model and questions, in the language of ' + cur.serves.toLowerCase() + '. It serves the ' + cur.serves + ' direction of the Omnidirectional Enterprise™.' : 'Also in the language of nonprofits and owner-led businesses. Your answers carry over between editions.'));
+    }
+    if (hasShort()) {
+      var bar = el('div', 'q-path');
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Choose your path');
+      [['short', 'Short path (' + quest.shortPath.length + ' steps)'], ['full', 'Full path (' + quest.nodes.length + ' steps)']].forEach(function (o) {
+        var b = el('button', 'q-choice', o[1]);
+        b.type = 'button';
+        b.setAttribute('aria-pressed', path === o[0] ? 'true' : 'false');
+        b.addEventListener('click', function () {
+          path = o[0];
+          try { localStorage.setItem('qpath:' + key, path); } catch (e) {}
+          showRun();
+        });
+        bar.appendChild(b);
+      });
+      map.appendChild(bar);
+      map.appendChild(el('p', 'q-meta', 'The short path covers every phase in fewer steps. Your answers carry over if you switch.'));
+    }
     var lastSection = null;
-    quest.nodes.forEach(function (n) {
+    steps().forEach(function (n) {
       if (n.section && n.section !== lastSection) {
         lastSection = n.section;
         map.appendChild(el('h2', 'q-section', n.section));
@@ -279,7 +326,7 @@
 
   function init() {
     if (!key) { fail('No quest selected. Pick one from your portal.'); return; }
-    fetch(API + '?key=' + encodeURIComponent(key), { credentials: 'same-origin' })
+    fetch(API + '?key=' + encodeURIComponent(key) + (editionParam ? '&edition=' + encodeURIComponent(editionParam) : '') + (teamParam ? '&team=' + encodeURIComponent(teamParam) : ''), { credentials: 'same-origin' })
       .then(function (r) {
         if (r.status === 401) { location.href = 'login.html'; return null; }
         return r.json().then(function (d) { return { ok: r.ok, d: d }; });
@@ -296,7 +343,9 @@
         document.title = quest.title + ' | The Co.LLab™';
         if (saved && saved.answers) answers = saved.answers;
         if (saved && saved.notes) notes = saved.notes;
+        loadTeam();
         if (saved && saved.status === 'done') { showResult(saved); return; }
+        pickPath();
         showRun();
         setTier();
         if (!canAnalyze && saved && saved.readyForAnalysis && saved.preview) showLocked(saved.preview);
@@ -308,7 +357,7 @@
     var btn = $('q-finish');
     btn.disabled = true;
     $('q-finish-err').textContent = '';
-    fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, complete: true }) })
+    fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, complete: true, edition: quest.edition, team: teamParam || undefined }) })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok) { $('q-finish-err').textContent = res.d.error || 'Could not finish.'; btn.disabled = false; return; }
@@ -333,7 +382,71 @@
   $('lk-edit').addEventListener('click', function () { $('q-locked').hidden = true; $('q-run').hidden = false; btnReset(); window.scrollTo(0, 0); });
   function btnReset() { $('q-finish').disabled = !canFinish(); }
 
-  $('r-retake').addEventListener('click', function () { showRun(); window.scrollTo(0, 0); });
+  // ---- team mode ----
+  function loadTeam() {
+    fetch('/.netlify/functions/quest-team?key=' + encodeURIComponent(key) + (teamParam ? '&team=' + encodeURIComponent(teamParam) : ''), { credentials: 'same-origin' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || (!d.team && !d.canInvite)) return;
+        $('q-team').hidden = false;
+        renderInvite(d);
+        renderView(d.view);
+      })
+      .catch(function () {});
+  }
+  function renderInvite(d) {
+    var box = $('t-invite');
+    box.textContent = '';
+    var t = d.team;
+    if (t && !t.owner) { $('t-intro').textContent = 'You were invited to answer this quest with your leadership team. Your answers to it are shared with the team.'; return; }
+    if (t && t.emails && t.emails.length) box.appendChild(el('p', 'q-meta', 'Invited: ' + t.emails.join(', ')));
+    var left = (d.max || (t && t.max) || 8) - ((t && t.emails) ? t.emails.length : 0);
+    if (left <= 0) return;
+    var ta = el('textarea', 'q-text');
+    ta.setAttribute('aria-label', 'Colleague emails');
+    ta.placeholder = 'Colleague emails, separated by commas (up to ' + left + ')';
+    var b = el('button', 'pill', 'Invite my team'); b.type = 'button';
+    var m = el('span', 'q-meta'); m.setAttribute('aria-live', 'polite');
+    b.addEventListener('click', function () {
+      m.textContent = 'Sending…'; b.disabled = true;
+      fetch('/.netlify/functions/quest-team', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, emails: ta.value }) })
+        .then(function (r) { return r.json().then(function (x) { return { ok: r.ok, d: x }; }); })
+        .then(function (res) {
+          b.disabled = false;
+          if (!res.ok) { m.textContent = res.d.error || 'Could not send.'; return; }
+          m.textContent = res.d.invited + ' invitation' + (res.d.invited === 1 ? '' : 's') + ' sent.' + (res.d.failed ? ' ' + res.d.failed + ' could not be sent.' : '');
+          loadTeam();
+        })
+        .catch(function () { b.disabled = false; m.textContent = 'Could not reach the site.'; });
+    });
+    var row = el('div', 'q-actions'); row.append(b, m);
+    box.append(ta, row);
+  }
+  function show(v) {
+    if (Array.isArray(v)) return v.join(', ');
+    if (v === true) return 'Yes';
+    if (v === false) return 'Not yet';
+    return String(v);
+  }
+  function renderView(v) {
+    var box = $('t-view');
+    box.textContent = '';
+    if (!v) return;
+    box.appendChild(el('p', 'q-meta', v.answering + ' of ' + (v.invited + 1) + ' leaders have answered' + (v.answering > 1 ? ' · ' + v.differences + ' scored step' + (v.differences === 1 ? '' : 's') + ' where you differ' : '') + '.'));
+    if (v.answering < 2) return;
+    var steps = v.steps.slice().sort(function (a, b) { return (b.differs && b.type !== 'text') - (a.differs && a.type !== 'text'); });
+    steps.forEach(function (s) {
+      var card = el('div', 'q-node' + (s.differs && s.type !== 'text' ? ' is-done' : ''));
+      card.appendChild(el('p', 'q-label', (s.differs && s.type !== 'text' ? 'You differ here · ' : '') + (s.section || 'Step')));
+      card.appendChild(el('p', 'q-prompt', s.prompt));
+      var ul = el('ul');
+      s.answers.forEach(function (a) { var li = el('li'); li.appendChild(el('strong', null, a.who + ': ')); li.appendChild(document.createTextNode(show(a.value))); ul.appendChild(li); });
+      card.appendChild(ul);
+      box.appendChild(card);
+    });
+  }
+
+  $('r-retake').addEventListener('click', function () { pickPath(); showRun(); window.scrollTo(0, 0); });
 
   init();
 })();

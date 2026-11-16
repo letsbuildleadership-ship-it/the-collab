@@ -8,8 +8,9 @@ const membershipStatus = require('./lib/membership-status');
 const { resolveAccess } = require('./lib/access');
 const freeToolKeys = new Set(require('../../content/free-tools.json').tools.map((t) => t.key));
 const { tokenFromEvent, json, CORS_HEADERS } = require('./lib/http');
-const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor } = require('./lib/quests');
+const { quests, publicQuest, editionsFor, withEdition, validateAnswers, cleanNotes, outcomeFor, previewFor } = require('./lib/quests');
 const { buildQuestPdf } = require('./lib/quest-pdf');
+const { getTeam, isOnTeam } = require('./lib/teams');
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers: CORS_HEADERS, body: '' };
@@ -38,17 +39,22 @@ exports.handler = async (event) => {
   const ownsIt = owned.has(key) || membershipStatus.catalogUnlockKeys(access).includes(key);
   // Paid IP is only for paid members: a product's quest needs the product or Membership (same
   // entitlement check as its PDF download).
-  if (isProductQuest && !ownsIt) return json(403, { error: 'You do not have access to this quest.' });
+
   // Free members work the quests on the free tools and get an Infrastructure Snapshot™. The full Infrastructure Analysis™,
   // outcomes and report are a Membership benefit (owning a product covers its own quest).
-  const canAnalyze = membershipStatus.hasFullCatalog(access) || (isProductQuest && ownsIt);
+  // Team mode: a colleague invited to this quest works it with the inviting member's access.
+  const team = (isGet ? qs.team : body.team) ? await getTeam(isGet ? qs.team : body.team) : null;
+  const onTeam = !!(team && team.key === key && isOnTeam(team, record));
+  const canAnalyze = onTeam || membershipStatus.hasFullCatalog(access) || (isProductQuest && ownsIt);
+
+  if (isProductQuest && !ownsIt && !onTeam) return json(403, { error: 'You do not have access to this quest.' });
 
   record.quests = record.quests || {};
   const saved = record.quests[key] || null;
 
   if (isGet && qs.pdf) {
     if (!saved || saved.status !== 'done') return json(404, { error: 'Finish the quest to get your report.' });
-    const bytes = await buildQuestPdf({ quest, record, result: saved });
+    const bytes = await buildQuestPdf({ quest: withEdition(quest, saved.edition), record, result: saved });
     const name = `${quest.title.replace(/[^\w]+/g, '-').replace(/^-|-$/g, '')}-Quest-Report.pdf`;
     return {
       statusCode: 200,
@@ -58,9 +64,10 @@ exports.handler = async (event) => {
     };
   }
 
-  if (isGet) return json(200, { quest: publicQuest(quest), saved, canAnalyze });
+  if (isGet) return json(200, { quest: publicQuest(quest, String(qs.edition || (saved && saved.edition) || '')), saved, canAnalyze });
 
   const complete = body.complete === true;
+  const edition = editionsFor(key).some((e) => e.id === body.edition) ? body.edition : null;
   const v = validateAnswers(quest, body.answers, { complete });
   if (!v.ok) return json(400, { error: v.error });
 
@@ -73,11 +80,11 @@ exports.handler = async (event) => {
   }
 
   if (complete) {
-    record.quests[key] = { status: 'done', answers: v.answers, notes: cleanNotes(quest, body.notes), outcome: outcomeFor(quest, v.answers), completedAt: new Date().toISOString() };
+    record.quests[key] = { status: 'done', answers: v.answers, notes: cleanNotes(quest, body.notes), outcome: outcomeFor(quest, v.answers), completedAt: new Date().toISOString(), ...(edition ? { edition } : {}) };
   } else if (saved && saved.status === 'done') {
     return json(200, { saved }); // drafts never overwrite a finished report
   } else {
-    record.quests[key] = { status: 'draft', answers: v.answers, notes: cleanNotes(quest, body.notes) };
+    record.quests[key] = { status: 'draft', answers: v.answers, notes: cleanNotes(quest, body.notes), ...(edition ? { edition } : {}) };
   }
   await store.saveCustomer(record);
   return json(200, { saved: record.quests[key] });

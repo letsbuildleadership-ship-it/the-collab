@@ -6,6 +6,8 @@
   var DIRS = [];
   var listings = [];
   var active = null;
+  var me = { signedIn: false, eligible: false, company: '', mine: null };
+  var SEEK = { successor: 'Seeking a successor', apprenticeship: 'Offering an apprenticeship' };
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
@@ -21,8 +23,9 @@
   function renderFilters() {
     var box = $('d-filters');
     box.textContent = '';
-    [null].concat(DIRS).forEach(function (d) {
-      var b = el('button', 'd-chip', d || 'All');
+    [null].concat(DIRS, ['seek:successor', 'seek:apprenticeship', 'has:offer', 'has:requests']).forEach(function (d) {
+      var label = !d ? 'All' : d === 'seek:successor' ? SEEK.successor : d === 'seek:apprenticeship' ? SEEK.apprenticeship : d === 'has:offer' ? 'Member offers' : d === 'has:requests' ? 'Asking for skills or volunteers' : d;
+      var b = el('button', 'd-chip', label);
       b.type = 'button';
       b.setAttribute('aria-pressed', String(active === d));
       b.addEventListener('click', function () { active = d; renderFilters(); renderGrid(); });
@@ -33,15 +36,22 @@
   function renderGrid() {
     var grid = $('d-grid');
     grid.textContent = '';
-    var shown = listings.filter(function (l) { return !active || l.directions.indexOf(active) >= 0; });
+    var shown = listings.filter(function (l) {
+      if (!active) return true;
+      if (active.indexOf('seek:') === 0) return (l.seeking || []).indexOf(active.slice(5)) >= 0;
+      if (active === 'has:offer') return !!l.offer;
+      if (active === 'has:requests') return !!l.requests;
+      return l.directions.indexOf(active) >= 0;
+    });
     $('d-empty').hidden = shown.length > 0;
-    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed company serves that direction yet.';
+    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed company matches that yet.';
     shown.forEach(function (l) {
       var c = el('article', 'd-card');
       c.appendChild(el('h3', null, l.companyName));
       if (l.tagline) c.appendChild(el('p', 'd-tag', l.tagline));
       var dir = el('div', 'd-dir');
       l.directions.forEach(function (d) { dir.appendChild(el('span', null, d)); });
+      (l.seeking || []).forEach(function (k) { if (SEEK[k]) dir.appendChild(el('span', 'd-seek', SEEK[k])); });
       c.appendChild(dir);
       c.appendChild(el('p', 'd-desc', l.description));
       var ul = el('ul', 'd-off');
@@ -62,8 +72,62 @@
       if (l.location) bits.push(document.createTextNode(l.location));
       bits.forEach(function (b, i) { if (i) foot.appendChild(document.createTextNode('  ·  ')); foot.appendChild(b); });
       c.appendChild(foot);
+      if (l.requests) {
+        var rq = el('p', 'd-desc');
+        rq.appendChild(el('strong', null, 'Asking for skills or volunteers: '));
+        rq.appendChild(document.createTextNode(l.requests));
+        c.appendChild(rq);
+      }
+      if (l.offer) {
+        var of = el('div', 'd-offer');
+        of.appendChild(el('p', 'd-offer-tag', 'Member offer · written and set by ' + l.companyName));
+        of.appendChild(el('p', null, l.offer.text));
+        of.appendChild(el('p', 'd-offer-terms', 'Terms: ' + l.offer.terms));
+        c.appendChild(of);
+      }
+      c.appendChild(introBlock(l));
       grid.appendChild(c);
     });
+  }
+
+  // ---- introductions between members ----
+  function introBlock(l) {
+    var wrap = el('div', 'd-intro');
+    if (me.mine && me.mine.publicId === l.id) return wrap;
+    if (!me.signedIn || !me.eligible) {
+      var a = el('a', 'pill', me.signedIn ? 'Introductions are part of a license or Membership' : 'Sign in to request an introduction');
+      a.href = me.signedIn ? 'products.html' : 'login.html';
+      wrap.appendChild(a);
+      return wrap;
+    }
+    var open = el('button', 'pill', 'Request an introduction'); open.type = 'button';
+    wrap.appendChild(open);
+    if (l.offer) { var o2 = el('button', 'pill', 'Ask about the member offer'); o2.type = 'button'; wrap.appendChild(o2); o2.addEventListener('click', function () { show(true); }); }
+    open.addEventListener('click', function () { show(false); });
+    function show(viaOffer) {
+      if (wrap.querySelector('.d-intro-form')) return;
+      var f = el('div', 'd-intro-form');
+      var from = el('input'); from.type = 'text'; from.maxLength = 80; from.placeholder = 'Your company'; from.value = me.company;
+      from.setAttribute('aria-label', 'Your company');
+      var t = el('textarea'); t.maxLength = 800; t.placeholder = 'What would you like to explore together?';
+      t.setAttribute('aria-label', 'Your message');
+      var send = el('button', 'pill pill--solid', 'Send the introduction'); send.type = 'button';
+      var m = el('span', 'd-err'); m.setAttribute('aria-live', 'polite');
+      f.append(from, t, send, m);
+      f.appendChild(el('p', 'd-offer-terms', 'They receive your message and your email address, and decide whether to reply.'));
+      send.addEventListener('click', function () {
+        send.disabled = true; m.textContent = 'Sending…';
+        fetch('/.netlify/functions/directory-intro', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ listingId: l.id, fromCompany: from.value, message: t.value, viaOffer: viaOffer }) })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (res.ok) { f.textContent = ''; f.appendChild(el('p', 'd-desc', 'Sent. ' + l.companyName + ' will reply to you directly if they would like to continue.')); return; }
+            m.textContent = res.d.error || 'Could not send.'; send.disabled = false;
+          })
+          .catch(function () { m.textContent = 'Could not reach the site.'; send.disabled = false; });
+      });
+      wrap.appendChild(f);
+    }
+    return wrap;
   }
 
   // ---- member's own listing ----
@@ -140,6 +204,29 @@
     add.addEventListener('click', function () { if (offRows.length < 6) offBox.appendChild(offeringRow({})); });
     form.appendChild(add);
 
+    var offerText = el('textarea'); offerText.id = 'f-offer'; offerText.maxLength = 280; offerText.value = (l && l.offer && l.offer.text) || '';
+    var offerTerms = el('input'); offerTerms.type = 'text'; offerTerms.id = 'f-offer-terms'; offerTerms.maxLength = 280; offerTerms.placeholder = 'Who it is for, how long it runs, any limits'; offerTerms.value = (l && l.offer && l.offer.terms) || '';
+    var reqs = el('textarea'); reqs.id = 'f-requests'; reqs.maxLength = 280; reqs.value = (l && l.requests) || '';
+    form.append(
+      labeled('A member offer for other members (optional; you write it and set its terms)', offerText, 'f-offer'),
+      labeled('Terms of your offer', offerTerms, 'f-offer-terms'),
+      labeled('Skills or volunteers you are asking for (optional)', reqs, 'f-requests')
+    );
+    form.appendChild(el('label', null, 'Carrying your work forward (optional)'));
+    var seekBox = el('div', 'd-filters');
+    var seeking = ((l && l.seeking) || []).slice();
+    Object.keys(SEEK).forEach(function (k) {
+      var b = el('button', 'd-chip', SEEK[k]); b.type = 'button';
+      b.setAttribute('aria-pressed', String(seeking.indexOf(k) >= 0));
+      b.addEventListener('click', function () {
+        var i = seeking.indexOf(k);
+        if (i >= 0) seeking.splice(i, 1); else seeking.push(k);
+        b.setAttribute('aria-pressed', String(seeking.indexOf(k) >= 0));
+      });
+      seekBox.appendChild(b);
+    });
+    form.appendChild(seekBox);
+
     var actions = el('div'); actions.style.cssText = 'margin-top:1.5rem; display:flex; gap:1rem; align-items:center; flex-wrap:wrap;';
     var save = el('button', 'pill pill--solid', 'Send for review'); save.type = 'submit';
     var msg = el('span', 'd-err'); msg.setAttribute('aria-live', 'polite');
@@ -156,7 +243,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       msg.textContent = 'Sending…';
-      var payload = { companyName: company.value, tagline: tagline.value, description: desc.value, location: loc.value, website: web.value, contactEmail: mail.value, directions: picked, offerings: offRows.map(function (r) { return r.read(); }) };
+      var payload = { companyName: company.value, tagline: tagline.value, description: desc.value, location: loc.value, website: web.value, contactEmail: mail.value, directions: picked, offerings: offRows.map(function (r) { return r.read(); }), offer: { text: offerText.value, terms: offerTerms.value }, requests: reqs.value, seeking: seeking };
       fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
@@ -171,7 +258,13 @@
   function loadMine() {
     fetch(API + '?mine=1', { credentials: 'same-origin' })
       .then(function (r) { if (r.status === 401) { renderMine({ signedOut: true }); return null; } return r.json(); })
-      .then(function (d) { if (d) { DIRS = d.directions; renderMine(d); } })
+      .then(function (d) {
+        if (!d) return;
+        DIRS = d.directions;
+        me = { signedIn: true, eligible: !!d.eligible, company: (d.listing && d.listing.companyName) || '', mine: d.listing };
+        renderMine(d);
+        if (listings.length) renderGrid();
+      })
       .catch(function () { $('d-mine').textContent = 'Could not load your company page.'; });
   }
 
