@@ -1,7 +1,7 @@
 {
   "account_username": "theco.llab_",
   "ig_user_id": "me",
-  "notes": "Daily: publish the first queued REEL (media_type REELS, video_url, cover_url, share_to_feed true). Mon/Wed/Fri: also publish the first queued CAROUSEL. Reels reach 10-30x more non-followers than carousels for this account (Oct baseline: carousels reach 1-4, reels 27-116).",
+  "notes": "Daily: publish the first queued REEL (media_type REELS, video_url, cover_url, share_to_feed true). Mon/Wed/Fri: also publish the first queued CAROUSEL. Reels reach 10-30x more non-followers than carousels for this account (Oct baseline: carousels reach 1-4, reels 27-116).\n2026-11-16 learn: Reels median reach 31 vs carousels 8; Proprietary IP leads by median reach (39; r03 reel 70), saves+shares 0 everywhere, so IP items moved first (Partnership kept within 7 days).",
   "posts": [
     {
       "id": "r01",
@@ -37,10 +37,10 @@
       "pillar": "Proprietary IP",
       "goal": "Education: The IV Phases",
       "caption": "Define it. Plan it. Live it. Pass it on.\n\nThe IV Phases™ give an enterprise one common way to decide and organize:\nI. Foundations\nII. Infrastructure Planning & Management\nIII. Internal Operating Systems\nIV. Preservation\n\nStart at Phase I with 16 free tools, or the $20 Leadership Infrastructure Strength Map™.\n\nLink in bio → wearethellab.com\n\nWhich phase is your enterprise in right now? Tell us below.\n\n#theivphases #leadershipdevelopment #businessstrategy #smallbusiness #founders #omnidirectionalenterprise #wearethellab #legacy",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
+      "status": "published",
+      "published_at": "2026-11-16T17:38:39+0000",
+      "media_id": "17922110967461530",
+      "permalink": "https://www.instagram.com/p/Dfz6Sm0FDjP/",
       "image_urls": [
         "https://wearethellab.com/marketing/instagram/2026-11/c01_01.jpg",
         "https://wearethellab.com/marketing/instagram/2026-11/c01_02.jpg",
@@ -72,13 +72,47 @@
       "pillar": "Omnidirectional Enterprise",
       "goal": "Authority: economics",
       "caption": "Generating value and capturing value are different processes.\n\nMost enterprise is built top-down: authority, capital and opportunity concentrate at the top.\n\nOmnidirectional Enterprise™ is an economic enterprise system that connects people, organizations, products, intellectual property, capital and resources in one ecosystem, with value moving in every direction.\n\nRead the economic case → link in bio.\n\n#economics #businessmodel #innovation #entrepreneurship #socialenterprise #omnidirectionalenterprise #economicenterprisesystems #wearethellab",
+      "status": "published",
+      "published_at": "2026-11-16T17:38:49+0000",
+      "media_id": "18138458785671884",
+      "permalink": "https://www.instagram.com/reel/Dfz6R0Air42/",
+      "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r04.mp4",
+      "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r04_cover.jpg",
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r04_cover.jpg"
+    },
+    {
+      "id": "r10",
+      "type": "REEL",
+      "pillar": "Proprietary IP",
+      "goal": "Conversion: $20 entry",
+      "caption": "A $20 question for every founder: how strong is your leadership infrastructure?\n\nThe Leadership Infrastructure Strength Map™ is the first diagnostic step in The .LLab™, so you know where to build first.\n\nLink in bio → wearethellab.com\n\n#founders #businesscoach #leadershipdevelopment #smallbusinessowner #businessstrategy #omnidirectionalenterprise #wearethellab",
       "status": "queued",
       "published_at": null,
       "media_id": null,
       "permalink": null,
-      "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r04.mp4",
-      "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r04_cover.jpg",
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r04_cover.jpg"
+      "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r10.mp4",
+      "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r10_cover.jpg",
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r10_cover.jpg"
+    },
+    {
+      "id": "c03",
+      "type": "CAROUSEL",
+      "pillar": "Proprietary IP",
+      "goal": "Conversion: Preservation products",
+      "caption": "Succession is not a document. It is a system.\n\n1. Write down why it exists.\n2. Map what has to continue.\n3. Build it into operations.\n\nThe .LLab™ legacy tools:\n→ Leadership Legacy Profile™ ($150)\n→ Legacy Infrastructure Map™ ($200)\n→ Legacy Infrastructure Architecture™ ($1,000)\n\nLink in bio → wearethellab.com\n\nSave this for your succession conversation.\n\n#successionplanning #familybusiness #businessowner #legacyplanning #leadership #omnidirectionalenterprise #wearethellab #legacy",
+      "status": "queued",
+      "published_at": null,
+      "media_id": null,
+      "permalink": null,
+      "image_urls": [
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_01.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_02.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_03.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_04.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_05.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c03_06.jpg"
+      ],
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c03_01.jpg"
     },
     {
       "id": "r05",
@@ -93,26 +127,6 @@
       "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r05.mp4",
       "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r05_cover.jpg",
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r05_cover.jpg"
-    },
-    {
-      "id": "c02",
-      "type": "CAROUSEL",
-      "pillar": "Partnership",
-      "goal": "Conversion: Partnership levels",
-      "caption": "Your legacy. Your whole team.\n\nThe Omnidirectional Enterprise™ Partnership has four levels:\nPartner · $5,000 · 1 seat\nStrategic · $10,000 · 3 seats\nEnterprise · $25,000 · 5 seats\nOmnidirectional · $50,000 · 10 seats\n\nOne payment. Licensed to keep. No subscription and no automatic charges.\n\nA license for internal enterprise use. Results depend on how each enterprise applies it.\n\nExplore Partnerships → wearethellab.com/pages/partnership.html (link in bio)\n\n#partnership #businessowners #executives #successionplanning #leadershipdevelopment #omnidirectionalenterprise #wearethellab",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
-      "image_urls": [
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_01.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_02.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_03.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_04.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_05.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c02_06.jpg"
-      ],
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c02_01.jpg"
     },
     {
       "id": "r06",
@@ -143,6 +157,26 @@
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r07_cover.jpg"
     },
     {
+      "id": "c02",
+      "type": "CAROUSEL",
+      "pillar": "Partnership",
+      "goal": "Conversion: Partnership levels",
+      "caption": "Your legacy. Your whole team.\n\nThe Omnidirectional Enterprise™ Partnership has four levels:\nPartner · $5,000 · 1 seat\nStrategic · $10,000 · 3 seats\nEnterprise · $25,000 · 5 seats\nOmnidirectional · $50,000 · 10 seats\n\nOne payment. Licensed to keep. No subscription and no automatic charges.\n\nA license for internal enterprise use. Results depend on how each enterprise applies it.\n\nExplore Partnerships → wearethellab.com/pages/partnership.html (link in bio)\n\n#partnership #businessowners #executives #successionplanning #leadershipdevelopment #omnidirectionalenterprise #wearethellab",
+      "status": "queued",
+      "published_at": null,
+      "media_id": null,
+      "permalink": null,
+      "image_urls": [
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_01.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_02.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_03.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_04.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_05.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c02_06.jpg"
+      ],
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c02_01.jpg"
+    },
+    {
       "id": "r08",
       "type": "REEL",
       "pillar": "Free door",
@@ -157,26 +191,6 @@
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r08_cover.jpg"
     },
     {
-      "id": "c03",
-      "type": "CAROUSEL",
-      "pillar": "Proprietary IP",
-      "goal": "Conversion: Preservation products",
-      "caption": "Succession is not a document. It is a system.\n\n1. Write down why it exists.\n2. Map what has to continue.\n3. Build it into operations.\n\nThe .LLab™ legacy tools:\n→ Leadership Legacy Profile™ ($150)\n→ Legacy Infrastructure Map™ ($200)\n→ Legacy Infrastructure Architecture™ ($1,000)\n\nLink in bio → wearethellab.com\n\nSave this for your succession conversation.\n\n#successionplanning #familybusiness #businessowner #legacyplanning #leadership #omnidirectionalenterprise #wearethellab #legacy",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
-      "image_urls": [
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_01.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_02.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_03.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_04.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_05.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c03_06.jpg"
-      ],
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c03_01.jpg"
-    },
-    {
       "id": "r09",
       "type": "REEL",
       "pillar": "Omnidirectional Enterprise",
@@ -189,20 +203,6 @@
       "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r09.mp4",
       "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r09_cover.jpg",
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r09_cover.jpg"
-    },
-    {
-      "id": "r10",
-      "type": "REEL",
-      "pillar": "Proprietary IP",
-      "goal": "Conversion: $20 entry",
-      "caption": "A $20 question for every founder: how strong is your leadership infrastructure?\n\nThe Leadership Infrastructure Strength Map™ is the first diagnostic step in The .LLab™, so you know where to build first.\n\nLink in bio → wearethellab.com\n\n#founders #businesscoach #leadershipdevelopment #smallbusinessowner #businessstrategy #omnidirectionalenterprise #wearethellab",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
-      "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r10.mp4",
-      "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r10_cover.jpg",
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r10_cover.jpg"
     },
     {
       "id": "r11",
