@@ -140,3 +140,23 @@ test('owner email links go through the private entry address so they open signed
   assert.match(sent[0].html, /<a href="https:\/\/wearethellab\.com\/admin\/entry-key-test\/ip-feedback\.html">/);
   if (before === undefined) delete process.env.ADMIN_ENTRY; else process.env.ADMIN_ENTRY = before;
 });
+
+test('IP review revisions: every guided IP carries The IV Phases, and only the standing portfolio note remains', () => {
+  const { catalog, portfolio } = require('../netlify/functions/lib/ip-audit');
+  const items = catalog();
+  const findings = [...items.flatMap((i) => (i.audit ? i.audit.findings : [])), ...portfolio(items.map((i) => ({ ...i, usage: {}, feedback: {} }))).recommendations];
+  assert.deepEqual(findings.map((f) => f.id), ['portfolio-phase-depth']);
+});
+
+test('long quests offer a short path that can finish the quest', () => {
+  const { quests, validateAnswers } = require('../netlify/functions/lib/quests');
+  for (const key of ['diagnostic', 'blueprint', 'legacy-map']) {
+    const q = quests.get(key);
+    assert.ok(q.shortPath.length >= 12 && q.shortPath.length <= 25, key);
+    const answers = { [q.closing.id]: 'I commit.' };
+    q.nodes.filter((n) => q.shortPath.includes(n.id)).forEach((n) => { answers[n.id] = n.type === 'scale' ? 4 : 'An answer.'; });
+    assert.equal(validateAnswers(q, answers, { complete: true }).ok, true, key);
+    delete answers[q.shortPath[0]];
+    assert.equal(validateAnswers(q, answers, { complete: true }).ok, false, key);
+  }
+});

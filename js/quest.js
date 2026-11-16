@@ -10,6 +10,7 @@
   var notes = {};
   var saveTimer = null;
   var canAnalyze = true;
+  var path = 'full';
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -25,14 +26,25 @@
     e.textContent = msg;
   }
 
-  function allNodes() { return quest.nodes.concat([quest.closing]); }
+  // Long quests offer a short path (quest.shortPath) and the full path; the choice is remembered on this device.
+  function hasShort() { return Array.isArray(quest.shortPath) && quest.shortPath.length > 0; }
+  function steps() { return path === 'short' && hasShort() ? quest.nodes.filter(function (n) { return quest.shortPath.indexOf(n.id) >= 0; }) : quest.nodes; }
+  function pickPath() {
+    if (!hasShort()) { path = 'full'; return; }
+    var stored = null;
+    try { stored = localStorage.getItem('qpath:' + key); } catch (e) {}
+    if (stored === 'short' || stored === 'full') { path = stored; return; }
+    var offShort = quest.nodes.some(function (n) { return quest.shortPath.indexOf(n.id) < 0 && answered(n); });
+    path = offShort ? 'full' : 'short';
+  }
+  function allNodes() { return steps().concat([quest.closing]); }
   function answered(n) {
     var v = answers[n.id];
     return n.type === 'text' ? typeof v === 'string' && v.trim() !== '' : v !== undefined;
   }
-  function requiredCount() { return Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
+  function requiredCount() { return path === 'short' && hasShort() ? steps().length : Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
   function canFinish() {
-    return quest.nodes.filter(answered).length >= requiredCount() && answered(quest.closing);
+    return steps().filter(answered).length >= requiredCount() && answered(quest.closing);
   }
 
   function feedback(n) {
@@ -48,8 +60,8 @@
   // has no sections and needs every answer) opens once the one before it is met.
   function groups() {
     var out = [];
-    var every = !(quest.minAnswered && quest.minAnswered < 1);
-    quest.nodes.forEach(function (n) {
+    var every = path === 'short' || !(quest.minAnswered && quest.minAnswered < 1);
+    steps().forEach(function (n) {
       var last = out[out.length - 1];
       if (n.section && last && last.section === n.section) { last.nodes.push(n); return; }
       if (!n.section && !every && last && !last.section) { last.nodes.push(n); return; }
@@ -86,7 +98,7 @@
     var done = nodes.filter(answered).length;
     $('q-fill').style.width = Math.round((done / nodes.length) * 100) + '%';
     var need = requiredCount();
-    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
+    $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (path === 'short' ? ' (short path)' : quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
     $('q-finish').disabled = !canFinish();
     applyLocks();
     nodes.forEach(function (n) {
@@ -234,8 +246,26 @@
     $('q-run').hidden = false;
     var map = $('q-map');
     map.textContent = '';
+    if (hasShort()) {
+      var bar = el('div', 'q-path');
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Choose your path');
+      [['short', 'Short path (' + quest.shortPath.length + ' steps)'], ['full', 'Full path (' + quest.nodes.length + ' steps)']].forEach(function (o) {
+        var b = el('button', 'q-choice', o[1]);
+        b.type = 'button';
+        b.setAttribute('aria-pressed', path === o[0] ? 'true' : 'false');
+        b.addEventListener('click', function () {
+          path = o[0];
+          try { localStorage.setItem('qpath:' + key, path); } catch (e) {}
+          showRun();
+        });
+        bar.appendChild(b);
+      });
+      map.appendChild(bar);
+      map.appendChild(el('p', 'q-meta', 'The short path covers every phase in fewer steps. Your answers carry over if you switch.'));
+    }
     var lastSection = null;
-    quest.nodes.forEach(function (n) {
+    steps().forEach(function (n) {
       if (n.section && n.section !== lastSection) {
         lastSection = n.section;
         map.appendChild(el('h2', 'q-section', n.section));
@@ -297,6 +327,7 @@
         if (saved && saved.answers) answers = saved.answers;
         if (saved && saved.notes) notes = saved.notes;
         if (saved && saved.status === 'done') { showResult(saved); return; }
+        pickPath();
         showRun();
         setTier();
         if (!canAnalyze && saved && saved.readyForAnalysis && saved.preview) showLocked(saved.preview);
@@ -333,7 +364,7 @@
   $('lk-edit').addEventListener('click', function () { $('q-locked').hidden = true; $('q-run').hidden = false; btnReset(); window.scrollTo(0, 0); });
   function btnReset() { $('q-finish').disabled = !canFinish(); }
 
-  $('r-retake').addEventListener('click', function () { showRun(); window.scrollTo(0, 0); });
+  $('r-retake').addEventListener('click', function () { pickPath(); showRun(); window.scrollTo(0, 0); });
 
   init();
 })();

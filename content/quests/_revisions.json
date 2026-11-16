@@ -1,0 +1,773 @@
+{
+ "_readme": "Revisions layered over the generated quests (content/quests/<key>.json) when they load, so rebuilding a quest from its workbook PDF never loses them. guide: a bare-label prompt becomes a guiding question (the old text stays as the card label). replace: rewrites a prompt. split: one long prompt becomes two. drop: removes a prompt folded into another. add: new prompts (phase 0-3) carrying the IP through The IV Phases™ and outward to the Omnidirectional Enterprise™; appended in a closing section unless placed with after/before. shortPath: the node ids of the short path offered on long quests. Answered from the owner's IP analysis, November 2026.",
+ "quests": {
+  "alignment-map": {
+   "section": "Carry Alignment Forward",
+   "guide": {
+    "n2": "What is our mission, stated so every leader would describe it the same way?",
+    "n3": "What is our vision: where are we going, and what will be different when we arrive?",
+    "n4": "What is our purpose: why does this work matter to the people and communities we serve?",
+    "n7": "Which leadership values do we hold, and which one do our leaders model most consistently?",
+    "n8": "Name one value. What behavior shows it, and what behavior would break it?"
+   },
+   "add": [
+    [
+     2,
+     "Which weekly meeting, review or tool will keep our team checking decisions against the mission and strategy?"
+    ],
+    [
+     3,
+     "What will we document so a new leader inherits this alignment instead of rebuilding it?"
+    ],
+    [
+     3,
+     "Which partners, clients, nonprofits or community members should see this alignment, and how will we keep it visible to them over time?"
+    ]
+   ]
+  },
+  "blueprint-phase1": {
+   "section": "Carry Phase One Forward",
+   "add": [
+    [
+     1,
+     "Which foundation from this phase needs a named owner, and who in the organization will hold it?"
+    ],
+    [
+     1,
+     "Which partners, clients or community members should understand these foundations, and how will you share them?"
+    ],
+    [
+     2,
+     "How will this foundation show up in a weekly practice, meeting or tool your team already uses?"
+    ],
+    [
+     3,
+     "What must be written down so this foundation survives a change in leadership?"
+    ]
+   ]
+  },
+  "blueprint-phase2": {
+   "section": "Carry Phase Two Forward",
+   "add": [
+    [
+     0,
+     "Which part of your mission or values should every plan in this phase protect?"
+    ],
+    [
+     1,
+     "Which partners, funding sources or community organizations does this plan depend on, and who owns each relationship?"
+    ],
+    [
+     2,
+     "Which plan from this phase will become a standing routine, and how often will your team review it?"
+    ],
+    [
+     3,
+     "Which decision rights and responsibilities will you document so they belong to the organization rather than one person?"
+    ]
+   ]
+  },
+  "blueprint-phase3": {
+   "section": "Carry Phase Three Forward",
+   "add": [
+    [
+     0,
+     "Which value should every operating system in this phase reinforce?"
+    ],
+    [
+     1,
+     "Who owns each system you named, and when is it reviewed?"
+    ],
+    [
+     2,
+     "How do these operating systems serve your clients, partners and community, not only your internal team?"
+    ],
+    [
+     3,
+     "How will a new team member learn these systems without depending on one leader?"
+    ]
+   ]
+  },
+  "blueprint-phase4": {
+   "section": "Carry Phase Four Forward",
+   "add": [
+    [
+     0,
+     "Which part of your purpose is the reason this preservation work matters?"
+    ],
+    [
+     1,
+     "Who is responsible for keeping each preserved record current, and how often?"
+    ],
+    [
+     2,
+     "Which daily or weekly practice will keep what you preserve in active use?"
+    ],
+    [
+     3,
+     "Who beyond your walls (successors, partners, community members or the nonprofits you serve) should inherit something from this work?"
+    ]
+   ]
+  },
+  "blueprint-welcome": {
+   "section": "Reflections As You Begin",
+   "add": [
+    [
+     0,
+     "As you begin, who outside your organization (partners, people in your community, creators or nonprofits) will be affected by what you build?"
+    ]
+   ]
+  },
+  "blueprint": {
+   "replace": {
+    "n1": "Before you begin: which strengths does your organization already have that this Blueprint should build on?",
+    "n34": "At the end of this Blueprint, what infrastructure will the organization have created?",
+    "n41": "Which existing practice will you build on first, rather than replace?"
+   },
+   "guide": {
+    "n2": "What is our current strength in Foundations, in one sentence?",
+    "n10": "Which Foundations strength will we develop next?",
+    "n11": "What outcome will tell us that strength is in place?",
+    "n12": "What is the first action, and who takes it?",
+    "n17": "Which planning or management strength will we develop next?",
+    "n18": "What outcome will tell us it has become a repeatable practice?",
+    "n19": "What is the first action, and who owns it?",
+    "n24": "Which culture or operating strength will we develop next?",
+    "n25": "What will people see us doing consistently when it is in place?",
+    "n26": "What is the first action, and when will the team practice it?",
+    "n31": "Which strength must we preserve above all?",
+    "n32": "What outcome would show it will outlast the current leaders?",
+    "n33": "What is the first preservation action: what gets documented or handed on, and by whom?",
+    "n36": "Which strength is at the center of what you are building?",
+    "n37": "What infrastructure does that strength need to last?",
+    "n38": "Which people are responsible for building and keeping it?",
+    "n39": "What is the first action you will take this month?",
+    "n40": "Describe the future state: what does the organization look like when this is in place?"
+   },
+   "add": [
+    {
+     "phase": 1,
+     "section": "The Final Prompt",
+     "after": "n40",
+     "prompt": "Which partners, communities, nonprofits or funding sources could help carry this Blueprint, and what would each receive in return?"
+    }
+   ],
+   "shortPath": [
+    "n1",
+    "n3",
+    "n4",
+    "n12",
+    "n13",
+    "n16",
+    "n19",
+    "n20",
+    "n22",
+    "n26",
+    "n27",
+    "n29",
+    "n33",
+    "n35",
+    "n39",
+    "r1"
+   ]
+  },
+  "build-plan": {
+   "guide": {
+    "n1": "What is the one priority this plan will build, and why now?",
+    "n7": "What is the one Foundations action we will take?",
+    "n12": "What is the one infrastructure action we will take, and who owns it?",
+    "n16": "What is the one operating action that will make this part of our weekly rhythm?",
+    "n20": "What is the one preservation action that will make this outlast the people building it?",
+    "n21": "Week 1: which priority are we clarifying, in one sentence?",
+    "n22": "What outcome do we want by the end of the month?",
+    "n24": "Who owns it, and which decisions are theirs to make?",
+    "n26": "How will we measure progress each week?",
+    "n29": "What result do we expect, and how will we know we reached it?"
+   },
+   "add": [
+    {
+     "phase": 1,
+     "section": "Your Commitment",
+     "before": "n29",
+     "prompt": "Which partners, community organizations or funding sources does this plan rely on, and who owns each relationship?"
+    }
+   ]
+  },
+  "creative-estate-mapping": {
+   "section": "Part 5 — the Foundations and Authority",
+   "add": [
+    [
+     0,
+     "In one sentence, what is the creative legacy this estate should protect?"
+    ],
+    [
+     0,
+     "What should the body of work continue to mean to the people and audiences it reaches?"
+    ],
+    [
+     0,
+     "Which values should guide every decision about your work after you, including what must never be done with it?"
+    ],
+    [
+     1,
+     "Who has authority to make decisions about the work, and is that written down?"
+    ],
+    [
+     1,
+     "Which rights, licenses or agreements need an owner and a review date?"
+    ]
+   ]
+  },
+  "creator-alignment-map": {
+   "section": "Carry It Through The IV Phases™",
+   "add": [
+    [
+     0,
+     "What does your work stand for, in one sentence, that every part of this alignment should serve?"
+    ],
+    [
+     3,
+     "What will you document so a collaborator, studio partner or successor could keep this alignment if you stepped back?"
+    ]
+   ]
+  },
+  "creator-audience-offer-map": {
+   "section": "Carry It Through The IV Phases™",
+   "add": [
+    [
+     1,
+     "Which offer needs a clear price, a delivery plan and an owner first?"
+    ],
+    [
+     1,
+     "Which partners, venues or platforms will carry your offers to each audience?"
+    ],
+    [
+     2,
+     "What weekly routine will keep your audience hearing from you and your offers in front of them?"
+    ],
+    [
+     3,
+     "What records of your audience and buyers will you keep, and where, so the relationships are not lost?"
+    ]
+   ]
+  },
+  "creator-foundations-assessment": {
+   "section": "Carry It Forward",
+   "add": [
+    [
+     3,
+     "Which part of your creative foundation would be lost if you stopped working tomorrow?"
+    ],
+    [
+     3,
+     "What will you write down or hand to someone so your voice, practice and ownership records outlast you?"
+    ],
+    [
+     3,
+     "Who could carry your work forward (a collaborator, studio, apprentice or community), and what would they need from you?"
+    ]
+   ],
+   "replace": {
+    "n29": "Add up the scores in each part (Voice, Practice, Audience, Offer, Ownership). What is each total, and what do they tell you together?"
+   },
+   "drop": [
+    "n30",
+    "n31",
+    "n32",
+    "n33"
+   ]
+  },
+  "creator-foundations-manual": {
+   "section": "Part 9 — Plan and Preserve It",
+   "add": [
+    [
+     1,
+     "Which part of your foundation needs a plan: who owns it, what budget it needs, and when it is reviewed?"
+    ],
+    [
+     1,
+     "Which collaborators, clients or partners need to understand your foundation, and how will they receive it?"
+    ],
+    [
+     3,
+     "What will you document so this foundation can be taught to an apprentice or successor?"
+    ],
+    [
+     3,
+     "Where will your foundation statement, records and rights live so they remain accessible over time?"
+    ]
+   ]
+  },
+  "creator-legacy-architecture": {
+   "add": [
+    {
+     "phase": 2,
+     "section": "Pillar 3 — Operating Architecture",
+     "prompt": "Which weekly or monthly practice keeps your legacy infrastructure current while you are still making work?"
+    }
+   ]
+  },
+  "creator-operating-system": {
+   "section": "Module 7 — Foundations and Continuity",
+   "guide": {
+    "n1": "What is your weekly rhythm: which days are for making, selling, and running the business?",
+    "n4": "How do new people first discover your work?",
+    "n5": "How do they stay engaged with you between purchases?",
+    "n6": "What builds their trust that your work is worth paying for?",
+    "n7": "How do they buy, commission or support the work?",
+    "n8": "What brings them back for the next piece?"
+   },
+   "split": {
+    "n11": [
+     "Name the three decisions that come up most often in your venture (for example pricing a commission, accepting a collaboration, or saying yes to a project).",
+     "For each of those decisions, what standing rule will you apply instead of deciding fresh every time?"
+    ]
+   },
+   "add": [
+    [
+     0,
+     "Which value or standard should every system in your venture protect?"
+    ],
+    [
+     3,
+     "What would someone need written down to run your studio for a month without you, and which collaborators, clients or community partners would they need to know?"
+    ]
+   ]
+  },
+  "creator-practice-profile": {
+   "section": "Step 6 — Structure and Continuity",
+   "add": [
+    [
+     1,
+     "Which part of your practice should have a written plan, with a schedule and a budget?"
+    ],
+    [
+     1,
+     "Which responsibilities could you hand to a collaborator, assistant or partner?"
+    ],
+    [
+     1,
+     "Which decisions about your practice should follow a standing rule rather than your mood on the day?"
+    ],
+    [
+     1,
+     "Which clients, venues or organizations does your practice depend on, and who manages each relationship?"
+    ],
+    [
+     1,
+     "What would you measure each month to know the practice is healthy?"
+    ],
+    [
+     3,
+     "Where are your records, files and rights kept, and could someone else find them?"
+    ],
+    [
+     3,
+     "Who could you mentor or teach so your methods continue?"
+    ],
+    [
+     3,
+     "What should happen to your practice and your work if you could no longer make it?"
+    ],
+    [
+     3,
+     "Which community, nonprofit or institution would you want to hold part of your work or knowledge in the future?"
+    ]
+   ]
+  },
+  "creator-voice-values-map": {
+   "section": "Carry It Through The IV Phases™",
+   "add": [
+    [
+     1,
+     "Which collaborations, commissions or partnerships fit your values, and which would you decline?"
+    ],
+    [
+     1,
+     "Who decides how your name and work are used, and is that agreed in advance?"
+    ],
+    [
+     3,
+     "How will you record your voice and values so a collaborator or successor could represent your work faithfully to your audience?"
+    ]
+   ]
+  },
+  "creator-website-blueprint": {
+   "add": [
+    {
+     "phase": 0,
+     "after": "n3",
+     "prompt": "Which communities, partners or other creators should your site connect visitors to?"
+    }
+   ]
+  },
+  "decision-principles-playbook": {
+   "section": "Step 7 — Make It How We Operate and Preserve It",
+   "guide": {
+    "n8": "What is our first decision principle, written as a rule a new leader could apply?",
+    "n9": "What is our second decision principle, and which decision does it settle?",
+    "n10": "What is our third decision principle, and what would it stop us from doing?",
+    "n11": "What is our fourth decision principle, and how does it protect the people we serve?",
+    "n12": "What is our fifth decision principle, and when would it override the others?"
+   },
+   "add": [
+    [
+     2,
+     "In which meeting or tool will decisions be recorded and checked against these principles?"
+    ],
+    [
+     2,
+     "What does a decision record include, so anyone can see what was decided and why?"
+    ],
+    [
+     2,
+     "How often will we review a sample of recent decisions, and who leads that review?"
+    ],
+    [
+     2,
+     "How will the team raise it when a decision did not follow our principles?"
+    ],
+    [
+     3,
+     "How will these principles be taught to new leaders and successors?"
+    ],
+    [
+     3,
+     "Which past decisions should be kept as precedent, and where will they live?"
+    ],
+    [
+     3,
+     "If our decision-makers changed tomorrow, what would let the next leaders decide the same way?"
+    ],
+    [
+     3,
+     "Which partners, clients or community members should know how we decide, so they can trust our decisions?"
+    ]
+   ]
+  },
+  "diagnostic": {
+   "shortPath": [
+    "n1",
+    "n3",
+    "n5",
+    "n9",
+    "n11",
+    "n12",
+    "n14",
+    "n16",
+    "n17",
+    "n22",
+    "n23",
+    "n25",
+    "n28",
+    "n31",
+    "n33",
+    "n34",
+    "n36",
+    "n39",
+    "n40",
+    "n44",
+    "n45"
+   ]
+  },
+  "event-infrastructure": {
+   "split": {
+    "n4": [
+     "Assign ownership: name one accountable owner for each of program and content, venue and setup, audio-visual and technical, and security and crowd safety.",
+     "Name one accountable owner for each of welfare and first aid, registration and admission, vendors and hospitality, and volunteers and staff."
+    ]
+   }
+  },
+  "foundations-assessment": {
+   "section": "Carry It Forward",
+   "add": [
+    [
+     1,
+     "Which foundation from this assessment needs a named owner and a review date?"
+    ],
+    [
+     2,
+     "Which meeting, onboarding step or routine will keep these foundations in daily use?"
+    ],
+    [
+     3,
+     "What will you document so your foundations stay clear through growth or a change of leadership?"
+    ],
+    [
+     3,
+     "Which partners, communities or nonprofits should these foundations be visible to over time?"
+    ]
+   ],
+   "replace": {
+    "n30": "Add up the scores in each part (Purpose, Identity, Values, Direction, Shared Understanding). What is each total, and what do they tell you together?"
+   },
+   "drop": [
+    "n31",
+    "n32",
+    "n33",
+    "n34"
+   ]
+  },
+  "foundations-manual": {
+   "section": "Part 9 — Put the Charter to Work",
+   "guide": {
+    "n3": "What is our purpose, in one sentence a new team member could repeat?",
+    "n15": "What is our first decision principle, written as a rule?",
+    "n16": "What is our second decision principle, written as a rule?",
+    "n17": "What is our third decision principle, written as a rule?"
+   },
+   "add": [
+    [
+     2,
+     "Which weekly practice or onboarding step will put this charter to work?"
+    ],
+    [
+     3,
+     "Where will the charter be kept, and who keeps it current?"
+    ],
+    [
+     3,
+     "Which partners, communities or nonprofits should see this charter, and how will it reach them?"
+    ]
+   ]
+  },
+  "founder": {
+   "section": "The IV Phases™",
+   "add": [
+    [
+     0,
+     "Which people, partners or communities do you want your founding to strengthen, and how?"
+    ]
+   ]
+  },
+  "friends-family": {
+   "section": "The IV Phases™",
+   "add": [
+    [
+     0,
+     "Which people in your family, community or network would you bring into this work, and what would it mean to them?"
+    ]
+   ]
+  },
+  "premium-friends-family": {
+   "section": "The IV Phases™",
+   "add": [
+    [
+     0,
+     "Which people, organizations or communities do you want your founding to reach, and how will value move between you?"
+    ]
+   ]
+  },
+  "leadership-identity-profile": {
+   "section": "Step 7 — Make It Visible and Organizational",
+   "add": [
+    [
+     1,
+     "Which responsibilities should move from you to the organization so your leadership does not become a bottleneck?"
+    ],
+    [
+     2,
+     "Which daily or weekly practice will make your leadership identity visible to your team?"
+    ],
+    [
+     2,
+     "How will you ask your team, partners and community for feedback on whether you lead the way you describe?"
+    ]
+   ]
+  },
+  "legacy-architecture": {
+   "add": [
+    {
+     "phase": 3,
+     "prompt": "Which people, communities or nonprofits will benefit from this architecture after you, and how will they be included?"
+    }
+   ],
+   "section": "Phase IV — Preservation"
+  },
+  "legacy-foundations-framework": {
+   "section": "06 · Carry the Foundations Forward",
+   "guide": {
+    "n2": "Who do we exist to serve, and what would they lose without us?",
+    "n6": "What are our non-negotiables: the standards we will not trade for growth or revenue?",
+    "n11": "What is our strongest foundation today, and what proves it?",
+    "n12": "Where are we most exposed: what would weaken first under pressure?",
+    "n16": "What is our legacy statement: what should still be true because we built this?"
+   },
+   "add": [
+    [
+     1,
+     "Which of these foundations needs a named owner and a written decision right?"
+    ],
+    [
+     2,
+     "How will these foundations show up in meetings, onboarding and everyday decisions?"
+    ],
+    [
+     3,
+     "What will we record so the founding vision is carried by the next generation of leaders?"
+    ]
+   ]
+  },
+  "legacy-infrastructure-plan": {
+   "section": "07 · Foundations, Rhythm and Continuity",
+   "add": [
+    [
+     0,
+     "Which legacy priority matters most, and why does it matter to the people you serve?"
+    ],
+    [
+     2,
+     "Which operating rhythm will move this 12-month plan forward each month?"
+    ],
+    [
+     3,
+     "What will be documented, and which partners, community organizations or funding sources need to be part of the plan's continuity?"
+    ]
+   ]
+  },
+  "legacy-map": {
+   "guide": {
+    "n6": "What is our mission, in one sentence?",
+    "n7": "What is our vision of the future we are building toward?",
+    "n8": "Which values must never be lost?",
+    "n9": "Which leadership principles guide how we lead?",
+    "n10": "What is our legacy foundation: the one thing everything else rests on?",
+    "n12": "What important knowledge must become organizational rather than personal?",
+    "n13": "Which critical decisions need a clear owner and process?",
+    "n14": "Which key responsibilities depend on one person today?",
+    "n15": "Which important relationships (partners, clients, community) need more than one person holding them?",
+    "n21": "Which operating practices create value and should continue?",
+    "n24": "What knowledge must continue, and where will it be kept?",
+    "n25": "What part of our culture must continue?",
+    "n26": "Which leadership practices must continue?",
+    "n27": "Which processes must continue, and are they written down?",
+    "n28": "What part of our organizational history should be recorded and passed on?"
+   },
+   "shortPath": [
+    "n1",
+    "n4",
+    "n5",
+    "n6",
+    "n10",
+    "n11",
+    "n15",
+    "n16",
+    "n17",
+    "n22",
+    "n23",
+    "n29",
+    "n30",
+    "n37",
+    "n38",
+    "n39",
+    "n40",
+    "n44"
+   ]
+  },
+  "legacy-operating-systems-manual": {
+   "section": "07 · Foundations, Ownership and Continuity",
+   "add": [
+    [
+     0,
+     "Which mission or value should every operating system in this manual reinforce?"
+    ],
+    [
+     1,
+     "Who owns each department system, and when is it reviewed?"
+    ],
+    [
+     2,
+     "Which tools, platforms and data do these systems run on, and how do clients and partners experience them?"
+    ],
+    [
+     3,
+     "How will this manual be kept current and handed to the next leaders?"
+    ]
+   ]
+  },
+  "legacy-preservation-vault": {
+   "section": "Article VII · Foundations and Stewardship",
+   "add": [
+    [
+     0,
+     "Which purpose or value is this vault protecting above everything else?"
+    ],
+    [
+     1,
+     "Who is the steward of the vault, and which decisions can they make?"
+    ],
+    [
+     2,
+     "How often will the vault be opened, reviewed and updated, and who does it?"
+    ]
+   ]
+  },
+  "legacy-profile": {
+   "section": "Infrastructure Planning & Management",
+   "guide": {
+    "n7": "What is your strongest leadership strength, in a few words?",
+    "n8": "What principle sits behind that strength?",
+    "n9": "What behavior shows that strength to others?"
+   },
+   "add": [
+    {
+     "phase": 1,
+     "section": "Infrastructure Planning & Management",
+     "after": "LAST_IN_SECTION",
+     "prompt": "Which part of your leadership impact needs a plan, an owner and a review date?"
+    },
+    {
+     "phase": 1,
+     "section": "Infrastructure Planning & Management",
+     "after": "LAST_IN_SECTION",
+     "prompt": "Which responsibilities should you hand on so your influence becomes organizational?"
+    }
+   ]
+  },
+  "operating-system": {
+   "guide": {
+    "n2": "What leadership principle should guide how we operate?",
+    "n3": "Which behavior demonstrates that principle?",
+    "n4": "How will we reinforce it week to week?",
+    "n6": "What is our top priority this cycle?",
+    "n7": "Who owns that priority?",
+    "n8": "What outcome do we expect from it?",
+    "n9": "How and when will we review progress?",
+    "n11": "Which strength do we want to reinforce in how we operate?",
+    "n12": "What behavior do we expect from everyone as a result?",
+    "n13": "Which system or tool supports that behavior?",
+    "n14": "How will we measure it?",
+    "n16": "What must continue no matter who leads?",
+    "n17": "Who needs to know it?",
+    "n18": "How will we preserve it?",
+    "n19": "How will we transfer it to the next leaders?"
+   }
+  },
+  "values-charter": {
+   "section": "Step 7 — Keep the Charter Alive",
+   "guide": {
+    "n3": "What is our mission, in one sentence a new team member could repeat?",
+    "n6": "What is our vision, in one sentence?",
+    "n8": "What is the first value we commit to, and what does it mean here?",
+    "n9": "What is the second value we commit to, and what does it mean here?",
+    "n10": "What is the third value we commit to, and what does it mean here?",
+    "n11": "What is the fourth value we commit to, and what does it mean here?"
+   },
+   "add": [
+    [
+     2,
+     "How will these values show up in hiring, meetings and everyday decisions?"
+    ],
+    [
+     3,
+     "How will this charter be kept, reviewed and handed to future leaders?"
+    ],
+    [
+     3,
+     "Which partners, communities or nonprofits should know what we stand for?"
+    ]
+   ]
+  }
+ }
+}
