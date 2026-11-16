@@ -43,6 +43,7 @@
   <p class="subhead" style="margin-top:0.75rem;">Member companies ask to join the .LLab Collaborating Companies in the Omnidirectional Enterprise™. Nothing appears publicly until you approve it, and every edit goes back to review. Rejecting needs a note, which the member sees.</p>
   <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
   <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="ip-feedback.html">IP review</a> <a class="pill mini" href="ip-analysis.html">IP analysis</a></p>
+  <div id="eco" class="row"></div>
   <div id="list"></div>
 </div>
 
@@ -64,6 +65,13 @@
   function render(d) {
     const pending = d.listings.filter((l) => l.status === 'pending').length;
     $('awaiting').textContent = pending ? pending + (pending === 1 ? ' company' : ' companies') + ' awaiting review.' : 'Nothing is waiting for review.';
+    const eco = d.ecosystem || { byYear: {}, listed: 0, withOffers: 0 };
+    const ecoBox = $('eco'); ecoBox.textContent = '';
+    ecoBox.appendChild(el('h3', null, 'Omnidirectional Enterprise™ report counts'));
+    ecoBox.appendChild(el('p', 'why', eco.listed + ' companies listed · ' + eco.withOffers + ' with a member offer. Counts only, never who asked whom: the real numbers for the yearly report.'));
+    const years = Object.keys(eco.byYear).sort().reverse();
+    if (!years.length) ecoBox.appendChild(el('p', 'meta', 'No introductions or offer requests yet. Counting started November 2026.'));
+    years.forEach((y) => ecoBox.appendChild(el('p', 'meta', y + ': ' + eco.byYear[y].intro + ' introductions · ' + eco.byYear[y].offer + ' member-offer requests')));
     const list = $('list'); list.textContent = '';
     if (!d.listings.length) list.appendChild(el('p', 'why', 'No companies yet.'));
     d.listings.forEach((l) => {
@@ -79,6 +87,9 @@
       if (l.website) contact.appendChild(safeLink(l.website, l.website));
       if (l.contactEmail) contact.appendChild(document.createTextNode('  ' + l.contactEmail));
       row.appendChild(contact);
+      if (l.offer) row.appendChild(el('p', 'why', 'Member offer: ' + l.offer.text + ' — Terms: ' + l.offer.terms));
+      if (l.requests) row.appendChild(el('p', 'why', 'Asking for skills or volunteers: ' + l.requests));
+      if (l.seeking && l.seeking.length) row.appendChild(el('p', 'why', 'Seeking: ' + l.seeking.join(', ')));
       const box = el('div', 'decide');
       const note = el('textarea'); note.placeholder = 'Note to the member (required to reject)'; note.value = l.note || '';
       const msg = el('span', 'meta');

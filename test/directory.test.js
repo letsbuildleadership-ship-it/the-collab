@@ -96,3 +96,35 @@ test('the admin review page is owner-only', async () => {
   const res = await adminDirectory.handler({ httpMethod: 'GET', headers: { 'x-admin-token': 'wrong' } });
   assert.equal(res.statusCode, 401);
 });
+
+test('member offers, skill requests and successor flags: optional, member-written, shown publicly', () => {
+  const v = validateListing({ ...good, offer: { text: '10% off a brand audit for members', terms: 'Members only, through June 2027' }, requests: 'Volunteer photographers for a spring event', seeking: ['successor', 'nonsense'] });
+  assert.deepEqual(v.listing.offer, { text: '10% off a brand audit for members', terms: 'Members only, through June 2027' });
+  assert.deepEqual(v.listing.seeking, ['successor']);
+  assert.equal(v.listing.requests, 'Volunteer photographers for a spring event');
+  assert.match(validateListing({ ...good, offer: { text: 'An offer', terms: '' } }).error, /terms/);
+  assert.equal(validateListing(good).listing.offer, null);
+});
+
+test('introductions: a member asks, the listed company is emailed with reply-to, only anonymous counts are kept', async () => {
+  const intro = require('../netlify/functions/directory-intro');
+  const a = await paidMember('a@example.com');
+  const b = await paidMember('b@example.com');
+  await call(a, 'POST', { ...good, offer: { text: 'A member offer', terms: 'Members only' } });
+  const listed = JSON.parse((await admin('GET')).body).listings[0];
+  await admin('POST', { memberId: listed.memberId, status: 'approved' });
+  sent = [];
+  const send = (token, body) => intro.handler({ httpMethod: 'POST', headers: token ? { cookie: `collab_token=${token}` } : {}, body: JSON.stringify(body) });
+  assert.equal((await send(null, { listingId: listed.publicId, message: 'We would like to explore a partnership.' })).statusCode, 401);
+  assert.equal((await send(a, { listingId: listed.publicId, message: 'We would like to explore a partnership.' })).statusCode, 400);
+  assert.equal((await send(b, { listingId: listed.publicId, fromCompany: 'North Co', message: 'short' })).statusCode, 400);
+  assert.equal((await send(b, { listingId: listed.publicId, fromCompany: 'North Co', message: 'We would like to explore a partnership.' })).statusCode, 200);
+  assert.equal((await send(b, { listingId: listed.publicId, fromCompany: 'North Co', message: 'Tell me more about your member offer.', viaOffer: true })).statusCode, 200);
+  assert.equal(sent.length, 2);
+  assert.equal(sent[0].to, 'a@example.com');
+  assert.equal(sent[0].replyTo, 'b@example.com');
+  const eco = JSON.parse((await admin('GET')).body).ecosystem;
+  const y = new Date().toISOString().slice(0, 4);
+  assert.deepEqual(eco.byYear[y], { intro: 1, offer: 1 });
+  assert.equal(eco.withOffers, 1);
+});

@@ -8,6 +8,8 @@ const pricing = require('./pricing');
 
 const DIRECTIONS = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const KINDS = ['product', 'service'];
+// Optional flags a company can show: who it is looking for to carry its work forward.
+const SEEKING = ['successor', 'apprenticeship'];
 
 const clean = (s, n) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, n);
 
@@ -53,12 +55,21 @@ function validateListing(raw) {
   }
   if (!offerings.length) return { error: 'List at least one product or service you offer.' };
 
-  return { listing: { companyName, tagline: clean(input.tagline, 140), description, location: clean(input.location, 60), website, contactEmail, directions, offerings } };
+  // An optional member-to-member offer, written and set by the member (clearly labeled as theirs).
+  const offerText = clean(input.offer && input.offer.text, 280);
+  const offerTerms = clean(input.offer && input.offer.terms, 280);
+  if (offerText && offerTerms.length < 5) return { error: 'Add the terms of your member offer (who it is for, how long it runs, any limits).' };
+  const offer = offerText ? { text: offerText, terms: offerTerms } : null;
+  // Skills or volunteers a company is asking for (nonprofits and communities especially).
+  const requests = clean(input.requests, 280);
+  const seeking = [...new Set((Array.isArray(input.seeking) ? input.seeking : []).filter((x) => SEEKING.includes(x)))];
+
+  return { listing: { companyName, tagline: clean(input.tagline, 140), description, location: clean(input.location, 60), website, contactEmail, directions, offerings, offer, requests, seeking } };
 }
 
 /** What the public may see: no member identity or account email. */
 function publicView(l) {
-  return { id: l.publicId, companyName: l.companyName, tagline: l.tagline, description: l.description, location: l.location, website: l.website, contactEmail: l.contactEmail, directions: l.directions, offerings: l.offerings, approvedAt: l.approvedAt };
+  return { id: l.publicId, companyName: l.companyName, tagline: l.tagline, description: l.description, location: l.location, website: l.website, contactEmail: l.contactEmail, directions: l.directions, offerings: l.offerings, offer: l.offer || null, requests: l.requests || '', seeking: l.seeking || [], approvedAt: l.approvedAt };
 }
 
-module.exports = { DIRECTIONS, isEligible, validateListing, publicView, cleanUrl };
+module.exports = { DIRECTIONS, SEEKING, isEligible, validateListing, publicView, cleanUrl };
