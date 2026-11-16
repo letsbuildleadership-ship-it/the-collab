@@ -1,3 +1,4 @@
+const { ownerLink } = require('./lib/owner-link');
 // Public list of approved companies (GET), plus the signed-in member's own
 // listing (GET ?mine=1, POST to save, POST { action: 'remove' } to take it down).
 // Every save goes back to "pending" and is reviewed before it appears.
@@ -66,8 +67,8 @@ exports.handler = async (event) => {
     await sendMail({
       to: process.env.OWNER_EMAIL || process.env.SMTP_USER || 'letsbuildleadership@gmail.com',
       subject: `Collaborating company to review: ${listing.companyName}`,
-      text: `${listing.companyName}\n${listing.description}\n\nReview it: https://wearethellab.com/admin/collaborating-companies.html`,
-      html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="https://wearethellab.com/admin/collaborating-companies.html">Review it</a></p>`,
+      text: `${listing.companyName}\n${listing.description}\n\nReview it: ${ownerLink('collaborating-companies.html')}`,
+      html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="${ownerLink('collaborating-companies.html')}">Review it</a></p>`,
     });
   } catch (err) {
     console.error('The .LLab Collaborating Companies review email failed:', err.message);
