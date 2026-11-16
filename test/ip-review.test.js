@@ -128,3 +128,15 @@ test('content audit flags missing phases, bare labels and repeated prompts', () 
   assert.ok(f.includes('labels'));
   assert.ok(f.includes('duplicates'));
 });
+
+test('owner email links go through the private entry address so they open signed in', async () => {
+  const { ownerLink } = require('../netlify/functions/lib/owner-link');
+  const before = process.env.ADMIN_ENTRY;
+  process.env.ADMIN_ENTRY = 'entry-key-test';
+  assert.equal(ownerLink('ip-feedback.html'), 'https://wearethellab.com/admin/entry-key-test/ip-feedback.html');
+  sent.length = 0;
+  await digest.handler();
+  assert.match(sent[0].text, /\/admin\/entry-key-test\/ip-feedback\.html/);
+  assert.match(sent[0].html, /<a href="https:\/\/wearethellab\.com\/admin\/entry-key-test\/ip-feedback\.html">/);
+  if (before === undefined) delete process.env.ADMIN_ENTRY; else process.env.ADMIN_ENTRY = before;
+});
