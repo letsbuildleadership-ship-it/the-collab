@@ -96,6 +96,9 @@ function ringFig(mode){
 function wrapSvg(W,H,s,m){return `<svg xmlns="${NS}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Figure ${m}" font-family="Inter, Helvetica Neue, Arial, sans-serif"><defs>
  <linearGradient id="fil${m}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${C.f1}"/><stop offset="1" stop-color="${C.f2}"/></linearGradient>
  <marker id="ah${m}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L9 5L0 9" fill="none" stroke="${C.f2}" stroke-width="1.4"/></marker>
+ <filter id="glow${m}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <radialGradient id="sub${m}" cx="50%" cy="38%" r="68%"><stop offset="0" stop-color="#22432b"/><stop offset=".62" stop-color="#132519"/><stop offset="1" stop-color="#ff2e12" stop-opacity=".28"/></radialGradient>
+ <radialGradient id="core${m}" cx="50%" cy="45%" r="50%"><stop offset="0" stop-color="#ff2e12" stop-opacity=".32"/><stop offset="1" stop-color="#ff2e12" stop-opacity="0"/></radialGradient>
  <marker id="cur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${C.paper}"/></marker></defs>${s}</svg>`;}
 
 function webFig(){
@@ -147,12 +150,12 @@ function meshAt(e,k,m,opt){opt=opt||{};const RN=232*k,rn=40*k,rc=58*k,pts=BR.map
   if(opt.lines){const [lx,ly]=P(e.x,e.y,(rc+RN-rn)/2+8,A(i)),d=A(i);o+=lbl(lx-8*Math.sin(d),ly+8*Math.cos(d),'TRANSMISSION',d).replace('class="oef-lbl"','class="oef-lbl" style="font-size:8px"');}}
  const src=opt.src||(k>=.9?['The Source','OMNIDIRECTIONAL','ENTERPRISE MODEL™']:k>=.35?['','OMNIDIRECTIONAL','ENTERPRISE']:null);
  const sid=reg(opt.main?'source':'conductor',opt.main?{}:{name:opt.who?`Conductor · ${opt.who}`:'Conductor',fn:'An enterprise using the model: its own Source, subpanels, Transmission lines and Interconnections, connected to the other enterprises.'});
- o+=`<g class="oef-part" data-p="${sid}" data-t="${opt.main?'source':'conductor'}"><circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${rc.toFixed(1)}" fill="${C.bg}" stroke="url(#fil${m})" stroke-width="${Math.max(1,1.8*k).toFixed(2)}"/>`;
+ const glow=k>=.35;o+=`<g class="oef-part" data-p="${sid}" data-t="${opt.main?'source':'conductor'}">${glow?`<circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${(rc*1.55).toFixed(1)}" fill="url(#core${m})"/><circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${rc.toFixed(1)}" fill="none" stroke="url(#fil${m})" stroke-width="${(2.2*k).toFixed(2)}" filter="url(#glow${m})"/>`:''}<circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${rc.toFixed(1)}" fill="${glow?`url(#sub${m})`:C.bg}" stroke="url(#fil${m})" stroke-width="${Math.max(1,1.8*k).toFixed(2)}"/>`;
  if(src){if(src[0])o+=`<text x="${e.x.toFixed(1)}" y="${(e.y-6*k).toFixed(1)}" text-anchor="middle" font-size="${(13*k).toFixed(1)}" font-weight="600" fill="${C.fg}">${src[0]}</text>`;
   o+=`<text x="${e.x.toFixed(1)}" y="${(e.y+(src[0]?10:-1)*k).toFixed(1)}" text-anchor="middle" font-size="${(src[0]?7:9)*k}" font-weight="600" letter-spacing="${k}" fill="${C.fg}">${src[1]}</text><text x="${e.x.toFixed(1)}" y="${(e.y+(src[0]?20:11)*k).toFixed(1)}" text-anchor="middle" font-size="${(src[0]?7:9)*k}" font-weight="600" letter-spacing="${k}" fill="${C.fg}">${src[2]}</text>`;}
  o+='</g>';
  BR.forEach((b,i)=>{const [x,y]=pts[i];const id=reg('branch',{name:`Subpanel · ${b.n}${who}`,fn:b.l.join(' ')+' It connects with its Source and with every other subpanel.'});const t=b.t||[b.n.toUpperCase()];
-  o+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn.toFixed(1)}" fill="${C.bg}" stroke="${C.f2}" stroke-width="${Math.max(.7,1.6*k).toFixed(2)}"/>`;
+  o+=`<g class="oef-part" data-p="${id}" data-t="branch">${k>=.35?`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn.toFixed(1)}" fill="none" stroke="${C.f2}" stroke-opacity=".75" stroke-width="${(1.8*k).toFixed(2)}" filter="url(#glow${m})"/>`:''}<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn.toFixed(1)}" fill="url(#sub${m})" stroke="${C.f2}" stroke-width="${Math.max(.7,1.6*k).toFixed(2)}"/>`;
   if(opt.co){const lines=b.co.map(tt=>[tt,1]).concat([[b.n.toUpperCase().replace('&AMP;','&'),0]]);lines.forEach(([tt,bold],q)=>{o+=`<text x="${x.toFixed(1)}" y="${(y+3+(q-(lines.length-1)/2)*9.2).toFixed(1)}" text-anchor="middle" font-size="${bold?7.6:5.6}" font-weight="700" letter-spacing="${bold?0:.35}" fill="${bold?C.fg:C.paper}">${esc(tt)}</text>`;});}
   else if(opt.named!==false&&k>=.35)o+=t.map((tt,q)=>`<text x="${x.toFixed(1)}" y="${(y+3*k+(q-(t.length-1)/2)*11*k).toFixed(1)}" text-anchor="middle" font-size="${(8.2*k).toFixed(2)}" font-weight="700" letter-spacing="${k}" fill="${C.fg}">${esc(tt)}</text>`).join('');
   o+='</g>';});
