@@ -134,48 +134,42 @@ function webFig(){
 // Figure 3: many enterprises, each running the same model, joined so value can flow from any circle to any other.
 let NET=[]; // circle centres in Figure 3, for the live Currents
 function netFig(){
+ // a triangular lattice: every enterprise sits on an intersection, and the straight lines run on past the view, without end
  const W=760,H=760,cx=380,cy=380;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;NET=[];
- const RE=232,rs=31,rb=66,rd=5.5;
- const hubs=[{x:cx,y:cy,main:true}];for(let k=0;k<6;k++){const [x,y]=P(cx,cy,RE,rad(-90+60*k));hubs.push({x,y});}
- const dots=hubs.map(h=>BR.map((b,i)=>P(h.x,h.y,rb,A(i))));
- // interconnections between enterprises: nearest branches of neighbours, and each to the centre
- const near=(a,b)=>{let best=[0,0,1e9];dots[a].forEach((p,i)=>dots[b].forEach((q,j)=>{const d=Math.hypot(p[0]-q[0],p[1]-q[1]);if(d<best[2])best=[i,j,d];}));return best;};
- const link=(a,b)=>{const [i,j]=near(a,b),p=dots[a][i],q=dots[b][j];const id=reg('inter',{name:'Interconnection · enterprise ↔ enterprise',fn:'Joins a branch of one enterprise to a branch of another, so they exchange directly. Every enterprise can join every other, without end.'});const [x1,y1,x2,y2]=trim(p[0],p[1],q[0],q[1],rd+3,rd+3);return ln(x1,y1,x2,y2,C.paper,1.1,'oef-flow',id,'stroke-opacity=".4" stroke-dasharray="4 4"');};
- // every enterprise joins every other, and connections run on past the edge of the view, without end
- s+=`<defs><radialGradient id="fade3" cx="50%" cy="50%" r="60%"><stop offset="0.62" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="fadeMask3"><rect width="${W}" height="${H}" fill="url(#fade3)"/></mask></defs>`;
- for(let a=0;a<hubs.length;a++)for(let b=a+1;b<hubs.length;b++)s+=link(a,b);
- let beyond='';
- const ghosts=[];for(let k=0;k<6;k++){const [x,y]=P(cx,cy,410,rad(-60+60*k));ghosts.push([x,y]);beyond+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rb}" fill="none" stroke="rgba(255,96,46,0.5)" stroke-dasharray="2 4"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rs}" fill="${C.bg}" stroke="${C.f2}" stroke-opacity=".6" stroke-width="1.4"/>`;}
- hubs.slice(1).forEach((h,k)=>{const out=Math.atan2(h.y-cy,h.x-cx);
-  dots[k+1].forEach(([x,y],i)=>{const d=Math.atan2(y-h.y,x-h.x);let diff=Math.abs(((d-out+Math.PI*3)%(Math.PI*2))-Math.PI);if(diff>1.25)return;
-   const id=reg('inter',{name:'Interconnection · beyond this view',fn:'Connections do not stop at the edge of the figure. Every enterprise can join every other, inside and beyond this view, without end.'});
-   const [x2,y2]=[x+Math.cos(d)*260,y+Math.sin(d)*260];const [a1,b1]=[x+Math.cos(d)*(rd+3),y+Math.sin(d)*(rd+3)];
-   beyond+=`<line class="oef-part oef-flow" data-p="${id}" data-t="inter" x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.2" stroke-opacity=".7" stroke-dasharray="4 4"/>`;});
-  [ghosts[k],ghosts[(k+5)%6]].forEach(g=>{const [x1,y1,x2,y2]=trim(h.x,h.y,g[0],g[1],rs+2,rs+2);const id=reg('inter',{name:'Interconnection · to more enterprises',fn:'More enterprises run the same model beyond this view. The connections continue, without end.'});beyond+=`<line class="oef-part oef-flow" data-p="${id}" data-t="inter" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.2" stroke-opacity=".6" stroke-dasharray="4 4"/>`;});
- });
- s+=`<g mask="url(#fadeMask3)">${beyond}</g>`;
- hubs.forEach((h,e)=>{
-  // each enterprise: its own ring, spokes and branches
-  s+=`<circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rb}" fill="none" stroke="rgba(255,96,46,0.28)" stroke-dasharray="2 4"/>`;
-  dots[e].forEach(([x,y],i)=>{const id=reg('trans',{name:`Transmission line · ${h.main?'The Co.LLab™':'an enterprise'} · Source ↔ ${BR[i].n}`});const [x1,y1,x2,y2]=trim(h.x,h.y,x,y,rs+2,rd+2);s+=ln(x1,y1,x2,y2,C.f1,1.1,'oef-flow',id,'stroke-opacity=".8"');});
-  dots[e].forEach(([x,y],i)=>{const id=reg('branch',{name:`Branch · ${BR[i].n}${h.main?' · The Co.LLab™':''}`,fn:BR[i].l.join(' ')+' Currents can flow from it to any other circle, in any enterprise.'});s+=`<circle class="oef-part" data-p="${id}" data-t="branch" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rd}" fill="${C.bg}" stroke="${C.f2}" stroke-width="1.8"/>`;NET.push([x,y]);});
-  const id=h.main?reg('source',{name:'The Co.LLab™ · The Source',fn:'Our enterprise, built on the model. One enterprise among many, running the same model as every other.'}):reg('ent',{name:'An enterprise · its own Source',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and branches, connected to every other enterprise in the network.'});
-  s+=`<g class="oef-part" data-p="${id}" data-t="${h.main?'source':'ent'}"><circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rs}" fill="${C.bg}" stroke="url(#fil3)" stroke-width="1.8"/><text x="${h.x.toFixed(1)}" y="${(h.y-2).toFixed(1)}" text-anchor="middle" font-size="${h.main?7.6:7.4}" font-weight="700" letter-spacing=".4" fill="${C.fg}">${h.main?'THE CO.LLAB™':'ENTERPRISE'}</text><text x="${h.x.toFixed(1)}" y="${(h.y+10).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="${C.dim}">Source</text></g>`;
-  NET.push([h.x,h.y]);
- });
- // a few named, static Currents for the key and the panel (live ones are added on top)
- const cur=(a,b,name)=>{const id=reg('current',{name,kind:'Current · any circle → any circle',fn:'Currents are not fixed to one route. Value can flow from any circle to any other, in any enterprise, without end.'});const [x1,y1]=a,[x2,y2]=b,mx=(x1+x2)/2+(y2-y1)*.18,my=(y1+y2)/2-(x2-x1)*.18;return `<path class="oef-part oef-flow" data-p="${id}" data-t="current" d="M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${C.paper}" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cur)"/>`;};
- s+=cur(dots[1][4],dots[4][0],'Current · across the network')+cur(dots[2][7],dots[5][2],'Current · across the network')+cur(dots[6][3],dots[0][6],'Current · into The Co.LLab™');
+ const D=232,rs=29,rb=60,rd=5.2,h3=Math.sqrt(3)/2;
+ s+=`<defs><radialGradient id="fade3" cx="50%" cy="50%" r="60%"><stop offset="0.6" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="fadeMask3"><rect width="${W}" height="${H}" fill="url(#fade3)"/></mask></defs>`;
+ const hubs=[];for(let i=-3;i<=3;i++)for(let j=-3;j<=3;j++){const x=cx+D*(i+j/2),y=cy+D*h3*j,r=Math.hypot(x-cx,y-cy);if(r<=2*D+1)hubs.push({x,y,r,main:r<1,inner:r<D+1});}
+ // lattice lines in three directions, through every enterprise, edge to edge
+ let grid='';const L2=1400;
+ [0,60,120].forEach(deg=>{const t=rad(deg),ux=Math.cos(t),uy=Math.sin(t),nx=-uy,ny=ux;
+  for(let k=-6;k<=6;k++){const off=k*D*h3,px=cx+nx*off,py=cy+ny*off;const id=reg('inter',{name:'Interconnection · the lattice',fn:'Straight connections that run through every enterprise and on past the edge of the view. Every enterprise can reach every other, without end.'});
+   grid+=`<line class="oef-part oef-flow" data-p="${id}" data-t="inter" x1="${(px-ux*L2).toFixed(1)}" y1="${(py-uy*L2).toFixed(1)}" x2="${(px+ux*L2).toFixed(1)}" y2="${(py+uy*L2).toFixed(1)}" stroke="${C.paper}" stroke-width="1" stroke-opacity=".38" stroke-dasharray="4 5"/>`;}});
+ s+=`<g mask="url(#fadeMask3)">${grid}</g>`;
+ // each enterprise: a nonagon of branches around its own Source
+ const ent=(h)=>{let o='';const pts=BR.map((b,i)=>P(h.x,h.y,rb,A(i)));
+  o+=`<polygon points="${pts.map(([x,y])=>x.toFixed(1)+','+y.toFixed(1)).join(' ')}" fill="${C.bg}" stroke="${C.f2}" stroke-opacity=".55" stroke-width="1"/>`;
+  pts.forEach(([x,y],i)=>{const id=reg('trans',{name:`Transmission line · ${h.main?'The Co.LLab™':'an enterprise'} · Source ↔ ${BR[i].n}`});const [x1,y1,x2,y2]=trim(h.x,h.y,x,y,rs+2,rd+2);o+=ln(x1,y1,x2,y2,C.f1,1.1,'oef-flow',id,'stroke-opacity=".85"');});
+  pts.forEach(([x,y],i)=>{const id=reg('branch',{name:`Branch · ${BR[i].n}${h.main?' · The Co.LLab™':''}`,fn:BR[i].l.join(' ')+' Currents can flow from it to any other circle, in any enterprise.'});o+=`<circle class="oef-part" data-p="${id}" data-t="branch" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rd}" fill="${C.bg}" stroke="${C.f2}" stroke-width="1.8"/>`;if(h.inner)NET.push([x,y]);});
+  const id=h.main?reg('source',{name:'The Co.LLab™ · The Source',fn:'Our enterprise, built on the model. One enterprise among many, running the same model as every other.'}):reg('ent',{name:h.inner?'An enterprise · its own Source':'An enterprise · beyond the view',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and branches, on the same lattice as every other enterprise.'});
+  o+=`<g class="oef-part" data-p="${id}" data-t="${h.main?'source':'ent'}"><circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rs}" fill="${C.bg}" stroke="url(#fil3)" stroke-width="1.8"/><text x="${h.x.toFixed(1)}" y="${(h.y-2).toFixed(1)}" text-anchor="middle" font-size="7.4" font-weight="700" letter-spacing=".4" fill="${C.fg}">${h.main?'THE CO.LLAB™':'ENTERPRISE'}</text><text x="${h.x.toFixed(1)}" y="${(h.y+10).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="${C.dim}">Source</text></g>`;
+  if(h.inner)NET.push([h.x,h.y]);return o;};
+ s+=`<g mask="url(#fadeMask3)">${hubs.filter(h=>!h.inner).map(ent).join('')}</g>`;
+ s+=hubs.filter(h=>h.inner).map(ent).join('');
+ // a few named, straight Currents for the key and the panel (live ones are added on top)
+ const cur=(a,b,name)=>{const id=reg('current',{name,kind:'Current · any circle → any circle',fn:'Currents are not fixed to one route. Value can flow from any circle to any other, in any enterprise, without end.'});const [x1,y1,x2,y2]=trim(a[0],a[1],b[0],b[1],rd+3,rd+4);return `<line class="oef-part oef-flow" data-p="${id}" data-t="current" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#cur)"/>`;};
+ const inner=hubs.filter(h=>h.inner&&!h.main),bp=(h,i)=>P(h.x,h.y,rb,A(i)),m=hubs.find(h=>h.main);
+ s+=cur(bp(inner[0],2),bp(inner[3],7),'Current · across the network')+cur(bp(inner[5],4),bp(m,0),'Current · into The Co.LLab™')+cur(bp(m,5),bp(inner[2],8),'Current · out to another enterprise');
  s+=`<g class="oef-live"></g>`;
- const L=(x,y,t,an)=>`<text class="oef-lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${an||'start'}">${t}</text>`;
- s+=L(cx,cy+rb+22,'THE CO.LLAB™ · ONE ENTERPRISE','middle')+L(hubs[1].x,hubs[1].y-rb-12,'ANOTHER ENTERPRISE, SAME MODEL','middle')+L(cx,H-30,'CURRENTS FLOW FROM ANY CIRCLE TO ANY OTHER','middle')+L(cx,H-12,'CONNECTIONS CONTINUE BEYOND THE VIEW, WITHOUT END','middle');
+ const T=(x,y,t)=>`<text class="oef-lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle">${t}</text>`;
+ const top=inner.reduce((a,h)=>h.y<a.y?h:a,inner[0]);
+ s+=T(cx,cy+rb+22,'THE CO.LLAB™ · ONE ENTERPRISE')+T(top.x,top.y-rb-12,'ANOTHER ENTERPRISE, SAME MODEL')+T(cx,H-30,'CURRENTS FLOW FROM ANY CIRCLE TO ANY OTHER')+T(cx,H-12,'CONNECTIONS CONTINUE BEYOND THE VIEW, WITHOUT END');
  return wrapSvg(W,H,s,3);
 }
 function liveCurrents(svg){
  const g=svg.querySelector('.oef-live');if(!g||!NET.length)return;const pts=NET.slice();
  const add=()=>{let a=pts[Math.floor(Math.random()*pts.length)],b=pts[Math.floor(Math.random()*pts.length)];if(a===b)return;
-  const [x1,y1]=a,[x2,y2]=b,bend=(Math.random()<.5?-1:1)*.22,mx=(x1+x2)/2+(y2-y1)*bend,my=(y1+y2)/2-(x2-x1)*bend;
-  const pth=document.createElementNS(NS,'path');pth.setAttribute('d',`M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`);pth.setAttribute('class','oef-live-cur');pth.setAttribute('marker-end','url(#cur)');
+  if(Math.hypot(b[0]-a[0],b[1]-a[1])<40)return;const [x1,y1,x2,y2]=trim(a[0],a[1],b[0],b[1],7,8);
+  const pth=document.createElementNS(NS,'path');pth.setAttribute('d',`M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}`);pth.setAttribute('class','oef-live-cur');pth.setAttribute('marker-end','url(#cur)');
   g.appendChild(pth);setTimeout(()=>pth.remove(),3200);};
  for(let i=0;i<6;i++)add();
  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
