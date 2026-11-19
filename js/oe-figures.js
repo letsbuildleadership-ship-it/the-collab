@@ -24,12 +24,12 @@ const CUR=[
 const TYPES={
  source:{name:'The Source',kind:'Circle · centre',fn:'The Omnidirectional Enterprise Model™. It powers the whole system, owns and licenses the IP, and every subpanel draws from it.'},
  branch:{name:'Subpanel',kind:'Circle · subpanel',fn:'A place where economic activity happens. Each subpanel exchanges with the Source and with the subpanels beside it.'},
- trans:{name:'Transmission line',kind:'Line · Source ↔ subpanel',fn:'Carries power from the Source out to a subpanel and carries value back. Two-way.'},
+ trans:{name:'Feeder',kind:'Line · Source ↔ subpanel',fn:'Carries power from the Source out to a subpanel and carries value back. Two-way.'},
  inter:{name:'Interconnection',kind:'Line · subpanel ↔ subpanel, Conductor ↔ Conductor',fn:'Lets two parts exchange directly, without going through the Source. This is what makes the model omnidirectional.'},
  current:{name:'Current',kind:'Line · flow of value',fn:'A flow of value. Currents can run from any circle to any other, in any direction, without end.'},
  badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists every Current.'},
  dist:{name:'Distribution line',kind:'Line · subpanel → Conductor',fn:'Carries power from a subpanel out to the Conductors that work in it.'},
- conductor:{name:'Conductor',kind:'Circle · an enterprise using the model',fn:'An enterprise using the model: its own Source, subpanels, Transmission lines and Interconnections, connected to the other enterprises.'},
+ conductor:{name:'Conductor',kind:'Circle · an enterprise using the model',fn:'An enterprise using the model: its own Source, subpanels, Feeders and Interconnections, connected to the other enterprises.'},
  ent:{name:'Enterprise',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and subpanels, connected to every other enterprise in the network.'},
  next:{name:'Next generation',kind:'Circle · outer ring',fn:'An enterprise a Conductor serves. Each Conductor runs the same model, so the web keeps growing outward.'},
  nextline:{name:'Next-generation line',kind:'Line · Conductor → next generation',fn:'Carries power from a Conductor to the enterprises, creators and communities it serves.'}
@@ -56,10 +56,10 @@ function ringFig(mode){
   s+=`<path class="oef-part oef-flow" data-p="${id}" data-t="inter" d="M${x1.toFixed(1)} ${y1.toFixed(1)}A${RN} ${RN} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${C.f2}" stroke-opacity="${mode===2?0.45:0.75}" stroke-width="1.3" marker-start="url(#ah${mode})" marker-end="url(#ah${mode})"/>`;
   const [lx,ly]=P(cx,cy,RN+3,(A(i)+A(i+1))/2);top+=lbl(lx,ly,'INTERCONNECTION',(A(i)+A(i+1))/2+Math.PI/2).replace('class="oef-lbl"','class="oef-lbl" style="font-size:8.5px;letter-spacing:.03em"');}
  // transmission
- for(let i=0;i<9;i++){const id=reg('trans',{name:`Transmission line · Source ↔ ${BR[i].n}`});
+ for(let i=0;i<9;i++){const id=reg('trans',{name:`Feeder · Source ↔ ${BR[i].n}`});
   const [x1,y1]=P(cx,cy,rc+8,A(i)),[x2,y2]=P(cx,cy,RN-rn-8,A(i));
   s+=ln(x1,y1,x2,y2,C.f1,1.3,'oef-flow'+(i%2?' oef-rev':''),id,`stroke-opacity="${mode===2?0.55:0.9}" marker-start="url(#ah${mode})" marker-end="url(#ah${mode})"`);
-  const [lx,ly]=P(cx,cy,mode===2?rc+52:(rc+RN-rn)/2,A(i));const d=A(i);top+=lbl(lx-9*Math.sin(d),ly+9*Math.cos(d),'TRANSMISSION',d);}
+  const [lx,ly]=P(cx,cy,mode===2?rc+52:(rc+RN-rn)/2,A(i));const d=A(i);top+=lbl(lx-9*Math.sin(d),ly+9*Math.cos(d),'FEEDER',d);}
  // currents for fig 2
  if(mode===2){
   const bis=(i,j)=>{const ux=Math.cos(A(i))+Math.cos(A(j)),uy=Math.sin(A(i))+Math.sin(A(j)),h=Math.hypot(ux,uy);return [ux/h,uy/h];};
@@ -114,7 +114,7 @@ function webFig(){
   return `<path class="oef-part oef-flow" data-p="${id}" data-t="inter" d="M${a1.toFixed(1)} ${b1.toFixed(1)}L${a2.toFixed(1)} ${b2.toFixed(1)}A${r} ${r} 0 0 1 ${a3.toFixed(1)} ${b3.toFixed(1)}L${a4.toFixed(1)} ${b4.toFixed(1)}" fill="none" stroke="${C.paper}" stroke-width="1.3" stroke-dasharray="5 4"/>`;};
  s+=arc(2,9,205)+arc(11,18,197)+arc(20,0,189);
  for(let m=0;m<27;m++){s+=seg(N(Math.floor(m/3)),S(m),rB+2,rC+2,C.f2,1.5,'dist',`Distribution line · ${BR[Math.floor(m/3)].n} → Conductor`,'oef-flow',.95);}
- for(let i=0;i<9;i++){const id=reg('trans',{name:`Transmission line · Source ↔ ${BR[i].n}`});const [x1,y1]=P(cx,cy,RS+3,A(i)),[x2,y2]=P(cx,cy,R1-rB-3,A(i));s+=ln(x1,y1,x2,y2,C.f1,1.9,'oef-flow',id);}
+ for(let i=0;i<9;i++){const id=reg('trans',{name:`Feeder · Source ↔ ${BR[i].n}`});const [x1,y1]=P(cx,cy,RS+3,A(i)),[x2,y2]=P(cx,cy,R1-rB-3,A(i));s+=ln(x1,y1,x2,y2,C.f1,1.9,'oef-flow',id);}
  for(let q=0;q<54;q++){const id=reg('next',{name:`Next generation · ${BR[Math.floor(q/6)].n} side`});const [x,y]=Q(q);s+=`<circle class="oef-part" data-p="${id}" data-t="next" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rN}" fill="${C.f2}" fill-opacity=".65"/>`;}
  for(let m=0;m<27;m++){const id=reg('conductor',{name:`Conductor · in ${BR[Math.floor(m/3)].n}`});const [x,y]=S(m);s+=`<circle class="oef-part" data-p="${id}" data-t="conductor" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rC}" fill="${C.f2}"/>`;}
  BR.forEach((b,i)=>{const id=reg('branch',{name:`Subpanel · ${b.n}`,fn:b.l.join(' ')+' It is tied to the Source, to the subpanels beside it and to its Conductors.'});const [x,y]=N(i);s+=`<circle class="oef-part" data-p="${id}" data-t="branch" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rB}" fill="${C.bg}" stroke="${C.f2}" stroke-width="2"/>`;});
@@ -128,7 +128,7 @@ function webFig(){
  const [c4x,c4y]=S(4);s+=L(c4x+12,c4y+4,'CONDUCTOR');
  const [q48x,q48y]=P(cx,cy,R3+12,aq(48));s+=L(q48x,q48y,'NEXT GENERATION','end');
  s+=L(cx,cy+212,'INTERCONNECTION','middle');
- const [tx,ty]=P(cx,cy,(RS+R1)/2,A(6));s+=lbl(tx+10,ty+12,'TRANSMISSION',A(6));
+ const [tx,ty]=P(cx,cy,(RS+R1)/2,A(6));s+=lbl(tx+10,ty+12,'FEEDER',A(6));
  const [dx,dy]=P(cx,cy,(R1+R2)/2,am(6)+.05);s+=L(dx+8,dy-4,'DISTRIBUTION');
  return wrapSvg(W,H,s,3);
 }
@@ -145,11 +145,11 @@ function meshAt(e,k,m,opt){opt=opt||{};const RN=232*k,rn=40*k,rc=58*k,pts=BR.map
   const id=reg('inter',{name:`Interconnection · ${BR[i].n} ↔ ${BR[j].n}${who}`,kind:st===1?'Line · subpanel ↔ neighbouring subpanel':'Line · subpanel ↔ any subpanel',fn:'Lets two subpanels exchange directly, both ways, without going through the Source. Every subpanel can connect with every other subpanel.'});
   o+=`<line class="oef-part oef-flow${(i+st)%2?' oef-rev':''}" data-p="${id}" data-t="inter" x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${a2.toFixed(1)}" y2="${b2.toFixed(1)}" stroke="${st===1?C.f2:C.paper}" stroke-opacity="${op[st]}" stroke-width="${(st===1?sw*1.45:sw).toFixed(2)}"${dash[st]?` stroke-dasharray="${dash[st]}"`:''}${st===1?` marker-start="url(#ah${m})" marker-end="url(#ah${m})"`:''}/>`;
   if(opt.lines&&st===1){const ang=Math.atan2(b2-b1,a2-a1),mx=(a1+a2)/2,my=(b1+b2)/2,ox=Math.cos(A(i)+rad(20)),oy=Math.sin(A(i)+rad(20));o+=lbl(mx+ox*13*k,my+oy*13*k,'INTERCONNECTION',ang).replace('class="oef-lbl"','class="oef-lbl" style="font-size:6.3px;letter-spacing:.04em"');}}
- for(let i=0;i<9;i++){const id=reg('trans',{name:`Transmission line · Source ↔ ${BR[i].n}${who}`});const [x1,y1]=P(e.x,e.y,rc+5*k,A(i)),[x2,y2]=P(e.x,e.y,RN-rn-5*k,A(i));
+ for(let i=0;i<9;i++){const id=reg('trans',{name:`Feeder · Source ↔ ${BR[i].n}${who}`});const [x1,y1]=P(e.x,e.y,rc+5*k,A(i)),[x2,y2]=P(e.x,e.y,RN-rn-5*k,A(i));
   o+=ln(x1,y1,x2,y2,C.f1,Math.max(.6,1.5*k),'oef-flow'+(i%2?' oef-rev':''),id,`marker-start="url(#ah${m})" marker-end="url(#ah${m})"`);
-  if(opt.lines){const [lx,ly]=P(e.x,e.y,(rc+RN-rn)/2+8,A(i)),d=A(i);o+=lbl(lx-8*Math.sin(d),ly+8*Math.cos(d),'TRANSMISSION',d).replace('class="oef-lbl"','class="oef-lbl" style="font-size:8px"');}}
+  if(opt.lines){const [lx,ly]=P(e.x,e.y,(rc+RN-rn)/2+8,A(i)),d=A(i);o+=lbl(lx-8*Math.sin(d),ly+8*Math.cos(d),'FEEDER',d).replace('class="oef-lbl"','class="oef-lbl" style="font-size:8px"');}}
  const src=opt.src||(k>=.9?['The Source','OMNIDIRECTIONAL','ENTERPRISE MODEL™']:k>=.35?['','OMNIDIRECTIONAL','ENTERPRISE']:null);
- const sid=reg(opt.main?'source':'conductor',opt.main?{}:{name:opt.who?`Conductor · ${opt.who}`:'Conductor',fn:'An enterprise using the model: its own Source, subpanels, Transmission lines and Interconnections, connected to the other enterprises.'});
+ const sid=reg(opt.main?'source':'conductor',opt.main?{}:{name:opt.who?`Conductor · ${opt.who}`:'Conductor',fn:'An enterprise using the model: its own Source, subpanels, Feeders and Interconnections, connected to the other enterprises.'});
  const glow=k>=.35;o+=`<g class="oef-part" data-p="${sid}" data-t="${opt.main?'source':'conductor'}">${glow?`<circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${(rc*1.55).toFixed(1)}" fill="url(#core${m})"/><circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${rc.toFixed(1)}" fill="none" stroke="url(#fil${m})" stroke-width="${(2.2*k).toFixed(2)}" filter="url(#glow${m})"/>`:''}<circle cx="${e.x.toFixed(1)}" cy="${e.y.toFixed(1)}" r="${rc.toFixed(1)}" fill="${glow?`url(#sub${m})`:C.bg}" stroke="url(#fil${m})" stroke-width="${Math.max(1,1.8*k).toFixed(2)}"/>`;
  if(src){if(src[0])o+=`<text x="${e.x.toFixed(1)}" y="${(e.y-6*k).toFixed(1)}" text-anchor="middle" font-size="${(13*k).toFixed(1)}" font-weight="600" fill="${C.fg}">${src[0]}</text>`;
   o+=`<text x="${e.x.toFixed(1)}" y="${(e.y+(src[0]?10:-1)*k).toFixed(1)}" text-anchor="middle" font-size="${(src[0]?7:9)*k}" font-weight="600" letter-spacing="${k}" fill="${C.fg}">${src[1]}</text><text x="${e.x.toFixed(1)}" y="${(e.y+(src[0]?20:11)*k).toFixed(1)}" text-anchor="middle" font-size="${(src[0]?7:9)*k}" font-weight="600" letter-spacing="${k}" fill="${C.fg}">${src[2]}</text>`;}
@@ -179,7 +179,7 @@ function basicFig(){
  const W=760,H=760;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;
  s+=meshAt({x:380,y:318},0.93,1,{main:true,lines:true,basic:true});
  s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'the model at the centre'},{t:'branch',n:'SUBPANEL',d:'where economic activity happens'}]);
- s+=keyAt(398,606,[{t:'trans',n:'TRANSMISSION LINE',d:'Source ↔ subpanel, both ways'},{t:'inter1',n:'INTERCONNECTION',d:'subpanel ↔ neighbouring subpanel'}]);
+ s+=keyAt(398,606,[{t:'trans',n:'FEEDER',d:'Source ↔ subpanel, both ways'},{t:'inter1',n:'INTERCONNECTION',d:'subpanel ↔ neighbouring subpanel'}]);
  s+=T3(380,722,'ONE SOURCE, ITS SUBPANELS, AND THE LINES BETWEEN THEM')+T3(380,740,'POWER GOES OUT, VALUE COMES BACK, BOTH WAYS');
  return wrapSvg(W,H,s,1);
 }
@@ -194,7 +194,7 @@ function coFig(){
  s+=cur(0,7,3,.3)+cur(8,2,5,.62)+cur(0,8,6,.5)+cur(0,3,6,.35)+cur(2,1,7,.5);
  const sb=(i,side,n)=>{const d=A(i),[x,y]=P(cx,cy,(rc+RN-rn)/2-24,d);return badge(x-side*14*Math.sin(d),y+side*14*Math.cos(d),n);};
  s+=sb(0,-1,1)+sb(0,1,2)+sb(6,1,1)+sb(7,1,2)+sb(4,1,2)+sb(5,1,4)+sb(8,1,4);
- s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'The Co.LLab™, built on the model'},{t:'branch',n:'SUBPANEL',d:'named with the part of The Co.LLab™ that runs it'},{t:'trans',n:'TRANSMISSION LINE',d:'Source ↔ subpanel, both ways'}]);
+ s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'The Co.LLab™, built on the model'},{t:'branch',n:'SUBPANEL',d:'named with the part of The Co.LLab™ that runs it'},{t:'trans',n:'FEEDER',d:'Source ↔ subpanel, both ways'}]);
  s+=keyAt(398,606,[{t:'inter1',n:'INTERCONNECTION',d:'subpanel ↔ neighbouring subpanel'},{t:'inter',n:'INTERCONNECTION',d:'subpanel ↔ any other subpanel'}]);
  let y=678;s+=`<text x="36" y="${y}" font-size="9" font-weight="700" letter-spacing="1.2" fill="${C.fg}">CURRENTS · NAMED FLOWS OF VALUE WE RUN TODAY</text>`;
  CUR.forEach((c,i)=>{const col=i<4?36:398,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+19+row*16}" font-size="9.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${c.k}</tspan>  ${esc(c.n.replace('The ',''))}</text>`;});
@@ -218,7 +218,7 @@ function fewFig(){
  s+=ents.map((e,q)=>meshAt(e,k,3,{who:['first enterprise','second enterprise','third enterprise'][q]})).join('');
  const [tx,ty]=P(ents[0].x,ents[0].y,232*k+40*k+12,rad(-30));s+=`<text class="oef-lbl" x="${tx.toFixed(1)}" y="${ty.toFixed(1)}">CONDUCTOR</text>`;
  s+=INF(cx,cy+28,12);
- s+=keyAt(36,612,[{t:'cond',n:'CONDUCTOR',d:'an enterprise using the model'},{t:'trans',n:'TRANSMISSION LINE',d:'inside each enterprise'}]);
+ s+=keyAt(36,612,[{t:'cond',n:'CONDUCTOR',d:'an enterprise using the model'},{t:'trans',n:'FEEDER',d:'inside each enterprise'}]);
  s+=keyAt(398,612,[{t:'inter',n:'INTERCONNECTION',d:'Conductor ↔ Conductor, both ways'},{t:'inter1',n:'INTERCONNECTION',d:'inside each enterprise'}]);
  s+=T3(cx,712,'A FEW ENTERPRISES, EACH RUNNING THE WHOLE MODEL')+T3(cx,730,'INTERACTING SUBPANEL TO SUBPANEL, BOTH WAYS');
  return wrapSvg(W,H,s,3);
@@ -245,7 +245,7 @@ function liveCurrents(svg){
  if(!reduce)setInterval(()=>{if(svg.classList.contains('oef-flowing'))add();},450);
 }
 const CAP={
- 1:'<b>Figure 1. The model.</b> The Source at the centre and its subpanels around it. Transmission lines join each subpanel to the Source; Interconnections join each subpanel to the subpanels beside it. Every line runs both ways.',
+ 1:'<b>Figure 1. The model.</b> The Source at the centre and its subpanels around it. Feeders join each subpanel to the Source; Interconnections join each subpanel to the subpanels beside it. Every line runs both ways.',
  2:'<b>Figure 2. The blueprint.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each subpanel names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today.',
  3:'<b>Figure 3. A few enterprises.</b> Three Conductors, each a whole copy of the model in Figure 2, interacting subpanel to subpanel through Interconnections, both ways.',
  4:'<b>Figure 4. The network.</b> A much expanded network: many Conductors, each running the whole model, each connected to the Conductors around it. The infinity mark stands for what this view cannot hold: the network continues without end.'

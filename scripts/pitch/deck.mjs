@@ -158,7 +158,7 @@ const sGoal = () => slide(`<p class="k">The goal and the outcome</p><h2 style="f
 const sMeasure = () => slide(`<p class="k">How we measure it</p><h2 style="font-size:56px">Measured as the network grows, <b>not promised in advance.</b></h2><div class="two grow" style="align-items:stretch">${pane('Qualitative · what changes', bl(['Enterprises collaborate as peers, across sectors.', 'Leadership is documented and passed on, not lost with one person.', 'Communities are sustained where enterprises operate.', 'Ethics are held as part of the infrastructure.']))}${pane('Quantitative · what we count', bl(['Enterprises in the network.', 'Sectors and regions connected.', 'Revenue flowing between enterprises in the network.', 'Share of returns reinvested.', 'Enterprises completing each of The IV Phases™, through Preservation.']))}</div>`);
 const sFig1 = () => figSlide('Figure 1 · The model', '<h2 style="font-size:40px;margin-bottom:14px">One Source, its subpanels, <b>and the lines between them.</b></h2>', fig(1),
   li('The Source', 'The model itself. It powers every subpanel, and owns and licenses the IP.')
-  + li('Transmission lines', 'Power goes from the Source out to a subpanel, and value comes back. Two-way.')
+  + li('Feeders', 'Power goes from the Source out to a subpanel, and value comes back. Two-way.')
   + li('Interconnections', 'Neighbouring subpanels exchange directly, without going through the Source.'));
 const sFig2 = () => figSlide('Figure 2 · The blueprint', '<h2 style="font-size:40px;margin-bottom:14px">This is what our enterprise <b>is built on.</b></h2>', fig(2),
   li('Every circle connects with every other circle', 'Both ways, in every direction.') +
@@ -166,7 +166,7 @@ const sFig2 = () => figSlide('Figure 2 · The blueprint', '<h2 style="font-size:
   + li('Every subpanel, a part of our enterprise', 'From Partnership™ in Enterprises to The .LLab Creators™ in Creators.')
   + li('Currents move the value', 'Named flows of value today, and not fixed: value can flow from any circle to any other.'));
 const sFig3 = () => figSlide('Figure 3 · A few enterprises', '<h2 style="font-size:40px;margin-bottom:14px">Enterprises that use the model, <b>interacting.</b></h2>', fig(3),
-  li('Conductors', 'Each enterprise using the model is a Conductor: its own Source, subpanels, Transmission lines and Interconnections.')
+  li('Conductors', 'Each enterprise using the model is a Conductor: its own Source, subpanels, Feeders and Interconnections.')
   + li('Interconnections between them', 'Subpanel to subpanel, both ways.')
   + li('Infinite', 'Every Conductor can connect with every other.'));
 const sFig4 = () => figSlide('Figure 4 · The network', '<h2 style="font-size:40px;margin-bottom:14px">A much expanded network, <b>without end.</b></h2>', fig(4),
