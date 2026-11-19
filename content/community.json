@@ -1,5 +1,13 @@
 {
   "eyebrow": "In Development",
-  "headline": "The Co.LLab+™.",
-  "body": "The e-commerce side of The Co.LLab™, where members list their website, highlight a product or service, and advertise. In development."
+  "headline": [
+    {
+      "text": "The Co.LLab+ Marketplace",
+      "style": "glow"
+    },
+    {
+      "text": "™."
+    }
+  ],
+  "body": "Every participating enterprise, its products, services and website, in one place. Built to drive every .LLab sector. In development."
 }
