@@ -11,7 +11,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 export const MENU = [
   { label: 'Home', href: '/' },
   { label: 'The Co.LLab+™', id: 'nav-menu-plus', cls: 'nav-more nav-group', items: [
-    ['community', 'The Co.LLab+™'],
+    ['community', 'The Co.LLab+ Marketplace™'],
     ['agriculture', 'The Co.LLab+™ Agriculture'],
   ] },
   { label: 'The .LLab™', id: 'nav-more-menu', cls: 'nav-more', items: [
