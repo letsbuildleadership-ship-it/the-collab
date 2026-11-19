@@ -153,7 +153,7 @@ function meshAt(e,k,m,opt){opt=opt||{};const RN=232*k,rn=40*k,rc=58*k,pts=BR.map
  o+='</g>';
  BR.forEach((b,i)=>{const [x,y]=pts[i];const id=reg('branch',{name:`Branch · ${b.n}${who}`,fn:b.l.join(' ')+' It connects with its Source and with every other branch.'});const t=b.t||[b.n.toUpperCase()];
   o+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn.toFixed(1)}" fill="${C.bg}" stroke="${C.f2}" stroke-width="${Math.max(.7,1.6*k).toFixed(2)}"/>`;
-  if(opt.co){const lines=t.map(tt=>[tt,1]).concat(b.co.map(tt=>[tt,0]));lines.forEach(([tt,bold],q)=>{o+=`<text x="${x.toFixed(1)}" y="${(y+3+(q-(lines.length-1)/2)*9.2).toFixed(1)}" text-anchor="middle" font-size="${bold?7.4:6.6}" font-weight="${bold?700:500}" letter-spacing="${bold?.8:0}" fill="${bold?C.fg:C.paper}">${esc(tt)}</text>`;});}
+  if(opt.co){const lines=b.co.map(tt=>[tt,1]).concat([[b.n.toUpperCase().replace('&AMP;','&'),0]]);lines.forEach(([tt,bold],q)=>{o+=`<text x="${x.toFixed(1)}" y="${(y+3+(q-(lines.length-1)/2)*9.2).toFixed(1)}" text-anchor="middle" font-size="${bold?7.6:5.6}" font-weight="700" letter-spacing="${bold?0:.35}" fill="${bold?C.fg:C.paper}">${esc(tt)}</text>`;});}
   else if(opt.named!==false&&k>=.35)o+=t.map((tt,q)=>`<text x="${x.toFixed(1)}" y="${(y+3*k+(q-(t.length-1)/2)*11*k).toFixed(1)}" text-anchor="middle" font-size="${(8.2*k).toFixed(2)}" font-weight="700" letter-spacing="${k}" fill="${C.fg}">${esc(tt)}</text>`).join('');
   o+='</g>';});
  return o;}
