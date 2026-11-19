@@ -140,8 +140,20 @@ function netFig(){
  const dots=hubs.map(h=>BR.map((b,i)=>P(h.x,h.y,rb,A(i))));
  // interconnections between enterprises: nearest branches of neighbours, and each to the centre
  const near=(a,b)=>{let best=[0,0,1e9];dots[a].forEach((p,i)=>dots[b].forEach((q,j)=>{const d=Math.hypot(p[0]-q[0],p[1]-q[1]);if(d<best[2])best=[i,j,d];}));return best;};
- const link=(a,b)=>{const [i,j]=near(a,b),p=dots[a][i],q=dots[b][j];const id=reg('inter',{name:'Interconnection · enterprise ↔ enterprise',fn:'Joins a branch of one enterprise to a branch of another, so they exchange directly.'});const [x1,y1,x2,y2]=trim(p[0],p[1],q[0],q[1],rd+3,rd+3);return ln(x1,y1,x2,y2,C.paper,1.2,'oef-flow',id,'stroke-opacity=".55" stroke-dasharray="4 4"');};
- for(let k=1;k<=6;k++){s+=link(0,k);s+=link(k,k%6+1);}
+ const link=(a,b)=>{const [i,j]=near(a,b),p=dots[a][i],q=dots[b][j];const id=reg('inter',{name:'Interconnection · enterprise ↔ enterprise',fn:'Joins a branch of one enterprise to a branch of another, so they exchange directly. Every enterprise can join every other, without end.'});const [x1,y1,x2,y2]=trim(p[0],p[1],q[0],q[1],rd+3,rd+3);return ln(x1,y1,x2,y2,C.paper,1.1,'oef-flow',id,'stroke-opacity=".4" stroke-dasharray="4 4"');};
+ // every enterprise joins every other, and connections run on past the edge of the view, without end
+ s+=`<defs><radialGradient id="fade3" cx="50%" cy="50%" r="60%"><stop offset="0.62" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="fadeMask3"><rect width="${W}" height="${H}" fill="url(#fade3)"/></mask></defs>`;
+ for(let a=0;a<hubs.length;a++)for(let b=a+1;b<hubs.length;b++)s+=link(a,b);
+ let beyond='';
+ const ghosts=[];for(let k=0;k<6;k++){const [x,y]=P(cx,cy,410,rad(-60+60*k));ghosts.push([x,y]);beyond+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rb}" fill="none" stroke="rgba(255,96,46,0.5)" stroke-dasharray="2 4"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rs}" fill="${C.bg}" stroke="${C.f2}" stroke-opacity=".6" stroke-width="1.4"/>`;}
+ hubs.slice(1).forEach((h,k)=>{const out=Math.atan2(h.y-cy,h.x-cx);
+  dots[k+1].forEach(([x,y],i)=>{const d=Math.atan2(y-h.y,x-h.x);let diff=Math.abs(((d-out+Math.PI*3)%(Math.PI*2))-Math.PI);if(diff>1.25)return;
+   const id=reg('inter',{name:'Interconnection · beyond this view',fn:'Connections do not stop at the edge of the figure. Every enterprise can join every other, inside and beyond this view, without end.'});
+   const [x2,y2]=[x+Math.cos(d)*260,y+Math.sin(d)*260];const [a1,b1]=[x+Math.cos(d)*(rd+3),y+Math.sin(d)*(rd+3)];
+   beyond+=`<line class="oef-part oef-flow" data-p="${id}" data-t="inter" x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.2" stroke-opacity=".7" stroke-dasharray="4 4"/>`;});
+  [ghosts[k],ghosts[(k+5)%6]].forEach(g=>{const [x1,y1,x2,y2]=trim(h.x,h.y,g[0],g[1],rs+2,rs+2);const id=reg('inter',{name:'Interconnection · to more enterprises',fn:'More enterprises run the same model beyond this view. The connections continue, without end.'});beyond+=`<line class="oef-part oef-flow" data-p="${id}" data-t="inter" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.2" stroke-opacity=".6" stroke-dasharray="4 4"/>`;});
+ });
+ s+=`<g mask="url(#fadeMask3)">${beyond}</g>`;
  hubs.forEach((h,e)=>{
   // each enterprise: its own ring, spokes and branches
   s+=`<circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rb}" fill="none" stroke="rgba(255,96,46,0.28)" stroke-dasharray="2 4"/>`;
@@ -156,7 +168,7 @@ function netFig(){
  s+=cur(dots[1][4],dots[4][0],'Current · across the network')+cur(dots[2][7],dots[5][2],'Current · across the network')+cur(dots[6][3],dots[0][6],'Current · into The Co.LLab™');
  s+=`<g class="oef-live"></g>`;
  const L=(x,y,t,an)=>`<text class="oef-lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${an||'start'}">${t}</text>`;
- s+=L(cx,cy+rb+22,'THE CO.LLAB™ · ONE ENTERPRISE','middle')+L(hubs[1].x,hubs[1].y-rb-12,'ANOTHER ENTERPRISE, SAME MODEL','middle')+L(cx,H-16,'CURRENTS FLOW FROM ANY CIRCLE TO ANY OTHER','middle');
+ s+=L(cx,cy+rb+22,'THE CO.LLAB™ · ONE ENTERPRISE','middle')+L(hubs[1].x,hubs[1].y-rb-12,'ANOTHER ENTERPRISE, SAME MODEL','middle')+L(cx,H-30,'CURRENTS FLOW FROM ANY CIRCLE TO ANY OTHER','middle')+L(cx,H-12,'CONNECTIONS CONTINUE BEYOND THE VIEW, WITHOUT END','middle');
  return wrapSvg(W,H,s,3);
 }
 function liveCurrents(svg){
@@ -172,7 +184,7 @@ function liveCurrents(svg){
 const CAP={
  1:'<b>Figure 1. The model.</b> The Source at the centre and branches around it. Transmission lines join each branch to the Source; interconnections join each branch to the branches beside it.',
  2:'<b>Figure 2. The blueprint.</b> One enterprise: the same branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the named Currents we run today. Currents are not fixed to these routes: value can flow from any circle to any other.',
- 3:'<b>Figure 3. The network.</b> The Co.LLab™ is one enterprise. Around it, other enterprises run the same model, each with its own Source and branches. Interconnections join them, and Currents flow from any circle to any other, in any enterprise, without end.'
+ 3:'<b>Figure 3. The network.</b> The Co.LLab™ is one enterprise. Around it, other enterprises run the same model, each with its own Source and branches. Every enterprise is joined to every other, the dashed connections run on past the edge of the view, and Currents flow from any circle to any other, without end.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;
