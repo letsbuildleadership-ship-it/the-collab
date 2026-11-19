@@ -23,11 +23,11 @@ const CUR=[
 ];
 const TYPES={
  source:{name:'The Source',kind:'Circle · centre',fn:'The Omnidirectional Enterprise Model™. It powers the whole system, owns and licenses the IP, and every branch draws from it.'},
- branch:{name:'Branch',kind:'Circle · one of nine',fn:'A place where economic activity happens. Each branch exchanges with the Source and with the branches beside it.'},
+ branch:{name:'Branch',kind:'Circle · branch',fn:'A place where economic activity happens. Each branch exchanges with the Source and with the branches beside it.'},
  trans:{name:'Transmission line',kind:'Line · Source ↔ branch',fn:'Carries power from the Source out to a branch and carries value back. Two-way.'},
  inter:{name:'Interconnection',kind:'Line · branch ↔ branch, Conductor ↔ Conductor',fn:'Lets two parts exchange directly, without going through the Source. This is what makes the model omnidirectional.'},
  current:{name:'Current',kind:'Line · numbered flow',fn:'A named flow of value along the lines, in a set direction.'},
- badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists all seven.'},
+ badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists every Current.'},
  dist:{name:'Distribution line',kind:'Line · branch → Conductor',fn:'Carries power from a branch out to the Conductors that work in it.'},
  conductor:{name:'Conductor',kind:'Circle · participating enterprise',fn:'A participating enterprise. It takes in the IP, applies it to what it already does best and returns value to the system.'},
  next:{name:'Next generation',kind:'Circle · outer ring',fn:'An enterprise a Conductor serves. Each Conductor runs the same model, so the web keeps growing outward.'},
@@ -88,7 +88,7 @@ function ringFig(mode){
   title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">${esc(tt)}</text>`;yy+=13;});yy+=5;
   lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="10" fill="${C.dim}">${esc(tt)}</text>`;yy+=14.5;});
   s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn}" fill="${C.bg}" stroke="${C.hair}" stroke-width="1.3"/>${t}</g>`;});
- s+=top;if(mode===2){let y=H-104;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE SEVEN CURRENTS</text>`;
+ s+=top;if(mode===2){let y=H-104;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
   CUR.forEach((c,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${c.k}</tspan>  ${esc(c.n.replace('The ',''))}</text>`;});}
  return wrapSvg(W,H,s,mode);
 }
@@ -130,8 +130,8 @@ function webFig(){
 }
 
 const CAP={
- 1:'<b>Figure 1. The model.</b> The Source at the centre and nine branches around it. Transmission lines join each branch to the Source; interconnections join each branch to the branches beside it.',
- 2:'<b>Figure 2. The blueprint.</b> The same nine branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the seven Currents: the named flows of value between the Source and the branches.',
+ 1:'<b>Figure 1. The model.</b> The Source at the centre and branches around it. Transmission lines join each branch to the Source; interconnections join each branch to the branches beside it.',
+ 2:'<b>Figure 2. The blueprint.</b> The same branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the Currents: the named flows of value between the Source and the branches.',
  3:'<b>Figure 3. The impact.</b> Built on Figure 1. Each branch distributes power to its Conductors (participating enterprises), each Conductor runs the same model and branches again, and interconnections link any part to any other, in any direction.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
@@ -148,7 +148,7 @@ function mount(root){
   svg.querySelectorAll('.oef-part').forEach(e=>e.classList.toggle('oef-hot',idx!=null?+e.dataset.p===idx:e.dataset.t===type));
   partsEl.querySelectorAll('.oef-row').forEach(r=>r.classList.toggle('oef-on',r.dataset.t===type));};
  const types=[...new Set(my.map(p=>p.type))];
- partsEl.innerHTML=types.map(t=>`<div class="oef-row" tabindex="0" role="button" data-t="${t}"><svg viewBox="0 0 34 20" aria-hidden="true">${ICON[t]||''}</svg><div><b>${TYPES[t].name}${t==='current'?'s (7)':''}</b><span>${TYPES[t].fn}</span></div></div>`).join('')+
+ partsEl.innerHTML=types.map(t=>`<div class="oef-row" tabindex="0" role="button" data-t="${t}"><svg viewBox="0 0 34 20" aria-hidden="true">${ICON[t]||''}</svg><div><b>${TYPES[t].name}${t==='current'?'s':''}</b><span>${TYPES[t].fn}</span></div></div>`).join('')+
   (fig===2?CUR.map(c=>`<div class="oef-row" tabindex="0" role="button" data-t="current"><svg viewBox="0 0 34 20" aria-hidden="true"><circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}"/><text x="17" y="13.5" text-anchor="middle" font-size="10" font-weight="700" fill="${C.paper}">${c.k}</text></svg><div><b>${c.n}</b><span>${c.d}. ${c.w}</span></div></div>`).join(''):'');
  show({kind:TYPES.source.kind,name:'The Source',fn:TYPES.source.fn});
  svg.addEventListener('mouseover',e=>{const g=e.target.closest('.oef-part');if(!g)return;const i=+g.dataset.p;show(my[i]);hot(my[i].type,i);});
