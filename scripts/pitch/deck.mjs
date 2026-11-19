@@ -159,19 +159,20 @@ const sMeasure = () => slide(`<p class="k">How we measure it</p><h2 style="font-
 const sFig1 = () => figSlide('Figure 1 · The model', '<h2 style="font-size:40px;margin-bottom:14px">One Source, its branches, <b>and the lines between them.</b></h2>', fig(1),
   li('The Source', 'The model itself. It powers every branch, and owns and licenses the IP.')
   + li('Transmission lines', 'Power goes from the Source out to a branch, and value comes back. Two-way.')
-  + li('Interconnections', 'Branches exchange directly, without going through the Source. This is what makes it omnidirectional.'));
+  + li('Interconnections', 'Neighbouring branches exchange directly, without going through the Source.'));
 const sFig2 = () => figSlide('Figure 2 · The blueprint', '<h2 style="font-size:40px;margin-bottom:14px">This is what our enterprise <b>is built on.</b></h2>', fig(2),
+  li('Every circle connects with every other circle', 'Both ways, in every direction.') +
   li('Blueprinted to test drive', 'We built The Co.LLab™ on the model to test drive it as an enterprise, in real operation.')
   + li('Every branch, a part of our enterprise', 'From Partnership™ in Enterprises to The .LLab Creators™ in Creators.')
   + li('Currents move the value', 'Named flows of value today, and not fixed: value can flow from any circle to any other.'));
-const sFig3 = () => figSlide('Figure 3 · Every direction', '<h2 style="font-size:40px;margin-bottom:14px">Every circle connects with <b>every other circle.</b></h2>', fig(3),
-  li('Every possible connection', 'Each circle can interact directly with every other circle, in both directions.')
-  + li('Geometric by design', 'The steps around the circle form its star shapes.')
-  + li('Every direction', 'Every line runs on past the figure, without end.'));
-const sFig4 = () => figSlide('Figure 4 · The network', '<h2 style="font-size:40px;margin-bottom:14px">The enterprises that can use it, <b>connected without end.</b></h2>', fig(4),
-  li('Every enterprise runs the whole model', 'Its own Source, branches and connector lines, as in Figure 1.')
-  + li('Every enterprise connects', 'Its branches join the branches of the enterprises around it, two-way.')
-  + li('Without end', 'The enterprises and the connections continue in every direction.'));
+const sFig3 = () => figSlide('Figure 3 · A few enterprises', '<h2 style="font-size:40px;margin-bottom:14px">Enterprises that use the model, <b>interacting.</b></h2>', fig(3),
+  li('Conductors', 'Each enterprise using the model is a Conductor: its own Source, branches, Transmission lines and Interconnections.')
+  + li('Interconnections between them', 'Branch to branch, both ways.')
+  + li('Infinite', 'Every Conductor can connect with every other.'));
+const sFig4 = () => figSlide('Figure 4 · The network', '<h2 style="font-size:40px;margin-bottom:14px">A much expanded network, <b>without end.</b></h2>', fig(4),
+  li('Many Conductors', 'Each running the whole model.')
+  + li('Every Conductor connects', 'Interconnections join its branches to the Conductors around it.')
+  + li('Without end', 'Together they form the economic enterprise system the model creates.'));
 const sLasts = () => slide(`<p class="k">Why it lasts</p><h2 style="font-size:56px">Sustainable by design, <b>local to global.</b></h2><div class="two grow" style="align-items:stretch">${pane('It strengthens as it is used', 'Ideas can be used by many enterprises at once. Each enterprise returns what it learns, so the IP improves. Returns are reinvested rather than extracted, and the Preservation phase plans for succession.')}${pane('Designed for a shifting world', 'Geopolitical realignment, supply-chain restructuring, automation, and the rise of intangible assets are changing where value is made. The model is designed to spread IP ownership and access to commercial infrastructure across many enterprises and regions, connect sectors directly, and grow local economic participation.')}</div>`, '', 'racks');
 const sRuns = () => slide(`<p class="k">The business model</p><h2 style="font-size:56px">How it <b>runs.</b></h2><div class="pts grow" style="grid-template-columns:repeat(3,1fr)">${pnt('Licensed IP', 'The Source owns and licenses the IP. Enterprises license it and put it to work in what they already do best.')}${pnt('Ways in', 'Membership starts free. Partnership™ and The Co.LLab Founders Organization™ are the deeper ways in.')}${pnt('Reinvested', 'Returns are reinvested across the portfolio to fund new IP, creator work, and community programs.')}</div>`);
 const sFit = () => slide(`<p class="k">Where you fit in</p><h2 style="font-size:56px">Build it <b>with us.</b></h2><div class="pts grow" style="grid-template-columns:repeat(3,1fr)">${pnt('Investors', 'Partnership investment powers the Source through the Investment Current, and every other Current depends on it.')}${pnt('Enterprises', 'License the IP, apply it to what you already do best, and collaborate directly with other enterprises.')}${pnt('Dreams in progress', 'Start free with the tools and a guided quest, then build on The IV Phases™ with the network behind you.')}</div><div class="pills"><a href="${SITE}/pages/contact.html">Contact Us ›</a><a href="${SITE}/pages/partnership.html">Explore Partnership™ ›</a><a href="${SITE}/pages/login.html#join">Start free ›</a></div>`, '', 'gateway');

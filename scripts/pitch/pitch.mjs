@@ -182,6 +182,7 @@ const svg = `<svg viewBox="-50 -20 600 540" xmlns="http://www.w3.org/2000/svg">
 <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#ff602e" stroke-width="1.5" stroke-dasharray="4 6" opacity=".6"/>
 ${pts.map((p) => `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="#ff7a1f" stroke-width="2.2" opacity=".75"/>`).join('')}
 ${pts.map((p, i) => { const q = pts[(i + 1) % pts.length]; return `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke="#ff602e" stroke-width="1" opacity=".35"/>`; }).join('')}
+${[2, 3, 4].map((st) => pts.map((p, i) => { const q = pts[(i + st) % pts.length]; return `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke="#fdf6ec" stroke-width="1" stroke-dasharray="5 5" opacity="${[0, 0, .5, .4, .32][st]}"/>`; }).join('')).join('')}
 <circle cx="${cx}" cy="${cy}" r="74" fill="#0f1d13" stroke="#ff602e" stroke-width="2"/>
 <text x="${cx}" y="${cy - 10}" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">The Co.LLab™</text>
 <text x="${cx}" y="${cy + 10}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Omnidirectional</text>

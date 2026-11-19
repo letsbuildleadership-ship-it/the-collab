@@ -138,7 +138,7 @@ let NET=[]; // circle centres in Figure 3, for the live Currents
 function meshAt(e,k,m,opt){opt=opt||{};const RN=232*k,rn=40*k,rc=58*k,pts=BR.map((b,i)=>P(e.x,e.y,RN,A(i)));let o='';
  const op=[0,.85,.6,.45,.35],dash=['','',`${6*k+1} ${4*k+1}`,`${4*k+1} ${4*k+1}`,`${2*k+.8} ${4*k+1}`],sw=Math.max(.5,1.1*k);
  const who=opt.who?` · ${opt.who}`:'';
- for(let st=4;st>=1;st--)for(let i=0;i<9;i++){const j=(i+st)%9;const [a1,b1,a2,b2]=trim(pts[i][0],pts[i][1],pts[j][0],pts[j][1],rn+4*k,rn+4*k);
+ for(let st=opt.basic?1:4;st>=1;st--)for(let i=0;i<9;i++){const j=(i+st)%9;const [a1,b1,a2,b2]=trim(pts[i][0],pts[i][1],pts[j][0],pts[j][1],rn+4*k,rn+4*k);
   const id=reg('inter',{name:`Interconnection · ${BR[i].n} ↔ ${BR[j].n}${who}`,kind:st===1?'Line · branch ↔ neighbouring branch':'Line · branch ↔ any branch',fn:'Lets two branches exchange directly, both ways, without going through the Source. Every branch can connect with every other branch.'});
   o+=`<line class="oef-part oef-flow${(i+st)%2?' oef-rev':''}" data-p="${id}" data-t="inter" x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${a2.toFixed(1)}" y2="${b2.toFixed(1)}" stroke="${st===1?C.f2:C.paper}" stroke-opacity="${op[st]}" stroke-width="${(st===1?sw*1.45:sw).toFixed(2)}"${dash[st]?` stroke-dasharray="${dash[st]}"`:''}${st===1?` marker-start="url(#ah${m})" marker-end="url(#ah${m})"`:''}/>`;
   if(opt.lines&&st===1){const ang=Math.atan2(b2-b1,a2-a1),mx=(a1+a2)/2,my=(b1+b2)/2,ox=Math.cos(A(i)+rad(20)),oy=Math.sin(A(i)+rad(20));o+=lbl(mx+ox*13*k,my+oy*13*k,'INTERCONNECTION',ang).replace('class="oef-lbl"','class="oef-lbl" style="font-size:6.3px;letter-spacing:.04em"');}}
@@ -153,7 +153,8 @@ function meshAt(e,k,m,opt){opt=opt||{};const RN=232*k,rn=40*k,rc=58*k,pts=BR.map
  o+='</g>';
  BR.forEach((b,i)=>{const [x,y]=pts[i];const id=reg('branch',{name:`Branch · ${b.n}${who}`,fn:b.l.join(' ')+' It connects with its Source and with every other branch.'});const t=b.t||[b.n.toUpperCase()];
   o+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rn.toFixed(1)}" fill="${C.bg}" stroke="${C.f2}" stroke-width="${Math.max(.7,1.6*k).toFixed(2)}"/>`;
-  if(opt.named!==false&&k>=.35)o+=t.map((tt,q)=>`<text x="${x.toFixed(1)}" y="${(y+3*k+(q-(t.length-1)/2)*11*k).toFixed(1)}" text-anchor="middle" font-size="${(8.2*k).toFixed(2)}" font-weight="700" letter-spacing="${k}" fill="${C.fg}">${esc(tt)}</text>`).join('');
+  if(opt.co){const lines=t.map(tt=>[tt,1]).concat(b.co.map(tt=>[tt,0]));lines.forEach(([tt,bold],q)=>{o+=`<text x="${x.toFixed(1)}" y="${(y+3+(q-(lines.length-1)/2)*9.2).toFixed(1)}" text-anchor="middle" font-size="${bold?7.4:6.6}" font-weight="${bold?700:500}" letter-spacing="${bold?.8:0}" fill="${bold?C.fg:C.paper}">${esc(tt)}</text>`;});}
+  else if(opt.named!==false&&k>=.35)o+=t.map((tt,q)=>`<text x="${x.toFixed(1)}" y="${(y+3*k+(q-(t.length-1)/2)*11*k).toFixed(1)}" text-anchor="middle" font-size="${(8.2*k).toFixed(2)}" font-weight="700" letter-spacing="${k}" fill="${C.fg}">${esc(tt)}</text>`).join('');
   o+='</g>';});
  return o;}
 // a key of the electrical terms, drawn inside the figure
@@ -170,14 +171,32 @@ const T3=(x,y,t)=>`<text class="oef-lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}"
 // the infinity mark: a lemniscate
 function INF(x,y,r){const n=64;let d='';for(let k=0;k<=n;k++){const t=k/n*2*Math.PI,den=1+Math.sin(t)**2,px=x+r*1.9*Math.cos(t)/den,py=y+r*1.9*Math.sin(t)*Math.cos(t)/den;d+=(k?'L':'M')+px.toFixed(1)+' '+py.toFixed(1);}
  return `<path d="${d}Z" fill="none" stroke="${C.paper}" stroke-width="1.8" stroke-linejoin="round"/>`;}
-// Figure 3: the model, every circle connected with every other circle, labelled
-function meshFig(){
+// Figure 1: the basic model
+function basicFig(){
  const W=760,H=760;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;
- s+=meshAt({x:380,y:318},0.93,3,{main:true,lines:true});
- s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'the model at the centre'},{t:'branch',n:'BRANCH',d:'where economic activity happens'},{t:'trans',n:'TRANSMISSION LINE',d:'Source ↔ branch, both ways'}]);
+ s+=meshAt({x:380,y:318},0.93,1,{main:true,lines:true,basic:true});
+ s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'the model at the centre'},{t:'branch',n:'BRANCH',d:'where economic activity happens'}]);
+ s+=keyAt(398,606,[{t:'trans',n:'TRANSMISSION LINE',d:'Source ↔ branch, both ways'},{t:'inter1',n:'INTERCONNECTION',d:'branch ↔ neighbouring branch'}]);
+ s+=T3(380,722,'ONE SOURCE, ITS BRANCHES, AND THE LINES BETWEEN THEM')+T3(380,740,'POWER GOES OUT, VALUE COMES BACK, BOTH WAYS');
+ return wrapSvg(W,H,s,1);
+}
+// Figure 2: the model The Co.LLab runs on, every circle connected with every other circle, with the named Currents
+function coFig(){
+ const W=760,H=820,cx=380,cy=318,k=.93,RN=232*k,rn=40*k,rc=58*k;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;
+ s+=meshAt({x:cx,y:cy},k,2,{main:true,lines:false,co:true,src:['The Co.LLab™','OMNIDIRECTIONAL','ENTERPRISE™']});
+ const pts=BR.map((b,i)=>P(cx,cy,RN,A(i)));
+ const badge=(x,y,n)=>{const cu=CUR[n-1];const id=reg('badge',{name:`Current marker ${n} · ${cu.n}`,fn:`${cu.d}. ${cu.w}`});return `<g class="oef-part" data-p="${id}" data-t="badge"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8.5" fill="${C.bg}" stroke="${C.paper}" stroke-width="1.3"/><text x="${x.toFixed(1)}" y="${(y+3.4).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${C.paper}">${n}</text></g>`;};
+ const cur=(i,j,n,t)=>{const cu=CUR[n-1];const [a1,b1,a2,b2]=trim(pts[i][0],pts[i][1],pts[j][0],pts[j][1],rn+5,rn+6);const id=reg('current',{name:`${cu.n} (${n})`,kind:`Current · ${cu.d}`,fn:cu.w});
+  return `<line class="oef-part oef-flow" data-p="${id}" data-t="current" x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${a2.toFixed(1)}" y2="${b2.toFixed(1)}" stroke="${C.paper}" stroke-width="1.7" marker-end="url(#cur)"/>`+badge(a1+(a2-a1)*t,b1+(b2-b1)*t,n);};
+ s+=cur(0,7,3,.3)+cur(8,2,5,.62)+cur(0,8,6,.5)+cur(0,3,6,.35)+cur(2,1,7,.5);
+ const sb=(i,side,n)=>{const d=A(i),[x,y]=P(cx,cy,(rc+RN-rn)/2-24,d);return badge(x-side*14*Math.sin(d),y+side*14*Math.cos(d),n);};
+ s+=sb(0,-1,1)+sb(0,1,2)+sb(6,1,1)+sb(7,1,2)+sb(4,1,2)+sb(5,1,4)+sb(8,1,4);
+ s+=keyAt(36,606,[{t:'source',n:'THE SOURCE',d:'The Co.LLab™, built on the model'},{t:'branch',n:'BRANCH',d:'named with the part of The Co.LLab™ that runs it'},{t:'trans',n:'TRANSMISSION LINE',d:'Source ↔ branch, both ways'}]);
  s+=keyAt(398,606,[{t:'inter1',n:'INTERCONNECTION',d:'branch ↔ neighbouring branch'},{t:'inter',n:'INTERCONNECTION',d:'branch ↔ any other branch'}]);
- s+=INF(380,676,13)+T3(380,722,'EVERY CIRCLE CONNECTS WITH EVERY OTHER CIRCLE')+T3(380,740,'IN EVERY DIRECTION, WITHOUT END');
- return wrapSvg(W,H,s,3);
+ let y=678;s+=`<text x="36" y="${y}" font-size="9" font-weight="700" letter-spacing="1.2" fill="${C.fg}">CURRENTS · NAMED FLOWS OF VALUE WE RUN TODAY</text>`;
+ CUR.forEach((c,i)=>{const col=i<4?36:398,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+19+row*16}" font-size="9.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${c.k}</tspan>  ${esc(c.n.replace('The ',''))}</text>`;});
+ s+=T3(cx,H-26,'EVERY CIRCLE CONNECTS WITH EVERY OTHER CIRCLE')+T3(cx,H-9,'IN EVERY DIRECTION, WITHOUT END');
+ return wrapSvg(W,H,s,2);
 }
 // connection lines between two enterprises: their nearest branches, two-way
 function joinMesh(e,f,k,m,n,label){const RN=232*k,rn=40*k,br=(g,i)=>P(g.x,g.y,RN,A(i));const c=[];for(let i=0;i<9;i++)for(let j=0;j<9;j++){const [x1,y1]=br(e,i),[x2,y2]=br(f,j);c.push([Math.hypot(x2-x1,y2-y1),i,j]);}c.sort((u,v)=>u[0]-v[0]);
@@ -188,29 +207,29 @@ function joinMesh(e,f,k,m,n,label){const RN=232*k,rn=40*k,br=(g,i)=>P(g.x,g.y,RN
   if(label&&cnt===0){const ang=Math.atan2(b2-b1,a2-a1);o+=lbl((a1+a2)/2+8*Math.sin(ang),(b1+b2)/2-8*Math.cos(ang),'INTERCONNECTION',ang).replace('class="oef-lbl"','class="oef-lbl" style="font-size:8px"');}
   if(++cnt>=n)break;}
  return o;}
-// Figure 4: a few enterprises using the model, interacting
+// Figure 3: a few enterprises using the model, interacting
 function fewFig(){
  const W=760,H=760,cx=380,cy=312;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;const k=.43,R=190;
  const ents=[0,1,2].map(q=>{const [x,y]=P(cx,cy,R,rad(-90+120*q));return {x,y};});
- s+=joinMesh(ents[0],ents[1],k,4,3,true)+joinMesh(ents[1],ents[2],k,4,3,false)+joinMesh(ents[2],ents[0],k,4,3,false);
- s+=ents.map((e,q)=>meshAt(e,k,4,{who:['first enterprise','second enterprise','third enterprise'][q]})).join('');
+ s+=joinMesh(ents[0],ents[1],k,3,3,true)+joinMesh(ents[1],ents[2],k,3,3,false)+joinMesh(ents[2],ents[0],k,3,3,false);
+ s+=ents.map((e,q)=>meshAt(e,k,3,{who:['first enterprise','second enterprise','third enterprise'][q]})).join('');
  const [tx,ty]=P(ents[0].x,ents[0].y,232*k+40*k+12,rad(-30));s+=`<text class="oef-lbl" x="${tx.toFixed(1)}" y="${ty.toFixed(1)}">CONDUCTOR</text>`;
  s+=INF(cx,cy+28,12);
  s+=keyAt(36,612,[{t:'cond',n:'CONDUCTOR',d:'an enterprise using the model'},{t:'trans',n:'TRANSMISSION LINE',d:'inside each enterprise'}]);
  s+=keyAt(398,612,[{t:'inter',n:'INTERCONNECTION',d:'Conductor ↔ Conductor, both ways'},{t:'inter1',n:'INTERCONNECTION',d:'inside each enterprise'}]);
  s+=T3(cx,712,'A FEW ENTERPRISES, EACH RUNNING THE WHOLE MODEL')+T3(cx,730,'INTERACTING BRANCH TO BRANCH, BOTH WAYS');
- return wrapSvg(W,H,s,4);
+ return wrapSvg(W,H,s,3);
 }
-// Figure 5: a much expanded network, inside the frame
+// Figure 4: a much expanded network, inside the frame
 function netFig(){
  const W=760,H=760,cx=380,cy=322;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;const k=.198,D=124,h3=Math.sqrt(3)/2;
  const ents=[];for(let i=-3;i<=3;i++)for(let j=-3;j<=3;j++){const x=cx+D*(i+j/2),y=cy+D*h3*j,r=Math.hypot(x-cx,y-cy);if(r<=2*D+1)ents.push({x,y});}
- for(let a=0;a<ents.length;a++)for(let b=a+1;b<ents.length;b++){const e=ents[a],f=ents[b];if(Math.abs(Math.hypot(e.x-f.x,e.y-f.y)-D)<1)s+=joinMesh(e,f,k,5,2,false);}
- s+=ents.map(e=>meshAt(e,k,5,{named:false})).join('');
+ for(let a=0;a<ents.length;a++)for(let b=a+1;b<ents.length;b++){const e=ents[a],f=ents[b];if(Math.abs(Math.hypot(e.x-f.x,e.y-f.y)-D)<1)s+=joinMesh(e,f,k,4,2,false);}
+ s+=ents.map(e=>meshAt(e,k,4,{named:false})).join('');
  s+=keyAt(36,620,[{t:'cond',n:'CONDUCTOR',d:'an enterprise using the model'}]);
  s+=keyAt(398,620,[{t:'inter',n:'INTERCONNECTION',d:'Conductor ↔ Conductor, both ways'}]);
  s+=INF(cx,672,13)+T3(cx,712,'A MUCH EXPANDED NETWORK OF OMNIDIRECTIONAL ENTERPRISES')+T3(cx,730,'CONNECTED IN EVERY DIRECTION, WITHOUT END');
- return wrapSvg(W,H,s,5);
+ return wrapSvg(W,H,s,4);
 }
 function liveCurrents(svg){
  const g=svg.querySelector('.oef-live');if(!g||!NET.length)return;const pts=NET.slice();
@@ -223,11 +242,10 @@ function liveCurrents(svg){
  if(!reduce)setInterval(()=>{if(svg.classList.contains('oef-flowing'))add();},450);
 }
 const CAP={
- 1:'<b>Figure 1. The model.</b> The Source at the centre and branches around it. Transmission lines join each branch to the Source; interconnections join each branch to the branches beside it.',
- 2:'<b>Figure 2. The blueprint.</b> One enterprise: the same branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the named Currents we run today. Currents are not fixed to these routes: value can flow from any circle to any other.',
- 3:'<b>Figure 3. Every direction.</b> The model in Figure 1 with every possible connection drawn. Each circle connects with every other circle, in both directions; the steps around the circle form its star shapes.',
- 4:'<b>Figure 4. A few enterprises.</b> Three Omnidirectional Enterprises, each a whole copy of the model, interacting branch to branch, both ways.',
- 5:'<b>Figure 5. The network.</b> A much expanded network: many Omnidirectional Enterprises, each running the whole model, each connected to the enterprises around it. The infinity mark stands for what this view cannot hold: the network continues without end.'
+ 1:'<b>Figure 1. The model.</b> The Source at the centre and its branches around it. Transmission lines join each branch to the Source; Interconnections join each branch to the branches beside it. Every line runs both ways.',
+ 2:'<b>Figure 2. The blueprint.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each branch names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today.',
+ 3:'<b>Figure 3. A few enterprises.</b> Three Conductors, each a whole copy of the model in Figure 2, interacting branch to branch through Interconnections, both ways.',
+ 4:'<b>Figure 4. The network.</b> A much expanded network: many Conductors, each running the whole model, each connected to the Conductors around it. The infinity mark stands for what this view cannot hold: the network continues without end.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;
@@ -237,7 +255,7 @@ const flowBox=document.getElementById('oef-flow'),lblBox=document.getElementById
 function mount(root){
  const fig=+root.dataset.fig,q=sel=>root.querySelector(sel);
  const figEl=q('.oef-fig'),partsEl=q('.oef-parts-list'),pKind=q('.oef-kind'),pName=q('.oef-name'),pFn=q('.oef-fn');
- parts=[];figEl.innerHTML=fig===5?netFig():fig===4?fewFig():fig===3?meshFig():ringFig(fig);const my=parts;q('.oef-caption').innerHTML=CAP[fig];
+ parts=[];figEl.innerHTML=fig===4?netFig():fig===3?fewFig():fig===2?coFig():basicFig();const my=parts;q('.oef-caption').innerHTML=CAP[fig];
  const svg=figEl.querySelector('svg');
  const show=p=>{pKind.textContent=p.kind;pName.textContent=p.name;pFn.textContent=p.fn;};
  const hot=(type,idx)=>{svg.classList.toggle('oef-dimmed',!!type);
