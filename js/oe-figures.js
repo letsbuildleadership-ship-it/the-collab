@@ -259,10 +259,10 @@ function liveCurrents(svg){
  if(!reduce)setInterval(()=>{if(svg.classList.contains('oef-flowing'))add();},450);
 }
 const CAP={
- 1:'<b>Figure 1. The model.</b> The Source at the centre and its substations around it. Transmission lines join each substation to the Source; Interconnections join each substation to the substations beside it. Every line runs both ways.',
- 2:'<b>Figure 2. The blueprint.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today.',
- 3:'<b>Figure 3. A few enterprises.</b> Three Conductors, each a whole copy of the model in Figure 2, interacting substation to substation through Interconnections, both ways.',
- 4:'<b>Figure 4. The Grid.</b> Conductors wired together: each runs the whole model, and Interconnections join its substations to the Conductors around it. Every Conductor adds circles, and the number of possible connections grows faster than the number of circles.'
+ 1:'<b>Figure 1 · Phase I · Foundations.</b> The Source at the centre and its substations around it. Transmission lines join each substation to the Source; Interconnections join each substation to the substations beside it. Every line runs both ways.',
+ 2:'<b>Figure 2 · Phase II · Infrastructure Planning & Management.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today.',
+ 3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Three Conductors, each a whole copy of the model in Figure 2, interacting substation to substation through Interconnections, both ways.',
+ 4:'<b>Figure 4 · Phase IV · Preservation.</b> Conductors wired together: each runs the whole model, and Interconnections join its substations to the Conductors around it. Every Conductor adds circles, and the number of possible connections grows faster than the number of circles.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;
