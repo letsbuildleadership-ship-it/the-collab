@@ -2358,6 +2358,14 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 #figures .oef-controls{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:.82rem;color:rgba(255,96,46,.74)}
 #figures .oef-ctrl{display:flex;align-items:center;gap:8px;cursor:pointer}
 #figures .oef-ctrl input{accent-color:#ff6a2e;width:16px;height:16px}
+#figures .oef-tab{text-decoration:none;display:inline-block}
+#figures .oef-figure{margin-top:4.5rem;scroll-margin-top:96px}
+#figures .oef-figure:first-of-type{margin-top:2.5rem}
+#figures .oef-ftitle{font-size:clamp(1.6rem,3.4vw,2.4rem);max-width:28ch;margin-top:.6rem}
+#figures .oef-read{margin:1.25rem 0 1.5rem;padding-left:1.25rem;max-width:66ch;line-height:1.6;color:#fdf6ec}
+#figures .oef-read li{margin:.35rem 0}
+#figures .oef-read b{color:#ff602e}
+#figures .oef-next{margin-top:1rem;font-weight:600}
 #figures .oef-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
 @media (max-width:900px){#figures .oef-grid{grid-template-columns:minmax(0,1fr)}}
 #figures .oef-stage{border:1px solid rgba(255,96,46,.34);border-radius:18px;background:#0f1d13;overflow:hidden}
