@@ -36,9 +36,15 @@ export const MENU = [
     ['founders-purpose', 'The Co.LLab Founders Organization™ · Purpose', 'Purpose'],
     ['founders-strategy', 'The Co.LLab Founders Organization™ · Investment Strategy', 'Investment Strategy'],
   ] },
+  { label: 'Omnidirectional Enterprise Systems™', id: 'nav-menu-oe', cls: 'nav-more nav-group', items: [
+    ['omnidirectional-enterprise', 'Omnidirectional Enterprise Systems™', 'The Models'],
+    ['oe-business-model', 'Omnidirectional Enterprise Systems™ · The Business Model', 'The Business Model'],
+    ['oe-goal', 'Omnidirectional Enterprise Systems™ · Goal and Measures', 'Goal and Measures'],
+    ['oe-models', 'Omnidirectional Enterprise Systems™ · Reading the Models', 'Reading the Models'],
+    ['oe-research', 'Omnidirectional Enterprise Systems™ · Research', 'Research'],
+  ] },
   { label: 'About Us', id: 'nav-menu-about', cls: 'nav-more nav-group', items: [
     ['about', 'About The Co.LLab™'],
-    ['omnidirectional-enterprise', 'Omnidirectional Enterprise™'],
     ['glossary', 'Glossary'],
   ] },
   { label: 'Contact Us', id: 'nav-menu-contact', cls: 'nav-more nav-group', items: [
