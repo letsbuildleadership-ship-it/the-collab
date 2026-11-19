@@ -96,7 +96,7 @@ test('IP analysis is owner-only and covers every guided IP with structure, portf
   assert.ok(data.catalog.length >= quests.size);
   assert.ok(data.catalog.every((i) => i.title && i.kind));
   assert.equal(data.portfolio.phaseTotals.length, 4);
-  assert.equal(data.portfolio.oe.length, 8);
+  assert.equal(data.portfolio.oe.length, 9); // every substation of the model, Products & Services included
   assert.ok(data.recommendations.length > 0);
   assert.ok(data.recommendations.every((r) => r.id && r.text && ['high', 'medium', 'low'].includes(r.severity) && r.status === 'new'));
   assert.equal(new Set(data.recommendations.map((r) => r.id)).size, data.recommendations.length, 'ids are unique and stable');

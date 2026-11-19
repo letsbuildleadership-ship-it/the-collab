@@ -41,6 +41,7 @@ const OE_NODES = [
   ['Nonprofits', /\b(nonprofits?|non-profits?|charit\w+|volunteers?|donors?|giving|foundations? (?:grant|board)|mission-driven)\b/gi],
   ['Communities', /\b(communit\w+|neighbou?rhoods?|local|public|members?|families|families|network\w*)\b/gi],
   ['People', /\b(people|employees?|staff|team\w*|leaders?|mentor\w*|apprentic\w+|successors?|talent|colleagues?)\b/gi],
+  ['Products & Services', /\b(products?|services?|offers?|offerings?|catalog\w*|merch\w*|goods|shop\w*|retail)\b/gi],
   ['Technology', /\b(software|tools?|platforms?|apps?|automat\w+|data|digital|website|systems?|ai)\b/gi],
   ['Capital', /\b(funding|funds?|revenue|budgets?|invest\w+|profit\w*|pric\w+|cash|financ\w+|capital|grants?|income)\b/gi],
   ['Knowledge + IP', /\b(knowledge|documentation|frameworks?|methods?|curricul\w+|intellectual|IP|brand|playbooks?|research|processes)\b/gi],
@@ -116,17 +117,17 @@ function textInsight(node, answer, phaseIdx) {
   return { label: name, evidence, text, level: r.level };
 }
 
-/** Which of the eight Omnidirectional Enterprise™ directions the member's own words reach. */
+/** Which Omnidirectional Enterprise™ substations the member's own words reach (the same substations as the model on the site). */
 function omniRead(text) {
   const nodes = OE_NODES.map(([name, re]) => ({ name, mentions: (String(text).match(re) || []).length }));
   const touched = nodes.filter((n) => n.mentions > 0);
   const silent = nodes.filter((n) => !n.mentions).map((n) => n.name);
   let read;
   if (!touched.length) {
-    read = 'Nothing you wrote reaches beyond your own walls yet. In an Omnidirectional Enterprise™ value moves in every direction, between companies, people, creators and communities. Start by naming one outside party who could carry, fund or learn from this work.';
+    read = 'Nothing you wrote reaches beyond your own walls yet. In an Omnidirectional Enterprise™, value flows in every direction, from substation to substation: between enterprises, people, creators and communities. Start by naming one outside party who could carry, fund or learn from this work.';
   } else {
-    read = `In an Omnidirectional Enterprise™ value moves in every direction. Your answers reach ${touched.length} of 8 directions (${touched.map((n) => n.name).join(', ')}).`;
-    if (silent.length) read += ` They do not yet mention ${silent.slice(0, 4).join(', ')}${silent.length > 4 ? ' or the rest' : ''}. Ask who in those directions could carry this, strengthen it, or buy from you.`;
+    read = `In an Omnidirectional Enterprise™, value flows in every direction. Your answers already reach ${touched.length} of ${nodes.length} substations (${touched.map((n) => n.name).join(', ')}).`;
+    if (silent.length) read += ` They do not yet mention ${silent.slice(0, 4).join(', ')}${silent.length > 4 ? ' or the rest' : ''}. Ask who in those substations could carry this, strengthen it, or buy from you: every new connection adds power to the Grid.`;
   }
   return { nodes, read };
 }
