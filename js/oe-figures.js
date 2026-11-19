@@ -26,10 +26,11 @@ const TYPES={
  branch:{name:'Branch',kind:'Circle · branch',fn:'A place where economic activity happens. Each branch exchanges with the Source and with the branches beside it.'},
  trans:{name:'Transmission line',kind:'Line · Source ↔ branch',fn:'Carries power from the Source out to a branch and carries value back. Two-way.'},
  inter:{name:'Interconnection',kind:'Line · branch ↔ branch, Conductor ↔ Conductor',fn:'Lets two parts exchange directly, without going through the Source. This is what makes the model omnidirectional.'},
- current:{name:'Current',kind:'Line · numbered flow',fn:'A named flow of value along the lines, in a set direction.'},
+ current:{name:'Current',kind:'Line · flow of value',fn:'A flow of value. Currents can run from any circle to any other, in any direction, without end.'},
  badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists every Current.'},
  dist:{name:'Distribution line',kind:'Line · branch → Conductor',fn:'Carries power from a branch out to the Conductors that work in it.'},
  conductor:{name:'Conductor',kind:'Circle · participating enterprise',fn:'A participating enterprise. It takes in the IP, applies it to what it already does best and returns value to the system.'},
+ ent:{name:'Enterprise',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and branches, connected to every other enterprise in the network.'},
  next:{name:'Next generation',kind:'Circle · outer ring',fn:'An enterprise a Conductor serves. Each Conductor runs the same model, so the web keeps growing outward.'},
  nextline:{name:'Next-generation line',kind:'Line · Conductor → next generation',fn:'Carries power from a Conductor to the enterprises, creators and communities it serves.'}
 };
@@ -129,20 +130,60 @@ function webFig(){
  return wrapSvg(W,H,s,3);
 }
 
+
+// Figure 3: many enterprises, each running the same model, joined so value can flow from any circle to any other.
+let NET=[]; // circle centres in Figure 3, for the live Currents
+function netFig(){
+ const W=760,H=760,cx=380,cy=380;let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>`;NET=[];
+ const RE=232,rs=31,rb=66,rd=5.5;
+ const hubs=[{x:cx,y:cy,main:true}];for(let k=0;k<6;k++){const [x,y]=P(cx,cy,RE,rad(-90+60*k));hubs.push({x,y});}
+ const dots=hubs.map(h=>BR.map((b,i)=>P(h.x,h.y,rb,A(i))));
+ // interconnections between enterprises: nearest branches of neighbours, and each to the centre
+ const near=(a,b)=>{let best=[0,0,1e9];dots[a].forEach((p,i)=>dots[b].forEach((q,j)=>{const d=Math.hypot(p[0]-q[0],p[1]-q[1]);if(d<best[2])best=[i,j,d];}));return best;};
+ const link=(a,b)=>{const [i,j]=near(a,b),p=dots[a][i],q=dots[b][j];const id=reg('inter',{name:'Interconnection · enterprise ↔ enterprise',fn:'Joins a branch of one enterprise to a branch of another, so they exchange directly.'});const [x1,y1,x2,y2]=trim(p[0],p[1],q[0],q[1],rd+3,rd+3);return ln(x1,y1,x2,y2,C.paper,1.2,'oef-flow',id,'stroke-opacity=".55" stroke-dasharray="4 4"');};
+ for(let k=1;k<=6;k++){s+=link(0,k);s+=link(k,k%6+1);}
+ hubs.forEach((h,e)=>{
+  // each enterprise: its own ring, spokes and branches
+  s+=`<circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rb}" fill="none" stroke="rgba(255,96,46,0.28)" stroke-dasharray="2 4"/>`;
+  dots[e].forEach(([x,y],i)=>{const id=reg('trans',{name:`Transmission line · ${h.main?'The Co.LLab™':'an enterprise'} · Source ↔ ${BR[i].n}`});const [x1,y1,x2,y2]=trim(h.x,h.y,x,y,rs+2,rd+2);s+=ln(x1,y1,x2,y2,C.f1,1.1,'oef-flow',id,'stroke-opacity=".8"');});
+  dots[e].forEach(([x,y],i)=>{const id=reg('branch',{name:`Branch · ${BR[i].n}${h.main?' · The Co.LLab™':''}`,fn:BR[i].l.join(' ')+' Currents can flow from it to any other circle, in any enterprise.'});s+=`<circle class="oef-part" data-p="${id}" data-t="branch" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rd}" fill="${C.bg}" stroke="${C.f2}" stroke-width="1.8"/>`;NET.push([x,y]);});
+  const id=h.main?reg('source',{name:'The Co.LLab™ · The Source',fn:'Our enterprise, built on the model. One enterprise among many, running the same model as every other.'}):reg('ent',{name:'An enterprise · its own Source',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and branches, connected to every other enterprise in the network.'});
+  s+=`<g class="oef-part" data-p="${id}" data-t="${h.main?'source':'ent'}"><circle cx="${h.x.toFixed(1)}" cy="${h.y.toFixed(1)}" r="${rs}" fill="${C.bg}" stroke="url(#fil3)" stroke-width="1.8"/><text x="${h.x.toFixed(1)}" y="${(h.y-2).toFixed(1)}" text-anchor="middle" font-size="${h.main?7.6:7.4}" font-weight="700" letter-spacing=".4" fill="${C.fg}">${h.main?'THE CO.LLAB™':'ENTERPRISE'}</text><text x="${h.x.toFixed(1)}" y="${(h.y+10).toFixed(1)}" text-anchor="middle" font-size="7.5" fill="${C.dim}">Source</text></g>`;
+  NET.push([h.x,h.y]);
+ });
+ // a few named, static Currents for the key and the panel (live ones are added on top)
+ const cur=(a,b,name)=>{const id=reg('current',{name,kind:'Current · any circle → any circle',fn:'Currents are not fixed to one route. Value can flow from any circle to any other, in any enterprise, without end.'});const [x1,y1]=a,[x2,y2]=b,mx=(x1+x2)/2+(y2-y1)*.18,my=(y1+y2)/2-(x2-x1)*.18;return `<path class="oef-part oef-flow" data-p="${id}" data-t="current" d="M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${C.paper}" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cur)"/>`;};
+ s+=cur(dots[1][4],dots[4][0],'Current · across the network')+cur(dots[2][7],dots[5][2],'Current · across the network')+cur(dots[6][3],dots[0][6],'Current · into The Co.LLab™');
+ s+=`<g class="oef-live"></g>`;
+ const L=(x,y,t,an)=>`<text class="oef-lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${an||'start'}">${t}</text>`;
+ s+=L(cx,cy+rb+22,'THE CO.LLAB™ · ONE ENTERPRISE','middle')+L(hubs[1].x,hubs[1].y-rb-12,'ANOTHER ENTERPRISE, SAME MODEL','middle')+L(cx,H-16,'CURRENTS FLOW FROM ANY CIRCLE TO ANY OTHER','middle');
+ return wrapSvg(W,H,s,3);
+}
+function liveCurrents(svg){
+ const g=svg.querySelector('.oef-live');if(!g||!NET.length)return;const pts=NET.slice();
+ const add=()=>{let a=pts[Math.floor(Math.random()*pts.length)],b=pts[Math.floor(Math.random()*pts.length)];if(a===b)return;
+  const [x1,y1]=a,[x2,y2]=b,bend=(Math.random()<.5?-1:1)*.22,mx=(x1+x2)/2+(y2-y1)*bend,my=(y1+y2)/2-(x2-x1)*bend;
+  const pth=document.createElementNS(NS,'path');pth.setAttribute('d',`M${x1.toFixed(1)} ${y1.toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`);pth.setAttribute('class','oef-live-cur');pth.setAttribute('marker-end','url(#cur)');
+  g.appendChild(pth);setTimeout(()=>pth.remove(),3200);};
+ for(let i=0;i<6;i++)add();
+ const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!reduce)setInterval(()=>{if(svg.classList.contains('oef-flowing'))add();},450);
+}
 const CAP={
  1:'<b>Figure 1. The model.</b> The Source at the centre and branches around it. Transmission lines join each branch to the Source; interconnections join each branch to the branches beside it.',
- 2:'<b>Figure 2. The blueprint.</b> The same branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the Currents: the named flows of value between the Source and the branches.',
- 3:'<b>Figure 3. The impact.</b> Built on Figure 1. Each branch distributes power to its Conductors (participating enterprises), each Conductor runs the same model and branches again, and interconnections link any part to any other, in any direction.'
+ 2:'<b>Figure 2. The blueprint.</b> One enterprise: the same branches, each showing the part of The Co.LLab™ that runs it. Numbered markers and cream arrows show the named Currents we run today. Currents are not fixed to these routes: value can flow from any circle to any other.',
+ 3:'<b>Figure 3. The network.</b> The Co.LLab™ is one enterprise. Around it, other enterprises run the same model, each with its own Source and branches. Interconnections join them, and Currents flow from any circle to any other, in any enterprise, without end.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;
 const ICON={source:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.f2}" stroke-width="1.8"/>`,branch:`<circle cx="17" cy="10" r="6" fill="none" stroke="${C.hair}" stroke-width="2"/>`,conductor:`<circle cx="17" cy="10" r="5" fill="${C.f2}"/>`,next:`<circle cx="17" cy="10" r="3" fill="${C.f2}" fill-opacity=".65"/>`,trans:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f1}" stroke-width="2"/>`,dist:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-width="1.6"/>`,inter:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.4" stroke-dasharray="5 4"/>`,current:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.6" stroke-dasharray="5 4"/>`,badge:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-width="1.3"/>`,nextline:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-opacity=".5" stroke-width="1"/>`};
+ICON.ent=`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.6"/><circle cx="17" cy="10" r="2.5" fill="${C.f2}"/>`;
 const flowBox=document.getElementById('oef-flow'),lblBox=document.getElementById('oef-labels');
 function mount(root){
  const fig=+root.dataset.fig,q=sel=>root.querySelector(sel);
  const figEl=q('.oef-fig'),partsEl=q('.oef-parts-list'),pKind=q('.oef-kind'),pName=q('.oef-name'),pFn=q('.oef-fn');
- parts=[];figEl.innerHTML=fig===3?webFig():ringFig(fig);const my=parts;q('.oef-caption').innerHTML=CAP[fig];
- const svg=figEl.querySelector('svg');
+ parts=[];figEl.innerHTML=fig===3?netFig():ringFig(fig);const my=parts;q('.oef-caption').innerHTML=CAP[fig];
+ const svg=figEl.querySelector('svg');if(fig===3)setTimeout(()=>liveCurrents(svg),0);
  const show=p=>{pKind.textContent=p.kind;pName.textContent=p.name;pFn.textContent=p.fn;};
  const hot=(type,idx)=>{svg.classList.toggle('oef-dimmed',!!type);
   svg.querySelectorAll('.oef-part').forEach(e=>e.classList.toggle('oef-hot',idx!=null?+e.dataset.p===idx:e.dataset.t===type));
