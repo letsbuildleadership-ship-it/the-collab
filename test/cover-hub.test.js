@@ -44,32 +44,33 @@ test('the hub is in the More lists and the sitemap, and the cover chapters point
   for (const id of ['phase-i', 'phase-ii', 'phase-iii', 'phase-iv', 'founders']) assert.ok(hub.includes(`id="${id}"`), id);
 });
 
-test('every footer menu link, and so every contents row, uses the exact title of the page it opens', () => {
+test('every top-menu link uses the exact title of the page it opens (or its short label)', async () => {
+  const { MENU } = await import('../scripts/build-nav.mjs');
   const decode = (t) => t.replace(/&amp;/g, '&');
   const exact = (file) => decode(/<title>([^<]*)<\/title>/.exec(read(`pages/${file}.html`))[1]).split(/ [—|] /)[0].trim();
-  for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
-    const html = read(f);
-    const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
-    for (const [, h, block] of footer.matchAll(/<h4>([^<]+)<\/h4>\s*<ul>([\s\S]*?)<\/ul>/g)) {
-      for (const m of block.matchAll(/<li><a href="(?:pages\/)?([\w-]+)\.html"[^>]*>([^<]+)<\/a><\/li>/g)) {
-        if (h === 'Contact Us' && m[1] !== 'contact') continue; // member login/portal shortcuts
-        assert.equal(decode(m[2]), exact(m[1]), `${f}: ${h} link to ${m[1]}.html`);
-      }
-    }
+  for (const m of MENU) for (const it of m.items || []) {
+    if (typeof it === 'string' || it[0].includes('#')) continue;
+    assert.equal(it[1], exact(it[0]), `${m.label}: ${it[0]}.html`);
   }
 });
 
-test('the footer menu matches the top menu: same groups, same order, same pages', async () => {
-  const { MENU } = await import('../scripts/build-nav.mjs');
+test('the top menu reaches every page; the footer keeps only secondary, member, contact, legal and social links', async () => {
+  const { MENU, FOOTER } = await import('../scripts/build-nav.mjs');
+  const inMenu = new Set(MENU.flatMap((m) => (m.items || [[m.page]]).filter((it) => typeof it !== 'string' && it[0]).map((it) => it[0].split('#')[0])));
+  const exempt = new Set(['login', 'account', 'quest', 'ip-license']); // reached from Sign in, the portal and the footer Legal column
+  for (const n of fs.readdirSync(path.join(root, 'pages')).filter((x) => x.endsWith('.html'))) {
+    const p = n.replace(/\.html$/, '');
+    if (!exempt.has(p)) assert.ok(inMenu.has(p), `top menu reaches ${p}`);
+  }
+  assert.deepEqual(FOOTER.map((c) => c.label), ['Explore', 'Members', 'Contact', 'Legal', 'Follow']);
   for (const f of ['index.html', ...fs.readdirSync(path.join(root, 'pages')).map((n) => `pages/${n}`)]) {
     const html = read(f);
+    if (!html.includes('<ul class="nav-links">')) continue;
     const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
-    const heads = [...footer.matchAll(/<h4>([^<]+)<\/h4>/g)].map((m) => m[1].replace(/&amp;/g, '&'));
-    assert.deepEqual(heads, MENU.filter((m) => m.href !== '/').map((m) => m.label), f);
-    const nav = html.match(/<ul class="nav-links">[\s\S]*?<\/ul>\s*<\/li>\s*<li class="nav-signin">|<ul class="nav-links">[\s\S]*?nav-signin/)[0];
-    for (const m of MENU) for (const [p0] of m.items || [[m.page]]) if (p0) { const p = p0.split('#')[0];
-      assert.ok(nav.includes(`${p}.html"`), `${f}: top menu has ${p}`);
-      assert.ok(footer.includes(`${p}.html"`), `${f}: footer has ${p}`);
-    }
+    const heads = [...footer.matchAll(/<h4>([^<]+)<\/h4>/g)].map((m) => m[1]);
+    assert.deepEqual(heads, FOOTER.map((c) => c.label), f);
+    assert.ok(footer.includes('ip-license.html"') && footer.includes('mailto:hello@wearethellab.com'), `${f}: legal + contact in footer`);
+    const nav = html.match(/<ul class="nav-links">[\s\S]*?nav-signin/)[0];
+    for (const p of inMenu) assert.ok(nav.includes(`${p}.html"`), `${f}: top menu has ${p}`);
   }
 });
