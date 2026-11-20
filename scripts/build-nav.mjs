@@ -108,6 +108,10 @@ function homeLink(here) {
   return `<a href="/"${here === 'index' ? ' aria-current="page"' : ''}>Home</a>`;
 }
 
+// Language menu (Google Website Translator, loaded by js/main.js only when a language is chosen).
+export const LANGS = [['en', 'English'], ['es', 'Español'], ['fr', 'Français'], ['pt', 'Português'], ['de', 'Deutsch'], ['it', 'Italiano'],
+  ['zh-CN', '中文'], ['ja', '日本語'], ['ko', '한국어'], ['ar', 'العربية'], ['hi', 'हिन्दी'], ['vi', 'Tiếng Việt'], ['tl', 'Tagalog'], ['ht', 'Kreyòl'], ['sw', 'Kiswahili'], ['ru', 'Русский']];
+
 export function navHtml(here, isRoot) {
   const out = ['      <ul class="nav-links">'];
   for (const m of MENU) {
@@ -127,6 +131,12 @@ export function navHtml(here, isRoot) {
       out.push('        </li>');
     }
   }
+  out.push('        <li class="nav-more nav-lang notranslate" translate="no">');
+  out.push('          <button type="button" class="nav-more-toggle" aria-expanded="false" aria-controls="nav-menu-lang" aria-label="Language"><span aria-hidden="true">🌐</span> <span class="lang-current">EN</span></button>');
+  out.push('          <ul class="nav-more-menu" id="nav-menu-lang">');
+  for (const [code, name] of LANGS) out.push(`            <li><button type="button" class="lang-opt" data-lang="${code}" lang="${code}">${name}</button></li>`);
+  out.push('          </ul>');
+  out.push('        </li>');
   out.push(`        <li class="nav-signin">${link('login', 'Sign in', here, isRoot)}</li>`);
   out.push('      </ul>');
   return out.join('\n');
