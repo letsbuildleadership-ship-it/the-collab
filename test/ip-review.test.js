@@ -36,7 +36,7 @@ test('member feedback is recorded for the owner, emailed, and stays new until de
   const key = [...quests.keys()][0];
   assert.equal((await post(feedback, token, { questKey: key })).statusCode, 400);
   assert.equal((await post(feedback, token, { questKey: 'nope', unclear: 'x' })).statusCode, 400);
-  const r = await post(feedback, token, { questKey: key, unclear: 'Step 2 was unclear', ecosystem: 'Introduce member companies' });
+  const r = await post(feedback, token, { questKey: key, unclear: 'Step 2 was unclear', ecosystem: 'Introduce member enterprises' });
   assert.equal(r.statusCode, 201);
   assert.equal(sent.length, 1);
   assert.match(sent[0].text, /Step 2 was unclear/);

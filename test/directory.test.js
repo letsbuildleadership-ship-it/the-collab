@@ -43,7 +43,7 @@ async function paidMember(email) {
 const call = (token, method, body, qs) => directory.handler({ httpMethod: method, headers: token ? { cookie: `collab_token=${token}` } : {}, queryStringParameters: qs || {}, body: body ? JSON.stringify(body) : undefined });
 const admin = (method, body) => adminDirectory.handler({ httpMethod: method, headers: { 'x-admin-token': 'tok' }, body: body ? JSON.stringify(body) : undefined });
 
-test('validation: https only, real hosts, needs a way to reach the company, one to three directions', () => {
+test('validation: https only, real hosts, needs a way to reach the enterprise, one to three directions', () => {
   assert.ok(validateListing(good).listing);
   assert.match(validateListing({ ...good, website: 'http://x.example.com' }).error, /https/);
   assert.match(validateListing({ ...good, website: 'javascript:alert(1)' }).error, /https/);
@@ -76,7 +76,7 @@ test('nothing is public until approved; the public view hides account details; e
   assert.equal(rows.length, 1);
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'rejected' })).statusCode, 400, 'rejection needs a note');
   assert.equal((await admin('POST', { memberId: rows[0].memberId, status: 'approved' })).statusCode, 200);
-  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /joined the .LLab Collaborating Companies/.test(m.text)));
+  assert.ok(sent.some((m) => m.to === 'owner@example.com' && /joined the .LLab Collaborating Enterprises/.test(m.text)));
 
   const pub = JSON.parse((await call(null, 'GET')).body);
   assert.equal(pub.listings.length, 1);

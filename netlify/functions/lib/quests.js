@@ -30,7 +30,7 @@ const OMNI = {
   type: 'text',
   optional: true,
   label: 'Beyond your own walls',
-  prompt: 'Who outside your organization (companies, people, creators, communities) could carry, use or be strengthened by this work, and how would value move between you?',
+  prompt: 'Who outside your organization (enterprises, people, creators, communities) could carry, use or be strengthened by this work, and how would value move between you?',
 };
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();

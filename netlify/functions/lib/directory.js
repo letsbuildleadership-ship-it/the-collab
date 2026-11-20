@@ -30,9 +30,9 @@ function cleanUrl(raw) {
 function validateListing(raw) {
   const input = raw && typeof raw === 'object' ? raw : {};
   const companyName = clean(input.companyName, 80);
-  if (companyName.length < 2) return { error: 'Add your company name.' };
+  if (companyName.length < 2) return { error: 'Add your enterprise name.' };
   const description = clean(input.description, 600);
-  if (description.length < 20) return { error: 'Describe what your company does in a sentence or two (at least 20 characters).' };
+  if (description.length < 20) return { error: 'Describe what your enterprise does in a sentence or two (at least 20 characters).' };
 
   const website = cleanUrl(input.website);
   if (website === null) return { error: 'Website must be a full https:// address.' };
@@ -41,7 +41,7 @@ function validateListing(raw) {
   if (!website && !contactEmail) return { error: 'Add a website or a contact email so members can reach you.' };
 
   const directions = [...new Set((Array.isArray(input.directions) ? input.directions : []).map((d) => (d === 'Businesses' ? 'Enterprises' : d)).filter((d) => DIRECTIONS.includes(d)))].slice(0, 3);
-  if (!directions.length) return { error: 'Choose one to three directions your company serves.' };
+  if (!directions.length) return { error: 'Choose one to three directions your enterprise serves.' };
 
   const offerings = [];
   for (const o of (Array.isArray(input.offerings) ? input.offerings : []).slice(0, 6)) {

@@ -17,7 +17,7 @@ export const contentHtml = `
 ${licensePageHtml}
 
 <section class="page">
-  ${header('00 · Inside The Vault', 'A Legacy Held By One Person Can Be Lost.', 'A Legacy Held By All It Serves Endures.', 'The founder’s vision is upheld across generations when it is written into how the company is governed, owned, and rewarded, and when everyone it serves has a stake in keeping it.')}
+  ${header('00 · Inside The Vault', 'A Legacy Held By One Person Can Be Lost.', 'A Legacy Held By All It Serves Endures.', 'The founder’s vision is upheld across generations when it is written into how the enterprise is governed, owned, and rewarded, and when everyone it serves has a stake in keeping it.')}
   <table class="doc-table">
     <tr><th>Inside</th><th>What It Does</th></tr>
     <tr><td><strong>The Omnidirectional Legacy Plan™</strong></td><td>Six articles that tie the vision to governance, economics, and ownership.</td></tr>
@@ -28,8 +28,8 @@ ${licensePageHtml}
 </section>
 
 <section class="page">
-  ${header('The Omnidirectional Legacy Plan™ · Article I', 'Statement Of', 'Founder’s Intent.', 'Written to be incorporated into the company’s governing documents.')}
-  ${field('The purpose of the company, as intended by its founder', 3)}
+  ${header('The Omnidirectional Legacy Plan™ · Article I', 'Statement Of', 'Founder’s Intent.', 'Written to be incorporated into the enterprise’s governing documents.')}
+  ${field('The purpose of the enterprise, as intended by its founder', 3)}
   ${field('The values that shall govern its conduct', 3)}
   ${field('The commitments that shall not be changed without the approval set out in Article VI', 3)}
 </section>
@@ -73,9 +73,9 @@ ${licensePageHtml}
 
 <section class="page">
   ${header('The Steward’s Guide™', 'For Whoever', 'Guards The Vision Next.', 'Written by the founder, for every steward who follows.')}
-  ${box('What This Company Is For', 'In my own words:', 2)}
+  ${box('What This Enterprise Is For', 'In my own words:', 2)}
   ${box('What I Would Want You To Protect Above All', 'If you remember one thing:', 2)}
-  ${box('What I Would Want You To Change', 'Where the company should grow beyond me:', 2)}
+  ${box('What I Would Want You To Change', 'Where the enterprise should grow beyond me:', 2)}
   ${field('Signed by the founder', 1)}
   ${callout('Omnidirectional Enterprise™', 'Your legacy now moves in every direction: through your people, your customers, your community, and the partners who build alongside you.')}
   ${close('The .LLab Legacy Preservation Vault™')}

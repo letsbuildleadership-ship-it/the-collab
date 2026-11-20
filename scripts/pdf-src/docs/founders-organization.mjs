@@ -46,7 +46,7 @@ export const contentHtml = `
     <span class="step-number">2</span>
     <div class="step-body">
       <h3 class="doc-h3">Infrastructure Planning &amp; Management</h3>
-      <p>Determining what infrastructure the enterprise actually needs, and how the pieces connect — not every piece of infrastructure a bigger company has, but the specific pieces that this enterprise, at this stage, actually requires.</p>
+      <p>Determining what infrastructure the enterprise actually needs, and how the pieces connect — not every piece of infrastructure a bigger enterprise has, but the specific pieces that this enterprise, at this stage, actually requires.</p>
     </div>
   </div>
   <div class="step-row">
@@ -75,7 +75,7 @@ export const contentHtml = `
   <table class="doc-table">
     <tr><th>Week</th><th>Focus</th></tr>
     <tr><td>Week 1</td><td>Foundations — clarify your own purpose, values, and what "success" actually means to you, separate from what you think it should mean.</td></tr>
-    <tr><td>Week 2</td><td>Infrastructure Planning — map what your enterprise genuinely needs right now, resisting the urge to build for a company you aren't yet.</td></tr>
+    <tr><td>Week 2</td><td>Infrastructure Planning — map what your enterprise genuinely needs right now, resisting the urge to build for an enterprise you aren't yet.</td></tr>
     <tr><td>Week 3</td><td>Introduce yourself in the founder community — the fastest way to find where your blind spots are is to hear how other founders are thinking about theirs.</td></tr>
     <tr><td>Week 4</td><td>Pick one operating system to start building — a decision rule, a communication rhythm — and ship it before month's end.</td></tr>
   </table>

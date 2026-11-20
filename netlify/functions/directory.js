@@ -40,7 +40,7 @@ exports.handler = async (event) => {
     if (mine) await store.opsDelete(COLLECTION, stored.memberId);
     return json(200, { ok: true });
   }
-  if (!eligible) return json(403, { error: 'The .LLab Collaborating Companies is open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership.' });
+  if (!eligible) return json(403, { error: 'The .LLab Collaborating Enterprises is open to enterprises that license Co.LLab™ IP (any .LLab™ product) or hold a Membership.' });
 
   const today = new Date().toISOString().slice(0, 10);
   const day = stored.directoryDay && stored.directoryDay.date === today ? stored.directoryDay : { date: today, count: 0 };
@@ -66,12 +66,12 @@ exports.handler = async (event) => {
   try {
     await sendMail({
       to: process.env.OWNER_EMAIL || process.env.SMTP_USER || 'letsbuildleadership@gmail.com',
-      subject: `Collaborating company to review: ${listing.companyName}`,
+      subject: `Collaborating enterprise to review: ${listing.companyName}`,
       text: `${listing.companyName}\n${listing.description}\n\nReview it: ${ownerLink('collaborating-companies.html')}`,
       html: `<p><strong>${listing.companyName.replace(/</g, '&lt;')}</strong></p><p>${listing.description.replace(/</g, '&lt;')}</p><p><a href="${ownerLink('collaborating-companies.html')}">Review it</a></p>`,
     });
   } catch (err) {
-    console.error('The .LLab Collaborating Companies review email failed:', err.message);
+    console.error('The .LLab Collaborating Enterprises review email failed:', err.message);
   }
   return json(200, { listing: { ...listing, memberId: undefined } });
 };

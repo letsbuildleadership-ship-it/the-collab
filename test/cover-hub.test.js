@@ -57,7 +57,7 @@ test('every top-menu link uses the exact title of the page it opens (or its shor
 test('the top menu reaches every page; the footer keeps only secondary, member, contact, legal and social links', async () => {
   const { MENU, FOOTER } = await import('../scripts/build-nav.mjs');
   const inMenu = new Set(MENU.flatMap((m) => (m.items || [[m.page]]).filter((it) => typeof it !== 'string' && it[0]).map((it) => it[0].split('#')[0])));
-  const exempt = new Set(['login', 'account', 'quest', 'ip-license']); // reached from Sign in, the portal and the footer Legal column
+  const exempt = new Set(['login', 'account', 'quest', 'ip-license', 'journal-preview']); // reached from Sign in, the portal, the footer, and (free preview) The .LLab Journal page
   for (const n of fs.readdirSync(path.join(root, 'pages')).filter((x) => x.endsWith('.html'))) {
     const p = n.replace(/\.html$/, '');
     if (!exempt.has(p)) assert.ok(inMenu.has(p), `top menu reaches ${p}`);

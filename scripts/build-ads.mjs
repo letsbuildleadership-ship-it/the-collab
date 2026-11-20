@@ -22,7 +22,7 @@ const LEGAL = 'A license for internal enterprise use. Results depend on how each
 const EYE = 'Omnidirectional Enterprise™ Partnership';
 // *word* = emphasis (fire gradient, bold)
 const ADS = [
-  { id: '01-legacy',       lever: 'Loss aversion + identity',      eyebrow: EYE, hook: 'Every company starts with a vision. *Most lose it.*', support: 'The founder steps back, people change, the market shifts.', cta: 'Explore Partnerships', img: 'scaffolding', pos: '50% 40%', legal: true },
+  { id: '01-legacy',       lever: 'Loss aversion + identity',      eyebrow: EYE, hook: 'Every enterprise starts with a vision. *Most lose it.*', support: 'The founder steps back, people change, the market shifts.', cta: 'Explore Partnerships', img: 'scaffolding', pos: '50% 40%', legal: true },
   { id: '02-succession',   lever: 'Mortality salience + legacy',   eyebrow: EYE, hook: '*Pass it on.*', support: 'Phase IV · Preservation: make it last beyond any one person.', cta: 'Explore Partnerships', img: 'track', pos: '50% 56%', legal: true },
   { id: '03-four-phases',  lever: 'Cognitive ease (4-step ladder)', eyebrow: 'The IV Phases™', hook: 'Define it. Plan it. Live it. *Pass it on.*', support: 'Foundations. Infrastructure Planning & Management. Internal Operating Systems. Preservation.', cta: 'Shop by phase', img: 'storefront', pos: '50% 45%', legal: false },
   { id: '04-economics',    lever: 'Authority + reframe',            eyebrow: 'The economic case', hook: 'Generating value and capturing value *are different processes.*', support: 'Practice Omnidirectional Enterprise™ with licensed Co.LLab IP™.', cta: 'Read the case', img: 'scaffolding', pos: '25% 50%', legal: true },
@@ -91,7 +91,7 @@ ${ad.legal ? `<p class="legal">${LEGAL}</p>` : ''}</div></div>`;
 
 const outDir = path.join(root, 'marketing/ads');
 fs.mkdirSync(outDir, { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH || undefined });
 const ctxFor = (s) => browser.newContext({ viewport: { width: s.w, height: s.h }, deviceScaleFactor: 1 });
 const shoot = async (ad, size, file) => {
   const ctx = await ctxFor(size);

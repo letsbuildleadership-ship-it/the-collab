@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'I · Foundations',
     'The Legacy <strong>Foundations</strong> Framework™',
-    'Define it. The complete framework for naming what your company stands on, what it will never compromise, and what it should be remembered for.',
+    'Define it. The complete framework for naming what your enterprise stands on, what it will never compromise, and what it should be remembered for.',
     '$750'
   ),
 };
@@ -17,9 +17,9 @@ export const contentHtml = `
 ${licensePageHtml}
 
 <section class="page">
-  ${header('00 · How To Use This Framework', 'Every Legacy Starts', 'With A Foundation.', 'Most companies never write down what they stand on. It lives in the founder and a few key people, and when they step back, it fades. This framework puts it on paper, in six parts, so it can be built on.')}
+  ${header('00 · How To Use This Framework', 'Every Legacy Starts', 'With A Foundation.', 'Most enterprises never write down what they stand on. It lives in the founder and a few key people, and when they step back, it fades. This framework puts it on paper, in six parts, so it can be built on.')}
   <div class="pathway">
-    <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Founding Vision</span><p>Why the company exists.</p></div>
+    <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Founding Vision</span><p>Why the enterprise exists.</p></div>
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">02</span><span class="pathway-label">Values</span><p>What it will and won't do.</p></div>
     <span class="pathway-arrow">→</span>
@@ -32,11 +32,11 @@ ${licensePageHtml}
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">06</span><span class="pathway-label">Foundations Record</span><p>Signed and displayed.</p></div>
   </div>
-  ${callout('Who Completes It', 'The founder or owner leads. Bring in the people who carry the company day to day. Complete it in one working session or across four weeks; it should be revisited every year.')}
+  ${callout('Who Completes It', 'The founder or owner leads. Bring in the people who carry the enterprise day to day. Complete it in one working session or across four weeks; it should be revisited every year.')}
 </section>
 
 <section class="page">
-  ${header('01 · Founding Vision', 'Why Does This', 'Company Exist?', 'Write the reason in plain language a new hire would understand on their first day.')}
+  ${header('01 · Founding Vision', 'Why Does This', 'Enterprise Exist?', 'Write the reason in plain language a new hire would understand on their first day.')}
   ${field('The problem we were founded to solve', 3)}
   ${field('Who we exist to serve', 2)}
   ${field('What would be missing from the world if we were gone', 3)}
@@ -50,32 +50,32 @@ ${licensePageHtml}
 </section>
 
 <section class="page">
-  ${header('03 · Leadership Identity', 'Who Leads,', 'And What They Stand On.', 'A legacy reflects the people who built it. Capture the leadership that shaped the company so it can be recognized and carried on.')}
+  ${header('03 · Leadership Identity', 'Who Leads,', 'And What They Stand On.', 'A legacy reflects the people who built it. Capture the leadership that shaped the enterprise so it can be recognized and carried on.')}
   ${field('The founder’s leadership in three words', 1)}
-  ${field('The leadership principles that built this company', 3)}
+  ${field('The leadership principles that built this enterprise', 3)}
   ${field('How decisions get made when it matters most', 2)}
   ${field('What every future leader here must understand', 3)}
 </section>
 
 <section class="page">
-  ${header('04 · Strengths Assessment', 'What Can This Company', 'Carry?', 'Score each area 0 (not yet) to 3 (fully in place). Strengths are what the legacy stands on; gaps are where it is exposed.')}
+  ${header('04 · Strengths Assessment', 'What Can This Enterprise', 'Carry?', 'Score each area 0 (not yet) to 3 (fully in place). Strengths are what the legacy stands on; gaps are where it is exposed.')}
   ${grid(['Area', 'Score (0–3)', 'Evidence', 'Exposure If It Fails'], ['Vision is written and shared', 'Values guide real decisions', 'Leadership extends beyond the founder', 'Key knowledge is documented', 'Customers know what we stand for', 'Team could explain our purpose', 'Finances support the mission'])}
   ${box('Our Strongest Foundation', 'The one strength everything else can be built on:', 2)}
   ${box('Our Greatest Exposure', 'The one gap that would put the legacy at risk:', 2)}
 </section>
 
 <section class="page">
-  ${header('05 · Legacy Definition', 'What Should This Company', 'Be Remembered For?', 'Write from the future. Twenty-five years from now, after today’s leaders have stepped back.')}
+  ${header('05 · Legacy Definition', 'What Should This Enterprise', 'Be Remembered For?', 'Write from the future. Twenty-five years from now, after today’s leaders have stepped back.')}
   ${field('What our people will say about working here', 2)}
   ${field('What our customers will say we gave them', 2)}
   ${field('What our community will say we built', 2)}
-  ${box('Legacy Statement', 'This company will be remembered for…', 3)}
+  ${box('Legacy Statement', 'This enterprise will be remembered for…', 3)}
 </section>
 
 <section class="page">
   ${header('06 · The Foundations Record', 'The Legacy', 'Foundations Record.', 'Bring the framework into one page. Sign it, display it, and review it every year.')}
   <div class="activity-box">
-    <span class="activity-kicker">Company</span>${lines(1)}
+    <span class="activity-kicker">Enterprise</span>${lines(1)}
     <span class="activity-kicker" style="margin-top:10px;">Founding Vision</span>${lines(1)}
     <span class="activity-kicker" style="margin-top:10px;">Core Values</span>${lines(1)}
     <span class="activity-kicker" style="margin-top:10px;">Non-Negotiables</span>${lines(1)}
