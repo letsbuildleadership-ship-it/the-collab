@@ -144,19 +144,19 @@ const css2 = `
 
 let pn = 1;
 const TOTAL = 17;
-const SECTIONS = ["The model", "The idea", "The ecosystem", "Partnership", "What you license", "Start free", "The ladder", "Every page", "The .LLab Collaborating Companies", "What’s next", "Your next step"];
+const SECTIONS = ["The model", "The idea", "The ecosystem", "Partnership", "What you license", "Start free", "The ladder", "Every page", "The .LLab Collaborating Enterprises", "What’s next", "Your next step"];
 const K = (name) => `${String(SECTIONS.indexOf(name) + 1).padStart(2, '0')} · ${name}`;
 const foot = () => { pn += 1; const n = pn; const pad = (x) => String(x).padStart(2, '0'); return `<div class="ft"><span><a class="fl" href="${SITE}">The Co.LLab™</a></span><span><a class="fl" href="#p${n - 1}">‹ Back</a> &nbsp;&nbsp; <a class="fl" href="#p${n >= TOTAL ? 1 : n + 1}">${n >= TOTAL ? 'Start ›' : 'Next ›'}</a> &nbsp;&nbsp; ${pad(n)}</span></div>`; };
 const pg = (kicker, title, inner, dark = false) => `<section class="g" id="p${pn + 1}" ${dark ? 'style="background:var(--hunter);color:#fff"' : ''}><div class="gi"><p class="k">${kicker}</p><h2 class="t" ${dark ? 'style="color:#fff"' : ''}>${title}</h2>${inner}</div>${foot()}</section>`;
 const brand = `<div class="page-brand"><a href="${SITE}" style="display:flex;align-items:center;gap:8px;color:inherit;text-decoration:none"><img src="${logo}" alt="The Co.LLab™" /><span>The Co<span class="dot">.</span>LLab™</span></a></div>`;
 
 const cover = `<section class="g cv" id="p1" style="padding:0"><div class="ph-photo" style="background-image:url(${ph('scaffolding')})"></div>
-<div class="top"><p class="k">Leadership Infrastructure™ · A pitch</p><h1>Every company starts<br/>with a vision.<br/><b>Most lose it.</b></h1><p class="sub">The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.</p></div>
+<div class="top"><p class="k">Leadership Infrastructure™ · A pitch</p><h1>Every enterprise starts<br/>with a vision.<br/><b>Most lose it.</b></h1><p class="sub">The Co.LLab™ is the infrastructure that defines, builds and passes it on, licensed as IP.</p></div>
 <div class="bot"><div class="logo"><img src="${logo}"/>The Co.LLab™</div><div style="text-align:right"><a href="${SITE}" style="color:inherit;text-decoration:none">Let’s Build Your Legacy<span>Through Omnidirectional Enterprise™</span></a></div></div></section>`;
 
 const qrow = (img, p, nm, q) => `<div class="qrow"><div class="im" style="background-image:url(${ph(img)})"><div class="pp"><small>${p}</small><b>${nm}</b></div></div><div class="tx">${q}</div></div>`;
 const p1 = () => pg(K('The model'), 'Can you answer these <b>four questions?</b>', `
-<p class="lead">They are the four questions of The IV Phases™ of Leadership Infrastructure™. A company that can answer all four has a vision that does not depend on one person.</p>
+<p class="lead">They are the four questions of The IV Phases™ of Leadership Infrastructure™. An enterprise that can answer all four has a vision that does not depend on one person.</p>
 <div class="dq grow" style="grid-auto-rows:1fr">
 ${qrow('lake', 'Phase I', 'Foundations', 'What should never be lost as we grow?')}
 ${qrow('road', 'Phase II', 'Infrastructure Planning &amp; Management', 'What depends on a person that should belong to the organization?')}
@@ -256,14 +256,14 @@ const p7b = () => pg(K('Partnership'), 'Included in <b>every level.</b>', `
 <div class="note" style="margin-top:12px"><b>One-time purchase.</b> No subscription and no automatic charges. A license for internal enterprise use. Results depend on how each enterprise applies it.</div>
 <div class="qb" style="margin-top:12px"><img src="${qPartner}"/><div><b>See Partnerships</b><span>Scan to open the Partnership page.</span></div></div>`);
 
-const p8 = () => pg(K('The .LLab Collaborating Companies'), 'Companies we <b>collaborate with.</b>', `
-<p class="lead">Companies that license Co.LLab™ IP, or hold a Membership, collaborate through the Omnidirectional Enterprise™.</p>
+const p8 = () => pg(K('The .LLab Collaborating Enterprises'), 'Enterprises we <b>collaborate with.</b>', `
+<p class="lead">Enterprises that license Co.LLab™ IP, or hold a Membership, collaborate through the Omnidirectional Enterprise™.</p>
 <div class="stps grow">
-<div class="sp"><div class="no">1</div><div><b>Who collaborates</b><span>Companies that license any .LLab™ product or hold a Membership. Anyone can browse.</span></div></div>
-<div class="sp"><div class="no">2</div><div><b>What is shown</b><span>Only what each company writes: what it does, what it offers, and how to reach it. Companies work with each other directly.</span></div></div>
-<div class="sp"><div class="no">3</div><div><b>How it stays true</b><span>The Co.LLab™ reads each company’s page, and each change to it, before it appears.</span></div></div>
+<div class="sp"><div class="no">1</div><div><b>Who collaborates</b><span>Enterprises that license any .LLab™ product or hold a Membership. Anyone can browse.</span></div></div>
+<div class="sp"><div class="no">2</div><div><b>What is shown</b><span>Only what each enterprise writes: what it does, what it offers, and how to reach it. Enterprises work with each other directly.</span></div></div>
+<div class="sp"><div class="no">3</div><div><b>How it stays true</b><span>The Co.LLab™ reads each enterprise’s page, and each change to it, before it appears.</span></div></div>
 </div>
-<div class="qb" style="margin-top:14px"><img src="${qCollab}"/><div><b>See the companies</b><span>Scan to open .LLab Collaborating Companies.</span></div></div>`);
+<div class="qb" style="margin-top:14px"><img src="${qCollab}"/><div><b>See the enterprises</b><span>Scan to open .LLab Collaborating Enterprises.</span></div></div>`);
 
 const tw = (i, h, p, q) => `<div class="tw"><div><div class="i">${i}</div><h3>${h}</h3><p>${p}</p></div><img src="${q}"/></div>`;
 const SITEP = `${SITE}/pages`;

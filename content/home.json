@@ -2,7 +2,7 @@
   "eyebrow": "The Co.LLab™ Omnidirectional Enterprise™ Partnership",
   "hero_headline": [
     {
-      "text": "Every company starts with a vision.",
+      "text": "Every enterprise starts with a vision.",
       "style": "default",
       "break_before": false
     },
@@ -12,7 +12,7 @@
       "break_before": true
     }
   ],
-  "hero_subhead": "People change and markets shift, but your vision doesn’t have to fade. The Co.LLab™ helps you define your legacy, build it into how your company works, and pass it on with pride.",
+  "hero_subhead": "People change and markets shift, but your vision doesn’t have to fade. The Co.LLab™ helps you define your legacy, build it into how your enterprise works, and pass it on with pride.",
   "hero_offer_line": "Become a Partner from $5,000, or start building today with The .LLab™ products from $20.",
   "hero_cta_primary_label": "Explore Partnerships",
   "hero_cta_primary_link": "/pages/partnership.html#tiers",

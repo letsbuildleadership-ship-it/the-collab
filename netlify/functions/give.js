@@ -57,7 +57,7 @@ exports.handler = async (event) => {
           product_data: { name: entry.name, description: gift.node ? `Directed to ${gift.node} · Omnidirectional Enterprise™` : 'Omnidirectional Enterprise™', metadata: { collab_key: KEY } },
         },
       }],
-      custom_fields: [{ key: 'wall_name', label: { type: 'custom', custom: 'Name for the Legacy Wall (you or your company)' }, type: 'text', optional: true, text: { maximum_length: 80 } }],
+      custom_fields: [{ key: 'wall_name', label: { type: 'custom', custom: 'Name for the Legacy Wall (you or your enterprise)' }, type: 'text', optional: true, text: { maximum_length: 80 } }],
       success_url: `${origin}/pages/account.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/pages/founders.html#give`,
       metadata: { purpose: 'founder_give', key: KEY, direct_to: gift.direct, level: gift.level || '' },

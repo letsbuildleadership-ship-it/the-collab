@@ -35,7 +35,7 @@
     grid.textContent = '';
     var shown = listings.filter(function (l) { return !active || l.directions.indexOf(active) >= 0; });
     $('d-empty').hidden = shown.length > 0;
-    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed company serves that direction yet.';
+    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed enterprise serves that direction yet.';
     shown.forEach(function (l) {
       var c = el('article', 'd-card');
       c.appendChild(el('h3', null, l.companyName));
@@ -90,19 +90,19 @@
     var box = $('d-mine');
     box.textContent = '';
     if (state.signedOut) {
-      box.appendChild(el('p', 'd-desc', 'Sign in to join. Open to companies that license Co.LLab™ IP or hold a Membership.'));
+      box.appendChild(el('p', 'd-desc', 'Sign in to join. Open to enterprises that license Co.LLab™ IP or hold a Membership.'));
       var a = el('a', 'pill pill--solid', 'Sign in'); a.href = 'login.html'; box.appendChild(a);
       return;
     }
     if (!state.eligible) {
-      box.appendChild(el('p', 'd-desc', 'Open to companies that license Co.LLab™ IP (any .LLab™ product) or hold a Membership. You can browse the .LLab Collaborating Companies now.'));
+      box.appendChild(el('p', 'd-desc', 'Open to enterprises that license Co.LLab™ IP (any .LLab™ product) or hold a Membership. You can browse the .LLab Collaborating Enterprises now.'));
       var p = el('a', 'pill pill--solid', 'See the .LLab™ products'); p.href = 'products.html'; box.appendChild(p);
       return;
     }
     var l = state.listing;
     if (l) {
       var s = el('p', 'd-desc');
-      s.appendChild(document.createTextNode('Your company page: '));
+      s.appendChild(document.createTextNode('Your enterprise page: '));
       s.appendChild(el('span', 'd-status ' + l.status, l.status === 'approved' ? 'Live' : l.status === 'rejected' ? 'Needs a change' : 'Waiting for review'));
       box.appendChild(s);
       if (l.status === 'rejected' && l.note) box.appendChild(el('p', 'd-err', l.note));
@@ -114,9 +114,9 @@
     var loc = el('input'); loc.type = 'text'; loc.id = 'f-loc'; loc.maxLength = 60; loc.value = (l && l.location) || '';
     var web = el('input'); web.type = 'url'; web.id = 'f-web'; web.placeholder = 'https://'; web.value = (l && l.website) || '';
     var mail = el('input'); mail.type = 'email'; mail.id = 'f-mail'; mail.maxLength = 120; mail.value = (l && l.contactEmail) || '';
-    form.append(labeled('Company name', company, 'f-company'), labeled('One-line tagline (optional)', tagline, 'f-tagline'), labeled('What your company does', desc, 'f-desc'), labeled('Location (optional)', loc, 'f-loc'), labeled('Website', web, 'f-web'), labeled('Public contact email (optional, shown to everyone)', mail, 'f-mail'));
+    form.append(labeled('Enterprise name', company, 'f-company'), labeled('One-line tagline (optional)', tagline, 'f-tagline'), labeled('What your enterprise does', desc, 'f-desc'), labeled('Location (optional)', loc, 'f-loc'), labeled('Website', web, 'f-web'), labeled('Public contact email (optional, shown to everyone)', mail, 'f-mail'));
 
-    var dl = el('label', null, 'Directions your company serves (choose up to 3)');
+    var dl = el('label', null, 'Directions your enterprise serves (choose up to 3)');
     var dirBox = el('div', 'd-filters');
     var picked = ((l && l.directions) || []).slice();
     DIRS.forEach(function (d) {
@@ -145,9 +145,9 @@
     var msg = el('span', 'd-err'); msg.setAttribute('aria-live', 'polite');
     actions.append(save, msg);
     if (l) {
-      var rem = el('button', 'pill', 'Remove my company'); rem.type = 'button';
+      var rem = el('button', 'pill', 'Remove my enterprise'); rem.type = 'button';
       rem.addEventListener('click', function () {
-        if (!confirm('Remove your company from the .LLab Collaborating Companies?')) return;
+        if (!confirm('Remove your enterprise from the .LLab Collaborating Enterprises?')) return;
         fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'remove' }) }).then(function () { loadMine(); loadPublic(); });
       });
       actions.appendChild(rem);
@@ -172,14 +172,14 @@
     fetch(API + '?mine=1', { credentials: 'same-origin' })
       .then(function (r) { if (r.status === 401) { renderMine({ signedOut: true }); return null; } return r.json(); })
       .then(function (d) { if (d) { DIRS = d.directions; renderMine(d); } })
-      .catch(function () { $('d-mine').textContent = 'Could not load your company page.'; });
+      .catch(function () { $('d-mine').textContent = 'Could not load your enterprise page.'; });
   }
 
   function loadPublic() {
     fetch(API)
       .then(function (r) { return r.json(); })
       .then(function (d) { DIRS = d.directions; listings = d.listings; renderFilters(); renderGrid(); })
-      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the .LLab Collaborating Companies. Please try again.'; });
+      .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the .LLab Collaborating Enterprises. Please try again.'; });
   }
 
   loadPublic();
