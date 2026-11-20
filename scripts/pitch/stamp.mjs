@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const list = (d) => fs.readdirSync(path.join(root, d)).filter((n) => fs.statSync(path.join(root, d, n)).isFile()).sort().map((n) => `${d}/${n}`);
-export const INPUTS = ['content/pricing.json', 'content/free-tools.json', 'scripts/pdf-src/render.mjs', 'scripts/pdf-src/base.css', ...list('scripts/pitch'), ...list('scripts/pitch/assets')]
+export const INPUTS = ['content/pricing.json', 'content/about.json', 'content/free-tools.json', 'scripts/pdf-src/render.mjs', 'scripts/pdf-src/base.css', ...list('scripts/pitch'), ...list('scripts/pitch/assets')]
   .filter((f) => f !== 'scripts/pitch/stamp.mjs');
 export const sourceHash = () => {
   const h = crypto.createHash('sha256');

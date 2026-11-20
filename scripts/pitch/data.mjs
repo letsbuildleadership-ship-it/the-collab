@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const about = JSON.parse(fs.readFileSync(path.join(root, 'content/about.json'), 'utf8'));
 const reg = JSON.parse(fs.readFileSync(path.join(root, 'content/pricing.json'), 'utf8'));
 const pricing = createRequire(import.meta.url)('../../netlify/functions/lib/pricing.js');
 
@@ -22,6 +23,9 @@ const partnerIp = reg.partner_ip.map((p) => p.name);
 const VERBS = ['Define it', 'Plan it', 'Live it', 'Pass it on'];
 
 export const P = {
+  // Mission and vision, word for word as the About page shows them (content/about.json). Never retype them.
+  mission: about.mission_quote.map((x) => x.text).join('').trim(),
+  vision: `${about.vision_body_prefix} ${about.vision_body_glow}`.trim(),
   libMo: perMo('library-card'), libYr: perYr('library-card'),
   memMo: perMo('membership'), memYr: perYr('membership'),
   journalYr: perYr('journal'),
