@@ -2532,3 +2532,9 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 #founding-terms .terms-list { max-width: 72ch; margin-left: 0; padding-left: 1.1rem; }
 #founding-terms .terms-list li { margin-bottom: 0.9rem; }
 #founding-terms .terms-list a, .tax-note a { text-decoration: underline; }
+/* The .LLab™ home: ecosystem and take-part grids */
+.llab-eco { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.llab-eco .doorway-card .kicker { font-size: 0.74rem; font-weight: 700; }
+.llab-eco .doorway-card .pill { margin-top: 0; padding: 0.5em 1em; font-size: 0.85rem; }
+.llab-eco { background: transparent; border: 0; gap: 1rem; }
+.llab-eco .doorway-card { border: 1px solid var(--hairline); border-radius: 10px; }
