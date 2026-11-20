@@ -6,7 +6,7 @@ import fs from 'node:fs';
 const P = {
   founders: ['The Co.LLab Founders Organization™ · Community Economic Development',
     'Unequal access to entrepreneurial education, enterprise infrastructure, capital networks, and professional relationships can constrain small-enterprise formation, local investment, economic mobility, and regional development.',
-    'The Co.LLab Founders Organization™ is where investors fund the continued building of The Co.LLab™ and its Leadership Infrastructure™, and are permanently recognized. Next, it invests back out through scholarships, angel investment and charitable donations, opening access to entrepreneurial education, capital and Leadership Infrastructure™ for community-based enterprise.'],
+    'The Co.LLab Founders Organization™ is a standalone BUILD offering: Founders fund the continued building of The Co.LLab™ and its Leadership Infrastructure™, and are permanently recognized. Next, it invests back out through scholarships, angel investment and charitable donations, opening access to entrepreneurial education, capital and Leadership Infrastructure™ for community-based enterprise.'],
   llab: ['The .LLab · Research & Intellectual Property Development',
     'Fragmented research and weak connections between theory, applied practice, and implementation can slow innovation and prevent intellectual assets from becoming practically useful or commercially applicable.',
     'The .LLab develops research, theory, applied practices, and proprietary intellectual property into structured knowledge resources that support innovation, strategic decision-making, and enterprise development.'],

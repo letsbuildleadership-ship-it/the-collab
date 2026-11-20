@@ -1014,7 +1014,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
   .editorial-scroll__frame { flex-basis: 42%; }
 }
 
-@media (min-width: 1180px) {
+@media (min-width: 1320px) {
   .editorial-scroll__frame { flex-basis: 26%; }
 }
 
@@ -2495,3 +2495,46 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .oe-figsteps span:last-child{color:#fdf6ec;font-size:.9rem;line-height:1.45}
 @media (max-width:900px){.oe-figsteps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.oe-figsteps{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Site navigation (2026 reorganization) ----------
+   Desktop (>=1320px): six top-level items in the header, each group opens a dropdown panel.
+   The .LLab™ opens a three-column panel with section headings. Below 1320px: the Menu button
+   opens the same list as an accordion. Footer: secondary, member, contact, legal and social links only. */
+.nav-more-head { display: block; margin: 0.4rem 0 0.15rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fdf6ec; opacity: 0.85; }
+.nav-more-menu .nav-more-head:first-child { margin-top: 0; }
+@media (min-width: 1320px) {
+  .site-header .nav-toggle { display: none; }
+  .site-header .nav-links { display: flex; align-items: center; gap: clamp(0.85rem, 1.4vw, 1.75rem); position: static; }
+  .site-header .nav-links > li { position: relative; }
+  .site-header .nav-more-toggle { padding: 0 0 0.3em; white-space: nowrap; }
+  .site-header .nav-links > li > a { white-space: nowrap; }
+  .site-header .nav-links > li > a, .site-header .nav-links > li > .nav-more-toggle { letter-spacing: 0.08em; }
+  .site-header #nav-more-menu .nav-more-head { margin-top: 0; }
+  .site-header .nav-more-menu { top: calc(100% + 1.4rem); left: 50%; right: auto; transform: translateX(-50%); min-width: 17rem; gap: 0.6rem; padding: 1.2rem 1.4rem; border-radius: 12px; border-color: var(--hairline-strong); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.85); z-index: 70; }
+  .site-header .nav-more-menu a { text-transform: none; letter-spacing: 0.02em; font-size: 0.95rem; white-space: nowrap; }
+  .site-header .nav-more-menu a::after { display: none; }
+  .site-header #nav-more-menu { display: none; width: min(56rem, calc(100vw - 4rem)); left: 50%; transform: translateX(-50%); }
+  .site-header .nav-more.is-open > #nav-more-menu { display: block; columns: 3; column-gap: 2.25rem; }
+  .site-header #nav-more-menu > li { break-inside: avoid; padding: 0.3rem 0; }
+  .site-header #nav-more-menu .nav-more-head:not(:first-child) { break-before: column; }
+  .site-header #nav-more-menu a { white-space: normal; }
+  .site-header .nav-links > li:last-child .nav-more-menu, .site-header .nav-links > li:nth-last-child(2) .nav-more-menu { left: auto; right: 0; transform: none; }
+  .site-header .nav-signin a { border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.55em 1.2em; }
+  .site-header .nav-signin a::after { display: none; }
+}
+@media (max-width: 1319px) {
+  .nav-links.is-open .nav-more-head { padding: 0.6rem 0 0.1rem; border-top: 1px solid var(--hairline); margin: 0; }
+}
+.footer-grid--menu { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .footer-grid--menu { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .footer-grid--menu { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Founders: legal & tax notes (founders.html#founding-terms) */
+#founding-terms .terms-list { max-width: 72ch; margin-left: 0; padding-left: 1.1rem; }
+#founding-terms .terms-list li { margin-bottom: 0.9rem; }
+#founding-terms .terms-list a, .tax-note a { text-decoration: underline; }
+/* The .LLab™ home: ecosystem and take-part grids */
+.llab-eco { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.llab-eco .doorway-card .kicker { font-size: 0.74rem; font-weight: 700; }
+.llab-eco .doorway-card .pill { margin-top: 0; padding: 0.5em 1em; font-size: 0.85rem; }
+.llab-eco { background: transparent; border: 0; gap: 1rem; }
+.llab-eco .doorway-card { border: 1px solid var(--hairline); border-radius: 10px; }

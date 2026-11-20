@@ -1,59 +1,92 @@
 // One source for the site header menu and the footer menu: rewrites both on
 // every page so they always match. Run after adding or renaming a page:
 //   node scripts/build-nav.mjs
-// Footer columns follow the top menu, in the same order and with the same labels.
+// The top menu is the site index; the footer holds secondary, contact, legal and social links.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
-// Top menu. A group is a dropdown; an item is [page, exact page title (footer), optional short menu label]; `cls` keeps the classes main.js and the tests expect.
+// Top menu. A group is a dropdown; an item is [page, exact page title, optional short menu label];
+// a string item is a section heading inside a dropdown. `cls` keeps the classes main.js and the tests expect.
+// Every page of the site is reachable from this menu; the footer only carries secondary links.
 export const MENU = [
   { label: 'Home', href: '/' },
-  { label: 'The Co.LLab+™', id: 'nav-menu-plus', cls: 'nav-more nav-group', items: [
+  { label: 'The Co.LLab™', id: 'nav-menu-about', cls: 'nav-more nav-group', items: [
+    'The holding company',
+    ['about', 'About The Co.LLab™'],
+    ['glossary', 'Glossary'],
+    'The Co.LLab+™',
     ['community', 'The Co.LLab+ Marketplace™'],
     ['agriculture', 'The Co.LLab+™ Agriculture'],
+    'Get in touch',
+    ['contact#founder', 'Meet the Founder'],
+    ['contact', 'Contact Us'],
   ] },
-  { label: 'The .LLab™', id: 'nav-more-menu', cls: 'nav-more', items: [
-    ['products', 'The .LLab™'],
-    ['all-products', 'The .LLab Products™'],
-    ['think', 'The .LLab R.A.T.™ · Research And Theory'],
-    ['journal', 'The .LLab Journal™'],
-    ['journal-preview', 'The .LLab Journal™ · Free Preview'],
-    ['library', 'The .LLab Library™'],
-    ['legacy-library', 'The .LLab Legacy Library™'],
-    ['collaborating-companies', 'The .LLab Collaborating Companies'],
-    ['atelier', 'The .LLab Atelier™'],
-    ['efficiency-architecture', 'The .LLab Efficiency Architecture™'],
-    ['creator', 'The .LLab Creators™'],
-    ['commercial-transport', 'The .LLab Transport™'],
-    ['technology', 'Technology · The .LLab Legacy Ventures™'],
-    ['impact', 'The .LLab Impact™'],
-  ] },
-  { label: 'Partnership™', page: 'partnership' },
-  { label: 'The Co.LLab Founders Organization™', id: 'nav-menu-founders', cls: 'nav-more nav-group', items: [
-    ['founders', 'The Co.LLab Founders Organization™'],
-    ['founders-purpose', 'The Co.LLab Founders Organization™ · Purpose', 'Purpose'],
-    ['founders-strategy', 'The Co.LLab Founders Organization™ · Investment Strategy', 'Investment Strategy'],
-  ] },
-  { label: 'Omnidirectional Enterprise Systems™', id: 'nav-menu-oe', cls: 'nav-more nav-group', items: [
+  { label: 'Omnidirectional Enterprise™', id: 'nav-menu-oe', cls: 'nav-more nav-group', items: [
     ['omnidirectional-enterprise', 'Omnidirectional Enterprise Systems™', 'The Models'],
     ['oe-business-model', 'Omnidirectional Enterprise Systems™ · The Enterprise System Model', 'The Enterprise System Model'],
     ['oe-goal', 'Omnidirectional Enterprise Systems™ · Goal and Measures', 'Goal and Measures'],
     ['oe-research', 'Omnidirectional Enterprise Systems™ · Research', 'Research'],
   ] },
-  { label: 'About Us', id: 'nav-menu-about', cls: 'nav-more nav-group', items: [
-    ['about', 'About The Co.LLab™'],
-    ['glossary', 'Glossary'],
+  { label: 'The .LLab™', id: 'nav-more-menu', cls: 'nav-more', items: [
+    'Ecosystem & membership',
+    ['products', 'The .LLab™', 'The .LLab™ Home'],
+    ['all-products', 'The .LLab Products™'],
+    ['collaborating-companies', 'The .LLab Collaborating Companies'],
+    'Research, theory & Intelligence Infrastructure™',
+    ['think', 'The .LLab R.A.T.™ · Research And Theory'],
+    ['journal', 'The .LLab Journal™'],
+    ['journal-preview', 'The .LLab Journal™ · Free Preview'],
+    ['library', 'The .LLab Library™'],
+    ['legacy-library', 'The .LLab Legacy Library™'],
+    'Creator Infrastructure™ & ventures',
+    ['creator', 'The .LLab Creators™'],
+    ['atelier', 'The .LLab Atelier™'],
+    ['efficiency-architecture', 'The .LLab Efficiency Architecture™'],
+    ['commercial-transport', 'The .LLab Transport™'],
+    ['technology', 'Technology · The .LLab Legacy Ventures™'],
+    ['impact', 'The .LLab Impact™'],
   ] },
-  { label: 'Contact Us', id: 'nav-menu-contact', cls: 'nav-more nav-group', items: [
-    ['contact', 'Contact Us'],
-    ['contact#founder', 'Meet the Founder'],
+  { label: 'Partnership™', page: 'partnership' },
+  { label: 'Founders Organization™', id: 'nav-menu-founders', cls: 'nav-more nav-group', items: [
+    ['founders', 'The Co.LLab Founders Organization™', 'The Co.LLab Founders Organization™'],
+    ['founders-purpose', 'The Co.LLab Founders Organization™ · Purpose', 'Purpose'],
+    ['founders-strategy', 'The Co.LLab Founders Organization™ · Investment Strategy', 'Investment Strategy'],
+    ['founders#founding-terms', 'Founding: legal & tax notes', 'Legal & tax notes'],
   ] },
 ];
 
-// Extra footer-only links under the Contact Us column.
-const CONTACT_EXTRA = [['login', 'Member Login'], ['account', 'Member Portal™'], ['contact', 'Digital business card', '#card']];
+// Footer: secondary links only (the full site index is the top menu).
+// [page(#hash), label]; a page starting with mailto:/https: is used as-is.
+export const FOOTER = [
+  { label: 'Explore', items: [
+    ['all-products', 'The .LLab Products™'],
+    ['journal-preview', 'The .LLab Journal™ · Free Preview'],
+    ['omnidirectional-enterprise#legacy-wall', 'Omnidirectional Legacy Wall'],
+    ['glossary', 'Glossary'],
+  ] },
+  { label: 'Members', items: [
+    ['login', 'Member Login'],
+    ['login#join', 'Join free'],
+    ['login#forgot-password', 'Forgot password?'],
+    ['account', 'Member Portal™'],
+  ] },
+  { label: 'Contact', items: [
+    ['contact', 'Contact Us'],
+    ['mailto:hello@wearethellab.com', 'hello@wearethellab.com'],
+    ['mailto:support@wearethellab.com', 'support@wearethellab.com'],
+    ['contact#card', 'Digital business card'],
+  ] },
+  { label: 'Legal', items: [
+    ['ip-license', 'IP License & Terms of Use'],
+    ['partnership#terms', 'Clear Terms'],
+    ['founders#founding-terms', 'Founding: legal & tax notes'],
+  ] },
+  { label: 'Follow', items: [
+    ['https://www.instagram.com/theco.llab_/', 'Instagram · @theco.llab_'],
+  ] },
+];
 
 const esc = (s) => s.replace(/&(?!amp;)/g, '&amp;');
 
@@ -62,6 +95,10 @@ function hrefFor(page, isRoot) {
 }
 
 function link(page, label, here, isRoot, hash = '') {
+  if (/^(mailto:|https?:)/.test(page)) {
+    const ext = page.startsWith('http') ? ' rel="noopener" target="_blank"' : '';
+    return `<a href="${page}"${ext}>${esc(label)}</a>`;
+  }
   if (page.includes('#')) { [page, hash] = [page.split('#')[0], '#' + page.split('#')[1]]; }
   const cur = page === here && !hash ? ' aria-current="page"' : '';
   return `<a href="${hrefFor(page, isRoot)}${hash}"${cur}>${esc(label)}</a>`;
@@ -77,10 +114,15 @@ export function navHtml(here, isRoot) {
     if (m.href === '/') out.push(`        <li>${homeLink(here)}</li>`);
     else if (m.page) out.push(`        <li>${link(m.page, m.label, here, isRoot)}</li>`);
     else {
+      const inGroup = m.items.some((it) => typeof it !== 'string' && it[0].split('#')[0] === here);
       out.push(`        <li class="${m.cls}">`);
-      out.push(`          <button type="button" class="nav-more-toggle" aria-expanded="false" aria-controls="${m.id}">${esc(m.label)}</button>`);
+      out.push(`          <button type="button" class="nav-more-toggle" aria-expanded="false" aria-controls="${m.id}"${inGroup ? ' data-current' : ''}>${esc(m.label)}</button>`);
       out.push(`          <ul class="nav-more-menu" id="${m.id}">`);
-      for (const [p, l, short] of m.items) out.push(`            <li>${link(p, short || l, here, isRoot)}</li>`);
+      for (const it of m.items) {
+        if (typeof it === 'string') { out.push(`            <li class="nav-more-head" aria-hidden="true">${esc(it)}</li>`); continue; }
+        const [p, l, short] = it;
+        out.push(`            <li>${link(p, short || l, here, isRoot)}</li>`);
+      }
       out.push('          </ul>');
       out.push('        </li>');
     }
@@ -93,17 +135,7 @@ export function navHtml(here, isRoot) {
 export function footerHtml(here, isRoot, brandCol) {
   const cols = [brandCol];
   const col = (h, lis) => `      <div class="footer-col">\n        <h4>${esc(h)}</h4>\n        <ul>\n${lis.map((l) => `          <li>${l}</li>`).join('\n')}\n        </ul>\n      </div>`;
-  for (const m of MENU) {
-    if (m.href === '/') continue;
-    if (m.page) {
-      cols.push(col(m.label, [link(m.page, m.label, here, isRoot)]));
-    } else {
-      const lis = m.items.map(([p, l]) => link(p, l, here, isRoot));
-      if (m.label === 'About Us') lis.unshift(homeLink(here));
-      if (m.label === 'Contact Us') lis.push(...CONTACT_EXTRA.map(([p, l, h]) => link(p, l, here, isRoot, h || '')));
-      cols.push(col(m.label, lis));
-    }
-  }
+  for (const c of FOOTER) cols.push(col(c.label, c.items.map(([p, l]) => link(p, l, here, isRoot))));
   return `<div class="footer-grid footer-grid--menu">\n${cols.join('\n')}\n    </div>\n    `;
 }
 
