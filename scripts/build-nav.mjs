@@ -53,7 +53,6 @@ export const MENU = [
     ['founders', 'The Co.LLab Founders Organization™', 'The Co.LLab Founders Organization™'],
     ['founders-purpose', 'The Co.LLab Founders Organization™ · Purpose', 'Purpose'],
     ['founders-strategy', 'The Co.LLab Founders Organization™ · Investment Strategy', 'Investment Strategy'],
-    ['founders#founding-terms', 'Founding: legal & tax notes', 'Legal & tax notes'],
   ] },
 ];
 
@@ -81,7 +80,6 @@ export const FOOTER = [
   { label: 'Legal', items: [
     ['ip-license', 'IP License & Terms of Use'],
     ['partnership#terms', 'Clear Terms'],
-    ['founders#founding-terms', 'Founding: legal & tax notes'],
   ] },
   { label: 'Follow', items: [
     ['https://www.instagram.com/theco.llab_/', 'Instagram · @theco.llab_'],

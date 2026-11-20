@@ -2528,10 +2528,8 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .footer-grid--menu { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .footer-grid--menu { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .footer-grid--menu { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-/* Founders: legal & tax notes (founders.html#founding-terms) */
-#founding-terms .terms-list { max-width: 72ch; margin-left: 0; padding-left: 1.1rem; }
-#founding-terms .terms-list li { margin-bottom: 0.9rem; }
-#founding-terms .terms-list a, .tax-note a { text-decoration: underline; }
+/* Founders: tax note */
+.tax-note a { text-decoration: underline; }
 /* The .LLab™ home: ecosystem and take-part grids */
 .llab-eco { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
 .llab-eco .doorway-card .kicker { font-size: 0.74rem; font-weight: 700; }
