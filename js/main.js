@@ -331,3 +331,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 })();
+
+/* Language menu: Google Website Translator, loaded only when a visitor picks a language other than English.
+   The choice is kept in the googtrans cookie, so every page opens in that language. Brand and trademark names
+   (anything ending in ™, The .LLab, The Co.LLab) are marked notranslate so the IP keeps its exact names. */
+(function languageMenu() {
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]+\/([^;]+)/);
+  const current = m ? decodeURIComponent(m[1]) : 'en';
+  const setCookie = (val) => {
+    const kill = val ? '' : '; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    const v = val ? `/en/${val}` : '';
+    document.cookie = `googtrans=${v}; path=/${kill}`;
+    const host = location.hostname.replace(/^www\./, '');
+    if (host.includes('.')) document.cookie = `googtrans=${v}; path=/; domain=.${host}${kill}`;
+  };
+  const protectNames = () => {
+    const re = /((?:The\s)?(?:[A-Z.][\w.+&'’-]*\s){0,5}[A-Z.][\w.+&'’-]*™|The \.LLab|The Co\.LLab\+?)/g;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement && !n.parentElement.closest('script,style,.notranslate') && re.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+    });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    for (const n of nodes) {
+      const frag = document.createDocumentFragment(); let last = 0; const t = n.nodeValue; re.lastIndex = 0; let r;
+      while ((r = re.exec(t))) {
+        frag.append(t.slice(last, r.index));
+        const s = document.createElement('span'); s.className = 'notranslate'; s.translate = false; s.textContent = r[0]; frag.append(s);
+        last = r.index + r[0].length;
+      }
+      frag.append(t.slice(last)); n.replaceWith(frag);
+    }
+  };
+  const start = () => {
+    document.querySelectorAll('.lang-current').forEach((el) => { el.textContent = current.split('-')[0].toUpperCase(); });
+    document.querySelectorAll('.lang-opt').forEach((b) => {
+      if (b.dataset.lang === current) b.setAttribute('aria-current', 'true');
+      b.addEventListener('click', () => { setCookie(b.dataset.lang === 'en' ? '' : b.dataset.lang); location.reload(); });
+    });
+    if (current === 'en') return;
+    protectNames();
+    const holder = document.createElement('div'); holder.id = 'google_translate_element'; holder.hidden = true; document.body.append(holder);
+    window.googleTranslateElementInit = () => new window.google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+    const s = document.createElement('script'); s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'; s.async = true; document.head.append(s);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();

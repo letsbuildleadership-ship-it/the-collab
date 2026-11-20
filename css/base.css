@@ -1014,7 +1014,7 @@ html.js .phase-node.is-visible { opacity: 1; transform: translateY(0); }
   .editorial-scroll__frame { flex-basis: 42%; }
 }
 
-@media (min-width: 1320px) {
+@media (min-width: 1380px) {
   .editorial-scroll__frame { flex-basis: 26%; }
 }
 
@@ -2497,12 +2497,12 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 @media (max-width:560px){.oe-figsteps{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- Site navigation (2026 reorganization) ----------
-   Desktop (>=1320px): six top-level items in the header, each group opens a dropdown panel.
-   The .LLab™ opens a three-column panel with section headings. Below 1320px: the Menu button
+   Desktop (>=1380px): six top-level items in the header, each group opens a dropdown panel.
+   The .LLab™ opens a three-column panel with section headings. Below 1380px: the Menu button
    opens the same list as an accordion. Footer: secondary, member, contact, legal and social links only. */
 .nav-more-head { display: block; margin: 0.4rem 0 0.15rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fdf6ec; opacity: 0.85; }
 .nav-more-menu .nav-more-head:first-child { margin-top: 0; }
-@media (min-width: 1320px) {
+@media (min-width: 1380px) {
   .site-header .nav-toggle { display: none; }
   .site-header .nav-links { display: flex; align-items: center; gap: clamp(0.85rem, 1.4vw, 1.75rem); position: static; }
   .site-header .nav-links > li { position: relative; }
@@ -2522,7 +2522,7 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
   .site-header .nav-signin a { border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 0.55em 1.2em; }
   .site-header .nav-signin a::after { display: none; }
 }
-@media (max-width: 1319px) {
+@media (max-width: 1379px) {
   .nav-links.is-open .nav-more-head { padding: 0.6rem 0 0.1rem; border-top: 1px solid var(--hairline); margin: 0; }
 }
 .footer-grid--menu { grid-template-columns: repeat(5, minmax(0, 1fr)); }
@@ -2538,3 +2538,14 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 .llab-eco .doorway-card .pill { margin-top: 0; padding: 0.5em 1em; font-size: 0.85rem; }
 .llab-eco { background: transparent; border: 0; gap: 1rem; }
 .llab-eco .doorway-card { border: 1px solid var(--hairline); border-radius: 10px; }
+/* Language menu */
+.nav-lang .nav-more-toggle { text-transform: none; letter-spacing: 0.04em; }
+.lang-opt { background: none; border: 0; padding: 0.25rem 0; font: inherit; font-size: 0.95rem; color: var(--white-dim); cursor: pointer; text-align: left; width: 100%; }
+.lang-opt:hover, .lang-opt[aria-current='true'] { color: #fff; }
+.lang-opt[aria-current='true']::after { content: ' ✓'; }
+.nav-links.is-open .lang-opt { padding: 0.5rem 0; font-size: 0.95rem; }
+@media (min-width: 1380px) { .site-header #nav-menu-lang { min-width: 11rem; max-height: 70vh; overflow-y: auto; } }
+/* hide Google Translate's own bar and tooltip; keep the page from shifting down */
+iframe.skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
+body { top: 0 !important; }
+font font { background: none !important; box-shadow: none !important; }
