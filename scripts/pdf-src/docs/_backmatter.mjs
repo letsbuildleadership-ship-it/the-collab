@@ -14,7 +14,7 @@ const GLOSSARY = [
   ['Legacy', 'What an organization builds that continues after its founders and leaders step away.'],
   ['License', 'A limited right to use Co.LLab IP™ for internal purposes. A license grants use, not ownership.'],
   ['Non-Negotiable', 'A commitment an organization will not trade away, regardless of financial or competitive pressure.'],
-  ['Omnidirectional Enterprise™', 'An ecosystem without hierarchy, in which value moves between companies, people, creators, and communities in every direction.'],
+  ['Omnidirectional Enterprise™', 'An ecosystem without hierarchy, in which value moves between enterprises, people, creators, and communities in every direction.'],
   ['Preservation (Phase IV)', 'The phase that ensures knowledge, culture, and intent survive leadership transitions.'],
   ['Stakeholder', 'Any person or group the organization serves or depends on: employees, customers, community, partners, and future leaders.'],
   ['Stewardship', 'The shared responsibility to protect and advance an organization’s founding intent.'],

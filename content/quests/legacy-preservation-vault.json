@@ -13,7 +13,7 @@
       "section": "Article I · Purpose",
       "phase": 3,
       "type": "text",
-      "prompt": "The purpose of the company, as intended by its founder:"
+      "prompt": "The purpose of the enterprise, as intended by its founder:"
     },
     {
       "id": "n2",
@@ -111,7 +111,7 @@
       "section": "Letter to the Next Leader",
       "phase": 3,
       "type": "text",
-      "prompt": "What this company is for:"
+      "prompt": "What this enterprise is for:"
     },
     {
       "id": "n16",

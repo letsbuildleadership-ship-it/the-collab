@@ -20,7 +20,7 @@ const logoPng = fs.readFileSync(path.join(root, 'assets/img/logo-mark.png'));
 const pricing = JSON.parse(fs.readFileSync(path.join(root, 'content/pricing.json'), 'utf8'));
 const titleFor = (file) => (pricing.blueprint_series.find((b) => b.pdf_file === file) || {}).name || file;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH || undefined });
 try {
   for (const file of fs.readdirSync(srcDir).filter((f) => f.endsWith('.pdf'))) {
     // Back matter, rendered with invisible markers in every blank table cell.

@@ -252,13 +252,13 @@ const HAND = {
     [2, '06 · Onboarding', 'For each week: what a new person learns and who teaches it:'],
   ],
   'legacy-preservation-vault': [
-    [3, 'Article I · Purpose', 'The purpose of the company, as intended by its founder:'], [3, 'Article I · Purpose', 'The values that shall govern its conduct:'], [3, 'Article I · Purpose', 'The commitments that shall not be changed without the approval set out in Article VI:'],
+    [3, 'Article I · Purpose', 'The purpose of the enterprise, as intended by its founder:'], [3, 'Article I · Purpose', 'The values that shall govern its conduct:'], [3, 'Article I · Purpose', 'The commitments that shall not be changed without the approval set out in Article VI:'],
     [3, 'Article II · Stakeholders', 'For each stakeholder: what the legacy gives them and what they give the legacy:'],
     [3, 'Article III · Stewardship', 'Each stewardship seat, who holds it, how they are appointed, and the term:'], [3, 'Article III · Stewardship', 'The authority of the stewards: what they can approve, review, or stop:'],
     [3, 'Article IV · Value Flow', 'Each value flow, the commitment, and how we measure it:'], [3, 'Article IV · Value Flow', 'Our profit priorities, in order:'],
     [3, 'Article V · Succession and Sale', 'The conditions any new owner or controlling party must accept:'], [3, 'Article V · Succession and Sale', 'The provisions that protect the founder’s intent in a sale or merger:'], [3, 'Article V · Succession and Sale', 'Who holds authority if the founder is unable to serve:'],
     [3, 'Article VI · Review and Amendment', 'Each review item, its owner, and the month it is reviewed:'], [3, 'Article VI · Review and Amendment', 'The approval required to amend Articles I to V:'], [3, 'Article VI · Review and Amendment', 'For each role or responsibility: the current holder, the successor, when they are ready, and the knowledge to transfer:'],
-    [3, 'Letter to the Next Leader', 'What this company is for:'], [3, 'Letter to the Next Leader', 'What I would want you to protect above all:'], [3, 'Letter to the Next Leader', 'What I would want you to change:'],
+    [3, 'Letter to the Next Leader', 'What this enterprise is for:'], [3, 'Letter to the Next Leader', 'What I would want you to protect above all:'], [3, 'Letter to the Next Leader', 'What I would want you to change:'],
   ],
 };
 

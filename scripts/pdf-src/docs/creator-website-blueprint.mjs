@@ -37,7 +37,7 @@ const h3 = (t) => `<h3 class="doc-h3">${t}</h3>`;
 const p = (t) => `<p>${t}</p>`;
 
 const LEVEL_HEAD = ['Level', 'Plan family', 'What changes', 'Your move'];
-const PRICING_NOTE = call('Prices and limits move', 'Plan names, limits and prices change often, so this manual names plan families and links to each company\'s own pricing page instead of quoting dollar amounts. Check the page before you buy. A higher level is never required: finish the work at your current level first.');
+const PRICING_NOTE = call('Prices and limits move', 'Plan names, limits and prices change often, so this manual names plan families and links to each enterprise\'s own pricing page instead of quoting dollar amounts. Check the page before you buy. A higher level is never required: finish the work at your current level first.');
 
 /* ---------- the tools: roles, links, level ladders ---------- */
 const TOOLS = {
@@ -70,7 +70,7 @@ const TOOLS = {
       ['1 · Base', 'Free', 'Repositories, pull requests, issues and a monthly allowance of automation minutes.', 'One repository, a protected main branch, and a pull request for every change.'],
       ['2 · Starter', 'Free plus Copilot (optional add-on)', 'Inline coding help in your editor.', 'Only add it if you edit code by hand. Claude already covers the loop.'],
       ['3 · Builder', 'Team', 'Shared private repositories, required reviews and branch rules for several people.', 'Require one review before anything reaches main.'],
-      ['4 · Studio', 'Enterprise', 'Organization-wide controls, single sign-on and audit logs.', 'Standardize access for a company or a large collective.'],
+      ['4 · Studio', 'Enterprise', 'Organization-wide controls, single sign-on and audit logs.', 'Standardize access for an enterprise or a large collective.'],
       ['5 · Ceiling', 'Enterprise with security add-ons', 'Secret scanning and code scanning as paid add-ons.', 'Turn on secret scanning so a key can never be committed by accident.'],
     ],
   },
@@ -81,7 +81,7 @@ const TOOLS = {
       ['1 · Base', 'Free', 'A monthly allowance of usage credits, deploy previews, custom domain with a certificate.', 'Connect the repository once. Every merge to main publishes.'],
       ['2 · Starter', 'Personal', 'A larger credit allowance and extra monitoring.', 'Move up when a launch or a busy month uses your credits.'],
       ['3 · Builder', 'Pro', 'A larger allowance, shared settings and private team features.', 'Use shared environment variables so every site reads the same keys.'],
-      ['4 · Studio', 'Enterprise', 'Service commitments, single sign-on and support.', 'Reserve it for a company site with uptime requirements.'],
+      ['4 · Studio', 'Enterprise', 'Service commitments, single sign-on and support.', 'Reserve it for an enterprise site with uptime requirements.'],
       ['5 · Ceiling', 'Enterprise (custom)', 'Custom limits and network options.', 'Talk to Netlify sales about the exact limits you need.'],
     ],
   },
@@ -362,7 +362,7 @@ ${tbl(['Stage', 'iPhone level', 'Plan levels', 'What you can run'], [
     ['Starter', 'Base or Mid', 'Claude Pro with Claude Code · others at Free', 'The full loop from your phone, one change at a time.'],
     ['Builder', 'Mid', 'ChatGPT Plus · Claude Max · GitHub Free · Netlify Personal · Composio Pro', 'Daily loops, photo work, several apps connected.'],
     ['Studio', 'Mid or Ceiling', 'Claude Max (higher) · Netlify Pro · Composio Pro or Business', 'All-day sessions and a busy launch week.'],
-    ['Ceiling', 'Ceiling', 'Team or Enterprise plans where a company needs them', 'A shared workflow across a team, reviewed on phones.'],
+    ['Ceiling', 'Ceiling', 'Team or Enterprise plans where an enterprise needs them', 'A shared workflow across a team, reviewed on phones.'],
   ])}
 ${h3('What a phone cannot do')}
 ${ul([

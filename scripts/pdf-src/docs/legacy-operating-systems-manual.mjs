@@ -8,7 +8,7 @@ export const meta = {
   cover: partnerCover(
     'III · Internal Operating Systems',
     'The Legacy <strong>Operating Systems</strong> Manual™',
-    'Live it. How the whole company runs on what it stands on: the rhythms, standards, and practices that keep the legacy alive in every department, every day.',
+    'Live it. How the whole enterprise runs on what it stands on: the rhythms, standards, and practices that keep the legacy alive in every department, every day.',
     '$2,500'
   ),
 };
@@ -26,9 +26,9 @@ export const contentHtml = `
 ${licensePageHtml}
 
 <section class="page">
-  ${header('00 · How To Use This Manual', 'A Legacy Lives', 'In How You Operate.', 'The .LLab Legacy Infrastructure Plan™ decided who carries what. This manual builds it into the systems the company runs on, so the legacy shows up in daily work, not just on the wall.')}
+  ${header('00 · How To Use This Manual', 'A Legacy Lives', 'In How You Operate.', 'The .LLab Legacy Infrastructure Plan™ decided who carries what. This manual builds it into the systems the enterprise runs on, so the legacy shows up in daily work, not just on the wall.')}
   <div class="pathway">
-    <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Operating Rhythm</span><p>When the company meets and reviews.</p></div>
+    <div class="pathway-step"><span class="pathway-num">01</span><span class="pathway-label">Operating Rhythm</span><p>When the enterprise meets and reviews.</p></div>
     <span class="pathway-arrow">→</span>
     <div class="pathway-step"><span class="pathway-num">02</span><span class="pathway-label">Decision System</span><p>How decisions are made and recorded.</p></div>
     <span class="pathway-arrow">→</span>
@@ -45,13 +45,13 @@ ${licensePageHtml}
 </section>
 
 <section class="page">
-  ${header('01 · Operating Rhythm', 'When The Company', 'Meets And Reviews.', 'A legacy is kept alive by rhythm. Set the meetings that keep everyone aligned.')}
+  ${header('01 · Operating Rhythm', 'When The Enterprise', 'Meets And Reviews.', 'A legacy is kept alive by rhythm. Set the meetings that keep everyone aligned.')}
   ${grid(['Rhythm', 'Who Attends', 'Purpose', 'Legacy Question Asked'], ['Weekly', 'Monthly', 'Quarterly', 'Annually'])}
   ${callout('Legacy Question', 'Every meeting ends with one question: “Did what we decided today match who we say we are?”')}
 </section>
 
 <section class="page">
-  ${header('02 · Decision System', 'How Decisions Are Made', 'And Recorded.', 'Write major decisions down with the value that guided them. Over time, this becomes the company’s memory.')}
+  ${header('02 · Decision System', 'How Decisions Are Made', 'And Recorded.', 'Write major decisions down with the value that guided them. Over time, this becomes the enterprise’s memory.')}
   ${grid(['Date', 'Decision', 'Decided By', 'Value That Guided It'], [], 7)}
   ${field('Our standard for a decision that must be written down', 2)}
 </section>
@@ -63,7 +63,7 @@ ${licensePageHtml}
 </section>
 
 <section class="page">
-  ${header('04 · Culture Practices', 'How Values', 'Become Habits.', 'Turn each core value into one practice the whole company repeats.')}
+  ${header('04 · Culture Practices', 'How Values', 'Become Habits.', 'Turn each core value into one practice the whole enterprise repeats.')}
   ${grid(['Core Value', 'Practice', 'How Often', 'Owner'], ['1.', '2.', '3.', '4.', '5.'])}
 </section>
 
@@ -73,7 +73,7 @@ ${dept('Sales & Customers')}
 ${dept('People & Culture')}
 
 <section class="page">
-  ${header('06 · Onboarding', 'How New People', 'Inherit The Legacy.', 'Every new person should learn what the company stands on before they learn how to do the job.')}
+  ${header('06 · Onboarding', 'How New People', 'Inherit The Legacy.', 'Every new person should learn what the enterprise stands on before they learn how to do the job.')}
   ${grid(['Week', 'What They Learn', 'Who Teaches It'], ['Week 1', 'Week 2', 'Week 3', 'Week 4'])}
   ${checklist(['Legacy Foundations Record shared on day one', 'Values and practices explained by a leader', 'Department page reviewed with their lead', 'First field note shared after 30 days'])}
   ${callout('Next · Phase IV', 'The .LLab Legacy Preservation Vault™ makes sure all of this outlasts the people who built it.')}

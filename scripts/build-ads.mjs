@@ -91,7 +91,7 @@ ${ad.legal ? `<p class="legal">${LEGAL}</p>` : ''}</div></div>`;
 
 const outDir = path.join(root, 'marketing/ads');
 fs.mkdirSync(outDir, { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH || undefined });
 const ctxFor = (s) => browser.newContext({ viewport: { width: s.w, height: s.h }, deviceScaleFactor: 1 });
 const shoot = async (ad, size, file) => {
   const ctx = await ctxFor(size);
