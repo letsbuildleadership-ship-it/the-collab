@@ -13,15 +13,12 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 export const MENU = [
   { label: 'Home', href: '/' },
   { label: 'The Co.LLab™', id: 'nav-menu-about', cls: 'nav-more nav-group', items: [
-    'The holding company',
+    'The enterprise',
     ['about', 'About The Co.LLab™'],
-    ['glossary', 'Glossary'],
+    ['glossary', 'The Co.LLab™ Glossary'],
     'The Co.LLab+™',
     ['community', 'The Co.LLab+ Marketplace™'],
     ['agriculture', 'The Co.LLab+™ Agriculture'],
-    'Get in touch',
-    ['contact#founder', 'Meet the Founder'],
-    ['contact', 'Contact Us'],
   ] },
   { label: 'Omnidirectional Enterprise™', id: 'nav-menu-oe', cls: 'nav-more nav-group', items: [
     ['omnidirectional-enterprise', 'Omnidirectional Enterprise Systems™', 'The Models'],
@@ -37,7 +34,6 @@ export const MENU = [
     'Research, theory & Intelligence Infrastructure™',
     ['think', 'The .LLab R.A.T.™ · Research And Theory'],
     ['journal', 'The .LLab Journal™'],
-    ['journal-preview', 'The .LLab Journal™ · Free Preview'],
     ['library', 'The .LLab Library™'],
     ['legacy-library', 'The .LLab Legacy Library™'],
     'Creator Infrastructure™ & ventures',
@@ -48,11 +44,22 @@ export const MENU = [
     ['technology', 'Technology · The .LLab Legacy Ventures™'],
     ['impact', 'The .LLab Impact™'],
   ] },
-  { label: 'Partnership™', page: 'partnership' },
+  { label: 'Partnership™', id: 'nav-menu-partnership', cls: 'nav-more nav-group', items: [
+    ['partnership', 'Partnership™'],
+    ['partnership#tiers', 'The four Partnership levels', 'The Four Levels'],
+    ['partnership#partner-ip', 'Partnership IP', 'Partnership IP'],
+    ['partnership#included', "What's included", "What's Included"],
+    ['partnership#terms', 'Clear Terms', 'Clear Terms'],
+    ['partnership#partner-wall', 'Every Partner, permanently', 'Partner Wall'],
+  ] },
   { label: 'Founders Organization™', id: 'nav-menu-founders', cls: 'nav-more nav-group', items: [
     ['founders', 'The Co.LLab Founders Organization™', 'The Co.LLab Founders Organization™'],
     ['founders-purpose', 'The Co.LLab Founders Organization™ · Purpose', 'Purpose'],
     ['founders-strategy', 'The Co.LLab Founders Organization™ · Investment Strategy', 'Investment Strategy'],
+  ] },
+  { label: 'Get in touch', id: 'nav-menu-contact', cls: 'nav-more nav-group', items: [
+    ['contact', 'Contact Us'],
+    ['contact#founder', 'Meet the Founder'],
   ] },
 ];
 
@@ -63,7 +70,7 @@ export const FOOTER = [
     ['all-products', 'The .LLab Products™'],
     ['journal-preview', 'The .LLab Journal™ · Free Preview'],
     ['omnidirectional-enterprise#legacy-wall', 'Omnidirectional Legacy Wall'],
-    ['glossary', 'Glossary'],
+    ['glossary', 'The Co.LLab™ Glossary'],
   ] },
   { label: 'Members', items: [
     ['login', 'Member Login'],
