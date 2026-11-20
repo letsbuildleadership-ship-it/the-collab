@@ -115,7 +115,7 @@ const partner = () => slide(`${k('Partnership™')}<h2 style="font-size:40px;mar
 
 // 05 The Co.LLab Founders Organization™: every level, its price and what it includes (pages/founders.html)
 const FREE = ['The .LLab Mission &amp; Values Charter™', 'The .LLab Leadership Infrastructure Build Plan™', 'The .LLab Leadership Legacy Profile™', 'Legacy Profile™ + Leadership Alignment Map™', 'Legacy Profile™ + Legacy Infrastructure Map™', 'Legacy Infrastructure Map™ + Leadership Infrastructure Diagnostic™', 'Map™ + Diagnostic™ + Infrastructure Blueprint™', 'The complete IV Phases™ collection', 'All IV Phases™ + every .LLab Creators™ product', 'All IV Phases™ + Creators™ + every Blueprint™ issue', 'All IV Phases™ + Creators™ + every Blueprint™ issue'];
-const founders = () => slide(`${k('The Co.LLab Founders Organization™')}<h2 style="font-size:44px;margin-bottom:8px">Become a Founder. <b>Build your legacy.</b></h2><p class="lead" style="font-size:20px;margin:0 0 14px">The ones who build first are remembered first. Your name goes on the Omnidirectional Legacy Wall, and stays there.</p><div class="fl4">${P.founders.map((f, i) => `<div class="panel"><div class="pr">${f.price.replace('–', ' – ')}</div><b>${f.label}</b><span>Free: ${FREE[i]}</span></div>`).join('')}<div class="panel hot"><b>Every level</b><span>Infrastructure Roadmap™ · credited in full toward a Partnership™ · supports a charity partner</span></div></div><p class="fine">A standalone BUILD offering. Built to invest back out: scholarships, angel investment and charitable donations. No ownership stake or financial return.</p>`);
+const founders = () => slide(`${k('The Co.LLab Founders Organization™')}<h2 style="font-size:44px;margin-bottom:8px">Build what outlasts you. <b>Be part of the foundation.</b></h2><p class="lead" style="font-size:20px;margin:0 0 14px">Founders fund the building of The Co.LLab™ and are permanently recognized on the Omnidirectional Legacy Wall.</p><div class="fl4">${P.founders.map((f, i) => `<div class="panel"><div class="pr">${f.price.replace('–', ' – ')}</div><b>${f.label}</b><span>Free: ${FREE[i]}</span></div>`).join('')}<div class="panel hot"><b>Every level</b><span>Infrastructure Roadmap™ · credited in full toward a Partnership™ · supports a charity partner</span></div></div><p class="fine">A standalone BUILD offering. Built to invest back out: scholarships, angel investment and charitable donations. No ownership stake or financial return.</p>`);
 
 // 06 Scalability: a network of enterprises, local to global
 const scale = () => slide(`${k('Scalability')}<h2>Nobody builds alone. <b>Local to global.</b></h2><div class="chk"><div class="panel">Every enterprise that plugs in becomes a Conductor</div><div class="panel">Connections grow faster than enterprises</div><div class="panel">One idea powers many enterprises at once</div><div class="panel">Value that holds across geopolitical lines</div><div class="panel">Every .LLab™ page is a future company</div></div>`, 'wing', 4.6);
@@ -126,19 +126,39 @@ const connect = () => slide(`${k('Connect')}<h2>One ecosystem. <b>Plug into the 
 
 const html = `<!DOCTYPE html><html><head><meta charset="utf-8"/><title>The Co.LLab™ — The Pitch</title><style>${baseCss}${css}</style></head><body>${title()}${sec(1, mission)}${sec(2, problem, solution, phases, oe1, oe2, oe3, oe4)}${sec(3, effect, currents)}${sec(4, partner)}${sec(5, founders)}${sec(6, scale)}${sec(7, connect)}</body></html>`;
 
+// Two decks from the same slides: English, and Spanish (every text line swapped from deck-es.json; the build stops
+// if a line has no translation). Names that are trademarks stay as they are.
+const ES = JSON.parse(fs.readFileSync(`${here}/deck-es.json`, 'utf8'));
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
-const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
-await page.setContent(html, { waitUntil: 'load' });
-await page.evaluate(() => document.fonts.ready);
-const over = await page.$$eval('.s', (ss) => ss.map((s, i) => { const R = s.getBoundingClientRect(); return [...s.querySelectorAll('*')].some((e) => { if (e.classList.contains('ph')) return false; const r = e.getBoundingClientRect(); return r.height > 0 && (r.bottom > R.bottom - 8 || r.right > R.right - 8); }) ? i + 1 : 0; }).filter(Boolean));
-await page.evaluate(() => {
-  const from = [255, 26, 26], to = [255, 106, 46];
-  document.querySelectorAll('h1 b, h2 b').forEach((b) => {
-    const chars = [...b.textContent]; const m = Math.max(chars.length - 1, 1); b.textContent = '';
-    chars.forEach((ch, i) => { const t = i / m; const s = document.createElement('span'); s.textContent = ch; s.style.color = `rgb(${from.map((v, j) => Math.round(v + (to[j] - v) * t)).join(',')})`; b.appendChild(s); });
+for (const lang of ['en', 'es']) {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+  await page.setContent(lang === 'es' ? html.replace('<html>', '<html lang="es">').replace('<title>The Co.LLab™ — The Pitch</title>', '<title>The Co.LLab™ — La presentación</title>') : html, { waitUntil: 'load' });
+  if (lang === 'es') {
+    const missing = await page.evaluate((dict) => {
+      const miss = new Set();
+      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      for (let t = w.nextNode(); t; t = w.nextNode()) {
+        const raw = t.nodeValue, key = raw.trim();
+        if (!key || !/[a-z]/i.test(key)) continue;
+        if (key in dict) t.nodeValue = raw.replace(key, dict[key]); else miss.add(key);
+      }
+      document.querySelectorAll('img[alt]').forEach((i) => { if (i.alt in dict) i.alt = dict[i.alt]; });
+      return [...miss];
+    }, ES);
+    if (missing.length) { console.error('No Spanish for:\n' + missing.map((m) => JSON.stringify(m)).join(',\n')); process.exit(1); }
+  }
+  await page.evaluate(() => document.fonts.ready);
+  const over = await page.$$eval('.s', (ss) => ss.map((s, i) => { const R = s.getBoundingClientRect(); return [...s.querySelectorAll('*')].some((e) => { if (e.classList.contains('ph')) return false; const r = e.getBoundingClientRect(); return r.height > 0 && (r.bottom > R.bottom - 8 || r.right > R.right - 8); }) ? i + 1 : 0; }).filter(Boolean));
+  await page.evaluate(() => {
+    const from = [255, 26, 26], to = [255, 106, 46];
+    document.querySelectorAll('h1 b, h2 b').forEach((b) => {
+      const chars = [...b.textContent]; const m = Math.max(chars.length - 1, 1); b.textContent = '';
+      chars.forEach((ch, i) => { const t = i / m; const s = document.createElement('span'); s.textContent = ch; s.style.color = `rgb(${from.map((v, j) => Math.round(v + (to[j] - v) * t)).join(',')})`; b.appendChild(s); });
+    });
   });
-});
-await bakeGlow(browser, page, { sectionSel: '.s', titleSel: 'h1 b, h2 b', w: 1280, h: 720 });
-await page.pdf({ path: `${repo}/assets/pitch/The-CoLLab-Pitch-Deck.pdf`, printBackground: true, preferCSSPageSize: true, outline: true });
-console.log('slides', n, 'too close to the edge:', JSON.stringify(over));
+  await bakeGlow(browser, page, { sectionSel: '.s', titleSel: 'h1 b, h2 b', w: 1280, h: 720 });
+  await page.pdf({ path: `${repo}/assets/pitch/The-CoLLab-Pitch-Deck${lang === 'es' ? '-ES' : ''}.pdf`, printBackground: true, preferCSSPageSize: true, outline: true });
+  console.log(lang, 'slides', n, 'too close to the edge:', JSON.stringify(over));
+  await page.close();
+}
 await browser.close();
