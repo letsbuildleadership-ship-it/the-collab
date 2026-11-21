@@ -1,0 +1,24 @@
+# Hartwell & Rafael Enterprise — static landing page (no build step).
+# Netlify project: hartwellrafael (team letsbuildleadership). Publish this folder.
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "https://www.hartwellrafael.com/*"
+  to = "https://hartwellrafael.com/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
