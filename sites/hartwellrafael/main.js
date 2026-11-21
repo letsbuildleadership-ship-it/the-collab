@@ -31,13 +31,14 @@
   }
 
   // Contact form (Netlify Forms) — submit without leaving the page
-  var form = document.querySelector('.contact-form');
-  if (form && window.fetch) {
+  if (window.fetch) document.querySelectorAll('.contact-form').forEach(function (form) {
     var status = form.querySelector('.form-status');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var submit = form.querySelector('button[type="submit"]');
       submit.disabled = true;
+      var stamp = form.querySelector('[name="signed_at"]');
+      if (stamp) stamp.value = new Date().toISOString();
       status.textContent = 'Sending…';
       fetch('/', {
         method: 'POST',
@@ -46,10 +47,10 @@
       }).then(function (r) {
         if (!r.ok) throw new Error(r.status);
         form.reset();
-        status.textContent = 'Thank you — your message was received. We will reply by email.';
+        status.textContent = form.name === 'photo-consent' ? 'Thank you — your signed consent form was received.' : 'Thank you — your message was received. We will reply by email.';
       }).catch(function () {
         status.textContent = 'Sorry, the message could not be sent. Please book a conversation above instead.';
       }).then(function () { submit.disabled = false; });
     });
-  }
+  });
 })();

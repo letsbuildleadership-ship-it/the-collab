@@ -144,6 +144,7 @@ ${cont}
       <p class="label">Get in touch</p>
       <a href="/book.html">Book a Conversation</a>
       <a href="/book.html#contact">Send a note</a>
+      <a href="/photo-consent.html">Photo Consent Form</a>
     </div>
   </div>
   <div class="wrap footer-base">
@@ -417,6 +418,73 @@ pages.push({
         </div>
         <label>How can we help?<textarea name="message" rows="5" required></textarea></label>
         <button class="btn btn--gold" type="submit">Send message</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>`,
+});
+
+pages.push({
+  file: 'photo-consent.html',
+  title: 'Photo Consent Form',
+  description: 'Digital photo consent and release form for Hartwell & Rafael Enterprise photography.',
+  continueLinks: [['/services.html#photography', 'Our work', 'Photography'], ['/book.html', 'Questions?', 'Book a Conversation']],
+  body: `${pageHero('Photo Consent Form', 'Photo consent <em>&amp; release.</em>', 'Please read and complete this form before you are photographed by or for Hartwell &amp; Rafael Enterprise. It takes about two minutes.')}
+
+  <section class="section" aria-label="Consent form">
+    <div class="wrap narrow">
+      <form class="contact-form consent-form" name="photo-consent" method="POST" action="/" data-netlify="true" netlify-honeypot="company_website">
+        <input type="hidden" name="form-name" value="photo-consent">
+        <p class="hp"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+
+        <fieldset><legend>1 · Your details</legend>
+          <div class="row2">
+            <label>Full legal name<input name="full_name" type="text" autocomplete="name" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <div class="row2">
+            <label>Phone <span class="opt">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+            <label>Date of photo session or event<input name="session_date" type="date" required></label>
+          </div>
+          <label>Session, event or project<input name="session" type="text" placeholder="e.g. brand photo session, product launch event" required></label>
+        </fieldset>
+
+        <fieldset><legend>2 · How the photos may be used</legend>
+          <p class="fine">Tick every use you allow. Leave a box unticked to say no to that use.</p>
+          <label class="check"><input type="checkbox" name="use_client_project" value="yes"> Delivered to the client for the project named above</label>
+          <label class="check"><input type="checkbox" name="use_website" value="yes"> Hartwell &amp; Rafael Enterprise website</label>
+          <label class="check"><input type="checkbox" name="use_social" value="yes"> Social media</label>
+          <label class="check"><input type="checkbox" name="use_print_marketing" value="yes"> Print, advertising and marketing materials</label>
+          <label class="check"><input type="checkbox" name="use_portfolio" value="yes"> Professional portfolios of the photographer and Hartwell &amp; Rafael Enterprise</label>
+          <label>May we identify you by name with the photos?
+            <select name="name_credit" required><option value="">Choose one</option><option>Yes, you may use my name</option><option>No, do not identify me by name</option></select>
+          </label>
+        </fieldset>
+
+        <fieldset><legend>3 · Terms</legend>
+          <ul class="terms">
+            <li>I give Hartwell &amp; Rafael Enterprise permission to photograph me and to use those photos only for the uses I ticked above.</li>
+            <li>I understand I will not receive payment for these uses unless agreed separately in writing.</li>
+            <li>I may withdraw this consent at any time by writing to Hartwell &amp; Rafael Enterprise. Withdrawal applies to future uses; it cannot recall materials already printed or published.</li>
+            <li>Photos may be edited for color, cropping and quality, but will not be altered to misrepresent me.</li>
+          </ul>
+        </fieldset>
+
+        <fieldset><legend>4 · If the person photographed is under 18</legend>
+          <p class="fine">A parent or legal guardian must complete this section and sign below on the minor's behalf.</p>
+          <div class="row2">
+            <label>Minor's full name <span class="opt">(if applicable)</span><input name="minor_name" type="text"></label>
+            <label>Your relationship to the minor<input name="guardian_relationship" type="text" placeholder="e.g. parent, legal guardian"></label>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>5 · Signature</legend>
+          <label>Type your full legal name to sign<input name="signature" type="text" class="sig" autocomplete="off" required></label>
+          <label class="check"><input type="checkbox" name="agree" value="I agree" required> I have read this form, I am 18 or older (or the parent/guardian named above), and I agree that my typed name is my electronic signature.</label>
+          <input type="hidden" name="signed_at" value="">
+        </fieldset>
+
+        <button class="btn btn--gold" type="submit">Sign and submit</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
