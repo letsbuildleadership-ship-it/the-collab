@@ -1,6 +1,19 @@
 # The Co.LLab™ — Strategy on one page
 *Enterprise analysis · marketing · commerce. Prices come from `content/pricing.json` (never hand-edit). Deep psychology/ad detail: `docs/marketing-strategy.md`.*
 
+## 0. Positioning (canonical — every page, ad, PDF and email follows this)
+**Human potential is the underlying resource, not the product or the outcome**: the knowledge, capabilities, creativity, experience and expertise within people and organizations. The Co.LLab™ builds the infrastructure that converts it into organizational intelligence, strategic execution, measurable performance, sustainable enterprise value and lasting institutional impact. Not coaching, HR or generic consulting.
+
+**Strategic model:** Human Capital → Intelligence Mobilization → Leadership Infrastructure → Enterprise Performance → Institutional Continuity (full version: `pages/about.html#strategic-model`; glossary entries for each stage). Offerings by stage: Intelligence Mobilization = The .LLab R.A.T.™, Intelligence Infrastructure™, The .LLab Journal™ · Leadership Infrastructure = The IV Phases™ IP, The .LLab Membership™ · Enterprise Performance = Partnership™, Infrastructure Analysis™, The .LLab Creators™ · Institutional Continuity = Phase IV Preservation, The Co.LLab Founders Organization™.
+
+**Mission:** To build leadership infrastructure that connects human capital, organizational intelligence, and strategic execution to generate sustainable enterprise value and lasting institutional impact.
+**Vision:** An economic and organizational landscape where systems effectively mobilize human capabilities, distribute opportunity, and translate collective intelligence into enduring enterprise value.
+**Principle:** systems are designed around human capabilities; people should not have to conform to ineffective infrastructure.
+
+**Definitions:** Omnidirectional Enterprise™ = a proprietary operating philosophy connecting intelligence, authority, value, IP and opportunity across an interconnected economic ecosystem rather than exclusively through top-down structures · The IV Phases™ of Leadership Infrastructure™ = Foundations → Infrastructure Planning & Management → Internal Operating Systems → Preservation · TRIARCH™ = the Value Architecture of The Co.LLab™, connecting organizational intelligence, infrastructure and enterprise value (tiers CROWN, SCEPTER, SIGNET, HEIRLOOM) · The Co.LLab Founders Organization™ = infrastructure for building sustainable enterprises · Creator Infrastructure™ = connects creative capabilities, IP ownership and economic participation to viable revenue-generating enterprises · The .LLab™ = a separate intellectual ecosystem for research, development, proprietary tools, knowledge and applied innovation. Founders and The .LLab are separate offerings, never membership tiers of each other.
+
+**Language:** precise, economic, operational, executive-level. Avoid motivational/self-development phrasing ("unlock your potential", "pass it on with pride", "nobody builds alone", "dreams"). "Legacy" stays only in trademarked names (Legacy Wall, Legacy Library, Legacy Founder, the .LLab Legacy products) and the brand slogan; in copy use institutional continuity / enterprise value that lasts.
+
 ## 1. Enterprise analysis
 **What it is:** an enterprise that commercializes proprietary IP (owned by Ashley E. Clasby) as leadership infrastructure, organized by **The IV Phases™**: Foundations → Planning → Operating Systems → Preservation. Core framework: **Omnidirectional Enterprise™** (value moves in every direction between enterprises, nonprofits, communities, people, technology, capital, knowledge + IP, creators).
 
@@ -8,9 +21,9 @@
 
 | Offer | Buyer | Role in the enterprise | Price (registry) |
 |---|---|---|---|
-| **Partnerships** | Owners/leaders with capital, afraid the vision fades or they're forgotten | **Lead offer**, highest value | $5,000 · $10,000 · $25,000 · $50,000, one-time |
+| **Partnerships** | Owners/leaders whose enterprise value depends on a few people | **Lead offer**, highest value | $5,000 · $10,000 · $25,000 · $50,000, one-time |
 | **.LLab** | Anyone starting out | **Marketing engine + recurring revenue**; every Partnership includes it | Free Portal → Library Card $10/mo · Membership $150/mo (or $1,500/yr) · Journal $150/yr |
-| **Founders Organization** | Founders / community supporters | Community economic development; supports partner nonprofits. *Not a membership tier* | $20 · $50 · $350 · $1,000 |
+| **Founders Organization** | Founders / community supporters | Infrastructure for building sustainable enterprises; supports partner nonprofits. *Not a membership tier* | $20 · $50 · $350 · $1,000 |
 | .LLab Creators™ | Creatives | Same infrastructure applied to creative IP | Product ladder on its page |
 | .LLab Impact™ · Technology · Atelier™ · Co.LLab+™ | Community / ventures | Supporting or coming soon | — |
 

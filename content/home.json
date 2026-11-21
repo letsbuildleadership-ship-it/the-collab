@@ -1,18 +1,18 @@
 {
-  "eyebrow": "The Co.LLab™ Omnidirectional Enterprise™ Partnership",
+  "eyebrow": "The Co.LLab™ · Leadership Infrastructure for Enterprise Performance",
   "hero_headline": [
     {
-      "text": "Every enterprise starts with a vision.",
+      "text": "Your people hold the knowledge.",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "Most lose it.",
+      "text": "Your infrastructure decides what it’s worth.",
       "style": "glow",
       "break_before": true
     }
   ],
-  "hero_subhead": "People change and markets shift, but your vision doesn’t have to fade. The Co.LLab™ helps you define your legacy, build it into how your enterprise works, and pass it on with pride.",
+  "hero_subhead": "The Co.LLab™ builds the leadership infrastructure that converts the knowledge, capabilities and expertise inside your enterprise into organizational intelligence, strategic execution and measurable performance, so enterprise value holds when people, leadership and markets change.",
   "hero_offer_line": "Become a Partner from $5,000, or start building today with The .LLab™ products from $20.",
   "hero_cta_primary_label": "Explore Partnerships",
   "hero_cta_primary_link": "/pages/partnership.html#tiers",
@@ -20,59 +20,59 @@
   "hero_cta_secondary_link": "/pages/products.html",
   "doorway_eyebrow": "What are you building?",
   "doorway_headline": "More ways in.",
-  "doorway_body": "Creating something, or here for the research? Start here.",
+  "doorway_body": "Building a creative enterprise, or here for the research? Start here.",
   "directory_eyebrow": "The ecosystem",
   "directory_cards": [
     {
       "title": "The Co.LLab Founders Organization™",
-      "description": "Leadership and organizational infrastructure — The IV Phases™ model in practice.",
+      "description": "Infrastructure for building sustainable enterprises — The IV Phases™ applied to enterprise formation and continuity.",
       "link": "/pages/founders.html"
     },
     {
       "title": "The .LLab R.A.T.™ — Research And Theory",
-      "description": "The .LLab R.A.T.™, Metacognitive Infrastructure Thinking™, and the theory behind the infrastructure.",
+      "description": "Research and theory on organizational intelligence, Metacognitive Infrastructure Thinking™, and the systems behind enterprise performance.",
       "link": "/pages/think.html"
     },
     {
       "title": "The .LLab Journal™",
-      "description": "Research, case studies, frameworks, and emerging ideas.",
+      "description": "Analysis, case studies, frameworks and emerging research across enterprise, economics and technology.",
       "link": "/pages/journal.html"
     },
     {
       "title": "The .LLab",
-      "description": "Membership, Library Card™, and the products built from The Co.LLab™ IP.",
+      "description": "The intellectual ecosystem of The Co.LLab™: research, proprietary tools, IP and The .LLab Membership™.",
       "link": "/pages/products.html"
     },
     {
       "title": "The .LLab Creators™",
-      "description": "Leadership Infrastructure™ methodology, applied to every kind of creative venture.",
+      "description": "Creator Infrastructure™: creative capability, IP ownership and economic participation, built into viable revenue-generating enterprises.",
       "link": "/pages/creator.html"
     },
     {
       "title": "About",
-      "description": "Mission, vision, The IV Phases™, and the Omnidirectional Enterprise™.",
+      "description": "Mission, vision, the strategic model, The IV Phases™, and Omnidirectional Enterprise™.",
       "link": "/pages/about.html"
     }
   ],
   "mission_eyebrow": "Our mission",
   "mission_quote": [
     {
-      "text": "To build leadership infrastructure that empowers people and organizations to transform ",
+      "text": "To build leadership infrastructure that connects ",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "human potential ",
+      "text": "human capital, organizational intelligence, and strategic execution ",
       "style": "glow",
       "break_before": false
     },
     {
-      "text": "into performance, sustainable enterprise value, and lasting legacy.",
+      "text": "to generate sustainable enterprise value and lasting institutional impact.",
       "style": "default",
       "break_before": false
     }
   ],
-  "mission_body": "Human potential is the starting point. Leadership infrastructure turns that potential into performance, sustainable enterprise value, and lasting legacy.",
+  "mission_body": "Human potential is the underlying resource, not the product. Leadership infrastructure is what converts it into organizational intelligence, strategic execution, measurable performance and enterprise value that lasts.",
   "mission_stats": [
     {
       "number": "04",
@@ -91,66 +91,60 @@
   "phases": [
     {
       "title": "Foundations",
-      "description": "Know who you are and what you stand on.",
+      "description": "Establish purpose, values, governance and decision rights.",
       "photo": "assets/img/photography/the-path.jpg"
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Decide what to build and how it connects.",
+      "description": "Design the infrastructure: priorities, ownership and how systems connect.",
       "photo": "assets/img/photography/infrastructure.jpg"
     },
     {
       "title": "Internal Operating Systems",
-      "description": "Build the systems that make it run.",
+      "description": "Install the operating systems that make execution repeatable.",
       "photo": "assets/img/photography/reliable-systems.jpg"
     },
     {
       "title": "Preservation",
-      "description": "Make it last beyond any one person.",
+      "description": "Preserve knowledge, IP and value through every transition.",
       "photo": "assets/img/photography/resilience.jpg"
     }
   ],
   "omni_eyebrow": "Omnidirectional Enterprise™",
   "omni_headline": "Value doesn't move in one direction.",
-  "omni_body": "Connects people, organizations, products, intellectual property, capital, and resources — so contribution, ownership, and economic return stay linked.",
+  "omni_body": "A proprietary operating philosophy connecting intelligence, authority, value, IP and opportunity across an interconnected economic ecosystem, rather than exclusively through top-down structures.",
   "omni_flow": [
     {
-      "label": "People"
+      "label": "Human Capital"
     },
     {
-      "label": "Ideas"
+      "label": "Intelligence Mobilization"
     },
     {
-      "label": "Infrastructure"
+      "label": "Leadership Infrastructure"
     },
     {
-      "label": "Products"
+      "label": "Enterprise Performance"
     },
     {
-      "label": "Organizations"
-    },
-    {
-      "label": "Community"
-    },
-    {
-      "label": "Legacy"
+      "label": "Institutional Continuity"
     }
   ],
   "vision_eyebrow": "Our vision",
   "vision_headline": [
     {
-      "text": "A world built around ",
+      "text": "Systems that mobilize ",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "human potential.",
+      "text": "human capability.",
       "style": "glow",
       "break_before": false
     }
   ],
-  "vision_body_prefix": "A world where infrastructure is built around people — not the other way around. Infrastructure that turns human potential into lasting",
-  "vision_body_glow": "legacy.",
+  "vision_body_prefix": "An economic and organizational landscape where systems effectively mobilize human capabilities, distribute opportunity, and translate collective intelligence into enduring",
+  "vision_body_glow": "enterprise value.",
   "offer_eyebrow": "The Co.LLab Founders Organization™",
   "offer_headline": [
     {
@@ -159,7 +153,7 @@
       "break_before": false
     }
   ],
-  "offer_body": "Back The Co.LLab™ as a Founder — from $50.",
+  "offer_body": "Build The Co.LLab™ as a Founder — from $50.",
   "offer_cta_label": "Explore The Co.LLab Founders Organization™",
   "offer_cta_link": "/pages/founders.html"
 }

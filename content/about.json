@@ -2,50 +2,50 @@
   "eyebrow": "About The Co.LLab™",
   "hero_headline": [
     {
-      "text": "Not just an enterprise. ",
+      "text": "Leadership infrastructure ",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "An ecosystem.",
+      "text": "for enterprise value.",
       "style": "glow",
       "break_before": false
     }
   ],
-  "hero_subhead": "An IP and leadership-infrastructure ecosystem — where ideas become infrastructure, and infrastructure becomes legacy.",
+  "hero_subhead": "The Co.LLab™ is an enterprise infrastructure and intellectual property enterprise. It builds the systems that connect human capital, organizational intelligence and strategic execution, so enterprises perform predictably and their value outlasts any one leader.",
   "mission_eyebrow": "Mission",
   "mission_quote": [
     {
-      "text": "To build leadership infrastructure that empowers people and organizations to transform ",
+      "text": "To build leadership infrastructure that connects ",
       "style": "default",
       "break_before": false
     },
     {
-      "text": "human potential ",
+      "text": "human capital, organizational intelligence, and strategic execution ",
       "style": "glow",
       "break_before": false
     },
     {
-      "text": "into performance, sustainable enterprise value, and lasting legacy.",
+      "text": "to generate sustainable enterprise value and lasting institutional impact.",
       "style": "default",
       "break_before": false
     }
   ],
   "vision_eyebrow": "Vision",
-  "vision_body_prefix": "A world where infrastructure is built around human potential — rather than people being forced to conform to infrastructure that was never designed for",
-  "vision_body_glow": "them.",
+  "vision_body_prefix": "An economic and organizational landscape where systems effectively mobilize human capabilities, distribute opportunity, and translate collective intelligence into enduring",
+  "vision_body_glow": "enterprise value.",
   "problem_eyebrow": "The core problem",
-  "problem_headline": "Most infrastructure is built first. Then humans are expected to adapt.",
-  "problem_body": "We reverse that model. Traditional: design, deploy, train, hope for adoption. Ours: understand the human first, then build infrastructure around them.",
-  "phases_eyebrow": "How we work — The IV Phases™ model",
+  "problem_headline": "Most infrastructure is built first. Then people are expected to adapt.",
+  "problem_body": "That sequence wastes capability. Conventional rollout: design, deploy, train, hope for adoption. Ours: map the capabilities people already hold, then build infrastructure that mobilizes them.",
+  "phases_eyebrow": "How we work — The IV Phases™ of Leadership Infrastructure™",
   "phases": [
     {
       "title": "Foundations",
-      "description": "Know who you are and what you stand on."
+      "description": "Establish purpose, values, governance and decision rights."
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Decide what to build and how it connects."
+      "description": "Design the infrastructure: priorities, ownership and how systems connect."
     },
     {
       "title": "Internal Operating Systems",
@@ -53,12 +53,12 @@
     },
     {
       "title": "Preservation",
-      "description": "Make it last beyond any one person."
+      "description": "Preserve knowledge, IP and value through every transition."
     }
   ],
   "ip_eyebrow": "Intellectual property is an asset",
   "ip_headline": "Ideas → Research → Theory → Framework → Infrastructure → Product → Licensing → Enterprise.",
-  "ip_body": "Frameworks, models, research, products, and creative IP — given a visible architecture instead of kept hidden.",
+  "ip_body": "Frameworks, models, research, products and creative IP, given a visible architecture so they can be licensed, measured and valued as assets.",
   "personality_eyebrow": "Brand personality",
   "personality_headline": [
     {
@@ -83,11 +83,11 @@
       "break_before": false
     },
     {
-      "text": "behind potential.",
+      "text": "that puts capability to work.",
       "style": "glow",
       "break_before": false
     }
   ],
-  "closing_body_prefix": "For people. Leaders. Founders. Organizations. Artists. Creators. Enterprises. And, ultimately:",
-  "closing_body_glow": "legacy."
+  "closing_body_prefix": "For founders, creators, enterprises, institutions and the capital behind them. The outcome:",
+  "closing_body_glow": "enterprise value that lasts."
 }

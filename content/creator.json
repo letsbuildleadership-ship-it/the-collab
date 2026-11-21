@@ -8,10 +8,10 @@
   "hero_headline": [
     { "text": "You were already ", "style": "default", "break_before": false },
     { "text": "creating.", "style": "white", "break_before": false },
-    { "text": "We help you build what your creation can ", "style": "default", "break_before": true },
-    { "text": "become.", "style": "glow", "break_before": false }
+    { "text": "We build it into ", "style": "default", "break_before": true },
+    { "text": "an enterprise.", "style": "glow", "break_before": false }
   ],
-  "hero_subhead": "The systems and structure that turn creative work into a venture — and a legacy that outlasts you.",
+  "hero_subhead": "Creator Infrastructure™ connects creative capabilities, IP ownership and economic participation to viable, revenue-generating enterprises, so the value your work generates is captured by you, not only by the platforms that distribute it.",
   "hero_cta_label": "Start With A Free Resource",
   "hero_cta_link": "#free",
 

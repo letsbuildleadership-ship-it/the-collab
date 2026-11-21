@@ -173,7 +173,7 @@ ${arw('#e8561a', 'Plan it.', 'Phase II', 'Infrastructure Planning &amp; Manageme
 ${arw('#2d6a47', 'Live it.', 'Phase III', 'Internal Operating Systems')}
 ${arw('#0f1d13', 'Pass it on.', 'Phase IV', 'Preservation')}
 </div>
-<div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
+<div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that connects human capital, organizational intelligence, and strategic execution to generate sustainable enterprise value and lasting institutional impact.</div><div><b>Our vision</b>An economic and organizational landscape where systems effectively mobilize human capabilities, distribute opportunity, and translate collective intelligence into enduring enterprise value.</div></div>`);
 
 const nodes = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const cx = 250, cy = 250, R = 218;
@@ -296,7 +296,7 @@ const p9 = () => pg(K('Your next step'), 'Choose your <b>point of entry.</b>', `
 <div class="three2 grow">
 ${tw('Starting free', 'Enter the Ecosystem', 'Join free to work a quest on any free tool. Membership gives the full analysis.', qJoin)}
 ${tw('Licensed to keep', 'Own Your Framework', 'License the IV Phases™ IP for the phase that matters most right now. It is yours to keep.', qProducts)}
-${tw('Full partnership', 'Build the Legacy', 'Define, plan, live and preserve your legacy through the Omnidirectional Enterprise™, with seats for your team.', qPartner)}
+${tw('Full partnership', 'Build the Legacy', 'Define, plan, operate and preserve your leadership infrastructure through the Omnidirectional Enterprise™, with seats for your team.', qPartner)}
 </div>`);
 
 const cardPage = () => `<section class="g" id="p${pn + 1}"><div class="gi"><p class="k">Let’s talk</p><h2 class="t">Ashley E. <b>Clasby</b></h2>

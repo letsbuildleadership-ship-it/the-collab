@@ -12,7 +12,7 @@
     }
   ],
   "hero_subhead_prefix": "Become a Founder.",
-  "hero_subhead_glow": "Let’s Build Your Legacy Through Omnidirectional Enterprise™.",
+  "hero_subhead_glow": "Infrastructure for building sustainable enterprises.",
   "hero_cta_label": "Become a Founder",
   "hero_cta_link": "#apply",
   "distinct_eyebrow": "The model",
@@ -23,29 +23,29 @@
       "break_before": false
     },
     {
-      "text": " — value built through collaboration.",
+      "text": " — value captured by the participants who create it.",
       "style": "default",
       "break_before": false
     }
   ],
-  "distinct_body": "Enterprises and people who fund The Co.LLab™ — and whose support flows back out across the ecosystem.",
+  "distinct_body": "Enterprises and people who fund the build of The Co.LLab™, connected to an ecosystem where IP, opportunity and value move in every direction.",
   "phases_eyebrow": "The IV Phases™ of Leadership Infrastructure™",
   "phases": [
     {
       "title": "Foundations",
-      "description": "Know who you are and what you stand on."
+      "description": "Establish purpose, values, governance and decision rights."
     },
     {
       "title": "Infrastructure Planning & Management",
-      "description": "Decide what to build and how it connects."
+      "description": "Design the infrastructure: priorities, ownership and how systems connect."
     },
     {
       "title": "Internal Operating Systems",
-      "description": "Build the systems that make it run."
+      "description": "Install the operating systems that make execution repeatable."
     },
     {
       "title": "Preservation",
-      "description": "Make it last beyond any one person."
+      "description": "Preserve knowledge, IP and value through every transition."
     }
   ],
   "apply_tag": "Standalone BUILD offering · The IV Phases™",
@@ -82,7 +82,7 @@
     }
   ],
   "founder_benefits": "Every founding level includes a permanent Founder Number, a digital Founder Card, a place on the Legacy Wall, 20% off eligible future products from The Co.LLab™ while signed in, and everything you paid credited once toward a Partnership™, applied automatically at checkout while signed in. Every level adds free .LLab™ products from its phase, delivered to your library at checkout, and 10% of every founding payment supports Blazing Smiles or Wavecraft Oceans Project.",
-  "founder_not_investment": "Let’s Build Your Legacy Through Omnidirectional Enterprise™. Founding is a standalone BUILD offering, not an investment and not a membership: it carries no ownership stake, profit share or financial return. Founding is a business purchase: every level includes licensed .LLab™ IP products, so it may be deductible as a business expense; consult your tax professional.",
+  "founder_not_investment": "Founding is a standalone BUILD offering, not an investment and not a membership: it carries no ownership stake, profit share or financial return. Founding is a business purchase: every level includes licensed .LLab™ IP products, so it may be deductible as a business expense; consult your tax professional.",
   "recognition_eyebrow": "Founder Recognition · The Co.LLab Founders Organization™ Legacy Wall",
   "recognition_headline": "Your name, on the Legacy Wall. Permanently.",
   "recognition_body": "The moment your founding purchase completes, your name, or your enterprise’s, goes up on The Co.LLab Founders Organization™ Legacy Wall under your founding level, for good. Only real Founders appear here, by giving level: every name on this wall helped build The Co.LLab™.",

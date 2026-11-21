@@ -11,13 +11,14 @@ const LEXICON = [
   /\b(document\w*|succe\w+|transfer\w*|legacy|continu\w*|hand-?offs?|archive\w*|records?|mentor\w*|next generation|future|outlast\w*|sustain\w*|preserv\w*|estate|heirs?|retire\w*|pass(ed)? on)\b/gi,
 ];
 
-// Language anchors: the Co.LLab™ mission moves human potential into performance, sustainable
-// enterprise value and lasting legacy; The IV Phases™ carry it, Foundations first.
+// Language anchors: the Co.LLab™ strategic model moves Human Capital → Intelligence Mobilization →
+// Leadership Infrastructure → Enterprise Performance → Institutional Continuity; The IV Phases™ carry it,
+// Foundations first. Human potential is the resource, not the outcome.
 const BUILD = [
-  'Name the human potential you are building around, then write one sentence of purpose a new team member could repeat. Foundations come first because everything else in The IV Phases™ leans on them.',
+  'Name the capability you are building around (the knowledge, expertise or skill it depends on), then write one sentence of purpose a new team member could repeat. Foundations come first because everything else in The IV Phases™ leans on them.',
   'Turn it into leadership infrastructure: name one owner, the decision it is responsible for, and one review date, so it no longer depends on a single person.',
   'Make it how you operate: give it a standing rhythm (a check-in, a standard, a visible practice) so performance does not depend on memory.',
-  'Preserve it so it outlasts you: document it, name who carries it, and set the date it will be handed on. This is how work becomes legacy.',
+  'Preserve it so it outlasts you: document it, name who carries it, and set the date it will be handed on. This is how work becomes institutional continuity.',
 ];
 const PROTECT = [
   'Keep it central: restate it at the start of your next planning cycle so it stays the reason you build, not only the history.',
@@ -32,8 +33,9 @@ const LEGACY_QUESTION = [
   'How do we make what matters part of how we operate?',
   'What must exist for what we built to continue?',
 ];
-// Mission chain: human potential, performance, sustainable enterprise value, lasting legacy.
-const CHAIN = ['human potential', 'performance', 'sustainable enterprise value', 'lasting legacy'];
+// The strategic model, and the stage each of The IV Phases™ carries.
+const MODEL = ['human capital', 'intelligence mobilization', 'leadership infrastructure', 'enterprise performance', 'institutional continuity'];
+const CHAIN = ['human capital', 'leadership infrastructure', 'enterprise performance', 'institutional continuity'];
 
 // The nine directions value moves in an Omnidirectional Enterprise™.
 const OE_NODES = [
@@ -150,7 +152,7 @@ function legacyRead(map, extra) {
   }
   if (silent.length) parts.push(`Nothing you wrote touches ${silent.join(' or ')}. In The IV Phases™ each phase holds up the next, so that is where the infrastructure is not yet built.`);
   const ti = PHASES.indexOf(thin.name);
-  parts.push(`The Co.LLab™ mission moves ${CHAIN.join(' → ')}. ${thin.name} is where that chain is weakest for you right now (${CHAIN[ti]}). Start there, and ask: ${LEGACY_QUESTION[ti]}`);
+  parts.push(`The Co.LLab™ model moves ${MODEL.join(' → ')}. ${thin.name} is where that chain is weakest for you right now (${CHAIN[ti]}). Start there, and ask: ${LEGACY_QUESTION[ti]}`);
   if (extra) parts.push(extra);
   return { text: parts.join(' '), thinIdx: PHASES.indexOf(thin.name), strongIdx: PHASES.indexOf(strong.name) };
 }
