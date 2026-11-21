@@ -22,7 +22,7 @@
   if (y) y.textContent = new Date().getFullYear();
 
   // Reveal on scroll
-  var els = document.querySelectorAll('.sec-head, .mv-card, .phase, .services li, .exchange article, .progression');
+  var els = document.querySelectorAll('.sec-head, .mv-card, .phase-row, .services li, .bp-row, .steps li, .progression, .oe-map');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
