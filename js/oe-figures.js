@@ -101,7 +101,8 @@ function wrapSvg(W,H,s,m){return `<svg xmlns="${NS}" viewBox="0 0 ${W} ${H}" rol
  <radialGradient id="sub${m}" cx="50%" cy="38%" r="68%"><stop offset="0" stop-color="#22432b"/><stop offset=".62" stop-color="#132519"/><stop offset="1" stop-color="#ff2e12" stop-opacity=".28"/></radialGradient>
  <radialGradient id="sshade${m}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#0f1d13" stop-opacity=".9"/><stop offset=".85" stop-color="#0f1d13" stop-opacity=".86"/><stop offset="1" stop-color="#ff2e12" stop-opacity=".4"/></radialGradient>
  <radialGradient id="shade${m}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#0f1d13" stop-opacity=".7"/><stop offset=".8" stop-color="#0f1d13" stop-opacity=".84"/><stop offset="1" stop-color="#ff2e12" stop-opacity=".35"/></radialGradient>
- <radialGradient id="core${m}" cx="50%" cy="45%" r="50%"><stop offset="0" stop-color="#ff2e12" stop-opacity=".32"/><stop offset="1" stop-color="#ff2e12" stop-opacity="0"/></radialGradient>
+ <radialGradient id="cglow${m}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff2e12" stop-opacity=".2"/><stop offset=".72" stop-color="#ff2e12" stop-opacity=".07"/><stop offset="1" stop-color="#ff602e" stop-opacity=".42"/></radialGradient>
+<radialGradient id="core${m}" cx="50%" cy="45%" r="50%"><stop offset="0" stop-color="#ff2e12" stop-opacity=".32"/><stop offset="1" stop-color="#ff2e12" stop-opacity="0"/></radialGradient>
  <marker id="cur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${C.paper}"/></marker></defs>${s}</svg>`;}
 
 function webFig(){
@@ -272,7 +273,7 @@ const MCUR=[[1,'o90','core'],[1,'i210','core'],[2,'core','i30'],[2,'i30','o90'],
 function miniCube(x,y,r,o){o=o||{};const c=mc(x,y,r),k=Object.keys(c);let s='';
  for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const [x1,y1]=c[k[i]],[x2,y2]=c[k[j]];s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}
  s=`<g class="oef-mflow" stroke="#ffffff" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;let cs='';
- k.forEach(n=>{const [cx,cy]=c[n];cs+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="none" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
+ k.forEach(n=>{const [cx,cy]=c[n];cs+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="url(#cglow3)" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
  return s+`<g filter="url(#glow3)">${cs}</g>`;}
 function mFig(mode){
  const W=760,H=mode===2?880:770,cx=380,cy=mode===2?378:385,r=62,c=mc(cx,cy,r),keys=Object.keys(c);let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/><circle cx="${cx}" cy="${cy}" r="${2*r}" fill="url(#core${mode})"/>`;
@@ -289,15 +290,15 @@ function mFig(mode){
    const bid=reg('badge',{name:`Current marker ${k} · ${cu.n}`,fn:`${cu.d}. ${cu.w}`});
    top+=`<g class="oef-part" data-p="${bid}" data-t="badge"><circle cx="${best[0].toFixed(1)}" cy="${best[1].toFixed(1)}" r="9.5" fill="${C.bg}" stroke="${C.paper}" stroke-width="1.4"/><text x="${best[0].toFixed(1)}" y="${(best[1]+3.6).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${C.paper}">${k}</text></g>`;});}
  const sid=reg('source',mode===2?{name:'The Source · The Co.LLab™: Building Leadership Infrastructure'}:undefined);
- s+=`<g class="oef-part" data-p="${sid}" data-t="source"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" pointer-events="visible" stroke="url(#fil${mode})" stroke-width="2.4" filter="url(#glow${mode})"/>
+ s+=`<g class="oef-part" data-p="${sid}" data-t="source"><circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#cglow${mode})" pointer-events="visible" stroke="url(#fil${mode})" stroke-width="2.4" filter="url(#glow${mode})"/>
  <image href="${IMGBASE.replace(/editorial\/$/,'logo-mark.png')}" x="${cx-20}" y="${cy-42}" width="40" height="25.8"/>
  ${mode===2?`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="0" fill="${C.paper}" ${HALO}>The Co.LLab™:</text><text x="${cx}" y="${cy+21}" text-anchor="middle" font-size="7.5" font-weight="700" letter-spacing="0.8" fill="${C.paper}" ${HALO}>BUILDING LEADERSHIP</text><text x="${cx}" y="${cy+31}" text-anchor="middle" font-size="7.5" font-weight="700" letter-spacing="0.8" fill="${C.paper}" ${HALO}>INFRASTRUCTURE</text>`:`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>OMNIDIRECTIONAL</text><text x="${cx}" y="${cy+21}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>ENTERPRISE™</text>`}</g>`;
  MSLOT.forEach(([slot,n])=>{const b=node(n),[x,y]=c[slot],lines=mode===2?b.co:[],title=b.t||[b.n.toUpperCase()],ring=slot[0]==='i'?'Inner ring · independent':'Outer ring · external';
   const id=reg('branch',{name:`Substation · ${b.n}`,kind:`Circle · substation · ${ring}`,fn:(mode===2?`Run inside The Co.LLab™ by ${b.co.join(' ')}. `:'')+(b.l||[]).join(' ')+' It exchanges with the Source and with every other substation.'});
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
-  title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.fg}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
+  title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
   lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});
-  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${ON.has(n)?'rgba(255,46,18,.22)':'none'}" pointer-events="visible" stroke="${C.f2}" stroke-width="1.8" filter="url(#glow${mode})"/>${t}</g>`;});
+  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="url(#cglow${mode})" pointer-events="none"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${ON.has(n)?C.paper:C.f2}" stroke-width="${ON.has(n)?2.6:1.8}" filter="url(#glow${mode})"/>${t}</g>`;});
  s+=top;
  if(mode===2){const y=H-96;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
   CUR.forEach((cu,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${cu.k}</tspan>  ${esc(cu.n.replace('The ',''))}</text>`;});}
