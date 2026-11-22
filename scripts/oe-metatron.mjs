@@ -42,7 +42,7 @@ const halo = 'paint-order="stroke" stroke="#0f1d13" stroke-width="6" stroke-line
 
 // The 78 lines + 13 circles, before labels. ids: prefix for gradient ids (unique per document).
 export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke, circleWidth = 1.6 }) {
-  circleStroke = circleStroke || 'rgba(255,96,46,.62)';
+  circleStroke = circleStroke || '#ff602e';
   const c = centres();
   const pts = Object.values(c);
   let lines = '';
@@ -52,10 +52,10 @@ export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke
   return {
     c,
     defs: `<defs><linearGradient id="${id}-fil" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff2e12"/><stop offset="1" stop-color="#ff6a2e"/></linearGradient><radialGradient id="${id}-core" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff2e12" stop-opacity=".2"/><stop offset="1" stop-color="#ff2e12" stop-opacity="0"/></radialGradient><filter id="${id}-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`,
-    lines: `<g class="oe-mesh" aria-hidden="true" stroke="#ff602e" stroke-opacity="${lineOpacity}" stroke-width="${lineWidth}">${lines}</g>`,
+    lines: `<g class="oe-mesh" aria-hidden="true" stroke="#ffffff" stroke-opacity="${lineOpacity}" stroke-width="${lineWidth}">${lines}</g>`,
     circle: (x, y, on) => on
       ? `<circle cx="${f1(x)}" cy="${f1(y)}" r="${R}" fill="#ff2e12" fill-opacity=".16" stroke="url(#${id}-fil)" stroke-width="3" filter="url(#${id}-glow)"/>`
-      : `<circle cx="${f1(x)}" cy="${f1(y)}" r="${R}" fill="#0f1d13" fill-opacity="0" stroke="${circleStroke}" stroke-width="${circleWidth}"/>`,
+      : `<circle cx="${f1(x)}" cy="${f1(y)}" r="${R}" fill="#0f1d13" fill-opacity="0" stroke="${circleStroke}" stroke-width="${circleWidth}" filter="url(#${id}-glow)"/>`,
   };
 }
 

@@ -55,7 +55,7 @@ function grid(spots, scale, labelled, w8 = 4) {
   for (let i = 0; i < spots.length; i++) for (let j = i + 1; j < spots.length; j++) {
     const [x1, y1] = spots[i], [x2, y2] = spots[j]; const L = Math.hypot(x2 - x1, y2 - y1); const ux = (x2 - x1) / L, uy = (y2 - y1) / L;
     const a = `x1="${f1(x1 + ux * cr)}" y1="${f1(y1 + uy * cr)}" x2="${f1(x2 - ux * cr)}" y2="${f1(y2 - uy * cr)}"`;
-    lines += `<line ${a} stroke="#ffffff" stroke-opacity=".35" stroke-width="${w8 * 3.2}" stroke-linecap="round" filter="url(#ic-glow)"/><line ${a} stroke="#0f1d13" stroke-width="${w8 + 5}" stroke-linecap="round"/><line ${a} stroke="#ffffff" stroke-width="${w8}" stroke-linecap="round"/>`;
+    lines += `<line ${a} stroke="#ffffff" stroke-opacity=".9" stroke-width="${w8}"/>`;
   }
   lines += spots.map(([x, y]) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(cr)}" fill="none" stroke="#ffffff" stroke-width="${w8 * 0.6}"/>`).join('');
   const defs = '<defs><filter id="ic-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
@@ -78,7 +78,7 @@ function fractal() {
   let ghost = ghosts.map(([x, y]) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${big}" fill="none" stroke="#fdf6ec" stroke-opacity=".5" stroke-width="2"/>`).join('');
   for (let i = 0; i < ghosts.length; i++) for (let j = i + 1; j < ghosts.length; j++) if (Math.abs(ghosts[i][1] - ghosts[j][1]) > 1 || Math.abs(ghosts[i][1] - cy) < 1) ghost += `<line x1="${f1(ghosts[i][0])}" y1="${f1(ghosts[i][1])}" x2="${f1(ghosts[j][0])}" y2="${f1(ghosts[j][1])}" stroke="#fdf6ec" stroke-opacity=".35" stroke-width="1.6"/>`;
   let lines = '';
-  for (let i = 0; i < pos.length; i++) for (let j = i + 1; j < pos.length; j++) lines += `<line x1="${f1(pos[i][0])}" y1="${f1(pos[i][1])}" x2="${f1(pos[j][0])}" y2="${f1(pos[j][1])}" stroke="#ffffff" stroke-opacity=".9" stroke-width="2.2"/>`;
+  for (let i = 0; i < pos.length; i++) for (let j = i + 1; j < pos.length; j++) lines += `<line x1="${f1(pos[i][0])}" y1="${f1(pos[i][1])}" x2="${f1(pos[j][0])}" y2="${f1(pos[j][1])}" stroke="#ffffff" stroke-opacity=".85" stroke-width="1.6"/>`;
   const scale = G / (5 * R);
   const cubes = pos.map(([x, y], i) => {
     const s = svg('sm', { base: 'pages/', noLabels: true, coreText: [' ', ' '], lineWidth: 1.5 / scale, lineOpacity: 0.85, circleWidth: 1.6 / scale, circleStroke: '#ff602e' })
@@ -102,7 +102,7 @@ const FIGS = [
     count: ['13 circles · 78 two-way connections · 7 Currents', 'Every circle connects with every other circle'],
     extra: `<p class="cur">Currents · ${CURRENT_NAMES.map((c, i) => `<b>${i + 1}</b> ${c}`).join('&nbsp;&nbsp; ')}</p>` },
   { n: 3, h: 900, body: () => { const D = 232, cx = 450, cy = 350; const spots = [[cx, cy], ...[0, 1, 2, 3, 4, 5].map((k) => [cx + D * Math.cos((90 + 60 * k) * Math.PI / 180), cy - D * Math.sin((90 + 60 * k) * Math.PI / 180)])];
-      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, blank])), 5); },
+      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, blank])), 1.8); },
     legend: [['src', 'CONDUCTOR', 'an enterprise running the model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
       ['ln', 'LINE', 'inside each Conductor: every circle ↔ every circle']],
     count: ['7 Conductors · 91 circles · up to 4,095 two-way connections', 'Each new Conductor adds 13 circles to the Grid'] },
