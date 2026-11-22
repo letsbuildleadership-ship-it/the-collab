@@ -271,7 +271,7 @@ const MCUR=[[1,'o90','core'],[1,'i210','core'],[2,'core','i30'],[2,'i30','o90'],
 // one small cube (no labels), used for Conductors
 function miniCube(x,y,r,o){o=o||{};const c=mc(x,y,r),k=Object.keys(c);let s='';
  for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const [x1,y1]=c[k[i]],[x2,y2]=c[k[j]];s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}
- s=`<g stroke="#ffffff" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;let cs='';
+ s=`<g class="oef-mflow" stroke="#ffffff" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;let cs='';
  k.forEach(n=>{const [cx,cy]=c[n];cs+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="none" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
  return s+`<g filter="url(#glow3)">${cs}</g>`;}
 function mFig(mode){
@@ -292,7 +292,7 @@ function mFig(mode){
  s+=`<g class="oef-part" data-p="${sid}" data-t="source"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" pointer-events="visible" stroke="url(#fil${mode})" stroke-width="2.4" filter="url(#glow${mode})"/>
  <image href="${IMGBASE.replace(/editorial\/$/,'logo-mark.png')}" x="${cx-20}" y="${cy-42}" width="40" height="25.8"/>
  ${mode===2?`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="0" fill="${C.paper}" ${HALO}>The Co.LLab™:</text><text x="${cx}" y="${cy+21}" text-anchor="middle" font-size="7.5" font-weight="700" letter-spacing="0.8" fill="${C.paper}" ${HALO}>BUILDING LEADERSHIP</text><text x="${cx}" y="${cy+31}" text-anchor="middle" font-size="7.5" font-weight="700" letter-spacing="0.8" fill="${C.paper}" ${HALO}>INFRASTRUCTURE</text>`:`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>OMNIDIRECTIONAL</text><text x="${cx}" y="${cy+21}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>ENTERPRISE™</text>`}</g>`;
- MSLOT.forEach(([slot,n])=>{const b=node(n),[x,y]=c[slot],lines=mode===2?b.co:b.l,title=b.t||[b.n.toUpperCase()],ring=slot[0]==='i'?'Inner ring · independent':'Outer ring · external';
+ MSLOT.forEach(([slot,n])=>{const b=node(n),[x,y]=c[slot],lines=mode===2?b.co:[],title=b.t||[b.n.toUpperCase()],ring=slot[0]==='i'?'Inner ring · independent':'Outer ring · external';
   const id=reg('branch',{name:`Substation · ${b.n}`,kind:`Circle · substation · ${ring}`,fn:(mode===2?`Run inside The Co.LLab™ by ${b.co.join(' ')}. `:'')+(b.l||[]).join(' ')+' It exchanges with the Source and with every other substation.'});
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
   title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.fg}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
@@ -304,7 +304,7 @@ function mFig(mode){
  return wrapSvg(W,H,s,mode);}
 function connect(spots,cr,w,label){let s='';for(let i=0;i<spots.length;i++)for(let j=i+1;j<spots.length;j++){const [x1,y1,x2,y2]=trim(spots[i][0],spots[i][1],spots[j][0],spots[j][1],cr,cr);
   const id=reg('inter',{name:label,kind:'Line · Conductor ↔ Conductor'});const a=`x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"`;
-  s+=`<line class="oef-part" data-p="${id}" data-t="inter" ${a} stroke="#fff" stroke-opacity=".9" stroke-width="${w}"/>`;}
+  s+=`<line class="oef-part oef-flow${(i+j)%2?' oef-rev':''}" data-p="${id}" data-t="inter" ${a} stroke="#fff" stroke-opacity=".9" stroke-width="${w}"/>`;}
  return s+spots.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${cr.toFixed(1)}" fill="none" stroke="#fff" stroke-width="${(w*.6).toFixed(1)}" pointer-events="none"/>`).join('');}
 const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>';
 function mFew(){
@@ -361,6 +361,11 @@ function mount(root){
  partsEl.querySelectorAll('.oef-row').forEach(r=>{const go=()=>{const t=r.dataset.t;show({kind:TYPES[t].kind,name:r.querySelector('b').textContent,fn:r.querySelector('span').textContent});hot(t);};r.addEventListener('mouseenter',go);r.addEventListener('click',go);r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
 }
 roots.forEach(mount);
+const tabs=[...document.querySelectorAll('.oef-tabs [data-tab]')];
+const pick=(n,scroll)=>{if(!tabs.length)return;roots.forEach(r=>{r.hidden=r.dataset.fig!==String(n);});tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===String(n)));if(scroll)document.getElementById('figures').scrollIntoView({behavior:'smooth'});};
+tabs.forEach(t=>t.addEventListener('click',()=>{pick(t.dataset.tab);history.replaceState(null,'','#figure-'+t.dataset.tab);}));
+const fromHash=scroll=>{const m=location.hash.match(/^#figure-([1-4])$/);pick(m?m[1]:1,!!m&&scroll);};
+window.addEventListener('hashchange',()=>fromHash(true));fromHash(true);
 const apply=()=>document.querySelectorAll('.oef-figure .oef-fig svg').forEach(svg=>{svg.classList.toggle('oef-flowing',!flowBox||flowBox.checked);svg.classList.toggle('oef-hide-labels',!!lblBox&&!lblBox.checked);});
 if(flowBox)flowBox.addEventListener('change',apply);
 if(lblBox)lblBox.addEventListener('change',apply);
