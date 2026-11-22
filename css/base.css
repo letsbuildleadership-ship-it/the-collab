@@ -2564,3 +2564,15 @@ font font { background: none !important; box-shadow: none !important; }
 .oef-scope .oef-flowing .oef-mflow line{stroke-dasharray:5 6;animation:oef-run 1.4s linear infinite}
 .oef-scope .oef-flowing .oef-mflow line:nth-child(even){animation-direction:reverse}
 @media (prefers-reduced-motion:reduce){.oef-scope .oef-flowing .oef-mflow line{animation:none}}
+/* Omnidirectional Enterprise™ viewer: the 13 circles, phase by phase */
+.oef-scope .oef-go{margin-top:.75rem;font-weight:600}
+.oef-scope .oef-go a,.oef-scope .oef-crow a{color:#ff602e}
+.oef-scope .oef-circles{margin-top:2.5rem}
+.oef-scope .oef-clist{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.oef-scope .oef-crow{border:1px solid rgba(255,96,46,.34);border-radius:16px;padding:14px 16px;background:#132519;display:flex;flex-direction:column;gap:.35rem}
+.oef-scope .oef-crow.oef-on{border-color:#ff602e;background:#1d3523}
+.oef-scope .oef-cring{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fdf6ec}
+.oef-scope .oef-crow b{color:#ff602e;font-size:1.05rem}
+.oef-scope .oef-ctext{color:#fdf6ec;line-height:1.5}
+.oef-scope .oef-controls{margin-top:1rem}
+.oef-scope .oef-tab span{margin-right:.35em}
