@@ -79,14 +79,16 @@ export function svg(kind, opts = {}) {
   const [cx, cy] = g.c.core;
   out += `          <circle cx="${f1(cx)}" cy="${f1(cy)}" r="${R}" fill="#0f1d13" fill-opacity="0" stroke="url(#${id}-fil)" stroke-width="${kind === 'full' ? 2 : 3}" filter="url(#${id}-glow)"/>\n`;
   out += `          <image href="${base ? '' : '../'}assets/img/logo-mark.png" x="${f1(cx - 24)}" y="${f1(cy - 58)}" width="48" height="30.9"/>\n`;
-  if (kind === 'full') {
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 2)}" text-anchor="middle" class="oe-c-name" style="font-size:25px" ${halo}>The Co.LLab™</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 24)}" text-anchor="middle" class="oe-c-sub" style="letter-spacing:.14em" ${halo}>LEADERSHIP</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 41)}" text-anchor="middle" class="oe-c-sub" style="letter-spacing:.14em" ${halo}>INFRASTRUCTURE™</text>\n`;
-  } else {
-    const p = kind === 'sm' ? 'oes' : 'oem';
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 8)}" text-anchor="middle" class="${p}-c" style="font-size:24px" ${halo}>${(opts.coreText || [])[0] || 'The Co.LLab™'}</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 34)}" text-anchor="middle" class="${p}-sub" style="font-size:12px" ${halo}>${(opts.coreText || [])[1] || 'THE SOURCE'}</text>\n`;
+  // centre: the logo, then OMNIDIRECTIONAL ENTERPRISE™ (opts.coreText names a specific centre, e.g. The Co.LLab™)
+  const sub = kind === 'full' ? 'oe-c-oe' : `${kind === 'sm' ? 'oes' : 'oem'}-sub`;
+  const big = kind === 'full' ? 'oe-c-name' : `${kind === 'sm' ? 'oes' : 'oem'}-c`;
+  const ct = opts.coreText;
+  if (ct && ct[0].trim()) {
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 12)}" text-anchor="middle" class="${big}" style="font-size:24px;fill:#fdf6ec" ${halo}>${ct[0]}</text>\n`;
+    ct.slice(1).forEach((t, i) => { if (t && t.trim()) out += `          <text x="${f1(cx)}" y="${f1(cy + 32 + i * 14)}" text-anchor="middle" class="${sub}" style="font-size:10px;font-weight:700;letter-spacing:.08em;fill:#fdf6ec" ${halo}>${t}</text>\n`; });
+  } else if (!ct) {
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 10)}" text-anchor="middle" class="${sub}" style="font-size:13px;font-weight:700;letter-spacing:.12em;fill:#fdf6ec" ${halo}>OMNIDIRECTIONAL</text>\n`;
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 28)}" text-anchor="middle" class="${sub}" style="font-size:13px;font-weight:700;letter-spacing:.12em;fill:#fdf6ec" ${halo}>ENTERPRISE™</text>\n`;
   }
   for (const n of NODES) {
     const [x, y] = g.c[n.slot];

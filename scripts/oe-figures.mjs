@@ -61,7 +61,7 @@ function grid(spots, scale, labelled, w8 = 4) {
   const defs = '<defs><filter id="ic-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
   const cubes = spots.map(([x, y], i) => {
     const s = svg('sm', { base: 'pages/', lineWidth: 1.9 / scale, lineOpacity: 0.82, circleWidth: 2.4 / scale, circleStroke: '#ff602e', coreText: labelled[i] ? labelled[i].core : ['Conductor', 'AN ENTERPRISE'], noLabels: labelled[i] ? !labelled[i].names : false })
-      .replace(/id="oes-/g, `id="c${i}-`).replace(/url\(#oes-/g, `url(#c${i}-`);
+      .replace(/id="oes-/g, `id="c${i}-`).replace(/url\(#oes-/g, `url(#c${i}-`).replace(i === 0 ? /^$/ : /<image [^>]*\/>/, '');
     return `<g transform="translate(${f1(x - C * scale)},${f1(y - C * scale)}) scale(${scale})">${inner(s)}</g>`;
   }).join('');
   return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" class="oe-diagram-sm" style="display:block;width:100%;height:auto">${defs}${cubes}${lines}</svg>`;
@@ -85,7 +85,7 @@ function fractal() {
       .replace(/id="oes-/g, `id="g${i}-`).replace(/url\(#oes-/g, `url(#g${i}-`).replace(/<image [^>]*\/>/, '');
     return `<g transform="translate(${f1(x - C * scale)},${f1(y - C * scale)}) scale(${f1(scale * 1000) / 1000})">${inner(s)}</g>`;
   }).join('');
-  const label = `<text x="${cx}" y="${cy + 4}" text-anchor="middle" style="font:700 11px Inter,sans-serif;fill:#fdf6ec" paint-order="stroke" stroke="#0f1d13" stroke-width="4">The Co.LLab™</text>`;
+  const label = `<text x="${cx}" y="${cy + 4}" text-anchor="middle" style="font:700 11px Inter,sans-serif;fill:#fdf6ec" paint-order="stroke" stroke="#0f1d13" stroke-width="4"><tspan x="${cx}">The Co.LLab™:</tspan><tspan x="${cx}" dy="10" style="font-size:6.5px">BUILDING LEADERSHIP INFRASTRUCTURE</tspan></text>`;
   return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto"><defs><radialGradient id="fade" cx="50%" cy="50%" r="62%"><stop offset=".52" stop-color="#fff" stop-opacity="0"/><stop offset=".72" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".15"/></radialGradient><mask id="fm"><rect x="0" y="0" width="${w}" height="${h}" fill="url(#fade)"/></mask></defs><g mask="url(#fm)">${ghost}</g>${lines}${cubes}${label}</svg>`;
 }
 
@@ -96,19 +96,19 @@ const FIGS = [
     legend: [['src', 'THE SOURCE', 'the model at the centre'], ['ln', 'TRANSMISSION LINE', 'every circle ↔ every circle'],
       ['cir', 'SUBSTATION', 'where economic activity happens'], ['cir', 'INNER RING', 'independent · outer ring external']],
     count: ['1 Source · 12 substations · 78 two-way lines', 'Power goes out on every line, and value comes back'] },
-  { n: 2, h: 970, body: () => { const s = svg('full', { base: 'pages/', lines: RUN_BY }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); },
-    legend: [['src', 'THE SOURCE', 'The Co.LLab™, built on the model'], ['ln', 'LINE', 'every circle ↔ every circle'],
+  { n: 2, h: 970, body: () => { const s = svg('full', { base: 'pages/', lines: RUN_BY, coreText: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'] }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); },
+    legend: [['src', 'THE SOURCE', 'The Co.LLab™: Building Leadership Infrastructure, built on the model'], ['ln', 'LINE', 'every circle ↔ every circle'],
       ['cir', 'SUBSTATION', 'run by the part of The Co.LLab™ named in it'], ['cur', 'CURRENT', 'a named flow of value we run today']],
     count: ['13 circles · 78 two-way connections · 7 Currents', 'Every circle connects with every other circle'],
     extra: `<p class="cur">Currents · ${CURRENT_NAMES.map((c, i) => `<b>${i + 1}</b> ${c}`).join('&nbsp;&nbsp; ')}</p>` },
   { n: 3, h: 900, body: () => { const D = 232, cx = 450, cy = 350; const spots = [[cx, cy], ...[0, 1, 2, 3, 4, 5].map((k) => [cx + D * Math.cos((90 + 60 * k) * Math.PI / 180), cy - D * Math.sin((90 + 60 * k) * Math.PI / 180)])];
-      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, blank])), 1.8); },
+      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, i === 0 ? { core: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'], names: false } : blank])), 1.8); },
     legend: [['src', 'CONDUCTOR', 'an enterprise running the model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
       ['ln', 'LINE', 'inside each Conductor: every circle ↔ every circle']],
     count: ['7 Conductors · 91 circles · up to 4,095 two-way connections', 'Each new Conductor adds 13 circles to the Grid'] },
   { n: 4, h: 900, body: () => fractal(),
     legend: [['src', 'CONDUCTOR', 'an enterprise running the whole model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
-      ['src', 'THE CO.LLAB™', 'the Conductor at the centre'], ['cir', 'THE GRID', 'one circle of the next, larger model']],
+      ['src', 'THE CO.LLAB™:', 'Building Leadership Infrastructure, the Conductor at the centre'], ['cir', 'THE GRID', 'one circle of the next, larger model']],
     count: ['13 Conductors · 169 circles · up to 14,196 two-way connections', 'Every Grid is one circle of a larger Omnidirectional Enterprise™, without end'] },
 ];
 
