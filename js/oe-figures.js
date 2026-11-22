@@ -24,13 +24,13 @@ const CUR=[
 const TYPES={
  source:{name:'The Source',kind:'Circle · centre',fn:'The Omnidirectional Enterprise Model™. It powers the whole system, owns and licenses the IP, and every substation draws from it.'},
  branch:{name:'Substation',kind:'Circle · substation',fn:'A place where economic activity happens. Each substation exchanges with the Source and with every other substation.'},
- grid:{name:'The Grid',kind:'Circle · the next, larger cube',fn:'Every Grid is one circle of a larger Metatron’s Cube. The same geometry repeats at every scale, without end.'},
+ grid:{name:'The Grid',kind:'Circle · the next, larger model',fn:'Every Grid is one circle of a larger Omnidirectional Enterprise™. The same geometry repeats at every scale, without end.'},
  trans:{name:'Transmission line',kind:'Line · Source ↔ substation',fn:'Carries power from the Source out to a substation and carries value back. Two-way.'},
  inter:{name:'Interconnection',kind:'Line · substation ↔ substation, Conductor ↔ Conductor',fn:'Lets two parts exchange directly, without going through the Source. This is what makes the model omnidirectional.'},
  current:{name:'Current',kind:'Line · flow of value',fn:'A flow of value. Currents can run from any circle to any other, in any direction, without end.'},
  badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists every Current.'},
  dist:{name:'Distribution line',kind:'Line · substation → Conductor',fn:'Carries power from a substation out to the Conductors that work in it.'},
- conductor:{name:'Conductor',kind:'Cube · an enterprise using the model',fn:'An enterprise using the model: its own Source and 12 substations on the same Metatron’s Cube, connected to every other Conductor.'},
+ conductor:{name:'Conductor',kind:'Model · an enterprise using the model',fn:'An enterprise using the model: its own Source and 12 substations on the same Omnidirectional Enterprise™ model, connected to every other Conductor.'},
  ent:{name:'Enterprise',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and substations, connected to every other enterprise in the network.'},
  next:{name:'Next generation',kind:'Circle · outer ring',fn:'An enterprise a Conductor serves. Each Conductor runs the same model, so the web keeps growing outward.'},
  nextline:{name:'Next-generation line',kind:'Line · Conductor → next generation',fn:'Carries power from a Conductor to the enterprises, creators and communities it serves.'}
@@ -321,20 +321,20 @@ function mGrid(){
  const W=760,H=760,cx=380,cy=380,G=68,big=5*G,pos=mc(cx,cy,G),spots=Object.values(pos);
  let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}<defs><radialGradient id="gfade" cx="50%" cy="50%" r="60%"><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></radialGradient><mask id="gmask"><rect width="${W}" height="${H}" fill="url(#gfade)"/></mask></defs>`;
  const ghosts=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+2*big*Math.cos(rad(90+60*k)),cy-2*big*Math.sin(rad(90+60*k))])];
- let g='';ghosts.forEach(([x,y],i)=>{const id=reg('grid',i===0?{name:'The Grid · one circle of the next, larger cube'}:{name:'The next Grid'});g+=`<circle class="oef-part" data-p="${id}" data-t="grid" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big}" fill="none" stroke="${C.paper}" stroke-opacity=".55" stroke-width="2"/>`;});
+ let g='';ghosts.forEach(([x,y],i)=>{const id=reg('grid',i===0?{name:'The Grid · one circle of the next, larger model'}:{name:'The next Grid'});g+=`<circle class="oef-part" data-p="${id}" data-t="grid" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big}" fill="none" stroke="${C.paper}" stroke-opacity=".55" stroke-width="2"/>`;});
  for(let i=0;i<7;i++)for(let j=i+1;j<7;j++){g+=`<line x1="${ghosts[i][0].toFixed(1)}" y1="${ghosts[i][1].toFixed(1)}" x2="${ghosts[j][0].toFixed(1)}" y2="${ghosts[j][1].toFixed(1)}" stroke="${C.paper}" stroke-opacity=".35" stroke-width="1.5"/>`;}
  s+=`<g mask="url(#gmask)">${g}</g>`;
  spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™ · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${G}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,G/5,{lw:.7,op:.85,cw:.9})}</g>`;});
  s+=connect(spots,G/5+2,2.2,'Interconnection · Conductor ↔ Conductor');
  s+=`<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`;
- s+=`<text class="oef-lbl" x="${cx}" y="${(cy-big-8).toFixed(1)}" text-anchor="middle">THE GRID · ONE CIRCLE OF THE NEXT CUBE</text>`;
+ s+=`<text class="oef-lbl" x="${cx}" y="${(cy-big-8).toFixed(1)}" text-anchor="middle">THE GRID · ONE CIRCLE OF THE NEXT MODEL</text>`;
  return wrapSvg(W,H,s,4);}
 
 const CAP={
- 1:'<b>Figure 1 · Phase I · Foundations.</b> The Omnidirectional Enterprise Model™ as Metatron’s Cube: the Source at the centre and 12 substations around it, independent ones on the inner ring and external ones on the outer ring. Transmission lines join each substation to the Source; Interconnections join every substation to every other. Every line runs both ways. 1 Source · 12 substations · 78 two-way lines.',
+ 1:'<b>Figure 1 · Phase I · Foundations.</b> The Omnidirectional Enterprise Model™: the Source at the centre and 12 substations around it, independent ones on the inner ring and external ones on the outer ring. Transmission lines join each substation to the Source; Interconnections join every substation to every other. Every line runs both ways. 1 Source · 12 substations · 78 two-way lines.',
  2:'<b>Figure 2 · Phase II · Infrastructure Planning & Management.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today. 13 circles · 78 two-way connections · 7 Currents.',
  3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Seven Conductors, each a whole copy of the model, every Conductor joined to every other by an Interconnection, both ways. Each new Conductor adds 13 circles. 7 Conductors · 91 circles · up to 4,095 two-way connections.',
- 4:'<b>Figure 4 · Phase IV · Preservation.</b> The Grid: 13 Conductors on the 13 circles of a larger Metatron’s Cube, joined by its 78 lines. The next, larger cube fades in at the edges: every Grid is one circle of a larger cube, without end. 13 Conductors · 169 circles · up to 14,196 two-way connections.'
+ 4:'<b>Figure 4 · Phase IV · Preservation.</b> The Grid: 13 Conductors on the 13 circles of a larger Omnidirectional Enterprise™, joined by its 78 lines. The next, larger one fades in at the edges: every Grid is one circle of a larger Omnidirectional Enterprise™, without end. 13 Conductors · 169 circles · up to 14,196 two-way connections.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;

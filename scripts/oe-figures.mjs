@@ -108,8 +108,8 @@ const FIGS = [
     count: ['7 Conductors · 91 circles · up to 4,095 two-way connections', 'Each new Conductor adds 13 circles to the Grid'] },
   { n: 4, h: 900, body: () => fractal(),
     legend: [['src', 'CONDUCTOR', 'an enterprise running the whole model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
-      ['src', 'THE CO.LLAB™', 'the Conductor at the centre'], ['cir', 'THE GRID', 'one circle of the next, larger cube']],
-    count: ['13 Conductors · 169 circles · up to 14,196 two-way connections', 'Every Grid is one circle of a larger cube, without end'] },
+      ['src', 'THE CO.LLAB™', 'the Conductor at the centre'], ['cir', 'THE GRID', 'one circle of the next, larger model']],
+    count: ['13 Conductors · 169 circles · up to 14,196 two-way connections', 'Every Grid is one circle of a larger Omnidirectional Enterprise™, without end'] },
 ];
 
 const page = (f) => `<!doctype html><html><head><meta charset="utf-8"><base href="${pathToFileURL(root).href}/">
