@@ -2547,3 +2547,20 @@ a.hub-row:hover .hub-name, a.hub-row:focus-visible .hub-name { color: var(--fila
 iframe.skiptranslate, .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd { display: none !important; }
 body { top: 0 !important; }
 font font { background: none !important; box-shadow: none !important; }
+
+/* Omnidirectional Enterprise™ figures: one model at a time, tabbed; details behind "More info" */
+.oef-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 1rem}
+.oef-tabs button{font:inherit;font-weight:700;letter-spacing:.04em;color:var(--fg,#f3efe6);background:transparent;border:1px solid rgba(255,96,46,.45);border-radius:999px;padding:.55rem 1rem;cursor:pointer;display:inline-flex;gap:.5rem;align-items:center}
+.oef-tabs button span{color:#ff602e}
+.oef-tabs button[aria-selected="true"]{background:#ff602e;color:#0f1d13;border-color:#ff602e}
+.oef-tabs button[aria-selected="true"] span{color:#0f1d13}
+.oef-figure[hidden]{display:none}
+.oef-more{margin-top:1rem;border-top:1px solid rgba(255,96,46,.3);padding-top:.75rem}
+.oef-more>summary{cursor:pointer;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#ff602e;list-style:none;display:inline-flex;gap:.5rem;align-items:center;border:1px solid rgba(255,96,46,.45);border-radius:999px;padding:.5rem 1rem}
+.oef-more>summary::-webkit-details-marker{display:none}
+.oef-more>summary::after{content:"+"}
+.oef-more[open]>summary::after{content:"−"}
+.oef-more .oef-parts{margin-top:1rem}
+.oef-scope .oef-flowing .oef-mflow line{stroke-dasharray:5 6;animation:oef-run 1.4s linear infinite}
+.oef-scope .oef-flowing .oef-mflow line:nth-child(even){animation-direction:reverse}
+@media (prefers-reduced-motion:reduce){.oef-scope .oef-flowing .oef-mflow line{animation:none}}
