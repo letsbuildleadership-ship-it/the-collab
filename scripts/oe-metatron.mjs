@@ -41,7 +41,8 @@ const esc = (s) => s.replace(/&(?!amp;)/g, '&amp;');
 const halo = 'paint-order="stroke" stroke="#0f1d13" stroke-width="6" stroke-linejoin="round"';
 
 // The 78 lines + 13 circles, before labels. ids: prefix for gradient ids (unique per document).
-export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke = 'rgba(255,96,46,.62)', circleWidth = 1.6 }) {
+export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke, circleWidth = 1.6 }) {
+  circleStroke = circleStroke || 'rgba(255,96,46,.62)';
   const c = centres();
   const pts = Object.values(c);
   let lines = '';
@@ -59,10 +60,13 @@ export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke
 }
 
 // kind: 'full' (desktop, title + lines), 'sm' (mobile names), 'mini' (where-this-fits).
-// opts.links: {name: {href, label}} from the page; opts.on: Set of lit node names; opts.base: '' or 'pages/'.
+// opts.links: {name: {href, label}} from the page; opts.on: Set of lit node names; opts.base: '' or 'pages/';
+// opts.lines: {name: [lines]} replaces the descriptor lines; opts.coreText: [name, sub] for the centre;
+// opts.noLabels: circles only; opts.lineWidth/lineOpacity/circleWidth/circleStroke: heavier lines for small copies
+// (the model figures in scripts/oe-figures.mjs use these).
 export function svg(kind, opts = {}) {
   const id = kind === 'full' ? 'oe' : kind === 'sm' ? 'oes' : 'oem';
-  const g = geometry({ id, lineWidth: kind === 'full' ? 1.8 : 2.6, lineOpacity: kind === 'full' ? 0.62 : 0.66, circleWidth: kind === 'full' ? 1.8 : 2.6 });
+  const g = geometry({ id, lineWidth: opts.lineWidth || (kind === 'full' ? 1.8 : 2.6), lineOpacity: opts.lineOpacity || (kind === 'full' ? 0.62 : 0.66), circleWidth: opts.circleWidth || (kind === 'full' ? 1.8 : 2.6), circleStroke: opts.circleStroke });
   const base = opts.base || '';
   const on = opts.on || new Set();
   const names = NODES.map((n) => n.name).join(', ').replace(/, ([^,]*)$/, ', and $1');
@@ -77,12 +81,12 @@ export function svg(kind, opts = {}) {
   out += `          <image href="${base ? '' : '../'}assets/img/logo-mark.png" x="${f1(cx - 24)}" y="${f1(cy - 58)}" width="48" height="30.9"/>\n`;
   if (kind === 'full') {
     out += `          <text x="${f1(cx)}" y="${f1(cy + 2)}" text-anchor="middle" class="oe-c-name" style="font-size:25px" ${halo}>The Co.LLab™</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 24)}" text-anchor="middle" class="oe-c-sub" ${halo}>LEADERSHIP</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 41)}" text-anchor="middle" class="oe-c-sub" ${halo}>INFRASTRUCTURE™</text>\n`;
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 24)}" text-anchor="middle" class="oe-c-sub" style="letter-spacing:.14em" ${halo}>LEADERSHIP</text>\n`;
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 41)}" text-anchor="middle" class="oe-c-sub" style="letter-spacing:.14em" ${halo}>INFRASTRUCTURE™</text>\n`;
   } else {
     const p = kind === 'sm' ? 'oes' : 'oem';
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 8)}" text-anchor="middle" class="${p}-c" style="font-size:24px" ${halo}>The Co.LLab™</text>\n`;
-    out += `          <text x="${f1(cx)}" y="${f1(cy + 34)}" text-anchor="middle" class="${p}-sub" style="font-size:12px" ${halo}>THE SOURCE</text>\n`;
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 8)}" text-anchor="middle" class="${p}-c" style="font-size:24px" ${halo}>${(opts.coreText || [])[0] || 'The Co.LLab™'}</text>\n`;
+    out += `          <text x="${f1(cx)}" y="${f1(cy + 34)}" text-anchor="middle" class="${p}-sub" style="font-size:12px" ${halo}>${(opts.coreText || [])[1] || 'THE SOURCE'}</text>\n`;
   }
   for (const n of NODES) {
     const [x, y] = g.c[n.slot];
@@ -90,14 +94,14 @@ export function svg(kind, opts = {}) {
     const lit = on.has(n.name);
     out += `          <a href="${link.href}" class="oe-link" data-node="${esc(n.name)}" aria-label="${esc(link.label)}">${g.circle(x, y, lit)}`;
     if (kind === 'full') {
-      const rows = [...n.title.map((t) => ['oe-n-title', t, 18]), ...n.lines.map((t) => ['oe-n-line', t, 17])];
+      const rows = [...n.title.map((t) => ['oe-n-title', t, 18]), ...((opts.lines && opts.lines[n.name]) || n.lines).map((t) => ['oe-n-line', t, 17])];
       const h = rows.reduce((s, r) => s + r[2], 0) + 4;
       let ty = y - h / 2 + 13;
       rows.forEach(([cls, t, lh], i) => {
         out += `<text x="${f1(x)}" y="${f1(ty)}" text-anchor="middle" class="${cls}" ${halo}>${esc(t)}</text>`;
         ty += lh + (i === n.title.length - 1 ? 4 : 0);
       });
-    } else {
+    } else if (!opts.noLabels) {
       const cls = kind === 'sm' ? 'oes-n' : `oem-n${lit ? ' on' : ''}`;
       const parts = n.name === 'Products & Services' ? ['Products &', 'Services'] : n.name === 'Knowledge + IP' ? ['Knowledge', '+ IP'] : [n.name];
       const fs = kind === 'sm' ? (n.name.length > 10 ? 25 : 28) : (n.name.length > 10 ? 23 : 26);
