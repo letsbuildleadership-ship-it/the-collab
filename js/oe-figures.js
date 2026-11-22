@@ -23,13 +23,14 @@ const CUR=[
 ];
 const TYPES={
  source:{name:'The Source',kind:'Circle · centre',fn:'The Omnidirectional Enterprise Model™. It powers the whole system, owns and licenses the IP, and every substation draws from it.'},
- branch:{name:'Substation',kind:'Circle · substation',fn:'A place where economic activity happens. Each substation exchanges with the Source and with the substations beside it.'},
+ branch:{name:'Substation',kind:'Circle · substation',fn:'A place where economic activity happens. Each substation exchanges with the Source and with every other substation.'},
+ grid:{name:'The Grid',kind:'Circle · the next, larger cube',fn:'Every Grid is one circle of a larger Metatron’s Cube. The same geometry repeats at every scale, without end.'},
  trans:{name:'Transmission line',kind:'Line · Source ↔ substation',fn:'Carries power from the Source out to a substation and carries value back. Two-way.'},
  inter:{name:'Interconnection',kind:'Line · substation ↔ substation, Conductor ↔ Conductor',fn:'Lets two parts exchange directly, without going through the Source. This is what makes the model omnidirectional.'},
  current:{name:'Current',kind:'Line · flow of value',fn:'A flow of value. Currents can run from any circle to any other, in any direction, without end.'},
  badge:{name:'Current marker',kind:'Circle · number',fn:'Marks which Current runs along the line beside it. The key lists every Current.'},
  dist:{name:'Distribution line',kind:'Line · substation → Conductor',fn:'Carries power from a substation out to the Conductors that work in it.'},
- conductor:{name:'Conductor',kind:'Circle · an enterprise using the model',fn:'An enterprise using the model: its own Source, substations, Transmission lines and Interconnections, connected to the other enterprises.'},
+ conductor:{name:'Conductor',kind:'Cube · an enterprise using the model',fn:'An enterprise using the model: its own Source and 12 substations on the same Metatron’s Cube, connected to every other Conductor.'},
  ent:{name:'Enterprise',kind:'Circle · enterprise',fn:'An enterprise running the same model: its own Source and substations, connected to every other enterprise in the network.'},
  next:{name:'Next generation',kind:'Circle · outer ring',fn:'An enterprise a Conductor serves. Each Conductor runs the same model, so the web keeps growing outward.'},
  nextline:{name:'Next-generation line',kind:'Line · Conductor → next generation',fn:'Carries power from a Conductor to the enterprises, creators and communities it serves.'}
@@ -258,21 +259,94 @@ function liveCurrents(svg){
  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
  if(!reduce)setInterval(()=>{if(svg.classList.contains('oef-flowing'))add();},450);
 }
+// ---- Metatron's Cube figures (exact geometry: 13 equal circles, centre + six at 2r + six at 4r, 78 lines) ----
+// Inner ring = independent (held inside an enterprise); outer ring = external, dependent participants.
+const MSLOT=[['o90','Enterprises'],['o30','Partners'],['o330','Nonprofits'],['o270','Communities'],['o210','Members'],['o150','Founders'],['i90','People'],['i30','Knowledge + IP'],['i330','Technology'],['i270','Products & Services'],['i210','Capital'],['i150','Creators']];
+const NEWBR={Partners:{n:'Partners',l:['Partnership™'],co:['Partnership™']},Members:{n:'Members',l:['The .LLab','Membership™'],co:['The .LLab','Membership™']},Founders:{n:'Founders',l:['The Co.LLab','Founders','Organization™'],co:['The Co.LLab','Founders','Organization™']}};
+const node=n=>BR.find(b=>b.n===n)||NEWBR[n];
+function mc(cx,cy,r){const c={core:[cx,cy]};for(let k=0;k<6;k++){const a=(90+60*k)%360,t=rad(a);c['i'+a]=[cx+2*r*Math.cos(t),cy-2*r*Math.sin(t)];c['o'+a]=[cx+4*r*Math.cos(t),cy-4*r*Math.sin(t)];}return c;}
+const NAME=Object.fromEntries(MSLOT);NAME.core='The Source';
+const HALO=`paint-order="stroke" stroke="${C.bg}" stroke-width="4" stroke-linejoin="round"`;
+const MCUR=[[1,'o90','core'],[1,'i210','core'],[2,'core','i30'],[2,'i30','o90'],[3,'o90','i30'],[4,'core','i330'],[4,'i330','i150'],[5,'i150','o270'],[6,'o90','i150'],[6,'o90','i90'],[7,'o270','o330']];
+// one small cube (no labels), used for Conductors
+function miniCube(x,y,r,o){o=o||{};const c=mc(x,y,r),k=Object.keys(c);let s='';
+ for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const [x1,y1]=c[k[i]],[x2,y2]=c[k[j]];s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}
+ s=`<g stroke="${C.f2}" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;
+ k.forEach(n=>{const [cx,cy]=c[n];s+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="none" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
+ return s;}
+function mFig(mode){
+ const W=760,H=mode===2?880:770,cx=380,cy=mode===2?378:385,r=62,c=mc(cx,cy,r),keys=Object.keys(c);let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/><circle cx="${cx}" cy="${cy}" r="${2*r}" fill="url(#core${mode})"/>`;
+ for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const a=keys[i],b=keys[j],[x1,y1]=c[a],[x2,y2]=c[b];
+  if(a==='core'){const id=reg('trans',{name:`Transmission line · Source ↔ ${NAME[b]}`});s+=ln(x1,y1,x2,y2,C.f1,1.8,'oef-flow'+(j%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.7:.95}"`);}
+  else{const id=reg('inter',{name:`Interconnection · ${NAME[a]} ↔ ${NAME[b]}`,kind:'Line · substation ↔ substation'});s+=ln(x1,y1,x2,y2,C.f2,1.4,'oef-flow'+((i+j)%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.5:.72}"`);}}
+ let top='';
+ if(mode===2){const seen={},pts=Object.values(c);
+  MCUR.forEach(([k,a,b])=>{const key=[a,b].sort().join(),off=8*(seen[key]||0);seen[key]=(seen[key]||0)+1;const [x1,y1]=c[a],[x2,y2]=c[b],L=Math.hypot(x2-x1,y2-y1),ux=(x2-x1)/L,uy=(y2-y1)/L,nx=-uy*off,ny=ux*off;
+   const ax=x1+ux*(r+3)+nx,ay=y1+uy*(r+3)+ny,bx=x2-ux*(r+6)+nx,by=y2-uy*(r+6)+ny,cu=CUR[k-1];
+   const id=reg('current',{name:`${cu.n} (${k})`,kind:`Current · ${cu.d}`,fn:cu.w});
+   s+=`<line class="oef-part oef-flow" data-p="${id}" data-t="current" x1="${ax.toFixed(1)}" y1="${ay.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${C.paper}" stroke-width="2.2" marker-end="url(#cur)"/>`;
+   let best=null,bd=-1;for(let t=4;t<=16;t++){const m=[ax+(bx-ax)*t/20,ay+(by-ay)*t/20],d=Math.min(...pts.map(p=>Math.hypot(m[0]-p[0],m[1]-p[1])));if(d>bd){bd=d;best=m;}}
+   const bid=reg('badge',{name:`Current marker ${k} · ${cu.n}`,fn:`${cu.d}. ${cu.w}`});
+   top+=`<g class="oef-part" data-p="${bid}" data-t="badge"><circle cx="${best[0].toFixed(1)}" cy="${best[1].toFixed(1)}" r="9.5" fill="${C.bg}" stroke="${C.paper}" stroke-width="1.4"/><text x="${best[0].toFixed(1)}" y="${(best[1]+3.6).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${C.paper}">${k}</text></g>`;});}
+ const sid=reg('source',mode===2?{name:'The Source · The Co.LLab™'}:undefined);
+ s+=`<g class="oef-part" data-p="${sid}" data-t="source"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" pointer-events="visible" stroke="url(#fil${mode})" stroke-width="2.4" filter="url(#glow${mode})"/>
+ <text x="${cx}" y="${cy-(mode===2?14:8)}" text-anchor="middle" font-size="15" font-weight="600" fill="${C.paper}" ${HALO}>The Source</text>
+ <text x="${cx}" y="${cy+(mode===2?3:9)}" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.2" fill="${C.fg}" ${HALO}>OMNIDIRECTIONAL</text>
+ <text x="${cx}" y="${cy+(mode===2?15:21)}" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.2" fill="${C.fg}" ${HALO}>ENTERPRISE MODEL™</text>
+ ${mode===2?`<text x="${cx}" y="${cy+33}" text-anchor="middle" font-size="11" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`:''}</g>`;
+ MSLOT.forEach(([slot,n])=>{const b=node(n),[x,y]=c[slot],lines=mode===2?b.co:b.l,title=b.t||[b.n.toUpperCase()],ring=slot[0]==='i'?'Inner ring · independent':'Outer ring · external';
+  const id=reg('branch',{name:`Substation · ${b.n}`,kind:`Circle · substation · ${ring}`,fn:(mode===2?`Run inside The Co.LLab™ by ${b.co.join(' ')}. `:'')+(b.l||[]).join(' ')+' It exchanges with the Source and with every other substation.'});
+  const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
+  title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.fg}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
+  lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});
+  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${C.f2}" stroke-opacity=".9" stroke-width="1.6"/>${t}</g>`;});
+ s+=top;
+ if(mode===2){const y=H-96;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
+  CUR.forEach((cu,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${cu.k}</tspan>  ${esc(cu.n.replace('The ',''))}</text>`;});}
+ return wrapSvg(W,H,s,mode);}
+function connect(spots,cr,w,label){let s='';for(let i=0;i<spots.length;i++)for(let j=i+1;j<spots.length;j++){const [x1,y1,x2,y2]=trim(spots[i][0],spots[i][1],spots[j][0],spots[j][1],cr,cr);
+  const id=reg('inter',{name:label,kind:'Line · Conductor ↔ Conductor'});const a=`x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"`;
+  s+=`<g class="oef-part" data-p="${id}" data-t="inter"><line ${a} stroke="${C.paper}" stroke-opacity=".3" stroke-width="${w*3}" stroke-linecap="round" filter="url(#icg)"/><line ${a} stroke="${C.bg}" stroke-width="${w+4}" stroke-linecap="round"/><line ${a} stroke="#fff" stroke-width="${w}" stroke-linecap="round"/></g>`;}
+ return s+spots.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${cr.toFixed(1)}" fill="none" stroke="#fff" stroke-width="${(w*.6).toFixed(1)}" pointer-events="none"/>`).join('');}
+const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>';
+function mFew(){
+ const W=760,H=760,cx=380,cy=380,rs=23.5,D=252;const spots=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+D*Math.cos(rad(90+60*k)),cy-D*Math.sin(rad(90+60*k))])];
+ let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}`;
+ spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'Conductor · at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
+ s+=connect(spots,rs+3,4,'Interconnection · Conductor ↔ Conductor');
+ const [lx,ly]=spots[4];s+=`<text class="oef-lbl" x="${lx.toFixed(1)}" y="${(ly+5*rs+9).toFixed(1)}" text-anchor="middle">CONDUCTOR</text>`;
+ s+=`<text class="oef-lbl" x="${cx}" y="${(cy-D/2+4).toFixed(1)}" text-anchor="middle">INTERCONNECTION</text>`;
+ return wrapSvg(W,H,s,3);}
+function mGrid(){
+ const W=760,H=760,cx=380,cy=380,G=68,big=5*G,pos=mc(cx,cy,G),spots=Object.values(pos);
+ let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}<defs><radialGradient id="gfade" cx="50%" cy="50%" r="60%"><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></radialGradient><mask id="gmask"><rect width="${W}" height="${H}" fill="url(#gfade)"/></mask></defs>`;
+ const ghosts=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+2*big*Math.cos(rad(90+60*k)),cy-2*big*Math.sin(rad(90+60*k))])];
+ let g='';ghosts.forEach(([x,y],i)=>{const id=reg('grid',i===0?{name:'The Grid · one circle of the next, larger cube'}:{name:'The next Grid'});g+=`<circle class="oef-part" data-p="${id}" data-t="grid" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big}" fill="none" stroke="${C.paper}" stroke-opacity=".55" stroke-width="2"/>`;});
+ for(let i=0;i<7;i++)for(let j=i+1;j<7;j++){g+=`<line x1="${ghosts[i][0].toFixed(1)}" y1="${ghosts[i][1].toFixed(1)}" x2="${ghosts[j][0].toFixed(1)}" y2="${ghosts[j][1].toFixed(1)}" stroke="${C.paper}" stroke-opacity=".35" stroke-width="1.5"/>`;}
+ s+=`<g mask="url(#gmask)">${g}</g>`;
+ spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™ · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${G}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,G/5,{lw:.7,op:.85,cw:.9})}</g>`;});
+ s+=connect(spots,G/5+2,2.2,'Interconnection · Conductor ↔ Conductor');
+ s+=`<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`;
+ s+=`<text class="oef-lbl" x="${cx}" y="${(cy-big-8).toFixed(1)}" text-anchor="middle">THE GRID · ONE CIRCLE OF THE NEXT CUBE</text>`;
+ return wrapSvg(W,H,s,4);}
+
 const CAP={
- 1:'<b>Figure 1 · Phase I · Foundations.</b> The Source at the centre and its substations around it. Transmission lines join each substation to the Source; Interconnections join each substation to the substations beside it. Every line runs both ways.',
- 2:'<b>Figure 2 · Phase II · Infrastructure Planning & Management.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today.',
- 3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Three Conductors, each a whole copy of the model in Figure 2, interacting substation to substation through Interconnections, both ways.',
- 4:'<b>Figure 4 · Phase IV · Preservation.</b> Conductors wired together: each runs the whole model, and Interconnections join its substations to the Conductors around it. Every Conductor adds circles, and the number of possible connections grows faster than the number of circles.'
+ 1:'<b>Figure 1 · Phase I · Foundations.</b> The Omnidirectional Enterprise Model™ as Metatron’s Cube: the Source at the centre and 12 substations around it, independent ones on the inner ring and external ones on the outer ring. Transmission lines join each substation to the Source; Interconnections join every substation to every other. Every line runs both ways. 1 Source · 12 substations · 78 two-way lines.',
+ 2:'<b>Figure 2 · Phase II · Infrastructure Planning & Management.</b> The model The Co.LLab™ runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today. 13 circles · 78 two-way connections · 7 Currents.',
+ 3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Seven Conductors, each a whole copy of the model, every Conductor joined to every other by an Interconnection, both ways. Each new Conductor adds 13 circles. 7 Conductors · 91 circles · up to 4,095 two-way connections.',
+ 4:'<b>Figure 4 · Phase IV · Preservation.</b> The Grid: 13 Conductors on the 13 circles of a larger Metatron’s Cube, joined by its 78 lines. The next, larger cube fades in at the edges: every Grid is one circle of a larger cube, without end. 13 Conductors · 169 circles · up to 14,196 two-way connections.'
 };
 const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
 if(!roots.length)return;
 const ICON={source:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.f2}" stroke-width="1.8"/>`,branch:`<circle cx="17" cy="10" r="6" fill="none" stroke="${C.hair}" stroke-width="2"/>`,conductor:`<circle cx="17" cy="10" r="5" fill="${C.f2}"/>`,next:`<circle cx="17" cy="10" r="3" fill="${C.f2}" fill-opacity=".65"/>`,trans:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f1}" stroke-width="2"/>`,dist:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-width="1.6"/>`,inter:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.4" stroke-dasharray="5 4"/>`,current:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.6" stroke-dasharray="5 4"/>`,badge:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-width="1.3"/>`,nextline:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-opacity=".5" stroke-width="1"/>`};
+ICON.grid=`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-opacity=".6" stroke-width="1.4"/>`;
+ICON.conductor=`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.4"/><circle cx="17" cy="10" r="2.6" fill="none" stroke="#fff" stroke-width="1.4"/>`;
 ICON.ent=`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.6"/><circle cx="17" cy="10" r="2.5" fill="${C.f2}"/>`;
 const flowBox=document.getElementById('oef-flow'),lblBox=document.getElementById('oef-labels');
 function mount(root){
  const fig=+root.dataset.fig,q=sel=>root.querySelector(sel);
  const figEl=q('.oef-fig'),partsEl=q('.oef-parts-list'),pKind=q('.oef-kind'),pName=q('.oef-name'),pFn=q('.oef-fn');
- parts=[];figEl.innerHTML=fig===4?netFig():fig===3?fewFig():fig===2?coFig():basicFig();const my=parts;q('.oef-caption').innerHTML=CAP[fig];
+ parts=[];figEl.innerHTML=fig===4?mGrid():fig===3?mFew():mFig(fig);const my=parts;q('.oef-caption').innerHTML=CAP[fig];
  const svg=figEl.querySelector('svg');
  const show=p=>{pKind.textContent=p.kind;pName.textContent=p.name;pFn.textContent=p.fn;};
  const hot=(type,idx)=>{svg.classList.toggle('oef-dimmed',!!type);
