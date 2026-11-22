@@ -13,7 +13,7 @@ test('the home page has no contents list; the Omnidirectional wheel sits above t
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   assert.ok(!/id="contents"|class="toc-/.test(main), 'no contents section on the home page');
   assert.match(main, /id="model"/);
-  assert.equal((main.match(/class="oe-link"/g) || []).length, 24, 'twelve circles around the Source in the Metatron Cube model and in its mobile version');
+  assert.match(main, /class="oef-embed"/, 'the live Omnidirectional Enterprise™ viewer, all IV Phases');
   assert.ok(main.indexOf('id="model"') < main.indexOf('id="economic"'), 'the wheel is above the economic case');
   assert.match(main, /id="economic"/);
   assert.match(main, /Creating value is half the work/);

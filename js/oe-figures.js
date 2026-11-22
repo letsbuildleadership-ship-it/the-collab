@@ -297,7 +297,7 @@ function mFig(mode){
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
   title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.fg}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
   lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});
-  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${C.f2}" stroke-width="1.8" filter="url(#glow${mode})"/>${t}</g>`;});
+  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${ON.has(n)?'rgba(255,46,18,.22)':'none'}" pointer-events="visible" stroke="${C.f2}" stroke-width="1.8" filter="url(#glow${mode})"/>${t}</g>`;});
  s+=top;
  if(mode===2){const y=H-96;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
   CUR.forEach((cu,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${cu.k}</tspan>  ${esc(cu.n.replace('The ',''))}</text>`;});}
@@ -335,39 +335,81 @@ const CAP={
  3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Seven Conductors, each a whole copy of the model, every Conductor joined to every other by an Interconnection, both ways. Each new Conductor adds 13 circles. 7 Conductors · 91 circles · up to 4,095 two-way connections.',
  4:'<b>Figure 4 · Phase IV · Preservation.</b> The Grid: 13 Conductors on the 13 circles of a larger Omnidirectional Enterprise™, joined by its 78 lines. The next, larger one fades in at the edges: every Grid is one circle of a larger Omnidirectional Enterprise™, without end. 13 Conductors · 169 circles · up to 14,196 two-way connections.'
 };
-const roots=[...document.querySelectorAll('.oef-figure[data-fig]')];
-if(!roots.length)return;
-const ICON={source:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.f2}" stroke-width="1.8"/>`,branch:`<circle cx="17" cy="10" r="6" fill="none" stroke="${C.hair}" stroke-width="2"/>`,conductor:`<circle cx="17" cy="10" r="5" fill="${C.f2}"/>`,next:`<circle cx="17" cy="10" r="3" fill="${C.f2}" fill-opacity=".65"/>`,trans:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f1}" stroke-width="2"/>`,dist:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-width="1.6"/>`,inter:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.4" stroke-dasharray="5 4"/>`,current:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.6" stroke-dasharray="5 4"/>`,badge:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-width="1.3"/>`,nextline:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f2}" stroke-opacity=".5" stroke-width="1"/>`};
-ICON.grid=`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-opacity=".6" stroke-width="1.4"/>`;
-ICON.conductor=`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.4"/><circle cx="17" cy="10" r="2.6" fill="none" stroke="#fff" stroke-width="1.4"/>`;
-ICON.ent=`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.6"/><circle cx="17" cy="10" r="2.5" fill="${C.f2}"/>`;
-const flowBox=document.getElementById('oef-flow'),lblBox=document.getElementById('oef-labels');
+
+let ON=new Set();
+// What every circle is, in every phase. I: the model · II: what The Co.LLab™ does · III: when enterprises plug in · IV: across the Grid
+const PH=['What it is','What The Co.LLab™ does','When enterprises plug in','Across the Grid'];
+const DEF={
+ 'The Source':{ring:'Centre',href:'about.html',go:'About The Co.LLab™',d:['The purpose and Leadership Infrastructure™ at the heart of an enterprise. It powers every circle and holds the IP.','The Co.LLab™: Building Leadership Infrastructure. We own The IV Phases™ and all of our IP, license it, and run our whole enterprise on this model.','Every enterprise that plugs in runs its own Source on the same model, and becomes a Conductor.','Each Source powers its own enterprise; together they form one circle of the next, larger model.']},
+ 'People':{ring:'Inner ring · independent',href:'products.html',go:'The .LLab™',d:['The talent inside an enterprise: they bring talent, build skills and create value.','The .LLab™ Member Portal: accounts, quests and tools where people build their skills.','People move between Conductors, carrying skills and ideas with them.','Talent circulates across the whole Grid instead of being locked inside one enterprise.']},
+ 'Knowledge + IP':{ring:'Inner ring · independent',href:'think.html',go:'The .LLab R.A.T.™',d:['What an enterprise knows and owns: research, methods and IP that create long-term value.','The .LLab R.A.T.™ (Research And Theory): we research and write The IV Phases™ and every framework we license.','Conductors apply the IP and feed insight back, so it grows as a living document.','Shared knowledge compounds across the Grid: ideas never run out.']},
+ 'Technology':{ring:'Inner ring · independent',href:'technology.html',go:'Technology',d:['The systems that amplify impact, connect resources and expand access.','Technology · The .LLab Legacy Ventures™: the platform that connects every part: portal, quests, analysis and walls.','Conductors plug into the same connected platform.','One connected platform lets value travel from any circle to any other.']},
+ 'Products & Services':{ring:'Inner ring · independent',href:'all-products.html',go:'The .LLab Products™',d:['What an enterprise sells to solve its customers’ problems.','The .LLab Products™: every product organized by The IV Phases™, licensed to keep.','Conductors sell to each other, and to each other’s members.','Products from every sector reach every market on the Grid.']},
+ 'Capital':{ring:'Inner ring · independent',href:'partnership.html#tiers',go:'Partnership™',d:['Money that fuels ideas, scales solutions and builds legacy.','Partnership™ and founding participation fund the build; every founding dollar is credited toward a Partnership.','Capital moves between Conductors, both ways, wherever it does the most good.','Returns keep moving through the Grid instead of pooling at the top.']},
+ 'Creators':{ring:'Inner ring · independent',href:'creator.html',go:'The .LLab Creators™',d:['The people and studios who bring ideas, create culture and build brands.','The .LLab Creators™: Creator Infrastructure™ gives creators distribution while they keep authorship of their IP.','Creators work with every Conductor, not just one.','Creative work reaches every community on the Grid.']},
+ 'Enterprises':{ring:'Outer ring · external',href:'partnership.html#tiers',go:'Partnership™',d:['The enterprises around you that create products, generate wealth and build solutions.','Enterprises license our IP through Partnership™ and will list and sell on The Co.LLab+ Marketplace™ (in development).','Your enterprise trades directly with every other Conductor, both ways.','Enterprises in every sector reach each other without a gatekeeper.']},
+ 'Partners':{ring:'Outer ring · external',href:'partnership.html',go:'Partnership™',d:['Enterprises legally partnered with yours, investing to build legacy together.','The Partnership™ cohort: every Partner gets The IV Phases™, The .LLab Library Card™ and The .LLab Journal™, plus Partner-only IP, and helps strengthen the IP as a living document.','Every new partnership adds lines between Conductors.','Partnerships keep the Grid powered, generation after generation.']},
+ 'Nonprofits':{ring:'Outer ring · external',href:'impact.html',go:'The .LLab Impact™',d:['Organizations that address needs, create change and build stronger communities.','The .LLab Impact™: a share of founding participation flows to Blazing Smiles and Wavecraft Oceans Project.','Each Conductor directs its own impact to the nonprofits it cares about.','Impact flows from every sector into communities, without end.']},
+ 'Communities':{ring:'Outer ring · external',href:'founders.html',go:'The Co.LLab Founders Organization™',d:['The places people live and work: they support people, create opportunity and drive productivity.','The Co.LLab Founders Organization™ builds benefactor partnerships that help sustain community, and The Co.LLab+™ builds community preservation and sustainability systems.','Conductors serve their own communities and share what works with each other.','Communities sustained by the whole Grid, not by any one enterprise.']},
+ 'Members':{ring:'Outer ring · external',href:'products.html#membership',go:'The .LLab Membership™',d:['The people who join and stay: an enterprise’s recurring audience.','The .LLab Membership™: start free; Membership opens all paid IP, quests and the Infrastructure Analysis™.','Members of one Conductor can reach the products and people of every other.','Once a member, always a member: names stay up on the Omnidirectional Legacy Wall.']},
+ 'Founders':{ring:'Outer ring · external',href:'founders.html',go:'The Co.LLab Founders Organization™',d:['The first backers who build alongside a founder, and are remembered first.','The Co.LLab Founders Organization™: fixed-price founding participation, a permanent Founder Number and a digital Founder Card.','Each Conductor’s founders become part of the network’s story.','Founders are the provenance of the Grid, recognized for good.']}
+};
+const ORDER=['The Source','People','Knowledge + IP','Technology','Products & Services','Capital','Creators','Enterprises','Partners','Nonprofits','Communities','Members','Founders'];
+const FIG=[
+ {e:'Figure 1 · Phase I · Foundations · Define it',h:'The Omnidirectional Enterprise Model™: <strong>where the power starts.</strong>',m:'One Source powering 12 circles, with power going out and value coming back on every line.'},
+ {e:'Figure 2 · Phase II · Infrastructure Planning &amp; Management · Plan it',h:'This is what our enterprise <strong>is built on.</strong>',m:'Not a theory. The Co.LLab™ runs on it: every circle wired to every other, every circle run by a part of our enterprise.'},
+ {e:'Figure 3 · Phase III · Internal Operating Systems · Live it',h:'Enterprises plug in, <strong>and start collaborating.</strong>',m:'Plug in and you become a Conductor: the same 13 circles, wired straight into every other Conductor.'},
+ {e:'Figure 4 · Phase IV · Preservation · Pass it on',h:'Conductors wired together: <strong>the Grid.</strong>',m:'Every new Conductor adds 13 circles, and connections grow faster than circles.'}
+];
+const BASE=(()=>{const sc=document.querySelector('script[src*="oe-figures.js"]');return sc?sc.src.replace(/js\/oe-figures\.js.*$/,'pages/'):'';})();
+const href=h=>BASE+h;
+function build(el,n){
+ const main=el.hasAttribute('data-main'),compact=el.hasAttribute('data-compact');
+ ON=new Set((el.dataset.on||'').split(',').map(x=>x.trim()).filter(Boolean));
+ el.classList.add('oef-scope');
+ el.innerHTML=`<div class="oef">${el.dataset.title?`<p class="eyebrow">${el.dataset.eyebrow||'Omnidirectional Enterprise™'}</p><h2 class="headline" style="max-width:28ch;">${el.dataset.title}</h2>`:''}
+ <div class="oef-tabs" role="tablist" aria-label="The IV Phases™ of the model">${['Define it','Plan it','Live it','Pass it on'].map((t,i)=>`<button class="oef-tab" role="tab" data-tab="${i+1}" aria-selected="${i?'false':'true'}"><span>${['I','II','III','IV'][i]}</span> ${t}</button>`).join('')}</div>
+ ${FIG.map((f,i)=>`<article class="oef-figure" ${main?`id="figure-${i+1}" `:''}data-fig="${i+1}"${i?' hidden':''}>
+  <p class="eyebrow">${f.e}</p><h3 class="headline oef-ftitle">${f.h}</h3>
+  <div class="oef-grid"><div class="oef-stage"><div class="oef-fig"></div></div>
+  <aside><div class="oef-panel" aria-live="polite"><div class="oef-kind">Select a part</div><h2 class="oef-name">The Source</h2><p class="oef-fn">Tap any circle or line in the figure.</p><p class="oef-go"></p></div></aside></div>
+  ${compact?'':`<details class="oef-more"><summary>More info</summary><p class="subhead" style="margin-top:1rem; max-width:66ch;">${f.m}</p><div class="oef-caption"></div><div class="oef-panel oef-parts"><h3>Every part in this figure</h3><div class="oef-parts-list"></div></div><p class="oef-next"><a href="${href('oe-business-model.html#read-figure-'+(i+1))}">Deep dive: reading Figure ${i+1} →</a></p></details>`}
+ </article>`).join('')}
+ <div class="oef-controls"><label class="oef-ctrl"><input type="checkbox" class="oef-flowbox" checked> Show Currents flowing</label><label class="oef-ctrl"><input type="checkbox" class="oef-lblbox" checked> Label every line</label></div>
+ ${compact?`<p class="oef-next" style="margin-top:1rem"><a href="${href('omnidirectional-enterprise.html#circles')}">What every circle does, in every phase →</a></p>`:`<section class="oef-circles"${main?' id="circles"':''}><p class="eyebrow">The 13 circles</p><h3 class="headline oef-ctitle"></h3><ol class="oef-clist"></ol></section>`}</div>`;
+ const roots=[...el.querySelectorAll('.oef-figure')];
+ roots.forEach(r=>mount(r));
+ const tabs=[...el.querySelectorAll('[data-tab]')],clist=el.querySelector('.oef-clist'),ctitle=el.querySelector('.oef-ctitle');
+ const circles=f=>{if(!clist)return;ctitle.innerHTML=`Phase ${['I','II','III','IV'][f-1]}: <strong>${PH[f-1]}.</strong>`;
+  clist.innerHTML=ORDER.map(k=>{const d=DEF[k];return `<li class="oef-crow${ON.has(k)?' oef-on':''}"><span class="oef-cring">${d.ring}</span><b>${esc(k)}</b><span class="oef-ctext">${esc(d.d[f-1])}</span><a href="${href(d.href)}">${esc(d.go)} →</a></li>`;}).join('');};
+ const pick=(f,scroll)=>{roots.forEach(r=>{r.hidden=r.dataset.fig!==String(f);});tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===String(f)));circles(+f);if(scroll)el.scrollIntoView({behavior:'smooth'});};
+ tabs.forEach(t=>t.addEventListener('click',()=>{pick(t.dataset.tab);if(main)history.replaceState(null,'','#figure-'+t.dataset.tab);}));
+ if(main){const fromHash=scroll=>{const m=location.hash.match(/^#figure-([1-4])$/);pick(m?m[1]:1,!!m&&scroll);};window.addEventListener('hashchange',()=>fromHash(true));fromHash(true);}else pick(1);
+ const fb=el.querySelector('.oef-flowbox'),lb=el.querySelector('.oef-lblbox');
+ const apply=()=>el.querySelectorAll('.oef-fig svg').forEach(svg=>{svg.classList.toggle('oef-flowing',fb.checked);svg.classList.toggle('oef-hide-labels',!lb.checked);});
+ fb.addEventListener('change',apply);lb.addEventListener('change',apply);apply();
+}
+const ICON={source:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.f2}" stroke-width="1.8"/>`,branch:`<circle cx="17" cy="10" r="6" fill="none" stroke="${C.hair}" stroke-width="2"/>`,trans:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.f1}" stroke-width="2"/>`,inter:`<line x1="3" x2="31" y1="10" y2="10" stroke="#fff" stroke-width="1.4"/>`,current:`<line x1="3" x2="31" y1="10" y2="10" stroke="${C.paper}" stroke-width="1.6" stroke-dasharray="4 3"/>`,badge:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}"/>`,grid:`<circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}" stroke-opacity=".6" stroke-width="1.4"/>`,conductor:`<circle cx="17" cy="10" r="7" fill="none" stroke="${C.f2}" stroke-width="1.4"/><circle cx="17" cy="10" r="2.6" fill="none" stroke="#fff" stroke-width="1.4"/>`};
 function mount(root){
  const fig=+root.dataset.fig,q=sel=>root.querySelector(sel);
- const figEl=q('.oef-fig'),partsEl=q('.oef-parts-list'),pKind=q('.oef-kind'),pName=q('.oef-name'),pFn=q('.oef-fn');
- parts=[];figEl.innerHTML=fig===4?mGrid():fig===3?mFew():mFig(fig);const my=parts;q('.oef-caption').innerHTML=CAP[fig];
+ const figEl=q('.oef-fig'),partsEl=q('.oef-parts-list'),pKind=q('.oef-kind'),pName=q('.oef-name'),pFn=q('.oef-fn'),pGo=q('.oef-go');
+ parts=[];figEl.innerHTML=fig===4?mGrid():fig===3?mFew():mFig(fig);const my=parts;if(q('.oef-caption'))q('.oef-caption').innerHTML=CAP[fig];
  const svg=figEl.querySelector('svg');
- const show=p=>{pKind.textContent=p.kind;pName.textContent=p.name;pFn.textContent=p.fn;};
+ const show=p=>{const key=p.type==='source'?'The Source':p.type==='branch'?p.name.replace('Substation · ',''):null,d=key&&DEF[key];
+  pKind.textContent=d?`${d.ring} · ${PH[fig-1]}`:p.kind;pName.textContent=d?key:p.name;pFn.textContent=d?d.d[fig-1]:p.fn;
+  pGo.innerHTML=d?`<a href="${href(d.href)}">${esc(d.go)} →</a>`:'';};
  const hot=(type,idx)=>{svg.classList.toggle('oef-dimmed',!!type);
   svg.querySelectorAll('.oef-part').forEach(e=>e.classList.toggle('oef-hot',idx!=null?+e.dataset.p===idx:e.dataset.t===type));
-  partsEl.querySelectorAll('.oef-row').forEach(r=>r.classList.toggle('oef-on',r.dataset.t===type));};
- const types=[...new Set(my.map(p=>p.type))];
+  if(partsEl)partsEl.querySelectorAll('.oef-row').forEach(r=>r.classList.toggle('oef-on',r.dataset.t===type));};
+ if(partsEl){const types=[...new Set(my.map(p=>p.type))];
  partsEl.innerHTML=types.map(t=>`<div class="oef-row" tabindex="0" role="button" data-t="${t}"><svg viewBox="0 0 34 20" aria-hidden="true">${ICON[t]||''}</svg><div><b>${TYPES[t].name}${t==='current'?'s':''}</b><span>${TYPES[t].fn}</span></div></div>`).join('')+
   (fig===2?CUR.map(c=>`<div class="oef-row" tabindex="0" role="button" data-t="current"><svg viewBox="0 0 34 20" aria-hidden="true"><circle cx="17" cy="10" r="8" fill="none" stroke="${C.paper}"/><text x="17" y="13.5" text-anchor="middle" font-size="10" font-weight="700" fill="${C.paper}">${c.k}</text></svg><div><b>${c.n}</b><span>${c.d}. ${c.w}</span></div></div>`).join(''):'');
- show({kind:TYPES.source.kind,name:'The Source',fn:TYPES.source.fn});
+ partsEl.querySelectorAll('.oef-row').forEach(r=>{const go=()=>{const t=r.dataset.t;show({kind:TYPES[t].kind,name:r.querySelector('b').textContent,fn:r.querySelector('span').textContent});hot(t);};r.addEventListener('mouseenter',go);r.addEventListener('click',go);r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});}
+ show({type:'source'});
  svg.addEventListener('mouseover',e=>{const g=e.target.closest('.oef-part');if(!g)return;const i=+g.dataset.p;show(my[i]);hot(my[i].type,i);});
  svg.addEventListener('mouseleave',()=>hot(null));
  svg.addEventListener('click',e=>{const g=e.target.closest('.oef-part');if(!g){hot(null);return;}const i=+g.dataset.p;show(my[i]);hot(my[i].type,i);});
- partsEl.querySelectorAll('.oef-row').forEach(r=>{const go=()=>{const t=r.dataset.t;show({kind:TYPES[t].kind,name:r.querySelector('b').textContent,fn:r.querySelector('span').textContent});hot(t);};r.addEventListener('mouseenter',go);r.addEventListener('click',go);r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
 }
-roots.forEach(mount);
-const tabs=[...document.querySelectorAll('.oef-tabs [data-tab]')];
-const pick=(n,scroll)=>{if(!tabs.length)return;roots.forEach(r=>{r.hidden=r.dataset.fig!==String(n);});tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===String(n)));if(scroll)document.getElementById('figures').scrollIntoView({behavior:'smooth'});};
-tabs.forEach(t=>t.addEventListener('click',()=>{pick(t.dataset.tab);history.replaceState(null,'','#figure-'+t.dataset.tab);}));
-const fromHash=scroll=>{const m=location.hash.match(/^#figure-([1-4])$/);pick(m?m[1]:1,!!m&&scroll);};
-window.addEventListener('hashchange',()=>fromHash(true));fromHash(true);
-const apply=()=>document.querySelectorAll('.oef-figure .oef-fig svg').forEach(svg=>{svg.classList.toggle('oef-flowing',!flowBox||flowBox.checked);svg.classList.toggle('oef-hide-labels',!!lblBox&&!lblBox.checked);});
-if(flowBox)flowBox.addEventListener('change',apply);
-if(lblBox)lblBox.addEventListener('change',apply);
-apply();
+const embeds=[...document.querySelectorAll('.oef-embed')];
+embeds.slice(0,1).forEach(build);
 })();

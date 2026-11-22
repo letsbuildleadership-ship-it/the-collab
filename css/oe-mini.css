@@ -51,3 +51,6 @@
 @media (max-width: 640px) { .fits-map { width: 100%; max-width: 380px; } }
 .fits .oem-n { font-size: 27px; }
 .fits-why { margin: 0.75rem 0 1rem; max-width: 40ch; color: var(--filament-2); font-size: 1.15rem; font-weight: 700; line-height: 1.4; }
+/* the map is now the live viewer (all IV Phases): text first, viewer full width below */
+.fits-wrap:has(.oef-embed), .oe-mini:has(.oef-embed) { flex-direction: column-reverse; align-items: stretch; }
+.fits-map.oef-embed { width: 100%; }
