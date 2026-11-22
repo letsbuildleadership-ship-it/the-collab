@@ -70,7 +70,7 @@ export function svg(kind, opts = {}) {
   const base = opts.base || '';
   const on = opts.on || new Set();
   const names = NODES.map((n) => n.name).join(', ').replace(/, ([^,]*)$/, ', and $1');
-  const desc = `The Omnidirectional Enterprise™ model as Metatron's Cube: The Co.LLab™ Leadership Infrastructure™ at the centre, connected in every direction to ${names}.`;
+  const desc = `The Omnidirectional Enterprise™ model: The Co.LLab™ Leadership Infrastructure™ at the centre, connected in every direction to ${names}.`;
   const head = kind === 'full'
     ? `<svg class="oe-diagram" data-model="metatron" viewBox="-14 -14 888 888" role="img" aria-labelledby="oe-diagram-title" xmlns="http://www.w3.org/2000/svg">\n          <title id="oe-diagram-title">${esc(desc)}</title>`
     : `<svg class="${kind === 'sm' ? 'oe-diagram-sm' : 'oe-mini-svg'}" data-model="metatron" viewBox="-14 -14 888 888" role="img" aria-label="${esc(opts.ariaLabel || desc)}" xmlns="http://www.w3.org/2000/svg">`;
