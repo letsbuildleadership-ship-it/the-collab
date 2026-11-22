@@ -305,7 +305,7 @@ function mFig(mode){
 function connect(spots,cr,w,label){let s='';for(let i=0;i<spots.length;i++)for(let j=i+1;j<spots.length;j++){const [x1,y1,x2,y2]=trim(spots[i][0],spots[i][1],spots[j][0],spots[j][1],cr,cr);
   const id=reg('inter',{name:label,kind:'Line · Conductor ↔ Conductor'});const a=`x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"`;
   s+=`<line class="oef-part oef-flow${(i+j)%2?' oef-rev':''}" data-p="${id}" data-t="inter" ${a} stroke="#fff" stroke-opacity=".9" stroke-width="${w}"/>`;}
- return s+spots.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${cr.toFixed(1)}" fill="none" stroke="#fff" stroke-width="${(w*.6).toFixed(1)}" pointer-events="none"/>`).join('');}
+ return s+spots.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${cr.toFixed(1)}" fill="none" stroke="${C.f2}" stroke-width="${(w*.9).toFixed(1)}" filter="url(#glow3)" pointer-events="none"/>`).join('');}
 const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>';
 function mFew(){
  const W=760,H=760,cx=380,cy=380,rs=23.5,D=252;const spots=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+D*Math.cos(rad(90+60*k)),cy-D*Math.sin(rad(90+60*k))])];
@@ -320,7 +320,7 @@ function mGrid(){
  const W=760,H=760,cx=380,cy=380,G=68,big=5*G,pos=mc(cx,cy,G),spots=Object.values(pos);
  let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}<defs><radialGradient id="gfade" cx="50%" cy="50%" r="60%"><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset=".75" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></radialGradient><mask id="gmask"><rect width="${W}" height="${H}" fill="url(#gfade)"/></mask></defs>`;
  const ghosts=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+2*big*Math.cos(rad(90+60*k)),cy-2*big*Math.sin(rad(90+60*k))])];
- let g='';ghosts.forEach(([x,y],i)=>{const id=reg('grid',i===0?{name:'The Grid · one circle of the next, larger model'}:{name:'The next Grid'});g+=`<circle class="oef-part" data-p="${id}" data-t="grid" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big}" fill="none" stroke="${C.paper}" stroke-opacity=".55" stroke-width="2"/>`;});
+ let g='';ghosts.forEach(([x,y],i)=>{const id=reg('grid',i===0?{name:'The Grid · one circle of the next, larger model'}:{name:'The next Grid'});g+=`<circle class="oef-part" data-p="${id}" data-t="grid" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big}" fill="none" stroke="${C.f2}" stroke-opacity=".8" stroke-width="2"/>`;});
  for(let i=0;i<7;i++)for(let j=i+1;j<7;j++){g+=`<line x1="${ghosts[i][0].toFixed(1)}" y1="${ghosts[i][1].toFixed(1)}" x2="${ghosts[j][0].toFixed(1)}" y2="${ghosts[j][1].toFixed(1)}" stroke="${C.paper}" stroke-opacity=".35" stroke-width="1.5"/>`;}
  s+=`<g mask="url(#gmask)">${g}</g>`;
  spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™: Building Leadership Infrastructure · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${G}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,G/5,{lw:.7,op:.85,cw:.9})}</g>`;});
@@ -369,22 +369,25 @@ function build(el,n){
  el.classList.add('oef-scope');
  el.innerHTML=`<div class="oef">${el.dataset.title?`<p class="eyebrow">${el.dataset.eyebrow||'Omnidirectional Enterprise™'}</p><h2 class="headline" style="max-width:28ch;">${el.dataset.title}</h2>`:''}
  <div class="oef-tabs" role="tablist" aria-label="The IV Phases™ of the model">${['Define it','Plan it','Live it','Pass it on'].map((t,i)=>`<button class="oef-tab" role="tab" data-tab="${i+1}" aria-selected="${i?'false':'true'}"><span>${['I','II','III','IV'][i]}</span> ${t}</button>`).join('')}</div>
- ${FIG.map((f,i)=>`<article class="oef-figure" ${main?`id="figure-${i+1}" `:''}data-fig="${i+1}"${i?' hidden':''}>
+ ${FIG.map((f,i)=>`<article class="oef-figure" ${main?`id="figure-${i+1}" `:''}data-fig="${i+1}">
   <p class="eyebrow">${f.e}</p><h3 class="headline oef-ftitle">${f.h}</h3>
   <div class="oef-grid"><div class="oef-stage"><div class="oef-fig"></div></div>
   <aside><div class="oef-panel" aria-live="polite"><div class="oef-kind">Select a part</div><h2 class="oef-name">The Source</h2><p class="oef-fn">Tap any circle or line in the figure.</p><p class="oef-go"></p></div></aside></div>
-  ${compact?'':`<details class="oef-more"><summary>More info</summary><p class="subhead" style="margin-top:1rem; max-width:66ch;">${f.m}</p><div class="oef-caption"></div><div class="oef-panel oef-parts"><h3>Every part in this figure</h3><div class="oef-parts-list"></div></div><p class="oef-next"><a href="${href('oe-business-model.html#read-figure-'+(i+1))}">Deep dive: reading Figure ${i+1} →</a></p></details>`}
+  <details class="oef-more"><summary>More info</summary><p class="subhead" style="margin-top:1rem; max-width:66ch;">${f.m}</p><div class="oef-caption"></div><div class="oef-panel oef-parts"><h3>Every part in this figure</h3><div class="oef-parts-list"></div></div><p class="oef-next"><a href="${href('oe-business-model.html#read-figure-'+(i+1))}">Deep dive: reading Figure ${i+1} →</a></p></details>
  </article>`).join('')}
  <div class="oef-controls"><label class="oef-ctrl"><input type="checkbox" class="oef-flowbox" checked> Show Currents flowing</label><label class="oef-ctrl"><input type="checkbox" class="oef-lblbox" checked> Label every line</label></div>
- ${compact?`<p class="oef-next" style="margin-top:1rem"><a href="${href('omnidirectional-enterprise.html#circles')}">What every circle does, in every phase →</a></p>`:`<section class="oef-circles"${main?' id="circles"':''}><p class="eyebrow">The 13 circles</p><h3 class="headline oef-ctitle"></h3><ol class="oef-clist"></ol></section>`}</div>`;
+ ${compact?`<p class="oef-next" style="margin-top:1rem"><a href="${href('omnidirectional-enterprise.html#circles')}">What every circle does, in every phase →</a></p>`:`<section class="oef-circles"${main?' id="circles"':''}><p class="eyebrow">The 13 circles</p><h3 class="headline oef-ctitle"></h3><div class="oef-tabs oef-ctabs" role="tablist" aria-label="Phase">${['I','II','III','IV'].map((t,i)=>`<button class="oef-tab" role="tab" data-ctab="${i+1}" aria-selected="${i?'false':'true'}"><span>${t}</span> ${PH[i]}</button>`).join('')}</div><ol class="oef-clist"></ol></section>`}</div>`;
  const roots=[...el.querySelectorAll('.oef-figure')];
  roots.forEach(r=>mount(r));
  const tabs=[...el.querySelectorAll('[data-tab]')],clist=el.querySelector('.oef-clist'),ctitle=el.querySelector('.oef-ctitle');
  const circles=f=>{if(!clist)return;ctitle.innerHTML=`Phase ${['I','II','III','IV'][f-1]}: <strong>${PH[f-1]}.</strong>`;
   clist.innerHTML=ORDER.map(k=>{const d=DEF[k];return `<li class="oef-crow${ON.has(k)?' oef-on':''}"><span class="oef-cring">${d.ring}</span><b>${esc(k)}</b><span class="oef-ctext">${esc(d.d[f-1])}</span><a href="${href(d.href)}">${esc(d.go)} →</a></li>`;}).join('');};
- const pick=(f,scroll)=>{roots.forEach(r=>{r.hidden=r.dataset.fig!==String(f);});tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===String(f)));circles(+f);if(scroll)el.scrollIntoView({behavior:'smooth'});};
- tabs.forEach(t=>t.addEventListener('click',()=>{pick(t.dataset.tab);if(main)history.replaceState(null,'','#figure-'+t.dataset.tab);}));
- if(main){const fromHash=scroll=>{const m=location.hash.match(/^#figure-([1-4])$/);pick(m?m[1]:1,!!m&&scroll);};window.addEventListener('hashchange',()=>fromHash(true));fromHash(true);}else pick(1);
+ const ctabs=[...el.querySelectorAll('[data-ctab]')];
+ const pickC=f=>{ctabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.ctab===String(f)));circles(+f);};
+ ctabs.forEach(t=>t.addEventListener('click',()=>pickC(t.dataset.ctab)));pickC(1);
+ tabs.forEach(t=>t.addEventListener('click',()=>{const r=roots[+t.dataset.tab-1];r.scrollIntoView({behavior:'smooth'});if(main)history.replaceState(null,'','#figure-'+t.dataset.tab);}));
+ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===e.target.dataset.fig));}),{rootMargin:'-45% 0px -45% 0px'});roots.forEach(r=>io.observe(r));}
+ if(main&&/^#figure-[1-4]$/.test(location.hash))setTimeout(()=>{const t=document.querySelector(location.hash);if(t)t.scrollIntoView();},50);
  const fb=el.querySelector('.oef-flowbox'),lb=el.querySelector('.oef-lblbox');
  const apply=()=>el.querySelectorAll('.oef-fig svg').forEach(svg=>{svg.classList.toggle('oef-flowing',fb.checked);svg.classList.toggle('oef-hide-labels',!lb.checked);});
  fb.addEventListener('change',apply);lb.addEventListener('change',apply);apply();

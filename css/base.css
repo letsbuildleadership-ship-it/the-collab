@@ -2576,3 +2576,9 @@ font font { background: none !important; box-shadow: none !important; }
 .oef-scope .oef-ctext{color:#fdf6ec;line-height:1.5}
 .oef-scope .oef-controls{margin-top:1rem}
 .oef-scope .oef-tab span{margin-right:.35em}
+/* all four figures stacked; the phase tabs stay in view and jump to each figure */
+.oef-scope .oef > .oef-tabs{position:sticky;top:72px;z-index:5;background:#0f1d13;padding:8px 0;margin:14px 0 0}
+.oef-scope .oef-figure + .oef-figure{margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,96,46,.34)}
+.oef-scope .oef-more > summary{display:inline-flex;align-items:center;gap:.5em;list-style:none;cursor:pointer;border:1px solid #ff602e;border-radius:999px;padding:10px 20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;color:#ff602e;margin-top:1.25rem}
+.oef-scope .oef-more > summary::-webkit-details-marker{display:none}
+.oef-scope .oef-more[open] > summary{background:#ff602e;color:#0f1d13}
