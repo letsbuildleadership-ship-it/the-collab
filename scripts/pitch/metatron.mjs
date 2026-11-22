@@ -17,11 +17,11 @@ export function metatronSvg() {
   let lines = '';
   for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) lines += `<line x1="${f1(pts[i][0])}" y1="${f1(pts[i][1])}" x2="${f1(pts[j][0])}" y2="${f1(pts[j][1])}"/>`;
   const halo = 'paint-order="stroke" stroke="#0f1d13" stroke-width="4" stroke-linejoin="round"';
-  const circles = pts.map(([x, y], i) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${R}" fill="none" stroke="${i === 0 ? '#ff602e' : 'rgba(255,96,46,.75)'}" stroke-width="${i === 0 ? 2.4 : 1.4}"/>`).join('');
+  const circles = pts.map(([x, y], i) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${R}" fill="none" stroke="#ff602e" stroke-width="${i === 0 ? 2.4 : 1.6}" filter="url(#pg)"/>`).join('');
   const labels = SLOTS.map(([s, name]) => {
     const [x, y] = c[s]; const parts = name.split('|');
     return parts.map((t, i) => `<text x="${f1(x)}" y="${f1(y + 5 + (i - (parts.length - 1) / 2) * 15)}" text-anchor="middle" fill="#fff" font-size="${name.length > 11 ? 12 : 13}" font-weight="800" ${halo}>${t}</text>`).join('');
   }).join('');
   const core = `<text x="${C}" y="${C - 2}" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" ${halo}>The Co.LLab™</text><text x="${C}" y="${C + 14}" text-anchor="middle" fill="#ff9a6e" font-size="9.5" font-weight="800" letter-spacing="1.2" ${halo}>THE SOURCE</text>`;
-  return `<svg viewBox="20 20 460 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Omnidirectional Enterprise™ model"><g stroke="#ff602e" stroke-opacity=".66" stroke-width="1.4">${lines}</g>${circles}${core}${labels}</svg>`;
+  return `<svg viewBox="20 20 460 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Omnidirectional Enterprise™ model"><defs><filter id="pg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g stroke="#ffffff" stroke-opacity=".7" stroke-width="1.2">${lines}</g>${circles}${core}${labels}</svg>`;
 }

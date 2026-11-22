@@ -271,14 +271,14 @@ const MCUR=[[1,'o90','core'],[1,'i210','core'],[2,'core','i30'],[2,'i30','o90'],
 // one small cube (no labels), used for Conductors
 function miniCube(x,y,r,o){o=o||{};const c=mc(x,y,r),k=Object.keys(c);let s='';
  for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const [x1,y1]=c[k[i]],[x2,y2]=c[k[j]];s+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;}
- s=`<g stroke="${C.f2}" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;
- k.forEach(n=>{const [cx,cy]=c[n];s+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="none" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
- return s;}
+ s=`<g stroke="#ffffff" stroke-opacity="${o.op||.82}" stroke-width="${o.lw||1}">${s}</g>`;let cs='';
+ k.forEach(n=>{const [cx,cy]=c[n];cs+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="none" stroke="${n==='core'?C.f1:C.f2}" stroke-width="${n==='core'?(o.cw||1.2)*1.6:(o.cw||1.2)}"/>`;});
+ return s+`<g filter="url(#glow3)">${cs}</g>`;}
 function mFig(mode){
  const W=760,H=mode===2?880:770,cx=380,cy=mode===2?378:385,r=62,c=mc(cx,cy,r),keys=Object.keys(c);let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/><circle cx="${cx}" cy="${cy}" r="${2*r}" fill="url(#core${mode})"/>`;
  for(let i=0;i<13;i++)for(let j=i+1;j<13;j++){const a=keys[i],b=keys[j],[x1,y1]=c[a],[x2,y2]=c[b];
-  if(a==='core'){const id=reg('trans',{name:`Transmission line · Source ↔ ${NAME[b]}`});s+=ln(x1,y1,x2,y2,C.f1,1.8,'oef-flow'+(j%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.7:.95}"`);}
-  else{const id=reg('inter',{name:`Interconnection · ${NAME[a]} ↔ ${NAME[b]}`,kind:'Line · substation ↔ substation'});s+=ln(x1,y1,x2,y2,C.f2,1.4,'oef-flow'+((i+j)%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.5:.72}"`);}}
+  if(a==='core'){const id=reg('trans',{name:`Transmission line · Source ↔ ${NAME[b]}`});s+=ln(x1,y1,x2,y2,'#ffffff',1.6,'oef-flow'+(j%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.6:.85}"`);}
+  else{const id=reg('inter',{name:`Interconnection · ${NAME[a]} ↔ ${NAME[b]}`,kind:'Line · substation ↔ substation'});s+=ln(x1,y1,x2,y2,'#ffffff',1.2,'oef-flow'+((i+j)%2?' oef-rev':''),id,`stroke-opacity="${mode===2?.42:.6}"`);}}
  let top='';
  if(mode===2){const seen={},pts=Object.values(c);
   MCUR.forEach(([k,a,b])=>{const key=[a,b].sort().join(),off=8*(seen[key]||0);seen[key]=(seen[key]||0)+1;const [x1,y1]=c[a],[x2,y2]=c[b],L=Math.hypot(x2-x1,y2-y1),ux=(x2-x1)/L,uy=(y2-y1)/L,nx=-uy*off,ny=ux*off;
@@ -299,7 +299,7 @@ function mFig(mode){
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
   title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.fg}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
   lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});
-  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${C.f2}" stroke-opacity=".9" stroke-width="1.6"/>${t}</g>`;});
+  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${C.f2}" stroke-width="1.8" filter="url(#glow${mode})"/>${t}</g>`;});
  s+=top;
  if(mode===2){const y=H-96;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
   CUR.forEach((cu,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${cu.k}</tspan>  ${esc(cu.n.replace('The ',''))}</text>`;});}
