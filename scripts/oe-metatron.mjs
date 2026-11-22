@@ -85,7 +85,7 @@ export function svg(kind, opts = {}) {
   const ct = opts.coreText;
   if (ct && ct[0].trim()) {
     out += `          <text x="${f1(cx)}" y="${f1(cy + 12)}" text-anchor="middle" class="${big}" style="font-size:24px;fill:#fdf6ec" ${halo}>${ct[0]}</text>\n`;
-    if (ct[1] && ct[1].trim()) out += `          <text x="${f1(cx)}" y="${f1(cy + 34)}" text-anchor="middle" class="${sub}" style="font-size:12px" ${halo}>${ct[1]}</text>\n`;
+    ct.slice(1).forEach((t, i) => { if (t && t.trim()) out += `          <text x="${f1(cx)}" y="${f1(cy + 32 + i * 14)}" text-anchor="middle" class="${sub}" style="font-size:10px;font-weight:700;letter-spacing:.08em;fill:#fdf6ec" ${halo}>${t}</text>\n`; });
   } else if (!ct) {
     out += `          <text x="${f1(cx)}" y="${f1(cy + 10)}" text-anchor="middle" class="${sub}" style="font-size:13px;font-weight:700;letter-spacing:.12em;fill:#fdf6ec" ${halo}>OMNIDIRECTIONAL</text>\n`;
     out += `          <text x="${f1(cx)}" y="${f1(cy + 28)}" text-anchor="middle" class="${sub}" style="font-size:13px;font-weight:700;letter-spacing:.12em;fill:#fdf6ec" ${halo}>ENTERPRISE™</text>\n`;
