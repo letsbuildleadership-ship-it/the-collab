@@ -71,9 +71,9 @@ def figure(idx=None, total=None, kicker="Omnidirectional Enterprise™", W=1080,
     for k in range(6):
         a=(90+60*k)%360; C[f"i{a}"]=pt(2*r,a); C[f"o{a}"]=pt(4*r,a)
     for p,q in itertools.combinations(C.values(),2):
-        d.line([(S(p[0]),S(p[1])),(S(q[0]),S(q[1]))],fill=(118,118,118),width=round(S(1.2)))
+        d.line([(S(p[0]),S(p[1])),(S(q[0]),S(q[1]))],fill=(185,185,185),width=round(S(1.9)))
     for x,y in C.values():
-        d.ellipse([S(x-r),S(y-r),S(x+r),S(y+r)],outline=(205,205,205),width=round(S(1.6)))
+        d.ellipse([S(x-r),S(y-r),S(x+r),S(y+r)],outline=(235,235,235),width=round(S(2.0)))
     for key,(x,y) in C.items():
         role,lines=FIG_ROLE[key]
         f=_font(S(16),700 if role!="out" else 520); col=(255,255,255) if role!="out" else (222,222,222)
