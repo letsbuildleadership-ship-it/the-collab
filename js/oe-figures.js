@@ -306,14 +306,14 @@ function mFig(mode){
  return wrapSvg(W,H,s,mode);}
 function connect(spots,cr,w,label){let s='';for(let i=0;i<spots.length;i++)for(let j=i+1;j<spots.length;j++){const [x1,y1,x2,y2]=trim(spots[i][0],spots[i][1],spots[j][0],spots[j][1],cr,cr);
   const id=reg('inter',{name:label,kind:'Line · Conductor ↔ Conductor'});const a=`x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"`;
-  s+=`<g class="oef-part" data-p="${id}" data-t="inter"><line ${a} stroke="${C.paper}" stroke-opacity=".3" stroke-width="${w*3}" stroke-linecap="round" filter="url(#icg)"/><line ${a} stroke="${C.bg}" stroke-width="${w+4}" stroke-linecap="round"/><line ${a} stroke="#fff" stroke-width="${w}" stroke-linecap="round"/></g>`;}
+  s+=`<line class="oef-part" data-p="${id}" data-t="inter" ${a} stroke="#fff" stroke-opacity=".9" stroke-width="${w}"/>`;}
  return s+spots.map(([x,y])=>`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${cr.toFixed(1)}" fill="none" stroke="#fff" stroke-width="${(w*.6).toFixed(1)}" pointer-events="none"/>`).join('');}
 const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>';
 function mFew(){
  const W=760,H=760,cx=380,cy=380,rs=23.5,D=252;const spots=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+D*Math.cos(rad(90+60*k)),cy-D*Math.sin(rad(90+60*k))])];
  let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}`;
  spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'Conductor · at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
- s+=connect(spots,rs+3,4,'Interconnection · Conductor ↔ Conductor');
+ s+=connect(spots,rs+3,1.6,'Interconnection · Conductor ↔ Conductor');
  const [lx,ly]=spots[4];s+=`<text class="oef-lbl" x="${lx.toFixed(1)}" y="${(ly+5*rs+9).toFixed(1)}" text-anchor="middle">CONDUCTOR</text>`;
  s+=`<text class="oef-lbl" x="${cx}" y="${(cy-D/2+4).toFixed(1)}" text-anchor="middle">INTERCONNECTION</text>`;
  return wrapSvg(W,H,s,3);}
@@ -325,7 +325,7 @@ function mGrid(){
  for(let i=0;i<7;i++)for(let j=i+1;j<7;j++){g+=`<line x1="${ghosts[i][0].toFixed(1)}" y1="${ghosts[i][1].toFixed(1)}" x2="${ghosts[j][0].toFixed(1)}" y2="${ghosts[j][1].toFixed(1)}" stroke="${C.paper}" stroke-opacity=".35" stroke-width="1.5"/>`;}
  s+=`<g mask="url(#gmask)">${g}</g>`;
  spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™ · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${G}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,G/5,{lw:.7,op:.85,cw:.9})}</g>`;});
- s+=connect(spots,G/5+2,2.2,'Interconnection · Conductor ↔ Conductor');
+ s+=connect(spots,G/5+2,1.4,'Interconnection · Conductor ↔ Conductor');
  s+=`<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`;
  s+=`<text class="oef-lbl" x="${cx}" y="${(cy-big-8).toFixed(1)}" text-anchor="middle">THE GRID · ONE CIRCLE OF THE NEXT MODEL</text>`;
  return wrapSvg(W,H,s,4);}
