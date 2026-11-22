@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 // The Omnidirectional Enterprise™ model as Metatron's Cube for the pitch and deck (same geometry and
 // placement as scripts/oe-metatron.mjs on the site): 13 equal circles, centre + six at 2r + six at 4r,
 // neighbours tangent, and 78 lines joining every pair of centres.
@@ -22,6 +23,7 @@ export function metatronSvg() {
     const [x, y] = c[s]; const parts = name.split('|');
     return parts.map((t, i) => `<text x="${f1(x)}" y="${f1(y + 5 + (i - (parts.length - 1) / 2) * 15)}" text-anchor="middle" fill="#fff" font-size="${name.length > 11 ? 12 : 13}" font-weight="800" ${halo}>${t}</text>`).join('');
   }).join('');
-  const core = `<text x="${C}" y="${C - 2}" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" ${halo}>The Co.LLab™</text><text x="${C}" y="${C + 14}" text-anchor="middle" fill="#ff9a6e" font-size="9.5" font-weight="800" letter-spacing="1.2" ${halo}>THE SOURCE</text>`;
+  const logo = `data:image/png;base64,${fs.readFileSync(new URL('../../assets/img/logo-mark.png', import.meta.url)).toString('base64')}`;
+  const core = `<image href="${logo}" x="${C - 14}" y="${C - 30}" width="28" height="18"/><text x="${C}" y="${C + 7}" text-anchor="middle" fill="#fff" font-size="7.6" font-weight="800" letter-spacing=".6" ${halo}>OMNIDIRECTIONAL</text><text x="${C}" y="${C + 17}" text-anchor="middle" fill="#fff" font-size="7.6" font-weight="800" letter-spacing=".6" ${halo}>ENTERPRISE™</text>`;
   return `<svg viewBox="20 20 460 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Omnidirectional Enterprise™ model"><defs><filter id="pg" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g stroke="#ffffff" stroke-opacity=".7" stroke-width="1.2">${lines}</g>${circles}${core}${labels}</svg>`;
 }

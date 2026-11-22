@@ -290,10 +290,8 @@ function mFig(mode){
    top+=`<g class="oef-part" data-p="${bid}" data-t="badge"><circle cx="${best[0].toFixed(1)}" cy="${best[1].toFixed(1)}" r="9.5" fill="${C.bg}" stroke="${C.paper}" stroke-width="1.4"/><text x="${best[0].toFixed(1)}" y="${(best[1]+3.6).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${C.paper}">${k}</text></g>`;});}
  const sid=reg('source',mode===2?{name:'The Source · The Co.LLab™'}:undefined);
  s+=`<g class="oef-part" data-p="${sid}" data-t="source"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" pointer-events="visible" stroke="url(#fil${mode})" stroke-width="2.4" filter="url(#glow${mode})"/>
- <text x="${cx}" y="${cy-(mode===2?14:8)}" text-anchor="middle" font-size="15" font-weight="600" fill="${C.paper}" ${HALO}>The Source</text>
- <text x="${cx}" y="${cy+(mode===2?3:9)}" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.2" fill="${C.fg}" ${HALO}>OMNIDIRECTIONAL</text>
- <text x="${cx}" y="${cy+(mode===2?15:21)}" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.2" fill="${C.fg}" ${HALO}>ENTERPRISE MODEL™</text>
- ${mode===2?`<text x="${cx}" y="${cy+33}" text-anchor="middle" font-size="11" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`:''}</g>`;
+ <image href="${IMGBASE.replace(/editorial\/$/,'logo-mark.png')}" x="${cx-20}" y="${cy-42}" width="40" height="25.8"/>
+ ${mode===2?`<text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="16" font-weight="600" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`:`<text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>OMNIDIRECTIONAL</text><text x="${cx}" y="${cy+21}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.2" fill="${C.paper}" ${HALO}>ENTERPRISE™</text>`}</g>`;
  MSLOT.forEach(([slot,n])=>{const b=node(n),[x,y]=c[slot],lines=mode===2?b.co:b.l,title=b.t||[b.n.toUpperCase()],ring=slot[0]==='i'?'Inner ring · independent':'Outer ring · external';
   const id=reg('branch',{name:`Substation · ${b.n}`,kind:`Circle · substation · ${ring}`,fn:(mode===2?`Run inside The Co.LLab™ by ${b.co.join(' ')}. `:'')+(b.l||[]).join(' ')+' It exchanges with the Source and with every other substation.'});
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
@@ -312,8 +310,9 @@ const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><
 function mFew(){
  const W=760,H=760,cx=380,cy=380,rs=23.5,D=252;const spots=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+D*Math.cos(rad(90+60*k)),cy-D*Math.sin(rad(90+60*k))])];
  let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}`;
- spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'Conductor · at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
+ spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™ · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
  s+=connect(spots,rs+3,1.6,'Interconnection · Conductor ↔ Conductor');
+ s+=`<image href="${IMGBASE.replace(/editorial\/$/,'logo-mark.png')}" x="${cx-12}" y="${cy-22}" width="24" height="15.5"/><text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text>`;
  const [lx,ly]=spots[4];s+=`<text class="oef-lbl" x="${lx.toFixed(1)}" y="${(ly+5*rs+9).toFixed(1)}" text-anchor="middle">CONDUCTOR</text>`;
  s+=`<text class="oef-lbl" x="${cx}" y="${(cy-D/2+4).toFixed(1)}" text-anchor="middle">INTERCONNECTION</text>`;
  return wrapSvg(W,H,s,3);}

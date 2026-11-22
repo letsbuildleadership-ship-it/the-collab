@@ -61,7 +61,7 @@ function grid(spots, scale, labelled, w8 = 4) {
   const defs = '<defs><filter id="ic-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
   const cubes = spots.map(([x, y], i) => {
     const s = svg('sm', { base: 'pages/', lineWidth: 1.9 / scale, lineOpacity: 0.82, circleWidth: 2.4 / scale, circleStroke: '#ff602e', coreText: labelled[i] ? labelled[i].core : ['Conductor', 'AN ENTERPRISE'], noLabels: labelled[i] ? !labelled[i].names : false })
-      .replace(/id="oes-/g, `id="c${i}-`).replace(/url\(#oes-/g, `url(#c${i}-`);
+      .replace(/id="oes-/g, `id="c${i}-`).replace(/url\(#oes-/g, `url(#c${i}-`).replace(i === 0 ? /^$/ : /<image [^>]*\/>/, '');
     return `<g transform="translate(${f1(x - C * scale)},${f1(y - C * scale)}) scale(${scale})">${inner(s)}</g>`;
   }).join('');
   return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" class="oe-diagram-sm" style="display:block;width:100%;height:auto">${defs}${cubes}${lines}</svg>`;
@@ -96,13 +96,13 @@ const FIGS = [
     legend: [['src', 'THE SOURCE', 'the model at the centre'], ['ln', 'TRANSMISSION LINE', 'every circle ↔ every circle'],
       ['cir', 'SUBSTATION', 'where economic activity happens'], ['cir', 'INNER RING', 'independent · outer ring external']],
     count: ['1 Source · 12 substations · 78 two-way lines', 'Power goes out on every line, and value comes back'] },
-  { n: 2, h: 970, body: () => { const s = svg('full', { base: 'pages/', lines: RUN_BY }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); },
+  { n: 2, h: 970, body: () => { const s = svg('full', { base: 'pages/', lines: RUN_BY, coreText: ['The Co.LLab™'] }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); },
     legend: [['src', 'THE SOURCE', 'The Co.LLab™, built on the model'], ['ln', 'LINE', 'every circle ↔ every circle'],
       ['cir', 'SUBSTATION', 'run by the part of The Co.LLab™ named in it'], ['cur', 'CURRENT', 'a named flow of value we run today']],
     count: ['13 circles · 78 two-way connections · 7 Currents', 'Every circle connects with every other circle'],
     extra: `<p class="cur">Currents · ${CURRENT_NAMES.map((c, i) => `<b>${i + 1}</b> ${c}`).join('&nbsp;&nbsp; ')}</p>` },
   { n: 3, h: 900, body: () => { const D = 232, cx = 450, cy = 350; const spots = [[cx, cy], ...[0, 1, 2, 3, 4, 5].map((k) => [cx + D * Math.cos((90 + 60 * k) * Math.PI / 180), cy - D * Math.sin((90 + 60 * k) * Math.PI / 180)])];
-      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, blank])), 1.8); },
+      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, i === 0 ? { core: ['The Co.LLab™'], names: false } : blank])), 1.8); },
     legend: [['src', 'CONDUCTOR', 'an enterprise running the model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
       ['ln', 'LINE', 'inside each Conductor: every circle ↔ every circle']],
     count: ['7 Conductors · 91 circles · up to 4,095 two-way connections', 'Each new Conductor adds 13 circles to the Grid'] },
