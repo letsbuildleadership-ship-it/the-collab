@@ -7,7 +7,7 @@
     "test": "node --test test/*.test.js",
     "photos": "node scripts/photos.mjs",
     "gallery": "node scripts/build-gallery.mjs",
-    "pitch": "node scripts/pitch/pitch.mjs && node scripts/pitch/deck.mjs && node scripts/pitch/stamp.mjs"
+    "pitch": "node scripts/pitch/pitch.mjs && node scripts/pitch/deck.mjs && node scripts/pitch-deck/build.mjs && node scripts/pitch/stamp.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",
