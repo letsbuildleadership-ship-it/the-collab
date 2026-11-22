@@ -62,7 +62,7 @@ export function geometry({ id, lineOpacity = 0.34, lineWidth = 1.3, circleStroke
 // opts.links: {name: {href, label}} from the page; opts.on: Set of lit node names; opts.base: '' or 'pages/'.
 export function svg(kind, opts = {}) {
   const id = kind === 'full' ? 'oe' : kind === 'sm' ? 'oes' : 'oem';
-  const g = geometry({ id, lineWidth: kind === 'full' ? 1.3 : 2, lineOpacity: kind === 'full' ? 0.34 : 0.42, circleWidth: kind === 'full' ? 1.6 : 2.4 });
+  const g = geometry({ id, lineWidth: kind === 'full' ? 1.8 : 2.6, lineOpacity: kind === 'full' ? 0.62 : 0.66, circleWidth: kind === 'full' ? 1.8 : 2.6 });
   const base = opts.base || '';
   const on = opts.on || new Set();
   const names = NODES.map((n) => n.name).join(', ').replace(/, ([^,]*)$/, ', and $1');
