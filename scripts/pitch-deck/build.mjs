@@ -8,6 +8,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import os from 'node:os';
 import { pathToFileURL, fileURLToPath } from 'node:url';
+import { metatronSvg } from '../pitch/metatron.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '../..');
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pitch-deck-'));
@@ -98,13 +99,7 @@ const defs = `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" marker
 const pill = (x, y, l, w = 104, hot = false) => `<rect x="${x - w / 2}" y="${y - 15}" width="${w}" height="30" rx="15" fill="${hot ? '#ff3a14' : '#0f1d13'}" stroke="#ff602e" stroke-width="1.5"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-family="Inter" font-size="11.5" font-weight="800" letter-spacing=".06em" fill="${hot ? '#0f1d13' : '#fff'}">${l.toUpperCase()}</text>`;
 const ar = (x1, y1, x2, y2, both) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ff6a2e" stroke-width="2.2" marker-end="url(#ah)"${both ? ' marker-start="url(#ah2)"' : ''}/>`;
 const topDown = `<svg viewBox="0 0 520 300" width="100%" height="100%">${defs}${pill(260, 40, 'The top', 110, true)}${ar(240, 58, 160, 112)}${ar(280, 58, 360, 112)}${pill(150, 130, 'Middle')}${pill(370, 130, 'Middle')}${[[150, 75], [150, 205], [370, 315], [370, 445]].map(([f, t]) => ar(f + (t - f) * .25, 148, t, 200)).join('')}${[75, 205, 315, 445].map((x) => pill(x, 220, 'Base', 92)).join('')}<text x="260" y="285" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#fdf6ec">Value flows one way and pools at the top.</text></svg>`;
-const omni = (() => { const cx = 260, cy = 140, rx = 180, ry = 105; const pts = RIBBON.slice(0, 8).map((l, i) => { const a = -Math.PI / 2 + i * Math.PI / 4; return [cx + rx * Math.cos(a), cy + ry * Math.sin(a), l]; });
-  let s = `<svg viewBox="-20 0 560 300" width="100%" height="100%">${defs}`;
-  pts.forEach(([x, y], i) => { const [x2, y2] = pts[(i + 1) % 8]; s += `<line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="rgba(255,106,46,.35)" stroke-width="1.2"/>`; });
-  pts.forEach(([x, y]) => { const dx = x - cx, dy = y - cy, d = Math.hypot(dx, dy); s += ar(cx + dx / d * 50, cy + dy / d * 36, x - dx / d * 58, y - dy / d * 18, true); });
-  s += `<ellipse cx="${cx}" cy="${cy}" rx="62" ry="32" fill="#ff3a14"/><text x="${cx}" y="${cy - 3}" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#0f1d13">LEADERSHIP</text><text x="${cx}" y="${cy + 11}" text-anchor="middle" font-family="Inter" font-size="11" font-weight="800" fill="#0f1d13">INFRASTRUCTURE™</text>`;
-  pts.forEach(([x, y, l]) => { s += pill(x, y, l, l.length > 12 ? 150 : 112); });
-  return `${s}<text x="260" y="285" text-anchor="middle" font-family="Inter" font-size="13" font-weight="700" fill="#fdf6ec">Value moves in every direction.</text></svg>`; })();
+const omni = metatronSvg(); // Omnidirectional Enterprise™ as Metatron's Cube (scripts/pitch/metatron.mjs)
 
 let n = 0;
 // bg: { photo, pos, area: 'full'|'right'|'left', w, scrim: 'L'|'H'|'none' }
