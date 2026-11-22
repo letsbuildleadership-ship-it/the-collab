@@ -310,9 +310,11 @@ const ICG='<defs><filter id="icg" x="-20%" y="-20%" width="140%" height="140%"><
 function mFew(){
  const W=760,H=760,cx=380,cy=380,rs=23.5,D=252;const spots=[[cx,cy],...[0,1,2,3,4,5].map(k=>[cx+D*Math.cos(rad(90+60*k)),cy-D*Math.sin(rad(90+60*k))])];
  let s=`<rect width="${W}" height="${H}" fill="${C.bg}"/>${ICG}`;
- spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'The Co.LLab™: Building Leadership Infrastructure · the Conductor at the centre':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
+ spots.forEach(([x,y],i)=>{const id=reg('conductor',{name:i===0?'Omnidirectional Enterprise™ · the model at the centre':i===6?'The Co.LLab™: Building Leadership Infrastructure · a Conductor':'Conductor'});s+=`<g class="oef-part" data-p="${id}" data-t="conductor"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5*rs).toFixed(1)}" fill="${C.bg}" fill-opacity="0" pointer-events="visible"/>${miniCube(x,y,rs,{lw:1,op:.85,cw:1.3})}</g>`;});
  s+=connect(spots,rs+3,1.6,'Interconnection · Conductor ↔ Conductor');
- s+=`<image href="${IMGBASE.replace(/editorial\/$/,'logo-mark.png')}" x="${cx-12}" y="${cy-22}" width="24" height="15.5"/><text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${C.paper}" ${HALO}><tspan x="${cx}">The Co.LLab™:</tspan><tspan x="${cx}" dy="10" font-size="6.5">BUILDING LEADERSHIP INFRASTRUCTURE</tspan></text>`;
+ const LOGO=IMGBASE.replace(/editorial\/$/,'logo-mark.png'),[kx,ky]=spots[6];
+ s+=`<image href="${LOGO}" x="${cx-12}" y="${cy-22}" width="24" height="15.5"/><text x="${cx}" y="${cy+8}" text-anchor="middle" font-size="7" font-weight="700" letter-spacing="1" fill="${C.paper}" ${HALO}><tspan x="${cx}">OMNIDIRECTIONAL</tspan><tspan x="${cx}" dy="9">ENTERPRISE™</tspan></text>`;
+ s+=`<image href="${LOGO}" x="${(kx-10).toFixed(1)}" y="${(ky-18).toFixed(1)}" width="20" height="12.9"/><text x="${kx.toFixed(1)}" y="${(ky+8).toFixed(1)}" text-anchor="middle" font-size="8" font-weight="700" fill="${C.paper}" ${HALO}>The Co.LLab™</text><text class="oef-lbl" x="${kx.toFixed(1)}" y="${(ky-5*rs-6).toFixed(1)}" text-anchor="middle">THE CO.LLAB™ · A CONDUCTOR</text>`;
  const [lx,ly]=spots[4];s+=`<text class="oef-lbl" x="${lx.toFixed(1)}" y="${(ly+5*rs+9).toFixed(1)}" text-anchor="middle">CONDUCTOR</text>`;
  s+=`<text class="oef-lbl" x="${cx}" y="${(cy-D/2+4).toFixed(1)}" text-anchor="middle">INTERCONNECTION</text>`;
  return wrapSvg(W,H,s,3);}
@@ -332,7 +334,7 @@ function mGrid(){
 const CAP={
  1:'<b>Figure 1 · Phase I · Foundations.</b> The Omnidirectional Enterprise Model™: the Source at the centre and 12 substations around it, independent ones on the inner ring and external ones on the outer ring. Transmission lines join each substation to the Source; Interconnections join every substation to every other. Every line runs both ways. 1 Source · 12 substations · 78 two-way lines.',
  2:'<b>Figure 2 · Phase II · Infrastructure Planning & Management.</b> The model The Co.LLab™: Building Leadership Infrastructure runs on, with every connection drawn: each circle connects with every other circle, both ways. Each substation names the part of The Co.LLab™ that runs it, and the numbered Currents are the named flows of value we run today. 13 circles · 78 two-way connections · 7 Currents.',
- 3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> Seven Conductors, each a whole copy of the model, every Conductor joined to every other by an Interconnection, both ways. Each new Conductor adds 13 circles. 7 Conductors · 91 circles · up to 4,095 two-way connections.',
+ 3:'<b>Figure 3 · Phase III · Internal Operating Systems.</b> The model at the centre, with Conductors around it: The Co.LLab™ is one of them. Each is a whole copy of the model, every Conductor joined to every other by an Interconnection, both ways. Each new Conductor adds 13 circles. 7 Conductors · 91 circles · up to 4,095 two-way connections.',
  4:'<b>Figure 4 · Phase IV · Preservation.</b> The Grid: 13 Conductors on the 13 circles of a larger Omnidirectional Enterprise™, joined by its 78 lines. The next, larger one fades in at the edges: every Grid is one circle of a larger Omnidirectional Enterprise™, without end. 13 Conductors · 169 circles · up to 14,196 two-way connections.'
 };
 
