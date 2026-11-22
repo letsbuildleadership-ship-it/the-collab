@@ -6,6 +6,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const repo = path.resolve(here, '../..');
 const require = createRequire(import.meta.url);
 import { P } from './data.mjs';
+import { metatronSvg } from './metatron.mjs';
 const { chromium } = require('playwright');
 const assets = path.join(here, 'assets');
 const { renderCover } = await import(pathToFileURL(`${repo}/scripts/pdf-src/render.mjs`).href);
@@ -96,9 +97,7 @@ ${qc('Phase I', 'Foundations', 'What should never be lost as we grow?', 'lake')}
 const st = (a, i, b) => `<div class="st4 panel"><div class="a">${a}</div><div class="b"><i>${i}</i>${b}</div></div>`;
 const s5 = () => slide(`<p class="k">Leadership Infrastructure™</p><h2 style="font-size:64px">Leadership, made <b>structural.</b></h2><p class="def">Captured, documented and embedded, so it <b>outlasts the individuals who hold it.</b></p><div class="steps4 grow" style="align-content:stretch">
 ${st('Define it.', 'Phase I', 'Foundations')}${st('Plan it.', 'Phase II', 'Infrastructure Planning &amp; Management')}${st('Live it.', 'Phase III', 'Internal Operating Systems')}${st('Pass it on.', 'Phase IV', 'Preservation')}</div>`);
-const nodes = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Products &amp; Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
-const cx = 250, cy = 250, R = 218; const pts = nodes.map((name, i) => { const a = (-90 + i * (360 / nodes.length)) * Math.PI / 180; return { name, x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) }; });
-const svg = `<svg viewBox="-50 -20 600 540" xmlns="http://www.w3.org/2000/svg"><circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#ff602e" stroke-width="1.5" stroke-dasharray="4 6" opacity=".6"/>${pts.map((p) => `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="#ff602e" stroke-width="2" opacity=".7"/>`).join('')}<circle cx="${cx}" cy="${cy}" r="76" fill="#0f1d13" stroke="#ff602e" stroke-width="2"/><text x="${cx}" y="${cy - 8}" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">The Co.LLab™</text><text x="${cx}" y="${cy + 14}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Omnidirectional</text><text x="${cx}" y="${cy + 31}" text-anchor="middle" fill="#ff9a6e" font-size="15" font-weight="800">Enterprise™</text>${pts.map((p) => `<g><rect x="${(p.x - 67).toFixed(1)}" y="${(p.y - 18).toFixed(1)}" width="134" height="36" rx="20" fill="#17301d" stroke="#ff602e" stroke-width="1.5"/><text x="${p.x.toFixed(1)}" y="${(p.y + 6).toFixed(1)}" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">${p.name}</text></g>`).join('')}</svg>`;
+const svg = metatronSvg(); // Omnidirectional Enterprise™ as Metatron's Cube (scripts/pitch/metatron.mjs)
 const s6 = () => slide(`<p class="k">The ecosystem</p><h2 style="font-size:64px;margin-bottom:6px">Not a funnel. <b>A coordinated system.</b></h2><div class="wheelrow grow">${svg}<div><p>Value moves in every direction between people, ideas, products, organizations and community.</p><p>Built on ethics: how we treat people is part of the infrastructure.</p></div></div>`);
 const col = (a, v, nm, items) => `<div class="col panel"><small>${a}</small><div class="v">${v}</div><div class="nm">${nm}</div>${items.map((i) => `<div class="it">${i}</div>`).join('')}</div>`;
 const s7 = () => slide(`<p class="k">What you license</p><h2 style="font-size:64px">Infrastructure planning IP. <b>One for every step.</b></h2><div class="cols4 grow">
