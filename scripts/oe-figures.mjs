@@ -64,7 +64,7 @@ function grid(spots, scale, labelled, w8 = 4) {
       .replace(/id="oes-/g, `id="c${i}-`).replace(/url\(#oes-/g, `url(#c${i}-`).replace(i === 0 ? /^$/ : /<image [^>]*\/>/, '');
     return `<g transform="translate(${f1(x - C * scale)},${f1(y - C * scale)}) scale(${scale})">${inner(s)}</g>`;
   }).join('');
-  return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" class="oe-diagram-sm" style="display:block;width:100%;height:auto">${defs}${cubes}${lines}</svg>`;
+  return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" class="oe-diagram-sm" style="display:block;width:100%;height:auto">${defs}${cubes}${lines}${labelled[0] && labelled[0].core[0].trim() ? `<text x="${f1(spots[0][0])}" y="${f1(spots[0][1] + 4)}" text-anchor="middle" style="font:700 12px Inter,sans-serif;fill:#fdf6ec" paint-order="stroke" stroke="#0f1d13" stroke-width="4"><tspan x="${f1(spots[0][0])}">The Co.LLab™:</tspan><tspan x="${f1(spots[0][0])}" dy="12" style="font-size:7.5px">BUILDING LEADERSHIP INFRASTRUCTURE</tspan></text>` : ''}</svg>`;
 }
 
 
@@ -121,7 +121,7 @@ body::before,body::after{display:none !important}
 .fig{width:${f.n <= 2 ? 720 : 780}px;margin-top:${f.n <= 2 ? 14 : 16}px}
 .fig svg{width:100%;height:auto;display:block}
 .oe-diagram-sm{display:block !important}
-.lg{list-style:none;margin:${f.n <= 2 ? 4 : 18}px 0 0;padding:0 56px;display:grid;grid-template-columns:repeat(2,auto);justify-content:center;gap:10px 40px;width:900px;box-sizing:border-box}
+.lg{list-style:none;margin:${f.n <= 2 ? 4 : 18}px 0 0;padding:0 56px;display:grid;grid-template-columns:${f.n === 4 ? 'auto' : 'repeat(2,auto)'};justify-content:center;gap:10px 40px;width:900px;box-sizing:border-box}
 .lg li{display:flex;align-items:center;gap:10px;font-size:12px;white-space:nowrap;color:rgba(255,96,46,.8);letter-spacing:.02em}
 .lg b{color:#fdf6ec;font-weight:700;letter-spacing:.14em;font-size:12px;white-space:nowrap}
 .lg i{flex:none;width:16px;height:16px;border-radius:50%;border:2px solid #ff602e}
@@ -129,7 +129,7 @@ body::before,body::after{display:none !important}
 .lg i.ln{border:0;border-radius:0;height:3px;background:#ff602e}
 .lg i.wl{border:0;border-radius:0;height:4px;background:#fff}
 .lg i.cur{border:0;border-radius:0;height:3px;background:#fdf6ec}
-.count{margin:${f.n <= 2 ? 22 : 26}px 0 0;text-align:center;color:#fdf6ec;font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7}
+.count{margin:${f.n <= 2 ? 22 : 20}px 0 0;text-align:center;color:#fdf6ec;font-weight:700;font-size:${f.n === 4 ? 13 : 15}px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7}
 .cur{margin:12px 0 0;color:#ff9a6e;font-size:13px;letter-spacing:.06em}.cur b{color:#fdf6ec}
 </style></head><body><div class="wrap"><div class="fig">${f.body()}</div>${legendRow(f.legend)}<p class="count">${f.count.join('<br>')}</p>${f.extra || ''}</div></body></html>`;
 
