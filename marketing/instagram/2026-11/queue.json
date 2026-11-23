@@ -1,7 +1,7 @@
 {
   "account_username": "theco.llab_",
   "ig_user_id": "me",
-  "notes": "Daily: publish the first queued REEL (media_type REELS, video_url, cover_url, share_to_feed true). Mon/Wed/Fri: also publish the first queued CAROUSEL. Reels reach 10-30x more non-followers than carousels for this account (Oct baseline: carousels reach 1-4, reels 27-116).\n2026-11-16 learn: Reels median reach 31 vs carousels 8; Proprietary IP leads by median reach (39; r03 reel 70), saves+shares 0 everywhere, so IP items moved first (Partnership kept within 7 days).",
+  "notes": "Daily: publish the first queued REEL (media_type REELS, video_url, cover_url, share_to_feed true). Mon/Wed/Fri: also publish the first queued CAROUSEL. Reels reach 10-30x more non-followers than carousels for this account (Oct baseline: carousels reach 1-4, reels 27-116).\n2026-11-16 learn: Reels median reach 31 vs carousels 8; Proprietary IP leads by median reach (39; r03 reel 70), saves+shares 0 everywhere, so IP items moved first (Partnership kept within 7 days).\n2026-11-23 learn: Reels median reach 21 vs carousels 4; Proprietary IP leads (median 37.5), then Omnidirectional Enterprise (27) and Leadership infrastructure (20.5); saves+shares still 0 everywhere. No IP items left in queue, so OE/LI first (c05 moved up), Partnership r12 kept within the week.",
   "posts": [
     {
       "id": "r01",
@@ -203,13 +203,15 @@
       "pillar": "Omnidirectional Enterprise",
       "goal": "Reach: unity",
       "caption": "Nobody builds alone.\n\nOmnidirectional Enterprise™ connects enterprises, nonprofits, communities, people, products & services, technology, capital, knowledge + IP, and creators in one ecosystem.\n\nCompanies, people and communities supporting one another in every direction.\n\nSee the model → link in bio.\n\n#community #collaboration #socialimpact #entrepreneurship #innovation #omnidirectionalenterprise #wearethellab #iamart",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
+      "status": "published",
+      "published_at": "2026-11-23T17:39:02+0000",
+      "media_id": "18014304171005672",
+      "permalink": "https://www.instagram.com/reel/DgF74_VDRRf/",
       "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r09.mp4",
       "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r09_cover.jpg",
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r09_cover.jpg"
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r09_cover.jpg",
+      "story_media_id": "18103284434554158",
+      "fb_post_id": "1880454626456238"
     },
     {
       "id": "r11",
@@ -226,15 +228,35 @@
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r11_cover.jpg"
     },
     {
+      "id": "c05",
+      "type": "CAROUSEL",
+      "pillar": "Omnidirectional Enterprise",
+      "goal": "Education: four pieces",
+      "caption": "Omnidirectional Enterprise™ in four pieces:\n\n1. Shared IP\n2. One governance model\n3. A cross-sector network\n4. Revenue reinvested\n\nIt is the operating model of The Co.LLab™, an economic enterprise system where value moves in every direction.\n\nRead the economic case → link in bio.\n\n#intellectualproperty #businessmodel #socialenterprise #innovation #economics #omnidirectionalenterprise #economicenterprisesystems #wearethellab",
+      "status": "queued",
+      "published_at": null,
+      "media_id": null,
+      "permalink": null,
+      "image_urls": [
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_01.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_02.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_03.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_04.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_05.jpg",
+        "https://wearethellab.com/marketing/instagram/2026-11/c05_06.jpg"
+      ],
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c05_01.jpg"
+    },
+    {
       "id": "c04",
       "type": "CAROUSEL",
       "pillar": "Creators",
       "goal": "Conversion: creator ladder",
       "caption": "The structure underneath creative work.\n\nKnow who you are → Creator Identity Map™ ($20), Voice & Values Map™ ($40)\nKnow how you work → Creator Practice Profile™ ($75), Alignment Map™ ($50)\nKnow who it is for → Audience & Offer Map™ ($125), Venture Build Plan™ ($100)\nRun it, keep it → Creator Operating System™ ($300), Creative Estate Mapping™ ($200)\n\nLink in bio → wearethellab.com\n\n#artistsoninstagram #creativebusiness #creatorbusiness #iamart #musicbusiness #omnidirectionalenterprise #wearethellab",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
+      "status": "published",
+      "published_at": "2026-11-23T17:39:44+0000",
+      "media_id": "18142551386504322",
+      "permalink": "https://www.instagram.com/p/DgF7_K5FIsR/",
       "image_urls": [
         "https://wearethellab.com/marketing/instagram/2026-11/c04_01.jpg",
         "https://wearethellab.com/marketing/instagram/2026-11/c04_02.jpg",
@@ -243,7 +265,9 @@
         "https://wearethellab.com/marketing/instagram/2026-11/c04_05.jpg",
         "https://wearethellab.com/marketing/instagram/2026-11/c04_06.jpg"
       ],
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c04_01.jpg"
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c04_01.jpg",
+      "story_media_id": "18090994151288900",
+      "fb_post_id": "1430392103492249_122109759123547307"
     },
     {
       "id": "r12",
@@ -272,26 +296,6 @@
       "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r13.mp4",
       "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r13_cover.jpg",
       "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r13_cover.jpg"
-    },
-    {
-      "id": "c05",
-      "type": "CAROUSEL",
-      "pillar": "Omnidirectional Enterprise",
-      "goal": "Education: four pieces",
-      "caption": "Omnidirectional Enterprise™ in four pieces:\n\n1. Shared IP\n2. One governance model\n3. A cross-sector network\n4. Revenue reinvested\n\nIt is the operating model of The Co.LLab™, an economic enterprise system where value moves in every direction.\n\nRead the economic case → link in bio.\n\n#intellectualproperty #businessmodel #socialenterprise #innovation #economics #omnidirectionalenterprise #economicenterprisesystems #wearethellab",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
-      "image_urls": [
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_01.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_02.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_03.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_04.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_05.jpg",
-        "https://wearethellab.com/marketing/instagram/2026-11/c05_06.jpg"
-      ],
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c05_01.jpg"
     },
     {
       "id": "r14",
