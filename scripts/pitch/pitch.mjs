@@ -174,7 +174,7 @@ ${arw('#e8561a', 'Plan it.', 'Phase II', 'Infrastructure Planning &amp; Manageme
 ${arw('#2d6a47', 'Live it.', 'Phase III', 'Internal Operating Systems')}
 ${arw('#0f1d13', 'Pass it on.', 'Phase IV', 'Preservation')}
 </div>
-<div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human potential into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human potential, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
+<div class="mvv"><div><b>Our mission</b>To build leadership infrastructure that empowers people and organizations to transform human capital into performance, sustainable enterprise value, and lasting legacy.</div><div><b>Our vision</b>A world where infrastructure is built around human capital, rather than people being forced to conform to infrastructure that was never designed for them.</div></div>`);
 
 const svg = metatronSvg(); // Omnidirectional Enterprise™ as Metatron's Cube (scripts/pitch/metatron.mjs)
 const p3 = () => pg(K('The ecosystem'), 'Not a funnel. <b>A coordinated system.</b>', `
