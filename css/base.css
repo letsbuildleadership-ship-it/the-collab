@@ -2586,3 +2586,6 @@ font font { background: none !important; box-shadow: none !important; }
 /* Legacy tagline (first line of the model ribbon) */
 .model-ribbon .ribbon-tagline { flex: 1 1 100%; order: 1; margin: 0; font-size: clamp(1rem, 2.6vw, 1.35rem); font-weight: 700; line-height: 1.3; color: #fff; }
 .model-ribbon .ribbon-tagline strong { color: #ff6a2e; font-weight: 800; text-shadow: 0 0 14px rgba(255, 96, 46, 0.7); }
+
+/* Model circles: orange by default; white only on the circle you click */
+.oef-scope .oef-part.oef-hot .oef-ring { stroke: #fdf6ec; stroke-width: 2.6px; }

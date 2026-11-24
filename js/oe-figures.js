@@ -298,7 +298,7 @@ function mFig(mode){
   const rows=title.length*12.5+lines.length*12.5+4;let yy=y-rows/2+10,t='';
   title.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" letter-spacing="1.3" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});yy+=4;
   lines.forEach(tt=>{t+=`<text x="${x.toFixed(1)}" y="${yy.toFixed(1)}" text-anchor="middle" font-size="9.5" fill="${C.paper}" ${HALO}>${esc(tt)}</text>`;yy+=12.5;});
-  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="url(#cglow${mode})" pointer-events="none"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" pointer-events="visible" stroke="${ON.has(n)?C.paper:C.f2}" stroke-width="${ON.has(n)?2.6:1.8}" filter="url(#glow${mode})"/>${t}</g>`;});
+  s+=`<g class="oef-part" data-p="${id}" data-t="branch"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="url(#cglow${mode})" pointer-events="none"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="none" class="oef-ring" pointer-events="visible" stroke="${C.f2}" stroke-width="${ON.has(n)?2.6:1.8}" filter="url(#glow${mode})"/>${t}</g>`;});
  s+=top;
  if(mode===2){const y=H-96;s+=`<text x="28" y="${y}" font-size="11" font-weight="700" letter-spacing="1.5" fill="${C.fg}">KEY · THE CURRENTS</text>`;
   CUR.forEach((cu,i)=>{const col=i<4?28:400,row=i<4?i:i-4;s+=`<text x="${col}" y="${y+22+row*19}" font-size="11.5" fill="${C.fg}"><tspan font-weight="700" fill="${C.paper}">${cu.k}</tspan>  ${esc(cu.n.replace('The ',''))}</text>`;});}
