@@ -62,7 +62,7 @@
       "break_before": false
     },
     {
-      "text": "human potential ",
+      "text": "human capital ",
       "style": "glow",
       "break_before": false
     },
@@ -72,7 +72,7 @@
       "break_before": false
     }
   ],
-  "mission_body": "Human potential is the starting point. Leadership infrastructure turns that potential into performance, sustainable enterprise value, and lasting legacy.",
+  "mission_body": "Human capital is the starting point. Leadership infrastructure turns that capital into performance, sustainable enterprise value, and lasting legacy.",
   "mission_stats": [
     {
       "number": "04",
@@ -144,12 +144,12 @@
       "break_before": false
     },
     {
-      "text": "human potential.",
+      "text": "human capital.",
       "style": "glow",
       "break_before": false
     }
   ],
-  "vision_body_prefix": "A world where infrastructure is built around people — not the other way around. Infrastructure that turns human potential into lasting",
+  "vision_body_prefix": "A world where infrastructure is built around people — not the other way around. Infrastructure that turns human capital into lasting",
   "vision_body_glow": "legacy.",
   "offer_eyebrow": "The Co.LLab Founders Organization™",
   "offer_headline": [

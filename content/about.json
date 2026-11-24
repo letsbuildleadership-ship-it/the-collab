@@ -21,7 +21,7 @@
       "break_before": false
     },
     {
-      "text": "human potential ",
+      "text": "human capital ",
       "style": "glow",
       "break_before": false
     },
@@ -32,7 +32,7 @@
     }
   ],
   "vision_eyebrow": "Vision",
-  "vision_body_prefix": "A world where infrastructure is built around human potential — rather than people being forced to conform to infrastructure that was never designed for",
+  "vision_body_prefix": "A world where infrastructure is built around human capital — rather than people being forced to conform to infrastructure that was never designed for",
   "vision_body_glow": "them.",
   "problem_eyebrow": "The core problem",
   "problem_headline": "Most infrastructure is built first. Then humans are expected to adapt.",
