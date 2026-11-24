@@ -2582,3 +2582,9 @@ font font { background: none !important; box-shadow: none !important; }
 .oef-scope .oef-more > summary{display:inline-flex;align-items:center;gap:.5em;list-style:none;cursor:pointer;border:1px solid #ff602e;border-radius:999px;padding:10px 20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;color:#ff602e;margin-top:1.25rem}
 .oef-scope .oef-more > summary::-webkit-details-marker{display:none}
 .oef-scope .oef-more[open] > summary{background:#ff602e;color:#0f1d13}
+
+/* Legacy tagline strip (replaces the model ribbon beneath the header) */
+.legacy-ribbon { background: rgba(var(--black-rgb), 0.96); border-bottom: 1px solid var(--hairline-strong); }
+.legacy-ribbon .wrap { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.legacy-ribbon p { margin: 0; font-size: clamp(1rem, 2.6vw, 1.35rem); font-weight: 700; letter-spacing: 0.01em; line-height: 1.3; color: #fff; }
+.legacy-ribbon strong { color: #ff6a2e; font-weight: 800; text-shadow: 0 0 14px rgba(255, 96, 46, 0.7); }
