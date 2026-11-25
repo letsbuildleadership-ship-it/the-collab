@@ -32,6 +32,8 @@ export const MENU = [
     ['products', 'The .LLab™', 'The .LLab™ Home'],
     ['all-products', 'The .LLab Products™'],
     ['collaborating-companies', 'The .LLab Collaborating Enterprises'],
+    ['facilitator-guide', 'Team Quest Facilitator Guide'],
+    ['changelog', 'What Changed'],
     'Research, theory & Intelligence Infrastructure™',
     ['think', 'The .LLab R.A.T.™ · Research And Theory'],
     ['journal', 'The .LLab Journal™'],
@@ -77,6 +79,7 @@ export const FOOTER = [
     ['journal-preview', 'The .LLab Journal™ · Free Preview'],
     ['omnidirectional-enterprise#legacy-wall', 'Omnidirectional Legacy Wall'],
     ['glossary', 'The Co.LLab™ Glossary'],
+    ['changelog', 'What Changed'],
   ] },
   { label: 'Members', items: [
     ['login', 'Member Login'],

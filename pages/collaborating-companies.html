@@ -101,6 +101,9 @@
   .d-status.pending { border-color: #ff6a2e; background: rgba(255,46,18,.18); color: #fff; }
   .d-err { color: #ff8a5c; font-weight: 700; }
   [hidden] { display: none !important; }
+  .d-offer { border-top: 1px solid var(--hairline); margin-top: .6rem; padding-top: .4rem; }
+  .d-check { display: block; margin-top: 1.2rem; color: #fdf6ec; font-weight: 600; line-height: 1.5; }
+  .d-card .pill { margin-top: .6rem; }
   @media (max-width: 720px) { .d-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -141,6 +144,8 @@
             <li><a href="products.html">The .LLab™ Home</a></li>
             <li><a href="all-products.html">The .LLab Products™</a></li>
             <li><a href="collaborating-companies.html" aria-current="page">The .LLab Collaborating Enterprises</a></li>
+            <li><a href="facilitator-guide.html">Team Quest Facilitator Guide</a></li>
+            <li><a href="changelog.html">What Changed</a></li>
             <li class="nav-more-head" aria-hidden="true">Research, theory &amp; Intelligence Infrastructure™</li>
             <li><a href="think.html">The .LLab R.A.T.™ · Research And Theory</a></li>
             <li><a href="journal.html">The .LLab Journal™</a></li>
@@ -232,11 +237,16 @@
         <li><strong>What is shown.</strong> Only what your enterprise writes here: its name, what it does, what it offers, and the website or contact it chooses. Never your account email or Member ID.</li>
         <li><strong>How it stays true.</strong> The Co.LLab™ reads each enterprise's page, and each change to it, before it appears.</li>
         <li><strong>Working together.</strong> Enterprises work with each other directly, on their own sites or by their own contact. The Co.LLab™ takes part only through the Omnidirectional Enterprise™, where value moves between enterprises in every direction.</li>
+        <li><strong>Introductions, with consent.</strong> An enterprise can choose to welcome introductions. A signed-in member then sends a request; it reaches the enterprise by email, their address is never shown, and they reply only if they choose.</li>
+        <li><strong>Member offers.</strong> A listing can carry an offer for members, with terms the enterprise writes. Offers are shown only to signed-in members.</li>
+        <li><strong>Nonprofits and communities.</strong> Nonprofit &amp; Community listings can ask for skills or volunteers, and any listing can say it is seeking a successor or an apprentice.</li>
         <li><strong>Your control.</strong> Edit or remove your enterprise's page any time.</li>
       </ul>
 
       <h2 class="display" style="font-size:clamp(1.6rem,3.5vw,2.4rem); margin:2.5rem 0 0;">Collaborating enterprises</h2>
-      <div class="d-filters" id="d-filters" role="group" aria-label="Filter by direction"></div>
+      <p class="q-label" style="color:#fdf6ec; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; font-weight:800; margin:1.5rem 0 0;">Filter by Omnidirectional Enterprise™ direction</p>
+      <div class="d-filters" id="d-filters" role="group" aria-label="Filter by Omnidirectional Enterprise direction" style="margin-top:.6rem;"></div>
+      <div class="d-filters" id="d-flags" role="group" aria-label="More filters" style="margin-top:0;"></div>
       <div class="d-grid" id="d-grid"></div>
       <p class="d-empty" id="d-empty" hidden>No enterprises have joined yet. Enterprises that license Co.LLab™ IP or hold a Membership can join below.</p>
 
@@ -260,6 +270,7 @@
           <li><a href="journal-preview.html">The .LLab Journal™ · Free Preview</a></li>
           <li><a href="omnidirectional-enterprise.html#legacy-wall">Omnidirectional Legacy Wall</a></li>
           <li><a href="glossary.html">The Co.LLab™ Glossary</a></li>
+          <li><a href="changelog.html">What Changed</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -305,7 +316,7 @@
 
 <script src="../js/main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="../js/directory.js"></script>
+<script src="../js/directory.js?v=20261125a"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "0325a788fee24cb58fab9f72f1056bb7"}'></script>
 </body>
 </html>

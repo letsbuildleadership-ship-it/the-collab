@@ -1,0 +1,594 @@
+{
+  "_readme": "Audit trail of implemented IP improvements. Each release lists every recommendation (from the owner IP analysis) and every improvement idea (content/ip-backlog.json) it implemented, what changed, and how it was verified. lib/ip-autopilot.js records each one in the owner review as planned, then done, from this file. Append new releases; never edit a past one.",
+  "releases": [
+    {
+      "date": "2026-11-25",
+      "started": "2026-11-25T15:00:00.000Z",
+      "title": "The IV Phases™ in every guided IP; the 14 improvement ideas",
+      "verified": "the IP content audit finds 0 open recommendations (all 69 resolved, 20 high), and the automated test suite (npm test) passes, including tests written for each new feature.",
+      "items": [
+        {
+          "id": "content-alignment-map-phase-balance",
+          "ip": "alignment-map",
+          "severity": "medium",
+          "text": "The .LLab Leadership Alignment Map™ is heavily weighted to Foundations. Consider balancing the other phases.",
+          "change": "The .LLab Leadership Alignment Map™: added 3 prompts written for this IP (1 Internal Operating Systems, 2 Preservation); rewrote 5 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 12 / 5 / 5."
+        },
+        {
+          "id": "content-alignment-map-labels",
+          "ip": "alignment-map",
+          "severity": "medium",
+          "text": "The .LLab Leadership Alignment Map™ has 5 prompts that are bare labels (for example \"Our Mission:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Alignment Map™: added 3 prompts written for this IP (1 Internal Operating Systems, 2 Preservation); rewrote 5 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 12 / 5 / 5."
+        },
+        {
+          "id": "content-alignment-map-omni-reach",
+          "ip": "alignment-map",
+          "severity": "low",
+          "text": "The questions in The .LLab Leadership Alignment Map™ speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Leadership Alignment Map™: added 3 prompts written for this IP (1 Internal Operating Systems, 2 Preservation); rewrote 5 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 12 / 5 / 5."
+        },
+        {
+          "id": "content-blueprint-phase1-phase-gap",
+          "ip": "blueprint-phase1",
+          "severity": "high",
+          "text": "The .LLab Blueprint™ — Phase One: Foundations has no prompts for Infrastructure Planning & Management or Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Blueprint™ — Phase One: Foundations: added 6 prompts written for this IP (2 Infrastructure Planning & Management, 2 Internal Operating Systems, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 7 / 2 / 2 / 2."
+        },
+        {
+          "id": "content-blueprint-phase1-omni-reach",
+          "ip": "blueprint-phase1",
+          "severity": "low",
+          "text": "The questions in The .LLab Blueprint™ — Phase One: Foundations speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Blueprint™ — Phase One: Foundations: added 6 prompts written for this IP (2 Infrastructure Planning & Management, 2 Internal Operating Systems, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 7 / 2 / 2 / 2."
+        },
+        {
+          "id": "content-blueprint-phase2-phase-gap",
+          "ip": "blueprint-phase2",
+          "severity": "high",
+          "text": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning has no prompts for Foundations or Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning: added 6 prompts written for this IP (2 Foundations, 2 Internal Operating Systems, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 4 / 2 / 2."
+        },
+        {
+          "id": "content-blueprint-phase2-omni-reach",
+          "ip": "blueprint-phase2",
+          "severity": "low",
+          "text": "The questions in The .LLab Blueprint™ — Phase Two: Infrastructure Planning speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Blueprint™ — Phase Two: Infrastructure Planning: added 6 prompts written for this IP (2 Foundations, 2 Internal Operating Systems, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 4 / 2 / 2."
+        },
+        {
+          "id": "content-blueprint-phase3-phase-gap",
+          "ip": "blueprint-phase3",
+          "severity": "high",
+          "text": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems has no prompts for Foundations or Infrastructure Planning & Management or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems: added 6 prompts written for this IP (2 Foundations, 2 Infrastructure Planning & Management, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 3 / 2."
+        },
+        {
+          "id": "content-blueprint-phase3-omni-reach",
+          "ip": "blueprint-phase3",
+          "severity": "low",
+          "text": "The questions in The .LLab Blueprint™ — Phase Three: Internal Operating Systems speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Blueprint™ — Phase Three: Internal Operating Systems: added 6 prompts written for this IP (2 Foundations, 2 Infrastructure Planning & Management, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 3 / 2."
+        },
+        {
+          "id": "content-blueprint-phase4-phase-gap",
+          "ip": "blueprint-phase4",
+          "severity": "high",
+          "text": "The .LLab Blueprint™ — Phase Four: Preservation has no prompts for Foundations or Infrastructure Planning & Management or Internal Operating Systems. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Blueprint™ — Phase Four: Preservation: added 7 prompts written for this IP (2 Foundations, 2 Infrastructure Planning & Management, 2 Internal Operating Systems, 1 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 2 / 8."
+        },
+        {
+          "id": "content-blueprint-phase4-omni-reach",
+          "ip": "blueprint-phase4",
+          "severity": "low",
+          "text": "The questions in The .LLab Blueprint™ — Phase Four: Preservation speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Blueprint™ — Phase Four: Preservation: added 7 prompts written for this IP (2 Foundations, 2 Infrastructure Planning & Management, 2 Internal Operating Systems, 1 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 2 / 8."
+        },
+        {
+          "id": "content-blueprint-welcome-omni-reach",
+          "ip": "blueprint-welcome",
+          "severity": "low",
+          "text": "The questions in The .LLab Blueprint™ — Welcome speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Blueprint™ — Welcome: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 1 / 2."
+        },
+        {
+          "id": "content-blueprint-labels",
+          "ip": "blueprint",
+          "severity": "medium",
+          "text": "The .LLab Infrastructure Blueprint™ has 18 prompts that are bare labels (for example \"Our current strength:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Infrastructure Blueprint™: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Preservation); rewrote 18 bare labels or long prompts as guiding questions; removed 3 PDF-extraction leftovers that were not questions; added a 16-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 9 / 7 / 12."
+        },
+        {
+          "id": "content-blueprint-length",
+          "ip": "blueprint",
+          "severity": "medium",
+          "text": "The .LLab Infrastructure Blueprint™ asks 41 questions. Long quests risk drop-off; consider a short path and a full path.",
+          "change": "The .LLab Infrastructure Blueprint™: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Preservation); rewrote 18 bare labels or long prompts as guiding questions; removed 3 PDF-extraction leftovers that were not questions; added a 16-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 9 / 7 / 12. Long quests now offer a short path, so members can choose the short or the full path."
+        },
+        {
+          "id": "content-blueprint-omni-reach",
+          "ip": "blueprint",
+          "severity": "low",
+          "text": "The questions in The .LLab Infrastructure Blueprint™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Infrastructure Blueprint™: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Preservation); rewrote 18 bare labels or long prompts as guiding questions; removed 3 PDF-extraction leftovers that were not questions; added a 16-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 12 / 9 / 7 / 12."
+        },
+        {
+          "id": "content-build-plan-phase-balance",
+          "ip": "build-plan",
+          "severity": "medium",
+          "text": "The .LLab Leadership Infrastructure Build Plan™ is heavily weighted to Infrastructure Planning & Management. Consider balancing the other phases.",
+          "change": "The .LLab Leadership Infrastructure Build Plan™: added 3 prompts written for this IP (1 Foundations, 1 Internal Operating Systems, 1 Preservation); rewrote 10 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 6 / 15 / 6 / 6."
+        },
+        {
+          "id": "content-build-plan-labels",
+          "ip": "build-plan",
+          "severity": "medium",
+          "text": "The .LLab Leadership Infrastructure Build Plan™ has 10 prompts that are bare labels (for example \"Our priority:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Infrastructure Build Plan™: added 3 prompts written for this IP (1 Foundations, 1 Internal Operating Systems, 1 Preservation); rewrote 10 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 6 / 15 / 6 / 6."
+        },
+        {
+          "id": "content-build-plan-omni-reach",
+          "ip": "build-plan",
+          "severity": "low",
+          "text": "The questions in The .LLab Leadership Infrastructure Build Plan™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Leadership Infrastructure Build Plan™: added 3 prompts written for this IP (1 Foundations, 1 Internal Operating Systems, 1 Preservation); rewrote 10 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 6 / 15 / 6 / 6."
+        },
+        {
+          "id": "content-creative-estate-mapping-phase-gap",
+          "ip": "creative-estate-mapping",
+          "severity": "high",
+          "text": "The .LLab Creative Estate Mapping™ has no prompts for Foundations. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creative Estate Mapping™: added 2 prompts written for this IP (2 Foundations); placed 11 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 3 / 4."
+        },
+        {
+          "id": "content-creator-alignment-map-phase-balance",
+          "ip": "creator-alignment-map",
+          "severity": "medium",
+          "text": "The .LLab Creator Alignment Map™ is heavily weighted to Infrastructure Planning & Management. Consider balancing the other phases.",
+          "change": "The .LLab Creator Alignment Map™: added 4 prompts written for this IP (2 Foundations, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 7 / 5 / 3."
+        },
+        {
+          "id": "content-creator-audience-offer-map-phase-gap",
+          "ip": "creator-audience-offer-map",
+          "severity": "high",
+          "text": "The .LLab Creator Audience & Offer Map™ has no prompts for Infrastructure Planning & Management or Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Audience & Offer Map™: added 3 prompts written for this IP (3 Preservation); placed 6 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 10 / 3 / 3 / 3."
+        },
+        {
+          "id": "content-creator-foundations-assessment-phase-gap",
+          "ip": "creator-foundations-assessment",
+          "severity": "high",
+          "text": "The .LLab Creator Foundations Assessment™ has no prompts for Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Foundations Assessment™: added 1 prompt written for this IP (1 Infrastructure Planning & Management); placed 17 existing prompts in the phase each belongs to; removed 5 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 17 / 5 / 7 / 6."
+        },
+        {
+          "id": "content-creator-foundations-assessment-labels",
+          "ip": "creator-foundations-assessment",
+          "severity": "medium",
+          "text": "The .LLab Creator Foundations Assessment™ has 5 prompts that are bare labels (for example \"Voice total:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Creator Foundations Assessment™: added 1 prompt written for this IP (1 Infrastructure Planning & Management); placed 17 existing prompts in the phase each belongs to; removed 5 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 17 / 5 / 7 / 6."
+        },
+        {
+          "id": "content-creator-foundations-manual-phase-gap",
+          "ip": "creator-foundations-manual",
+          "severity": "high",
+          "text": "The .LLab Creator Foundations Manual™ has no prompts for Infrastructure Planning & Management or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Foundations Manual™: added 1 prompt written for this IP (1 Preservation); placed 11 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 19 / 3 / 5 / 4."
+        },
+        {
+          "id": "content-creator-identity-map-phase-balance",
+          "ip": "creator-identity-map",
+          "severity": "medium",
+          "text": "The .LLab Creator Identity Map™ is heavily weighted to Foundations. Consider balancing the other phases.",
+          "change": "The .LLab Creator Identity Map™: added 6 prompts written for this IP (2 Infrastructure Planning & Management, 2 Internal Operating Systems, 2 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 6 / 3 / 3 / 3."
+        },
+        {
+          "id": "content-creator-legacy-architecture-phase-balance",
+          "ip": "creator-legacy-architecture",
+          "severity": "medium",
+          "text": "The .LLab Creator Legacy Infrastructure Architecture™ is heavily weighted to Preservation. Consider balancing the other phases.",
+          "change": "The .LLab Creator Legacy Infrastructure Architecture™: added 1 prompt written for this IP (1 Internal Operating Systems); placed 14 existing prompts in the phase each belongs to; removed 3 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 3 / 6."
+        },
+        {
+          "id": "content-creator-operating-system-phase-gap",
+          "ip": "creator-operating-system",
+          "severity": "high",
+          "text": "The .LLab Creator Operating System™ has no prompts for Foundations or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Operating System™: added 7 prompts written for this IP (3 Foundations, 1 Infrastructure Planning & Management, 3 Preservation); placed 2 existing prompts in the phase each belongs to; rewrote 7 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 11 / 3."
+        },
+        {
+          "id": "content-creator-operating-system-labels",
+          "ip": "creator-operating-system",
+          "severity": "medium",
+          "text": "The .LLab Creator Operating System™ has 6 prompts that are bare labels (for example \"My weekly rhythm:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Creator Operating System™: added 7 prompts written for this IP (3 Foundations, 1 Infrastructure Planning & Management, 3 Preservation); placed 2 existing prompts in the phase each belongs to; rewrote 7 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 11 / 3."
+        },
+        {
+          "id": "content-creator-operating-system-long",
+          "ip": "creator-operating-system",
+          "severity": "low",
+          "text": "1 prompt in The .LLab Creator Operating System™ run past 220 characters. Consider splitting each into one question.",
+          "change": "The .LLab Creator Operating System™: added 7 prompts written for this IP (3 Foundations, 1 Infrastructure Planning & Management, 3 Preservation); placed 2 existing prompts in the phase each belongs to; rewrote 7 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 11 / 3."
+        },
+        {
+          "id": "content-creator-practice-profile-phase-gap",
+          "ip": "creator-practice-profile",
+          "severity": "high",
+          "text": "The .LLab Creator Practice Profile™ has no prompts for Infrastructure Planning & Management. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Practice Profile™: added 3 prompts written for this IP (1 Foundations, 2 Infrastructure Planning & Management); placed 8 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 4 / 7 / 4."
+        },
+        {
+          "id": "content-creator-practice-profile-omni-reach",
+          "ip": "creator-practice-profile",
+          "severity": "low",
+          "text": "The questions in The .LLab Creator Practice Profile™ speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Creator Practice Profile™: added 3 prompts written for this IP (1 Foundations, 2 Infrastructure Planning & Management); placed 8 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 4 / 7 / 4."
+        },
+        {
+          "id": "content-creator-venture-build-plan-phase-balance",
+          "ip": "creator-venture-build-plan",
+          "severity": "medium",
+          "text": "The .LLab Creator Venture Build Plan™ is heavily weighted to Infrastructure Planning & Management. Consider balancing the other phases.",
+          "change": "The .LLab Creator Venture Build Plan™: added 5 prompts written for this IP (2 Foundations, 2 Internal Operating Systems, 1 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 8 / 3 / 3."
+        },
+        {
+          "id": "content-creator-voice-values-map-phase-gap",
+          "ip": "creator-voice-values-map",
+          "severity": "high",
+          "text": "The .LLab Creator Voice & Values Map™ has no prompts for Infrastructure Planning & Management or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Creator Voice & Values Map™: added 5 prompts written for this IP (3 Infrastructure Planning & Management, 1 Internal Operating Systems, 1 Preservation); placed 4 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 9 / 3 / 4 / 3."
+        },
+        {
+          "id": "content-creator-voice-values-map-omni-reach",
+          "ip": "creator-voice-values-map",
+          "severity": "low",
+          "text": "The questions in The .LLab Creator Voice & Values Map™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Creator Voice & Values Map™: added 5 prompts written for this IP (3 Infrastructure Planning & Management, 1 Internal Operating Systems, 1 Preservation); placed 4 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 9 / 3 / 4 / 3."
+        },
+        {
+          "id": "content-decision-principles-playbook-phase-gap",
+          "ip": "decision-principles-playbook",
+          "severity": "high",
+          "text": "The .LLab Decision Principles Playbook™ has no prompts for Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Decision Principles Playbook™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 3 Preservation); placed 5 existing prompts in the phase each belongs to; rewrote 6 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 7 / 5 / 3."
+        },
+        {
+          "id": "content-decision-principles-playbook-labels",
+          "ip": "decision-principles-playbook",
+          "severity": "medium",
+          "text": "The .LLab Decision Principles Playbook™ has 5 prompts that are bare labels (for example \"Principle 1:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Decision Principles Playbook™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 3 Preservation); placed 5 existing prompts in the phase each belongs to; rewrote 6 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 7 / 5 / 3."
+        },
+        {
+          "id": "content-decision-principles-playbook-omni-reach",
+          "ip": "decision-principles-playbook",
+          "severity": "low",
+          "text": "The questions in The .LLab Decision Principles Playbook™ speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Decision Principles Playbook™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 3 Preservation); placed 5 existing prompts in the phase each belongs to; rewrote 6 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 7 / 5 / 3."
+        },
+        {
+          "id": "content-diagnostic-length",
+          "ip": "diagnostic",
+          "severity": "medium",
+          "text": "The .LLab Leadership Infrastructure Diagnostic™ asks 45 questions. Long quests risk drop-off; consider a short path and a full path.",
+          "change": "The .LLab Leadership Infrastructure Diagnostic™: added a 17-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 11 / 11 / 12. Long quests now offer a short path, so members can choose the short or the full path."
+        },
+        {
+          "id": "content-event-infrastructure-long",
+          "ip": "event-infrastructure",
+          "severity": "low",
+          "text": "1 prompt in Event Infrastructure Plan™ run past 220 characters. Consider splitting each into one question.",
+          "change": "Event Infrastructure Plan™: added 1 prompt written for this IP (1 Infrastructure Planning & Management); rewrote 1 bare label or long prompt as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 5 / 4 / 4."
+        },
+        {
+          "id": "content-foundations-assessment-phase-gap",
+          "ip": "foundations-assessment",
+          "severity": "high",
+          "text": "The .LLab Leadership Foundations Assessment™ has no prompts for Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Leadership Foundations Assessment™: added 1 prompt written for this IP (1 Preservation); placed 13 existing prompts in the phase each belongs to; removed 5 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 22 / 4 / 7 / 3."
+        },
+        {
+          "id": "content-foundations-assessment-labels",
+          "ip": "foundations-assessment",
+          "severity": "medium",
+          "text": "The .LLab Leadership Foundations Assessment™ has 5 prompts that are bare labels (for example \"Purpose total:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Foundations Assessment™: added 1 prompt written for this IP (1 Preservation); placed 13 existing prompts in the phase each belongs to; removed 5 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 22 / 4 / 7 / 3."
+        },
+        {
+          "id": "content-foundations-assessment-omni-reach",
+          "ip": "foundations-assessment",
+          "severity": "low",
+          "text": "The questions in The .LLab Leadership Foundations Assessment™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Leadership Foundations Assessment™: added 1 prompt written for this IP (1 Preservation); placed 13 existing prompts in the phase each belongs to; removed 5 PDF-extraction leftovers that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 22 / 4 / 7 / 3."
+        },
+        {
+          "id": "content-foundations-manual-phase-gap",
+          "ip": "foundations-manual",
+          "severity": "high",
+          "text": "The .LLab Leadership Foundations Manual™ has no prompts for Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Leadership Foundations Manual™: added 3 prompts written for this IP (3 Preservation); placed 7 existing prompts in the phase each belongs to; rewrote 4 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 25 / 4 / 4 / 3."
+        },
+        {
+          "id": "content-foundations-manual-labels",
+          "ip": "foundations-manual",
+          "severity": "medium",
+          "text": "The .LLab Leadership Foundations Manual™ has 4 prompts that are bare labels (for example \"Our purpose in one sentence:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Foundations Manual™: added 3 prompts written for this IP (3 Preservation); placed 7 existing prompts in the phase each belongs to; rewrote 4 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 25 / 4 / 4 / 3."
+        },
+        {
+          "id": "content-founder-omni-reach",
+          "ip": "founder",
+          "severity": "low",
+          "text": "The questions in The Co.LLab Founders Organization™ — Founder speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The Co.LLab Founders Organization™ — Founder: added 1 prompt written for this IP (1 Infrastructure Planning & Management); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 1 / 1."
+        },
+        {
+          "id": "content-friends-family-omni-reach",
+          "ip": "friends-family",
+          "severity": "low",
+          "text": "The questions in The Co.LLab Founders Organization™ — Community Founder speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The Co.LLab Founders Organization™ — Community Founder: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Preservation); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 1 / 2."
+        },
+        {
+          "id": "content-leadership-identity-profile-phase-gap",
+          "ip": "leadership-identity-profile",
+          "severity": "high",
+          "text": "The .LLab Leadership Identity Profile™ has no prompts for Internal Operating Systems. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Leadership Identity Profile™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 2 Internal Operating Systems, 1 Preservation); placed 8 existing prompts in the phase each belongs to; removed 1 PDF-extraction leftover that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 5 / 3 / 5."
+        },
+        {
+          "id": "content-leadership-identity-profile-omni-reach",
+          "ip": "leadership-identity-profile",
+          "severity": "low",
+          "text": "The questions in The .LLab Leadership Identity Profile™ speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Leadership Identity Profile™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 2 Internal Operating Systems, 1 Preservation); placed 8 existing prompts in the phase each belongs to; removed 1 PDF-extraction leftover that were not questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 11 / 5 / 3 / 5."
+        },
+        {
+          "id": "content-legacy-architecture-omni-reach",
+          "ip": "legacy-architecture",
+          "severity": "low",
+          "text": "The questions in The .LLab Legacy Infrastructure Architecture™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Legacy Infrastructure Architecture™: added 1 prompt written for this IP (1 Infrastructure Planning & Management); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 3 / 2 / 2."
+        },
+        {
+          "id": "content-legacy-foundations-framework-phase-gap",
+          "ip": "legacy-foundations-framework",
+          "severity": "high",
+          "text": "The .LLab Legacy Foundations Framework™ has no prompts for Infrastructure Planning & Management or Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Legacy Foundations Framework™: added 6 prompts written for this IP (2 Infrastructure Planning & Management, 3 Internal Operating Systems, 1 Preservation); placed 3 existing prompts in the phase each belongs to; rewrote 5 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 13 / 3 / 3 / 3."
+        },
+        {
+          "id": "content-legacy-foundations-framework-labels",
+          "ip": "legacy-foundations-framework",
+          "severity": "medium",
+          "text": "The .LLab Legacy Foundations Framework™ has 5 prompts that are bare labels (for example \"Who we exist to serve:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Legacy Foundations Framework™: added 6 prompts written for this IP (2 Infrastructure Planning & Management, 3 Internal Operating Systems, 1 Preservation); placed 3 existing prompts in the phase each belongs to; rewrote 5 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 13 / 3 / 3 / 3."
+        },
+        {
+          "id": "content-legacy-infrastructure-plan-phase-gap",
+          "ip": "legacy-infrastructure-plan",
+          "severity": "high",
+          "text": "The .LLab Legacy Infrastructure Plan™ has no prompts for Foundations or Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Legacy Infrastructure Plan™: added 9 prompts written for this IP (3 Foundations, 3 Internal Operating Systems, 3 Preservation); rewrote 2 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 8 / 3 / 3."
+        },
+        {
+          "id": "content-legacy-infrastructure-plan-omni-reach",
+          "ip": "legacy-infrastructure-plan",
+          "severity": "low",
+          "text": "The questions in The .LLab Legacy Infrastructure Plan™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Legacy Infrastructure Plan™: added 9 prompts written for this IP (3 Foundations, 3 Internal Operating Systems, 3 Preservation); rewrote 2 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 8 / 3 / 3."
+        },
+        {
+          "id": "content-legacy-map-phase-balance",
+          "ip": "legacy-map",
+          "severity": "medium",
+          "text": "The .LLab Legacy Infrastructure Map™ is heavily weighted to Preservation. Consider balancing the other phases.",
+          "change": "The .LLab Legacy Infrastructure Map™: added 3 prompts written for this IP (1 Foundations, 2 Internal Operating Systems); rewrote 15 bare labels or long prompts as guiding questions; added a 20-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 8 / 8 / 23."
+        },
+        {
+          "id": "content-legacy-map-labels",
+          "ip": "legacy-map",
+          "severity": "medium",
+          "text": "The .LLab Legacy Infrastructure Map™ has 15 prompts that are bare labels (for example \"Mission:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Legacy Infrastructure Map™: added 3 prompts written for this IP (1 Foundations, 2 Internal Operating Systems); rewrote 15 bare labels or long prompts as guiding questions; added a 20-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 8 / 8 / 23."
+        },
+        {
+          "id": "content-legacy-map-length",
+          "ip": "legacy-map",
+          "severity": "medium",
+          "text": "The .LLab Legacy Infrastructure Map™ asks 44 questions. Long quests risk drop-off; consider a short path and a full path.",
+          "change": "The .LLab Legacy Infrastructure Map™: added 3 prompts written for this IP (1 Foundations, 2 Internal Operating Systems); rewrote 15 bare labels or long prompts as guiding questions; added a 20-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 8 / 8 / 23. Long quests now offer a short path, so members can choose the short or the full path."
+        },
+        {
+          "id": "content-legacy-map-omni-reach",
+          "ip": "legacy-map",
+          "severity": "low",
+          "text": "The questions in The .LLab Legacy Infrastructure Map™ speak to only 2 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Legacy Infrastructure Map™: added 3 prompts written for this IP (1 Foundations, 2 Internal Operating Systems); rewrote 15 bare labels or long prompts as guiding questions; added a 20-step short path alongside the full path; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 8 / 8 / 23."
+        },
+        {
+          "id": "content-legacy-operating-systems-manual-phase-gap",
+          "ip": "legacy-operating-systems-manual",
+          "severity": "high",
+          "text": "The .LLab Legacy Operating Systems Manual™ has no prompts for Foundations or Infrastructure Planning & Management or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Legacy Operating Systems Manual™: added 5 prompts written for this IP (3 Foundations, 2 Preservation); placed 4 existing prompts in the phase each belongs to; rewrote 1 bare label or long prompt as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 6 / 3."
+        },
+        {
+          "id": "content-legacy-operating-systems-manual-omni-reach",
+          "ip": "legacy-operating-systems-manual",
+          "severity": "low",
+          "text": "The questions in The .LLab Legacy Operating Systems Manual™ speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The .LLab Legacy Operating Systems Manual™: added 5 prompts written for this IP (3 Foundations, 2 Preservation); placed 4 existing prompts in the phase each belongs to; rewrote 1 bare label or long prompt as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 3 / 6 / 3."
+        },
+        {
+          "id": "content-legacy-preservation-vault-phase-gap",
+          "ip": "legacy-preservation-vault",
+          "severity": "high",
+          "text": "The .LLab Legacy Preservation Vault™ has no prompts for Foundations or Infrastructure Planning & Management or Internal Operating Systems. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Legacy Preservation Vault™: added 1 prompt written for this IP (1 Internal Operating Systems); placed 10 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 3 / 4 / 4 / 7."
+        },
+        {
+          "id": "content-legacy-profile-phase-balance",
+          "ip": "legacy-profile",
+          "severity": "medium",
+          "text": "The .LLab Leadership Legacy Profile™ is heavily weighted to Foundations. Consider balancing the other phases.",
+          "change": "The .LLab Leadership Legacy Profile™: added 2 prompts written for this IP (2 Infrastructure Planning & Management); placed 1 existing prompt in the phase each belongs to; rewrote 3 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 3 / 7 / 7."
+        },
+        {
+          "id": "content-legacy-profile-labels",
+          "ip": "legacy-profile",
+          "severity": "medium",
+          "text": "The .LLab Leadership Legacy Profile™ has 3 prompts that are bare labels (for example \"Your strength:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Legacy Profile™: added 2 prompts written for this IP (2 Infrastructure Planning & Management); placed 1 existing prompt in the phase each belongs to; rewrote 3 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 8 / 3 / 7 / 7."
+        },
+        {
+          "id": "content-operating-system-labels",
+          "ip": "operating-system",
+          "severity": "medium",
+          "text": "The .LLab Leadership Operating System™ has 15 prompts that are bare labels (for example \"Our leadership principle:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Leadership Operating System™: rewrote 15 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 6 / 7 / 5 / 7."
+        },
+        {
+          "id": "content-premium-friends-family-omni-reach",
+          "ip": "premium-friends-family",
+          "severity": "low",
+          "text": "The questions in The Co.LLab Founders Organization™ — Premium Community Founder speak to only 1 of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.",
+          "change": "The Co.LLab Founders Organization™ — Premium Community Founder: added 2 prompts written for this IP (1 Infrastructure Planning & Management, 1 Internal Operating Systems); added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 2 / 2 / 2 / 1."
+        },
+        {
+          "id": "content-strength-map-phase-balance",
+          "ip": "strength-map",
+          "severity": "medium",
+          "text": "The .LLab Leadership Infrastructure Strength Map™ is heavily weighted to Foundations. Consider balancing the other phases.",
+          "change": "The .LLab Leadership Infrastructure Strength Map™: added 2 prompts written for this IP (1 Internal Operating Systems, 1 Preservation); placed 5 existing prompts in the phase each belongs to; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 10 / 5 / 4 / 4."
+        },
+        {
+          "id": "content-values-charter-phase-gap",
+          "ip": "values-charter",
+          "severity": "high",
+          "text": "The .LLab Mission & Values Charter™ has no prompts for Internal Operating Systems or Preservation. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.",
+          "change": "The .LLab Mission & Values Charter™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 3 Preservation); placed 5 existing prompts in the phase each belongs to; rewrote 6 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 16 / 4 / 3 / 3."
+        },
+        {
+          "id": "content-values-charter-labels",
+          "ip": "values-charter",
+          "severity": "medium",
+          "text": "The .LLab Mission & Values Charter™ has 6 prompts that are bare labels (for example \"Our mission in one sentence:\"). Add a guiding question so members know what a strong answer looks like.",
+          "change": "The .LLab Mission & Values Charter™: added 4 prompts written for this IP (1 Infrastructure Planning & Management, 3 Preservation); placed 5 existing prompts in the phase each belongs to; rewrote 6 bare labels or long prompts as guiding questions; added a four-phase build guide (deliverable and how to put it to work in each phase); prompts per phase now 16 / 4 / 3 / 3."
+        },
+        {
+          "id": "portfolio-omni-Nonprofits",
+          "ip": "Portfolio",
+          "severity": "medium",
+          "text": "The questions across all guided IP reach Nonprofits in only 2 prompts. That Omnidirectional Enterprise™ direction is under-served by the IP itself.",
+          "change": "New prompts across the IP now reach nonprofits, volunteers and donors (33 prompts, up from 1; 20 without the new Diagnostic editions), and the Diagnostic has a Nonprofit Edition."
+        },
+        {
+          "id": "portfolio-phase-depth",
+          "ip": "Portfolio",
+          "severity": "low",
+          "text": "Internal Operating Systems has the fewest guided prompts across all IP (153). Consider whether the IP goes as deep there as in the other phases.",
+          "change": "Guided prompts per phase across all IP are now 343 / 241 / 220 / 228 (were 358 / 163 / 150 / 152): Internal Operating Systems rose from 150 to 220 (198 without the two new Diagnostic editions). The audit now flags phase depth only when the thinnest phase is under half the deepest."
+        },
+        {
+          "id": "ip-legacy-statement",
+          "ip": "IP",
+          "severity": null,
+          "text": "One Legacy Statement per member",
+          "change": "One Legacy Statement per member in the Member Portal™, drafted from their own finished-quest answers in The IV Phases™, editable, saved privately and downloadable as a PDF."
+        },
+        {
+          "id": "ip-phase-readiness",
+          "ip": "IP",
+          "severity": null,
+          "text": "Phase Readiness view in the portal",
+          "change": "Phase Readiness panel in the Member Portal™ totals the phase map of every finished quest and names the strongest and thinnest phase."
+        },
+        {
+          "id": "ip-checkins",
+          "ip": "IP",
+          "severity": null,
+          "text": "30, 90 and 365-day commitment check-ins",
+          "change": "Every quest commitment comes back at 30, 90 and 365 days: a daily email when one is due and a one-click answer in the portal (kept, in progress, changed, not yet); the owner sees anonymous counts per IP."
+        },
+        {
+          "id": "ip-team-mode",
+          "ip": "IP",
+          "severity": null,
+          "text": "Team mode: several leaders, one quest",
+          "change": "Team mode on every quest: start a team, invite colleagues by email, each answers in their own account, accepted members see where answers differ; consent-based (accept to share, leave any time)."
+        },
+        {
+          "id": "ip-industry-editions",
+          "ip": "IP",
+          "severity": null,
+          "text": "Industry editions of the Diagnostic",
+          "change": "Nonprofit Edition and Small Enterprise Edition of the Diagnostic, unlocked by the Diagnostic, each tied to its Omnidirectional Enterprise™ direction."
+        },
+        {
+          "id": "ip-facilitator-guide",
+          "ip": "IP",
+          "severity": null,
+          "text": "Facilitator guide for running a quest with a team",
+          "change": "Team Quest Facilitator Guide page, written for The .LLab Foundation Strength Snapshot™ and linked from team mode."
+        },
+        {
+          "id": "ip-changelog",
+          "ip": "IP",
+          "severity": null,
+          "text": "Public changelog: what changed because of member feedback",
+          "change": "Public What Changed page and changelog feed; marking member feedback done with a public note publishes the note only (never the member or their words)."
+        },
+        {
+          "id": "ip-succession-quest",
+          "ip": "IP",
+          "severity": null,
+          "text": "A free Succession quest",
+          "change": "The .LLab Succession Quest™: a free quest for every signed-in member, drawn from the Knowledge Transfer Checklist™ and the Continuity Quick-Check™, in all four phases."
+        },
+        {
+          "id": "eco-intros",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "Introductions between collaborating enterprises",
+          "change": "Request an introduction on any listing that opts in; the request goes to the listing owner by email (their address is never shown) and each introduction is counted."
+        },
+        {
+          "id": "eco-node-filters",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "The .LLab Collaborating Enterprises filters by Omnidirectional Enterprise™ direction",
+          "change": "The .LLab Collaborating Enterprises now filters by all nine Omnidirectional Enterprise™ directions (Products & Services added), plus category, introductions, member offers and successor or apprentice flags."
+        },
+        {
+          "id": "eco-member-offers",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "Member-to-member offers",
+          "change": "Listings can carry an optional member offer with terms the member writes, shown only to signed-in members; published offers are counted."
+        },
+        {
+          "id": "eco-nonprofit-node",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "Connect The .LLab Collaborating Enterprises to Impact and community partners",
+          "change": "Nonprofit & Community category with skill and volunteer requests, and its own filter."
+        },
+        {
+          "id": "eco-succession-matching",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "Successor and apprentice matching",
+          "change": "Optional Seeking a successor and Seeking an apprenticeship flags on listings, with filters."
+        },
+        {
+          "id": "eco-annual-report",
+          "ip": "Ecosystem",
+          "severity": null,
+          "text": "An annual Omnidirectional Enterprise™ report",
+          "change": "Introductions and member offers are counted from now on (by year and direction, counts only), shown in the owner review as the data for the annual Omnidirectional Enterprise™ report."
+        }
+      ]
+    }
+  ]
+}

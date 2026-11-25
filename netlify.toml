@@ -4,11 +4,15 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = ["content/library/**", "content/quests/**", "content/ip-backlog.json", "admin/**"]
+  included_files = ["content/library/**", "content/quests/**", "content/ip-backlog.json", "content/quest-phases.json", "content/ip-implementation-log.json", "content/changelog.json", "admin/**"]
 
-# Weekly reminder of undecided IP-review items (Mondays, 14:00 UTC).
+# Weekly IP progress report: done, in progress, and any founder decision (Mondays, 14:00 UTC).
 [functions."ip-digest"]
   schedule = "0 14 * * 1"
+
+# Daily: emails members a 30, 90 or 365-day check-in on a quest commitment when one comes due (15:20 UTC).
+[functions."checkin-reminders"]
+  schedule = "20 15 * * *"
 
 # Required environment variables (set in Netlify: Site configuration ->
 # Environment variables — never commit real values):

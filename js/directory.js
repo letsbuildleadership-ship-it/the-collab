@@ -6,6 +6,16 @@
   var DIRS = [];
   var listings = [];
   var active = null;
+  var isMember = false;
+  // Extra filters: category, and listings that welcome introductions, carry a member offer, or seek a successor or apprentice.
+  var FLAGS = [
+    ['nonprofit', 'Nonprofit & Community', function (l) { return l.category === 'nonprofit-community'; }],
+    ['intros', 'Welcomes introductions', function (l) { return l.acceptsIntros; }],
+    ['offer', 'Member offer', function (l) { return l.hasMemberOffer; }],
+    ['successor', 'Seeking a successor', function (l) { return (l.seeking || []).indexOf('successor') >= 0; }],
+    ['apprenticeship', 'Seeking an apprentice', function (l) { return (l.seeking || []).indexOf('apprenticeship') >= 0; }],
+  ];
+  var flags = {};
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
@@ -22,28 +32,68 @@
     var box = $('d-filters');
     box.textContent = '';
     [null].concat(DIRS).forEach(function (d) {
-      var b = el('button', 'd-chip', d || 'All');
+      var n = d ? listings.filter(function (l) { return l.directions.indexOf(d) >= 0; }).length : listings.length;
+      var b = el('button', 'd-chip', (d || 'All directions') + ' · ' + n);
       b.type = 'button';
       b.setAttribute('aria-pressed', String(active === d));
       b.addEventListener('click', function () { active = d; renderFilters(); renderGrid(); });
       box.appendChild(b);
     });
+    var more = $('d-flags');
+    if (!more) return;
+    more.textContent = '';
+    FLAGS.forEach(function (f) {
+      var b = el('button', 'd-chip', f[1]);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(!!flags[f[0]]));
+      b.addEventListener('click', function () { flags[f[0]] = !flags[f[0]]; renderFilters(); renderGrid(); });
+      more.appendChild(b);
+    });
+  }
+
+  function introForm(l, box) {
+    box.textContent = '';
+    var t = el('textarea'); t.maxLength = 800; t.placeholder = 'Who you are and why you would like to connect'; t.setAttribute('aria-label', 'Your message to ' + l.companyName);
+    t.style.cssText = 'width:100%; box-sizing:border-box; min-height:5em; margin-top:.5rem;';
+    var note = el('p', 'd-desc', 'Your name, email and message go to this enterprise so they can reply to you directly. Their email stays private, and they reply only if they choose.');
+    var send = el('button', 'pill pill--solid', 'Send request'); send.type = 'button';
+    var msg = el('span', 'd-err'); msg.setAttribute('aria-live', 'polite');
+    send.addEventListener('click', function () {
+      msg.textContent = 'Sending…';
+      fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'intro', listingId: l.id, message: t.value }) })
+        .then(function (r) { if (r.status === 401) { msg.textContent = 'Sign in to request an introduction.'; return null; } return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) { if (!res) return; if (!res.ok) { msg.textContent = res.d.error || 'Could not send.'; return; } box.textContent = ''; box.appendChild(el('p', 'd-desc', 'Sent. ' + l.companyName + ' has your message and can reply to you by email.')); })
+        .catch(function () { msg.textContent = 'Could not reach the site.'; });
+    });
+    var row = el('div'); row.style.cssText = 'display:flex; gap:.8rem; align-items:center; flex-wrap:wrap; margin-top:.5rem;';
+    row.append(send, msg);
+    box.append(t, note, row);
   }
 
   function renderGrid() {
     var grid = $('d-grid');
     grid.textContent = '';
-    var shown = listings.filter(function (l) { return !active || l.directions.indexOf(active) >= 0; });
+    var shown = listings.filter(function (l) {
+      return (!active || l.directions.indexOf(active) >= 0) && FLAGS.every(function (f) { return !flags[f[0]] || f[2](l); });
+    });
     $('d-empty').hidden = shown.length > 0;
-    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed enterprise serves that direction yet.';
+    if (!shown.length && listings.length) $('d-empty').textContent = 'No listed enterprise matches those filters yet.';
     shown.forEach(function (l) {
       var c = el('article', 'd-card');
       c.appendChild(el('h3', null, l.companyName));
       if (l.tagline) c.appendChild(el('p', 'd-tag', l.tagline));
       var dir = el('div', 'd-dir');
+      if (l.category === 'nonprofit-community') dir.appendChild(el('span', null, 'Nonprofit & Community'));
       l.directions.forEach(function (d) { dir.appendChild(el('span', null, d)); });
+      (l.seeking || []).forEach(function (x) { dir.appendChild(el('span', null, x === 'successor' ? 'Seeking a successor' : 'Seeking an apprentice')); });
       c.appendChild(dir);
       c.appendChild(el('p', 'd-desc', l.description));
+      if ((l.requests || []).length) {
+        var rq = el('ul', 'd-off');
+        l.requests.forEach(function (r) { var li = el('li'); li.appendChild(el('span', 'd-kind', r.kind === 'volunteer' ? 'volunteers' : 'skills')); li.appendChild(document.createTextNode(r.text)); rq.appendChild(li); });
+        c.appendChild(el('p', 'd-tag', 'Asking for'));
+        c.appendChild(rq);
+      }
       var ul = el('ul', 'd-off');
       l.offerings.forEach(function (o) {
         var li = el('li');
@@ -62,6 +112,20 @@
       if (l.location) bits.push(document.createTextNode(l.location));
       bits.forEach(function (b, i) { if (i) foot.appendChild(document.createTextNode('  ·  ')); foot.appendChild(b); });
       c.appendChild(foot);
+      if (l.hasMemberOffer) {
+        var mo = el('div', 'd-offer');
+        mo.appendChild(el('p', 'd-tag', 'Member offer'));
+        if (l.memberOffer) { mo.appendChild(el('p', 'd-desc', l.memberOffer.text)); mo.appendChild(el('p', 'd-desc', 'Terms: ' + l.memberOffer.terms)); }
+        else { var si = el('a', null, 'Sign in to see the offer'); si.href = 'login.html'; var p = el('p', 'd-desc'); p.appendChild(si); mo.appendChild(p); }
+        c.appendChild(mo);
+      }
+      if (l.acceptsIntros) {
+        var ib = el('button', 'pill', 'Request an introduction'); ib.type = 'button';
+        var ibox = el('div');
+        ib.addEventListener('click', function () { if (!isMember) { ibox.textContent = ''; var a = el('a', null, 'Sign in to request an introduction'); a.href = 'login.html'; ibox.appendChild(a); return; } introForm(l, ibox); });
+        c.appendChild(ib);
+        c.appendChild(ibox);
+      }
       grid.appendChild(c);
     });
   }
@@ -131,6 +195,48 @@
     });
     form.append(dl, dirBox);
 
+    var cat = el('select'); cat.id = 'f-cat';
+    [['enterprise', 'Enterprise'], ['nonprofit-community', 'Nonprofit & Community']].forEach(function (o) { var op = el('option', null, o[1]); op.value = o[0]; if ((l && l.category) === o[0]) op.selected = true; cat.appendChild(op); });
+    form.append(labeled('Category', cat, 'f-cat'));
+    var reqBox = el('div');
+    var reqRows = [];
+    function reqRow(r) {
+      var row = el('div', 'd-off-row');
+      var k = el('select'); [['skill', 'Skills'], ['volunteer', 'Volunteers']].forEach(function (o) { var op = el('option', null, o[1]); op.value = o[0]; if (r.kind === o[0]) op.selected = true; k.appendChild(op); });
+      var t = el('input'); t.type = 'text'; t.maxLength = 200; t.placeholder = 'What you are asking for'; t.value = r.text || '';
+      row.append(k, t);
+      row.read = function () { return { kind: k.value, text: t.value }; };
+      reqRows.push(row);
+      return row;
+    }
+    var reqWrap = el('div');
+    reqWrap.appendChild(el('label', null, 'Skill or volunteer requests (Nonprofit & Community, up to 4)'));
+    ((l && l.requests && l.requests.length ? l.requests : [{}, {}])).forEach(function (r) { reqBox.appendChild(reqRow(r)); });
+    reqWrap.appendChild(reqBox);
+    var syncCat = function () { reqWrap.hidden = cat.value !== 'nonprofit-community'; };
+    cat.addEventListener('change', syncCat); syncCat();
+    form.appendChild(reqWrap);
+
+    var seekWrap = el('div');
+    seekWrap.appendChild(el('label', null, 'Successor and apprentice matching (optional)'));
+    var seeking = ((l && l.seeking) || []).slice();
+    [['successor', 'Seeking a successor'], ['apprenticeship', 'Seeking an apprentice']].forEach(function (o) {
+      var b = el('button', 'd-chip', o[1]); b.type = 'button';
+      b.setAttribute('aria-pressed', String(seeking.indexOf(o[0]) >= 0));
+      b.addEventListener('click', function () { var i = seeking.indexOf(o[0]); if (i >= 0) seeking.splice(i, 1); else seeking.push(o[0]); b.setAttribute('aria-pressed', String(seeking.indexOf(o[0]) >= 0)); });
+      seekWrap.appendChild(b);
+    });
+    form.appendChild(seekWrap);
+
+    var introWrap = el('label', 'd-check');
+    var intro = el('input'); intro.type = 'checkbox'; intro.id = 'f-intro'; intro.checked = !!(l && l.introOptIn);
+    introWrap.append(intro, document.createTextNode(' Welcome introductions: signed-in members can send you a request by email. Your account email is never shown; you reply only if you choose.'));
+    form.appendChild(introWrap);
+
+    var offText = el('input'); offText.type = 'text'; offText.id = 'f-offer'; offText.maxLength = 200; offText.value = (l && l.memberOffer && l.memberOffer.text) || '';
+    var offTerms = el('textarea'); offTerms.id = 'f-terms'; offTerms.maxLength = 400; offTerms.value = (l && l.memberOffer && l.memberOffer.terms) || '';
+    form.append(labeled('Member offer (optional, shown only to signed-in members)', offText, 'f-offer'), labeled('Offer terms: who it is for, how to claim it, when it ends', offTerms, 'f-terms'));
+
     form.appendChild(el('label', null, 'What you offer (products and services, up to 6)'));
     var offBox = el('div');
     offRows = [];
@@ -156,7 +262,11 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       msg.textContent = 'Sending…';
-      var payload = { companyName: company.value, tagline: tagline.value, description: desc.value, location: loc.value, website: web.value, contactEmail: mail.value, directions: picked, offerings: offRows.map(function (r) { return r.read(); }) };
+      var payload = {
+        companyName: company.value, tagline: tagline.value, description: desc.value, location: loc.value, website: web.value, contactEmail: mail.value, directions: picked, offerings: offRows.map(function (r) { return r.read(); }),
+        category: cat.value, requests: cat.value === 'nonprofit-community' ? reqRows.map(function (r) { return r.read(); }) : [], seeking: seeking, introOptIn: intro.checked,
+        memberOffer: offText.value.trim() ? { text: offText.value, terms: offTerms.value } : null,
+      };
       fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
@@ -176,9 +286,9 @@
   }
 
   function loadPublic() {
-    fetch(API)
+    fetch(API + '?members=1', { credentials: 'same-origin' })
       .then(function (r) { return r.json(); })
-      .then(function (d) { DIRS = d.directions; listings = d.listings; renderFilters(); renderGrid(); })
+      .then(function (d) { DIRS = d.directions; listings = d.listings; isMember = !!d.member; renderFilters(); renderGrid(); })
       .catch(function () { $('d-empty').hidden = false; $('d-empty').textContent = 'Could not load the .LLab Collaborating Enterprises. Please try again.'; });
   }
 

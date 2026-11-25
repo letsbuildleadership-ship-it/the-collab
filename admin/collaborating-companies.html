@@ -43,6 +43,10 @@
   <p class="subhead" style="margin-top:0.75rem;">Member companies ask to join the .LLab Collaborating Companies in the Omnidirectional Enterprise™. Nothing appears publicly until you approve it, and every edit goes back to review. Rejecting needs a note, which the member sees.</p>
   <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
   <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="ip-feedback.html">IP review</a> <a class="pill mini" href="ip-analysis.html">IP analysis</a></p>
+  <h2 class="headline" style="margin-top:2.5rem; font-size:1.4rem;">Annual Omnidirectional Enterprise™ report: the data so far</h2>
+  <p class="why">Introductions and member offers are counted from the start (counts only, by year and direction), with what the live directory holds today.</p>
+  <div id="report"></div>
+  <h2 class="headline" style="margin-top:2.5rem; font-size:1.4rem;">Listings</h2>
   <div id="list"></div>
 </div>
 
@@ -66,14 +70,26 @@
     $('awaiting').textContent = pending ? pending + (pending === 1 ? ' company' : ' companies') + ' awaiting review.' : 'Nothing is waiting for review.';
     const list = $('list'); list.textContent = '';
     if (!d.listings.length) list.appendChild(el('p', 'why', 'No companies yet.'));
+    const rep = $('report'); rep.textContent = '';
+    if (d.report) {
+      const lv = d.report.live;
+      rep.appendChild(el('p', 'meta', 'Live today: ' + lv.listings + ' listings · ' + lv.nonprofitCommunity + ' Nonprofit & Community · ' + lv.acceptingIntros + ' welcome introductions · ' + lv.memberOffers + ' member offers · ' + lv.seekingSuccessor + ' seeking a successor · ' + lv.seekingApprenticeship + ' seeking an apprentice'));
+      rep.appendChild(el('p', 'why', 'By direction: ' + lv.byDirection.map((x) => x.direction + ' ' + x.listings).join(' · ')));
+      if (!d.report.years.length) rep.appendChild(el('p', 'why', 'No introductions or offers yet this year.'));
+      d.report.years.forEach((y) => rep.appendChild(el('p', 'why', y.year + ': ' + y.intros + ' introductions · ' + y.offers + ' member offers published' + (Object.keys(y.byDirection).length ? ' · by direction: ' + Object.entries(y.byDirection).map(([k, v]) => k + ' ' + v).join(', ') : ''))));
+    }
     d.listings.forEach((l) => {
       const row = el('div', 'row' + (l.status === 'pending' ? ' is-new' : ''));
       const h = el('h3', null, l.companyName + ' '); h.appendChild(el('span', 'badge ' + (l.status === 'pending' ? 'new' : ''), l.status)); row.appendChild(h);
       row.appendChild(el('div', 'meta', l.memberId + ' · ' + String(l.updatedAt).slice(0, 10) + ' · ' + l.directions.join(', ')));
       if (l.tagline) row.appendChild(el('p', 'why', l.tagline));
       row.appendChild(el('p', 'why', l.description));
+      const extra = [l.category === 'nonprofit-community' ? 'Nonprofit & Community' : null, l.introOptIn ? 'Welcomes introductions' : null, ...(l.seeking || []).map((x) => 'Seeking ' + (x === 'successor' ? 'a successor' : 'an apprentice'))].filter(Boolean);
+      if (extra.length) row.appendChild(el('div', 'meta', extra.join(' · ')));
+      (l.requests || []).forEach((r) => row.appendChild(el('p', 'why', 'Asking for ' + (r.kind === 'volunteer' ? 'volunteers' : 'skills') + ': ' + r.text)));
+      if (l.memberOffer) { const mo = el('p', 'why'); mo.appendChild(el('strong', null, 'Member offer: ')); mo.appendChild(document.createTextNode(l.memberOffer.text + ' — Terms: ' + l.memberOffer.terms)); row.appendChild(mo); }
       const off = el('p', 'why');
-      l.offerings.forEach((o, i) => { if (i) off.appendChild(document.createTextNode('  |  ')); off.appendChild(el('strong', null, o.kind + ': ')); off.appendChild(o.url ? safeLink(o.url, o.name) : document.createTextNode(o.name)); });
+      (l.offerings || []).forEach((o, i) => { if (i) off.appendChild(document.createTextNode('  |  ')); off.appendChild(el('strong', null, o.kind + ': ')); off.appendChild(o.url ? safeLink(o.url, o.name) : document.createTextNode(o.name)); });
       row.appendChild(off);
       const contact = el('p', 'why');
       if (l.website) contact.appendChild(safeLink(l.website, l.website));

@@ -145,6 +145,8 @@
             <li><a href="products.html">The .LLab™ Home</a></li>
             <li><a href="all-products.html">The .LLab Products™</a></li>
             <li><a href="collaborating-companies.html">The .LLab Collaborating Enterprises</a></li>
+            <li><a href="facilitator-guide.html">Team Quest Facilitator Guide</a></li>
+            <li><a href="changelog.html">What Changed</a></li>
             <li class="nav-more-head" aria-hidden="true">Research, theory &amp; Intelligence Infrastructure™</li>
             <li><a href="think.html">The .LLab R.A.T.™ · Research And Theory</a></li>
             <li><a href="journal.html">The .LLab Journal™</a></li>
@@ -255,7 +257,9 @@
         <p style="color:var(--white-dim);">Each step opens as you complete the one before it, following the progression of The IV Phases™: Define it, Plan it, Live it, Pass it on. Your progress saves as you go.</p>
         <p class="q-meta" id="q-tier" hidden style="color:var(--white-dim);"></p>
         <p class="q-meta" id="q-hint" hidden></p>
+        <div id="q-paths" class="q-paths" role="group" aria-label="Choose your path" hidden></div>
         <div class="q-map" id="q-map"></div>
+        <div id="q-extend"></div>
         <div id="q-close"></div>
         <div id="q-omni" style="margin-top:1rem;"></div>
         <div class="q-actions">
@@ -285,7 +289,7 @@
         <p class="q-prompt" id="r-next" style="margin-top:2rem;"></p>
         <div class="q-close" id="r-feedback" style="margin-top:2rem;">
           <h3 class="q-label">Help us improve the IP</h3>
-          <p class="q-prompt">The Co.LLab™ is built with its members. Tell us what to fix, and how we can better support your organization and the enterprises in the Omnidirectional Enterprise™. We read and decide on every note.</p>
+          <p class="q-prompt">The Co.LLab™ is built with its members. Tell us what to fix, and how we can better support your organization and the enterprises in the Omnidirectional Enterprise™. We read every note, and what we change is published on <a href="changelog.html" style="text-decoration:underline;">What Changed</a>, without your name.</p>
           <label class="q-label" for="fb-unclear">Which question was unclear, or what was missing?</label>
           <textarea class="q-text" id="fb-unclear" maxlength="800"></textarea>
           <label class="q-label" for="fb-support" style="margin-top:.8rem; display:block;">How could The Co.LLab™ better support your organization?</label>
@@ -301,6 +305,18 @@
           <button type="button" class="pill" id="r-retake">Retake this quest</button>
         </div>
         <p style="color:var(--white-faint); margin-top:1rem;">Your report is saved in your member portal under Quests.</p>
+      </div>
+
+      <div id="q-guide-wrap" hidden>
+        <h2 class="q-label" style="margin-top:2.5rem;">Your IV Phases™ build guide</h2>
+        <p class="q-meta">What each phase of this IP leaves you with, and how to put it to work.</p>
+        <div class="q-guide" id="q-guide"></div>
+      </div>
+
+      <div id="team" class="q-close" style="margin-top:2rem;" hidden>
+        <h2 class="q-label">Team mode: work this quest with your team</h2>
+        <p class="q-prompt">Each leader answers in their own account. Once a person accepts, the team sees where answers differ. Answers are shared with this team only, and stop being shared the moment someone leaves. <a href="facilitator-guide.html" style="text-decoration:underline;">How to run it with a team</a>.</p>
+        <div id="team-body"></div>
       </div>
     </div>
   </section>
@@ -320,6 +336,7 @@
           <li><a href="journal-preview.html">The .LLab Journal™ · Free Preview</a></li>
           <li><a href="omnidirectional-enterprise.html#legacy-wall">Omnidirectional Legacy Wall</a></li>
           <li><a href="glossary.html">The Co.LLab™ Glossary</a></li>
+          <li><a href="changelog.html">What Changed</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -365,6 +382,6 @@
 
 <script src="../js/main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="../js/quest.js"></script>
+<script src="../js/quest.js?v=20261125a"></script>
 </body>
 </html>

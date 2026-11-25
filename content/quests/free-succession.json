@@ -1,0 +1,101 @@
+{
+  "key": "free-succession",
+  "open": true,
+  "title": "The .LLab Succession Quest™",
+  "phase": "Phase IV · Preservation",
+  "archetype": "workbook",
+  "intro": "A free quest for every member. Drawn from The .LLab Knowledge Transfer Checklist™ and The .LLab Continuity Quick-Check™: what must stay true when leadership changes, who could carry each role, how the handover is practiced, and where the succession record lives.",
+  "minAnswered": 0.6,
+  "upsell": null,
+  "nodes": [
+    {
+      "id": "n1",
+      "section": "Phase I · What must stay true",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What must stay true about this organization when its leadership changes?"
+    },
+    {
+      "id": "n2",
+      "section": "Phase I · What must stay true",
+      "phase": 0,
+      "type": "text",
+      "prompt": "Which values or commitments would the people you serve notice first if a new leader dropped them?"
+    },
+    {
+      "id": "n3",
+      "section": "Phase I · What must stay true",
+      "phase": 0,
+      "type": "text",
+      "prompt": "What does a good successor need to believe about the work, not only know how to do?"
+    },
+    {
+      "id": "n4",
+      "section": "Phase II · Who carries each role",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Which three roles or responsibilities would hurt most if their holder left tomorrow?"
+    },
+    {
+      "id": "n5",
+      "section": "Phase II · Who carries each role",
+      "phase": 1,
+      "type": "text",
+      "prompt": "For each of those roles, who is the successor or backup today, and how ready are they (ready now, within a year, not yet)?"
+    },
+    {
+      "id": "n6",
+      "section": "Phase II · Who carries each role",
+      "phase": 1,
+      "type": "text",
+      "prompt": "Which decisions, relationships or logins sit with one person and need a second holder?"
+    },
+    {
+      "id": "n7",
+      "section": "Phase III · How the handover is practiced",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How will each successor practice the role before they need it: shadowing, running a meeting, making a decision with support?"
+    },
+    {
+      "id": "n8",
+      "section": "Phase III · How the handover is practiced",
+      "phase": 2,
+      "type": "text",
+      "prompt": "Which knowledge will you capture as part of normal work each week, rather than at the moment someone leaves?"
+    },
+    {
+      "id": "n9",
+      "section": "Phase III · How the handover is practiced",
+      "phase": 2,
+      "type": "text",
+      "prompt": "How will you introduce successors to the clients, partners, volunteers or community members who rely on the role?"
+    },
+    {
+      "id": "n10",
+      "section": "Phase IV · Where the succession record lives",
+      "phase": 3,
+      "type": "text",
+      "prompt": "Where will the succession record live, and who besides you can open it?"
+    },
+    {
+      "id": "n11",
+      "section": "Phase IV · Where the succession record lives",
+      "phase": 3,
+      "type": "text",
+      "prompt": "When will the plan be reviewed each year, and what change in the organization would trigger an early review?"
+    },
+    {
+      "id": "n12",
+      "section": "Phase IV · Where the succession record lives",
+      "phase": 3,
+      "type": "text",
+      "prompt": "What would you want the next leader to protect above all, and what would you want them free to change?"
+    }
+  ],
+  "closing": {
+    "id": "commit",
+    "type": "text",
+    "prompt": "The first succession step I will take, who it involves, and by when:"
+  }
+}
