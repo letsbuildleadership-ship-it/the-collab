@@ -16,6 +16,7 @@ export const MENU = [
     'The enterprise',
     ['about', 'About The Co.LLab™'],
     ['glossary', 'The Co.LLab™ Glossary'],
+    ['careers', 'Careers'],
     'The Co.LLab+™',
     ['community', 'The Co.LLab+ Marketplace™'],
     ['agriculture', 'The Co.LLab+™ Agriculture'],
@@ -64,6 +65,7 @@ export const MENU = [
   { label: 'Get in touch', id: 'nav-menu-contact', cls: 'nav-more nav-group', items: [
     ['contact', 'Contact Us'],
     ['contact#founder', 'Meet the Founder'],
+    ['careers', 'Careers', 'Careers · Build With Us'],
   ] },
 ];
 
@@ -87,6 +89,7 @@ export const FOOTER = [
     ['mailto:hello@wearethellab.com', 'hello@wearethellab.com'],
     ['mailto:support@wearethellab.com', 'support@wearethellab.com'],
     ['contact#card', 'Digital business card'],
+    ['careers', 'Careers'],
   ] },
   { label: 'Legal', items: [
     ['ip-license', 'IP License & Terms of Use'],
