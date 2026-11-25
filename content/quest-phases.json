@@ -1,0 +1,903 @@
+{
+  "_readme": "The IV Phases™ integration for every guided Co.LLab™ IP, applied when the quests load (netlify/functions/lib/quests.js), so the base quests in content/quests/ can be rebuilt from the PDFs without losing it and saved member answers stay keyed to the same ids. Per quest: fix = clearer wording for a prompt (its phase is kept); pin = the phase a prompt belongs to (0 Foundations, 1 Infrastructure Planning & Management, 2 Internal Operating Systems, 3 Preservation); drop = PDF-extraction leftovers that are not questions; add = new prompts written for that IP (workbooks get them as steps; snapshots, checklists, worksheets and starters get them as optional 'carry it through' steps so their scoring is unchanged); after = insert a prompt straight after another; shortPath = the steps of the short path on long quests; guide = the deliverable and how to put it to work in each of the four phases.",
+  "quests": {
+    "alignment-map": {
+      "fix": {
+        "n2": "What is our mission, in one sentence a new team member could repeat?",
+        "n3": "What is our vision: where are we going, in plain words?",
+        "n4": "What is our purpose: why does this work matter to the people we serve?",
+        "n7": "Which leadership values will we hold each other to?",
+        "n8": "Which one of those values matters most right now?"
+      },
+      "add": [
+        { "phase": 2, "prompt": "Which standing meeting will we use to check alignment, and how often will leaders compare notes?" },
+        { "phase": 3, "prompt": "What must stay aligned even when the leadership team changes, and where will we write it down so a successor inherits it?" },
+        { "phase": 3, "prompt": "Who outside the leadership team (partners, clients, the community we serve) should be able to see this alignment in how we work, and what would they notice?" }
+      ],
+      "guide": [
+        ["One shared statement of mission, vision, purpose and values.", "Read it aloud at the next leadership meeting and ask each leader where they would phrase it differently."],
+        ["A map of where leaders agree and where they split.", "Give each alignment gap an owner and a decision date."],
+        ["A standing alignment check in the leadership rhythm.", "Open one meeting a month with the alignment statement and one real decision tested against it."],
+        ["An Alignment Statement a successor can inherit.", "File it with the leadership handbook and review it whenever a leader joins or leaves."]
+      ]
+    },
+    "blueprint-complete": {
+      "guide": [
+        ["Your answers to the Foundations issue, gathered in one place.", "Name the one foundation every later issue depends on."],
+        ["A list of what depends on a person and should belong to the organization.", "Assign an owner and a backup for the top three items."],
+        ["The rhythms that make what matters part of how you operate.", "Put each rhythm on the calendar with a named host."],
+        ["What must exist for what you built to continue.", "Write it into one document a successor could find on their first day."]
+      ]
+    },
+    "blueprint-welcome": {
+      "add": [
+        { "phase": 1, "prompt": "Which partners, clients or communities should your leadership infrastructure serve beyond your own team?" },
+        { "phase": 3, "prompt": "What would a nonprofit, a community group or a future leader be able to count on because you built this?" }
+      ],
+      "guide": [
+        ["A first answer to what your leadership infrastructure should make possible.", "Keep it at the front of the series; every issue tests against it."],
+        ["The first thing that depends on a person and should belong to the organization.", "Carry it into Phase Two and give it an owner."],
+        ["One practice that already makes what matters part of how you operate.", "Name who keeps it running while you read the series."],
+        ["Your first answer to what must exist for the work to continue.", "Revisit it after Phase Four and compare."]
+      ]
+    },
+    "blueprint-phase1": {
+      "add": [
+        { "phase": 1, "prompt": "Which foundation named in this issue most needs an owner, and who will hold it?" },
+        { "phase": 1, "prompt": "Which partner, client or community relationship should our foundations be planned around?" },
+        { "phase": 2, "prompt": "Which weekly meeting or practice will keep the mission visible in daily decisions?" },
+        { "phase": 2, "prompt": "How will we hear early, from our people and our customers, when the work drifts from the mission?" },
+        { "phase": 3, "prompt": "Which part of our foundation would a successor need written down first?" },
+        { "phase": 3, "prompt": "If we partnered with a nonprofit or a community group, what would our foundations let them count on?" }
+      ],
+      "guide": [
+        ["A clear read of where daily decisions support or weaken the mission.", "Pick the single misalignment to close first."],
+        ["An owner for the foundation most at risk.", "Write the owner and a review date next to it."],
+        ["A practice that keeps the mission in daily decisions.", "Use it in the next three weekly meetings and note what changes."],
+        ["The first foundation written down for a successor.", "Store it where the next leader will look first."]
+      ]
+    },
+    "blueprint-phase2": {
+      "add": [
+        { "phase": 0, "prompt": "Which value or principle should guide who owns what?" },
+        { "phase": 0, "prompt": "What is the purpose behind the structure you are planning: who does it serve?" },
+        { "phase": 2, "prompt": "Which handoff or check-in would move ownership out of someone's head and into a weekly practice?" },
+        { "phase": 2, "prompt": "Which tool, record or system will hold the decisions you just mapped?" },
+        { "phase": 3, "prompt": "Who is the backup for each role you named, and when will they first practice it?" },
+        { "phase": 3, "prompt": "Which relationships with clients, partners, funders or volunteers would be lost if one person left, and how will you transfer them?" }
+      ],
+      "guide": [
+        ["The principle that decides who owns what.", "Test every ownership change against it."],
+        ["A map of bottlenecks and single-person dependencies.", "Name an owner and a backup for the top three."],
+        ["Handoffs and check-ins that keep ownership visible.", "Schedule the first check-in this week."],
+        ["A transfer plan for knowledge and relationships held by one person.", "Have each backup run the role once within the quarter."]
+      ]
+    },
+    "blueprint-phase3": {
+      "add": [
+        { "phase": 0, "prompt": "Which value should every operating rhythm protect, even under pressure?" },
+        { "phase": 0, "prompt": "What should a newcomer understand about why we operate the way we do?" },
+        { "phase": 1, "prompt": "Who owns each rhythm you named, and what decision is it responsible for?" },
+        { "phase": 1, "prompt": "Which rhythm needs a budget or resources it does not yet have?" },
+        { "phase": 3, "prompt": "Which written system would let a new leader run this rhythm without you?" },
+        { "phase": 3, "prompt": "How could your community, customers or partners see these systems working and give feedback on them?" }
+      ],
+      "guide": [
+        ["The value every operating rhythm protects.", "Say it at the start of each recurring meeting."],
+        ["An owner and a decision for every rhythm.", "List them on one page the whole team can see."],
+        ["Rhythms that run on a written system, not memory.", "Write the first system this month and test it once."],
+        ["Systems a new leader could run without you.", "Hand one rhythm to someone else for a full cycle."]
+      ]
+    },
+    "blueprint-phase4": {
+      "add": [
+        { "phase": 0, "prompt": "What purpose should still be true in twenty years?" },
+        { "phase": 0, "prompt": "Who do we exist to serve, and what would they lose if the work stopped?" },
+        { "phase": 1, "prompt": "Which roles and decisions need a named successor, and by when?" },
+        { "phase": 1, "prompt": "What funding, revenue or capital must be in place for the work to continue?" },
+        { "phase": 2, "prompt": "Which rhythm will review the vulnerabilities you named each quarter?" },
+        { "phase": 2, "prompt": "How will knowledge be captured as part of normal work, not at the moment someone leaves?" },
+        { "phase": 3, "prompt": "Which community, nonprofit or volunteer relationships will keep the work alive beyond the organization's walls?" }
+      ],
+      "guide": [
+        ["The purpose that must outlast the current leaders.", "Write it as the first line of your preservation record."],
+        ["Named successors and the capital the work needs to continue.", "Set a date for each successor's first handover."],
+        ["A quarterly review of where the infrastructure is vulnerable.", "Put it on the calendar with the systems that need reinforcement first."],
+        ["A record of what must be protected and who protects it.", "Share it with the people who would carry the work."]
+      ]
+    },
+    "blueprint": {
+      "drop": ["n1", "n34", "n41"],
+      "fix": {
+        "n2": "What is our current strength in our foundations?",
+        "n10": "Which foundation strength will we develop first?",
+        "n11": "What outcome do we want from developing that foundation strength?",
+        "n12": "What is the first foundation action, and who takes it?",
+        "n17": "Which planning or management strength will we develop first?",
+        "n18": "What outcome do we want from that planning strength?",
+        "n19": "What is the first planning action, and who owns it?",
+        "n24": "Which cultural or operating strength will we develop first?",
+        "n25": "What outcome should that operating strength produce in daily work?",
+        "n26": "What is the first operating action, and when does it start?",
+        "n31": "Which strength will we preserve first?",
+        "n32": "What outcome tells us it has been preserved?",
+        "n33": "What is the first preservation action, and who carries it?",
+        "n36": "Which strength will the Build Map start from?",
+        "n37": "What infrastructure does that strength need around it?",
+        "n38": "Which people are responsible for building it?",
+        "n39": "What is the first action on the Build Map?",
+        "n40": "What is the desired future state, three years from now?"
+      },
+      "add": [
+        { "phase": 1, "prompt": "What funding, budget or capital does this Build Map need, and who approves it?" },
+        { "phase": 3, "prompt": "Which partners, communities or nonprofits outside the organization should benefit from what we preserve, and how will value flow back to us?" }
+      ],
+      "shortPath": ["n3", "n10", "n12", "n13", "n17", "n19", "n20", "n24", "n26", "n27", "n31", "n33", "n35", "n36", "n39", "n40"],
+      "guide": [
+        ["The strengths your foundations already give you.", "Choose one to build from before fixing anything else."],
+        ["A planning practice turned into a repeatable organizational practice.", "Give it an owner, a budget line and a review date."],
+        ["Reinforced behaviors that make the strength consistent.", "Name the meeting where the behavior is expected and seen."],
+        ["A Build Map of what is preserved, who carries it and the first action.", "Review the Build Map each quarter and move one item to done."]
+      ]
+    },
+    "build-plan": {
+      "fix": {
+        "n1": "What is the one priority this plan will build infrastructure around?",
+        "n7": "What is the one foundation action that makes this priority clear?",
+        "n12": "What is the one infrastructure action: the owner, the decision or the process you will put in place?",
+        "n16": "What is the one operating action that turns this into a weekly practice?",
+        "n20": "What is the one preservation action that lets this outlast the people who start it?",
+        "n21": "How will you state this priority to the team in Week 1, in one sentence?",
+        "n22": "What outcome do you want by the end of Week 4?",
+        "n24": "Who owns the process or system, by name?",
+        "n26": "How will you measure progress each week?",
+        "n29": "What result do you expect, and by what date?"
+      },
+      "add": [
+        { "phase": 0, "prompt": "Who outside the team (clients, partners or the community) is this priority ultimately for?" },
+        { "phase": 2, "prompt": "Which tool or shared system will the team use to track the weekly actions?" },
+        { "phase": 3, "prompt": "What will you hand to the next leader, partner or volunteer who takes this on, and where will it be kept?" }
+      ],
+      "guide": [
+        ["A priority anchored to a mission, value or principle.", "State it in Week 1 in one sentence the team can repeat."],
+        ["An owner, the decisions and the process that carry the priority.", "Write the owner's name into the plan before Week 2."],
+        ["One behavior and one system that make it weekly.", "Track it in the shared tool every week of the plan."],
+        ["What will be documented, shared or transferred.", "At Week 4, hand the record to the person who carries it next."]
+      ]
+    },
+    "creative-estate-mapping": {
+      "pin": { "n1": 0, "n2": 3, "n3": 1, "n4": 1, "n5": 1, "n6": 3, "n7": 2, "n8": 3, "n9": 2, "n10": 3, "n11": 2 },
+      "add": [
+        { "phase": 0, "prompt": "What is this body of work for: what should it keep doing in the world after you?" },
+        { "phase": 0, "prompt": "Which pieces are the heart of the estate, the ones that must never be lost?" }
+      ],
+      "guide": [
+        ["A statement of what the body of work is for and its essential pieces.", "Put it at the top of the estate record."],
+        ["A map of who owns which rights and which relationships the estate depends on.", "Close the first unclear ownership this quarter."],
+        ["The maintenance the estate needs: renewals, backups, relationships.", "Put each maintenance task on a calendar with a reminder."],
+        ["A captured, transferred estate someone else could steward.", "Give one trusted person access and instructions, and test it once."]
+      ]
+    },
+    "creator-alignment-map": {
+      "add": [
+        { "phase": 0, "prompt": "What does your creative identity stand for, in one sentence, before any offer is attached to it?" },
+        { "phase": 0, "prompt": "Which value would you not trade to close an alignment gap faster?" },
+        { "phase": 3, "prompt": "How will you record this alignment so a collaborator could keep it if you stepped away?" },
+        { "phase": 3, "prompt": "Which part of your audience relationship (a list, a community, a membership) do you own outright and could hand on?" }
+      ],
+      "guide": [
+        ["A clear statement of what your practice stands for.", "Check every offer against it before you price it."],
+        ["The one practice, audience or offer connection to fix first.", "Give it a deadline inside the next 30 days."],
+        ["A monthly check that practice, audience and offer still line up.", "Hold it on the same day each month."],
+        ["An alignment record and an audience you own.", "Keep both where a collaborator could find them."]
+      ]
+    },
+    "creator-audience-offer-map": {
+      "pin": { "n6": 1, "n7": 1, "n8": 1, "n9": 2, "n10": 2, "n16": 2 },
+      "add": [
+        { "phase": 3, "prompt": "Which audience relationships do you own directly (an email list, a community, a membership), and which depend on a platform you do not control?" },
+        { "phase": 3, "prompt": "If you stepped away for six months, how would your audience still find and support the work?" },
+        { "phase": 3, "prompt": "Who could carry an offer forward with you, such as a collaborator, a nonprofit partner or a community group?" }
+      ],
+      "guide": [
+        ["A named audience and what they need from your work.", "Write it in one sentence and test it on someone who knows the work."],
+        ["Each audience matched to one offer.", "Retire or rework any offer without an audience."],
+        ["A path people use to find and support the work.", "Check it monthly: what brought people in, what kept them."],
+        ["Audience relationships you own and could hand on.", "Move one platform relationship to a channel you control."]
+      ]
+    },
+    "creator-foundations-assessment": {
+      "drop": ["n29", "n30", "n31", "n32", "n33"],
+      "pin": { "n6": 2, "n7": 2, "n8": 2, "n9": 2, "n10": 2, "n18": 1, "n21": 1, "n22": 2, "n23": 3, "n24": 3, "n25": 3, "n26": 3, "n27": 3, "n28": 3, "n37": 2, "n38": 1, "n39": 1 },
+      "add": [
+        { "phase": 1, "prompt": "What would it cost to put your ownership in order (registrations, backups, agreements), and when will you budget for it?" }
+      ],
+      "guide": [
+        ["Scores for voice, practice, audience, offer and ownership.", "Start with the lowest-scoring part, not the easiest."],
+        ["The offers and ownership tasks that need terms, owners or a budget.", "Write down the terms of your main offer this month."],
+        ["A practice that runs, with records and protected time.", "Block the protected time on your calendar for the next four weeks."],
+        ["Rights, agreements and backups in order, and a named steward.", "Test it: could your work be handed on from your records alone?"]
+      ]
+    },
+    "creator-foundations-manual": {
+      "pin": { "n8": 2, "n9": 1, "n10": 3, "n13": 1, "n16": 2, "n19": 3, "n26": 2, "n27": 1, "n28": 2, "n29": 2, "n30": 3 },
+      "add": [
+        { "phase": 3, "prompt": "Who should receive your foundation statement if you could not work for a year, and what would they need with it?" }
+      ],
+      "guide": [
+        ["A Foundation Statement: what you make, how it sounds, what it stands for.", "Read it before every new project for a month."],
+        ["What depends only on you, and who sees the statement first.", "Share the statement with one collaborator this week."],
+        ["A normal week of making and a review rhythm for the statement.", "Set the review date now."],
+        ["Records, rights and a person who would carry the work forward.", "Write down one thing you know that no one else does."]
+      ]
+    },
+    "creator-identity-map": {
+      "add": [
+        { "phase": 1, "prompt": "Which collaborators, platforms or partners does this identity need to reach the people it serves?" },
+        { "phase": 1, "prompt": "Which projects should you say no to because they do not fit the thread?" },
+        { "phase": 2, "prompt": "Which habit or checklist will keep the thread visible in everything you release?" },
+        { "phase": 2, "prompt": "How will you introduce your identity the same way on your website, in pitches and in person?" },
+        { "phase": 3, "prompt": "Where will your identity statement live so a collaborator or estate steward could apply it?" },
+        { "phase": 3, "prompt": "Which community, audience or nonprofit would miss this identity if it stopped, and why?" }
+      ],
+      "guide": [
+        ["The thread that runs through your work, stated plainly.", "Use it as the first line of your bio."],
+        ["Who the identity serves and what it says no to.", "Turn down the next project that does not fit."],
+        ["A release checklist that keeps the thread visible.", "Run it on your next three releases."],
+        ["An identity statement a steward could apply.", "Store it with your estate records."]
+      ]
+    },
+    "creator-legacy-architecture": {
+      "drop": ["n15", "n16", "n17"],
+      "pin": { "n1": 0, "n2": 0, "n3": 1, "n4": 1, "n5": 2, "n6": 2, "n7": 3, "n8": 3, "n9": 3, "n10": 3, "n11": 0, "n12": 1, "n13": 3, "n14": 3 },
+      "add": [
+        { "phase": 2, "prompt": "Which monthly routine keeps your records, rights and files current, so the architecture never goes stale?" }
+      ],
+      "guide": [
+        ["A written statement of what the body of work is and is not.", "Keep it with your will and estate papers."],
+        ["A current ownership picture and a plan to close each legal gap.", "Close one gap per quarter."],
+        ["Documented systems someone else could run, with the single point of failure named.", "Remove the single point of failure first."],
+        ["A succession and cultural plan for the work.", "Tell the person positioned to carry it, and give them access."]
+      ]
+    },
+    "creator-operating-system": {
+      "fix": {
+        "n1": "What is your weekly rhythm: which days are for making, for selling and for admin?",
+        "n4": "Discovery: how do new people first find the work?",
+        "n5": "Engagement: how do they keep paying attention after that first contact?",
+        "n6": "Trust: what shows them the work is worth supporting?",
+        "n7": "Purchase or support: what is the one clear step to buy or support?",
+        "n8": "Return: what brings a supporter back for the next piece?",
+        "n11": "Name the three decisions that come up most often in your venture (pricing a commission, accepting a collaboration, saying yes to a project)."
+      },
+      "pin": { "n3": 1, "n11": 1 },
+      "add": [
+        { "after": "n11", "phase": 1, "prompt": "For each of those three decisions, write the standing rule you will apply instead of deciding fresh every time." },
+        { "phase": 0, "prompt": "What is your venture for, and who is it for first?" },
+        { "phase": 0, "prompt": "Which value should every system in this manual protect?" },
+        { "phase": 0, "prompt": "Which part of the work must stay in your hands, whatever you automate or delegate?" },
+        { "phase": 3, "prompt": "Which system here is written down well enough that a collaborator could run it for a month?" },
+        { "phase": 3, "prompt": "Where are your client records, files and logins kept, and who else can reach them?" },
+        { "phase": 3, "prompt": "Who could step in to deliver for your clients or supporters if you were unavailable?" }
+      ],
+      "guide": [
+        ["What the venture is for and what stays in your hands.", "Write it at the top of your weekly plan."],
+        ["Standing rules for your three most frequent decisions.", "Apply each rule the next time the decision comes up."],
+        ["A weekly rhythm, a delivery checklist and a monthly review.", "Run the monthly review on the same date every month."],
+        ["Systems, records and logins someone else could use.", "Hand one system to a collaborator for a month."]
+      ]
+    },
+    "creator-practice-profile": {
+      "pin": { "n3": 1, "n5": 0, "n8": 1, "n9": 3, "n10": 3, "n11": 0, "n13": 3, "n14": 3 },
+      "add": [
+        { "phase": 0, "prompt": "What is the practice for: what should it make possible for you and for the people who receive the work?" },
+        { "phase": 1, "prompt": "Which collaborators, suppliers or community partners does the practice rely on, and is each relationship agreed in writing?" },
+        { "phase": 1, "prompt": "What does the practice cost to run each month, and what income or funding covers it?" }
+      ],
+      "guide": [
+        ["What the practice is for and where it is strongest.", "Protect the strongest part when you plan the month."],
+        ["The people, money and agreements the practice depends on.", "Put the most important relationship in writing."],
+        ["How a normal week of making runs.", "Write the week down so someone else could follow it."],
+        ["Work, records and rights protected, and who would carry them.", "Write down one thing this quarter that only you know."]
+      ]
+    },
+    "creator-venture-build-plan": {
+      "add": [
+        { "phase": 0, "prompt": "Why this offer, and why now: what does it say about who you are as a creator?" },
+        { "phase": 0, "prompt": "Which value or limit will this offer not compromise, whatever the response?" },
+        { "phase": 2, "prompt": "Which weekly block will you protect to deliver and follow up during the 30 days?" },
+        { "phase": 2, "prompt": "Where will you record each offer, reply and sale so you can see the pattern?" },
+        { "phase": 3, "prompt": "What will you keep from this first round (templates, contacts, lessons) so the next launch starts further ahead?" }
+      ],
+      "guide": [
+        ["Why this offer fits who you are.", "Say it in the first line of the announcement."],
+        ["The smallest version, the price and one reach channel.", "Offer it directly to three people in Week 3."],
+        ["A protected delivery block and a record of every reply.", "Review the record at the end of each week."],
+        ["Templates, contacts and lessons kept for the next round.", "File them before you start the next offer."]
+      ]
+    },
+    "creator-voice-values-map": {
+      "pin": { "n2": 2, "n7": 3, "n13": 3, "n14": 2 },
+      "add": [
+        { "phase": 1, "prompt": "Which collaborators, clients or commissions fit your values, and which would pull the work off course?" },
+        { "phase": 1, "prompt": "How will your values show up in your pricing and terms?" },
+        { "phase": 1, "prompt": "Which partnerships with communities or nonprofits would carry what your work stands for?" },
+        { "phase": 2, "prompt": "Which routine (a pre-release check, a monthly review) will keep new work true to your voice?" },
+        { "phase": 3, "prompt": "How would a collaborator or steward learn to recognize your voice from your records alone?" }
+      ],
+      "guide": [
+        ["A Voice and Values Statement and what you will not trade.", "Pin it where you make the work."],
+        ["The collaborators, commissions and terms that fit your values.", "Write your values into your next quote or agreement."],
+        ["A routine that keeps new work true to your voice.", "Run it before every release."],
+        ["Records a steward could use to recognize your voice.", "Collect five pieces that show the voice best, with a note on each."]
+      ]
+    },
+    "creator-website-blueprint": {
+      "guide": [
+        ["The one sentence, the first visitor and the one action for the site.", "Build the home page around that action."],
+        ["The pages, the Streamlined Loop™ tools and how people pay or contact you.", "Map each page to the tool that builds it."],
+        ["An update loop and the assets you keep current.", "Do the first ten-minute update this week."],
+        ["Owned domain, hosting and code, with logins kept safely.", "Write the rebuild notes and store them with your logins."]
+      ]
+    },
+    "decision-principles-playbook": {
+      "fix": {
+        "n1": "Which of your recurring decisions get made inconsistently today?",
+        "n8": "What is our first decision principle, written as “When …, we choose …”?",
+        "n9": "What is our second decision principle, written the same way?",
+        "n10": "What is our third decision principle?",
+        "n11": "What is our fourth decision principle?",
+        "n12": "What is our fifth decision principle, if we need one?"
+      },
+      "pin": { "n16": 2, "n17": 2, "n18": 2, "n21": 2, "n22": 2 },
+      "add": [
+        { "phase": 1, "prompt": "Which decisions affect people outside the organization (clients, partners, the community or funders), and who speaks for them when we decide?" },
+        { "phase": 3, "prompt": "How will a new leader learn these principles, and from which past decisions?" },
+        { "phase": 3, "prompt": "Which decisions should be kept as precedent so the organization's judgment outlasts the people who made them?" },
+        { "phase": 3, "prompt": "Who will keep the decision record current if the person who writes it today moves on?" }
+      ],
+      "guide": [
+        ["Five decision principles grounded in your values.", "Read them before the next hard decision."],
+        ["Clear decision rights: who decides, who is consulted, who is informed.", "Publish them for your most frequent decision first."],
+        ["A decision record and a review rhythm.", "Review the last month's decisions at one meeting a month."],
+        ["Precedent a new leader can learn from.", "Use three recorded decisions in the next leader's onboarding."]
+      ]
+    },
+    "diagnostic": {
+      "shortPath": ["n1", "n3", "n9", "n11", "n12", "n14", "n17", "n22", "n23", "n25", "n31", "n33", "n36", "n39", "n43", "n44", "n45"],
+      "editions": [
+        {
+          "key": "diagnostic-nonprofit",
+          "title": "The .LLab Leadership Infrastructure Diagnostic™ — Nonprofit Edition",
+          "direction": "Nonprofits",
+          "intro": "The same Diagnostic, in the language of a nonprofit: board, staff, volunteers, donors and the community you serve. It serves the Nonprofits direction of the Omnidirectional Enterprise™.",
+          "replace": [
+            ["leadership team", "board and leadership team"],
+            ["our organization’s", "our nonprofit’s"],
+            ["the organization", "the nonprofit"],
+            ["Our organization", "Our nonprofit"],
+            ["your organization", "your nonprofit"],
+            ["organizational", "mission-wide"],
+            ["People understand", "Staff and volunteers understand"],
+            ["one individual", "one individual, founder or major donor"],
+            ["organizational goals and available resources", "mission goals, funding and volunteer capacity"]
+          ]
+        },
+        {
+          "key": "diagnostic-small-enterprise",
+          "title": "The .LLab Leadership Infrastructure Diagnostic™ — Small Enterprise Edition",
+          "direction": "Enterprises",
+          "intro": "The same Diagnostic, in the language of a small enterprise: an owner, a small team, customers and cash flow. It serves the Enterprises direction of the Omnidirectional Enterprise™.",
+          "replace": [
+            ["leadership team", "owner and leadership team"],
+            ["our organization’s", "our enterprise’s"],
+            ["the organization", "the enterprise"],
+            ["Our organization", "Our enterprise"],
+            ["your organization", "your enterprise"],
+            ["organizational", "enterprise"],
+            ["Leaders understand", "The owner and team leads understand"],
+            ["one individual", "the owner alone"],
+            ["organizational goals and available resources", "enterprise goals, cash flow and team capacity"]
+          ]
+        }
+      ],
+      "guide": [
+        ["Scores for mission, vision, values and identity.", "Share the lowest Foundations score with the leadership team."],
+        ["Scores for decision ownership, accountability and planning.", "Give the weakest practice an owner and a date."],
+        ["Scores for culture, communication and execution.", "Pick one behavior leaders will model, starting this week."],
+        ["Scores for knowledge, succession and legacy.", "Name the knowledge that would be lost first and capture it this quarter."]
+      ]
+    },
+    "event-infrastructure": {
+      "fix": { "n4": "Assign ownership: name one accountable owner for program and content, venue and setup, and audio-visual and technical." },
+      "add": [
+        { "after": "n4", "phase": 1, "prompt": "Name the accountable owners for security and crowd safety, welfare and first aid, registration and admission, vendors and hospitality, and volunteers and staff." }
+      ],
+      "guide": [
+        ["The event's purpose, stakeholders and non-negotiables.", "Brief every owner on them before planning starts."],
+        ["Owners, authority, the financial plan and attendee flow.", "Confirm permits and insurance locally before you sell admission."],
+        ["A run-of-show, a technical test and a safety protocol.", "Walk the run-of-show with every owner once before the day."],
+        ["Results, relationships and a continuity file.", "Write the file within a week, while it is fresh."]
+      ]
+    },
+    "foundations-assessment": {
+      "drop": ["n30", "n31", "n32", "n33", "n34"],
+      "pin": { "n5": 2, "n15": 2, "n16": 2, "n17": 2, "n22": 2, "n25": 2, "n26": 1, "n27": 1, "n28": 3, "n29": 3, "n38": 2, "n39": 1, "n40": 1 },
+      "add": [
+        { "phase": 3, "prompt": "Which part of your foundations would a partner, a nonprofit you support or your local community notice first if it were lost?" }
+      ],
+      "guide": [
+        ["Scores for purpose, identity, values and direction.", "Start with the lowest part, not the easiest."],
+        ["Who keeps the foundations current and how decisions are recorded.", "Name the accountable person this week."],
+        ["How foundations show up in onboarding, hiring, feedback and meetings.", "Add one foundation question to every leadership meeting agenda."],
+        ["Foundations a successor could receive in writing.", "Write them down and test them on someone new."]
+      ]
+    },
+    "foundations-manual": {
+      "fix": {
+        "n3": "What is our purpose, in one sentence?",
+        "n15": "What is our first decision principle, written as “When …, we choose …”?",
+        "n16": "What is our second decision principle, written the same way?",
+        "n17": "What is our third decision principle?"
+      },
+      "pin": { "n20": 2, "n22": 1, "n29": 2, "n30": 1, "n31": 2, "n32": 2, "n33": 1 },
+      "add": [
+        { "phase": 3, "prompt": "Who would receive this charter if the founder or a key leader left tomorrow?" },
+        { "phase": 3, "prompt": "Which partner, nonprofit or community relationships depend on these foundations being kept?" },
+        { "phase": 3, "prompt": "What should a future leader know about why each foundation was chosen?" }
+      ],
+      "guide": [
+        ["A Foundation Charter: purpose, strength, identity, values and principles.", "Read it at the start of the next planning cycle."],
+        ["An owner for the charter and the people who receive it first.", "Name the owner before you file the charter."],
+        ["Foundations used in real decisions and consistent across teams.", "Test one real decision against the charter each month."],
+        ["A charter a successor receives on day one, with the reasons behind it.", "Store it where new leaders start."]
+      ]
+    },
+    "founder": {
+      "add": [
+        { "phase": 1, "prompt": "Which enterprises, nonprofits or communities will your build connect with, and how will value flow between you?" }
+      ],
+      "guide": [
+        ["What you are building and what must never be lost.", "Write it at the top of your build record."],
+        ["What depends on a person and should belong to the build.", "Assign it an owner this month."],
+        ["How what matters becomes part of how you operate.", "Choose the one practice that carries it."],
+        ["What must exist for the build to continue.", "Record it and share it with the people who would carry it."]
+      ]
+    },
+    "friends-family": {
+      "add": [
+        { "phase": 1, "prompt": "Which people, families or local community groups will this build serve or strengthen first?" },
+        { "phase": 3, "prompt": "How could a nonprofit or a volunteer group carry part of this work forward with you?" }
+      ],
+      "guide": [
+        ["What you are building with your community and what must never be lost.", "Say it to the people building with you."],
+        ["What depends on one person and should belong to the group.", "Share that responsibility with a second person."],
+        ["The habit that keeps what matters alive.", "Put it on a shared calendar."],
+        ["What must exist for the work to continue.", "Write it down and keep it where the group can find it."]
+      ]
+    },
+    "premium-friends-family": {
+      "add": [
+        { "phase": 1, "prompt": "Which partners, local communities or nonprofits will your founding help connect, and how?" },
+        { "phase": 2, "prompt": "What capital, time or skills will you contribute each season, and who will you build alongside?" }
+      ],
+      "guide": [
+        ["What you are building and what must never be lost.", "Write it at the top of your build record."],
+        ["The connections your founding makes and what depends on one person.", "Introduce one partner to the build this season."],
+        ["What you contribute each season and how it becomes routine.", "Set the season's contribution on a calendar."],
+        ["What must exist for the build to continue.", "Record it and share it with the people who would carry it."]
+      ]
+    },
+    "leadership-identity-profile": {
+      "drop": ["n1"],
+      "pin": { "n10": 1, "n11": 1, "n12": 1, "n13": 3, "n14": 3, "n15": 3, "n20": 3, "n21": 2 },
+      "add": [
+        { "phase": 1, "prompt": "Which partners, clients or community leaders rely on your leadership directly, and who else should know them?" },
+        { "phase": 2, "prompt": "Which weekly habit shows your team how you lead, without you having to explain it?" },
+        { "phase": 2, "prompt": "How do you ask the people you lead for feedback, and how often?" },
+        { "phase": 3, "prompt": "If a mentee, a successor or a nonprofit you serve studied your leadership, what would you want them to keep?" }
+      ],
+      "guide": [
+        ["A Leadership Identity Statement: how you lead and what you stand for.", "Share it with the people you lead and ask if it is true."],
+        ["What depends on you and could be handed to someone this quarter.", "Hand one thing over and stay available for questions."],
+        ["Habits and feedback that show your leadership without you.", "Ask for feedback once a month on the same question."],
+        ["The legacy you want your leadership to leave, and who carries it.", "Tell the likely successor what they would need from you."]
+      ]
+    },
+    "legacy-architecture": {
+      "add": [
+        { "phase": 1, "prompt": "Which partners, communities or nonprofits does the organization's legacy depend on, and who owns each relationship?" }
+      ],
+      "guide": [
+        ["What is already in place in your foundations and what must never be lost.", "Protect it in the next planning cycle."],
+        ["What depends on a person and needs to become part of the organization.", "Move the highest-risk dependency first."],
+        ["How what matters becomes part of how you operate.", "Choose the practice and its owner."],
+        ["The infrastructure that must exist for the work to continue.", "Build the first missing piece this quarter."]
+      ]
+    },
+    "legacy-foundations-framework": {
+      "fix": {
+        "n2": "Who do we exist to serve, and what do they count on us for?",
+        "n6": "What are our non-negotiables: the commitments we keep even when they cost us?",
+        "n11": "What is our strongest foundation today, and where can people see it?",
+        "n12": "Where is our greatest exposure: the foundation most likely to be lost in a transition?",
+        "n16": "What is our legacy statement, in two sentences a successor could repeat?"
+      },
+      "pin": { "n9": 1, "n10": 3, "n12": 3 },
+      "add": [
+        { "phase": 1, "prompt": "Which founding decisions should be written into roles so the vision does not depend on the founder?" },
+        { "phase": 1, "prompt": "Which customers, partners or community relationships were built on the founding vision, and who carries each now?" },
+        { "phase": 2, "prompt": "Which ritual or meeting retells the founding story to new people?" },
+        { "phase": 2, "prompt": "How does each core value show up in hiring, onboarding and feedback?" },
+        { "phase": 2, "prompt": "How do leaders hear from the team when a value is slipping?" },
+        { "phase": 3, "prompt": "Where is the founding vision written down, and who has the authority to change it?" }
+      ],
+      "guide": [
+        ["The founding vision, values, leadership identity and legacy definition.", "Read the legacy statement at the next all-hands."],
+        ["Founding decisions and relationships moved into roles.", "Name who carries each founding relationship now."],
+        ["Rituals and practices that keep the founding story alive.", "Add the founding story to onboarding."],
+        ["A written founding vision with clear authority over changes.", "Store it with the governing documents."]
+      ]
+    },
+    "legacy-infrastructure-plan": {
+      "fix": {
+        "n2": "What will we stop doing so the legacy priorities get our time?",
+        "n7": "Where do things break down between priorities, values and teams?"
+      },
+      "add": [
+        { "phase": 0, "prompt": "What is the legacy this plan protects, in one sentence?" },
+        { "phase": 0, "prompt": "Which values are non-negotiable as we plan the next twelve months?" },
+        { "phase": 0, "prompt": "Who do we serve (customers, community, partners), and what must they still receive in five years?" },
+        { "phase": 2, "prompt": "Which monthly or quarterly rhythm will review this plan, and who attends?" },
+        { "phase": 2, "prompt": "How will owners report progress on their quarter, and where is it recorded?" },
+        { "phase": 2, "prompt": "Which tools or dashboards will show the team the plan is on track?" },
+        { "phase": 3, "prompt": "For each single-person dependency, what will be documented first?" },
+        { "phase": 3, "prompt": "Which relationships with funders, nonprofits or the community must be handed on with care?" },
+        { "phase": 3, "prompt": "What will we review at the end of the twelve months to decide what becomes permanent?" }
+      ],
+      "guide": [
+        ["The legacy the plan protects and the values it will not trade.", "Open the plan with them."],
+        ["Ranked priorities, decision rights, owners and a 12-month plan.", "Confirm every owner and backup in writing."],
+        ["A review rhythm and visible progress.", "Hold the first quarterly review on a fixed date."],
+        ["Documented dependencies and relationships handed on with care.", "Document the highest-risk dependency first."]
+      ]
+    },
+    "legacy-map": {
+      "fix": {
+        "n6": "What is our mission, in one sentence?",
+        "n7": "What is our vision?",
+        "n8": "Which values must never be lost?",
+        "n9": "Which leadership principles guide us?",
+        "n10": "What is our legacy foundation, in one sentence?",
+        "n12": "Which important knowledge must become organizational?",
+        "n13": "Which critical decisions need a written owner?",
+        "n14": "Which key responsibilities need a named backup?",
+        "n15": "Which important relationships (clients, partners, community) must not depend on one person?",
+        "n21": "Which operating practices create the most value?",
+        "n24": "Which knowledge must continue?",
+        "n25": "Which parts of our culture must continue?",
+        "n26": "Which leadership practices must continue?",
+        "n27": "Which processes must continue?",
+        "n28": "Which parts of our history should every new person know?"
+      },
+      "add": [
+        { "phase": 0, "prompt": "Who outside the organization (customers, partners, the community) should recognize our legacy foundation?" },
+        { "phase": 2, "prompt": "Which meeting or ritual keeps the legacy visible in everyday work?" },
+        { "phase": 2, "prompt": "Which tools or records will hold these practices so they are used, not filed?" }
+      ],
+      "shortPath": ["n1", "n2", "n4", "n5", "n10", "n11", "n16", "n17", "n22", "n23", "n29", "n30", "n33", "n35", "n37", "n38", "n39", "n40", "n42", "n43"],
+      "guide": [
+        ["A legacy foundation: mission, vision, values and principles.", "Open the next leadership offsite with it."],
+        ["Knowledge, decisions, responsibilities and relationships made organizational.", "Give each a written owner and a backup."],
+        ["Daily behaviors and practices that carry the legacy.", "Put one practice into a standing meeting."],
+        ["A Legacy Infrastructure Statement and the people who carry it.", "Run the Legacy Test once a year."]
+      ]
+    },
+    "legacy-operating-systems-manual": {
+      "fix": { "n2": "What is the one legacy question every rhythm asks?" },
+      "pin": { "n3": 1, "n4": 1, "n5": 1, "n10": 3 },
+      "add": [
+        { "phase": 0, "prompt": "Which founding value should every operating rhythm protect?" },
+        { "phase": 0, "prompt": "What is each department for, and which customers, partners or communities does it serve?" },
+        { "phase": 0, "prompt": "Which standard do we hold even when it slows us down?" },
+        { "phase": 3, "prompt": "Which operating practices are documented well enough that a new leader could run them for a quarter?" },
+        { "phase": 3, "prompt": "How will this manual be reviewed each year, and who may change it?" }
+      ],
+      "guide": [
+        ["The values and standards every system protects.", "Print the standard at the top of the manual."],
+        ["Decision records and commitments with owners and cadences.", "Start the decision record this week."],
+        ["Rhythms, culture practices, department systems and onboarding.", "Run each rhythm once as written before changing it."],
+        ["A manual a new leader could run, with a yearly review.", "Have someone new run one rhythm from the manual alone."]
+      ]
+    },
+    "legacy-preservation-vault": {
+      "pin": { "n1": 0, "n2": 0, "n3": 0, "n4": 1, "n5": 1, "n6": 1, "n13": 1, "n7": 2, "n8": 2, "n12": 2 },
+      "add": [
+        { "phase": 2, "prompt": "How often will the stewards meet to check the vault against how the enterprise actually operates?" }
+      ],
+      "guide": [
+        ["The purpose, values and protected commitments of the enterprise.", "Have the founder sign Article I."],
+        ["Stakeholders, stewardship seats, authority and amendment rules.", "Appoint the first stewards in writing."],
+        ["Value flows, profit priorities and a review calendar.", "Hold the first review in the month named."],
+        ["Succession, sale protections and a letter to the next leader.", "Seal the letter and record where it is kept."]
+      ]
+    },
+    "legacy-profile": {
+      "fix": {
+        "n7": "Which leadership strength are you turning into infrastructure?",
+        "n8": "What principle sits behind that strength?",
+        "n9": "What behavior shows that strength in action?"
+      },
+      "pin": { "n11": 3 },
+      "add": [
+        { "phase": 1, "prompt": "Who could own part of this strength so it does not rest on you alone?" },
+        { "phase": 1, "prompt": "Which decisions or responsibilities should move from you to a role, and when?" }
+      ],
+      "guide": [
+        ["Your strongest leadership quality and the principle behind it.", "Name it to your team and ask where they see it."],
+        ["A structure and an owner that help it continue.", "Move one responsibility to a role this quarter."],
+        ["How it shows up in everyday operations.", "Put the behavior into one standing practice."],
+        ["A Legacy Statement and the people who carry it forward.", "Answer the Legacy Test again in six months."]
+      ]
+    },
+    "operating-system": {
+      "fix": {
+        "n2": "What is the leadership principle we operate by?",
+        "n3": "What behavior demonstrates that principle?",
+        "n4": "How do we reinforce it each week?",
+        "n6": "What is our top priority this quarter?",
+        "n7": "Who owns that priority?",
+        "n8": "What outcome do we expect, and by when?",
+        "n9": "How, and how often, will we review progress?",
+        "n11": "Which operating strength do we want to reinforce?",
+        "n12": "What behavior do we expect from everyone?",
+        "n13": "Which system or tool supports that behavior?",
+        "n14": "How will we measure it?",
+        "n16": "What must continue no matter who leads?",
+        "n17": "Who needs to know it, inside and outside the organization?",
+        "n18": "How will we preserve it in writing?",
+        "n19": "How will we transfer it to the next leader?"
+      },
+      "guide": [
+        ["A leadership principle and the behavior that shows it.", "Reinforce it in every weekly meeting."],
+        ["A priority with an owner, an outcome and a review process.", "Hold the first review on the date set."],
+        ["Reinforced behavior, a supporting system and a measure.", "Report the measure monthly."],
+        ["What must continue, who knows it and how it transfers.", "Walk the next leader through it this year."]
+      ]
+    },
+    "strength-map": {
+      "pin": { "n14": 2, "n15": 1, "n16": 1, "n20": 1, "n21": 3 },
+      "add": [
+        { "phase": 2, "prompt": "Which weekly practice or meeting will put this strength to work where others can see it?" },
+        { "phase": 3, "prompt": "Who will you teach this strength to this quarter, and where will the record of it live?" }
+      ],
+      "guide": [
+        ["A named strength and what gives it direction.", "Build the next plan from it, not around it."],
+        ["The responsibility, process and accountability that organize it.", "Name who owns the strength."],
+        ["Behaviors and practices that reinforce it every week.", "Make it visible in one weekly meeting."],
+        ["What must be documented, shared or developed so it continues.", "Document it and teach it to one person this quarter."]
+      ]
+    },
+    "values-charter": {
+      "fix": {
+        "n3": "What is our mission, in one sentence?",
+        "n6": "What is our vision, in one sentence?",
+        "n8": "What is our first value, named in a word or two and explained in a sentence?",
+        "n9": "What is our second value, named and explained?",
+        "n10": "What is our third value, named and explained?",
+        "n11": "What is our fourth value, if we need one?"
+      },
+      "pin": { "n14": 1, "n20": 1, "n19": 2, "n21": 2, "n22": 2 },
+      "add": [
+        { "phase": 1, "prompt": "Which clients, partners or community members should see the charter, and what will they hold us to?" },
+        { "phase": 3, "prompt": "Where will the charter be stored so a successor finds it on their first day?" },
+        { "phase": 3, "prompt": "Which values must survive a change of founder or owner, and how will we record the stories that show them?" },
+        { "phase": 3, "prompt": "Which nonprofits or community partners share these values, and how could we carry them forward together?" }
+      ],
+      "guide": [
+        ["A Mission and Values Charter with behaviors for each value.", "Read it at the start of the next team meeting."],
+        ["Who sees the charter and which decisions it checks.", "Test the next big decision against it."],
+        ["Values used in hiring, onboarding, feedback and meetings.", "Add one value to every performance conversation."],
+        ["A charter a successor finds on day one, with the stories behind it.", "Record one story for each value this quarter."]
+      ]
+    },
+    "free-30-day-infrastructure-starter": {
+      "add": [
+        { "phase": 0, "prompt": "Which priority or value is this 30-day plan serving?" },
+        { "phase": 3, "prompt": "What will you write down at day 30 so the change outlasts the month?" }
+      ],
+      "guide": [
+        ["The priority the 30 days serve.", "Say it to one person before day 1."],
+        ["A 30-day plan with an owner for each week.", "Check it every Friday."],
+        ["One practice repeated for the month.", "Track it on a calendar."],
+        ["A day-30 record of what changed.", "Keep it where you plan the next month."]
+      ]
+    },
+    "free-accountability-gaps-checklist": {
+      "add": [
+        { "phase": 2, "prompt": "Which weekly check-in would close the biggest gap you found?" },
+        { "phase": 3, "prompt": "Which commitment would be lost if its owner left, and who is their backup?" }
+      ],
+      "guide": [
+        ["The value accountability protects in your organization.", "Name it when you assign the next owner."],
+        ["A list of accountability gaps to close.", "Give the biggest gap an owner this week."],
+        ["A check-in that keeps commitments visible.", "Hold it at the same time each week."],
+        ["Backups for the commitments that matter most.", "Name one backup this month."]
+      ]
+    },
+    "free-alignment-quick-check": {
+      "add": [
+        { "phase": 2, "prompt": "Which meeting or habit will keep leaders aligned week to week?" },
+        { "phase": 3, "prompt": "What will you write down so alignment survives a change of leaders?" }
+      ],
+      "guide": [
+        ["A score for how aligned your leaders are.", "Share the lowest score with the team."],
+        ["The alignment gap to plan around first.", "Give it an owner."],
+        ["A weekly habit that keeps leaders aligned.", "Start it at the next meeting."],
+        ["An alignment record a new leader could read.", "Write the first paragraph this week."]
+      ]
+    },
+    "free-clarity-direction-worksheet": {
+      "add": [
+        { "phase": 2, "prompt": "Which weekly habit will keep this direction in front of the people doing the work?" },
+        { "phase": 3, "prompt": "Who should hold this direction if you stepped away, and what would they need from you?" }
+      ],
+      "guide": [
+        ["A clear statement of direction.", "Say it in one sentence to the team."],
+        ["The first priority that follows from it.", "Give it an owner and a date."],
+        ["A weekly habit that keeps direction visible.", "Use it for four weeks."],
+        ["A direction someone else could hold.", "Write it down and share it."]
+      ]
+    },
+    "free-continuity-quick-check": {
+      "add": [
+        { "phase": 0, "prompt": "What is the one thing your organization exists to keep doing, even without you?" }
+      ],
+      "guide": [
+        ["What the organization exists to keep doing.", "Write it at the top of your continuity notes."],
+        ["The dependency to remove first.", "Name who takes it over."],
+        ["Delegation that runs without you.", "Step back from one task for a week and watch."],
+        ["Documentation for a 30-day absence.", "Test it: could your team run 30 days from it?"]
+      ]
+    },
+    "free-culture-practice-audit": {
+      "add": [
+        { "phase": 3, "prompt": "Which cultural practice would disappear first if its champion left, and how will you record it?" }
+      ],
+      "guide": [
+        ["The values your culture should show.", "Name the value behind each practice."],
+        ["Owners for the practices that matter.", "Give each missing practice an owner."],
+        ["Practices that happen on a rhythm.", "Put the first one on the calendar."],
+        ["A record of practices that would outlast their champions.", "Write down the most fragile one first."]
+      ]
+    },
+    "free-foundation-strength-snapshot": {
+      "add": [
+        { "phase": 2, "prompt": "Which meeting or routine will put your strongest foundation to work every week?" },
+        { "phase": 3, "prompt": "How will you write that foundation down so a new leader inherits it?" }
+      ],
+      "guide": [
+        ["A score for how strong your foundations are.", "Start with your lowest dimension."],
+        ["The foundation to organize around.", "Name who keeps it current."],
+        ["A routine that uses the strongest foundation weekly.", "Start it this week."],
+        ["A written foundation a new leader inherits.", "Write one paragraph and file it."]
+      ]
+    },
+    "free-knowledge-transfer-checklist": {
+      "add": [
+        { "phase": 0, "prompt": "Which knowledge matters most to your mission, and why?" }
+      ],
+      "guide": [
+        ["The knowledge that matters most to the mission.", "Rank the top three."],
+        ["Owners and backups for critical knowledge.", "Name a backup for the top item."],
+        ["Knowledge captured as part of normal work.", "Add a five-minute capture to one weekly meeting."],
+        ["Knowledge someone else could use tomorrow.", "Test one document with a colleague."]
+      ]
+    },
+    "free-leadership-foundations-checklist": {
+      "add": [
+        { "phase": 3, "prompt": "Which foundation would a successor need written down first?" }
+      ],
+      "guide": [
+        ["A check of which foundations are in place.", "Celebrate what is true; list what is not."],
+        ["Owners for the missing foundations.", "Assign the first one this week."],
+        ["Foundations used in daily leadership.", "Use one in the next decision."],
+        ["Foundations written down for a successor.", "Write the first one down."]
+      ]
+    },
+    "free-leadership-influence-worksheet": {
+      "add": [
+        { "phase": 0, "prompt": "What do you want your influence to stand for?" },
+        { "phase": 1, "prompt": "Whose decisions do you influence most, and who else should share that responsibility?" },
+        { "phase": 3, "prompt": "What would the people you influence keep doing if you moved on?" }
+      ],
+      "guide": [
+        ["What your influence stands for.", "Write it in one sentence."],
+        ["Where your influence should become someone's responsibility.", "Share one responsibility this month."],
+        ["Daily habits that carry your influence.", "Keep one habit for 30 days."],
+        ["Influence that continues when you move on.", "Teach one practice to someone else."]
+      ]
+    },
+    "free-legacy-infrastructure-snapshot": {
+      "add": [
+        { "phase": 0, "prompt": "What do you most want to remain because you built it?" },
+        { "phase": 1, "prompt": "Who owns the part of your legacy that is most at risk?" }
+      ],
+      "guide": [
+        ["What you want to remain because you built it.", "Write it in one sentence."],
+        ["An owner for the legacy most at risk.", "Name them this week."],
+        ["Systems that carry the legacy day to day.", "Strengthen your lowest-scoring system first."],
+        ["A legacy that continues without you.", "Start the Legacy Infrastructure Map™ when you are ready to go deeper."]
+      ]
+    },
+    "free-legacy-starter-worksheet": {
+      "add": [
+        { "phase": 0, "prompt": "What value is at the heart of the legacy you want to leave?" },
+        { "phase": 1, "prompt": "Who needs to share responsibility for that legacy now, not later?" },
+        { "phase": 2, "prompt": "Which weekly practice would make that legacy part of how you operate?" }
+      ],
+      "guide": [
+        ["The value at the heart of your legacy.", "Say it to the people who would carry it."],
+        ["Who shares responsibility for the legacy now.", "Invite one person to share it."],
+        ["A weekly practice that carries it.", "Start it next week."],
+        ["A first legacy record.", "Keep it where you will see it."]
+      ]
+    },
+    "free-mission-to-action-worksheet": {
+      "add": [
+        { "phase": 2, "prompt": "Which weekly routine will turn the mission into the actions you listed?" },
+        { "phase": 3, "prompt": "Who would keep these actions going if you were not there?" }
+      ],
+      "guide": [
+        ["The mission in plain words.", "Read it before planning the week."],
+        ["Actions with owners that follow from the mission.", "Assign the first one today."],
+        ["A routine that turns mission into action.", "Run it weekly for a month."],
+        ["Actions that continue without you.", "Name who carries each one."]
+      ]
+    },
+    "free-one-strength-starter": {
+      "add": [
+        { "phase": 1, "prompt": "Who could own this strength alongside you?" },
+        { "phase": 2, "prompt": "Where will this strength show up every week?" },
+        { "phase": 3, "prompt": "How will you write this strength down so it outlasts you?" }
+      ],
+      "guide": [
+        ["One named strength.", "Build your next decision from it."],
+        ["A second person who owns it with you.", "Ask them this week."],
+        ["A weekly place where the strength shows up.", "Put it on the calendar."],
+        ["The strength written down.", "Keep it with your leadership notes."]
+      ]
+    },
+    "free-operating-rhythm-checklist": {
+      "add": [
+        { "phase": 0, "prompt": "Which value should your operating rhythm protect?" }
+      ],
+      "guide": [
+        ["The value your rhythm protects.", "Name it at the start of each meeting."],
+        ["Owners for each part of the rhythm.", "Fill the missing owners first."],
+        ["A rhythm that runs on schedule.", "Keep it for four weeks without skipping."],
+        ["A rhythm someone else could run.", "Hand one meeting to a colleague."]
+      ]
+    },
+    "free-systems-health-snapshot": {
+      "add": [
+        { "phase": 1, "prompt": "Who owns the weakest system you scored, and who is their backup?" },
+        { "phase": 3, "prompt": "Which system would fail first if its owner left, and what would keep it running?" }
+      ],
+      "guide": [
+        ["The purpose your systems serve.", "Say why each system exists."],
+        ["An owner and backup for the weakest system.", "Name both this week."],
+        ["Healthier systems that run every week.", "Fix one weakness this month."],
+        ["Systems that survive a change of owner.", "Document the most fragile system first."]
+      ]
+    },
+    "free-succession": {
+      "guide": [
+        ["What must stay true when leadership changes.", "Write it in one sentence and share it with your leadership team."],
+        ["Named successors and backups for each critical role.", "Confirm each one in a conversation, not only on paper."],
+        ["A handover rhythm: shadowing, shared decisions and practice runs.", "Let a successor run one decision cycle this quarter."],
+        ["A succession record kept where the next leader will look.", "Review it every year and whenever a key person changes role."]
+      ]
+    }
+  }
+}

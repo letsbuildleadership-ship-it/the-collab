@@ -40,7 +40,7 @@
 <div id="app">
   <p class="eyebrow">The Co.LLab™ Admin</p>
   <h1 class="headline" style="margin-top:1rem;">IP Review</h1>
-  <p class="subhead" style="margin-top:0.75rem;">Where ideas for improving the IP and supporting the Omnidirectional Enterprise™ ecosystem are kept until you decide on them. Every item stays marked <span class="badge new">new</span> and is listed in a weekly email until you mark it considering, planned, done or declined (with a note on why).</p>
+  <p class="subhead" style="margin-top:0.75rem;">Ideas for improving the IP and supporting the Omnidirectional Enterprise™ ecosystem, and what members tell you. There is no approval queue: ideas and feedback are approved automatically as <span class="badge">planned</span>, and recorded <span class="badge">done</span> once implemented and verified. The weekly email reports progress and lists only genuine founder decisions (legal, financial, security or material business). You can override any item; closing feedback as done with a public note adds that note (never the member or their words) to the public <a href="/pages/changelog.html" style="text-decoration:underline;">What Changed</a> page.</p>
   <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
   <p><a class="pill mini" href="customers.html">Customers</a> <a class="pill mini" href="collaborating-companies.html">The .LLab Collaborating Companies review</a> <a class="pill mini" href="ip-analysis.html">IP analysis</a></p>
 
@@ -53,6 +53,14 @@
 
   <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">Ideas for the IP and the ecosystem</h2>
   <div id="backlog"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">Commitments members keep</h2>
+  <p class="why">Anonymous counts from the 30, 90 and 365-day check-ins: which IP's commitments are kept. No names, no words.</p>
+  <div id="checkin-insights"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">Audit trail</h2>
+  <p class="why">Every change of status, automatic or yours, newest first. Nothing here is ever overwritten.</p>
+  <div id="trail"></div>
 </div>
 
 <script>
@@ -75,24 +83,27 @@
     const sel = el('select');
     STATUSES.forEach((s) => { const o = el('option', null, s); o.value = s; if (s === item.status) o.selected = true; sel.appendChild(o); });
     const note = el('textarea'); note.placeholder = 'Note (required if declined)'; note.value = item.note || '';
+    const pub = el('textarea'); pub.placeholder = 'Public note for What Changed (feedback marked done only; never names the member)';
     const save = el('button', 'pill mini', 'Save decision'); save.type = 'button';
     const msg = el('span', 'meta');
     save.addEventListener('click', async () => {
       msg.textContent = 'Saving…';
       try {
-        const r = await api('POST', { kind, id: item.id, status: sel.value, note: note.value });
+        const r = await api('POST', { kind, id: item.id, status: sel.value, note: note.value, publicNote: kind === 'feedback' ? pub.value : undefined });
         msg.textContent = r.error ? r.error : 'Saved';
         if (!r.error) load();
       } catch (e) { msg.textContent = 'Failed'; }
     });
-    box.append(sel, note, save, msg);
+    box.append(sel, note);
+    if (kind === 'feedback') box.append(pub);
+    box.append(save, msg);
     return box;
   }
 
   function badge(status) { return el('span', 'badge ' + (status === 'new' ? 'new' : ''), status); }
 
   function render(d) {
-    $('awaiting').textContent = d.awaiting ? d.awaiting + ' item' + (d.awaiting === 1 ? '' : 's') + ' awaiting your decision.' : 'Nothing is waiting. Every item has a decision.';
+    $('awaiting').textContent = (d.awaiting ? d.awaiting + ' founder decision' + (d.awaiting === 1 ? '' : 's') + ' needed. ' : 'No founder decisions needed. ') + d.done + ' of ' + d.backlog.length + ' ideas done; ' + d.inProgress + ' item' + (d.inProgress === 1 ? '' : 's') + ' in progress.';
 
     const fb = $('feedback'); fb.textContent = '';
     if (!d.feedback.length) fb.appendChild(el('p', 'why', 'No member feedback yet. It appears here (and by email) when members use the form at the end of a quest.'));
@@ -121,7 +132,8 @@
       const row = el('div', 'row' + (b.status === 'new' ? ' is-new' : ''));
       const h = el('h3', null, b.title + ' '); h.appendChild(badge(b.status));
       row.appendChild(h);
-      row.appendChild(el('div', 'meta', b.area + ' · ' + b.phase));
+      row.appendChild(el('div', 'meta', b.area + ' · ' + b.phase + (b.by ? ' · ' + (b.by === 'owner' ? 'your decision' : 'automatic') : '')));
+      if (b.note) row.appendChild(el('p', 'why', b.note));
       row.appendChild(el('p', 'why', b.why));
       const first = el('p', 'why'); first.appendChild(el('strong', null, 'First step: ')); first.appendChild(document.createTextNode(b.firstStep)); row.appendChild(first);
       row.appendChild(decideRow('backlog', b));
@@ -129,7 +141,17 @@
     });
   }
 
-  async function load() { render(await api('GET')); }
+  function renderExtra(d) {
+    const ci = $('checkin-insights'); ci.textContent = '';
+    const rows = (d.insights && d.insights.checkins) || [];
+    if (!rows.length) ci.appendChild(el('p', 'why', 'No check-in answers yet. They arrive 30 days after members finish a quest.'));
+    rows.forEach((r) => ci.appendChild(el('p', 'meta', r.title + ': ' + r.replies + ' answers · ' + r.kept + ' kept · ' + r.inProgress + ' in progress · ' + r.changed + ' changed · ' + r.notYet + ' not yet')));
+    const tr = $('trail'); tr.textContent = '';
+    (d.trail || []).forEach((t) => tr.appendChild(el('p', 'insight', String(t.at).slice(0, 16).replace('T', ' ') + ' · ' + t.collection + ' · ' + t.id + ': ' + t.from + ' → ' + t.to + ' (' + (t.by === 'owner' ? 'you' : t.by) + ')' + (t.note ? ' · ' + t.note : ''))));
+    if (!(d.trail || []).length) tr.appendChild(el('p', 'why', 'No changes recorded yet.'));
+  }
+
+  async function load() { const d = await api('GET'); render(d); renderExtra(d); }
 
   $('gate-form').addEventListener('submit', async (e) => {
     e.preventDefault();

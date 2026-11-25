@@ -9,6 +9,7 @@ const { isConfigured: emailConfigured } = require('./mailer');
 const questLib = require('./quests');
 const freeTools = require('../../../content/free-tools.json').tools;
 const { rewardsStatus } = require('./membership-rewards');
+const memberIp = require('./member-ip');
 
 function buildAccountView(record, now) {
   // Expiry-aware: a lapsed Partnership membership term drops out here.
@@ -120,6 +121,12 @@ function buildAccountView(record, now) {
     openQuests: [...questLib.quests.values()].filter((q) => q.open).map((q) => ({ key: q.key, name: q.title, phase: q.phase, description: q.intro })),
     questKeys: [...questLib.quests.keys()],
     quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
+    // Industry editions of a product's quest (e.g. the Diagnostic's Nonprofit edition), unlocked with it.
+    questEditions: [...questLib.quests.values()].filter((q) => q.editionOf).map((q) => ({ key: q.key, of: q.editionOf, name: q.title, direction: q.direction || null })),
+    // Across all finished quests: The IV Phases™ readiness, and commitment check-ins (private to the member).
+    phaseReadiness: memberIp.phaseReadiness(record),
+    checkins: memberIp.checkinView(record, now ? new Date(now).getTime() : Date.now()),
+    hasLegacyStatement: !!(record.legacyStatement && (record.legacyStatement.phases || []).some(Boolean)),
     // Shown while Membership isn't active: what it includes and how to join.
     membershipOffer:
       !membershipActive && membershipEntry

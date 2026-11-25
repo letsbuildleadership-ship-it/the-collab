@@ -8,8 +8,10 @@ const MUTED = rgb(0.32, 0.36, 0.33);
 const W = 612;
 const H = 792;
 const M = 54;
+const PHASE_NAMES = ['I · Foundations', 'II · Infrastructure Planning & Management', 'III · Internal Operating Systems', 'IV · Preservation'];
 
-async function buildQuestPdf({ quest, record, result }) {
+// A writer over a fresh PDF: page header, wrapped paragraphs and section headings.
+async function writer() {
   const pdf = await PDFDocument.create();
   const font = await pdf.embedFont(StandardFonts.Helvetica);
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
@@ -52,6 +54,18 @@ async function buildQuestPdf({ quest, record, result }) {
     y -= 18;
     para(text.toUpperCase(), { f: bold, size: 10, color: ORANGE, gap: 4 });
   };
+  const footer = () => {
+    need(40);
+    y -= 6;
+    para('Build the infrastructure. Strengthen the practice. Create the legacy.', { f: bold, size: 9.5, color: MUTED, gap: 2 });
+    para('© The Co.LLab™: Building Leadership Infrastructure. For your personal or organizational use under The Co.LLab IP™ License.', { size: 8.5, color: MUTED });
+  };
+  const space = (h) => { y -= h; };
+  return { pdf, font, bold, para, heading, footer, space };
+}
+
+async function buildQuestPdf({ quest, record, result }) {
+  const { pdf, bold, para, heading, footer, space } = await writer();
 
   para(quest.phase || 'The IV Phases', { f: bold, size: 9.5, color: ORANGE, gap: 14 });
   para(`${quest.title} — Infrastructure Analysis™`, { f: bold, size: 20, gap: 8 });
@@ -71,7 +85,7 @@ async function buildQuestPdf({ quest, record, result }) {
     for (const ph of result.outcome.phaseMap || []) {
       para(`${ph.name}: ${ph.total ? `${ph.answered} of ${ph.total} answered, ` : ''}${ph.strengths} strong, ${ph.gaps} to build, ${ph.mentions} mention${ph.mentions === 1 ? '' : 's'} in your words`, { size: 9.5, color: MUTED, gap: 2 });
     }
-    y -= 6;
+    space(6);
   }
 
   if (result.outcome.omni) {
@@ -90,6 +104,12 @@ async function buildQuestPdf({ quest, record, result }) {
     para(node.label ? `${node.label}: ${node.prompt}` : node.prompt, { f: bold, size: 10, gap: 1 });
     para(shown, { indent: 12, gap: result.notes && result.notes[node.id] ? 2 : 6 });
     if (result.notes && result.notes[node.id]) para(`Your note: ${result.notes[node.id]}`, { indent: 12, size: 9.5, color: MUTED, gap: 6 });
+  }
+  for (const node of quest.extend || []) {
+    const a = result.answers[node.id];
+    if (!a) continue;
+    para(`${node.label}: ${node.prompt}`, { f: bold, size: 10, gap: 1 });
+    para(String(a), { indent: 12, gap: 6 });
   }
   if (result.answers.omni) {
     para('Beyond your own walls', { f: bold, size: 10, gap: 1 });
@@ -114,17 +134,39 @@ async function buildQuestPdf({ quest, record, result }) {
     para(s.text, { indent: 12, gap: 6 });
   }
 
+  if (quest.guide) {
+    heading('Your IV Phases™ build guide');
+    PHASE_NAMES.forEach((name, i) => {
+      if (!quest.guide[i]) return;
+      para(name, { f: bold, size: 10, gap: 1 });
+      para(`Deliverable: ${quest.guide[i][0]}`, { indent: 12, gap: 1 });
+      para(`Put it to work: ${quest.guide[i][1]}`, { indent: 12, size: 9.5, color: MUTED, gap: 6 });
+    });
+  }
+
   if (result.outcome.nextMove) {
     heading('A next move');
     para(result.outcome.nextMove);
   }
 
-  need(40);
-  y -= 6;
-  para('Build the infrastructure. Strengthen the practice. Create the legacy.', { f: bold, size: 9.5, color: MUTED, gap: 2 });
-  para('© The Co.LLab™: Building Leadership Infrastructure. For your personal or organizational use under The Co.LLab IP™ License.', { size: 8.5, color: MUTED });
-
+  footer();
   return Buffer.from(await pdf.save());
 }
 
-module.exports = { buildQuestPdf };
+/** The member's Legacy Statement: their own words across The IV Phases™. */
+async function buildLegacyPdf({ record, statement }) {
+  const { pdf, bold, para, heading, footer } = await writer();
+  para('The IV Phases™', { f: bold, size: 9.5, color: ORANGE, gap: 14 });
+  para(statement.title || 'My Legacy Statement', { f: bold, size: 20, gap: 8 });
+  para(`${record.name || record.email}${statement.updatedAt ? ` · ${String(statement.updatedAt).slice(0, 10)}` : ''}`, { size: 10, color: MUTED, gap: 12 });
+  PHASE_NAMES.forEach((name, i) => {
+    if (!statement.phases[i]) return;
+    heading(name);
+    para(statement.phases[i]);
+  });
+  if (statement.closing) { heading('What I am building to last'); para(statement.closing); }
+  footer();
+  return Buffer.from(await pdf.save());
+}
+
+module.exports = { buildQuestPdf, buildLegacyPdf };

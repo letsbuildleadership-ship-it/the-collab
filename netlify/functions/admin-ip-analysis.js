@@ -8,6 +8,7 @@ const { json } = require('./lib/http');
 const { quests } = require('./lib/quests');
 const { catalog, portfolio } = require('./lib/ip-audit');
 const { computeInsights } = require('./lib/ip-insights');
+const autopilot = require('./lib/ip-autopilot');
 
 const STATUSES = ['new', 'considering', 'planned', 'done', 'declined'];
 const SEVERITY = { high: 0, medium: 1, low: 2 };
@@ -38,11 +39,16 @@ async function analyze() {
       evidence: list.filter((f) => f.unclear).slice(0, 2).map((f) => f.unclear.slice(0, 120)).join(' | '),
     })),
   ];
-  const byId = new Map(statuses.map((s) => [s.id, s]));
-  const withStatus = recs.map((r) => ({ ...r, status: (byId.get(r.id) || {}).status || 'new', note: (byId.get(r.id) || {}).note || null, decidedAt: (byId.get(r.id) || {}).decidedAt || null }));
-  withStatus.sort((a, b) => (a.status === 'new' ? 0 : 1) - (b.status === 'new' ? 0 : 1) || SEVERITY[a.severity] - SEVERITY[b.severity]);
+  // No approval queue: every current recommendation is approved as planned; any stored one the
+  // audit no longer finds (or that a release records as implemented) is verified done.
+  const current = new Set(recs.map((r) => r.id));
+  const resolvedIds = [...new Set([...statuses.map((s) => s.id), ...autopilot.releasedIds(/^(content|portfolio|usage|feedback)-/)])].filter((id) => !current.has(id));
+  const byId = await autopilot.reconcile('ip-reco-status', recs, { resolvedIds });
+  const withStatus = recs.map((r) => { const s = byId.get(r.id) || {}; return { ...r, status: s.status || 'planned', note: s.note || null, decidedAt: s.decidedAt || null, by: s.by || null }; });
+  withStatus.sort((a, b) => (autopilot.OPEN.includes(a.status) ? 0 : 1) - (autopilot.OPEN.includes(b.status) ? 0 : 1) || SEVERITY[a.severity] - SEVERITY[b.severity]);
+  const resolved = [...byId.values()].filter((s) => s && s.status === 'done' && !current.has(s.id)).sort((a, b) => String(b.decidedAt).localeCompare(String(a.decidedAt)));
 
-  return { generatedAt: new Date().toISOString(), catalog: items, portfolio: { matrix: port.matrix, freeByPhase: port.freeByPhase, phaseTotals: port.phaseTotals, oe: port.oe }, recommendations: withStatus, insights: { note: insights.note, enoughData: insights.enoughData, sampleSize: insights.sampleSize, completedQuests: insights.completedQuests, phaseGaps: insights.phaseGaps }, awaiting: withStatus.filter((r) => r.status === 'new').length };
+  return { generatedAt: new Date().toISOString(), catalog: items, portfolio: { matrix: port.matrix, freeByPhase: port.freeByPhase, phaseTotals: port.phaseTotals, oe: port.oe }, recommendations: withStatus, resolved, insights: { note: insights.note, enoughData: insights.enoughData, sampleSize: insights.sampleSize, completedQuests: insights.completedQuests, phaseGaps: insights.phaseGaps }, awaiting: 0, inProgress: withStatus.filter((r) => autopilot.OPEN.includes(r.status)).length };
 }
 
 exports.analyze = analyze;
@@ -66,6 +72,7 @@ exports.handler = async (event) => {
   if (!id) return json(400, { error: 'Missing id.' });
   if (!STATUSES.includes(status)) return json(400, { error: 'Unknown status.' });
   if (status === 'declined' && !note) return json(400, { error: 'Add a short note on why, so the decision is remembered.' });
-  await store.opsPut('ip-reco-status', id, { id, status, note, decidedAt: status === 'new' ? null : new Date().toISOString() });
+  const prev = await store.opsGet('ip-reco-status', id);
+  await autopilot.setStatus('ip-reco-status', id, status, note, 'owner', {}, prev);
   return json(200, { ok: true });
 };

@@ -42,9 +42,11 @@ const freeQuests = () => freeTools.map((t) => quests.get(t.key));
 
 test('every free tool has a quest, and every paid IP has one', () => {
   for (const t of freeTools) assert.ok(quests.get(t.key), t.key);
-  const paid = [...quests.values()].filter((q) => q.archetype === 'workbook' && !q.open);
+  const paid = [...quests.values()].filter((q) => q.archetype === 'workbook' && !q.open && !q.editionOf);
   assert.equal(paid.length, 39);
   for (const q of paid) assert.ok(pricing.entryForKey(q.key), q.key);
+  // Industry editions are unlocked by the product they are an edition of.
+  for (const q of [...quests.values()].filter((x) => x.editionOf)) assert.ok(pricing.entryForKey(q.editionOf), q.key);
 });
 
 test('a perfect score still gets ways to improve, a low score gets a build list', () => {

@@ -44,11 +44,17 @@ function auditQuest(q) {
   const findings = [];
   const push = (id, severity, text2, evidence) => findings.push({ id: `content-${q.key}-${id}`, ip: q.key, severity, source: 'content', text: text2, evidence });
   const emptyPhases = PHASES.filter((_, i) => !counts[i]);
+  // Balance is read outside the IP's home phase: a Foundations workbook is meant to go deepest in
+  // Foundations, but the other three phases should each be carried (2+ prompts) and in proportion.
+  // IP that spans all four phases (The IV Phases™, Founders builds) is balanced across all four.
+  const home = /IV Phases|Build/.test(String(q.phase || '')) ? null : phaseIndexOfQuest(q);
+  const others = counts.filter((_, i) => i !== home);
+  const unbalanced = Math.max(...others) >= 3 * Math.max(1, Math.min(...others.filter((c) => c > 0))) || (home !== null && Math.min(...others) < 2);
   if (emptyPhases.length && q.archetype === 'workbook') push('phase-gap', 'high', `${q.title} has no prompts for ${emptyPhases.join(' or ')}. Every Co.LLab™ IP should carry The IV Phases™ through to Preservation.`, `Prompts per phase: ${counts.join(' / ')}`);
-  else if (q.archetype === 'workbook' && q.nodes.length >= 8 && Math.max(...counts) >= 3 * Math.max(1, Math.min(...counts.filter((c) => c > 0)))) push('phase-balance', 'medium', `${q.title} is heavily weighted to ${PHASES[counts.indexOf(Math.max(...counts))]}. Consider balancing the other phases.`, `Prompts per phase: ${counts.join(' / ')}`);
+  else if (q.archetype === 'workbook' && q.nodes.length >= 8 && unbalanced) push('phase-balance', 'medium', `${q.title} is heavily weighted to ${PHASES[counts.indexOf(Math.max(...counts))]}. Consider balancing the other phases.`, `Prompts per phase: ${counts.join(' / ')}`);
   if (labels.length >= 3) push('labels', 'medium', `${q.title} has ${labels.length} prompts that are bare labels (for example "${labels[0]}"). Add a guiding question so members know what a strong answer looks like.`, labels.slice(0, 4).join(' | '));
   if (longPrompts.length) push('long', 'low', `${longPrompts.length} prompt${longPrompts.length === 1 ? '' : 's'} in ${q.title} run past 220 characters. Consider splitting each into one question.`, longPrompts[0].slice(0, 160));
-  if (q.nodes.length > 40) push('length', 'medium', `${q.title} asks ${q.nodes.length} questions. Long quests risk drop-off; consider a short path and a full path.`, `${q.nodes.length} questions`);
+  if (q.nodes.length > 40 && !(q.shortPath && q.shortPath.length <= 30)) push('length', 'medium', `${q.title} asks ${q.nodes.length} questions. Long quests risk drop-off; consider a short path and a full path.`, `${q.nodes.length} questions`);
   if (duplicates.length) push('duplicates', 'medium', `${q.title} repeats ${duplicates.length} prompt${duplicates.length === 1 ? '' : 's'}: "${duplicates[0].slice(0, 90)}".`, duplicates.join(' | ').slice(0, 200));
   const reached = oe.filter((o) => o.prompts).length;
   if (reached < 3 && q.archetype === 'workbook' && !q.open) push('omni-reach', 'low', `The questions in ${q.title} speak to only ${reached} of the 8 Omnidirectional Enterprise™ directions. Consider adding a prompt that reaches outward.`, `Directions reached: ${oe.filter((o) => o.prompts).map((o) => o.name).join(', ') || 'none'}`);
@@ -114,7 +120,8 @@ function portfolio(items) {
   weakest.filter((w) => w.prompts <= 2).forEach((w) => push(`omni-${w.name}`, 'medium', `The questions across all guided IP reach ${w.name} in only ${w.prompts} prompt${w.prompts === 1 ? '' : 's'}. That Omnidirectional Enterprise™ direction is under-served by the IP itself.`, `Prompts reaching each direction: ${oeTotals.map((o) => `${o.name} ${o.prompts}`).join(', ')}`));
   const ph = phaseTotals.map((c, i) => [PHASES[i], c]);
   const thin = [...ph].sort((a, b) => a[1] - b[1])[0];
-  push('phase-depth', 'low', `${thin[0]} has the fewest guided prompts across all IP (${thin[1]}). Consider whether the IP goes as deep there as in the other phases.`, `Guided prompts per phase: ${ph.map((x) => x.join(' ')).join(', ')}`);
+  const deepest = Math.max(...phaseTotals);
+  if (thin[1] < deepest / 2) push('phase-depth', 'low', `${thin[0]} has the fewest guided prompts across all IP (${thin[1]}, under half of the deepest phase). Consider whether the IP goes as deep there as in the other phases.`, `Guided prompts per phase: ${ph.map((x) => x.join(' ')).join(', ')}`);
   return { matrix, freeByPhase, phaseTotals, oe: oeTotals, recommendations: recs };
 }
 

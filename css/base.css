@@ -2589,3 +2589,33 @@ font font { background: none !important; box-shadow: none !important; }
 
 /* Model circles: orange by default; white only on the circle you click */
 .oef-scope .oef-part.oef-hot .oef-ring { stroke: #fdf6ec; stroke-width: 2.6px; }
+
+/* Member Portal™: across all your IP (Phase Readiness, check-ins, Legacy Statement, team quests) */
+.ip-work { margin-top: 2.5rem; }
+.ip-label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #fdf6ec; font-weight: 800; margin: 0 0 .5rem; }
+.ip-note { color: var(--white-dim); font-size: .92rem; font-weight: 600; line-height: 1.55; margin: .4rem 0; }
+.ip-quote { color: #fdf6ec; line-height: 1.5; margin: .2rem 0 .5rem; }
+.ip-card { border: 1px solid var(--hairline-strong); border-radius: 16px; padding: 1rem 1.15rem; margin-top: .8rem; background: rgba(15,29,19,.72); }
+.ip-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .7rem; }
+.ip-input, .ip-form input, .ip-form textarea { width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--hairline-strong); border-radius: 12px; padding: .7em .9em; color: #fdf6ec; font: inherit; line-height: 1.5; }
+.ip-form textarea, textarea.ip-input { min-height: 5em; resize: vertical; }
+.ip-form label { display: block; margin: 1rem 0 .35rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 800; color: #fdf6ec; }
+.readiness { display: grid; gap: .7rem; margin: .8rem 0; }
+.readiness-row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 13rem); gap: .8rem; align-items: center; }
+.readiness-name { color: #fdf6ec; font-weight: 700; font-size: .92rem; }
+.readiness-bar { height: 10px; border-radius: 999px; background: rgba(255,96,46,.14); overflow: hidden; }
+.readiness-fill { display: block; height: 100%; background: var(--filament); border-radius: 999px; }
+.readiness-val { color: var(--white-dim); font-weight: 700; font-size: .85rem; }
+@media (max-width: 720px) { .readiness-row { grid-template-columns: 1fr; gap: .3rem; } }
+
+/* Quest page: The IV Phases™ build guide, path choice, optional steps and team mode */
+.q-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 1rem; }
+.q-guide > div { border: 1px solid var(--hairline-strong); border-radius: 16px; padding: 1rem 1.1rem; background: rgba(15,29,19,.72); }
+.q-guide h3 { margin: 0 0 .4rem; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #fdf6ec; }
+.q-guide p { margin: .25rem 0; color: var(--white-dim); line-height: 1.5; font-size: .95rem; }
+.q-guide strong { color: #fdf6ec; }
+.q-paths { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 .25rem; }
+.q-team-table { width: 100%; border-collapse: collapse; margin-top: .6rem; font-size: .95rem; }
+.q-team-table th, .q-team-table td { text-align: left; vertical-align: top; padding: .5rem .6rem; border-top: 1px solid var(--hairline); color: #fdf6ec; }
+.q-team-table th { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white-dim); }
+.q-team-wrap { overflow-x: auto; }

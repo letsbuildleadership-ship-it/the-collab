@@ -6,8 +6,14 @@
 const membershipStatus = require('./membership-status');
 const pricing = require('./pricing');
 
-const DIRECTIONS = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
+// The nine directions of the Omnidirectional Enterprise™ (the same substations as the model and the IP analysis).
+const DIRECTIONS = ['Enterprises', 'Nonprofits', 'Communities', 'People', 'Products & Services', 'Technology', 'Capital', 'Knowledge + IP', 'Creators'];
 const KINDS = ['product', 'service'];
+// An enterprise listing, or a Nonprofit & Community listing that can ask for skills or volunteers.
+const CATEGORIES = ['enterprise', 'nonprofit-community'];
+const REQUEST_KINDS = ['skill', 'volunteer'];
+// Optional flags for successor and apprentice matching.
+const SEEKING = ['successor', 'apprenticeship'];
 
 const clean = (s, n) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, n);
 
@@ -51,14 +57,32 @@ function validateListing(raw) {
     if (url === null) return { error: `The link for "${name}" must be a full https:// address.` };
     offerings.push({ name, kind: KINDS.includes(o.kind) ? o.kind : 'service', description: clean(o.description, 200), url });
   }
-  if (!offerings.length) return { error: 'List at least one product or service you offer.' };
+  const category = CATEGORIES.includes(input.category) ? input.category : 'enterprise';
+  const requests = category === 'nonprofit-community'
+    ? (Array.isArray(input.requests) ? input.requests : []).slice(0, 4).map((r) => ({ kind: REQUEST_KINDS.includes(r && r.kind) ? r.kind : 'skill', text: clean(r && r.text, 200) })).filter((r) => r.text)
+    : [];
+  if (!offerings.length && !requests.length) return { error: 'List at least one product or service you offer.' };
 
-  return { listing: { companyName, tagline: clean(input.tagline, 140), description, location: clean(input.location, 60), website, contactEmail, directions, offerings } };
+  const seeking = [...new Set((Array.isArray(input.seeking) ? input.seeking : []).filter((x) => SEEKING.includes(x)))];
+  const offerText = clean(input.memberOffer && input.memberOffer.text, 200);
+  const offerTerms = clean(input.memberOffer && input.memberOffer.terms, 400);
+  if (offerText && !offerTerms) return { error: 'Add the terms of your member offer (who it is for, how to claim it, and when it ends).' };
+  const memberOffer = offerText ? { text: offerText, terms: offerTerms } : null;
+
+  return { listing: { companyName, tagline: clean(input.tagline, 140), description, location: clean(input.location, 60), website, contactEmail, directions, offerings, category, requests, seeking, introOptIn: input.introOptIn === true, memberOffer } };
 }
 
-/** What the public may see: no member identity or account email. */
-function publicView(l) {
-  return { id: l.publicId, companyName: l.companyName, tagline: l.tagline, description: l.description, location: l.location, website: l.website, contactEmail: l.contactEmail, directions: l.directions, offerings: l.offerings, approvedAt: l.approvedAt };
+/**
+ * What the public may see: no member identity or account email. The member offer (text and
+ * terms) is for signed-in members only; the public only sees that one exists.
+ */
+function publicView(l, { member = false } = {}) {
+  return {
+    id: l.publicId, companyName: l.companyName, tagline: l.tagline, description: l.description, location: l.location, website: l.website, contactEmail: l.contactEmail,
+    directions: l.directions, offerings: l.offerings || [], approvedAt: l.approvedAt,
+    category: l.category || 'enterprise', requests: l.requests || [], seeking: l.seeking || [], acceptsIntros: l.introOptIn === true,
+    hasMemberOffer: !!l.memberOffer, memberOffer: member && l.memberOffer ? l.memberOffer : undefined,
+  };
 }
 
-module.exports = { DIRECTIONS, isEligible, validateListing, publicView, cleanUrl };
+module.exports = { DIRECTIONS, CATEGORIES, SEEKING, REQUEST_KINDS, isEligible, validateListing, publicView, cleanUrl };

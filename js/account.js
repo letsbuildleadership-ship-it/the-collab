@@ -914,7 +914,9 @@
         const hasQuest = (data.questKeys || []).includes(item.key);
         const questLabel = qs && qs.status === 'done' ? 'View my report' : qs ? 'Continue quest' : 'Start guided quest';
         const questPill = hasQuest ? `<a class="pill pill--solid" href="quest.html?key=${encodeURIComponent(item.key)}">${questLabel} <span class="arrow">→</span></a> ` : '';
-        const actions = `${questPill}<a class="pill" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
+        // Industry editions of this product's quest (same model, another sector's language).
+        const editions = (data.questEditions || []).filter((e) => e.of === item.key).map((e) => `<a class="pill" href="quest.html?key=${encodeURIComponent(e.key)}">${esc(e.name.split('—').pop().trim())} <span class="arrow">→</span></a> `).join('');
+        const actions = `${questPill}${editions}<a class="pill" href="/.netlify/functions/download?product=${encodeURIComponent(item.key)}" target="_blank" rel="noopener">Download PDF <span class="arrow">→</span></a>`;
         grid.appendChild(itemCard({ name: item.name, actionsHtml: actions, key: item.key }));
       });
       section.appendChild(heading);
@@ -932,7 +934,7 @@
     if ((data.openQuests || []).length) {
       const h = document.createElement('h4');
       h.className = 'tool-phase';
-      h.textContent = 'Event infrastructure';
+      h.textContent = 'Open quests, free for every member';
       const grid = document.createElement('div');
       grid.className = 'grid grid-3';
       data.openQuests.forEach((oq) => {
@@ -973,7 +975,7 @@
     toolsGroup.hidden = !toolCount;
 
     // Completed quest reports live here for good.
-    const nameFor = new Map([...(data.freeTools || []), ...(data.openQuests || []), ...(data.owned || [])].map((t) => [t.key, t.name]));
+    const nameFor = new Map([...(data.freeTools || []), ...(data.openQuests || []), ...(data.owned || []), ...(data.questEditions || [])].map((t) => [t.key, t.name]));
     const reports = Object.keys(data.quests || {}).filter((k) => data.quests[k].status === 'done' && nameFor.has(k)).map((k) => ({ key: k, name: nameFor.get(k) }));
     const reportList = $('quest-reports-list');
     reportList.innerHTML = '';
@@ -1007,6 +1009,8 @@
 
     renderJourney(data);
     show('account-dashboard');
+    // Phase Readiness, check-ins, the Legacy Statement and team quests render from js/member-ip.js.
+    document.dispatchEvent(new CustomEvent('collab:dashboard', { detail: data }));
   }
 
 

@@ -53,7 +53,7 @@
 <div id="app">
   <p class="eyebrow">The Co.LLab™ Admin</p>
   <h1 class="headline" style="margin-top:1rem;">IP Analysis</h1>
-  <p class="subhead" style="margin-top:0.75rem;">Review all of the IP and run the analysis. It checks how each guided IP is built against The IV Phases™ and the Omnidirectional Enterprise™, how members actually use it (anonymous counts), and what members told you, then ranks what to improve. Every recommendation stays <span class="badge new">new</span> until you decide on it.</p>
+  <p class="subhead" style="margin-top:0.75rem;">Review all of the IP and run the analysis. It checks how each guided IP is built against The IV Phases™ and the Omnidirectional Enterprise™, how members actually use it (anonymous counts), and what members told you, then ranks what to improve. There is no approval queue: each recommendation is approved automatically as <span class="badge">planned</span> when it appears, and marked <span class="badge">done</span> only once it is implemented and verified (a recorded release, or the audit no longer finding it). You can override any item; every change is kept in the audit trail on the Feedback &amp; ideas page.</p>
   <p class="subhead" id="awaiting" style="margin-top:1rem; font-weight:800;"></p>
   <div class="tools">
     <button type="button" class="pill pill--solid" id="run">Run analysis</button>
@@ -73,6 +73,10 @@
   <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">What to improve</h2>
   <div class="tools" id="filters"></div>
   <div id="recs"></div>
+
+  <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">Implemented and verified</h2>
+  <p class="why">Recommendations that were implemented and verified, newest first, with what changed.</p>
+  <div id="resolved"></div>
 
   <h2 class="headline" style="margin-top:3rem; font-size:1.4rem;">All IP</h2>
   <p class="why">Every guided IP. "Read questions" shows the full question set exactly as members see it.</p>
@@ -130,13 +134,13 @@
   function renderRecs() {
     const box = $('recs'); box.textContent = '';
     const fl = $('filters'); fl.textContent = '';
-    ['All', 'New', 'High', 'Content', 'Usage', 'Feedback'].forEach((f) => {
+    ['All', 'In progress', 'High', 'Content', 'Usage', 'Feedback'].forEach((f) => {
       const b = el('button', 'chip', f); b.type = 'button'; b.setAttribute('aria-pressed', String(f === filter));
       b.addEventListener('click', () => { filter = f; renderRecs(); });
       fl.appendChild(b);
     });
-    const rows = data.recommendations.filter((r) => filter === 'All' || (filter === 'New' && r.status === 'new') || (filter === 'High' && r.severity === 'high') || r.source === filter.toLowerCase());
-    if (!rows.length) box.appendChild(el('p', 'why', 'Nothing here.'));
+    const rows = data.recommendations.filter((r) => filter === 'All' || (filter === 'In progress' && ['new', 'considering', 'planned'].includes(r.status)) || (filter === 'High' && r.severity === 'high') || r.source === filter.toLowerCase());
+    if (!rows.length) box.appendChild(el('p', 'why', data.recommendations.length ? 'Nothing here.' : 'The analysis finds nothing to improve right now. New findings appear here, already approved and queued.'));
     rows.forEach((r) => {
       const row = el('div', 'row' + (r.status === 'new' ? ' is-new' : ''));
       const h = el('h3', null, r.ip + ' ');
@@ -144,10 +148,29 @@
       h.appendChild(document.createTextNode(' '));
       h.appendChild(el('span', 'badge ' + (r.status === 'new' ? 'new' : ''), r.status));
       row.appendChild(h);
-      row.appendChild(el('div', 'meta', r.source));
+      row.appendChild(el('div', 'meta', r.source + (r.by ? ' · ' + (r.by === 'owner' ? 'your decision' : 'automatic') : '') + (r.note ? ' · ' + r.note : '')));
       row.appendChild(el('p', 'why', r.text));
       if (r.evidence) { const p = el('p', 'why'); p.appendChild(el('strong', null, 'Evidence: ')); p.appendChild(document.createTextNode(r.evidence)); row.appendChild(p); }
       row.appendChild(decideRow(r));
+      box.appendChild(row);
+    });
+  }
+
+  function renderResolved() {
+    const box = $('resolved'); box.textContent = '';
+    const rows = data.resolved || [];
+    if (!rows.length) { box.appendChild(el('p', 'why', 'Nothing recorded yet.')); return; }
+    box.appendChild(el('p', 'meta', rows.length + ' implemented and verified'));
+    rows.forEach((r) => {
+      const row = el('div', 'row');
+      const h = el('h3', null, (r.ip || r.id) + ' ');
+      if (r.severity) h.appendChild(el('span', 'badge ' + (r.severity === 'high' ? 'sev-high' : ''), r.severity));
+      h.appendChild(document.createTextNode(' '));
+      h.appendChild(el('span', 'badge', 'done'));
+      row.appendChild(h);
+      if (r.text) row.appendChild(el('p', 'why', r.text));
+      row.appendChild(el('p', 'why', r.note || ''));
+      row.appendChild(el('div', 'meta', String(r.decidedAt || '').slice(0, 10) + ' · ' + r.id));
       box.appendChild(row);
     });
   }
@@ -185,7 +208,7 @@
   }
 
   function render() {
-    $('awaiting').textContent = data.awaiting ? data.awaiting + ' recommendation' + (data.awaiting === 1 ? '' : 's') + ' awaiting your decision.' : 'Every recommendation has a decision.';
+    $('awaiting').textContent = (data.inProgress ? data.inProgress + ' recommendation' + (data.inProgress === 1 ? '' : 's') + ' in progress (approved automatically). ' : 'Nothing in progress. ') + (data.resolved || []).length + ' implemented and verified. Nothing waits for your approval.';
     $('stamp').textContent = 'Analysis run ' + new Date(data.generatedAt).toLocaleString();
     bars('phase-bars', PHASES.map((p, i) => [p, data.portfolio.phaseTotals[i]]));
     bars('oe-bars', data.portfolio.oe.map((o) => [o.name, o.prompts]));
@@ -195,6 +218,7 @@
     Object.entries(data.portfolio.matrix).forEach(([line, counts]) => { const tr = el('tr'); tr.appendChild(el('td', null, line === 'core' ? 'The .LLab (core)' : line)); counts.forEach((c) => tr.appendChild(el('td', null, String(c)))); mb.appendChild(tr); });
     $('usage-note').textContent = 'Member activity: ' + data.insights.note;
     renderRecs();
+    renderResolved();
     renderCatalog();
   }
 

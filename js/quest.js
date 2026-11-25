@@ -10,6 +10,7 @@
   var notes = {};
   var saveTimer = null;
   var canAnalyze = true;
+  var path = 'full';
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -25,14 +26,19 @@
     e.textContent = msg;
   }
 
-  function allNodes() { return quest.nodes.concat([quest.closing]); }
+  // Long quests offer a short path; the member's choice decides which steps count.
+  function pathNodes() {
+    if (path !== 'short' || !quest.shortPath) return quest.nodes;
+    return quest.nodes.filter(function (n) { return quest.shortPath.indexOf(n.id) >= 0; });
+  }
+  function allNodes() { return pathNodes().concat([quest.closing]); }
   function answered(n) {
     var v = answers[n.id];
     return n.type === 'text' ? typeof v === 'string' && v.trim() !== '' : v !== undefined;
   }
-  function requiredCount() { return Math.ceil((quest.minAnswered || 1) * quest.nodes.length); }
+  function requiredCount() { return Math.ceil((quest.minAnswered || 1) * pathNodes().length); }
   function canFinish() {
-    return quest.nodes.filter(answered).length >= requiredCount() && answered(quest.closing);
+    return pathNodes().filter(answered).length >= requiredCount() && answered(quest.closing);
   }
 
   function feedback(n) {
@@ -49,7 +55,7 @@
   function groups() {
     var out = [];
     var every = !(quest.minAnswered && quest.minAnswered < 1);
-    quest.nodes.forEach(function (n) {
+    pathNodes().forEach(function (n) {
       var last = out[out.length - 1];
       if (n.section && last && last.section === n.section) { last.nodes.push(n); return; }
       if (!n.section && !every && last && !last.section) { last.nodes.push(n); return; }
@@ -89,7 +95,7 @@
     $('q-count').textContent = done + ' of ' + nodes.length + ' steps logged' + (quest.minAnswered && quest.minAnswered < 1 ? ' (answer at least ' + need + ' plus your commitment)' : '');
     $('q-finish').disabled = !canFinish();
     applyLocks();
-    nodes.forEach(function (n) {
+    nodes.concat(quest.extend || []).forEach(function (n) {
       var card = document.querySelector('[data-node="' + n.id + '"]');
       if (!card) return;
       card.classList.toggle('is-done', answered(n));
@@ -102,7 +108,7 @@
   function queueSave() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
-      fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes }) }).catch(function () {});
+      fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, path: path }) }).catch(function () {});
     }, 600);
   }
 
@@ -235,13 +241,23 @@
     var map = $('q-map');
     map.textContent = '';
     var lastSection = null;
-    quest.nodes.forEach(function (n) {
+    pathNodes().forEach(function (n) {
       if (n.section && n.section !== lastSection) {
         lastSection = n.section;
         map.appendChild(el('h2', 'q-section', n.section));
       }
       map.appendChild(buildCard(n, false));
     });
+    renderPaths();
+    // Optional steps that carry a scored tool through all four phases (not scored, never required).
+    var ext = $('q-extend');
+    ext.textContent = '';
+    if ((quest.extend || []).length) {
+      ext.appendChild(el('h2', 'q-section', 'Carry it through The IV Phases™ (optional)'));
+      var grid = el('div', 'q-map');
+      quest.extend.forEach(function (n) { grid.appendChild(buildCard(n, false)); });
+      ext.appendChild(grid);
+    }
     $('q-hint').textContent = quest.scaleHint || '';
     $('q-hint').hidden = !quest.scaleHint;
     var close = $('q-close');
@@ -253,6 +269,145 @@
     oc.insertBefore(el('p', 'q-meta', 'Optional, and it makes your Legacy Read stronger.'), oc.children[2]);
     omniWrap.appendChild(oc);
     refresh();
+  }
+
+  function renderPaths() {
+    var box = $('q-paths');
+    box.textContent = '';
+    if (!quest.shortPath) { box.hidden = true; return; }
+    box.hidden = false;
+    [['short', 'Short path · ' + quest.shortPath.length + ' steps'], ['full', 'Full path · ' + quest.nodes.length + ' steps']].forEach(function (p) {
+      var b = el('button', 'q-choice', p[1]);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(path === p[0]));
+      b.addEventListener('click', function () { if (path === p[0]) return; path = p[0]; showRun(); queueSave(); });
+      box.appendChild(b);
+    });
+  }
+
+  function renderGuide() {
+    var wrap = $('q-guide-wrap');
+    if (!quest.guide) { wrap.hidden = true; return; }
+    var box = $('q-guide');
+    box.textContent = '';
+    ['I · Foundations', 'II · Infrastructure Planning & Management', 'III · Internal Operating Systems', 'IV · Preservation'].forEach(function (name, i) {
+      var g = quest.guide[i];
+      if (!g) return;
+      var c = el('div');
+      c.appendChild(el('h3', null, name));
+      var d = el('p'); d.appendChild(el('strong', null, 'Deliverable: ')); d.appendChild(document.createTextNode(g[0]));
+      var w = el('p'); w.appendChild(el('strong', null, 'Put it to work: ')); w.appendChild(document.createTextNode(g[1]));
+      c.append(d, w);
+      box.appendChild(c);
+    });
+    wrap.hidden = false;
+  }
+
+  // ---- Team mode ----
+  var TEAM = '/.netlify/functions/team';
+  function teamApi(method, body, qs) {
+    return fetch(TEAM + (qs || ''), { method: method, credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); });
+  }
+  function renderComparison(box, c) {
+    box.textContent = '';
+    box.appendChild(el('p', 'q-meta', c.people.map(function (p) { return p.label + ': ' + (p.status === 'done' ? 'finished' : p.status === 'draft' ? p.answered + ' answers so far' : 'not started'); }).join(' · ')));
+    box.appendChild(el('p', 'q-label', c.differences.length ? 'Where you differ (' + c.differences.length + ')' : 'No differences yet on the scored steps'));
+    var rows = c.differences.length ? c.differences : [];
+    var wrap = el('div', 'q-team-wrap');
+    var table = el('table', 'q-team-table');
+    var head = el('tr');
+    head.appendChild(el('th', null, 'Step'));
+    c.people.forEach(function (p) { head.appendChild(el('th', null, p.label)); });
+    table.appendChild(head);
+    function addRow(n) {
+      var tr = el('tr');
+      tr.appendChild(el('td', null, n.prompt));
+      n.answers.forEach(function (a) { tr.appendChild(el('td', null, a.value === null ? '—' : a.value)); });
+      table.appendChild(tr);
+    }
+    rows.forEach(addRow);
+    wrap.appendChild(table);
+    box.appendChild(wrap);
+    var all = el('details');
+    all.appendChild(el('summary', 'q-meta', 'See every answer side by side'));
+    var wrap2 = el('div', 'q-team-wrap');
+    var t2 = el('table', 'q-team-table');
+    var h2 = el('tr'); h2.appendChild(el('th', null, 'Step')); c.people.forEach(function (p) { h2.appendChild(el('th', null, p.label)); }); t2.appendChild(h2);
+    c.nodes.forEach(function (n) { var tr = el('tr'); tr.appendChild(el('td', null, n.prompt)); n.answers.forEach(function (a) { tr.appendChild(el('td', null, a.value === null ? '—' : a.value)); }); t2.appendChild(tr); });
+    wrap2.appendChild(t2); all.appendChild(wrap2); box.appendChild(all);
+  }
+  function renderTeams(teams) {
+    var body = $('team-body');
+    body.textContent = '';
+    var msg = el('p', 'q-meta'); msg.setAttribute('role', 'status');
+    function act(payload) {
+      msg.textContent = 'Saving…';
+      return teamApi('POST', payload).then(function (res) { if (!res.ok) { msg.textContent = res.d.error || 'Could not save.'; return; } msg.textContent = ''; loadTeams(); });
+    }
+    teams.forEach(function (t) {
+      var card = el('div', 'q-node');
+      card.style.marginTop = '1rem';
+      card.appendChild(el('p', 'q-label', t.name));
+      card.appendChild(el('p', 'q-meta', 'Led by ' + t.lead));
+      var actions = el('div', 'q-actions');
+      if (t.myStatus === 'invited') {
+        card.appendChild(el('p', 'q-prompt', 'You are invited. Accepting shares your answers to this quest with this team only. You can leave at any time.'));
+        var a = el('button', 'pill pill--solid', 'Accept'); a.type = 'button'; a.onclick = function () { act({ action: 'accept', teamId: t.id }); };
+        var d = el('button', 'pill', 'Decline'); d.type = 'button'; d.onclick = function () { act({ action: 'decline', teamId: t.id }); };
+        actions.append(a, d);
+        card.appendChild(actions);
+        body.appendChild(card);
+        return;
+      }
+      var ul = el('ul');
+      t.members.forEach(function (m) {
+        var li = el('li', null, m.label + (m.status === 'invited' ? ' (invited)' : '') + (m.me ? ' (you)' : ''));
+        if (t.isLead && !m.me) {
+          var rm = el('button', 'pill mini', 'Remove'); rm.type = 'button'; rm.style.marginLeft = '.5rem';
+          rm.onclick = function () { if (confirm('Remove from the team?')) act({ action: 'remove', teamId: t.id, memberRef: m.id }); };
+          li.appendChild(rm);
+        }
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+      if (t.isLead) {
+        var inv = el('input', 'q-text'); inv.type = 'email'; inv.placeholder = 'Colleague’s email'; inv.style.minHeight = '0'; inv.setAttribute('aria-label', 'Invite a colleague by email');
+        var ib = el('button', 'pill', 'Invite'); ib.type = 'button';
+        ib.onclick = function () { if (inv.value.trim()) act({ action: 'invite', teamId: t.id, email: inv.value.trim() }); };
+        card.appendChild(inv);
+        actions.appendChild(ib);
+      }
+      var cmp = el('button', 'pill pill--solid', 'Compare our answers'); cmp.type = 'button';
+      var out = el('div');
+      cmp.onclick = function () {
+        out.textContent = 'Loading…';
+        teamApi('GET', null, '?team=' + encodeURIComponent(t.id)).then(function (res) { if (!res.ok) { out.textContent = res.d.error || 'Could not load.'; return; } renderComparison(out, res.d.comparison); });
+      };
+      var leave = el('button', 'pill', t.isLead ? 'Close the team' : 'Leave the team'); leave.type = 'button';
+      leave.onclick = function () { if (confirm(t.isLead ? 'Close this team for everyone?' : 'Leave this team? Your answers will no longer be shown to it.')) act({ action: 'leave', teamId: t.id }); };
+      actions.prepend(cmp);
+      actions.appendChild(leave);
+      card.appendChild(actions);
+      card.appendChild(out);
+      body.appendChild(card);
+    });
+    var start = el('div', 'q-actions');
+    var name = el('input', 'q-text'); name.type = 'text'; name.maxLength = 80; name.placeholder = 'Team name (optional)'; name.style.minHeight = '0'; name.setAttribute('aria-label', 'Team name');
+    var sb = el('button', 'pill', teams.length ? 'Start another team' : 'Start a team on this quest'); sb.type = 'button';
+    sb.onclick = function () { act({ action: 'create', questKey: key, name: name.value }); };
+    body.appendChild(name);
+    start.appendChild(sb);
+    body.appendChild(start);
+    body.appendChild(msg);
+  }
+  function loadTeams() {
+    teamApi('GET', null, '?key=' + encodeURIComponent(key)).then(function (res) {
+      if (!res.ok) return;
+      $('team').hidden = false;
+      renderTeams(res.d.teams || []);
+      if (location.hash === '#team') $('team').scrollIntoView();
+    }).catch(function () {});
   }
 
   function setTier() {
@@ -296,6 +451,9 @@
         document.title = quest.title + ' | The Co.LLab™';
         if (saved && saved.answers) answers = saved.answers;
         if (saved && saved.notes) notes = saved.notes;
+        path = saved && saved.path === 'short' && quest.shortPath ? 'short' : 'full';
+        renderGuide();
+        loadTeams();
         if (saved && saved.status === 'done') { showResult(saved); return; }
         showRun();
         setTier();
@@ -308,7 +466,7 @@
     var btn = $('q-finish');
     btn.disabled = true;
     $('q-finish-err').textContent = '';
-    fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, complete: true }) })
+    fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, answers: answers, notes: notes, path: path, complete: true }) })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok) { $('q-finish-err').textContent = res.d.error || 'Could not finish.'; btn.disabled = false; return; }
@@ -325,7 +483,7 @@
     fetch('/.netlify/functions/ip-feedback', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ questKey: key, unclear: $('fb-unclear').value, support: $('fb-support').value, ecosystem: $('fb-eco').value }) })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
-        if (res.ok) { msg.textContent = 'Thank you. It is with us and we will decide on it.'; ['fb-unclear', 'fb-support', 'fb-eco'].forEach(function (i) { $(i).value = ''; }); } else msg.textContent = res.d.error || 'Could not send.';
+        if (res.ok) { msg.textContent = 'Thank you. It is with us; what we change is published on What Changed, without your name.'; ['fb-unclear', 'fb-support', 'fb-eco'].forEach(function (i) { $(i).value = ''; }); } else msg.textContent = res.d.error || 'Could not send.';
       })
       .catch(function () { msg.textContent = 'Could not reach the site.'; });
   });

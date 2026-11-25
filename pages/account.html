@@ -187,6 +187,8 @@
             <li><a href="products.html">The .LLab™ Home</a></li>
             <li><a href="all-products.html">The .LLab Products™</a></li>
             <li><a href="collaborating-companies.html">The .LLab Collaborating Enterprises</a></li>
+            <li><a href="facilitator-guide.html">Team Quest Facilitator Guide</a></li>
+            <li><a href="changelog.html">What Changed</a></li>
             <li class="nav-more-head" aria-hidden="true">Research, theory &amp; Intelligence Infrastructure™</li>
             <li><a href="think.html">The .LLab R.A.T.™ · Research And Theory</a></li>
             <li><a href="journal.html">The .LLab Journal™</a></li>
@@ -431,6 +433,50 @@
             <summary>Free tools, open to everyone <span class="drawer-count" id="free-tools-count"></span></summary>
             <div id="free-tools-list"></div>
           </details>
+
+          <!-- Across all your IP: The IV Phases™ readiness, commitments, your Legacy Statement and team quests (js/member-ip.js). Private to you. -->
+          <div id="ip-work" class="ip-work" hidden>
+            <h3 class="quests-heading">Across all your IP</h3>
+            <div id="phase-readiness" class="phase-group">
+              <p class="ip-label">Phase Readiness · The IV Phases™</p>
+              <div id="readiness-bars" class="readiness"></div>
+              <p id="readiness-read" class="ip-note"></p>
+            </div>
+            <details id="checkins" class="phase-group drawer">
+              <summary>Your commitments: 30, 90 and 365-day check-ins <span class="drawer-count" id="checkins-count"></span></summary>
+              <p class="ip-note">Every quest ends with a commitment. It comes back at 30, 90 and 365 days so you can record what happened. Your answers stay in your portal; The Co.LLab™ only sees anonymous counts.</p>
+              <div id="checkins-list"></div>
+            </details>
+            <details id="legacy-statement" class="phase-group drawer">
+              <summary>Your Legacy Statement <span class="drawer-count" id="legacy-status"></span></summary>
+              <p class="ip-note">One statement that joins your answers across The IV Phases™. It starts from your own words in your finished quests; edit it until it is yours. Private to you; download it as a PDF to carry forward.</p>
+              <form id="legacy-form" class="ip-form">
+                <label for="ls-title">Title</label>
+                <input id="ls-title" type="text" maxlength="120" placeholder="My Legacy Statement" />
+                <label for="ls-p0">I · Foundations: what must never be lost</label>
+                <textarea id="ls-p0" maxlength="1500"></textarea>
+                <label for="ls-p1">II · Infrastructure Planning &amp; Management: what must belong to the organization</label>
+                <textarea id="ls-p1" maxlength="1500"></textarea>
+                <label for="ls-p2">III · Internal Operating Systems: how it lives in how we operate</label>
+                <textarea id="ls-p2" maxlength="1500"></textarea>
+                <label for="ls-p3">IV · Preservation: what must exist for it to continue</label>
+                <textarea id="ls-p3" maxlength="1500"></textarea>
+                <label for="ls-closing">What I am building to last</label>
+                <textarea id="ls-closing" maxlength="600"></textarea>
+                <div class="ip-actions">
+                  <button type="button" class="pill" id="ls-draft">Start from my answers</button>
+                  <button type="submit" class="pill pill--solid">Save my statement</button>
+                  <a class="pill" id="ls-pdf" href="/.netlify/functions/legacy-statement?pdf=1" hidden>Download PDF <span class="arrow">→</span></a>
+                  <span id="ls-msg" class="ip-note" role="status"></span>
+                </div>
+              </form>
+            </details>
+            <details id="teams" class="phase-group drawer">
+              <summary>Team quests <span class="drawer-count" id="teams-count"></span></summary>
+              <p class="ip-note">Work a quest with your leadership team: each person answers in their own account, then you see where you differ. Start a team from any quest page. <a href="facilitator-guide.html" style="text-decoration:underline;">How to run it with a team</a>.</p>
+              <div id="teams-list"></div>
+            </details>
+          </div>
         </div>
       </div>
 
@@ -500,6 +546,7 @@
           <li><a href="journal-preview.html">The .LLab Journal™ · Free Preview</a></li>
           <li><a href="omnidirectional-enterprise.html#legacy-wall">Omnidirectional Legacy Wall</a></li>
           <li><a href="glossary.html">The Co.LLab™ Glossary</a></li>
+          <li><a href="changelog.html">What Changed</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -544,7 +591,8 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/account.js?v=20261012i"></script>
+<script src="../js/account.js?v=20261125a"></script>
+<script src="../js/member-ip.js?v=20261125a"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

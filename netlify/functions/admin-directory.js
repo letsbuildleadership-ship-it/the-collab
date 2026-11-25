@@ -5,13 +5,42 @@ const { json } = require('./lib/http');
 const { sendMail } = require('./lib/mailer');
 
 const { isAdmin: authorized } = require('./lib/admin-auth');
+const { DIRECTIONS } = require('./lib/directory');
+
+/**
+ * The data for the annual Omnidirectional Enterprise™ report, counted from the start: introductions
+ * and member offers by year and direction, and what the live directory holds today. Counts only.
+ */
+function ecosystemReport(rows, events) {
+  const live = rows.filter((l) => l.status === 'approved');
+  const years = {};
+  events.forEach((e) => {
+    const y = String(e.at).slice(0, 4);
+    const b = (years[y] = years[y] || { year: y, intros: 0, offers: 0, byDirection: {} });
+    if (e.kind === 'intro') b.intros += 1;
+    if (e.kind === 'offer') b.offers += 1;
+    (e.directions || []).forEach((d) => { b.byDirection[d] = (b.byDirection[d] || 0) + 1; });
+  });
+  return {
+    years: Object.values(years).sort((a, b) => b.year.localeCompare(a.year)),
+    live: {
+      listings: live.length,
+      nonprofitCommunity: live.filter((l) => l.category === 'nonprofit-community').length,
+      acceptingIntros: live.filter((l) => l.introOptIn).length,
+      memberOffers: live.filter((l) => l.memberOffer).length,
+      seekingSuccessor: live.filter((l) => (l.seeking || []).includes('successor')).length,
+      seekingApprenticeship: live.filter((l) => (l.seeking || []).includes('apprenticeship')).length,
+      byDirection: DIRECTIONS.map((d) => ({ direction: d, listings: live.filter((l) => (l.directions || []).includes(d)).length })),
+    },
+  };
+}
 
 exports.handler = async (event) => {
   if (!authorized(event)) return json(401, { error: 'Unauthorized.' });
   if (event.httpMethod === 'GET') {
-    const rows = await store.opsList('directory');
+    const [rows, events] = await Promise.all([store.opsList('directory'), store.opsList('ecosystem-events')]);
     rows.sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
-    return json(200, { listings: rows });
+    return json(200, { listings: rows, report: ecosystemReport(rows, events) });
   }
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method Not Allowed' });
   let body;
@@ -24,6 +53,11 @@ exports.handler = async (event) => {
   if (!item) return json(404, { error: 'Not found.' });
   const updated = { ...item, status, note, approvedAt: status === 'approved' ? new Date().toISOString() : null };
   await store.opsPut('directory', body.memberId, updated);
+  // Count each member offer the first time it is published (for the annual report).
+  if (status === 'approved' && item.memberOffer && item.offerCountedFor !== item.memberOffer.text) {
+    await store.opsPut('ecosystem-events', `offer-${Date.now()}-${String(item.publicId || '').slice(0, 6)}`, { kind: 'offer', at: new Date().toISOString(), directions: item.directions || [] });
+    await store.opsPut('directory', body.memberId, { ...updated, offerCountedFor: item.memberOffer.text });
+  }
 
   if (status !== 'pending') {
     try {

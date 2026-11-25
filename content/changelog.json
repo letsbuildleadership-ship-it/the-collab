@@ -1,0 +1,47 @@
+{
+  "_readme": "Public changelog (pages/changelog.html and /.netlify/functions/changelog). Every entry says what changed and where it came from. Member feedback is never quoted and members are never named; when the owner closes a member's feedback with a public note, that note is added automatically. Newest first.",
+  "entries": [
+    {
+      "date": "2026-11-25",
+      "title": "The IV Phases™ in every guided IP",
+      "ip": "All guided IP",
+      "source": "IP review",
+      "text": "Every guided quest now carries all four phases (Foundations, Infrastructure Planning & Management, Internal Operating Systems and Preservation), with new prompts written for each IP, clearer questions where a prompt was only a label, and a four-phase build guide: the deliverable of each phase and how to put it to work. Long quests offer a short path as well as the full path."
+    },
+    {
+      "date": "2026-11-25",
+      "title": "Phase Readiness, your Legacy Statement and commitment check-ins",
+      "ip": "Member Portal™",
+      "source": "IP review",
+      "text": "Your portal now totals every finished quest into one Phase Readiness view, drafts one Legacy Statement from your own answers (yours to edit, private, and downloadable as a PDF), and brings each quest commitment back at 30, 90 and 365 days so you can record what happened."
+    },
+    {
+      "date": "2026-11-25",
+      "title": "Team mode and the Team Quest Facilitator Guide",
+      "ip": "Every quest",
+      "source": "IP review",
+      "text": "Several leaders can now work the same quest, each in their own account, and see where their answers differ. Answers are shared with the team only after a person accepts, and stop being shared when they leave. A one-page facilitator guide shows how to run a quest with a team."
+    },
+    {
+      "date": "2026-11-25",
+      "title": "Nonprofit and Small Enterprise editions of the Diagnostic",
+      "ip": "The .LLab Leadership Infrastructure Diagnostic™",
+      "source": "IP review",
+      "text": "The same Diagnostic in the language of a nonprofit (board, staff, volunteers, donors) and of a small enterprise (an owner, a small team, cash flow). Owning the Diagnostic unlocks both editions."
+    },
+    {
+      "date": "2026-11-25",
+      "title": "A free Succession quest",
+      "ip": "The .LLab Succession Quest™",
+      "source": "IP review",
+      "text": "A free quest for every signed-in member: what must stay true when leadership changes, who carries each role, how the handover is practiced, and where the succession record lives."
+    },
+    {
+      "date": "2026-11-25",
+      "title": "The .LLab Collaborating Enterprises: introductions, offers and more ways to find each other",
+      "ip": "The .LLab Collaborating Enterprises",
+      "source": "IP review",
+      "text": "Filter by all nine directions of the Omnidirectional Enterprise™. Request an introduction to an enterprise that welcomes them (their email stays private). Listings can carry a member offer, join the Nonprofit & Community category with skill and volunteer requests, and flag that they are seeking a successor or an apprentice."
+    }
+  ]
+}
