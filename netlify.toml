@@ -102,6 +102,16 @@
   status = 301
 
 [[redirects]]
+  from = "/careers"
+  to = "/pages/careers.html"
+  status = 200
+
+[[redirects]]
+  from = "/careers/"
+  to = "/pages/careers.html"
+  status = 200
+
+[[redirects]]
   from = "/impact"
   to = "/pages/impact.html"
   status = 200
