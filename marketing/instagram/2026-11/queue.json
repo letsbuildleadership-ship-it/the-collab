@@ -311,13 +311,15 @@
       "pillar": "Founder story",
       "goal": "Trust: origin",
       "caption": "Built from about $40. No outside funding.\n\nThe Co.LLab™ is Omnidirectional Enterprise™ in practice: an ecosystem where companies, people and communities support one another in every direction. Revenue as a means, not the end.\n\nLet's build your legacy through Omnidirectional Enterprise™.\n\nThe Portal is free to join → link in bio.\n\n#bootstrapped #founderstory #smallbusinessjourney #womeninbusiness #entrepreneurship #omnidirectionalenterprise #wearethellab #iamart",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
+      "status": "published",
+      "published_at": "2026-11-27T17:39:42+0000",
+      "media_id": "17967670428234339",
+      "permalink": "https://www.instagram.com/reel/DgQPIHtx3DH/",
       "video_url": "https://wearethellab.com/marketing/instagram/2026-11/r14.mp4",
       "cover_url": "https://wearethellab.com/marketing/instagram/2026-11/r14_cover.jpg",
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r14_cover.jpg"
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/r14_cover.jpg",
+      "story_media_id": "18512439355102859",
+      "fb_post_id": "1679800150174178"
     },
     {
       "id": "c06",
@@ -325,10 +327,10 @@
       "pillar": "Funnel",
       "goal": "Conversion: ladder",
       "caption": "Where to begin with The Co.LLab™:\n\n01. 16 free leadership infrastructure tools\n02. The Omnidirectional Enterprise™ Portal (free; test drive Membership, no card needed)\n03. .LLab Library Card™ ($10/mo founding)\n04. .LLab Membership™: every Phase I–IV .LLab™ product\n05. Omnidirectional Enterprise™ Partnership\n\nStart where you are → link in bio.\n\n#leadershipdevelopment #smallbusiness #founders #businessgrowth #entrepreneurship #omnidirectionalenterprise #wearethellab",
-      "status": "queued",
-      "published_at": null,
-      "media_id": null,
-      "permalink": null,
+      "status": "published",
+      "published_at": "2026-11-27T17:40:43+0000",
+      "media_id": "18043932548645902",
+      "permalink": "https://www.instagram.com/p/DgQPQ54FFL3/",
       "image_urls": [
         "https://wearethellab.com/marketing/instagram/2026-11/c06_01.jpg",
         "https://wearethellab.com/marketing/instagram/2026-11/c06_02.jpg",
@@ -337,7 +339,9 @@
         "https://wearethellab.com/marketing/instagram/2026-11/c06_05.jpg",
         "https://wearethellab.com/marketing/instagram/2026-11/c06_06.jpg"
       ],
-      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c06_01.jpg"
+      "story_image_url": "https://wearethellab.com/marketing/instagram/2026-11/c06_01.jpg",
+      "story_media_id": "17919251124506884",
+      "fb_post_id": "1430392103492249_122111607147547307"
     }
   ]
 }
