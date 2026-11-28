@@ -229,5 +229,6 @@ const els = await page.$$('.s');
 for (let i = 0; i < els.length; i++) if (shots) await els[i].screenshot({ path: `${tmp}/png/${String(i + 1).padStart(2, '0')}.png`, scale: 'css' });
 if (shots) console.log(`slide previews: ${tmp}/png`);
 // The cover, shown on the About page.
-await els[0].screenshot({ path: `${repo}/assets/pitch/pitch-deck-cover.jpg`, type: 'jpeg', quality: 82, scale: 'css' });
+// cover image now comes from scripts/pitch/deck.mjs
+// await els[0].screenshot({ path: `${repo}/assets/pitch/pitch-deck-cover.jpg`, type: 'jpeg', quality: 82, scale: 'css' });
 await browser.close();
