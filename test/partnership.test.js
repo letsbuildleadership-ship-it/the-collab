@@ -237,9 +237,9 @@ test('Founders page content links to the partnership page; sitemap and every pri
 
 test('partnership page includes the clickable Omnidirectional Enterprise™ circle model and the mission', () => {
   const html = read('pages/partnership.html');
-  assert.match(html, /class="oe-mini-svg"/);
-  const links = [...html.matchAll(/<a href="([^"]+)" class="oe-link"/g)].map((m) => m[1]);
-  assert.ok(links.length >= 7, 'circle model nodes should be clickable');
+  // the model is the shared Omnidirectional Enterprise™ viewer (js/oe-figures.js), with this page's circles lit
+  assert.match(html, /class="fits-map oef-embed"[^>]*data-on="[^"]*Enterprises/);
+  assert.match(html, /js\/oe-figures\.js/);
   // the model map is shared navigation (like the header): its Communities circle goes to the Founders Organization
 });
 

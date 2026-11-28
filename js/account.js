@@ -532,13 +532,21 @@
 
 
   function snapshotCard(item, buyLabel) {
-    const actions = `<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">${buyLabel || 'Buy'} · ${esc(item.price_display)} <span class="arrow">→</span></a>`;
+    // Every IP can be previewed before purchase: "Look inside" opens its preview in The .LLab Products™.
+    const peek = item.line !== 'founders' && !buyLabel ? `<a class="pill" href="all-products.html#ip-${encodeURIComponent(item.key)}">Look inside <span class="arrow">→</span></a>` : '';
+    const actions = `${peek}<a class="pill pill--accent" href="${item.payment_link}" target="_blank" rel="noopener">${buyLabel || 'Buy'} · ${esc(item.price_display)} <span class="arrow">→</span></a>`;
     const card = itemCard({ name: esc(item.name), actionsHtml: actions });
     if (item.description) {
       const desc = document.createElement('p');
       desc.className = 'item-desc';
       desc.textContent = item.description;
       card.insertBefore(desc, card.querySelector('.item-actions'));
+    }
+    if (item.line !== 'founders' && !buyLabel) {
+      const how = document.createElement('p');
+      how.className = 'item-desc item-access';
+      how.textContent = item.includedWithMembership ? 'Included with The .LLab Membership™, or buy it to keep.' : 'A separate purchase, not included in The .LLab Membership™.';
+      card.insertBefore(how, card.querySelector('.item-actions'));
     }
     return card;
   }

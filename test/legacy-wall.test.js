@@ -59,7 +59,10 @@ test('after a purchase, a member can link their wall name to their website; free
 test('the wall lives on one page; the blueprint links every area to the page where The Co.LLab uses it', () => {
   const oe = fs.readFileSync('pages/omnidirectional-enterprise.html', 'utf8');
   assert.ok(oe.includes('id="legacy-wall"') && oe.includes('legacy-wall.js'));
-  for (const href of ['partnership.html', 'founders.html', 'impact.html', 'products.html', 'all-products.html', 'think.html', 'technology.html', 'creator.html']) assert.ok(oe.includes(`<a href="${href}"><span class="bp-node">`), href);
+  // the #blueprint map is drawn by js/oe-figures.js: every area links to the page where The Co.LLab uses it
+  assert.ok(oe.includes('id="blueprint"') && oe.includes('oe-figures.js'));
+  const fig = fs.readFileSync('js/oe-figures.js', 'utf8');
+  for (const href of ['partnership.html', 'founders.html', 'impact.html', 'products.html', 'all-products.html', 'think.html', 'technology.html', 'creator.html']) assert.ok(fig.includes(`'${href}`), href);
   for (const p of ['pages/founders.html', 'pages/products.html', 'pages/partnership.html']) {
     const html = fs.readFileSync(p, 'utf8');
     assert.ok(html.includes('omnidirectional-enterprise.html#'), `${p} links to the wall`);

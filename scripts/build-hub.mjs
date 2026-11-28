@@ -17,6 +17,10 @@ const isCreator = (p) => /^creator|^creative/.test(p.key);
 const isFounders = (p) => (p.phase || '').includes('The Co.LLab Founders Organization™') && !p.retired_from_sale;
 
 import { PDFDocument } from 'pdf-lib';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { quests: QUESTS } = require('../netlify/functions/lib/quests.js');
+const { LEGACY_QUESTION, phaseIndexOfQuest } = require('../netlify/functions/lib/quest-analysis.js');
 
 const PHASES = [
   { key: 'foundations', no: 'I', name: 'Foundations', tag: (reg.partnerships[0] || {}).legacy_line },
@@ -69,9 +73,49 @@ for (const m of reg.memberships) {
 for (const p of reg.products.filter(isFounders)) {
   add({ kind: 'product', group: 'The Co.LLab Founders Organization™', cats: ['founders'], badge: 'The Co.LLab Founders Organization™', line: 'The Co.LLab Founders Organization™', name: p.name.replace(/^The Co\.LLab Founders Organization™ — /, ''), tag: tagline(p.description), meta: '', price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), mark: p.name.replace(/^The Co\.LLab Founders Organization™ — /, '') });
 }
+
+// "Look inside": a preview of each IP before purchase, built only from the product's own published
+// description and its guided quest (section titles, two sample prompts, the phase deliverable).
+// Never the full method, worksheets or scoring: those stay in the licensed product.
+const fourKeys = new Set(reg.products.filter((p) => FOUR.has(p.key)).map((p) => p.key));
+const sectionName = (s) => String(s).replace(/^The IV Phases™ · ([IV]+) · (.+)$/, 'The IV Phases™ build-out · $1 · $2');
+function accessLine(p, kind) {
+  if (kind === 'partner-ip') {
+    const levels = partnerLevels(p.key);
+    return `Partner-only IP. Included with ${levels.join(', ').replace(/, ([^,]*)$/, ' and $1')}${p.payment_link ? '; also licensed on its own here' : ''}. Not part of The .LLab Membership™.`;
+  }
+  if (kind === 'blueprint') return 'A separate purchase, licensed to keep. Not included in The .LLab Membership™.';
+  if (fourKeys.has(p.key)) return 'Included with The .LLab Membership™ (every IV Phases™ product, open while you are a member and in Partnership™ levels), or buy it on its own to keep.';
+  if (isCreator(p)) return 'A separate purchase, licensed to keep: The .LLab Creators™ line is not included in The .LLab Membership™.';
+  return 'A separate purchase, licensed to keep.';
+}
+function peekHtml(p, kind, nPages) {
+  const q = QUESTS.get(p.key);
+  const parts = [];
+  const k = (label, body) => parts.push(`<p class="fx-peek-k">${esc(label)}</p>${body}`);
+  k('What it is', `<p>${esc(p.description || '')}</p>`);
+  if (q) {
+    const i = phaseIndexOfQuest(q);
+    k('Where it sits', `<p>${esc(q.phase || p.phase || '')}. The question this phase answers: “${esc(LEGACY_QUESTION[i])}”</p>`);
+    const secs = [...new Set(q.nodes.map((n) => n.section).filter(Boolean))].map(sectionName);
+    const steps = q.nodes.length + 1;
+    k('What’s inside', `${secs.length ? `<ul>${secs.slice(0, 6).map((x) => `<li>${esc(x)}</li>`).join('')}${secs.length > 6 ? `<li>+ ${secs.length - 6} more section${secs.length - 6 === 1 ? '' : 's'}</li>` : ''}</ul>` : ''}<p>${steps} guided steps${nPages ? ` · ${nPages}-page fillable PDF` : ''}${q.shortPath ? ' · a short path for busy weeks' : ''}</p>`);
+    const samples = q.nodes.filter((n) => n.type === 'text' || n.type === 'scale' || n.type === 'check').slice(0, 2);
+    if (samples.length) k('Two sample prompts from the method', `<ul>${samples.map((n) => `<li>${esc(n.prompt)}</li>`).join('')}</ul>`);
+    const g = q.guide && q.guide[i];
+    if (g) k('What you walk away with', `<p>${esc(g[0])} Then: ${esc(lowerFirst(g[1]))}</p>`);
+    k('How it works in The .LLab™', '<p>Use the licensed PDF on its own, or work it as a guided quest in your Member Portal. Your answers save as you go; the Infrastructure Analysis™ reads them against this method (what is working, what to build, a phase map and your next move); your report downloads as a PDF. Each finished quest adds to your Phase Readiness, schedules 30, 90 and 365-day check-ins on your commitment, and what you already wrote is offered back in the next IP that asks for it.</p>');
+  } else if (nPages) {
+    k('What’s inside', `<p>${nPages}-page PDF, licensed to keep.</p>`);
+  }
+  k('How you get it', `<p>${esc(accessLine(p, kind))}</p>`);
+  return `<details class="fx-peek"><summary>Look inside</summary><div class="fx-peek-body">${parts.join('')}<p class="fx-peek-note">Preview only: the description, section titles and two sample prompts. The full method, worksheets and scoring are in the licensed product.</p></div></details>`;
+}
+const lowerFirst = (s) => (s ? s[0].toLowerCase() + s.slice(1) : s);
 const hasQuest = (key) => fs.existsSync(path.join(root, 'content/quests', `${key}.json`));
 const productItem = async (p, extra = {}) => {
   const n = await pages(p.pdf_file);
+  const kind = (extra.cats || []).includes('partner-ip') ? 'partner-ip' : (extra.cats || []).includes('blueprint') ? 'blueprint' : 'product';
   const pc = phaseCat(p.phase_key);
   const creator = isCreator(p);
   const line = creator ? 'The .LLab Creators™' : FOUR.has(p.key) ? 'The IV Phases™' : 'The .LLab Blueprint™';
@@ -79,7 +123,7 @@ const productItem = async (p, extra = {}) => {
     kind: 'product', group: 'Products', cats: [pc, creator ? 'creators' : null, ...(extra.cats || [])].filter(Boolean), badge: extra.badge || (pc ? `Phase ${pc.replace('phase-', '').toUpperCase()}` : 'Product'), isNew: Boolean(p.new),
     line, name: p.name, tag: tagline(p.description),
     meta: [/blueprint-/.test(p.key) ? 'PDF magazine' : 'Infrastructure planning IP · fillable PDF', n ? `${n} pages` : null, hasQuest(p.key) ? 'Guided quest' : null, 'Licensed to keep'].filter(Boolean).join(' · '),
-    price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), img: cover(p.key, path.join(root, 'content/library', p.pdf_file || 'none')), mark: p.name, ...extra.override,
+    price: p.price_display, sort: dollars(p.price_display), buttons: buy(p.payment_link), img: cover(p.key, path.join(root, 'content/library', p.pdf_file || 'none')), mark: p.name, key: p.key, peek: peekHtml(p, kind, n), ...extra.override,
   };
 };
 const prods = reg.products.filter((p) => !isFounders(p));
@@ -116,13 +160,14 @@ const tile = (o, i) => {
           ${o.meta ? `<p class="fx-meta">${esc(o.meta)}</p>` : ''}
           <div class="fx-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
         </article>`;
-  return `<article class="fx-card" ${head}>
+  return `<article class="fx-card"${o.key ? ` id="ip-${esc(o.key)}"` : ''} ${head}>
           <div class="fx-img${o.img ? '' : ' fx-img--brand'}">${o.img ? `<img src="${o.img}" alt="${esc(o.name)} cover" width="391" height="506" loading="lazy">` : `<span class="fx-mark">${esc(o.mark)}</span>`}<span class="fx-badge">${esc(o.badge)}</span>${o.isNew ? '<span class="fx-badge fx-badge--new">New</span>' : ''}</div>
           <div class="fx-body">
             <p class="fx-line">${esc(o.line)}</p>
             <h3>${esc(o.name)}</h3>
             <p class="fx-tag">${esc(o.tag)}</p>
             ${o.meta ? `<p class="fx-meta">${esc(o.meta)}</p>` : ''}
+            ${o.peek || ''}
             <div class="fx-buy"><span class="fx-price">${esc(o.price)}</span>${o.buttons}</div>
           </div>
         </article>`;
@@ -144,6 +189,20 @@ const main = `<main>
       <p class="eyebrow" style="justify-content:center;"><a href="products.html" style="color:inherit;">The .LLab™</a> · Shop</p>
       <h1 class="display" style="margin-top:1.5rem;"><strong>The .LLab products.</strong></h1>
       <p class="subhead" style="margin:1.5rem auto 0;">Infrastructure planning IP for every phase. Pick a phase, pick a product, order in one tap.</p>
+    </div>
+  </section>
+
+  <section class="band hub-how" id="how-ip-works" aria-label="How the IP works in The .LLab">
+    <div class="wrap">
+      <p class="eyebrow">How the IP works in The .LLab™</p>
+      <h2 class="headline" style="margin-top:1.25rem; max-width:26ch;">The IP is the method. <strong>The .LLab™ is where you work it.</strong></h2>
+      <p class="subhead" style="margin-top:1rem; max-width:62ch;">Each product is a proprietary methodology and tool. Membership is the environment that lets you access, apply and progress through them together, across The IV Phases™.</p>
+      <div class="hub-how-grid">
+        <div><h3>On its own</h3><p>Buy any product to keep: the licensed fillable PDF, its guided quest in your Member Portal and the Infrastructure Analysis™ of your own answers to it.</p></div>
+        <div><h3>Together, inside The .LLab™</h3><p>Every finished quest adds to one private record: Phase Readiness across The IV Phases™, your next step in each phase, your Legacy Statement, 30, 90 and 365-day check-ins, comparisons with your earlier runs, and the mission, vision, purpose and values you already wrote offered back in the next IP that asks for them.</p></div>
+        <div><h3>Included or separate</h3><p><strong>Included with The .LLab Membership™:</strong> every IV Phases™ product (${fourKeys.size}, Phases I to IV), plus the Infrastructure Analysis™. <strong>Separate purchases:</strong> The .LLab Creators™ line and The .LLab Blueprint™ magazine. <strong>Partner-only IP:</strong> included with Partnership™ levels. <strong>Free tools:</strong> open to everyone.</p></div>
+      </div>
+      <p class="fx-peek-note" style="margin-top:1.25rem;">Every product below has a <strong>Look inside</strong> preview: what it is, where it sits in The IV Phases™, what is inside, two sample prompts and how you get it.</p>
     </div>
   </section>
 
@@ -213,7 +272,12 @@ t = t.replace('<script>document.getElementById(\'year\')', `<script>(function ()
     chips.forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-filter') === filter); });
     count.textContent = n + (n === 1 ? ' product' : ' products'); none.hidden = n > 0;
   }
-  function fromHash() { var h = location.hash.slice(1); var hit = chips.filter(function (b) { return b.id === h; })[0]; if (hit) { filter = hit.getAttribute('data-filter'); apply(); } }
+  function fromHash() {
+    var h = location.hash.slice(1); var hit = chips.filter(function (b) { return b.id === h; })[0];
+    if (hit) { filter = hit.getAttribute('data-filter'); apply(); return; }
+    var card = /^ip-/.test(h) && document.getElementById(h);
+    if (card) { filter = 'all'; q.value = ''; apply(); var d = card.querySelector('.fx-peek'); if (d) d.open = true; card.scrollIntoView({ block: 'start' }); }
+  }
   chips.forEach(function (b) { b.addEventListener('click', function () { filter = b.getAttribute('data-filter'); apply(); }); });
   q.addEventListener('input', apply); sort.addEventListener('change', apply);
   window.addEventListener('hashchange', fromHash); fromHash();

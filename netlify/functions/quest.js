@@ -8,7 +8,8 @@ const membershipStatus = require('./lib/membership-status');
 const { resolveAccess } = require('./lib/access');
 const freeToolKeys = new Set(require('../../content/free-tools.json').tools.map((t) => t.key));
 const { tokenFromEvent, json, CORS_HEADERS } = require('./lib/http');
-const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor, pathOf } = require('./lib/quests');
+const { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor, pathOf, runSummary, compareRuns } = require('./lib/quests');
+const { carryFor } = require('./lib/carry-forward');
 const { scheduleCheckins } = require('./lib/member-ip');
 const { buildQuestPdf } = require('./lib/quest-pdf');
 
@@ -61,7 +62,13 @@ exports.handler = async (event) => {
     };
   }
 
-  if (isGet) return json(200, { quest: publicQuest(quest), saved, canAnalyze });
+  // carry: the member's own earlier answers to the same question in another IP (suggestions, never auto-filled).
+  // comparison: how this run compares with the one before it, when they have finished it more than once.
+  if (isGet) {
+    const history = (saved && saved.history) || [];
+    const comparison = saved && saved.status === 'done' && history.length ? compareRuns(history[history.length - 1], runSummary(saved)) : null;
+    return json(200, { quest: publicQuest(quest), saved, canAnalyze, carry: carryFor(quest, record), comparison });
+  }
 
   const complete = body.complete === true;
   // Long quests offer a short path; the member's choice is kept with their answers.
@@ -72,7 +79,7 @@ exports.handler = async (event) => {
   if (complete && !canAnalyze) {
     if (saved && saved.status === 'done') return json(200, { saved });
     const preview = previewFor(outcomeFor(quest, v.answers, path));
-    record.quests[key] = { status: 'draft', path, answers: v.answers, notes: cleanNotes(quest, body.notes), readyForAnalysis: true, preview };
+    record.quests[key] = { status: 'draft', path, answers: v.answers, notes: cleanNotes(quest, body.notes), readyForAnalysis: true, preview, updatedAt: new Date().toISOString() };
     scheduleCheckins(record, key, v.answers[quest.closing.id], new Date().toISOString());
     await store.saveCustomer(record);
     return json(200, { saved: record.quests[key], analysisLocked: true, preview });
@@ -80,14 +87,18 @@ exports.handler = async (event) => {
 
   if (complete) {
     const completedAt = new Date().toISOString();
-    record.quests[key] = { status: 'done', path, answers: v.answers, notes: cleanNotes(quest, body.notes), outcome: outcomeFor(quest, v.answers, path), completedAt };
+    // Finishing again keeps a summary of the earlier run (last 10) for the historical comparison.
+    const history = saved && saved.status === 'done' && saved.outcome ? [...(saved.history || []), runSummary(saved)].slice(-10) : (saved && saved.history) || [];
+    record.quests[key] = { status: 'done', path, answers: v.answers, notes: cleanNotes(quest, body.notes), outcome: outcomeFor(quest, v.answers, path), completedAt, ...(history.length ? { history } : {}) };
     // Every quest ends with a commitment; it comes back at 30, 90 and 365 days.
     scheduleCheckins(record, key, v.answers[quest.closing.id], completedAt);
   } else if (saved && saved.status === 'done') {
     return json(200, { saved }); // drafts never overwrite a finished report
   } else {
-    record.quests[key] = { status: 'draft', path, answers: v.answers, notes: cleanNotes(quest, body.notes) };
+    record.quests[key] = { status: 'draft', path, answers: v.answers, notes: cleanNotes(quest, body.notes), updatedAt: new Date().toISOString(), ...(saved && saved.history ? { history: saved.history } : {}) };
   }
   await store.saveCustomer(record);
-  return json(200, { saved: record.quests[key] });
+  const cur = record.quests[key];
+  const comparison = complete && cur.history && cur.history.length ? compareRuns(cur.history[cur.history.length - 1], runSummary(cur)) : null;
+  return json(200, { saved: cur, comparison });
 };

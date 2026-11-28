@@ -32,6 +32,27 @@
     $('readiness-read').textContent = r.read || '';
   }
 
+  // The next step in each phase, thinnest first: continue, start (yours already) or add (look inside first).
+  function renderProgression(pr) {
+    var wrap = $('progression');
+    if (!wrap || !pr) return;
+    var ol = $('progression-next');
+    ol.textContent = '';
+    (pr.next || []).forEach(function (n) {
+      var li = el('li');
+      var a = el('a', null, n.title);
+      a.href = n.kind === 'add' ? 'all-products.html#ip-' + encodeURIComponent(n.key) : 'quest.html?key=' + encodeURIComponent(n.key);
+      li.appendChild(el('span', 'progression-phase', 'Phase ' + n.phaseNo + ' · ' + n.phase));
+      li.appendChild(a);
+      li.appendChild(el('span', 'progression-kind', n.kind === 'continue' ? 'Continue where you left off' : n.kind === 'start' ? 'Yours: start the quest' : 'Look inside before you add it'));
+      ol.appendChild(li);
+    });
+    $('progression-phases').textContent = (pr.phases || []).map(function (p, i) {
+      return ['I', 'II', 'III', 'IV'][i] + ': ' + p.done.length + ' finished' + (p.inProgress.length ? ', ' + p.inProgress.length + ' in progress' : '') + ', ' + p.open + ' open to you';
+    }).join(' · ');
+    wrap.hidden = !(pr.next || []).length;
+  }
+
   function renderCheckins(list) {
     var box = $('checkins-list');
     box.textContent = '';
@@ -149,6 +170,7 @@
     var data = e.detail || {};
     $('ip-work').hidden = false;
     renderReadiness(data.phaseReadiness || { phases: PHASES.map(function (n) { return { name: n, readiness: null }; }) });
+    renderProgression(data.progression);
     renderCheckins(data.checkins || []);
     loadTeams();
     if (data.hasLegacyStatement) loadLegacy();

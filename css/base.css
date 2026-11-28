@@ -2619,3 +2619,47 @@ font font { background: none !important; box-shadow: none !important; }
 .q-team-table th, .q-team-table td { text-align: left; vertical-align: top; padding: .5rem .6rem; border-top: 1px solid var(--hairline); color: #fdf6ec; }
 .q-team-table th { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--white-dim); }
 .q-team-wrap { overflow-x: auto; }
+
+/* Member portal: next step in each phase (js/member-ip.js renderProgression) */
+.progression { margin-top: 1.1rem; }
+.progression-next { list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: .55rem; }
+.progression-next li { display: grid; gap: .15rem; padding: .7rem .9rem; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; }
+.progression-next a { font-weight: 700; color: var(--white, #fff); }
+.progression-phase, .progression-kind { color: var(--white-dim); font-size: .85rem; font-weight: 700; }
+.ip-privacy { margin-top: 1rem; }
+/* Quest page: carry-forward suggestions, provenance labels and the run-over-run comparison (js/quest.js) */
+.q-carry { margin-top: .5rem; padding: .6rem .8rem; border: 1px dashed rgba(255,255,255,.28); border-radius: 10px; font-size: .9rem; font-weight: 600; }
+.q-carry p { margin: 0 0 .4rem; color: var(--white-dim); }
+.q-carry q { display: block; color: var(--white, #fff); font-style: normal; margin-bottom: .45rem; white-space: pre-wrap; }
+.q-provenance { color: var(--white-dim); font-size: .85rem; font-weight: 700; margin: .25rem 0 .6rem; }
+.q-history { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; }
+.q-history ul { list-style: none; padding: 0; margin: .5rem 0 0; display: grid; gap: .3rem; }
+.q-history li { display: flex; justify-content: space-between; gap: 1rem; font-weight: 600; }
+
+/* Shop: "Look inside" preview on every IP (scripts/build-hub.mjs peekHtml). Opening it widens the card to the full row. */
+.fx-peek { margin-top: 0.35rem; }
+.fx-peek > summary { cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.9rem; border: 1px solid var(--hairline-strong); border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; list-style: none; }
+.fx-peek > summary::-webkit-details-marker { display: none; }
+.fx-peek > summary::after { content: '+'; font-weight: 800; }
+.fx-peek[open] > summary::after { content: '–'; }
+.fx-peek-body { margin-top: 0.7rem; padding: 0.9rem 1rem; border-radius: 12px; background: rgba(var(--black-rgb), 0.55); border: 1px solid var(--hairline-strong); color: var(--paper); font-size: 0.9rem; line-height: 1.5; }
+.fx-peek-body p, .fx-peek-body ul { margin: 0 0 0.6rem; }
+.fx-peek-body ul { padding-left: 1.1rem; }
+.fx-peek-k { margin: 0.8rem 0 0.2rem !important; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--filament-2); }
+.fx-peek-k:first-child { margin-top: 0 !important; }
+.fx-peek-note { font-size: 0.82rem; font-weight: 700; color: #fff; opacity: 0.9; margin: 0.6rem 0 0 !important; }
+.fx-card:has(.fx-peek[open]) { grid-column: 1 / -1; flex-direction: row; gap: 1.25rem; align-items: flex-start; }
+.fx-card:has(.fx-peek[open]) .fx-img { flex: 0 0 min(34%, 15rem); }
+@media (max-width: 640px) { .fx-card:has(.fx-peek[open]) { flex-direction: column; } .fx-card:has(.fx-peek[open]) .fx-img { flex: none; width: 55%; } .fx-peek > summary { width: 100%; justify-content: center; } }
+/* Shop: how the IP works in The .LLab (included vs separate) */
+.hub-how { padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.hub-how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; margin-top: 1.75rem; }
+.hub-how-grid > div { padding: 1.1rem 1.2rem; border: 1px solid var(--hairline-strong); border-radius: 14px; background: rgba(var(--black-rgb), 0.45); }
+.hub-how-grid h3 { margin: 0 0 0.5rem; font-size: 1.05rem; color: var(--paper); }
+.hub-how-grid p { margin: 0; color: var(--paper); font-size: 0.92rem; line-height: 1.55; }
+/* Desktop header: the seven top-level items plus Language and Sign in fit from 1380px (Sign in was pushed off-screen below ~1800px) */
+@media (min-width: 1380px) {
+  .site-header .nav-links { gap: clamp(0.55rem, 0.8vw, 1.4rem); }
+  .site-header .nav-links > li > a, .site-header .nav-links > li > .nav-more-toggle { letter-spacing: 0.02em; }
+}
+.fx-card[id^="ip-"] { scroll-margin-top: 9.5rem; }
