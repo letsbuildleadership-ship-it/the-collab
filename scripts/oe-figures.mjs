@@ -89,27 +89,25 @@ function fractal() {
   return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto"><defs><radialGradient id="fade" cx="50%" cy="50%" r="62%"><stop offset=".52" stop-color="#fff" stop-opacity="0"/><stop offset=".72" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity=".15"/></radialGradient><mask id="fm"><rect x="0" y="0" width="${w}" height="${h}" fill="url(#fade)"/></mask></defs><g mask="url(#fm)">${ghost}</g>${lines}${cubes}${label}</svg>`;
 }
 
+// Easier to read, every line kept: a thicker ember ring with a stronger glow, a light dark wash inside each circle,
+// and a wider dark outline around every word so the text reads over the lines.
+const glowing = (s, k = 2) => s
+  .replace(/stdDeviation="7" result="b"\/><feMerge><feMergeNode in="b"\/>/g, 'stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/>')
+  .replace(/fill="#0f1d13" fill-opacity="0" stroke="(#ff602e|url\(#[\w-]+-fil\))" stroke-width="([\d.]+)"/g, (m, c, w) => `fill="#0f1d13" fill-opacity=".38" stroke="${c}" stroke-width="${(parseFloat(w) * k).toFixed(2)}"`)
+  .replace(/stroke="#0f1d13" stroke-width="6" stroke-linejoin="round"/g, 'stroke="#0f1d13" stroke-width="10" stroke-linejoin="round"');
+
 const legendRow = (items) => `<ul class="lg">${items.map(([k, b, t]) => `<li><i class="${k}"></i><b>${b}</b><span>${t}</span></li>`).join('')}</ul>`;
 
 const FIGS = [
-  { n: 1, h: 900, body: () => svg('full', { base: 'pages/' }),
-    legend: [['src', 'THE SOURCE', 'the model at the centre'], ['ln', 'TRANSMISSION LINE', 'every circle ↔ every circle'],
-      ['cir', 'SUBSTATION', 'where economic activity happens'], ['cir', 'INNER RING', 'independent · outer ring external']],
-    count: ['1 Source · 12 substations · 78 two-way lines', 'Power goes out on every line, and value comes back'] },
-  { n: 2, h: 970, body: () => { const s = svg('full', { base: 'pages/', lines: RUN_BY, coreText: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'] }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); },
-    legend: [['src', 'THE SOURCE', 'The Co.LLab™: Building Leadership Infrastructure, built on the model'], ['ln', 'LINE', 'every circle ↔ every circle'],
-      ['cir', 'SUBSTATION', 'run by the part of The Co.LLab™ named in it'], ['cur', 'CURRENT', 'a named flow of value we run today']],
-    count: ['13 circles · 78 two-way connections · 7 Currents', 'Every circle connects with every other circle'],
+  { n: 1, h: 900, big: true, body: () => glowing(svg('full', { base: 'pages/' })), legend: [], count: [] },
+  { n: 2, h: 970, big: true, body: () => glowing((() => { const s = svg('full', { base: 'pages/', lines: RUN_BY, coreText: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'] }); const cur = currents(); return s.replace('</g>\n', `</g>\n${cur.lines}\n`).replace('</svg>', `${cur.badges}</svg>`); })()),
+    legend: [], count: [],
     extra: `<p class="cur">Currents · ${CURRENT_NAMES.map((c, i) => `<b>${i + 1}</b> ${c}`).join('&nbsp;&nbsp; ')}</p>` },
   { n: 3, h: 900, body: () => { const D = 232, cx = 450, cy = 350; const spots = [[cx, cy], ...[0, 1, 2, 3, 4, 5].map((k) => [cx + D * Math.cos((90 + 60 * k) * Math.PI / 180), cy - D * Math.sin((90 + 60 * k) * Math.PI / 180)])];
-      const blank = { core: [' ', ' '], names: false }; return grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, i === 0 ? { core: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'], names: false } : blank])), 1.8); },
-    legend: [['src', 'CONDUCTOR', 'an enterprise running the model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
-      ['ln', 'LINE', 'inside each Conductor: every circle ↔ every circle']],
-    count: ['7 Conductors · 91 circles · up to 4,095 two-way connections', 'Each new Conductor adds 13 circles to the Grid'] },
-  { n: 4, h: 900, body: () => fractal(),
-    legend: [['src', 'CONDUCTOR', 'an enterprise running the whole model'], ['wl', 'INTERCONNECTION', 'every Conductor ↔ every Conductor'],
-      ['src', 'THE CO.LLAB™:', 'Building Leadership Infrastructure, the Conductor at the centre'], ['cir', 'THE GRID', 'one circle of the next, larger model']],
-    count: ['13 Conductors · 169 circles · up to 14,196 two-way connections', 'Every Grid is one circle of a larger Omnidirectional Enterprise™, without end'] },
+      const blank = { core: [' ', ' '], names: false }; return glowing(grid(spots, 0.262, Object.fromEntries(spots.map((_, i) => [i, i === 0 ? { core: ['The Co.LLab™:', 'BUILDING LEADERSHIP', 'INFRASTRUCTURE'], names: false } : blank])), 1.8), 1.35); },
+    legend: [], count: [] },
+  { n: 4, h: 900, body: () => glowing(fractal(), 1.35),
+    legend: [], count: [] },
 ];
 
 const page = (f) => `<!doctype html><html><head><meta charset="utf-8"><base href="${pathToFileURL(root).href}/">
@@ -131,7 +129,8 @@ body::before,body::after{display:none !important}
 .lg i.cur{border:0;border-radius:0;height:3px;background:#fdf6ec}
 .count{margin:${f.n <= 2 ? 22 : 20}px 0 0;text-align:center;color:#fdf6ec;font-weight:700;font-size:${f.n === 4 ? 13 : 15}px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7}
 .cur{margin:12px 0 0;color:#ff9a6e;font-size:13px;letter-spacing:.06em}.cur b{color:#fdf6ec}
-</style></head><body><div class="wrap"><div class="fig">${f.body()}</div>${legendRow(f.legend)}<p class="count">${f.count.join('<br>')}</p>${f.extra || ''}</div></body></html>`;
+${f.legend.length ? '' : '.wrap{justify-content:center}'}${f.big ? '.fig{width:880px;margin:0}.oe-n-title{font-size:16px;font-weight:800;fill:#ff7a45}.oe-n-line{font-size:15.5px;font-weight:600;fill:#fdf6ec}' : ''}
+</style></head><body><div class="wrap"><div class="fig">${f.body()}</div>${f.legend.length ? legendRow(f.legend) : ''}${f.count.length ? `<p class="count">${f.count.join('<br>')}</p>` : ''}${f.extra || ''}</div></body></html>`;
 
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' }).catch(() => chromium.launch());
 const pg = await browser.newPage({ viewport: { width: 900, height: 970 }, deviceScaleFactor: 1 });
