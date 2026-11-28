@@ -11,6 +11,8 @@
   var saveTimer = null;
   var canAnalyze = true;
   var path = 'full';
+  var carry = {};
+  var comparison = null;
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -183,6 +185,19 @@
       ta.setAttribute('aria-label', n.label || 'Your answer');
       ta.addEventListener('input', function () { answers[n.id] = ta.value; refresh(); queueSave(); });
       card.appendChild(ta);
+      // Carry-forward: their own earlier answer to the same question in another IP. Offered, never filled in for them.
+      var c = carry[n.id];
+      if (c && !(answers[n.id] || '').trim()) {
+        var cb = el('div', 'q-carry');
+        cb.appendChild(el('p', null, 'You already wrote your ' + c.label.toLowerCase() + ' in ' + c.fromTitle + ':'));
+        cb.appendChild(el('q', null, c.value));
+        var use = el('button', 'pill mini', 'Use this'); use.type = 'button';
+        use.addEventListener('click', function () { ta.value = c.value; answers[n.id] = c.value; cb.remove(); refresh(); queueSave(); });
+        var skip = el('button', 'pill mini', 'Write it fresh'); skip.type = 'button'; skip.style.marginLeft = '.4rem';
+        skip.addEventListener('click', function () { cb.remove(); ta.focus(); });
+        cb.append(use, skip);
+        card.appendChild(cb);
+      }
       card.appendChild(el('p', 'q-feed'));
     }
     return card;
@@ -233,6 +248,25 @@
       });
     }
     $('r-pdf').href = API + '?key=' + encodeURIComponent(key) + '&pdf=1';
+    renderHistory(comparison);
+  }
+
+  // Historical comparison with the run before this one (numbers from the two runs only).
+  function renderHistory(c) {
+    var box = $('r-history');
+    if (!box) return;
+    box.hidden = !c;
+    if (!c) return;
+    $('r-history-read').textContent = c.read;
+    var ul = $('r-history-phases');
+    ul.textContent = '';
+    (c.phases || []).forEach(function (p) {
+      if (p.from === null && p.to === null) return;
+      var li = el('li');
+      li.appendChild(el('span', null, p.name));
+      li.appendChild(el('span', null, (p.from === null ? '—' : p.from + '%') + ' → ' + (p.to === null ? '—' : p.to + '%') + (p.change ? ' (' + (p.change > 0 ? '+' : '') + p.change + ')' : '')));
+      ul.appendChild(li);
+    });
   }
 
   function showRun() {
@@ -445,6 +479,8 @@
         quest = res.d.quest;
         var saved = res.d.saved;
         canAnalyze = res.d.canAnalyze !== false;
+        carry = res.d.carry || {};
+        comparison = res.d.comparison || null;
         $('q-phase').textContent = quest.phase;
         $('q-title').textContent = quest.title;
         $('q-intro').textContent = quest.intro;
@@ -471,6 +507,7 @@
       .then(function (res) {
         if (!res.ok) { $('q-finish-err').textContent = res.d.error || 'Could not finish.'; btn.disabled = false; return; }
         if (res.d.analysisLocked) { showLocked(res.d.preview); return; }
+        comparison = res.d.comparison || null;
         showResult(res.d.saved);
         window.scrollTo(0, 0);
       })

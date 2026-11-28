@@ -120,11 +120,13 @@ function buildAccountView(record, now) {
     // Quests open to every signed-in member that are not tied to a product (for example .LLab AV Productions™).
     openQuests: [...questLib.quests.values()].filter((q) => q.open).map((q) => ({ key: q.key, name: q.title, phase: q.phase, description: q.intro })),
     questKeys: [...questLib.quests.keys()],
-    quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null }])),
+    quests: Object.fromEntries(Object.entries(record.quests || {}).map(([k, v]) => [k, { status: v.status, completedAt: v.completedAt || null, runs: v.status === 'done' ? 1 + (v.history || []).length : (v.history || []).length }])),
     // Industry editions of a product's quest (e.g. the Diagnostic's Nonprofit edition), unlocked with it.
     questEditions: [...questLib.quests.values()].filter((q) => q.editionOf).map((q) => ({ key: q.key, of: q.editionOf, name: q.title, direction: q.direction || null })),
     // Across all finished quests: The IV Phases™ readiness, and commitment check-ins (private to the member).
     phaseReadiness: memberIp.phaseReadiness(record),
+    // Where they are in The IV Phases™ and the next step in each phase (their own record only).
+    progression: memberIp.progression(record, ownedKeys, new Set([...pricing.allCatalogProductKeys(), ...(pricing.registry.partner_ip || []).map((x) => x.key), ...(pricing.registry.blueprint_series || []).map((x) => x.key)].filter((k) => { const e = pricing.entryForKey(k); return e && !e.retired_from_sale && !founderTiers.has(k); }))),
     checkins: memberIp.checkinView(record, now ? new Date(now).getTime() : Date.now()),
     hasLegacyStatement: !!(record.legacyStatement && (record.legacyStatement.phases || []).some(Boolean)),
     // Shown while Membership isn't active: what it includes and how to join.

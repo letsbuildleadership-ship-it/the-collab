@@ -183,4 +183,41 @@ function previewFor(o) {
   };
 }
 
-module.exports = { quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor, pathNodes, pathOf, applyPhases };
+
+// Historical comparison: each time a member finishes a quest again, the run before it is kept
+// (a short summary, never the old answers) so they can see what moved. Numbers only come from
+// the two runs' own outcomes; nothing is estimated.
+const readinessOf = (p) => ((p.strengths || 0) + (p.gaps || 0) ? Math.round((100 * (p.strengths || 0)) / ((p.strengths || 0) + (p.gaps || 0))) : null);
+function runSummary(saved) {
+  const o = (saved && saved.outcome) || {};
+  return {
+    completedAt: saved.completedAt || null,
+    path: saved.path || 'full',
+    score: o.score === undefined ? null : o.score,
+    max: o.max === undefined ? null : o.max,
+    bandLabel: o.bandLabel || null,
+    strengths: (o.strengths || []).length,
+    improvements: (o.improvements || []).length,
+    phases: (o.phaseMap || []).map((p) => ({ name: p.name, strengths: p.strengths || 0, gaps: p.gaps || 0, readiness: readinessOf(p) })),
+    commitment: String(o.commitment || '').slice(0, 300),
+  };
+}
+function compareRuns(prev, cur) {
+  if (!prev || !cur) return null;
+  const phases = (cur.phases || []).map((p, i) => {
+    const before = (prev.phases || [])[i] || {};
+    const from = before.readiness === undefined ? null : before.readiness;
+    return { name: p.name, from, to: p.readiness, change: from === null || p.readiness === null ? null : p.readiness - from };
+  });
+  const scored = prev.score !== null && cur.score !== null && prev.max && cur.max;
+  const moved = phases.filter((p) => p.change !== null && p.change !== 0).sort((a, b) => Math.abs(b.change) - Math.abs(a.change));
+  let read;
+  if (scored && cur.score !== prev.score) read = `Your score moved from ${prev.score} to ${cur.score} of ${cur.max} since ${String(prev.completedAt || '').slice(0, 10)}.`;
+  else if (scored) read = `Your score held at ${cur.score} of ${cur.max} since ${String(prev.completedAt || '').slice(0, 10)}.`;
+  else read = `Compared with your run on ${String(prev.completedAt || '').slice(0, 10)}:`;
+  if (moved.length) read += ` ${moved[0].name} ${moved[0].change > 0 ? 'rose' : 'fell'} ${Math.abs(moved[0].change)} points.`;
+  read += ` ${cur.strengths} working (was ${prev.strengths}), ${cur.improvements} to build (was ${prev.improvements}).`;
+  return { since: prev.completedAt, score: scored ? { from: prev.score, to: cur.score, max: cur.max } : null, strengths: { from: prev.strengths, to: cur.strengths }, improvements: { from: prev.improvements, to: cur.improvements }, phases, read };
+}
+
+module.exports = { runSummary, compareRuns, quests, publicQuest, validateAnswers, cleanNotes, outcomeFor, previewFor, pathNodes, pathOf, applyPhases };

@@ -140,4 +140,37 @@ function checkinInsights(customers) {
   return Object.values(byQuest).sort((a, b) => b.replies - a.replies);
 }
 
-module.exports = { phaseReadiness, legacyDraft, draftText, cleanStatement, scheduleCheckins, checkinView, recordCheckin, checkinInsights, CHECKIN_DAYS, STATUSES };
+/**
+ * Progression across The IV Phases™: for each phase, the member's quests finished, in progress and
+ * open to them (owned IP, free tools, open quests), plus the IP in that phase they could add.
+ * `next` is up to three steps, the thinnest or untouched phase first, so what a member documented in
+ * one phase carries straight into the work of the next. Built only from their own record and catalog.
+ */
+function progression(record, ownedKeys, catalog) {
+  const readiness = phaseReadiness(record);
+  const mine = record.quests || {};
+  const owned = new Set(ownedKeys || []);
+  const phases = PHASES.map((name) => ({ name, done: [], inProgress: [], open: [], toAdd: [] }));
+  for (const q of quests.values()) {
+    if (q.editionOf) continue;
+    const i = phaseIndexOfQuest(q);
+    const s = mine[q.key];
+    const free = /^free-/.test(q.key) || q.open;
+    const item = { key: q.key, title: q.title };
+    if (s && s.status === 'done') phases[i].done.push({ ...item, completedAt: s.completedAt || null, runs: 1 + ((s.history || []).length) });
+    else if (s && s.status === 'draft') phases[i].inProgress.push(item);
+    else if (owned.has(q.key) || free) phases[i].open.push({ ...item, free: !!free && !owned.has(q.key) });
+    else if (catalog && catalog.has(q.key)) phases[i].toAdd.push(item);
+  }
+  // thinnest first: an untouched phase counts as the thinnest; ties go in The IV Phases™ order
+  const rank = (i) => (readiness.phases[i].readiness === null ? -1 : readiness.phases[i].readiness);
+  const order = PHASES.map((name, i) => i).sort((a, b) => rank(a) - rank(b) || a - b);
+  const next = [];
+  const push = (i, item, kind) => { if (next.length < 3 && !next.some((n) => n.key === item.key)) next.push({ phase: PHASES[i], phaseNo: ['I', 'II', 'III', 'IV'][i], key: item.key, title: item.title, kind }); };
+  for (const i of order) { const p = phases[i]; if (p.inProgress[0]) push(i, p.inProgress[0], 'continue'); }
+  for (const i of order) { const p = phases[i]; const o = p.open.find((x) => !x.free) || p.open[0]; if (o) push(i, o, 'start'); }
+  for (const i of order) { const p = phases[i]; if (p.toAdd[0]) push(i, p.toAdd[0], 'add'); }
+  return { phases: phases.map((p) => ({ name: p.name, done: p.done, inProgress: p.inProgress, open: p.open.length, toAdd: p.toAdd.length })), next };
+}
+
+module.exports = { progression, phaseReadiness, legacyDraft, draftText, cleanStatement, scheduleCheckins, checkinView, recordCheckin, checkinInsights, CHECKIN_DAYS, STATUSES };

@@ -337,4 +337,4 @@ function analyze(q, answers) {
   return r;
 }
 
-module.exports = { analyze, readText, omniRead, phaseIndexOfText, phaseIndexOfQuest, PHASES, OE_NODES };
+module.exports = { analyze, readText, omniRead, phaseIndexOfText, phaseIndexOfQuest, PHASES, OE_NODES, LEGACY_QUESTION };
