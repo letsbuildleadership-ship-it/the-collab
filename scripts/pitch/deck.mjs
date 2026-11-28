@@ -84,7 +84,7 @@ h2 { font-size: 56px; }
 .title .k { font-size: 17px; margin-bottom: 26px; }
 .title h1 { font-size: 60px; margin: 0; max-width: none; line-height: 1.04; }
 .title .catch { margin-top: .5in; font-size: 20px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #fff; line-height: 1.6; } .title .catch span { display: block; color: #ff9a6e; }
-.title .mark { position: absolute; right: .7in; top: 50%; transform: translateY(-50%); width: 5.3in; border-radius: 14px; z-index: 2; box-shadow: 0 0 50px rgba(255,58,20,.55), 0 0 120px rgba(255,58,20,.3); }
+.title .mark { position: absolute; right: -.246in; top: 50%; transform: translateY(-50%); width: 7.19in; z-index: 2; }
 `;
 let n = 0;
 const ft = () => { n += 1; return `<div class="ft"><span><b>The Co.LLab™:</b> ${EVENT}</span><span>${String(n).padStart(2, '0')}</span></div>`; };
@@ -95,7 +95,7 @@ const sTitle = `<section class="s title"><div class="hero" style="background-ima
 <div class="tx">
 <h1><b>The Co.LLab™:</b><br/>Building Leadership Infrastructure</h1>
 <p class="catch">Let’s build your legacy<span>through Omnidirectional Enterprise™</span></p></div>
-<img class="mark" src="${logo}" alt="The Co.LLab™ logo"/></section>`;
+<img class="mark" src="data:image/png;base64,${fs.readFileSync(`${assets}/logo-glow.png`).toString('base64')}" alt="The Co.LLab™ logo"/></section>`;
 
 const s1 = `<section class="s cover"><div class="cover-photo" style="background-image:url(${ph('scaffolding')})"></div><div class="brand"><img src="${logo}"/><span>The Co.LLab™</span></div>
 <p class="k" style="margin-top:.3in">Legacy, powered by Omnidirectional Enterprise™</p>
